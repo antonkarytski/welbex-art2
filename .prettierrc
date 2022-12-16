@@ -1,0 +1,7 @@
+{
+  "semi": false,
+  "tabWidth": 2,
+  "singleQuote": true,
+  "importOrder": ["^react|^react-native", "^<THIRD_PARTY_MODULES>", "^altek-toolkit|^altek-ui", "^[./]"],
+  "importOrderSortSpecifiers": true
+}
