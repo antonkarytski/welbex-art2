@@ -1,11 +1,19 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
+import CategoriesList from '../../features/home/CategoriesList'
 import WinnersBlock from '../../features/home/WinnersBlock'
 
 export default function HomeScreen() {
   return (
-    <View>
+    <View style={styles.container}>
       <WinnersBlock />
+      <CategoriesList />
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+})

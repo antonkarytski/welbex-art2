@@ -6,13 +6,12 @@ import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
-import WinnerCard from './WinnerCard'
+import CardWinner from './Card.Winner'
 import { winnerCardThemedStyles } from './styles'
 import { IWinner } from './types'
 
 type WinnersBlockProps = {}
 
-const demoImageOptions = { height: 150, offsetY: 100 }
 const keyExtractor = ({ id }: IWinner) => id
 
 const WinnersBlock = ({}: WinnersBlockProps) => {
@@ -23,15 +22,15 @@ const WinnersBlock = ({}: WinnersBlockProps) => {
   const text = useText()
 
   const renderWinnerItem = useCallback(
-    ({ item, index }: { item: IWinner; index: number }) => {
+    ({ item }: { item: IWinner }) => {
       return (
-        <WinnerCard
+        <CardWinner
           category={item.category}
           authorName={item.authorName}
           yearsCategory={item.yearsCategory}
           image={item.image}
-          imageOptions={demoImageOptions}
           styles={styles.card}
+          offsetY={100}
         />
       )
     },
@@ -63,6 +62,8 @@ const themedStyles = createThemedStyle((colors) =>
       backgroundColor: colors.primary1,
       width: '100%',
       paddingBottom: 24,
+      marginBottom: 8,
+      height: 445,
     },
     contentContainer: {},
     listContent: {

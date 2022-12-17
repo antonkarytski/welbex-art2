@@ -1,30 +1,33 @@
 import React from 'react'
-import { View } from 'react-native'
+import { ImageSourcePropType, View } from 'react-native'
 import Span from '../../ui/Span'
-import ImageCard, { ImageCardProps } from '../../ui/cards/ImageCard'
+import ImageCard from '../../ui/cards/ImageCard'
 import { WinnerCardStyles } from './styles'
 
-type WinnerCardProps = ImageCardProps & {
+type WinnerCardProps = {
+  image: ImageSourcePropType
   styles: WinnerCardStyles
   category: string
   yearsCategory: string
   authorName: string
+  offsetY?: number
 }
 
-const WinnerCard = React.memo(
+const CardWinner = React.memo(
   ({
-    image,
-    imageOptions,
     styles,
     yearsCategory,
     category,
     authorName,
+    offsetY,
+    image,
   }: WinnerCardProps) => {
     return (
       <ImageCard
-        image={image}
-        imageOptions={imageOptions}
         style={styles.container}
+        imageHeight={150}
+        imageOffsetY={offsetY}
+        image={image}
       >
         <View style={styles.description}>
           <View style={styles.row}>
@@ -48,4 +51,4 @@ const WinnerCard = React.memo(
   }
 )
 
-export default WinnerCard
+export default CardWinner

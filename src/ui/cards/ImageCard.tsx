@@ -10,21 +10,20 @@ import {
 
 type ImageOptions =
   | {
-      width?: number
-      height: number
-      offsetY: number
+      imageWidth?: number
+      imageHeight: number
+      imageOffsetY: number
     }
   | {
-      height?: number
-      width?: number
-      offsetY?: never
+      imageHeight?: number
+      imageWidth?: number
+      imageOffsetY?: never
     }
 
 export type ImageCardProps = {
   image: ImageSourcePropType
-  imageOptions?: ImageOptions
   style?: StyleProp<ViewStyle>
-}
+} & ImageOptions
 
 function getImageSize(options: ImageOptions | undefined) {
   if (!options) {
@@ -34,16 +33,16 @@ function getImageSize(options: ImageOptions | undefined) {
     }
   }
 
-  if (options.offsetY) {
+  if (options.imageOffsetY) {
     return {
-      height: options.height + options.offsetY,
-      width: options.width ?? '100%',
+      height: options.imageHeight + options.imageOffsetY,
+      width: options.imageWidth ?? '100%',
     }
   }
 
   return {
-    height: options.height ?? '100%',
-    width: options.width ?? '100%',
+    height: options.imageHeight ?? '100%',
+    width: options.imageWidth ?? '100%',
   }
 }
 
@@ -51,18 +50,19 @@ const ImageCard = ({
   image,
   style,
   children,
-  imageOptions,
+  ...imageOptions
 }: PropsWithChildren<ImageCardProps>) => {
   return (
     <View style={[styles.container, style]}>
-      <View style={styles.imageContainer}>
-        <ImageBackground
-          style={styles.imageBackground}
-          source={image}
-          resizeMode={'cover'}
-          imageStyle={[styles.image, getImageSize(imageOptions)]}
-        />
-      </View>
+      <ImageBackground
+        style={[
+          styles.imageBackground,
+          !!imageOptions.imageHeight && { height: imageOptions.imageHeight },
+        ]}
+        source={image}
+        resizeMode={'cover'}
+        imageStyle={[styles.image, getImageSize(imageOptions)]}
+      />
 
       {children}
     </View>
@@ -72,17 +72,12 @@ const ImageCard = ({
 const styles = StyleSheet.create({
   container: {
     borderRadius: 20,
-    width: 235,
-  },
-  imageContainer: {
-    overflow: 'hidden',
-    height: 150,
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
   },
   imageBackground: {
     width: '100%',
-    height: '100%',
+    overflow: 'hidden',
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
   },
   image: {
     resizeMode: 'cover',

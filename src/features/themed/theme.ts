@@ -17,6 +17,7 @@ const LIGHT = {
   primary3: '#B4DCD8',
   navigationLabelSelected: '#FFFFFF',
   card: '#FFFFFF',
+  shadow: '#1F1F1F1F',
 }
 
 const DARK: Record<keyof ColorThemeStructure, string> = {
@@ -28,6 +29,7 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   primary3: '#B4DCD8',
   navigationLabelSelected: '#FFFFFF',
   card: '#FFFFFF',
+  shadow: '#1F1F1F1F',
 }
 
 export const COLOR_THEMES: Record<ColorThemes, ColorThemeStructure> = {
