@@ -1,6 +1,6 @@
 import * as translations from './languages'
-import { Languages, TLangStructure } from './types'
+import { LangStructure, Languages } from './types'
 
-export const TXT: Record<Languages, TLangStructure> = {
-	...translations
-} as const 
+export const TXT: Record<Languages, LangStructure> = {
+  ...translations,
+} as const
