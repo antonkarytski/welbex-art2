@@ -4,12 +4,20 @@ import { useThemedStyle } from '../features/themed/hooks'
 import { links } from '../navigation/links'
 import { ScreenDescriptor } from '../navigation/types'
 import { useText } from '../translations/hook'
-import { homeScreenDescription } from './home/Router.Home'
+import { createPostTabDescription } from './createPost/Router.CreatePost'
+import { galleryTabDescription } from './gallery/Router.Gallery'
+import { homeTabDescription } from './home/Router.Home'
+import { profileTabDescription } from './profile/Router.Profile'
 import { mainTabBarThemedStyles } from './styles'
 
 const BottomTab = createBottomTabNavigator()
 
-const SCREENS: ScreenDescriptor[] = [homeScreenDescription]
+const SCREENS: ScreenDescriptor[] = [
+  homeTabDescription,
+  galleryTabDescription,
+  createPostTabDescription,
+  profileTabDescription,
+]
 
 const MainTabsRouter = React.memo(() => {
   const styles = useThemedStyle(mainTabBarThemedStyles)

@@ -27,6 +27,7 @@ export const EN = {
   title: 'Title',
   age: 'Age',
   home: 'Home',
+  profile: 'Profile',
   phoneNumber: 'Phone number',
   unexpectedError: 'Unexpected error',
   createNewAccount: 'Create a new account',

@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
-import { ThemedScreenWrapper } from '../../features/themed'
 import { createTabScreenDescription } from '../../navigation/helpers'
 import { links } from '../../navigation/links'
 import HomeIcon from '../../ui/icons/Icon.Home'
@@ -28,7 +27,7 @@ function HomeTabScreen() {
   )
 }
 
-export const homeScreenDescription = createTabScreenDescription({
+export const homeTabDescription = createTabScreenDescription({
   Icon: HomeIcon,
   Component: HomeTabScreen,
   link: links.homeTab,

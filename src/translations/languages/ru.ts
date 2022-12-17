@@ -168,4 +168,5 @@ export const RU: LangStructure = {
   backToPaymentMethods: 'Обратно к способам оплаты',
   saveDiscount: 'Сохранить',
   home: 'Главная',
+  profile: 'Профиль',
 }
