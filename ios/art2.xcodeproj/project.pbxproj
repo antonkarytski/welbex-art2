@@ -9,15 +9,6 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* art2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* art2Tests.m */; };
 		0C80B921A6F3F58F76C31292 /* libPods-art2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-art2.a */; };
-		111ECC5F294E43CC001F798B /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 111ECC56294E43CB001F798B /* Inter-Light.ttf */; };
-		111ECC60294E43CC001F798B /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 111ECC57294E43CB001F798B /* Inter-Medium.ttf */; };
-		111ECC61294E43CC001F798B /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 111ECC58294E43CB001F798B /* Inter-Black.ttf */; };
-		111ECC62294E43CC001F798B /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 111ECC59294E43CB001F798B /* Inter-Regular.ttf */; };
-		111ECC63294E43CC001F798B /* Inter-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 111ECC5A294E43CB001F798B /* Inter-ExtraBold.ttf */; };
-		111ECC64294E43CC001F798B /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 111ECC5B294E43CB001F798B /* Inter-Bold.ttf */; };
-		111ECC65294E43CC001F798B /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 111ECC5C294E43CB001F798B /* Inter-SemiBold.ttf */; };
-		111ECC66294E43CC001F798B /* Inter-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 111ECC5D294E43CB001F798B /* Inter-ExtraLight.ttf */; };
-		111ECC67294E43CC001F798B /* Inter-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 111ECC5E294E43CB001F798B /* Inter-Thin.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -307,17 +298,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				111ECC64294E43CC001F798B /* Inter-Bold.ttf in Resources */,
-				111ECC62294E43CC001F798B /* Inter-Regular.ttf in Resources */,
-				111ECC63294E43CC001F798B /* Inter-ExtraBold.ttf in Resources */,
-				111ECC67294E43CC001F798B /* Inter-Thin.ttf in Resources */,
-				111ECC66294E43CC001F798B /* Inter-ExtraLight.ttf in Resources */,
-				111ECC65294E43CC001F798B /* Inter-SemiBold.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				111ECC60294E43CC001F798B /* Inter-Medium.ttf in Resources */,
-				111ECC5F294E43CC001F798B /* Inter-Light.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				111ECC61294E43CC001F798B /* Inter-Black.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
