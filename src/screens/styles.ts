@@ -10,19 +10,22 @@ const PADDING_BOTTOM = Platform.select({
 export const mainTabBarThemedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     tabBar: {
-      height: 63 + PADDING_BOTTOM,
+      height: 75 + PADDING_BOTTOM,
       paddingBottom: PADDING_BOTTOM,
       backgroundColor: colors.primary1,
       borderTopWidth: -1,
     },
     tabBarLabel: {
-      marginTop: 3,
       textAlign: 'center',
-      fontSize: 9,
-      lineHeight: 12,
-      color: colors.navigationLabelSelected,
+      fontSize: 14,
+      lineHeight: 19,
+      color: colors.primary3,
+      marginTop: -15,
     },
     activeTint: {
+      color: colors.navigationLabelSelected,
+    },
+    inactiveTint: {
       color: colors.primary3,
     },
   })

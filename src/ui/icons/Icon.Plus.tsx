@@ -3,31 +3,32 @@ import Svg, { Path } from 'react-native-svg'
 import { IconProps } from './_types'
 
 export default function PlusIcon({
-  size = 24,
+  size = 22,
   color = '#303535',
   style,
 }: IconProps) {
   return (
-    <Svg
-      width={size}
-      height={size}
-      style={style}
-      fill="none"
-      viewBox="0 0 24 24"
-    >
+    <Svg width={size * 1.1} height={size} viewBox="0 0 23 22" fill="none">
       <Path
-        d="M12 5V19"
+        d="M11.5 21C17.0228 21 21.5 16.5228 21.5 11C21.5 5.47715 17.0228 1 11.5 1C5.97715 1 1.5 5.47715 1.5 11C1.5 16.5228 5.97715 21 11.5 21Z"
         stroke={color}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <Path
-        d="M5 12H19"
+        d="M11.5 7V15"
         stroke={color}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M7.5 11H15.5"
+        stroke={color}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </Svg>
   )

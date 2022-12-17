@@ -25,11 +25,19 @@ const MainTabsRouter = React.memo(() => {
 
   return (
     <BottomTab.Navigator
-      screenOptions={{
-        tabBarActiveTintColor: (styles.activeTint as { color: string }).color,
-        tabBarStyle: styles.tabBar,
-        tabBarLabelStyle: styles.tabBarLabel,
-        headerShown: false,
+      screenOptions={(props) => {
+        const isFocused = props.navigation.isFocused()
+        return {
+          tabBarActiveTintColor: (styles.activeTint as { color: string }).color,
+          tabBarInactiveTintColor: (styles.inactiveTint as { color: string })
+            .color,
+          tabBarStyle: styles.tabBar,
+          tabBarLabelStyle: [
+            styles.tabBarLabel,
+            isFocused && styles.activeTint,
+          ],
+          headerShown: false,
+        }
       }}
       initialRouteName={links.homeTab}
     >
