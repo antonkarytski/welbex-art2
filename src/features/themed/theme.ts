@@ -10,20 +10,24 @@ export type ColorFn = (structure: ColorThemeStructure) => string
 
 const LIGHT = {
   text: '#303535',
+  subText: '#B2BEBD',
   screenBackground: '#FFFFFF',
   primary1: '#347B81',
   primary2: '#84BDBE',
   primary3: '#B4DCD8',
   navigationLabelSelected: '#FFFFFF',
+  card: '#FFFFFF',
 }
 
 const DARK: Record<keyof ColorThemeStructure, string> = {
   text: '#303535',
+  subText: '#B2BEBD',
   screenBackground: '#FFFFFF',
   primary1: '#347B81',
   primary2: '#84BDBE',
   primary3: '#B4DCD8',
   navigationLabelSelected: '#FFFFFF',
+  card: '#FFFFFF',
 }
 
 export const COLOR_THEMES: Record<ColorThemes, ColorThemeStructure> = {

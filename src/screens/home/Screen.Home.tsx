@@ -1,6 +1,11 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
+import WinnersBlock from '../../features/home/WinnersBlock'
 
 export default function HomeScreen() {
-  return <Text>HomeScreen</Text>
+  return (
+    <View>
+      <WinnersBlock />
+    </View>
+  )
 }

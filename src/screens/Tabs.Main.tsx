@@ -21,6 +21,7 @@ const MainTabsRouter = React.memo(() => {
         tabBarActiveTintColor: (styles.activeTint as { color: string }).color,
         tabBarStyle: styles.tabBar,
         tabBarLabelStyle: styles.tabBarLabel,
+        headerShown: false,
       }}
       initialRouteName={links.homeTab}
     >

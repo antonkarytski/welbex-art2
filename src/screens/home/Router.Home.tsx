@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
+import { ThemedScreenWrapper } from '../../features/themed'
 import { createTabScreenDescription } from '../../navigation/helpers'
 import { links } from '../../navigation/links'
 import HomeIcon from '../../ui/icons/Icon.Home'
@@ -8,10 +9,17 @@ import HomeScreen from './Screen.Home'
 
 const Stack = createNativeStackNavigator()
 
-export default function HomeTabScreen() {
+function HomeTabScreen() {
   return (
-    <Stack.Navigator initialRouteName={links.home}>
-      <Stack.Screen name={links.home} component={HomeScreen} />
+    <Stack.Navigator
+      defaultScreenOptions={{ headerShown: false }}
+      initialRouteName={links.home}
+    >
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name={links.home}
+        component={HomeScreen}
+      />
       <Stack.Screen
         name={links.competitionCategory}
         component={CategoryScreen}
