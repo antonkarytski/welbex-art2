@@ -7,8 +7,6 @@ import HomeRouter from './home/Router.Home'
 import ProfileRouter from './profile/Router.Profile'
 import SettingsRouter from './settings/Router.Settings'
 
-// name={links.settings}
-
 const BottomTab = createBottomTabNavigator()
 
 export default React.memo(function MainRouter() {
