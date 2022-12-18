@@ -1,29 +1,24 @@
 export enum links {
-  /** auth */
   signUp = 'signUp',
   phoneEnter = 'phoneEnter',
   verification = 'verification',
   login = 'login',
   passwordEnter = 'passwordEnter',
   passwordRecover = 'passwordRecover',
-  /** main */
+  mainTabs = 'mainTabs',
+  homeTab = 'homeTab',
   home = 'home',
-  homeMain = 'homeMain',
   competitionCategory = 'competitionCategory',
-  /** gallery */
-  gallery = 'gallery',
+  galleryTab = 'galleryTab',
   galleryMain = 'galleryMain',
   galleryFilter = 'galleryFilter',
-  /** post */
-  createPost = 'createPost',
+  createPostTab = 'createPostTab',
   uploadPostImage = 'uploadPostImage',
   addPostDescription = 'addPostDescription',
   postCard = 'postCard',
-  /** profile */
   profile = 'profile',
-  profileMain = 'profileMain',
+  profileTab = 'profileTab',
   editProfile = 'editProfile',
-  /** settings */
   settings = 'settings',
   settingsMain = 'settingsMain',
   faq = 'faq',
@@ -31,7 +26,6 @@ export enum links {
   language = 'language',
   notifications = 'notifications',
   deleteAccount = 'deleteAccount',
-  /** subscription */
   subscriptionOptions = 'subscriptionOptions',
   userSubscription = 'userSubscription',
   addPaymentCard = 'addPaymentCard',
