@@ -4,7 +4,7 @@ import {
   ImageSourcePropType,
   StyleProp,
   StyleSheet,
-  View,
+  TouchableOpacity,
   ViewStyle,
 } from 'react-native'
 
@@ -23,6 +23,7 @@ type ImageOptions =
 export type ImageCardProps = {
   image: ImageSourcePropType
   style?: StyleProp<ViewStyle>
+  onPress?: () => void
 } & ImageOptions
 
 function getImageSize(options: ImageOptions | undefined) {
@@ -50,10 +51,15 @@ const ImageCard = ({
   image,
   style,
   children,
+  onPress,
   ...imageOptions
 }: PropsWithChildren<ImageCardProps>) => {
   return (
-    <View style={[styles.container, style]}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={onPress}
+      style={[styles.container, style]}
+    >
       <ImageBackground
         style={[
           styles.imageBackground,
@@ -65,7 +71,7 @@ const ImageCard = ({
       />
 
       {children}
-    </View>
+    </TouchableOpacity>
   )
 }
 

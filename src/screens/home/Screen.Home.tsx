@@ -1,7 +1,7 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import CategoriesList from '../../features/home/CategoriesList'
-import WinnersBlock from '../../features/home/WinnersBlock'
+import { StyleSheet, View } from 'react-native'
+import CategoriesList from '../../features/categories/CategoriesList'
+import WinnersBlock from '../../features/winners/WinnersBlock'
 
 export default function HomeScreen() {
   return (

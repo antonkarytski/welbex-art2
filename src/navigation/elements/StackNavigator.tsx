@@ -1,8 +1,9 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React, { PropsWithChildren } from 'react'
 import { useColors } from '../../features/themed'
+import { ScreensProps } from '../types.screenProps'
 
-export const Stack = createNativeStackNavigator()
+export const Stack = createNativeStackNavigator<ScreensProps>()
 
 const StackNavigator = ({ children }: PropsWithChildren<any>) => {
   const colors = useColors()

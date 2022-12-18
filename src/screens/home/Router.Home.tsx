@@ -1,29 +1,21 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
+import { Stack } from '../../navigation/elements/StackNavigator'
+import TabStackNavigator from '../../navigation/elements/TabStackNavigator'
 import { createTabScreenDescription } from '../../navigation/helpers'
 import { links } from '../../navigation/links'
 import HomeIcon from '../../ui/icons/Icon.Home'
-import CategoryScreen from './Screen.CompetitionCategory'
+import CategoryDetailsScreen from './Screen.CategoryDetails'
 import HomeScreen from './Screen.Home'
-
-const Stack = createNativeStackNavigator()
 
 function HomeTabScreen() {
   return (
-    <Stack.Navigator
-      defaultScreenOptions={{ headerShown: false }}
-      initialRouteName={links.home}
-    >
+    <TabStackNavigator initialRoute={links.home}>
+      <Stack.Screen name={links.home} component={HomeScreen} />
       <Stack.Screen
-        options={{ headerShown: false }}
-        name={links.home}
-        component={HomeScreen}
+        name={links.categoryDetails}
+        component={CategoryDetailsScreen}
       />
-      <Stack.Screen
-        name={links.competitionCategory}
-        component={CategoryScreen}
-      />
-    </Stack.Navigator>
+    </TabStackNavigator>
   )
 }
 

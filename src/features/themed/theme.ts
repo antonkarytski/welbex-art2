@@ -9,6 +9,7 @@ export enum ColorThemes {
 export type ColorFn = (structure: ColorThemeStructure) => string
 
 const LIGHT = {
+  whiteText: '#FFFFFF',
   text: '#303535',
   subText: '#B2BEBD',
   screenBackground: '#FFFFFF',
@@ -18,9 +19,11 @@ const LIGHT = {
   navigationLabelSelected: '#FFFFFF',
   card: '#FFFFFF',
   shadow: '#1F1F1F1F',
+  line: '#F2F4F4',
 }
 
 const DARK: Record<keyof ColorThemeStructure, string> = {
+  whiteText: '#FFFFFF',
   text: '#303535',
   subText: '#B2BEBD',
   screenBackground: '#FFFFFF',
@@ -30,6 +33,7 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   navigationLabelSelected: '#FFFFFF',
   card: '#FFFFFF',
   shadow: '#1F1F1F1F',
+  line: '#F2F4F4',
 }
 
 export const COLOR_THEMES: Record<ColorThemes, ColorThemeStructure> = {
