@@ -1,6 +1,7 @@
-import { ViewStyle } from 'react-native'
+import { TextStyle, ViewStyle } from 'react-native'
 
 export type ScreenHeaderStyles = {
   container?: ViewStyle
   line?: ViewStyle
+  title?: TextStyle
 }

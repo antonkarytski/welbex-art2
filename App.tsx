@@ -6,8 +6,9 @@ import { useCachedResources } from './src/lib/appInit/hook.cachedResources'
 import Router from './src/screens/Router'
 
 export default function App() {
-  useCachedResources()
+  const isLoaded = useCachedResources()
 
+  if (!isLoaded) return null
   return (
     <SafeAreaProvider>
       <NavigationContainer>

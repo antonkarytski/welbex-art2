@@ -1,20 +1,19 @@
 import { IWinner } from '../features/winners/types'
+import { reginaRomanova, romanov } from './users'
 
 export const WINNERS_MOCK: IWinner[] = [
   {
     id: '1',
     category: 'Animals',
-    country: 'RU',
     image: require('../../assets/images/cat.png'),
-    authorName: 'Regina Romanova',
     yearsCategory: '8-10 yo',
+    author: reginaRomanova,
   },
   {
     id: '2',
     category: 'Nature',
-    country: 'RU',
+    author: romanov,
     image: require('../../assets/images/nature.png'),
-    authorName: 'Sergey Romanova',
     yearsCategory: '8-10 yo',
   },
 ]

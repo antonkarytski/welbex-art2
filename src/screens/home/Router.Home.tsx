@@ -5,6 +5,7 @@ import { createTabScreenDescription } from '../../navigation/helpers'
 import { links } from '../../navigation/links'
 import HomeIcon from '../../ui/icons/Icon.Home'
 import CategoryDetailsScreen from './Screen.CategoryDetails'
+import DrawingDetailsScreen from './Screen.DrawingDetails'
 import HomeScreen from './Screen.Home'
 
 function HomeTabScreen() {
@@ -14,6 +15,10 @@ function HomeTabScreen() {
       <Stack.Screen
         name={links.categoryDetails}
         component={CategoryDetailsScreen}
+      />
+      <Stack.Screen
+        name={links.drawingDetails}
+        component={DrawingDetailsScreen}
       />
     </TabStackNavigator>
   )

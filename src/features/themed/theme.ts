@@ -20,6 +20,7 @@ const LIGHT = {
   card: '#FFFFFF',
   shadow: '#1F1F1F1F',
   line: '#F2F4F4',
+  darkLine: '#D5DDDC',
 }
 
 const DARK: Record<keyof ColorThemeStructure, string> = {
@@ -34,6 +35,7 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   card: '#FFFFFF',
   shadow: '#1F1F1F1F',
   line: '#F2F4F4',
+  darkLine: '#D5DDDC',
 }
 
 export const COLOR_THEMES: Record<ColorThemes, ColorThemeStructure> = {

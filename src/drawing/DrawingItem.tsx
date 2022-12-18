@@ -7,20 +7,27 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native'
+import { Drawing } from './types'
 
 type DrawingProps = {
   size: number
-  image: ImageSourcePropType
+  item: Drawing
   style?: StyleProp<ImageStyle>
   containerStyle?: StyleProp<ViewStyle>
+  onPress?: (item: Drawing) => void
 }
 
-const DrawingItem = ({ size, image, style, containerStyle }: DrawingProps) => {
-  return (
-    <TouchableOpacity style={containerStyle}>
-      <Image source={image} style={[style, { width: size, height: size }]} />
-    </TouchableOpacity>
-  )
-}
+const DrawingItem = React.memo(
+  ({ size, style, containerStyle, onPress, item }: DrawingProps) => {
+    return (
+      <TouchableOpacity onPress={() => onPress?.(item)} style={containerStyle}>
+        <Image
+          source={item.image}
+          style={[style, { width: size, height: size }]}
+        />
+      </TouchableOpacity>
+    )
+  }
+)
 
 export default DrawingItem

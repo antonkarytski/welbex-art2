@@ -26,7 +26,7 @@ const ScreenHeader = ({
       <View style={[styles.container, style?.container]}>
         <View style={styles.leftBlock}></View>
         <View style={styles.titleContainer}>
-          <Span weight={600} style={styles.title}>
+          <Span weight={600} style={[styles.title, style?.title]}>
             {title}
           </Span>
         </View>

@@ -24,7 +24,7 @@ const WinnersBlock = () => {
       return (
         <CardWinner
           category={item.category}
-          authorName={item.authorName}
+          authorName={item.author.name}
           yearsCategory={item.yearsCategory}
           image={item.image}
           styles={styles.card}
