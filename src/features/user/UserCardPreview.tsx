@@ -1,9 +1,10 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { romanov } from '../../_mock/users'
 import { createThemedStyle } from '../themed'
-import { useTheme } from '../themed/hooks'
+import { useTheme, useThemedStyleList } from '../themed/hooks'
 import Avatar from './Avatar'
+import UserDescription from './UserDescription'
+import { UserDescriptionStyles } from './styles'
 import { User } from './types'
 
 type UserCardPreviewProps = {
@@ -11,16 +12,29 @@ type UserCardPreviewProps = {
 }
 
 const UserCardPreview = ({ item }: UserCardPreviewProps) => {
-  const { styles, colors } = useTheme(themedStyles)
+  const { styles, colors } = useThemedStyleList({
+    common: themedStyles,
+    description: themedDescriptionStyles,
+  })
 
   return (
-    <View style={styles.container}>
-      <Avatar style={styles.avatar} src={item.avatar} />
+    <View style={styles.common.container}>
+      <Avatar style={styles.common.avatar} src={item.avatar} />
+      <UserDescription style={styles.description} item={item} />
     </View>
   )
 }
 
-const themedStyles = createThemedStyle(() =>
+const themedDescriptionStyles = createThemedStyle<UserDescriptionStyles>(
+  (colors) =>
+    StyleSheet.create({
+      subText: {
+        color: colors.lightText,
+      },
+    })
+)
+
+const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     container: {
       paddingTop: 24,
@@ -28,6 +42,7 @@ const themedStyles = createThemedStyle(() =>
       flexDirection: 'row',
     },
     avatar: {
+      borderColor: colors.primary1,
       marginRight: 16,
     },
   })
