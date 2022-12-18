@@ -24,13 +24,7 @@ const CategoriesList = ({}: CategoriesListProps) => {
         contentContainerStyle={styles.common.listContent}
         data={MOCK_CATEGORIES}
         renderItem={({ item }) => {
-          return (
-            <CardCategory
-              image={item.image}
-              styles={styles.card}
-              label={item.label}
-            />
-          )
+          return <CardCategory item={item} styles={styles.card} />
         }}
         keyExtractor={({ name }) => name}
       />
