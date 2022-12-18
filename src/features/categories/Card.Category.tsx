@@ -5,11 +5,11 @@ import { links } from '../../navigation/links'
 import Span from '../../ui/Span'
 import ImageCard from '../../ui/cards/ImageCard'
 import { CategoryCardStyles } from './styles'
-import { ICategory } from './types'
+import { CompetitionCategory } from './types'
 
 type CardCategoryProps = {
   styles: CategoryCardStyles
-  item: ICategory
+  item: CompetitionCategory
 }
 
 const CardCategory = React.memo(({ styles, item }: CardCategoryProps) => {

@@ -7,10 +7,10 @@ import H1 from '../../ui/H1'
 import Span from '../../ui/Span'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
-import { ICategory } from './types'
+import { CompetitionCategory } from './types'
 
 type CategoryDetailsHeaderProps = {
-  item: ICategory
+  item: CompetitionCategory
 }
 
 const CategoryDetailsHeader = ({ item }: CategoryDetailsHeaderProps) => {
@@ -21,15 +21,13 @@ const CategoryDetailsHeader = ({ item }: CategoryDetailsHeaderProps) => {
   })
 
   return (
-    <View>
-      <ImageBackground source={item.image}>
-        <ScreenHeader style={styles.header} title={text.category} />
-        <View style={styles.common.content}>
-          <H1 style={styles.common.title} label={item.label} />
-          <Span style={styles.common.term} label={item.term} />
-        </View>
-      </ImageBackground>
-    </View>
+    <ImageBackground source={item.image}>
+      <ScreenHeader style={styles.header} title={text.category} />
+      <View style={styles.common.content}>
+        <H1 style={styles.common.title} label={item.label} />
+        <Span style={styles.common.term} label={item.term} />
+      </View>
+    </ImageBackground>
   )
 }
 

@@ -7,10 +7,10 @@ import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import CardCategory from './Card.Category'
 import { categoryCardThemedStyles } from './styles'
-import { ICategory } from './types'
+import { CompetitionCategory } from './types'
 
 type CategoriesListProps = {}
-const keyExtractor = ({ name }: ICategory) => name
+const keyExtractor = ({ name }: CompetitionCategory) => name
 
 const CategoriesList = ({}: CategoriesListProps) => {
   const text = useText()
@@ -20,7 +20,7 @@ const CategoriesList = ({}: CategoriesListProps) => {
   })
 
   const renderItem = useCallback(
-    ({ item }: { item: ICategory }) => {
+    ({ item }: { item: CompetitionCategory }) => {
       return <CardCategory item={item} styles={styles.card} />
     },
     [styles]
