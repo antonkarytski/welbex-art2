@@ -4,7 +4,7 @@ import {
   ImageSourcePropType,
   ImageStyle,
   StyleProp,
-  View,
+  TouchableOpacity,
   ViewStyle,
 } from 'react-native'
 
@@ -17,9 +17,9 @@ type DrawingProps = {
 
 const DrawingItem = ({ size, image, style, containerStyle }: DrawingProps) => {
   return (
-    <View style={containerStyle}>
+    <TouchableOpacity style={containerStyle}>
       <Image source={image} style={[style, { width: size, height: size }]} />
-    </View>
+    </TouchableOpacity>
   )
 }
 
