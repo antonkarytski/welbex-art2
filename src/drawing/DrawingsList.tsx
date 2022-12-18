@@ -1,63 +1,61 @@
-import React, { ReactNode } from 'react'
-import {
-  Dimensions,
-  FlatList,
-  ImageSourcePropType,
-  StyleSheet,
-  View,
-} from 'react-native'
-import { createThemedStyle } from '../features/themed'
-import { useThemedStyle } from '../features/themed/hooks'
-import { useText } from '../translations/hook'
-import H2 from '../ui/H2'
-import H3 from '../ui/H3'
-import Span from '../ui/Span'
+import React, { ReactElement, useCallback } from 'react'
+import { Dimensions, FlatList, StyleSheet, View } from 'react-native'
 import DrawingItem from './DrawingItem'
 import { Drawing } from './types'
 
 type DrawingsListProps = {
   data: Drawing[]
-  ListHeader: ReactNode
+  ListHeader: ReactElement
 }
 
 const PADDING_SIZE = 20
+function getImageSize() {
+  const screenWidth = Dimensions.get('screen').width
+  return (screenWidth - PADDING_SIZE * 3) / 2
+}
+const keyExtractor = ({ id }: Drawing) => id
 
 const DrawingsList = ({ data, ListHeader }: DrawingsListProps) => {
-  const screenWidth = Dimensions.get('screen').width
-  const imageSize = (screenWidth - PADDING_SIZE * 3) / 2
+  const imageSize = getImageSize()
+
+  const renderItem = useCallback(
+    ({ item }: { item: Drawing }) => {
+      return (
+        <DrawingItem style={styles.item} size={imageSize} image={item.image} />
+      )
+    },
+    [imageSize]
+  )
 
   return (
-    <View
-      style={{
-        flex: 1,
-      }}
-    >
+    <View style={styles.container}>
       <FlatList
-        ListHeaderComponent={<>{ListHeader}</>}
+        ListHeaderComponent={ListHeader}
         data={data}
-        contentContainerStyle={{
-          paddingHorizontal: PADDING_SIZE,
-        }}
-        columnWrapperStyle={{
-          justifyContent: 'space-between',
-        }}
+        contentContainerStyle={styles.listContentContainer}
+        columnWrapperStyle={styles.listColumnWrapper}
         numColumns={2}
-        renderItem={({ item }) => {
-          return (
-            <DrawingItem
-              style={{
-                marginBottom: 20,
-                borderRadius: 20,
-              }}
-              size={imageSize}
-              image={item.image}
-            />
-          )
-        }}
-        keyExtractor={({ id }) => id}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
       />
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  listColumnWrapper: {
+    justifyContent: 'space-between',
+  },
+  item: {
+    marginBottom: 20,
+    borderRadius: 20,
+  },
+  listContentContainer: {
+    paddingHorizontal: PADDING_SIZE,
+  },
+})
 
 export default DrawingsList
