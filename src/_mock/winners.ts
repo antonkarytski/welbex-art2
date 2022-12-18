@@ -1,4 +1,4 @@
-import { IWinner } from '../features/home/types'
+import { IWinner } from '../features/winners/types'
 
 export const WINNERS_MOCK: IWinner[] = [
   {

@@ -8,7 +8,7 @@ export enum links {
   mainTabs = 'mainTabs',
   homeTab = 'homeTab',
   home = 'home',
-  competitionCategoryDetails = 'competitionCategoryDetails',
+  categoryDetails = 'categoryDetails',
   galleryTab = 'galleryTab',
   galleryMain = 'galleryMain',
   galleryFilter = 'galleryFilter',

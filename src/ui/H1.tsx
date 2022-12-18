@@ -9,6 +9,7 @@ const H1 = ({ style, ...props }: SpanProps) => {
 const styles = StyleSheet.create({
   text: {
     fontSize: 36,
+    marginVertical: 36,
   },
 })
 

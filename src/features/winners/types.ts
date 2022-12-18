@@ -9,9 +9,3 @@ export type IWinner = {
   country: string
   imageOffsetY?: number
 }
-
-export type ICategory = {
-  label: string
-  name: string
-  image: ImageSourcePropType
-}

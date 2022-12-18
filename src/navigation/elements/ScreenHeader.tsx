@@ -4,11 +4,12 @@ import { createThemedStyle } from '../../features/themed'
 import { useTheme } from '../../features/themed/hooks'
 import Span from '../../ui/Span'
 import NavigationBackButton from './Button.NavigationBack'
+import { ScreenHeaderStyles } from './styles'
 
 type ScreenHeaderProps = {
   title: string | ReactNode
   headerRight?: ReactNode
-  style?: StyleProp<ViewStyle>
+  style?: ScreenHeaderStyles
   onBack?: () => void
 }
 
@@ -22,7 +23,7 @@ const ScreenHeader = ({
 
   return (
     <View>
-      <View style={[styles.container, style]}>
+      <View style={[styles.container, style?.container]}>
         <View style={styles.leftBlock}></View>
         <View style={styles.titleContainer}>
           <Span weight={600} style={styles.title}>
@@ -31,7 +32,7 @@ const ScreenHeader = ({
         </View>
         <View style={styles.rightBlock}></View>
       </View>
-      <View style={styles.line}></View>
+      <View style={[styles.line, style?.line]}></View>
     </View>
   )
 }
