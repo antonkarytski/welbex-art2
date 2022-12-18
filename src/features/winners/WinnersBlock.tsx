@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { WINNERS_MOCK } from '../../_mock/winners'
-import ScreenHeader from '../../navigation/elements/ScreenHeader'
+import AppHeader from '../../navigation/elements/AppHeader'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import { createThemedStyle } from '../themed'
@@ -10,11 +10,9 @@ import CardWinner from './Card.Winner'
 import { winnerCardThemedStyles } from './styles'
 import { IWinner } from './types'
 
-type WinnersBlockProps = {}
-
 const keyExtractor = ({ id }: IWinner) => id
 
-const WinnersBlock = ({}: WinnersBlockProps) => {
+const WinnersBlock = () => {
   const { styles } = useThemedStyleList({
     common: themedStyles,
     card: winnerCardThemedStyles,
@@ -39,7 +37,7 @@ const WinnersBlock = ({}: WinnersBlockProps) => {
 
   return (
     <View style={styles.common.container}>
-      <ScreenHeader title={'ART2'} />
+      <AppHeader />
       <H2 style={styles.common.title} label={text.winners} />
       <FlatList
         contentContainerStyle={styles.common.listContent}
