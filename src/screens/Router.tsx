@@ -1,11 +1,17 @@
 import React from 'react'
-import StackNavigator from '../navigation/elements/StackNavigator'
+import StackNavigator, { Stack } from '../navigation/elements/StackNavigator'
+import { links } from '../navigation/links'
 import { useText } from '../translations/hook'
+import MainTabsRouter from './Tabs.Main'
 
-const MainScreenRouter = React.memo(() => {
+const Router = React.memo(() => {
   const text = useText()
 
-  return <StackNavigator></StackNavigator>
+  return (
+    <StackNavigator>
+      <Stack.Screen name={links.mainTabs} component={MainTabsRouter} />
+    </StackNavigator>
+  )
 })
 
-export default MainScreenRouter
+export default Router

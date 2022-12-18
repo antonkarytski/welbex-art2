@@ -1,5 +1,6 @@
 import { ImageStyle, TextStyle, ViewStyle } from 'react-native'
 import { createColorTheme } from 'altek-toolkit'
+import { ScreenWrapper } from 'altek-ui'
 import { COLOR_THEME_DEFAULT } from '../../constants/settings'
 import {
   createThemedStylesCommon,
@@ -7,10 +8,8 @@ import {
 } from './createThemedStyles'
 import { COLOR_THEMES, ColorThemeStructure } from './theme'
 
-export const { useColors, useColorTheme, $colorTheme } = createColorTheme(
-  COLOR_THEMES,
-  COLOR_THEME_DEFAULT
-)
+export const { useColors, useColorTheme, $colorTheme, withThemedProps } =
+  createColorTheme(COLOR_THEMES, COLOR_THEME_DEFAULT)
 
 type AnyStyle = ViewStyle | TextStyle | ImageStyle
 export type CreateSingleStyleFn<S extends AnyStyle> = (
@@ -24,3 +23,7 @@ export const createSingleThemedStyle = <S extends AnyStyle>(
 export const createThemedStyle = __DEV__
   ? createThemedStylesCommon
   : createThemedStylesWithMemo
+
+export const ThemedScreenWrapper = withThemedProps(ScreenWrapper, (colors) => {
+  return { backgroundColor: colors.screenBackground }
+})

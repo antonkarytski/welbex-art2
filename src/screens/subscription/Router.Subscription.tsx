@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import React from 'react'
 import { links } from '../../navigation/links'
 import AddPaymentCardScreen from './Screen.AddPaymentCard'
 import PaymentMethodsScreen from './Screen.PaymentMethods'

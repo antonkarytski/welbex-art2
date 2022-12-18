@@ -1,7 +1,7 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native'
-import { TScreensProps } from './types.screenProps'
+import { ScreensProps } from './types.screenProps'
 
 export function useNavigate() {
-  const { navigate } = useNavigation<NavigationProp<TScreensProps>>()
+  const { navigate } = useNavigation<NavigationProp<ScreensProps>>()
   return navigate
 }

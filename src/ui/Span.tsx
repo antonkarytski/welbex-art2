@@ -1,0 +1,45 @@
+import React, { PropsWithChildren } from 'react'
+import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native'
+
+export type SpanProps = {
+  label?: string
+  style?: StyleProp<TextStyle>
+  weight?: 400 | 500 | 600 | 700
+}
+
+const Span = ({
+  children,
+  label,
+  style,
+  weight = 400,
+}: PropsWithChildren<SpanProps>) => {
+  return (
+    <Text style={[styles.common, weights[weight], style]}>
+      {label || children}
+    </Text>
+  )
+}
+
+const weights = StyleSheet.create({
+  '400': {
+    fontWeight: '400',
+  },
+  '500': {
+    fontWeight: '500',
+  },
+  '600': {
+    fontWeight: '600',
+  },
+  '700': {
+    fontWeight: '700',
+  },
+})
+
+const styles = StyleSheet.create({
+  common: {
+    fontFamily: 'Inter',
+    fontSize: 14,
+  },
+})
+
+export default Span

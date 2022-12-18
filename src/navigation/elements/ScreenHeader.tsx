@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
-import { Text } from 'altek-ui'
 import { createThemedStyle } from '../../features/themed'
 import { useTheme } from '../../features/themed/hooks'
+import Span from '../../ui/Span'
 import NavigationBackButton from './Button.NavigationBack'
 
 type ScreenHeaderProps = {
-  title: string
+  title: string | ReactNode
   headerRight?: ReactNode
   style?: StyleProp<ViewStyle>
   onBack?: () => void
@@ -21,18 +21,17 @@ const ScreenHeader = ({
   const { colors, styles } = useTheme(themedStyles)
 
   return (
-    <View style={[styles.container, style]}>
-      <NavigationBackButton
-        color={colors.text}
-        style={styles.backButton}
-        onPress={onBack}
-      />
-      <View style={styles.content}>
-        <Text bold style={styles.title} label={title} />
-        {headerRight ? (
-          <View style={styles.rightContainer}>{headerRight}</View>
-        ) : null}
+    <View>
+      <View style={[styles.container, style]}>
+        <View style={styles.leftBlock}></View>
+        <View style={styles.titleContainer}>
+          <Span weight={600} style={styles.title}>
+            {title}
+          </Span>
+        </View>
+        <View style={styles.rightBlock}></View>
       </View>
+      <View style={styles.line}></View>
     </View>
   )
 }
@@ -40,27 +39,23 @@ const ScreenHeader = ({
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     container: {
-      marginTop: 12,
+      paddingTop: 56,
       flexDirection: 'row',
-      alignItems: 'center',
-      paddingLeft: 8,
+      justifyContent: 'space-between',
     },
-    rightContainer: {
-      marginLeft: 'auto',
-    },
-    content: {
-      marginBottom: 19,
-      flexDirection: 'row',
-      alignItems: 'flex-end',
-      flex: 1,
-    },
-    backButton: {
-      paddingBottom: 19,
-      paddingRight: 15,
+    leftBlock: {},
+    rightBlock: {},
+    titleContainer: {
+      paddingVertical: 18,
     },
     title: {
-      color: colors.text,
-      fontSize: 20,
+      color: colors.navigationLabelSelected,
+      fontSize: 18,
+    },
+    line: {
+      marginHorizontal: 20,
+      height: 1,
+      backgroundColor: colors.primary3,
     },
   })
 )
