@@ -1,4 +1,5 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
+import { themedShadow5Style } from '../../styles/shadows'
 import { createThemedStyle } from '../themed'
 
 export type CategoryCardStyles = {
@@ -10,14 +11,7 @@ export const categoryCardThemedStyles = createThemedStyle<CategoryCardStyles>(
   (colors) =>
     StyleSheet.create({
       container: {
-        shadowColor: '#1F1F1F1F',
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
+        ...themedShadow5Style(colors),
         marginBottom: 20,
       },
       captionContainer: {
