@@ -1,7 +1,7 @@
 import React from 'react'
-import DrawingsList from '../../drawing/DrawingsList'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
+import DrawingsList from '../drawing/DrawingsList'
 import CategoryDescription from './CategoryDescription'
 import { useCategoryGallery } from './model/hooks'
 import { CompetitionCategory } from './types'

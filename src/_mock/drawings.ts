@@ -1,4 +1,4 @@
-import { Drawing } from '../drawing/types'
+import { Drawing } from '../features/drawing/types'
 import { romanov } from './users'
 
 const createDrawing = (drawing: Drawing) => drawing

@@ -1,5 +1,5 @@
 import { ImageSourcePropType } from 'react-native'
-import { Drawing } from '../../drawing/types'
+import { Drawing } from '../drawing/types'
 
 export type CompetitionCategory = {
   label: string

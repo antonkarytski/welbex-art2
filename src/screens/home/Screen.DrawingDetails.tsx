@@ -1,6 +1,7 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
+import DrawingInteractionPanel from '../../features/drawing/DrawingInteractivePanel'
 import AutoHeightImage from '../../features/images/AutoHeightImage'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
@@ -36,6 +37,7 @@ const DrawingDetailsScreen = ({
             return screen.width - 40
           }}
         />
+        <DrawingInteractionPanel />
         <PresetButton
           style={styles.common.downloadButton}
           label={text.download}
