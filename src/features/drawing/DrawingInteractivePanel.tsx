@@ -1,28 +1,38 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import Span from '../../ui/Span'
 import FavouriteButton from '../../ui/buttons/FavouriteButton'
 import LikeButton from '../../ui/buttons/LikeButton'
 import ShareButton from '../../ui/buttons/ShareButton'
 import { useColors } from '../themed'
+import { Drawing } from './types'
 
-type DrawingInteractivePanelProps = {}
+type DrawingInteractivePanelProps = {
+  item: Drawing
+}
 
-const DrawingInteractivePanel = ({}: DrawingInteractivePanelProps) => {
+const DrawingInteractivePanel = ({ item }: DrawingInteractivePanelProps) => {
   const colors = useColors()
 
   return (
-    <View style={styles.container}>
-      <LikeButton likesCount={110} style={[styles.button, styles.likeButton]} />
-      <View style={styles.interactionBlock}>
-        <ShareButton
-          color={colors.icon}
-          style={[styles.button, styles.shareButton]}
+    <View>
+      <View style={styles.container}>
+        <LikeButton
+          likesCount={item.likesCount}
+          style={[styles.button, styles.likeButton]}
         />
-        <FavouriteButton
-          color={colors.icon}
-          style={[styles.button, styles.favouriteButton]}
-        />
+        <View style={styles.interactionBlock}>
+          <ShareButton
+            color={colors.icon}
+            style={[styles.button, styles.shareButton]}
+          />
+          <FavouriteButton
+            color={colors.icon}
+            style={[styles.button, styles.favouriteButton]}
+          />
+        </View>
       </View>
+      <Span style={styles.title} weight={600} label={item.name} />
     </View>
   )
 }
@@ -30,6 +40,7 @@ const DrawingInteractivePanel = ({}: DrawingInteractivePanelProps) => {
 const styles = StyleSheet.create({
   container: {
     paddingTop: 12,
+    paddingBottom: 10,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -50,6 +61,9 @@ const styles = StyleSheet.create({
   likeButton: {
     paddingRight: 20,
     paddingLeft: 4,
+  },
+  title: {
+    fontSize: 16,
   },
 })
 

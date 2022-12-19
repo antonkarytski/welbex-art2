@@ -37,7 +37,7 @@ const DrawingDetailsScreen = ({
             return screen.width - 40
           }}
         />
-        <DrawingInteractionPanel />
+        <DrawingInteractionPanel item={drawing} />
         <PresetButton
           style={styles.common.downloadButton}
           label={text.download}
