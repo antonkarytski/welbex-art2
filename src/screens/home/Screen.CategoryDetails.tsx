@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
-import { View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import CategoryDetailsHeader from '../../features/categories/CategoryDetailsHeader'
 import CategoryGallery from '../../features/categories/CategoryGallery'
 import { links } from '../../navigation/links'
@@ -13,11 +13,15 @@ const CategoryDetailsScreen = ({
 
   //Rework scroll
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <CategoryDetailsHeader item={category} />
       <CategoryGallery item={category} />
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+})
 
 export default CategoryDetailsScreen

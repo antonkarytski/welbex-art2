@@ -11,7 +11,7 @@ const LIGHT = {
   whiteText: '#FFFFFF',
   // text: '#303535',
   subText: '#B2BEBD',
-  // screenBackground: '#FFFFFF',
+  lightText: '#757575',
   primary1: '#347B81',
   primary2: '#84BDBE',
   primary3: '#B4DCD8',
@@ -19,7 +19,7 @@ const LIGHT = {
   card: '#FFFFFF',
   shadow: '#1F1F1F1F',
   line: '#F2F4F4',
-  	/** Common */
+  /** Common */
 	text: BLACK.TEXT,
 	textAccent: GREEN_BLUE.PRIMARY,
 	screenBackground: COMMON.WHITE,
@@ -78,7 +78,9 @@ const LIGHT = {
 //   card: '#FFFFFF',
 //   shadow: '#1F1F1F1F',
 //   line: '#F2F4F4',
+//   darkLine: '#D5DDDC',
 // }
+
 
 export const COLOR_THEMES: Record<ColorThemes, ColorThemeStructure> = {
   LIGHT,
