@@ -10,13 +10,13 @@ import { ColorThemes } from '../../features/themed/theme'
 import { Fn, NodeFn } from '../../types'
 import Span from '../Span'
 import { ButtonPresetName, buttonStyles, themedButtonPreset } from './styles'
-import { ButtonStatesPreset, Preset } from './types'
+import { Preset, PresetButtonStates } from './types'
 
-export type ButtonBigProps = {
+export type PresetButtonProps = {
   onPress: Fn
   label?: string
   disabled?: boolean
-  preset?: ButtonStatesPreset
+  preset?: PresetButtonStates
   style?: StyleProp<ViewStyle>
   disabledStyle?: StyleProp<ViewStyle>
   labelStyle?: StyleProp<TextStyle>
@@ -32,7 +32,7 @@ export default function PresetButton({
   label,
   labelStyle,
   disabledStyle,
-}: ButtonBigProps) {
+}: PresetButtonProps) {
   const [presetState, setPresetState] = useState(preset.common)
 
   const activeStyles = useMemo(

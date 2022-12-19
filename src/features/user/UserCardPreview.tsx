@@ -1,9 +1,14 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { useText } from '../../translations/hook'
+import SubscribeButton from '../../ui/buttons/subscribeButton/SubscribeButton'
+import {
+  SubscribeButtonState,
+  getSubscribeButtonPreset,
+} from '../../ui/buttons/subscribeButton/styles'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import Avatar from './Avatar'
-import SubscribeButton from './SubscribeButton'
 import UserDescription from './UserDescription'
 import { UserDescriptionStyles } from './styles'
 import { User } from './types'
@@ -13,7 +18,8 @@ type UserCardPreviewProps = {
 }
 
 const UserCardPreview = ({ item }: UserCardPreviewProps) => {
-  const { styles } = useThemedStyleList({
+  const text = useText()
+  const { styles, theme } = useThemedStyleList({
     common: themedStyles,
     description: themedDescriptionStyles,
   })
@@ -23,7 +29,11 @@ const UserCardPreview = ({ item }: UserCardPreviewProps) => {
       <Avatar style={styles.common.avatar} src={item.avatar} />
       <UserDescription style={styles.description} item={item} />
       <SubscribeButton
-        isActive={false}
+        theme={getSubscribeButtonPreset({
+          theme,
+          text,
+          state: SubscribeButtonState.POSITIVE,
+        })}
         style={styles.common.button}
         onPress={() => {}}
       />

@@ -4,7 +4,7 @@ export type Preset = {
   border?: string
 }
 
-export type ButtonStatesPreset = {
+export type PresetButtonStates = {
   common: Preset
   active: Preset
   disabled?: Preset

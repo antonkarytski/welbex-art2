@@ -10,12 +10,14 @@ import { ScreenHeaderStyles } from '../../navigation/elements/styles'
 import { links } from '../../navigation/links'
 import { ScreensProps } from '../../navigation/types.screenProps'
 import { themedShadow5Style } from '../../styles/shadows'
+import { useText } from '../../translations/hook'
 import PresetButton from '../../ui/buttons/PresetButton'
 
 const DrawingDetailsScreen = ({
   route,
 }: NativeStackScreenProps<ScreensProps, links.drawingDetails>) => {
   const drawing = route.params.item
+  const text = useText()
   const { styles } = useThemedStyleList({
     common: themedStyles,
     header: themedHeaderStyles,
@@ -36,7 +38,7 @@ const DrawingDetailsScreen = ({
         />
         <PresetButton
           style={styles.common.downloadButton}
-          label={'Download'}
+          label={text.download}
           onPress={() => {}}
         />
       </ScrollView>
