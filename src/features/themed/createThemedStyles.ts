@@ -38,3 +38,22 @@ export const createThemedStylesWithMemo = <T extends NStyle<T>>(
     )
   }
 }
+
+export const createThemedPreset = <P extends Record<string, any>>(
+  generator: (colors: ColorThemeStructure, theme: ColorThemes) => P
+) => {
+  const memoizedPreset: Record<ColorThemes, P | null> = {
+    [ColorThemes.DARK]: null,
+    [ColorThemes.LIGHT]: null,
+  }
+  return (theme: ColorThemes) => {
+    return (
+      memoizedPreset[theme] ||
+      (() => {
+        const style = generator(COLOR_THEMES[theme], theme)
+        memoizedPreset[theme] = style
+        return style
+      })()
+    )
+  }
+}

@@ -10,6 +10,7 @@ import { ScreenHeaderStyles } from '../../navigation/elements/styles'
 import { links } from '../../navigation/links'
 import { ScreensProps } from '../../navigation/types.screenProps'
 import { themedShadow5Style } from '../../styles/shadows'
+import ButtonBig from '../../ui/buttons/Button.Big'
 
 const DrawingDetailsScreen = ({
   route,
@@ -32,6 +33,11 @@ const DrawingDetailsScreen = ({
             const screen = Dimensions.get('screen')
             return screen.width - 40
           }}
+        />
+        <ButtonBig
+          style={styles.common.downloadButton}
+          label={'Download'}
+          onPress={() => {}}
         />
       </ScrollView>
     </View>
@@ -56,6 +62,10 @@ const themedStyles = createThemedStyle((colors) =>
       paddingHorizontal: 20,
     },
     image: themedShadow5Style(colors),
+    downloadButton: {
+      marginTop: 37,
+      marginBottom: 24,
+    },
   })
 )
 
