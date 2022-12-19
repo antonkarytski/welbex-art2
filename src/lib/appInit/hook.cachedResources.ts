@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons'
 import { loadAsync } from 'expo-font'
 import { useEffect, useState } from 'react'
+import * as FONTS from '../../styles/fonts'
 
 async function loadResourcesAndData() {
   const Inter400 = require('../../../assets/fonts/Inter/Inter-Regular.ttf')
@@ -10,10 +11,10 @@ async function loadResourcesAndData() {
 
   await loadAsync({
     ...Ionicons.font,
-    'Inter-400': Inter400,
-    'Inter-500': Inter500,
-    'Inter-600': Inter600,
-    'Inter-700': Inter700,
+    [FONTS.FONT_REGULAR]: Inter400,
+    [FONTS.FONT_MEDIUM]: Inter500,
+    [FONTS.FONT_SEMI_BOLD]: Inter600,
+    [FONTS.FONT_BOLD]: Inter700,
   })
 }
 

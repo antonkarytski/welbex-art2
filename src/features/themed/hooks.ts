@@ -53,6 +53,11 @@ export function useTheme<T extends NStyle<T>>(styles: UseStyleFn<T>) {
   }
 }
 
+export function useThemeColors() {
+  const [theme] = useColorTheme()
+  return COLOR_THEMES[theme]
+}
+
 export const useThemedStyleList = __DEV__
   ? useThemedStyleListDev
   : useThemedStyleListWithMemo
