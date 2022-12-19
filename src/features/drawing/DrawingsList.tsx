@@ -6,11 +6,11 @@ import {
   StyleSheet,
   View,
 } from 'react-native'
-import { createThemedStyle } from '../features/themed'
-import { useThemedStyle } from '../features/themed/hooks'
-import { useNavigate } from '../navigation'
-import { links } from '../navigation/links'
-import { themedShadow5Style } from '../styles/shadows'
+import { useNavigate } from '../../navigation'
+import { links } from '../../navigation/links'
+import { themedShadow5Style } from '../../styles/shadows'
+import { createThemedStyle } from '../themed'
+import { useThemedStyle } from '../themed/hooks'
 import DrawingItem from './DrawingItem'
 import { Drawing } from './types'
 

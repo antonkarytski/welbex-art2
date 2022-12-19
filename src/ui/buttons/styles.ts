@@ -1,23 +1,14 @@
 import { StyleSheet } from 'react-native'
 import { createThemedPreset } from '../../features/themed/createThemedStyles'
+import { PresetButtonStates } from './types'
 
 export enum ButtonPresetName {
   COMMON = 'COMMON',
   WHITE = 'WHITE',
 }
 
-export type Preset = {
-  background: string
-  label: string
-  border?: string
-}
-export type ButtonStatesPreset = {
-  common: Preset
-  active: Preset
-  disabled?: Preset
-}
-export const BUTTON_THEMED_PRESET = createThemedPreset<
-  Record<ButtonPresetName, ButtonStatesPreset>
+export const themedButtonPreset = createThemedPreset<
+  Record<ButtonPresetName, PresetButtonStates>
 >((colors) => {
   return {
     [ButtonPresetName.WHITE]: {

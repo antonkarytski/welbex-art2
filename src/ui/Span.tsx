@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react'
 import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native'
 
 export type SpanProps = {
-  label?: string
+  label?: string | number
   style?: StyleProp<TextStyle>
   weight?: 400 | 500 | 600 | 700
 }

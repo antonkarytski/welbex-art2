@@ -1,5 +1,5 @@
-import { Drawing } from '../drawing/types'
 import { CompetitionCategory } from '../features/categories/types'
+import { Drawing } from '../features/drawing/types'
 import { links } from './links'
 
 type ScreensPropsProto<T extends Partial<Record<links, any>>> = T &
