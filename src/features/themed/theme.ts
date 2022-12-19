@@ -12,6 +12,7 @@ const LIGHT = {
   whiteText: '#FFFFFF',
   text: '#303535',
   subText: '#B2BEBD',
+  lightText: '#757575',
   screenBackground: '#FFFFFF',
   primary1: '#347B81',
   primary2: '#84BDBE',
@@ -20,12 +21,14 @@ const LIGHT = {
   card: '#FFFFFF',
   shadow: '#1F1F1F1F',
   line: '#F2F4F4',
+  darkLine: '#D5DDDC',
 }
 
 const DARK: Record<keyof ColorThemeStructure, string> = {
   whiteText: '#FFFFFF',
   text: '#303535',
   subText: '#B2BEBD',
+  lightText: '#B2BEBD',
   screenBackground: '#FFFFFF',
   primary1: '#347B81',
   primary2: '#84BDBE',
@@ -34,6 +37,7 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   card: '#FFFFFF',
   shadow: '#1F1F1F1F',
   line: '#F2F4F4',
+  darkLine: '#D5DDDC',
 }
 
 export const COLOR_THEMES: Record<ColorThemes, ColorThemeStructure> = {

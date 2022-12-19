@@ -1,7 +1,7 @@
 import { TextStyle, ViewStyle } from 'react-native'
 
-export type ScreenHeaderStyles = {
+export type UserDescriptionStyles = {
   container?: ViewStyle
-  line?: ViewStyle
-  title?: TextStyle
+  name?: TextStyle
+  subText?: TextStyle
 }

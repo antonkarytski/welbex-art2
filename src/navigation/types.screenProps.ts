@@ -1,3 +1,4 @@
+import { Drawing } from '../drawing/types'
 import { CompetitionCategory } from '../features/categories/types'
 import { links } from './links'
 
@@ -6,4 +7,5 @@ type ScreensPropsProto<T extends Partial<Record<links, any>>> = T &
 
 export type ScreensProps = ScreensPropsProto<{
   [links.categoryDetails]: { item: CompetitionCategory }
+  [links.drawingDetails]: { item: Drawing }
 }>

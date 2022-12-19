@@ -22,22 +22,22 @@ const Span = ({
 
 const weights = StyleSheet.create({
   '400': {
-    fontWeight: '400',
+    fontFamily: 'Inter-400',
   },
   '500': {
-    fontWeight: '500',
+    fontFamily: 'Inter-500',
   },
   '600': {
-    fontWeight: '600',
+    fontFamily: 'Inter-600',
   },
   '700': {
-    fontWeight: '700',
+    fontFamily: 'Inter-700',
   },
 })
 
 const styles = StyleSheet.create({
   common: {
-    fontFamily: 'Inter',
+    fontFamily: 'Inter-400',
     fontSize: 14,
   },
 })

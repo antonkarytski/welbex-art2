@@ -8,6 +8,8 @@ import {
 } from 'react-native'
 import { createThemedStyle } from '../features/themed'
 import { useThemedStyle } from '../features/themed/hooks'
+import { useNavigate } from '../navigation'
+import { links } from '../navigation/links'
 import { themedShadow5Style } from '../styles/shadows'
 import DrawingItem from './DrawingItem'
 import { Drawing } from './types'
@@ -27,6 +29,12 @@ const keyExtractor = ({ id }: Drawing) => id
 const DrawingsList = ({ data, ListHeader }: DrawingsListProps) => {
   const imageSize = getImageSize()
   const styles = useThemedStyle(themedStyles)
+  const navigate = useNavigate()
+
+  const goToDrawingDetails = useCallback(
+    (item: Drawing) => navigate(links.drawingDetails, { item }),
+    [navigate]
+  )
 
   const renderItem = useCallback(
     ({ item }: { item: Drawing }) => {
@@ -35,11 +43,12 @@ const DrawingsList = ({ data, ListHeader }: DrawingsListProps) => {
           containerStyle={styles.itemContainer}
           style={styles.item as ImageStyle}
           size={imageSize}
-          image={item.image}
+          item={item}
+          onPress={goToDrawingDetails}
         />
       )
     },
-    [imageSize, styles]
+    [imageSize, styles, goToDrawingDetails]
   )
 
   return (
