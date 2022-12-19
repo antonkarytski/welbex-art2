@@ -10,7 +10,7 @@ import { ScreenHeaderStyles } from '../../navigation/elements/styles'
 import { links } from '../../navigation/links'
 import { ScreensProps } from '../../navigation/types.screenProps'
 import { themedShadow5Style } from '../../styles/shadows'
-import ButtonBig from '../../ui/buttons/Button.Big'
+import PresetButton from '../../ui/buttons/PresetButton'
 
 const DrawingDetailsScreen = ({
   route,
@@ -34,7 +34,7 @@ const DrawingDetailsScreen = ({
             return screen.width - 40
           }}
         />
-        <ButtonBig
+        <PresetButton
           style={styles.common.downloadButton}
           label={'Download'}
           onPress={() => {}}

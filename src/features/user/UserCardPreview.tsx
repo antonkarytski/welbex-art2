@@ -1,8 +1,9 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { createThemedStyle } from '../themed'
-import { useTheme, useThemedStyleList } from '../themed/hooks'
+import { useThemedStyleList } from '../themed/hooks'
 import Avatar from './Avatar'
+import SubscribeButton from './SubscribeButton'
 import UserDescription from './UserDescription'
 import { UserDescriptionStyles } from './styles'
 import { User } from './types'
@@ -12,7 +13,7 @@ type UserCardPreviewProps = {
 }
 
 const UserCardPreview = ({ item }: UserCardPreviewProps) => {
-  const { styles, colors } = useThemedStyleList({
+  const { styles } = useThemedStyleList({
     common: themedStyles,
     description: themedDescriptionStyles,
   })
@@ -21,6 +22,11 @@ const UserCardPreview = ({ item }: UserCardPreviewProps) => {
     <View style={styles.common.container}>
       <Avatar style={styles.common.avatar} src={item.avatar} />
       <UserDescription style={styles.description} item={item} />
+      <SubscribeButton
+        isActive={false}
+        style={styles.common.button}
+        onPress={() => {}}
+      />
     </View>
   )
 }
@@ -40,10 +46,14 @@ const themedStyles = createThemedStyle((colors) =>
       paddingTop: 24,
       paddingBottom: 20,
       flexDirection: 'row',
+      alignItems: 'center',
     },
     avatar: {
       borderColor: colors.primary1,
       marginRight: 16,
+    },
+    button: {
+      marginLeft: 'auto',
     },
   })
 )
