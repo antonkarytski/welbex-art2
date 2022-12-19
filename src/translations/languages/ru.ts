@@ -39,10 +39,10 @@ export const RU: LangStructure = {
   chooseCountry: 'Выберите страну',
   enterPhoneNumber: 'Введите номер телефона',
   enterPhoneDescription:
-    'Введите Ваш номер телефона чтобы получить код аутентификации.',
+    'Введите ваш номер телефона чтобы получить код аутентификации.',
   enterAuthCode: 'Введите код аутентификации',
   enterAuthCodeDescription:
-    'Введите четырехзначный код, отправленный на Ваш телефонный номер',
+    'Введите четырехзначный код, отправленный на ваш телефонный номер',
   resendCode: 'Отправить код повторно',
   resendCodeTimer: 'Отправить код повторно через',
   enterPassword: 'Введите пароль',
@@ -56,7 +56,7 @@ export const RU: LangStructure = {
   dontHaveAccountQ: 'Don’t have an account?',
   recoverPassword: 'Восстановить пароль',
   recoverPasswordDescription:
-    'Введите почту, которую Вы использовали для регистрации и мы отправим инструкцию',
+    'Введите почту, которую вы использовали для регистрации и мы отправим инструкцию',
   resetPasswordButton: 'Сбросить пароль',
   passwordSentToEmail: 'Пароль был отправлен на почту',
   withFurtherInstructions: 'с дальнейшими указаниями',
@@ -86,7 +86,7 @@ export const RU: LangStructure = {
   filterResults: 'работы',
   create: 'Создать',
   uploadImage: 'Загрузить изображение',
-  scanWork: 'Сканируйте Вашу работу',
+  scanWork: 'Сканируйте вашу работу',
   selectImageFromCameraRoll: 'Выберите изображение из галареи',
   description: 'Описание',
   completeDescription: 'Заполните описание',
