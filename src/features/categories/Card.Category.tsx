@@ -18,7 +18,6 @@ const CardCategory = React.memo(({ styles, item }: CardCategoryProps) => {
   return (
     <ImageCard
       onPress={() => {
-        console.log('PRESS')
         navigate(links.categoryDetails, { item })
       }}
       style={styles.container}

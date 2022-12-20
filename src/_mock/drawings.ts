@@ -48,10 +48,13 @@ export const createRandomDrawing = (idModifier: string | number = '') => {
   }
 }
 
-export const MOCK_RANDOM_DRAWINGS = Array(11)
-  .fill(null)
-  .map((_, index) => createRandomDrawing(index + 'randomStone'))
+export const createRandomGallery = (galleryId: string, size = 10) => {
+  return Array(size)
+    .fill(null)
+    .map((_, index) => createRandomDrawing(`${index}${galleryId}`))
+}
 
+export const MOCK_RANDOM_DRAWINGS = createRandomGallery('randomStone')
 export const MOCK_DRAWINGS_LIST = [
   cat,
   nature,
