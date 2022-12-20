@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import React from 'react'
-import { useThemedStyle } from '../features/themed/hooks'
+import { useTheme } from '../features/themed/hooks'
 import { links } from '../navigation/links'
 import { ScreenDescriptor } from '../navigation/types'
 import { useText } from '../translations/hook'
@@ -20,7 +20,7 @@ const SCREENS: ScreenDescriptor[] = [
 ]
 
 const MainTabsRouter = React.memo(() => {
-  const styles = useThemedStyle(mainTabBarThemedStyles)
+  const { styles, colors } = useTheme(mainTabBarThemedStyles)
   const text = useText()
 
   return (
@@ -28,9 +28,8 @@ const MainTabsRouter = React.memo(() => {
       screenOptions={(props) => {
         const isFocused = props.navigation.isFocused()
         return {
-          tabBarActiveTintColor: (styles.activeTint as { color: string }).color,
-          tabBarInactiveTintColor: (styles.inactiveTint as { color: string })
-            .color,
+          tabBarActiveTintColor: colors.navigationLabelSelected,
+          tabBarInactiveTintColor: colors.primary3,
           tabBarStyle: styles.tabBar,
           tabBarLabelStyle: [
             styles.tabBarLabel,

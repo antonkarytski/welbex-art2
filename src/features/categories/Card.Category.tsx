@@ -1,5 +1,5 @@
 import React from 'react'
-import { ImageSourcePropType, View } from 'react-native'
+import { View } from 'react-native'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import Span from '../../ui/Span'
@@ -18,6 +18,7 @@ const CardCategory = React.memo(({ styles, item }: CardCategoryProps) => {
   return (
     <ImageCard
       onPress={() => {
+        console.log('PRESS')
         navigate(links.categoryDetails, { item })
       }}
       style={styles.container}
