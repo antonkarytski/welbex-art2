@@ -12,7 +12,7 @@ type UserDescriptionProps = {
 
 const UserDescription = ({ item, style }: UserDescriptionProps) => {
   return (
-    <View>
+    <View style={style?.container}>
       <Span weight={500} style={[styles.name, style?.name]} label={item.name} />
       <Span
         style={[styles.subText, style?.subText]}

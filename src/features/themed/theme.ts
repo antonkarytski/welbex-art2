@@ -36,7 +36,7 @@ const LIGHT = {
   primary3: '#B4DCD8',
   navigationLabelSelected: '#FFFFFF',
   card: '#FFFFFF',
-  shadow: '#1F1F1F1F',
+  shadow: 'rgba(31,31,31,0.51)',
   line: '#F2F4F4',
   darkLine: '#D5DDDC',
   icon: '#616868',

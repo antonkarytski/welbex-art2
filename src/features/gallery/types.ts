@@ -17,3 +17,8 @@ export type GalleyDescriptor = {
   type: GalleryType
   title: LangFn
 }
+
+export type GalleriesList<T> = Partial<Record<GalleryType, T>>
+export type GallerySetter<T> = {
+  type: GalleryType
+} & T

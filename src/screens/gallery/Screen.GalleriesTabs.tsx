@@ -1,4 +1,7 @@
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import {
+  MaterialTopTabBar,
+  createMaterialTopTabNavigator,
+} from '@react-navigation/material-top-tabs'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { GALLERIES } from '../../features/gallery/descriptors'
@@ -29,6 +32,13 @@ const GalleriesTabsScreen = () => {
         <Tab.Navigator
           style={styles.tabs.container}
           sceneContainerStyle={styles.tabs.sceneContainer}
+          tabBar={(props) => {
+            return (
+              <View style={styles.tabs.wrapper}>
+                <MaterialTopTabBar {...props} />
+              </View>
+            )
+          }}
           screenOptions={{
             tabBarGap: 40,
             tabBarPressColor: 'transparent',
@@ -71,8 +81,10 @@ const headerThemedStyles = createThemedStyle((colors) =>
 
 export const tabsThemedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
-    container: {
+    wrapper: {
       paddingHorizontal: 20,
+    },
+    container: {
       width: 'auto',
     },
     sceneContainer: {

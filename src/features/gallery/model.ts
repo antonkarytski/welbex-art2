@@ -1,16 +1,15 @@
 import { createEvent, createStore } from 'effector'
 import { Drawing } from '../drawing/types'
-import { GalleryType } from './types'
+import { GalleriesList, GallerySetter } from './types'
 
-type GalleriesList = Partial<Record<GalleryType, Drawing[]>>
-
-type SetGalleryProps = {
-  type: GalleryType
+type GalleriesDrawingsList = GalleriesList<Drawing[]>
+type SetGalleryProps = GallerySetter<{
   drawings: Drawing[]
-}
+}>
+
 export const setGallery = createEvent<SetGalleryProps>()
 export const addGalleryPage = createEvent<SetGalleryProps>()
-export const $galleries = createStore<GalleriesList | null>(null)
+export const $galleries = createStore<GalleriesDrawingsList | null>(null)
   .on(setGallery, (state, { type, drawings }) => {
     const record = { [type]: drawings }
     if (!state) return record
