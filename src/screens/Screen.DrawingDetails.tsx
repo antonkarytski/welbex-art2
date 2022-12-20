@@ -1,22 +1,25 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
-import DrawingInteractionPanel from '../../features/drawing/DrawingInteractivePanel'
-import AutoHeightImage from '../../features/images/AutoHeightImage'
-import { createThemedStyle } from '../../features/themed'
-import { useThemedStyleList } from '../../features/themed/hooks'
-import UserCardPreview from '../../features/user/UserCardPreview'
-import AppHeader from '../../navigation/elements/AppHeader'
-import { ScreenHeaderStyles } from '../../navigation/elements/styles'
-import { links } from '../../navigation/links'
-import { ScreensProps } from '../../navigation/types.screenProps'
-import { themedShadow5Style } from '../../styles/shadows'
-import { useText } from '../../translations/hook'
-import PresetButton from '../../ui/buttons/PresetButton'
+import DrawingInteractionPanel from '../features/drawing/DrawingInteractivePanel'
+import AutoHeightImage from '../features/images/AutoHeightImage'
+import { createThemedStyle } from '../features/themed'
+import { useThemedStyleList } from '../features/themed/hooks'
+import UserCardPreview from '../features/user/UserCardPreview'
+import AppHeader from '../navigation/elements/AppHeader'
+import { ScreenHeaderStyles } from '../navigation/elements/styles'
+import { links } from '../navigation/links'
+import { ScreensProps } from '../navigation/types.screenProps'
+import { themedShadow5Style } from '../styles/shadows'
+import { useText } from '../translations/hook'
+import PresetButton from '../ui/buttons/PresetButton'
 
 const DrawingDetailsScreen = ({
   route,
-}: NativeStackScreenProps<ScreensProps, links.drawingDetails>) => {
+}: NativeStackScreenProps<
+  ScreensProps,
+  links.drawingDetails | links.galleryDrawingDetails
+>) => {
   const drawing = route.params.item
   const text = useText()
   const { styles } = useThemedStyleList({

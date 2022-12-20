@@ -10,11 +10,17 @@ import { GalleryItemStyles } from './styles'
 type GalleryItemProps = {
   item: Drawing
   style: GalleryItemStyles
+  onPress?: (item: Drawing) => void
 }
 
-const GalleryItem = React.memo(({ item, style }: GalleryItemProps) => {
+const GalleryItem = React.memo(({ item, style, onPress }: GalleryItemProps) => {
   return (
-    <ImageCard style={style.container} imageHeight={240} image={item.image}>
+    <ImageCard
+      onPress={() => onPress?.(item)}
+      style={style.container}
+      imageHeight={240}
+      image={item.image}
+    >
       <View style={style.card}>
         <UserDescription
           style={{

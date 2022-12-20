@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import { noop } from '../../lib/helpers'
+import { useNavigate } from '../../navigation'
+import { links } from '../../navigation/links'
 import { drawingKeyExtractor } from '../drawing/helpers'
 import { Drawing } from '../drawing/types'
 import { useThemedStyleList } from '../themed/hooks'
@@ -16,15 +18,24 @@ type GalleryListProps = {
 
 const GalleryList = ({ type }: GalleryListProps) => {
   const drawings = useGallery(type)
+  const navigate = useNavigate()
   const { styles } = useThemedStyleList({
     item: galleryItemThemedStyles,
   })
 
   const renderItem = useCallback(
     ({ item }: { item: Drawing }) => {
-      return <GalleryItem style={styles.item} item={item} />
+      return (
+        <GalleryItem
+          onPress={(drawing) =>
+            navigate(links.galleryDrawingDetails, { item: drawing })
+          }
+          style={styles.item}
+          item={item}
+        />
+      )
     },
-    [styles]
+    [styles, navigate]
   )
 
   const getNextPage = useCallback(() => {

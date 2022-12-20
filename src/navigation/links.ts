@@ -13,6 +13,7 @@ export enum links {
   galleryNew = 'galleryNew',
   categoryDetails = 'categoryDetails',
   drawingDetails = 'drawingDetails',
+  galleryDrawingDetails = 'galleryDrawingDetails',
   galleryTab = 'galleryTab',
   galleryMain = 'galleryMain',
   galleryFilter = 'galleryFilter',
