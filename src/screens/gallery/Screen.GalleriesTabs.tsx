@@ -98,6 +98,8 @@ export const tabsThemedStyles = createThemedStyle((colors) =>
     tabBar: {
       justifyContent: 'center',
       width: '100%',
+      borderBottomWidth: 1,
+      borderBottomColor: colors.tabsLine,
     },
     item: {
       width: 'auto',
@@ -107,6 +109,7 @@ export const tabsThemedStyles = createThemedStyle((colors) =>
     },
     indicator: {
       backgroundColor: colors.tabsSelectedTint,
+      height: 1,
     },
     itemsContainer: {
       justifyContent: 'center',
