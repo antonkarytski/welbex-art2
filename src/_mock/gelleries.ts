@@ -2,7 +2,7 @@ import { Drawing } from '../features/drawing/types'
 import { GalleryType } from '../features/gallery/types'
 import { createRandomDrawing } from './drawings'
 
-const createRandomGallery = (galleryId: string, size = 25) => {
+const createRandomGallery = (galleryId: string, size = 10) => {
   return Array(size)
     .fill(null)
     .map((_, index) => createRandomDrawing(index + 'stone' + galleryId))
@@ -10,7 +10,7 @@ const createRandomGallery = (galleryId: string, size = 25) => {
 
 export const MOCK_BEST_GALLERY: Drawing[] = createRandomGallery('Best1')
 export const MOCK_BEST_GALLERY_2: Drawing[] = createRandomGallery('Best2')
-export const MOCK_BEST_GALLERY_3: Drawing[] = createRandomGallery('Best3', 10)
+export const MOCK_BEST_GALLERY_3: Drawing[] = createRandomGallery('Best3', 5)
 
 export const MOCK_FOLLOW_GALLERY: Drawing[] = createRandomGallery('Follow1', 3)
 

@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { FlatList, StyleSheet } from 'react-native'
+import { noop } from '../../lib/helpers'
+import { drawingKeyExtractor } from '../drawing/helpers'
+import { Drawing } from '../drawing/types'
 import { useThemedStyleList } from '../themed/hooks'
 import GalleryItem from './GalleryItem'
 import { useGallery } from './hooks'
+import { getGalleryNextPageRequest } from './request'
 import { galleryItemThemedStyles } from './styles'
 import { GalleryType } from './types'
 
@@ -16,13 +20,24 @@ const GalleryList = ({ type }: GalleryListProps) => {
     item: galleryItemThemedStyles,
   })
 
+  const renderItem = useCallback(
+    ({ item }: { item: Drawing }) => {
+      return <GalleryItem style={styles.item} item={item} />
+    },
+    [styles]
+  )
+
+  const getNextPage = useCallback(() => {
+    getGalleryNextPageRequest({ type }).catch(noop)
+  }, [type])
+
   return (
     <FlatList
       data={drawings}
       contentContainerStyle={componentStyles.contentContainer}
-      renderItem={({ item }) => {
-        return <GalleryItem style={styles.item} item={item} />
-      }}
+      renderItem={renderItem}
+      keyExtractor={drawingKeyExtractor}
+      onEndReached={getNextPage}
     />
   )
 }
@@ -30,6 +45,7 @@ const GalleryList = ({ type }: GalleryListProps) => {
 const componentStyles = StyleSheet.create({
   contentContainer: {
     paddingHorizontal: 20,
+    paddingTop: 32,
   },
 })
 
