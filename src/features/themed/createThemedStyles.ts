@@ -1,4 +1,5 @@
 import { ImageStyle, TextStyle, ViewStyle } from 'react-native'
+import { createEmptyThemesList, memoizedThemedListGetter } from './helpers'
 import { COLOR_THEMES, ColorThemeStructure, ColorThemes } from './theme'
 
 export type NamedStyles<T> = {
@@ -23,37 +24,13 @@ export const createThemedStylesCommon = <T extends NStyle<T>>(
 export const createThemedStylesWithMemo = <T extends NStyle<T>>(
   styleGenerator: CreateStyleFn<T>
 ): UseStyleFn<T> => {
-  const memoizedStyles: Record<ColorThemes, T | NamedStyles<T> | null> = {
-    [ColorThemes.DARK]: null,
-    [ColorThemes.LIGHT]: null,
-  }
-  return (theme) => {
-    return (
-      memoizedStyles[theme] ||
-      (() => {
-        const style = styleGenerator(COLOR_THEMES[theme], theme)
-        memoizedStyles[theme] = style
-        return style
-      })()
-    )
-  }
+  const memoizedStyles = createEmptyThemesList<T | NamedStyles<T>>()
+  return memoizedThemedListGetter(memoizedStyles, styleGenerator)
 }
 
 export const createThemedPreset = <P extends Record<string, any>>(
   generator: (colors: ColorThemeStructure, theme: ColorThemes) => P
 ) => {
-  const memoizedPreset: Record<ColorThemes, P | null> = {
-    [ColorThemes.DARK]: null,
-    [ColorThemes.LIGHT]: null,
-  }
-  return (theme: ColorThemes) => {
-    return (
-      memoizedPreset[theme] ||
-      (() => {
-        const style = generator(COLOR_THEMES[theme], theme)
-        memoizedPreset[theme] = style
-        return style
-      })()
-    )
-  }
+  const memoizedPreset = createEmptyThemesList<P>()
+  return memoizedThemedListGetter(memoizedPreset, generator)
 }

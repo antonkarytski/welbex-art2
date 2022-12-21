@@ -1,21 +1,27 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
-import AutoHeightImage from '../../features/images/AutoHeightImage'
-import { createThemedStyle } from '../../features/themed'
-import { useThemedStyleList } from '../../features/themed/hooks'
-import UserCardPreview from '../../features/user/UserCardPreview'
-import AppHeader from '../../navigation/elements/AppHeader'
-import { ScreenHeaderStyles } from '../../navigation/elements/styles'
-import { links } from '../../navigation/links'
-import { ScreensProps } from '../../navigation/types.screenProps'
-import { themedShadow5Style } from '../../styles/shadows'
-import ButtonBig from '../../ui/buttons/Button.Big'
+import DrawingInteractionPanel from '../features/drawing/DrawingInteractivePanel'
+import AutoHeightImage from '../features/images/AutoHeightImage'
+import { createThemedStyle } from '../features/themed'
+import { useThemedStyleList } from '../features/themed/hooks'
+import UserCardPreview from '../features/user/UserCardPreview'
+import AppHeader from '../navigation/elements/AppHeader'
+import { ScreenHeaderStyles } from '../navigation/elements/styles'
+import { links } from '../navigation/links'
+import { ScreensProps } from '../navigation/types.screenProps'
+import { themedShadow5Style } from '../styles/shadows'
+import { useText } from '../translations/hook'
+import PresetButton from '../ui/buttons/PresetButton'
 
 const DrawingDetailsScreen = ({
   route,
-}: NativeStackScreenProps<ScreensProps, links.drawingDetails>) => {
+}: NativeStackScreenProps<
+  ScreensProps,
+  links.drawingDetails | links.galleryDrawingDetails
+>) => {
   const drawing = route.params.item
+  const text = useText()
   const { styles } = useThemedStyleList({
     common: themedStyles,
     header: themedHeaderStyles,
@@ -34,9 +40,10 @@ const DrawingDetailsScreen = ({
             return screen.width - 40
           }}
         />
-        <ButtonBig
+        <DrawingInteractionPanel item={drawing} />
+        <PresetButton
           style={styles.common.downloadButton}
-          label={'Download'}
+          label={text.download}
           onPress={() => {}}
         />
       </ScrollView>

@@ -1,7 +1,13 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { useText } from '../../translations/hook'
+import SubscribeButton from '../../ui/buttons/subscribeButton/SubscribeButton'
+import {
+  SubscribeButtonState,
+  getSubscribeButtonPreset,
+} from '../../ui/buttons/subscribeButton/styles'
 import { createThemedStyle } from '../themed'
-import { useTheme, useThemedStyleList } from '../themed/hooks'
+import { useThemedStyleList } from '../themed/hooks'
 import Avatar from './Avatar'
 import UserDescription from './UserDescription'
 import { UserDescriptionStyles } from './styles'
@@ -12,7 +18,8 @@ type UserCardPreviewProps = {
 }
 
 const UserCardPreview = ({ item }: UserCardPreviewProps) => {
-  const { styles, colors } = useThemedStyleList({
+  const text = useText()
+  const { styles, theme } = useThemedStyleList({
     common: themedStyles,
     description: themedDescriptionStyles,
   })
@@ -21,6 +28,15 @@ const UserCardPreview = ({ item }: UserCardPreviewProps) => {
     <View style={styles.common.container}>
       <Avatar style={styles.common.avatar} src={item.avatar} />
       <UserDescription style={styles.description} item={item} />
+      <SubscribeButton
+        theme={getSubscribeButtonPreset({
+          theme,
+          text,
+          state: SubscribeButtonState.POSITIVE,
+        })}
+        style={styles.common.button}
+        onPress={() => {}}
+      />
     </View>
   )
 }
@@ -40,10 +56,14 @@ const themedStyles = createThemedStyle((colors) =>
       paddingTop: 24,
       paddingBottom: 20,
       flexDirection: 'row',
+      alignItems: 'center',
     },
     avatar: {
       borderColor: colors.primary1,
       marginRight: 16,
+    },
+    button: {
+      marginLeft: 'auto',
     },
   })
 )

@@ -1,18 +1,12 @@
 import { sample } from 'effector'
 import React from 'react'
-import {
-  KeyboardAvoidingView,
-  KeyboardTypeOptions,
-  StyleSheet,
-  ViewStyle,
-} from 'react-native'
+import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { IS_IOS } from '../../lib/platform'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
-import Button from '../../ui/buttons/Button.Big'
-import Input from '../../ui/input'
+import Button from '../../ui/buttons/PresetButton'
 import { createThemedStyle } from '../themed'
 import { useThemedStyle } from '../themed/hooks'
 import Field from './Field'

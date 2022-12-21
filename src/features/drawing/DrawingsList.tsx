@@ -6,12 +6,13 @@ import {
   StyleSheet,
   View,
 } from 'react-native'
-import { createThemedStyle } from '../features/themed'
-import { useThemedStyle } from '../features/themed/hooks'
-import { useNavigate } from '../navigation'
-import { links } from '../navigation/links'
-import { themedShadow5Style } from '../styles/shadows'
+import { useNavigate } from '../../navigation'
+import { links } from '../../navigation/links'
+import { themedShadow5Style } from '../../styles/shadows'
+import { createThemedStyle } from '../themed'
+import { useThemedStyle } from '../themed/hooks'
 import DrawingItem from './DrawingItem'
+import { drawingKeyExtractor } from './helpers'
 import { Drawing } from './types'
 
 type DrawingsListProps = {
@@ -24,7 +25,6 @@ function getImageSize() {
   const screenWidth = Dimensions.get('screen').width
   return (screenWidth - PADDING_SIZE * 3) / 2
 }
-const keyExtractor = ({ id }: Drawing) => id
 
 const DrawingsList = ({ data, ListHeader }: DrawingsListProps) => {
   const imageSize = getImageSize()
@@ -60,7 +60,7 @@ const DrawingsList = ({ data, ListHeader }: DrawingsListProps) => {
         columnWrapperStyle={styles.listColumnWrapper}
         numColumns={2}
         renderItem={renderItem}
-        keyExtractor={keyExtractor}
+        keyExtractor={drawingKeyExtractor}
       />
     </View>
   )

@@ -8,7 +8,7 @@ import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import ScreenWrapper from '../../ui/ScreenWrapper'
 import Span from '../../ui/Span'
-import Button from '../../ui/buttons/Button.Big'
+import Button from '../../ui/buttons/PresetButton'
 import { themedCommonStyles, themedScreenHeaderStyles } from './styles'
 
 const CountrySelectionScreen = () => {

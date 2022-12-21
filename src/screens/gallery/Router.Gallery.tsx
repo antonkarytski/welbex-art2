@@ -1,22 +1,26 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import { GalleryIcon } from 'altek-ui'
+import { Stack } from '../../navigation/elements/StackNavigator'
+import TabStackNavigator from '../../navigation/elements/TabStackNavigator'
 import { createTabScreenDescription } from '../../navigation/helpers'
 import { links } from '../../navigation/links'
-import GalleryScreen from './Screen.Gallery'
+import DrawingDetailsScreen from '../Screen.DrawingDetails'
+import GalleriesTabsScreen from './Screen.GalleriesTabs'
 import GalleryFilterScreen from './Screen.GalleryFilter'
-
-const Stack = createNativeStackNavigator()
 
 const GalleryTabScreen = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name={links.galleryMain} component={GalleryScreen} />
+    <TabStackNavigator initialRoute={links.galleryMain}>
+      <Stack.Screen name={links.galleryMain} component={GalleriesTabsScreen} />
+      <Stack.Screen
+        name={links.galleryDrawingDetails}
+        component={DrawingDetailsScreen}
+      />
       <Stack.Screen
         name={links.galleryFilter}
         component={GalleryFilterScreen}
       />
-    </Stack.Navigator>
+    </TabStackNavigator>
   )
 }
 

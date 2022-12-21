@@ -1,6 +1,13 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
-import { Text } from 'react-native'
+import GalleryList from '../../features/gallery/GalleryList'
+import { GalleryLink } from '../../features/gallery/types'
+import { ScreensProps } from '../../navigation/types.screenProps'
 
-export default function GalleryScreen() {
-  return <Text>Gallery Screen</Text>
+const ScreenGallery = ({
+  route,
+}: NativeStackScreenProps<ScreensProps, GalleryLink>) => {
+  return <GalleryList type={route.params.type} />
 }
+
+export default ScreenGallery
