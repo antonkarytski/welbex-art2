@@ -36,10 +36,12 @@ const LIGHT = {
   primary3: '#B4DCD8',
   navigationLabelSelected: '#FFFFFF',
   card: '#FFFFFF',
-  shadow: '#1F1F1F1F',
+  shadow: 'rgba(31,31,31,0.51)',
   line: '#F2F4F4',
   darkLine: '#D5DDDC',
   icon: '#616868',
+  tabsLine: '#DDDDDD',
+  tabsSelectedTint: '#242424',
   /** Common */
   textAccent: GREEN_BLUE.PRIMARY,
   screenBackgroundAccent: GREEN_BLUE.BODY_GRADIENT,
@@ -111,6 +113,8 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   line: '#F2F4F4',
   darkLine: '#D5DDDC',
   icon: '#616868',
+  tabsLine: '#DDDDDD',
+  tabsSelectedTint: '#242424',
   /** Common */
   textAccent: GREEN_BLUE.PRIMARY,
   screenBackgroundAccent: GREEN_BLUE.BODY_GRADIENT,

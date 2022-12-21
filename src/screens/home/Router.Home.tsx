@@ -4,8 +4,8 @@ import TabStackNavigator from '../../navigation/elements/TabStackNavigator'
 import { createTabScreenDescription } from '../../navigation/helpers'
 import { links } from '../../navigation/links'
 import HomeIcon from '../../ui/icons/Icon.Home'
+import DrawingDetailsScreen from '../Screen.DrawingDetails'
 import CategoryDetailsScreen from './Screen.CategoryDetails'
-import DrawingDetailsScreen from './Screen.DrawingDetails'
 import HomeScreen from './Screen.Home'
 
 function HomeTabScreen() {
