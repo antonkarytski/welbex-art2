@@ -3,17 +3,17 @@ import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg'
 import { IconProps } from './_types'
 
 export default function AppleIcon({
-  size = 24,
+  size = 20,
   color = '#303535',
   style,
 }: IconProps) {
   return (
     <Svg
       width={size}
-      height={size}
+      height={size * 1.2}
       style={style}
       fill="none"
-      viewBox="0 0 24 24"
+      viewBox="0 0 20 24"
     >
       <G clip-path="url(#clip0_154_1429)">
         <Path

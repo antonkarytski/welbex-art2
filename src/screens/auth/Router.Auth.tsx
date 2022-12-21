@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import { links } from '../../navigation/links'
+import CountrySelection from './Screen.CountrySelection'
 import Login from './Screen.Login'
 import PasswordEnter from './Screen.PasswordEnter'
 import PasswordRecover from './Screen.PasswordRecover'
@@ -13,8 +14,12 @@ const Stack = createNativeStackNavigator()
 export default function AuthScreenRouter() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name={links.login} component={Login} />
       <Stack.Screen name={links.signUp} component={SignUp} />
+      <Stack.Screen
+        name={links.countrySelection}
+        component={CountrySelection}
+      />
+      <Stack.Screen name={links.login} component={Login} />
       <Stack.Screen name={links.phoneEnter} component={PhoneEnter} />
       <Stack.Screen name={links.verification} component={Verification} />
       <Stack.Screen name={links.passwordEnter} component={PasswordEnter} />

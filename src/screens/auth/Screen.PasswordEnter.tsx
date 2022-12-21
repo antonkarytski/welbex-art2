@@ -1,5 +1,7 @@
-import { Text } from "react-native";
+import { Text } from 'react-native'
 
-export default function PasswordEnter() {
-	return <Text>Password enter</Text>
+const PasswordEnterScreen = () => {
+  return <Text>Password enter</Text>
 }
+
+export default PasswordEnterScreen

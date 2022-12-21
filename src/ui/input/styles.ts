@@ -1,23 +1,27 @@
 import { StyleSheet } from 'react-native'
-import { createThemedStyle } from '../../features/themed'
 import * as FONTS from '../../styles/fonts'
+import { COLOR_THEMES } from '../../features/themed/theme'
 
-export const themedInputStyles = createThemedStyle((colors) => StyleSheet.create({
+const defaultColors = COLOR_THEMES.LIGHT
+
+export const placeholderColor = defaultColors.placeholder
+
+export const inputStyles = StyleSheet.create({
 	container: {
-		width: '100%'
+		width: '100%',
 	},
-	title: {
+	label: {
 		marginBottom: 8,
-		color: colors.inputTitle,
+		color: defaultColors.inputTitle,
 		fontSize: 14,
-		fontFamily: FONTS.FONT_MEDIUM
+		fontFamily: FONTS.FONT_MEDIUM,
 	},
 	input: {
-		backgroundColor: colors.inputBackground,
+		backgroundColor: defaultColors.inputBackground,
 		borderRadius: 8,
 		paddingVertical: 16,
 		paddingHorizontal: 20,
-		color: colors.text,
+		color: defaultColors.text,
 		fontSize: 16,
 		fontFamily: FONTS.FONT_MEDIUM,
 		lineHeight: 19,
@@ -25,19 +29,19 @@ export const themedInputStyles = createThemedStyle((colors) => StyleSheet.create
 	border: {
 		borderWidth: 1,
 		borderStyle: 'solid',
-		borderColor: colors.inputBorder,
+		borderColor: defaultColors.inputBorder,
 	},
 	input__focused: {
-		borderColor: colors.inputFocusedBorder,
-		backgroundColor: colors.inputFocusedBackground
+		borderColor: defaultColors.inputFocusedBorder,
+		backgroundColor: defaultColors.inputFocusedBackground,
 	},
 	input__invalid: {
-		borderColor: colors.errorBorder,
+		borderColor: defaultColors.errorBorder,
 	},
 	input__valid: {
-		borderColor: colors.successBorder,
+		borderColor: defaultColors.successBorder,
 	},
 	input__disabled: {
-		backgroundColor: colors.inputDisabledBackground,
+		backgroundColor: defaultColors.inputDisabledBackground,
 	},
-}))
+})

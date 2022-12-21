@@ -53,6 +53,7 @@ export const EN = {
   forgotPasswordQ: 'Forgot your password?',
   logInButton: 'Log in',
   dontHaveAccountQ: 'Don’t have an account?',
+  haveAccountQ: 'Do you have an account?',
   recoverPassword: 'Recover password',
   recoverPasswordDescription:
     'Enter the email address you used to register and we’ll send you the instruction',
@@ -67,7 +68,7 @@ export const EN = {
   checkPasswordMatchSuccess: 'Passwords match',
   name: 'Name',
   lastName: 'Last name',
-  birthdate: 'Date of birth',
+  birthDate: 'Date of birth',
   email: 'E-mail',
   password: 'Password',
   newPassword: 'New password',

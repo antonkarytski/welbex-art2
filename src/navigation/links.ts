@@ -1,5 +1,6 @@
 export enum links {
   signUp = 'signUp',
+  countrySelection = 'countrySelection',
   phoneEnter = 'phoneEnter',
   verification = 'verification',
   login = 'login',
