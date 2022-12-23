@@ -1,15 +1,12 @@
 import React, { forwardRef, useState } from 'react'
 import {
   KeyboardTypeOptions,
-  StyleProp,
   TextInput,
   TextInputProps,
-  TextStyle,
   View,
-  ViewStyle,
 } from 'react-native'
 import Span from '../Span'
-import { inputStyles, placeholderColor } from './styles'
+import { InputStyles, inputStyles, placeholderColor } from './styles'
 
 export type InputProps = {
   onChangeText?: (text: string) => void
@@ -18,26 +15,20 @@ export type InputProps = {
   isInvalid?: boolean
   isValid?: boolean
   disabled?: boolean
-  styleWrp?: StyleProp<ViewStyle>
-  styleInput?: StyleProp<TextStyle>
-  styleInputFocused?: StyleProp<TextStyle>
-  styleTitle?: StyleProp<TextStyle>
+  styles?: InputStyles
 } & Omit<TextInputProps, 'onChange'>
 
 const Input = forwardRef<TextInput, InputProps>(
   (
     {
       onChangeText,
-      styleWrp,
       type = 'phone-pad',
-      styleInput,
       label,
-      styleTitle,
-      styleInputFocused,
       children,
       isInvalid,
       isValid,
       disabled,
+      styles,
       ...props
     },
     ref
@@ -53,9 +44,9 @@ const Input = forwardRef<TextInput, InputProps>(
     return (
       <>
         {label ? (
-          <Span style={[inputStyles.label, styleTitle]}>{label}</Span>
+          <Span style={[inputStyles.label, styles?.label]}>{label}</Span>
         ) : null}
-        <View style={[inputStyles.container, styleWrp]}>
+        <View style={[inputStyles.container, styles?.wrapper]}>
           <TextInput
             ref={ref}
             keyboardType={type}
@@ -66,8 +57,8 @@ const Input = forwardRef<TextInput, InputProps>(
             style={[
               inputStyles.input,
               inputStyles.border,
-              styleInput,
-              isFocused && [inputStyles.input__focused, styleInputFocused],
+              styles?.input,
+              isFocused && [inputStyles.input__focused, styles?.input__focused],
               isInvalid && inputStyles.input__invalid,
               isValid && inputStyles.input__valid,
               disabled && inputStyles.input__disabled,

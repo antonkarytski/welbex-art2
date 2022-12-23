@@ -5,7 +5,7 @@ export const COMMON = {
 }
 
 export const BLACK = {
-  TEXT:  '#303535',
+  TEXT: '#303535',
 }
 
 export const RED = {
@@ -22,10 +22,15 @@ export const GREEN_BLUE = {
   PRIMARY: '#347B81',
   MEDIUM_LIGHT: '#84BDBE',
   LIGHT: '#B4DCD8',
-  NAV_BAR_GRADIENT: 'linear-gradient(359.35deg, #46959B 0.56%, #94C9CD 161.92%)',
-  BODY_GRADIENT: 'linear-gradient(168.99deg, #46959B 8.86%, #94C9CD 130.36%)',
-  BORDER_GRADIENT: 'linear-gradient(168.99deg, #49949A 50%, #A3DADF 50%)',
-  BUTTON_BACKGROUND_GRADIENT: 'linear-gradient(267.49deg, #4B9DA4 11.08%, #46949B 72.91%)',
+  NAV_BAR_GRADIENT: '#46959B',
+
+  // 'linear-gradient(359.35deg, #46959B 0.56%, #94C9CD 161.92%)',
+  BODY_GRADIENT: '#46959B',
+  // 'linear-gradient(168.99deg, #46959B 8.86%, #94C9CD 130.36%)',
+  BORDER_GRADIENT: '#46959B',
+  // 'linear-gradient(168.99deg, #49949A 50%, #A3DADF 50%)',
+  BUTTON_BACKGROUND_GRADIENT: '#4B9DA4',
+  // 'linear-gradient(267.49deg, #4B9DA4 11.08%, #46949B 72.91%)',
 }
 
 export const GREY = {

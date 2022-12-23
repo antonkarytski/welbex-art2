@@ -1,7 +1,21 @@
-import { createEffect, createEvent, createStore } from 'effector'
-import { ISignUpForm } from './types'
+import { createFormModel } from '../../lib/forms/model'
 
-export const initialSignUpFormState: ISignUpForm = {
+type SignUpForm = {
+  name: string
+  lastName: string
+  birthDate: string
+  email: string
+  country: string
+}
+
+export const signUpFirstPartKeys: (string & keyof SignUpForm)[] = [
+  'name',
+  'lastName',
+  'birthDate',
+  'email',
+]
+
+export const initialSignUpFormState: SignUpForm = {
   name: '',
   lastName: '',
   birthDate: '',
@@ -9,18 +23,6 @@ export const initialSignUpFormState: ISignUpForm = {
   country: '',
 }
 
-export interface SetFieldPayload {
-  key: keyof ISignUpForm
-  value: string
-}
-
-export const setField = createEvent<SetFieldPayload>()
-export const setMainFieldsCompleted = createEvent()
-
-export const $signUpForm = createStore<ISignUpForm>(initialSignUpFormState).on(
-  setField,
-  (store, { key, value }) => ({
-    ...store,
-    [key]: value,
-  })
-)
+export const { $store, setField } = createFormModel<
+  Record<keyof SignUpForm, string>
+>(initialSignUpFormState)

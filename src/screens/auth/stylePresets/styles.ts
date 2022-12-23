@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { createThemedStyle } from '../../features/themed'
+import { createThemedStyle } from '../../../features/themed'
 
 export const themedScreenHeaderStyles = createThemedStyle((colors) =>
   StyleSheet.create({

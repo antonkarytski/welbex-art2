@@ -1,23 +1,21 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import AuthWithServices from '../../features/signUp/AuthWithServices'
+import AuthServices from '../../features/authServices/AuthServices'
 import SignUpForm from '../../features/signUp/SignUpForm'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { useNavigate } from '../../navigation'
-import AppHeader from '../../navigation/elements/AppHeader'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
-import FlexRow from '../../ui/FlexRow'
-import ScreenWrapper from '../../ui/ScreenWrapper'
+import Row from '../../ui/Row'
 import Span from '../../ui/Span'
 import TextButton from '../../ui/buttons/Button.Text'
-import { themedCommonStyles, themedScreenHeaderStyles } from './styles'
+import AuthScreenContainer from './stylePresets/AuthScreenContainer'
+import { themedCommonStyles } from './stylePresets/styles'
 
-export default function SignUp() {
+const SignUp = () => {
   const navigate = useNavigate()
   const t = useText()
   const { styles } = useThemedStyleList({
-    screenHeader: themedScreenHeaderStyles,
     common: themedCommonStyles,
   })
 
@@ -26,21 +24,21 @@ export default function SignUp() {
   }
 
   return (
-    <ScreenWrapper style={styles.common.screenWrapper}>
-      <AppHeader style={styles.screenHeader} />
+    <AuthScreenContainer>
       <SignUpForm />
-      <AuthWithServices />
-      <FlexRow>
-        <Span style={[styles.common.text, screenStyles.haveAccountQ]}>
-          {t.haveAccountQ}
-        </Span>
+      <AuthServices />
+      <Row>
+        <Span
+          label={t.haveAccountQ}
+          style={[styles.common.text, screenStyles.haveAccountQ]}
+        />
         <TextButton
           label={t.logIn}
           onPress={onGoToLogIn}
           styleLabel={styles.common.textAccent}
         />
-      </FlexRow>
-    </ScreenWrapper>
+      </Row>
+    </AuthScreenContainer>
   )
 }
 
@@ -49,3 +47,5 @@ const screenStyles = StyleSheet.create({
     marginRight: 8,
   },
 })
+
+export default SignUp

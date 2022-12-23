@@ -1,8 +1,8 @@
 import { useStore } from 'effector-react'
-import { languageModel } from './model'
 import { TXT } from './Texts'
+import { languageModel } from './model'
 
 export function useText() {
-	const currentLanguage = useStore(languageModel.$state)
-	return TXT[currentLanguage]
+  const currentLanguage = useStore(languageModel.$state)
+  return TXT[currentLanguage]
 }

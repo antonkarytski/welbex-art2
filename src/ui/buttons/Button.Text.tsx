@@ -10,7 +10,7 @@ import { COLOR_THEMES } from '../../features/themed/theme'
 import { Fn } from '../../types'
 import Span from '../Span'
 
-export type ButtonTextProps = {
+export type ButtonProps = {
   onPress: Fn
   label?: string
   disabled?: boolean
@@ -19,37 +19,29 @@ export type ButtonTextProps = {
   styleLabel?: StyleProp<TextStyle>
 }
 
-export default function ButtonBig({
+export default function TextButton({
   onPress,
   disabled,
   style,
   label,
   styleLabel,
   styleDisabled,
-}: ButtonTextProps) {
-
+}: ButtonProps) {
   return (
     <TouchableOpacity
       disabled={disabled}
-			onPress={onPress}
-			activeOpacity={0.6}
-      style={[
-        style,
-        disabled && styleDisabled,
-      ]}
+      onPress={onPress}
+      activeOpacity={0.6}
+      style={[style, disabled && styleDisabled]}
     >
-			<Span
-				weight={500}
-				style={[styles.label, styleLabel]}
-				label={label}
-			/>
+      <Span weight={500} style={[styles.label, styleLabel]} label={label} />
     </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
-	label: {
-		color: COLOR_THEMES.LIGHT.textAccent,
-		fontSize: 14,
-	},
+  label: {
+    color: COLOR_THEMES.LIGHT.textAccent,
+    fontSize: 14,
+  },
 })

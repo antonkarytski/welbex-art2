@@ -1,5 +1,12 @@
-import { Text } from "react-native";
+import React from 'react'
+import { useThemedStyleList } from '../../features/themed/hooks'
+import Span from '../../ui/Span'
+import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 
 export default function PasswordRecover() {
-	return <Text>Password Recover</Text>
+  return (
+    <AuthScreenContainer>
+      <Span label={'test _ PasswordRecover'} />
+    </AuthScreenContainer>
+  )
 }

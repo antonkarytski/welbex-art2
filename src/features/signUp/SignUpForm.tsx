@@ -7,59 +7,51 @@ import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import Button from '../../ui/buttons/PresetButton'
+import Field from '../../ui/form/Field'
 import { createThemedStyle } from '../themed'
-import { useThemedStyle } from '../themed/hooks'
-import Field from './Field'
-import { $signUpForm, setMainFieldsCompleted } from './model'
-import { ISignUpForm } from './types'
-import { validateFirstStepFx } from './validateFields'
+import { useThemedStyle, useThemedStyleList } from '../themed/hooks'
+import { $store, setField, signUpFirstPartKeys } from './model'
 
 const SignUpForm = () => {
   const t = useText()
-  const styles = useThemedStyle(themedStyles)
+  const { styles } = useThemedStyleList({
+    common: themedStyles,
+    field: themedFieldStyles,
+  })
   const navigate = useNavigate()
 
   const onContinueSignUp = () => {
+    console.log($store.getState())
     navigate(links.countrySelection)
   }
 
-  // sample({
-  //   clock: setMainFieldsCompleted,
-  //   source: $signUpForm,
-  //   target: validateFirstStepFx,
-  // })
-
   return (
     <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
-      <H2 label={t.createNewAccount} style={styles.formTitle} />
-      <Field
-        placeholder={t.name}
-        name={'name'}
-        style={[styles.formField, styles.input]}
-      />
-      <Field
-        placeholder={t.lastName}
-        name={'lastName'}
-        style={[styles.formField, styles.input]}
-      />
-      <Field
-        placeholder={t.birthDate}
-        name={'birthDate'}
-        style={[styles.formField, styles.input]}
-      />
-      <Field
-        placeholder={t.email}
-        name={'email'}
-        style={[styles.formField, styles.input, styles.lastFormField]}
-      />
+      <H2 label={t.createNewAccount} style={styles.common.formTitle} />
+
+      {signUpFirstPartKeys.map((name) => {
+        return (
+          <Field
+            placeholder={t[name]}
+            store={$store}
+            setField={setField}
+            name={name}
+            styles={styles.field}
+          />
+        )
+      })}
+
       <Button
         label={t.continue}
-        // onPress={setMainFieldsCompleted}
         onPress={onContinueSignUp}
         // disabled={false}
         style={[
-          styles.button,
-          // disabled && styles.button__disabled
+          styles.common.button,
+          // disabled && styles.common.button__disabled,
+        ]}
+        labelStyle={[
+          styles.common.button_label,
+          // disabled && styles.common.button__disabled_label,
         ]}
       />
     </KeyboardAvoidingView>
@@ -71,21 +63,34 @@ const themedStyles = createThemedStyle((colors) =>
     formTitle: {
       textAlign: 'center',
     },
-    lastFormField: {},
-    formField: {
+    button: {
+      backgroundColor: colors.buttonBackground,
+      borderColor: colors.buttonBackground,
+    },
+    button_label: {
+      color: colors.buttonText,
+    },
+    button__disabled: {
+      backgroundColor: colors.buttonBackgroundDisabled,
+      borderColor: colors.buttonLightBorderDisabled,
+    },
+    button__disabled_label: {
+      color: colors.buttonDisabledLabel,
+    },
+  })
+)
+
+const themedFieldStyles = createThemedStyle((colors) =>
+  StyleSheet.create({
+    wrapper: {
       marginBottom: 12,
     },
     input: {
       borderColor: colors.inputBorder,
       backgroundColor: colors.inputBackground,
     },
-    button: {
-      backgroundColor: colors.buttonBackground,
-      color: colors.buttonText,
-    },
-    button__disabled: {
-      backgroundColor: colors.buttonBackgroundDisabled,
-      color: colors.buttonDisabledLabel,
+    input__focused: {
+      backgroundColor: colors.inputBackground,
     },
   })
 )
