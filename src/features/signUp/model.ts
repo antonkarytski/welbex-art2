@@ -8,7 +8,7 @@ type SignUpForm = {
   country: string
 }
 
-export const signUpFirstPartKeys: (string & keyof SignUpForm)[] = [
+export const SIGN_UP_FIRST_PART_KEYS: (keyof SignUpForm)[] = [
   'name',
   'lastName',
   'birthDate',
@@ -23,6 +23,4 @@ export const initialSignUpFormState: SignUpForm = {
   country: '',
 }
 
-export const { $store, setField } = createFormModel<
-  Record<keyof SignUpForm, string>
->(initialSignUpFormState)
+export const signUpFormModel = createFormModel(initialSignUpFormState)

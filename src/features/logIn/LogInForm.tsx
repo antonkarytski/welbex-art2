@@ -1,5 +1,5 @@
 import React from 'react'
-import { KeyboardAvoidingView, StyleSheet } from 'react-native'
+import { KeyboardAvoidingView } from 'react-native'
 import { IS_IOS } from '../../lib/platform'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
@@ -8,16 +8,22 @@ import H2 from '../../ui/H2'
 import TextButton from '../../ui/buttons/Button.Text'
 import Button from '../../ui/buttons/PresetButton'
 import Field from '../../ui/form/Field'
-import { createThemedStyle } from '../themed'
-import { useThemedStyle, useThemedStyleList } from '../themed/hooks'
-import { $store, setField } from './model'
+import { useThemedStyleList } from '../themed/hooks'
+import { logInFormModel } from './model'
+import {
+  featureStyles,
+  inputThemedStyles,
+  themedButtonPreset,
+  themedTextButtonStyles,
+} from './styles'
 
 const LogInForm = () => {
   const navigate = useNavigate()
   const t = useText()
   const { styles } = useThemedStyleList({
-    common: themedStyles,
     field: inputThemedStyles,
+    button: themedButtonPreset,
+    textButton: themedTextButtonStyles,
   })
 
   const onLogIn = () => {}
@@ -27,69 +33,27 @@ const LogInForm = () => {
 
   return (
     <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
-      <H2 label={t.loginGreeting} style={styles.common.formTitle} />
+      <H2 label={t.loginGreeting} style={featureStyles.formTitle} />
       <Field
         placeholder={t.email}
-        store={$store}
-        setField={setField}
+        formModel={logInFormModel}
         name={'email'}
         styles={styles.field}
       />
       <Field
         placeholder={t.password}
-        store={$store}
-        setField={setField}
+        formModel={logInFormModel}
         name={'password'}
         styles={styles.field}
       />
       <TextButton
         label={t.forgotPasswordQ}
         onPress={onForgotPassword}
-        style={styles.common.linkForgotPassword}
+        styles={styles.textButton}
       />
-      <Button
-        label={t.logInButton}
-        onPress={onLogIn}
-        style={styles.common.button}
-        labelStyle={styles.common.button_label}
-      />
+      <Button label={t.logInButton} onPress={onLogIn} preset={styles.button} />
     </KeyboardAvoidingView>
   )
 }
-
-const themedStyles = createThemedStyle((colors) =>
-  StyleSheet.create({
-    formTitle: {
-      textAlign: 'center',
-    },
-    linkForgotPassword: {
-      marginVertical: 20,
-      marginLeft: 'auto',
-      color: colors.textAccent,
-    },
-    lastFormField: {
-      marginBottom: 0,
-    },
-    button: {
-      backgroundColor: colors.buttonBackground,
-      borderColor: colors.buttonBackground,
-    },
-    button_label: {
-      color: colors.buttonText,
-    },
-  })
-)
-
-const inputThemedStyles = createThemedStyle((colors) =>
-  StyleSheet.create({
-    wrapper: {
-      marginBottom: 12,
-    },
-    input: {
-      borderColor: colors.inputBorder,
-      backgroundColor: colors.inputBackground,
-    },
-  })
-)
 
 export default LogInForm

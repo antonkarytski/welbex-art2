@@ -72,6 +72,8 @@ const LIGHT = {
   buttonBackground: GREEN_BLUE.BUTTON_BACKGROUND_GRADIENT,
   buttonBackgroundPressed: GREEN_BLUE.PRIMARY,
   buttonBackgroundDisabled: GREY.BACKGROUND_DISABLED,
+  buttonBorderPressed: GREEN_BLUE.PRIMARY,
+  buttonBorderDisabled: GREY.DETAILS,
   /** Secondary button */
   buttonLightText: BLACK.TEXT,
   buttonLightTextPressed: GREEN_BLUE.PRIMARY,

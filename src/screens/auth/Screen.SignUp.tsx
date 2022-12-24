@@ -10,13 +10,17 @@ import Row from '../../ui/Row'
 import Span from '../../ui/Span'
 import TextButton from '../../ui/buttons/Button.Text'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
-import { themedCommonStyles } from './stylePresets/styles'
+import {
+  themedCommonStyles,
+  themedTextButtonStyles,
+} from './stylePresets/styles'
 
 const SignUp = () => {
   const navigate = useNavigate()
   const t = useText()
   const { styles } = useThemedStyleList({
     common: themedCommonStyles,
+    textButton: themedTextButtonStyles,
   })
 
   const onGoToLogIn = () => {
@@ -35,7 +39,7 @@ const SignUp = () => {
         <TextButton
           label={t.logIn}
           onPress={onGoToLogIn}
-          styleLabel={styles.common.textAccent}
+          styles={styles.textButton}
         />
       </Row>
     </AuthScreenContainer>

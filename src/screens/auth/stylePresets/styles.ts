@@ -25,3 +25,11 @@ export const themedCommonStyles = createThemedStyle((colors) =>
     },
   })
 )
+
+export const themedTextButtonStyles = createThemedStyle((colors) =>
+  StyleSheet.create({
+    label: {
+      color: colors.textAccent,
+    },
+  })
+)

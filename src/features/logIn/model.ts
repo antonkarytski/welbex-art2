@@ -1,10 +1,13 @@
 import { createFormModel } from '../../lib/forms/model'
 
-export const initialLogInFormState = {
+export type LogInForm = {
+  email: string
+  password: string
+}
+
+export const initialLogInFormState: LogInForm = {
   email: '',
   password: '',
 }
 
-export const { $store, setField } = createFormModel<
-  typeof initialLogInFormState
->(initialLogInFormState)
+export const logInFormModel = createFormModel(initialLogInFormState)

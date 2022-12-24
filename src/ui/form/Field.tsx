@@ -7,40 +7,42 @@ import { InputStyles } from '../input/styles'
 
 type FieldChangePayload<T> = {
   value: string
-  key: keyof T & string
+  key: keyof T
+}
+
+type FormModel<T> = {
+  $store: Store<T>
+  setField: Event<FieldChangePayload<T>>
 }
 
 type FieldProps<T> = {
-  name: keyof T & string
+  name: keyof T
   type?: KeyboardTypeOptions
-  store: Store<T>
-  setField: Event<FieldChangePayload<T>>
+  formModel: FormModel<T>
   placeholder?: string
   label?: string
   styles?: InputStyles
 }
 
-function Field<T>({
+function Field<T extends Record<string, string>>({
   name,
   placeholder,
   type = 'phone-pad',
-  store,
-  setField,
+  formModel,
   label,
   styles,
   ...props
 }: FieldProps<T>) {
+  const { $store, setField } = formModel
   const value = useStoreMap({
-    store,
+    store: $store,
     keys: [name],
     fn: (form) => form[name]?.toString() || '',
   })
 
-  const onFieldChange = (data: FieldChangePayload<T>) => setField(data)
-
   return (
     <Input
-      onChangeText={(text) => onFieldChange({ value: text, key: name })}
+      onChangeText={(text) => setField({ value: text, key: name })}
       value={value}
       placeholder={placeholder}
       label={label}

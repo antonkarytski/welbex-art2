@@ -25,7 +25,7 @@ const AppleButton = ({
     <PresetButton onPress={onPress} style={style}>
       {() => (
         <Row>
-          <AppleIcon size={20} style={styleIcon} />
+          <AppleIcon size={24} style={styleIcon} />
           {label && (
             <Span label={label} style={[styles.labelMargin, styleLabel]} />
           )}
