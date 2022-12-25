@@ -1,23 +1,23 @@
 import { sample } from 'effector'
 import React, { useState } from 'react'
-// import { Keyboard, TouchableWithoutFeedback } from 'react-native'
-import { KeyboardAvoidingView } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { IS_IOS } from '../../lib/platform'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
+import { buttonPrimaryThemedPreset } from '../../styles/buttons'
+import { inputThemedStyles } from '../../styles/inputs'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import Button from '../../ui/buttons/PresetButton'
 import Field from '../../ui/form/Field'
 import { useThemedStyleList } from '../themed/hooks'
 import { SIGN_UP_FIRST_PART_KEYS, signUpFormModel } from './model'
-import { featureStyles, themedButtonPreset, themedFieldStyles } from './styles'
 
 const SignUpForm = () => {
   const t = useText()
   const { styles } = useThemedStyleList({
-    field: themedFieldStyles,
-    button: themedButtonPreset,
+    field: inputThemedStyles,
+    button: buttonPrimaryThemedPreset,
   })
   const navigate = useNavigate()
 
@@ -52,5 +52,11 @@ const SignUpForm = () => {
     </KeyboardAvoidingView>
   )
 }
+
+const featureStyles = StyleSheet.create({
+  formTitle: {
+    textAlign: 'center',
+  },
+})
 
 export default SignUpForm

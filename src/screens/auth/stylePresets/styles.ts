@@ -23,13 +23,15 @@ export const themedCommonStyles = createThemedStyle((colors) =>
     textAccent: {
       color: colors.textAccent,
     },
-  })
-)
-
-export const themedTextButtonStyles = createThemedStyle((colors) =>
-  StyleSheet.create({
-    label: {
-      color: colors.textAccent,
+    title: {
+      color: colors.text,
+      textAlign: 'center',
+    },
+    titleDescription: {
+      color: colors.textGrey,
+      textAlign: 'center',
+      fontSize: 14,
+      marginBottom: 40,
     },
   })
 )

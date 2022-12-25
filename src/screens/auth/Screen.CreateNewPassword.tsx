@@ -3,7 +3,7 @@ import { useThemedStyleList } from '../../features/themed/hooks'
 import Span from '../../ui/Span'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 
-const PasswordEnterScreen = () => {
+const NewPasswordScreen = () => {
   return (
     <AuthScreenContainer>
       <Span label={'test'} />
@@ -11,4 +11,4 @@ const PasswordEnterScreen = () => {
   )
 }
 
-export default PasswordEnterScreen
+export default NewPasswordScreen

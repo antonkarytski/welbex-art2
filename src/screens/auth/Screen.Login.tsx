@@ -5,22 +5,20 @@ import LogInForm from '../../features/logIn/LogInForm'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
+import { buttonTextThemedStyles } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import Row from '../../ui/Row'
 import Span from '../../ui/Span'
 import TextButton from '../../ui/buttons/Button.Text'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
-import {
-  themedCommonStyles,
-  themedTextButtonStyles,
-} from './stylePresets/styles'
+import { themedCommonStyles } from './stylePresets/styles'
 
 export default function SignUp() {
   const navigate = useNavigate()
   const t = useText()
   const { styles } = useThemedStyleList({
     common: themedCommonStyles,
-    textButton: themedTextButtonStyles,
+    textButton: buttonTextThemedStyles,
   })
 
   const onGoToSignUp = () => {

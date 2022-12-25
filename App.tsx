@@ -14,8 +14,7 @@ export default function App() {
     <SafeAreaProvider>
       <NavigationContainer>
         <StatusBar style="auto" />
-        {/* <Router /> */}
-        <AuthRouter />
+        <Router />
       </NavigationContainer>
     </SafeAreaProvider>
   )

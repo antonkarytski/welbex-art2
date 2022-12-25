@@ -1,29 +1,40 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import { links } from '../../navigation/links'
-import CountrySelection from './Screen.CountrySelection'
-import Login from './Screen.Login'
-import PasswordEnter from './Screen.PasswordEnter'
-import PasswordRecover from './Screen.PasswordRecover'
-import PhoneEnter from './Screen.PhoneEnter'
-import SignUp from './Screen.SignUp'
-import Verification from './Screen.Verification'
+import CountrySelectionScreen from './Screen.CountrySelection'
+import NewPasswordScreen from './Screen.CreateNewPassword'
+import CreatePasswordScreen from './Screen.CreatePassword'
+import LoginScreen from './Screen.Login'
+import PhoneEnterScreen from './Screen.PhoneEnter'
+import RecoverPasswordScreen from './Screen.RecoverPassword'
+import SignUpScreen from './Screen.SignUp'
+import VerificationScreen from './Screen.Verification'
 
 const Stack = createNativeStackNavigator()
 
 export default function AuthScreenRouter() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name={links.signUp} component={SignUp} />
+      <Stack.Screen name={links.signUp} component={SignUpScreen} />
       <Stack.Screen
         name={links.countrySelection}
-        component={CountrySelection}
+        component={CountrySelectionScreen}
       />
-      <Stack.Screen name={links.login} component={Login} />
-      <Stack.Screen name={links.phoneEnter} component={PhoneEnter} />
-      <Stack.Screen name={links.verification} component={Verification} />
-      <Stack.Screen name={links.passwordEnter} component={PasswordEnter} />
-      <Stack.Screen name={links.passwordRecover} component={PasswordRecover} />
+      <Stack.Screen name={links.login} component={LoginScreen} />
+      <Stack.Screen name={links.phoneEnter} component={PhoneEnterScreen} />
+      <Stack.Screen name={links.verification} component={VerificationScreen} />
+      <Stack.Screen
+        name={links.createPassword}
+        component={CreatePasswordScreen}
+      />
+      <Stack.Screen
+        name={links.recoverPassword}
+        component={RecoverPasswordScreen}
+      />
+      <Stack.Screen
+        name={links.createNewPassword}
+        component={NewPasswordScreen}
+      />
     </Stack.Navigator>
   )
 }

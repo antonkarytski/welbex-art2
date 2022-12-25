@@ -8,7 +8,13 @@ import GoogleButton from '../../ui/buttons/Button.Google'
 import { createThemedStyle } from '../themed'
 import { useThemedStyle } from '../themed/hooks'
 
-const AuthWithServices = () => {
+type AuthWithServicesProps = {
+  showLineSeparator?: boolean
+}
+
+const AuthWithServices = ({
+  showLineSeparator = true,
+}: AuthWithServicesProps) => {
   const t = useText()
   const styles = useThemedStyle(themedStyles)
   const onContinueWithGoogle = () => {}
@@ -16,12 +22,14 @@ const AuthWithServices = () => {
 
   return (
     <View style={styles.container}>
-      <LineSeparator
-        label={t.or}
-        style={styles.separatorLineWrapper}
-        styleLabel={styles.text}
-        styleLine={styles.separatorLine}
-      />
+      {showLineSeparator && (
+        <LineSeparator
+          label={t.or}
+          style={styles.separatorLineWrapper}
+          styleLabel={styles.text}
+          styleLine={styles.separatorLine}
+        />
+      )}
       <GoogleButton
         label={t.continueWithGoogle}
         onPress={onContinueWithGoogle}
@@ -42,13 +50,13 @@ const themedStyles = createThemedStyle((colors) =>
       marginBottom: 24,
     },
     text: {
-      color: colors.textLight,
+      color: colors.textLightGrey,
     },
     separatorLineWrapper: {
       marginVertical: 35,
     },
     separatorLine: {
-      backgroundColor: colors.textLight,
+      backgroundColor: colors.textLightGrey,
     },
     button: {
       marginBottom: 12,
