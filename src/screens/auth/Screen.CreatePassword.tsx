@@ -1,7 +1,10 @@
 import React from 'react'
+import { KeyboardAvoidingView } from 'react-native'
 import { useThemedStyleList } from '../../features/themed/hooks'
+import { IS_IOS } from '../../lib/platform'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
+// import CheckBox from '../../ui/CheckBox'
 import H2 from '../../ui/H2'
 import Span from '../../ui/Span'
 import PresetButton from '../../ui/buttons/PresetButton'
@@ -15,21 +18,23 @@ const PasswordEnterScreen = () => {
     button: buttonPrimaryThemedPreset,
   })
 
-  const onLogin = () => {}
+  const onCreateAccount = () => {
+    // change isAuth state to true
+  }
 
   return (
     <AuthScreenContainer>
-      <H2 label={t.setNewPassword} style={styles.common.title} />
-      <Span
-        label={t.setNewPasswordDescription}
-        style={styles.common.titleDescription}
-        weight={400}
-      />
-      <PresetButton
-        label={t.logInButton}
-        onPress={onLogin}
-        preset={styles.button}
-      />
+      <H2 label={t.enterPassword} style={[styles.common.title]} />
+
+      <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
+        {/* <CheckBox label={'hello'} value={'l'} onChange={() => {}} /> */}
+
+        <PresetButton
+          label={t.createAccountButton}
+          onPress={onCreateAccount}
+          preset={styles.button}
+        />
+      </KeyboardAvoidingView>
     </AuthScreenContainer>
   )
 }

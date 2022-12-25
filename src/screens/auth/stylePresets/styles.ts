@@ -27,6 +27,9 @@ export const themedCommonStyles = createThemedStyle((colors) =>
       color: colors.text,
       textAlign: 'center',
     },
+    describedTitle: {
+      marginBottom: 8,
+    },
     titleDescription: {
       color: colors.textGrey,
       textAlign: 'center',

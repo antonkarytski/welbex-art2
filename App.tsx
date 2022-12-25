@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
+import { NativeBaseProvider } from 'native-base'
 import React from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { useCachedResources } from './src/lib/appInit/hook.cachedResources'
@@ -11,11 +12,13 @@ export default function App() {
 
   if (!isLoaded) return null
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <StatusBar style="auto" />
-        <Router />
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <NativeBaseProvider>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <StatusBar style="auto" />
+          <Router />
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </NativeBaseProvider>
   )
 }

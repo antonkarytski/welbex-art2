@@ -1,5 +1,7 @@
 import React from 'react'
+import { KeyboardAvoidingView } from 'react-native'
 import { useThemedStyleList } from '../../features/themed/hooks'
+import { IS_IOS } from '../../lib/platform'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
@@ -19,17 +21,22 @@ export default function PasswordRecover() {
 
   return (
     <AuthScreenContainer>
-      <H2 label={t.recoverPassword} style={styles.common.title} />
+      <H2
+        label={t.recoverPassword}
+        style={[styles.common.title, styles.common.describedTitle]}
+      />
       <Span
         label={t.recoverPasswordDescription}
         style={styles.common.titleDescription}
         weight={400}
       />
-      <PresetButton
-        label={t.resetPasswordButton}
-        onPress={onResetPassword}
-        preset={styles.button}
-      />
+      <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
+        <PresetButton
+          label={t.resetPasswordButton}
+          onPress={onResetPassword}
+          preset={styles.button}
+        />
+      </KeyboardAvoidingView>
     </AuthScreenContainer>
   )
 }
