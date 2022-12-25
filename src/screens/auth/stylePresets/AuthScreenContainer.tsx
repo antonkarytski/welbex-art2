@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { Keyboard, TouchableWithoutFeedback } from 'react-native'
+import { Keyboard, TouchableWithoutFeedback, View } from 'react-native'
 import { useThemedStyleList } from '../../../features/themed/hooks'
 import AppHeader from '../../../navigation/elements/AppHeader'
 import ScreenWrapper from '../../../ui/ScreenWrapper'
@@ -16,10 +16,14 @@ const AuthScreenContainer = ({ children }: AuthScreenContainerProps) => {
   })
 
   return (
-    <ScreenWrapper style={styles.common.screenWrapper}>
-      <AppHeader style={styles.screenHeader} />
-      {children}
-    </ScreenWrapper>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View>
+        <ScreenWrapper style={styles.common.screenWrapper}>
+          <AppHeader style={styles.screenHeader} />
+          {children}
+        </ScreenWrapper>
+      </View>
+    </TouchableWithoutFeedback>
   )
 }
 export default AuthScreenContainer

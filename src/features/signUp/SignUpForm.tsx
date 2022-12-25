@@ -35,6 +35,7 @@ const SignUpForm = () => {
       {SIGN_UP_FIRST_PART_KEYS.map((name) => {
         return (
           <Field
+            key={name}
             placeholder={t[name]}
             formModel={signUpFormModel}
             name={name}
