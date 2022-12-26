@@ -1,7 +1,7 @@
 import { Event, Store, createEvent, createStore } from 'effector'
 
-type SetFieldPayload<T> = { key: keyof T; value: string }
-type FormModel<T extends Record<string, string>> = {
+export type SetFieldPayload<T> = { key: keyof T; value: string }
+export type FormModel<T extends Record<string, string>> = {
   setField: Event<SetFieldPayload<T>>
   $store: Store<T>
 }

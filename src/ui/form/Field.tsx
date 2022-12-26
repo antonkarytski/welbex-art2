@@ -1,21 +1,11 @@
-import { Event, Store } from 'effector'
 import { useStoreMap } from 'effector-react'
 import React from 'react'
 import { KeyboardTypeOptions } from 'react-native'
+import { FormModel } from '../../lib/forms/model'
 import Input from '../input'
 import { InputStyles } from '../input/styles'
 
-type FieldChangePayload<T> = {
-  value: string
-  key: keyof T
-}
-
-type FormModel<T> = {
-  $store: Store<T>
-  setField: Event<FieldChangePayload<T>>
-}
-
-type FieldProps<T> = {
+type FieldProps<T extends Record<string, string>> = {
   name: keyof T
   type?: KeyboardTypeOptions
   formModel: FormModel<T>
