@@ -2,50 +2,41 @@ import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { IS_IOS } from '../../lib/platform'
-import { useNavigate } from '../../navigation'
-import { links } from '../../navigation/links'
-import { buttonLightThemedPreset } from '../../styles/buttons'
+import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
+// import CheckBox from '../../ui/CheckBox'
 import H2 from '../../ui/H2'
 import Span from '../../ui/Span'
 import PresetButton from '../../ui/buttons/PresetButton'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
 
-export default function Verification() {
-  const navigate = useNavigate()
+const PasswordEnterScreen = () => {
   const t = useText()
   const { styles } = useThemedStyleList({
     common: themedCommonStyles,
-    button: buttonLightThemedPreset,
+    button: buttonPrimaryThemedPreset,
   })
 
-  const onResendCode = () => {
-    navigate(links.createPassword) // FOR TESTS
-  }
-
-  const onSuccessVerification = () => {
-    navigate(links.createPassword)
+  const onCreateAccount = () => {
+    // change isAuth state to true
   }
 
   return (
     <AuthScreenContainer>
-      <H2
-        label={t.enterAuthCode}
-        style={[styles.common.title, styles.common.describedTitle]}
-      />
-      <Span
-        label={t.enterAuthCode}
-        style={styles.common.titleDescription}
-        weight={400}
-      />
+      <H2 label={t.enterPassword} style={[styles.common.title]} />
+
       <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
+        {/* <CheckBox label={'hello'} value={'l'} onChange={() => {}} /> */}
+
         <PresetButton
-          label={t.continue}
-          onPress={onResendCode}
+          label={t.createAccountButton}
+          onPress={onCreateAccount}
           preset={styles.button}
         />
       </KeyboardAvoidingView>
     </AuthScreenContainer>
   )
 }
+
+export default PasswordEnterScreen

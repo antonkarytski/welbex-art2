@@ -38,7 +38,7 @@ export const EN = {
   logOutConfirmationQ: 'Do you really want to log out of your account?',
   chooseCountry: 'Choose a country',
   enterPhoneNumber: 'Enter phone number',
-  enterPhoneDescription: 'Enter your phone number to receive your login code.',
+  enterPhoneDescription: 'Enter your phone number to receive your login code',
   enterAuthCode: 'Enter authentication code',
   enterAuthCodeDescription:
     'Enter the 4-digid code we just texted to your phone number',
@@ -53,6 +53,7 @@ export const EN = {
   forgotPasswordQ: 'Forgot your password?',
   logInButton: 'Log in',
   dontHaveAccountQ: 'Don’t have an account?',
+  haveAccountQ: 'Do you have an account?',
   recoverPassword: 'Recover password',
   recoverPasswordDescription:
     'Enter the email address you used to register and we’ll send you the instruction',
@@ -67,7 +68,7 @@ export const EN = {
   checkPasswordMatchSuccess: 'Passwords match',
   name: 'Name',
   lastName: 'Last name',
-  birthdate: 'Date of birth',
+  birthDate: 'Date of birth',
   email: 'E-mail',
   password: 'Password',
   newPassword: 'New password',
