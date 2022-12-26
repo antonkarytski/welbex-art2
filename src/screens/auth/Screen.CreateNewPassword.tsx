@@ -1,10 +1,9 @@
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
+// import PasswordForm from '../../features/passwordCreating/PasswordForm'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { IS_IOS } from '../../lib/platform'
-import { useNavigate } from '../../navigation'
-import { links } from '../../navigation/links'
-import { buttonLightThemedPreset } from '../../styles/buttons'
+import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import Span from '../../ui/Span'
@@ -12,40 +11,38 @@ import PresetButton from '../../ui/buttons/PresetButton'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
 
-export default function Verification() {
-  const navigate = useNavigate()
+const NewPasswordScreen = () => {
   const t = useText()
   const { styles } = useThemedStyleList({
     common: themedCommonStyles,
-    button: buttonLightThemedPreset,
+    button: buttonPrimaryThemedPreset,
   })
 
-  const onResendCode = () => {
-    navigate(links.createPassword) // FOR TESTS
-  }
-
-  const onSuccessVerification = () => {
-    navigate(links.createPassword)
+  const onLogin = () => {
+    // change isAuth to true
   }
 
   return (
     <AuthScreenContainer>
       <H2
-        label={t.enterAuthCode}
+        label={t.setNewPassword}
         style={[styles.common.title, styles.common.describedTitle]}
       />
       <Span
-        label={t.enterAuthCode}
+        label={t.setNewPasswordDescription}
         style={styles.common.titleDescription}
         weight={400}
       />
       <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
+        {/* <PasswordForm /> */}
         <PresetButton
           label={t.continue}
-          onPress={onResendCode}
+          onPress={onLogin}
           preset={styles.button}
         />
       </KeyboardAvoidingView>
     </AuthScreenContainer>
   )
 }
+
+export default NewPasswordScreen

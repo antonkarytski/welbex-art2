@@ -39,7 +39,7 @@ export const RU: LangStructure = {
   chooseCountry: 'Выберите страну',
   enterPhoneNumber: 'Введите номер телефона',
   enterPhoneDescription:
-    'Введите ваш номер телефона чтобы получить код аутентификации.',
+    'Введите ваш номер телефона чтобы получить код аутентификации',
   enterAuthCode: 'Введите код аутентификации',
   enterAuthCodeDescription:
     'Введите четырехзначный код, отправленный на ваш телефонный номер',
@@ -53,7 +53,8 @@ export const RU: LangStructure = {
   loginGreeting: 'Добро пожаловать в ART SQRD',
   forgotPasswordQ: 'Забыли пароль?',
   logInButton: 'Войти',
-  dontHaveAccountQ: 'Don’t have an account?',
+  dontHaveAccountQ: 'Нету учетной записи?',
+  haveAccountQ: 'Есть учетная запись?',
   recoverPassword: 'Восстановить пароль',
   recoverPasswordDescription:
     'Введите почту, которую вы использовали для регистрации и мы отправим инструкцию',
@@ -68,7 +69,7 @@ export const RU: LangStructure = {
   checkPasswordMatchSuccess: 'Пароли совпадают',
   name: 'Имя',
   lastName: 'Фамилия',
-  birthdate: 'Дата рождения',
+  birthDate: 'Дата рождения',
   email: 'E-mail',
   password: 'Пароль',
   newPassword: 'Новый пароль',
