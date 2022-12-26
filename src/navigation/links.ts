@@ -1,4 +1,5 @@
 export enum links {
+  authRouter = 'authRouter',
   signUp = 'signUp',
   countrySelection = 'countrySelection',
   phoneEnter = 'phoneEnter',

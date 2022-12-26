@@ -11,7 +11,7 @@ import TextButton from '../../ui/buttons/Button.Text'
 import Button from '../../ui/buttons/PresetButton'
 import Field from '../../ui/form/Field'
 import { useThemedStyleList } from '../themed/hooks'
-import { logInFormModel } from './model'
+import { logIn, logInFormModel } from './model'
 
 const LogInForm = () => {
   const navigate = useNavigate()
@@ -46,7 +46,7 @@ const LogInForm = () => {
         onPress={onForgotPassword}
         styles={{ button: featureStyles.forgotPasswordButton }}
       />
-      <Button label={t.logInButton} onPress={onLogIn} preset={styles.button} />
+      <Button label={t.logInButton} onPress={logIn} preset={styles.button} />
     </KeyboardAvoidingView>
   )
 }
