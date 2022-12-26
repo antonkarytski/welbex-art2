@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import { GalleryIcon } from 'altek-ui'
+import TabStackNavigator from '../../navigation/elements/TabStackNavigator'
 import { createTabScreenDescription } from '../../navigation/helpers'
 import { links } from '../../navigation/links'
 import PlusIcon from '../../ui/icons/Icon.Plus'
@@ -11,7 +12,7 @@ const Stack = createNativeStackNavigator()
 
 const CreatePostScreen = () => {
   return (
-    <Stack.Navigator>
+    <TabStackNavigator>
       <Stack.Screen
         name={links.uploadPostImage}
         component={UploadPostImageScreen}
@@ -20,7 +21,7 @@ const CreatePostScreen = () => {
         name={links.addPostDescription}
         component={AddPostDescriptionScreen}
       />
-    </Stack.Navigator>
+    </TabStackNavigator>
   )
 }
 
