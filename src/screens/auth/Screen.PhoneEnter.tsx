@@ -1,5 +1,6 @@
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
+import AuthPhoneInput from '../../features/authPhoneInput/AuthPhoneInput'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { IS_IOS } from '../../lib/platform'
 import { useNavigate } from '../../navigation'
@@ -36,6 +37,7 @@ const PhoneEnterScreen = () => {
         weight={400}
       />
       <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
+        <AuthPhoneInput />
         <PresetButton
           label={t.continue}
           onPress={onContinue}

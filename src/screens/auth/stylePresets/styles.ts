@@ -16,6 +16,7 @@ export const themedCommonStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     screenWrapper: {
       backgroundColor: colors.screenBackground,
+      paddingBottom: 45,
     },
     text: {
       color: colors.text,
@@ -35,6 +36,12 @@ export const themedCommonStyles = createThemedStyle((colors) =>
       textAlign: 'center',
       fontSize: 14,
       marginBottom: 40,
+    },
+    bottomButton: {
+      marginTop: 'auto',
+    },
+    flexGrown: {
+      flexGrow: 1,
     },
   })
 )

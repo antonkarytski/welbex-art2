@@ -5,6 +5,7 @@ import Row from '../Row'
 import Span from '../Span'
 import AppleIcon from '../icons/Icon.Apple'
 import PresetButton from './PresetButton'
+import { PresetButtonStates } from './types'
 
 type AppleButtonProps = {
   label?: string
@@ -12,6 +13,7 @@ type AppleButtonProps = {
   style?: StyleProp<ViewStyle>
   styleIcon?: StyleProp<ViewStyle>
   styleLabel?: StyleProp<TextStyle>
+  preset?: PresetButtonStates
 }
 
 const AppleButton = ({
@@ -20,9 +22,10 @@ const AppleButton = ({
   style,
   styleIcon,
   styleLabel,
+  preset,
 }: AppleButtonProps) => {
   return (
-    <PresetButton onPress={onPress} style={style}>
+    <PresetButton onPress={onPress} style={style} preset={preset}>
       {() => (
         <Row>
           <AppleIcon size={24} style={styleIcon} />
