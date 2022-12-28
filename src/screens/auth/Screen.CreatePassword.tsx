@@ -1,7 +1,7 @@
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
 import { useThemedStyleList } from '../../features/themed/hooks'
-import { IS_IOS } from '../../lib/platform'
+import { IS_IOS } from '../../lib/helpers/native/constants'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 // import CheckBox from '../../ui/CheckBox'

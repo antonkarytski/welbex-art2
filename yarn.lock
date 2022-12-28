@@ -2297,6 +2297,11 @@
   dependencies:
     merge-options "^3.0.4"
 
+"@react-native-community/cameraroll@^4.1.2":
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/@react-native-community/cameraroll/-/cameraroll-4.1.2.tgz#489c6bb6137571540d93c543d5fcf8c652b548ec"
+  integrity sha512-jkdhMByMKD2CZ/5MPeBieYn8vkCfC4MOTouPpBpps3I8N6HUYJk+1JnDdktVYl2WINnqXpQptDA2YptVyifYAg==
+
 "@react-native-community/checkbox@^0.5.14":
   version "0.5.14"
   resolved "https://registry.yarnpkg.com/@react-native-community/checkbox/-/checkbox-0.5.14.tgz#54269f23ba966dbc6593ac121ad475c4c562d6c0"
@@ -3464,10 +3469,10 @@ altek-toolkit@^0.4.17, altek-toolkit@^0.4.4:
   resolved "https://registry.yarnpkg.com/altek-toolkit/-/altek-toolkit-0.4.17.tgz#bc427b46e54641a2ea94e90560fc026256fa233b"
   integrity sha512-om40ugc7AS+j+/bn2fYamgDwAUw3gAEZXpdxYgaK7Te9M1sgpGcKDwWQWrKnOMkSWbzsyZuLODx92hg+eC+piQ==
 
-altek-ui@^0.7.32:
-  version "0.7.32"
-  resolved "https://registry.yarnpkg.com/altek-ui/-/altek-ui-0.7.32.tgz#19ac2d9a2a6ded00d3ecaca0bcda41275615f87f"
-  integrity sha512-krr/gMF2WVp4Mf+hGQY63VMnt/JXKrp12i1msHFV+JnuAcw+kVIPufxrvOUcbRQh23wbdogZPDux/82TAyGPCA==
+altek-ui@^0.7.33:
+  version "0.7.33"
+  resolved "https://registry.yarnpkg.com/altek-ui/-/altek-ui-0.7.33.tgz#080a55f9ba4bc5f40f068b7743e5491e5f53f924"
+  integrity sha512-k4FhahPtr1AkSzb1W8R1kYncF9XSmPl4xm0flHX/2nxmiFrdZ+T+PdzZAjNGJoLdXLpbiBEf64JsLYLrLWxj2A==
   dependencies:
     "@fortawesome/free-solid-svg-icons" "^5.15.4"
     "@fortawesome/react-native-fontawesome" "^0.2.7"
@@ -5253,6 +5258,13 @@ expo-constants@~14.0.0, expo-constants@~14.0.2:
     "@expo/config" "~7.0.2"
     uuid "^3.3.2"
 
+expo-document-picker@^11.0.1:
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/expo-document-picker/-/expo-document-picker-11.0.1.tgz#1655e1cfacc20fe70ba81e310365048804bcf803"
+  integrity sha512-mLpk5a6yP/wK8DfGMQj9YoPlxiK87Vhxo6S+NnQgKCove8z+cJdkjEcXCpSsH6LXe1HJBDFt5LkwjhSff7bhMg==
+  dependencies:
+    uuid "^3.3.2"
+
 expo-error-recovery@~4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/expo-error-recovery/-/expo-error-recovery-4.0.1.tgz#3e3333e134c992c234539d3773fe78915c883755"
@@ -5283,6 +5295,19 @@ expo-image-manipulator@^11.0.0:
   integrity sha512-CDiqOrhN1TSWw/4t7Xo97U+Xzoc437oCHbZH7+4RhhmPBlu5/2b4UjoEiw/gPWu9DD7OS/TRvO027axod9QNDQ==
   dependencies:
     expo-image-loader "~4.0.0"
+
+expo-image-picker@^14.0.2:
+  version "14.0.2"
+  resolved "https://registry.yarnpkg.com/expo-image-picker/-/expo-image-picker-14.0.2.tgz#a611a43142be4c6f763ee39efd80e55f5a414ed7"
+  integrity sha512-dC0efykReusbjOtcvXYagABrVuwuOFwTfEx87VNjCZejig5aIPPj14UsViSV7xEQ+wkHvVnxyirox5xIbD196w==
+  dependencies:
+    expo-image-loader "~4.0.0"
+    uuid "7.0.2"
+
+expo-intent-launcher@^10.3.1:
+  version "10.3.1"
+  resolved "https://registry.yarnpkg.com/expo-intent-launcher/-/expo-intent-launcher-10.3.1.tgz#1479400f5f63096f73361f506bb4f7e067b050e6"
+  integrity sha512-T48ENkhcAkOkzKs3edGjNaCljfoEs/cyDQzAryjQdR8Wy5/BZwAPBd+ihf2Hzx1NhExatKFcWuKbwXvKDS+xkA==
 
 expo-keep-awake@~11.0.1:
   version "11.0.1"
@@ -8622,7 +8647,7 @@ prompts@^2.0.1, prompts@^2.3.2, prompts@^2.4.0:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -8736,6 +8761,13 @@ react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
+
+react-native-camera@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-4.2.1.tgz#caf74081f055e89d7e9b0cd5108965d808c60e90"
+  integrity sha512-+Vkql24PFYQfsPRznJCvPwJQfyzCnjlcww/iZ4Ej80bgivKjL9eU0IMQIXp4yi6XCrKi4voWXxIDPMupQZKeIQ==
+  dependencies:
+    prop-types "^15.6.2"
 
 react-native-codegen@^0.70.6:
   version "0.70.6"
@@ -10302,6 +10334,11 @@ utils-merge@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==
+
+uuid@7.0.2:
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-7.0.2.tgz#7ff5c203467e91f5e0d85cfcbaaf7d2ebbca9be6"
+  integrity sha512-vy9V/+pKG+5ZTYKf+VcphF5Oc6EFiu3W8Nv3P3zIh0EqVI80ZxOzuPfe9EHjkFNvf8+xuTHVeei4Drydlx4zjw==
 
 uuid@^3.3.2, uuid@^3.4.0:
   version "3.4.0"

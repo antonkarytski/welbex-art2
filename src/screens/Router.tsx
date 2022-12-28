@@ -17,7 +17,9 @@ const Router = React.memo(() => {
 
   return (
     <StackNavigator>
-      <Stack.Screen name={links.authRouter} component={AuthScreenRouter} />
+      {!isAuth && (
+        <Stack.Screen name={links.authRouter} component={AuthScreenRouter} />
+      )}
       <Stack.Screen name={links.mainTabs} component={MainTabsRouter} />
     </StackNavigator>
   )

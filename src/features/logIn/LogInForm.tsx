@@ -1,6 +1,6 @@
 import React from 'react'
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
-import { IS_IOS } from '../../lib/platform'
+import { IS_IOS } from '../../lib/helpers/native/constants'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
