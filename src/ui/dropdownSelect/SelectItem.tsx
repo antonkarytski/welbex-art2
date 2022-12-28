@@ -1,7 +1,7 @@
 import { Event } from 'effector'
 import React, { ReactNode } from 'react'
 import { TouchableOpacity } from 'react-native'
-import { SelectedItemId } from './model'
+import { SelectedItemId } from '../../lib/componentsModels/model.select'
 import { selectStyles } from './styles'
 
 type SelectItemProps<DataItem> = {

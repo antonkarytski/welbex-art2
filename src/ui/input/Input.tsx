@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react'
+import React, { ReactNode, forwardRef, useState } from 'react'
 import {
   KeyboardTypeOptions,
   TextInput,
@@ -16,6 +16,8 @@ export type InputProps = {
   isValid?: boolean
   disabled?: boolean
   styles?: InputStyles
+  InputPseudoBefore?: ReactNode
+  InputPseudoAfter?: ReactNode
 } & Omit<TextInputProps, 'onChange'>
 
 const Input = forwardRef<TextInput, InputProps>(
@@ -29,6 +31,8 @@ const Input = forwardRef<TextInput, InputProps>(
       isValid,
       disabled,
       styles,
+      InputPseudoBefore,
+      InputPseudoAfter,
       ...props
     },
     ref
@@ -43,29 +47,58 @@ const Input = forwardRef<TextInput, InputProps>(
 
     return (
       <>
-        {label ? (
+        {label && (
           <Span style={[inputStyles.label, styles?.label]}>{label}</Span>
-        ) : null}
-        <View style={[inputStyles.container, styles?.wrapper]}>
-          <TextInput
-            ref={ref}
-            keyboardType={type}
-            onChangeText={onChangeText}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            editable={!disabled}
+        )}
+        <View style={[inputStyles.wrapper, styles?.wrapper]}>
+          <View
             style={[
-              inputStyles.input,
-              inputStyles.border,
-              styles?.input,
-              isFocused && [inputStyles.input__focused, styles?.input__focused],
-              isInvalid && inputStyles.input__invalid,
-              isValid && inputStyles.input__valid,
-              disabled && inputStyles.input__disabled,
+              inputStyles.inputWrapper,
+              styles?.inputWrapper,
+              styles?.pseudoBefore,
             ]}
-            placeholderTextColor={placeholderColor}
-            {...props}
-          />
+          >
+            {InputPseudoBefore && (
+              <View style={[inputStyles.inputPseudo, inputStyles.pseudoBefore]}>
+                {InputPseudoBefore}
+              </View>
+            )}
+            <TextInput
+              ref={ref}
+              keyboardType={type}
+              onChangeText={onChangeText}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              editable={!disabled}
+              style={[
+                inputStyles.input,
+                inputStyles.border,
+                Boolean(InputPseudoBefore) && inputStyles.input__pseudoBefore,
+                Boolean(InputPseudoAfter) && inputStyles.input__pseudoAfter,
+                styles?.input,
+                isFocused && [
+                  inputStyles.input__focused,
+                  styles?.input__focused,
+                ],
+                isInvalid && inputStyles.input__invalid,
+                isValid && inputStyles.input__valid,
+                disabled && inputStyles.input__disabled,
+              ]}
+              placeholderTextColor={placeholderColor}
+              {...props}
+            />
+            {InputPseudoAfter && (
+              <View
+                style={[
+                  inputStyles.inputPseudo,
+                  inputStyles.pseudoAfter,
+                  styles?.pseudoAfter,
+                ]}
+              >
+                {InputPseudoAfter}
+              </View>
+            )}
+          </View>
           {children}
         </View>
       </>

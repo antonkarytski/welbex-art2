@@ -2,7 +2,7 @@ import { Dimensions, ViewStyle } from 'react-native'
 import { DEFAULT_DROPDOWN_HEIGHT } from './styles'
 
 const { height } = Dimensions.get('window')
-const DROPDOWN_MAX_HEIGHT = height * 0.6
+const DROPDOWN_MAX_HEIGHT = height * 0.5
 
 export const calculateDropdownHeight = (dropdownStyle?: ViewStyle) => {
   const customHeight =

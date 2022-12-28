@@ -1,22 +1,10 @@
-import React, { ReactNode, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { FlatList, ListRenderItem } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
 import DropdownTab from '../dropdownTab'
-import { DropdownStyles } from '../dropdownTab/types'
 import SelectItem from './SelectItem'
-import { SelectModel } from './model'
 import { selectStyles } from './styles'
-
-type SelectProps<DataItem> = {
-  label?: string | ReactNode
-  data: DataItem[]
-  renderItem: (item: DataItem) => ReactNode
-  model: SelectModel
-  placeholder?: string
-  idExtractorName?: keyof DataItem
-  nameExtractorName?: keyof DataItem
-  dropdownStyles?: DropdownStyles
-}
+import { SelectProps } from './types'
 
 function Select<DataItem extends Record<string, any>>({
   label,
@@ -57,9 +45,8 @@ function Select<DataItem extends Record<string, any>>({
       <FlatList
         data={data}
         renderItem={preRenderItem}
-        keyExtractor={(item) => item[idExtractorName]?.toString()}
+        keyExtractor={(item) => item[idExtractorName].toString()}
         style={[selectStyles.list]}
-        // contentContainerStyle={styles.listContainer}
       />
     </DropdownTab>
   )

@@ -1,4 +1,4 @@
-import { createFormModel } from '../../lib/forms/model'
+import { createFormModel } from '../../lib/componentsModels/model.form'
 
 export type LogInForm = {
   email: string
