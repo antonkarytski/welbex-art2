@@ -4,7 +4,7 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { FilesIcon, GalleryIcon, LocationIcon } from 'altek-ui'
 import { useText } from '../../../../translations/hook'
-import { pickImage } from '../../pickFiles'
+import { pickFromCameraRoll } from '../../pickFiles'
 import { AttachMenuButtons, Document } from '../types'
 import { ButtonSource } from './Button.Source'
 
@@ -36,7 +36,7 @@ const AttachMenuButtonsBlock = ({
 
   async function pickFromGallery() {
     try {
-      const pickResult = await pickImage()
+      const pickResult = await pickFromCameraRoll()
       return onPick(
         pickResult ? { type: PickerButton.GALLERY, data: pickResult } : null
       )
