@@ -2,8 +2,12 @@ import { LogInForm } from '../features/logIn/model'
 
 export const MOCK_LOGIN_USERS: LogInForm[] = [
   {
-    email: 'heyheyjude23@gmail.com',
+    email: 'heyhey',
     password: '1111',
+  },
+  {
+    email: '',
+    password: '',
   },
 ]
 

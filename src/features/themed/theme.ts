@@ -18,6 +18,7 @@ const LIGHT = {
   whiteText: '#FFFFFF',
   text: '#303535',
   subText: '#B2BEBD',
+  tipText: '#616868',
   lightText: '#757575',
   button: '#4B9DA4',
   button2: '#46949B',
@@ -72,7 +73,7 @@ const LIGHT = {
   buttonTextDisabled: GREY.TEXT_LIGHT,
   buttonBackground: GREEN_BLUE.BUTTON_BACKGROUND_GRADIENT,
   buttonBackgroundPressed: GREEN_BLUE.PRIMARY,
-  buttonBackgroundDisabled: GREY.BACKGROUND_DISABLED,
+  buttonBackgroundDisabled: GREY.BACKGROUND_DISABLED, //'#F2F4F4'
   buttonBorderPressed: GREEN_BLUE.PRIMARY,
   buttonBorderDisabled: GREY.DETAILS,
   /** Secondary button */
@@ -93,7 +94,7 @@ const LIGHT = {
   inputFocusedBackground: COMMON.WHITE,
   inputFocusedBorder: GREEN_BLUE.PRIMARY,
   inputDisabledText: GREY.TEXT_LIGHT,
-  inputDisabledBackground: GREY.BACKGROUND_DISABLED,
+  inputDisabledBackground: GREY.BACKGROUND_DISABLED, //'#F2F4F4'
   inputCheckedBackground: COMMON.WHITE,
   inputCheckedBackgroundActive: GREEN_BLUE.PRIMARY,
   switchBackgroundInactive: GREY.DETAILS,
@@ -103,6 +104,7 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   whiteText: '#FFFFFF',
   text: '#303535',
   subText: '#B2BEBD',
+  tipText: '#616868',
   lightText: '#757575',
   button: '#4B9DA4',
   button2: '#46949B',
