@@ -1,5 +1,8 @@
 import { attach, createEffect, createEvent, createStore } from 'effector'
-import * as ImagePicker from 'expo-image-picker'
+import {
+  getMediaLibraryPermissionsAsync,
+  requestMediaLibraryPermissionsAsync,
+} from 'expo-image-picker'
 
 export const setMediaLibraryPermission = createEvent()
 export const $mediaLibraryPermission = createStore(false).on(
@@ -12,13 +15,12 @@ export const getMediaLibraryPermission = attach({
   mapParams: (_: void, isGranted) => isGranted,
   effect: createEffect(async (isGranted: boolean) => {
     if (isGranted) return isGranted
-    const savedPermission = await ImagePicker.getMediaLibraryPermissionsAsync()
+    const savedPermission = await getMediaLibraryPermissionsAsync()
     if (savedPermission.status === 'granted') {
       setMediaLibraryPermission()
       return true
     }
-    const requestedPermission =
-      await ImagePicker.requestMediaLibraryPermissionsAsync()
+    const requestedPermission = await requestMediaLibraryPermissionsAsync()
     if (requestedPermission.status !== 'denied') {
       setMediaLibraryPermission()
       return true

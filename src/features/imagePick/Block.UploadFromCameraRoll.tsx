@@ -12,6 +12,7 @@ import PlusIcon from '../../ui/icons/Icon.Plus'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
 import { AVAILABLE_FORMATS, MAX_UPLOAD_SIZE_MB } from './constants'
+import { pickFromCameraRoll } from './pickFiles'
 import { shadowCardThemedStyle, uploadBlockCommonStyles } from './styles'
 
 type UploadFromCameraRollBlockProps = {
@@ -26,7 +27,12 @@ const UploadFromCameraRollBlock = ({
   const { styles, colors } = useTheme(themedStyles)
 
   return (
-    <TouchableOpacity style={[styles.container, style]}>
+    <TouchableOpacity
+      onPress={() => {
+        pickFromCameraRoll().catch(() => {})
+      }}
+      style={[styles.container, style]}
+    >
       <View style={[uploadBlockCommonStyles.button, styles.button]}>
         <PlusIcon color={colors.text} variant={'thin'} />
       </View>

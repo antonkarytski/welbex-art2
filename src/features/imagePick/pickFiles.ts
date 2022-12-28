@@ -11,5 +11,5 @@ export const pickFromCameraRoll = createEffect(async () => {
     quality: 1,
     mediaTypes: ImagePicker.MediaTypeOptions.Images,
   })
-  if (!result.cancelled) return result as ImagePickerAsset
+  if (!result.canceled) return result as ImagePickerAsset
 })
