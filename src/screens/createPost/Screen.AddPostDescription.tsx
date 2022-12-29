@@ -1,17 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
+import { createStateModel, useStateStore } from 'altek-toolkit'
+import { MOCK_CATEGORIES } from '../../_mock/categories'
 import ImagePreviewFormField from '../../features/createPost/ImagePreviewFormField'
 import { createPostFormModel } from '../../features/createPost/model'
 import BlockUploadFromCamera from '../../features/imagePick/Block.UploadFromCamera'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
+import { useFormField } from '../../lib/componentsModels/model.form'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import { primaryHeaderThemedStyles } from '../../navigation/elements/styles'
 import { links } from '../../navigation/links'
 import { RouterScreenProps } from '../../navigation/types.screenProps'
 import { useText } from '../../translations/hook'
 import Span from '../../ui/Span'
+import Select from '../../ui/dropdownSelect/DropdownSelect'
 import Field from '../../ui/form/Field'
+
+const selectedCategoryModel = createStateModel(MOCK_CATEGORIES[0])
+
+selectedCategoryModel.$state.watch((value) => {
+  createPostFormModel.setField({ value: value.name, key: 'category' })
+})
 
 export default function AddPostDescriptionScreen({
   route,
@@ -47,14 +57,13 @@ export default function AddPostDescriptionScreen({
         name={'title'}
         formModel={createPostFormModel}
       />
-      {/*<Select*/}
-      {/*  data={[{ a: 2 }, { a: 3 }]}*/}
-      {/*  renderItem={() => {*/}
-      {/*    return <Span label={'HELLO'} />*/}
-      {/*  }}*/}
-      {/*  idExtractorName={'a'}*/}
-      {/*  model={m}*/}
-      {/*/>*/}
+      <Select
+        model={selectedCategoryModel}
+        data={MOCK_CATEGORIES}
+        labelExtractor={(val) => val.label}
+        renderItem={(val) => <Span label={val.label} />}
+        idExtractor={({ name }) => name}
+      />
       <BlockUploadFromCamera />
     </ScrollView>
   )

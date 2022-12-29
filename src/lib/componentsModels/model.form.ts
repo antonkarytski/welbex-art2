@@ -1,5 +1,6 @@
 import { Event, Store, createEvent, createStore } from 'effector'
 import { useStoreMap } from 'effector-react'
+import { useCallback } from 'react'
 
 export type SetFieldPayload<T> = { key: keyof T; value: string }
 export type FormModel<T extends Record<string, string>> = {
@@ -40,7 +41,10 @@ export const useFormField = <T extends Record<string, string>>(
     fn: (fields) => fields[key] || '',
   })
 
-  const updateField = (value: string) => form.setField({ value, key })
+  const updateField = useCallback(
+    (value: string) => form.setField({ value, key }),
+    [form, key]
+  )
 
   return [fieldValue, updateField] as [string, (value: string) => void]
 }
