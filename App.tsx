@@ -18,7 +18,7 @@ export default function App() {
         <NavigationContainer>
           <MagicModalPortal />
           <StatusBar style="auto" />
-          <AuthRouter />
+          <Router />
         </NavigationContainer>
       </SafeAreaProvider>
     </NativeBaseProvider>

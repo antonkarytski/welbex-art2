@@ -50,8 +50,7 @@
       "ja": "アフガニスタン",
       "it": "Afghanistan",
       "hu": "Afganisztán"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Åland Islands",
@@ -92,8 +91,7 @@
       "ja": "オーランド諸島",
       "it": "Isole Aland",
       "hu": "Åland-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Albania",
@@ -134,8 +132,7 @@
       "ja": "アルバニア",
       "it": "Albania",
       "hu": "Albánia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Algeria",
@@ -176,8 +173,7 @@
       "ja": "アルジェリア",
       "it": "Algeria",
       "hu": "Algéria"
-    },
-    "independent": false
+    }
   },
   {
     "name": "American Samoa",
@@ -224,8 +220,7 @@
       "ja": "アメリカ領サモア",
       "it": "Samoa Americane",
       "hu": "Amerikai Szamoa"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Andorra",
@@ -266,8 +261,7 @@
       "ja": "アンドラ",
       "it": "Andorra",
       "hu": "Andorra"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Angola",
@@ -308,8 +302,7 @@
       "ja": "アンゴラ",
       "it": "Angola",
       "hu": "Angola"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Anguilla",
@@ -350,8 +343,7 @@
       "ja": "アンギラ",
       "it": "Anguilla",
       "hu": "Anguilla"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Antarctica",
@@ -400,8 +392,7 @@
       "ja": "南極大陸",
       "it": "Antartide",
       "hu": "Antarktisz"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Antigua and Barbuda",
@@ -442,8 +433,7 @@
       "ja": "アンティグア・バーブーダ",
       "it": "Antigua e Barbuda",
       "hu": "Antigua és Barbuda"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Argentina",
@@ -490,8 +480,7 @@
       "ja": "アルゼンチン",
       "it": "Argentina",
       "hu": "Argentína"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Armenia",
@@ -532,8 +521,7 @@
       "ja": "アルメニア",
       "it": "Armenia",
       "hu": "Örményország"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Aruba",
@@ -580,8 +568,7 @@
       "ja": "アルバ",
       "it": "Aruba",
       "hu": "Aruba"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Australia",
@@ -631,8 +618,7 @@
       "ja": "オーストラリア",
       "it": "Australia",
       "hu": "Ausztrália"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Austria",
@@ -673,8 +659,7 @@
       "ja": "オーストリア",
       "it": "Austria",
       "hu": "Ausztria"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Azerbaijan",
@@ -715,8 +700,7 @@
       "ja": "アゼルバイジャン",
       "it": "Azerbaijan",
       "hu": "Azerbajdzsán"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Bahamas",
@@ -757,8 +741,7 @@
       "ja": "バハマ",
       "it": "Bahamas",
       "hu": "Bahama-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Bahrain",
@@ -799,8 +782,7 @@
       "ja": "バーレーン",
       "it": "Bahrein",
       "hu": "Bahrein"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Bangladesh",
@@ -841,8 +823,7 @@
       "ja": "バングラデシュ",
       "it": "Bangladesh",
       "hu": "Banglades"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Barbados",
@@ -883,8 +864,7 @@
       "ja": "バルバドス",
       "it": "Barbados",
       "hu": "Barbados"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Belarus",
@@ -936,8 +916,7 @@
       "ja": "ベラルーシ",
       "it": "Bielorussia",
       "hu": "Fehéroroszország"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Belgium",
@@ -990,8 +969,7 @@
       "ja": "ベルギー",
       "it": "Belgio",
       "hu": "Belgium"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Belize",
@@ -1038,8 +1016,7 @@
       "ja": "ベリーズ",
       "it": "Belize",
       "hu": "Belize"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Benin",
@@ -1080,8 +1057,7 @@
       "ja": "ベナン",
       "it": "Benin",
       "hu": "Benin"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Bermuda",
@@ -1122,8 +1098,7 @@
       "ja": "バミューダ",
       "it": "Bermuda",
       "hu": "Bermuda"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Bhutan",
@@ -1169,8 +1144,7 @@
       "ja": "ブータン",
       "it": "Bhutan",
       "hu": "Bhután"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Bolivia (Plurinational State of)",
@@ -1223,8 +1197,7 @@
       "ja": "ボリビア多民族国",
       "it": "Bolivia",
       "hu": "Bolívia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Bonaire, Sint Eustatius and Saba",
@@ -1265,8 +1238,7 @@
       "ja": "Bonaire, Sint Eustatius and Saba",
       "it": "Bonaire, Saint-Eustache e Saba",
       "hu": "Bonaire"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Bosnia and Herzegovina",
@@ -1319,8 +1291,7 @@
       "ja": "ボスニア・ヘルツェゴビナ",
       "it": "Bosnia ed Erzegovina",
       "hu": "Bosznia-Hercegovina"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Botswana",
@@ -1367,8 +1338,7 @@
       "ja": "ボツワナ",
       "it": "Botswana",
       "hu": "Botswana"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Bouvet Island",
@@ -1421,8 +1391,7 @@
       "ja": "ブーベ島",
       "it": "Isola Bouvet",
       "hu": "Bouvet-sziget"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Brazil",
@@ -1463,8 +1432,7 @@
       "ja": "ブラジル",
       "it": "Brasile",
       "hu": "Brazília"
-    },
-    "independent": false
+    }
   },
   {
     "name": "British Indian Ocean Territory",
@@ -1505,8 +1473,7 @@
       "ja": "イギリス領インド洋地域",
       "it": "Territorio britannico dell'oceano indiano",
       "hu": "Brit Indiai-óceáni Terület"
-    },
-    "independent": false
+    }
   },
   {
     "name": "United States Minor Outlying Islands",
@@ -1547,8 +1514,7 @@
       "ja": "合衆国領有小離島",
       "it": "Isole minori esterne degli Stati Uniti d'America",
       "hu": "Amerikai Egyesült Államok lakatlan külbirtokai"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Virgin Islands (British)",
@@ -1589,8 +1555,7 @@
       "ja": "イギリス領ヴァージン諸島",
       "it": "Isole Vergini Britanniche",
       "hu": "Brit Virgin-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Virgin Islands (U.S.)",
@@ -1631,8 +1596,7 @@
       "ja": "アメリカ領ヴァージン諸島",
       "it": "Isole Vergini americane",
       "hu": "Amerikai Virgin-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Brunei Darussalam",
@@ -1678,8 +1642,7 @@
       "ja": "ブルネイ・ダルサラーム",
       "it": "Brunei",
       "hu": "Brunei"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Bulgaria",
@@ -1720,8 +1683,7 @@
       "ja": "ブルガリア",
       "it": "Bulgaria",
       "hu": "Bulgária"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Burkina Faso",
@@ -1768,8 +1730,7 @@
       "ja": "ブルキナファソ",
       "it": "Burkina Faso",
       "hu": "Burkina Faso"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Burundi",
@@ -1816,8 +1777,7 @@
       "ja": "ブルンジ",
       "it": "Burundi",
       "hu": "Burundi"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Cambodia",
@@ -1863,8 +1823,7 @@
       "ja": "カンボジア",
       "it": "Cambogia",
       "hu": "Kambodzsa"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Cameroon",
@@ -1911,8 +1870,7 @@
       "ja": "カメルーン",
       "it": "Camerun",
       "hu": "Kamerun"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Canada",
@@ -1966,8 +1924,7 @@
       "ja": "カナダ",
       "it": "Canada",
       "hu": "Kanada"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Cabo Verde",
@@ -2008,8 +1965,7 @@
       "ja": "カーボベルデ",
       "it": "Capo Verde",
       "hu": "Zöld-foki Köztársaság"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Cayman Islands",
@@ -2050,8 +2006,7 @@
       "ja": "ケイマン諸島",
       "it": "Isole Cayman",
       "hu": "Kajmán-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Central African Republic",
@@ -2098,8 +2053,7 @@
       "ja": "中央アフリカ共和国",
       "it": "Repubblica Centrafricana",
       "hu": "Közép-afrikai Köztársaság"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Chad",
@@ -2146,8 +2100,7 @@
       "ja": "チャド",
       "it": "Ciad",
       "hu": "Csád"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Chile",
@@ -2188,8 +2141,7 @@
       "ja": "チリ",
       "it": "Cile",
       "hu": "Chile"
-    },
-    "independent": false
+    }
   },
   {
     "name": "China",
@@ -2230,8 +2182,7 @@
       "ja": "中国",
       "it": "Cina",
       "hu": "Kína"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Christmas Island",
@@ -2272,8 +2223,7 @@
       "ja": "クリスマス島",
       "it": "Isola di Natale",
       "hu": "Karácsony-sziget"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Cocos (Keeling) Islands",
@@ -2314,8 +2264,7 @@
       "ja": "ココス（キーリング）諸島",
       "it": "Isole Cocos e Keeling",
       "hu": "Kókusz-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Colombia",
@@ -2356,8 +2305,7 @@
       "ja": "コロンビア",
       "it": "Colombia",
       "hu": "Kolumbia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Comoros",
@@ -2404,8 +2352,7 @@
       "ja": "コモロ",
       "it": "Comore",
       "hu": "Comore-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Congo",
@@ -2452,8 +2399,7 @@
       "ja": "コンゴ共和国",
       "it": "Congo",
       "hu": "Kongói Köztársaság"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Congo (Democratic Republic of the)",
@@ -2518,8 +2464,7 @@
       "ja": "コンゴ民主共和国",
       "it": "Congo (Rep. Dem.)",
       "hu": "Kongói Demokratikus Köztársaság"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Cook Islands",
@@ -2570,8 +2515,7 @@
       "ja": "クック諸島",
       "it": "Isole Cook",
       "hu": "Cook-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Costa Rica",
@@ -2612,8 +2556,7 @@
       "ja": "コスタリカ",
       "it": "Costa Rica",
       "hu": "Costa Rica"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Croatia",
@@ -2654,8 +2597,7 @@
       "ja": "クロアチア",
       "it": "Croazia",
       "hu": "Horvátország"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Cuba",
@@ -2701,8 +2643,7 @@
       "ja": "キューバ",
       "it": "Cuba",
       "hu": "Kuba"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Curaçao",
@@ -2755,8 +2696,7 @@
       "ja": "Curaçao",
       "it": "Curaçao",
       "hu": "Curaçao"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Cyprus",
@@ -2809,8 +2749,7 @@
       "ja": "キプロス",
       "it": "Cipro",
       "hu": "Ciprus"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Czech Republic",
@@ -2857,8 +2796,7 @@
       "ja": "チェコ",
       "it": "Repubblica Ceca",
       "hu": "Csehország"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Denmark",
@@ -2899,8 +2837,7 @@
       "ja": "デンマーク",
       "it": "Danimarca",
       "hu": "Dánia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Djibouti",
@@ -2947,8 +2884,7 @@
       "ja": "ジブチ",
       "it": "Gibuti",
       "hu": "Dzsibuti"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Dominica",
@@ -2989,8 +2925,7 @@
       "ja": "ドミニカ国",
       "it": "Dominica",
       "hu": "Dominikai Közösség"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Dominican Republic",
@@ -3031,8 +2966,7 @@
       "ja": "ドミニカ共和国",
       "it": "Repubblica Dominicana",
       "hu": "Dominikai Köztársaság"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Ecuador",
@@ -3073,8 +3007,7 @@
       "ja": "エクアドル",
       "it": "Ecuador",
       "hu": "Ecuador"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Egypt",
@@ -3115,8 +3048,7 @@
       "ja": "エジプト",
       "it": "Egitto",
       "hu": "Egyiptom"
-    },
-    "independent": false
+    }
   },
   {
     "name": "El Salvador",
@@ -3157,8 +3089,7 @@
       "ja": "エルサルバドル",
       "it": "El Salvador",
       "hu": "Salvador"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Equatorial Guinea",
@@ -3216,8 +3147,7 @@
       "ja": "赤道ギニア",
       "it": "Guinea Equatoriale",
       "hu": "Egyenlítői-Guinea"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Eritrea",
@@ -3301,8 +3231,7 @@
       "ja": "エリトリア",
       "it": "Eritrea",
       "hu": "Eritrea"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Estonia",
@@ -3343,8 +3272,7 @@
       "ja": "エストニア",
       "it": "Estonia",
       "hu": "Észtország"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Ethiopia",
@@ -3385,8 +3313,7 @@
       "ja": "エチオピア",
       "it": "Etiopia",
       "hu": "Etiópia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Falkland Islands (Malvinas)",
@@ -3427,8 +3354,7 @@
       "ja": "フォークランド（マルビナス）諸島",
       "it": "Isole Falkland o Isole Malvine",
       "hu": "Falkland-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Faroe Islands",
@@ -3474,8 +3400,7 @@
       "ja": "フェロー諸島",
       "it": "Isole Far Oer",
       "hu": "Feröer"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Fiji",
@@ -3532,8 +3457,7 @@
       "ja": "フィジー",
       "it": "Figi",
       "hu": "Fidzsi-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Finland",
@@ -3580,8 +3504,7 @@
       "ja": "フィンランド",
       "it": "Finlandia",
       "hu": "Finnország"
-    },
-    "independent": false
+    }
   },
   {
     "name": "France",
@@ -3637,8 +3560,7 @@
       "ja": "フランス",
       "it": "Francia",
       "hu": "Franciaország"
-    },
-    "independent": false
+    }
   },
   {
     "name": "French Guiana",
@@ -3679,8 +3601,7 @@
       "ja": "フランス領ギアナ",
       "it": "Guyana francese",
       "hu": "Francia Guyana"
-    },
-    "independent": false
+    }
   },
   {
     "name": "French Polynesia",
@@ -3721,8 +3642,7 @@
       "ja": "フランス領ポリネシア",
       "it": "Polinesia Francese",
       "hu": "Francia Polinézia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "French Southern Territories",
@@ -3763,8 +3683,7 @@
       "ja": "フランス領南方・南極地域",
       "it": "Territori Francesi del Sud",
       "hu": "Francia déli és antarktiszi területek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Gabon",
@@ -3805,8 +3724,7 @@
       "ja": "ガボン",
       "it": "Gabon",
       "hu": "Gabon"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Gambia",
@@ -3847,8 +3765,7 @@
       "ja": "ガンビア",
       "it": "Gambia",
       "hu": "Gambia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Georgia",
@@ -3889,8 +3806,7 @@
       "ja": "グルジア",
       "it": "Georgia",
       "hu": "Grúzia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Germany",
@@ -3931,8 +3847,7 @@
       "ja": "ドイツ",
       "it": "Germania",
       "hu": "Grúzia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Ghana",
@@ -3973,8 +3888,7 @@
       "ja": "ガーナ",
       "it": "Ghana",
       "hu": "Ghána"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Gibraltar",
@@ -4015,8 +3929,7 @@
       "ja": "ジブラルタル",
       "it": "Gibilterra",
       "hu": "Gibraltár"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Greece",
@@ -4057,8 +3970,7 @@
       "ja": "ギリシャ",
       "it": "Grecia",
       "hu": "Görögország"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Greenland",
@@ -4099,8 +4011,7 @@
       "ja": "グリーンランド",
       "it": "Groenlandia",
       "hu": "Grönland"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Grenada",
@@ -4141,8 +4052,7 @@
       "ja": "グレナダ",
       "it": "Grenada",
       "hu": "Grenada"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Guadeloupe",
@@ -4183,8 +4093,7 @@
       "ja": "グアドループ",
       "it": "Guadeloupa",
       "hu": "Guadeloupe"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Guam",
@@ -4237,8 +4146,7 @@
       "ja": "グアム",
       "it": "Guam",
       "hu": "Guam"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Guatemala",
@@ -4279,8 +4187,7 @@
       "ja": "グアテマラ",
       "it": "Guatemala",
       "hu": "Guatemala"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Guernsey",
@@ -4332,8 +4239,7 @@
       "ja": "ガーンジー",
       "it": "Guernsey",
       "hu": "Guernsey"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Guinea",
@@ -4380,8 +4286,7 @@
       "ja": "ギニア",
       "it": "Guinea",
       "hu": "Guinea"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Guinea-Bissau",
@@ -4422,8 +4327,7 @@
       "ja": "ギニアビサウ",
       "it": "Guinea-Bissau",
       "hu": "Bissau-Guinea"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Guyana",
@@ -4464,8 +4368,7 @@
       "ja": "ガイアナ",
       "it": "Guyana",
       "hu": "Guyana"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Haiti",
@@ -4512,8 +4415,7 @@
       "ja": "ハイチ",
       "it": "Haiti",
       "hu": "Haiti"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Heard Island and McDonald Islands",
@@ -4554,8 +4456,7 @@
       "ja": "ハード島とマクドナルド諸島",
       "it": "Isole Heard e McDonald",
       "hu": "Heard-sziget és McDonald-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Vatican City",
@@ -4614,8 +4515,7 @@
       "ja": "聖座",
       "it": "Santa Sede",
       "hu": "Vatikán"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Honduras",
@@ -4656,8 +4556,7 @@
       "ja": "ホンジュラス",
       "it": "Honduras",
       "hu": "Honduras"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Hungary",
@@ -4698,8 +4597,7 @@
       "ja": "ハンガリー",
       "it": "Ungheria",
       "hu": "Magyarország"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Hong Kong",
@@ -4746,8 +4644,7 @@
       "ja": "香港",
       "it": "Hong Kong",
       "hu": "Hong Kong"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Iceland",
@@ -4788,8 +4685,7 @@
       "ja": "アイスランド",
       "it": "Islanda",
       "hu": "Izland"
-    },
-    "independent": false
+    }
   },
   {
     "name": "India",
@@ -4836,8 +4732,7 @@
       "ja": "インド",
       "it": "India",
       "hu": "India"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Indonesia",
@@ -4878,8 +4773,7 @@
       "ja": "インドネシア",
       "it": "Indonesia",
       "hu": "Indonézia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Ivory Coast",
@@ -4920,8 +4814,7 @@
       "ja": "コートジボワール",
       "it": "Costa D'Avorio",
       "hu": "Elefántcsontpart"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Iran (Islamic Republic of)",
@@ -4962,8 +4855,7 @@
       "ja": "イラン・イスラム共和国",
       "it": "Iran (Islamic Republic of)",
       "hu": "Irán"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Iraq",
@@ -5010,8 +4902,7 @@
       "ja": "イラク",
       "it": "Iraq",
       "hu": "Irak"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Ireland",
@@ -5058,8 +4949,7 @@
       "ja": "アイルランド",
       "it": "Irlanda",
       "hu": "Írország"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Isle of Man",
@@ -5111,8 +5001,7 @@
       "ja": "マン島",
       "it": "Isola di Man",
       "hu": "Man"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Israel",
@@ -5159,8 +5048,7 @@
       "ja": "イスラエル",
       "it": "Israele",
       "hu": "Izrael"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Italy",
@@ -5201,8 +5089,7 @@
       "ja": "イタリア",
       "it": "Italia",
       "hu": "Olaszország"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Jamaica",
@@ -5243,8 +5130,7 @@
       "ja": "ジャマイカ",
       "it": "Giamaica",
       "hu": "Jamaica"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Japan",
@@ -5285,8 +5171,7 @@
       "ja": "日本",
       "it": "Giappone",
       "hu": "Japán"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Jersey",
@@ -5338,8 +5223,7 @@
       "ja": "ジャージー",
       "it": "Isola di Jersey",
       "hu": "Jersey"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Jordan",
@@ -5380,8 +5264,7 @@
       "ja": "ヨルダン",
       "it": "Giordania",
       "hu": "Jordánia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Kazakhstan",
@@ -5428,8 +5311,7 @@
       "ja": "カザフスタン",
       "it": "Kazakistan",
       "hu": "Kazahsztán"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Kenya",
@@ -5476,8 +5358,7 @@
       "ja": "ケニア",
       "it": "Kenya",
       "hu": "Kenya"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Kiribati",
@@ -5523,8 +5404,7 @@
       "ja": "キリバス",
       "it": "Kiribati",
       "hu": "Kiribati"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Kuwait",
@@ -5565,8 +5445,7 @@
       "ja": "クウェート",
       "it": "Kuwait",
       "hu": "Kuvait"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Kyrgyzstan",
@@ -5613,8 +5492,7 @@
       "ja": "キルギス",
       "it": "Kirghizistan",
       "hu": "Kirgizisztán"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Lao People's Democratic Republic",
@@ -5655,8 +5533,7 @@
       "ja": "ラオス人民民主共和国",
       "it": "Laos",
       "hu": "Laosz"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Latvia",
@@ -5697,8 +5574,7 @@
       "ja": "ラトビア",
       "it": "Lettonia",
       "hu": "Lettország"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Lebanon",
@@ -5745,8 +5621,7 @@
       "ja": "レバノン",
       "it": "Libano",
       "hu": "Libanon"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Lesotho",
@@ -5798,8 +5673,7 @@
       "ja": "レソト",
       "it": "Lesotho",
       "hu": "Lesotho"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Liberia",
@@ -5840,8 +5714,7 @@
       "ja": "リベリア",
       "it": "Liberia",
       "hu": "Libéria"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Libya",
@@ -5882,8 +5755,7 @@
       "ja": "リビア",
       "it": "Libia",
       "hu": "Líbia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Liechtenstein",
@@ -5924,8 +5796,7 @@
       "ja": "リヒテンシュタイン",
       "it": "Liechtenstein",
       "hu": "Liechtenstein"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Lithuania",
@@ -5966,8 +5837,7 @@
       "ja": "リトアニア",
       "it": "Lituania",
       "hu": "Litvánia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Luxembourg",
@@ -6020,8 +5890,7 @@
       "ja": "ルクセンブルク",
       "it": "Lussemburgo",
       "hu": "Luxemburg"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Macao",
@@ -6068,8 +5937,7 @@
       "ja": "マカオ",
       "it": "Macao",
       "hu": "Makaó"
-    },
-    "independent": false
+    }
   },
   {
     "name": "North Macedonia",
@@ -6109,8 +5977,7 @@
       "ja": "マケドニア旧ユーゴスラビア共和国",
       "it": "Macedonia",
       "hu": "Macedónia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Madagascar",
@@ -6157,8 +6024,7 @@
       "ja": "マダガスカル",
       "it": "Madagascar",
       "hu": "Madagaszkár"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Malawi",
@@ -6205,8 +6071,7 @@
       "ja": "マラウイ",
       "it": "Malawi",
       "hu": "Malawi"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Malaysia",
@@ -6247,8 +6112,7 @@
       "ja": "マレーシア",
       "it": "Malesia",
       "hu": "Malajzia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Maldives",
@@ -6289,8 +6153,7 @@
       "ja": "モルディブ",
       "it": "Maldive",
       "hu": "Maldív-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Mali",
@@ -6331,8 +6194,7 @@
       "ja": "マリ",
       "it": "Mali",
       "hu": "Mali"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Malta",
@@ -6379,8 +6241,7 @@
       "ja": "マルタ",
       "it": "Malta",
       "hu": "Málta"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Marshall Islands",
@@ -6427,8 +6288,7 @@
       "ja": "マーシャル諸島",
       "it": "Isole Marshall",
       "hu": "Marshall-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Martinique",
@@ -6469,8 +6329,7 @@
       "ja": "マルティニーク",
       "it": "Martinica",
       "hu": "Martinique"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Mauritania",
@@ -6511,8 +6370,7 @@
       "ja": "モーリタニア",
       "it": "Mauritania",
       "hu": "Mauritánia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Mauritius",
@@ -6553,8 +6411,7 @@
       "ja": "モーリシャス",
       "it": "Mauritius",
       "hu": "Mauritius"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Mayotte",
@@ -6595,8 +6452,7 @@
       "ja": "マヨット",
       "it": "Mayotte",
       "hu": "Mayotte"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Mexico",
@@ -6637,8 +6493,7 @@
       "ja": "メキシコ",
       "it": "Messico",
       "hu": "Mexikó"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Micronesia (Federated States of)",
@@ -6679,8 +6534,7 @@
       "ja": "ミクロネシア連邦",
       "it": "Micronesia",
       "hu": "Mikronézia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Moldova (Republic of)",
@@ -6721,8 +6575,7 @@
       "ja": "モルドバ共和国",
       "it": "Moldavia",
       "hu": "Moldova"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Monaco",
@@ -6763,8 +6616,7 @@
       "ja": "モナコ",
       "it": "Principato di Monaco",
       "hu": "Monaco"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Mongolia",
@@ -6805,8 +6657,7 @@
       "ja": "モンゴル",
       "it": "Mongolia",
       "hu": "Mongólia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Montenegro",
@@ -6865,8 +6716,7 @@
       "ja": "モンテネグロ",
       "it": "Montenegro",
       "hu": "Montenegró"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Montserrat",
@@ -6907,8 +6757,7 @@
       "ja": "モントセラト",
       "it": "Montserrat",
       "hu": "Montserrat"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Morocco",
@@ -6949,8 +6798,7 @@
       "ja": "モロッコ",
       "it": "Marocco",
       "hu": "Marokkó"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Mozambique",
@@ -6991,8 +6839,7 @@
       "ja": "モザンビーク",
       "it": "Mozambico",
       "hu": "Mozambik"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Myanmar",
@@ -7033,8 +6880,7 @@
       "ja": "ミャンマー",
       "it": "Birmania",
       "hu": "Mianmar"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Namibia",
@@ -7086,8 +6932,7 @@
       "ja": "ナミビア",
       "it": "Namibia",
       "hu": "Namíbia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Nauru",
@@ -7134,8 +6979,7 @@
       "ja": "ナウル",
       "it": "Nauru",
       "hu": "Nauru"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Nepal",
@@ -7176,8 +7020,7 @@
       "ja": "ネパール",
       "it": "Nepal",
       "hu": "Nepál"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Netherlands",
@@ -7218,8 +7061,7 @@
       "ja": "オランダ",
       "it": "Paesi Bassi",
       "hu": "Hollandia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "New Caledonia",
@@ -7260,8 +7102,7 @@
       "ja": "ニューカレドニア",
       "it": "Nuova Caledonia",
       "hu": "Új-Kaledónia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "New Zealand",
@@ -7314,8 +7155,7 @@
       "ja": "ニュージーランド",
       "it": "Nuova Zelanda",
       "hu": "Új-Zéland"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Nicaragua",
@@ -7356,8 +7196,7 @@
       "ja": "ニカラグア",
       "it": "Nicaragua",
       "hu": "Nicaragua"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Niger",
@@ -7398,8 +7237,7 @@
       "ja": "ニジェール",
       "it": "Niger",
       "hu": "Niger"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Nigeria",
@@ -7440,8 +7278,7 @@
       "ja": "ナイジェリア",
       "it": "Nigeria",
       "hu": "Nigéria"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Niue",
@@ -7487,8 +7324,7 @@
       "ja": "ニウエ",
       "it": "Niue",
       "hu": "Niue"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Norfolk Island",
@@ -7529,8 +7365,7 @@
       "ja": "ノーフォーク島",
       "it": "Isola Norfolk",
       "hu": "Norfolk-sziget"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Korea (Democratic People's Republic of)",
@@ -7571,8 +7406,7 @@
       "ja": "朝鮮民主主義人民共和国",
       "it": "Corea del Nord",
       "hu": "Észak-Korea"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Northern Mariana Islands",
@@ -7619,8 +7453,7 @@
       "ja": "北マリアナ諸島",
       "it": "Isole Marianne Settentrionali",
       "hu": "Északi-Mariana-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Norway",
@@ -7673,8 +7506,7 @@
       "ja": "ノルウェー",
       "it": "Norvegia",
       "hu": "Norvégia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Oman",
@@ -7715,8 +7547,7 @@
       "ja": "オマーン",
       "it": "oman",
       "hu": "Omán"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Pakistan",
@@ -7763,8 +7594,7 @@
       "ja": "パキスタン",
       "it": "Pakistan",
       "hu": "Pakisztán"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Palau",
@@ -7805,8 +7635,7 @@
       "ja": "パラオ",
       "it": "Palau",
       "hu": "Palau"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Palestine, State of",
@@ -7857,8 +7686,7 @@
       "ja": "パレスチナ",
       "it": "Palestina",
       "hu": "Palesztina"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Panama",
@@ -7904,8 +7732,7 @@
       "ja": "パナマ",
       "it": "Panama",
       "hu": "Panama"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Papua New Guinea",
@@ -7946,8 +7773,7 @@
       "ja": "パプアニューギニア",
       "it": "Papua Nuova Guinea",
       "hu": "Pápua Új-Guinea"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Paraguay",
@@ -7994,8 +7820,7 @@
       "ja": "パラグアイ",
       "it": "Paraguay",
       "hu": "Paraguay"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Peru",
@@ -8036,8 +7861,7 @@
       "ja": "ペルー",
       "it": "Perù",
       "hu": "Peru"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Philippines",
@@ -8078,8 +7902,7 @@
       "ja": "フィリピン",
       "it": "Filippine",
       "hu": "Fülöp-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Pitcairn",
@@ -8125,8 +7948,7 @@
       "ja": "ピトケアン",
       "it": "Isole Pitcairn",
       "hu": "Pitcairn-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Poland",
@@ -8167,8 +7989,7 @@
       "ja": "ポーランド",
       "it": "Polonia",
       "hu": "Lengyelország"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Portugal",
@@ -8209,8 +8030,7 @@
       "ja": "ポルトガル",
       "it": "Portogallo",
       "hu": "Portugália"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Puerto Rico",
@@ -8257,8 +8077,7 @@
       "ja": "プエルトリコ",
       "it": "Porto Rico",
       "hu": "Puerto Rico"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Qatar",
@@ -8299,8 +8118,7 @@
       "ja": "カタール",
       "it": "Qatar",
       "hu": "Katar"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Republic of Kosovo",
@@ -8347,8 +8165,7 @@
       "ja": "Republic of Kosovo",
       "it": "Republic of Kosovo",
       "hu": "Koszovó"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Réunion",
@@ -8389,8 +8206,7 @@
       "ja": "レユニオン",
       "it": "Riunione",
       "hu": "Réunion"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Romania",
@@ -8431,8 +8247,7 @@
       "ja": "ルーマニア",
       "it": "Romania",
       "hu": "Románia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Russian Federation",
@@ -8483,8 +8298,7 @@
       "ja": "ロシア連邦",
       "it": "Russia",
       "hu": "Oroszország"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Rwanda",
@@ -8537,8 +8351,7 @@
       "ja": "ルワンダ",
       "it": "Ruanda",
       "hu": "Ruanda"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Saint Barthélemy",
@@ -8579,8 +8392,7 @@
       "ja": "サン・バルテルミー",
       "it": "Antille Francesi",
       "hu": "Saint-Barthélemy"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Saint Helena, Ascension and Tristan da Cunha",
@@ -8621,8 +8433,7 @@
       "ja": "セントヘレナ・アセンションおよびトリスタンダクーニャ",
       "it": "Sant'Elena",
       "hu": "Szent Ilona"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Saint Kitts and Nevis",
@@ -8663,8 +8474,7 @@
       "ja": "セントクリストファー・ネイビス",
       "it": "Saint Kitts e Nevis",
       "hu": "Saint Kitts és Nevis"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Saint Lucia",
@@ -8705,8 +8515,7 @@
       "ja": "セントルシア",
       "it": "Santa Lucia",
       "hu": "Saint Lucia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Saint Martin (French part)",
@@ -8759,8 +8568,7 @@
       "ja": "サン・マルタン（フランス領）",
       "it": "Saint Martin",
       "hu": "Saint-Martin"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Saint Pierre and Miquelon",
@@ -8801,8 +8609,7 @@
       "ja": "サンピエール島・ミクロン島",
       "it": "Saint-Pierre e Miquelon",
       "hu": "Saint-Pierre és Miquelon"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Saint Vincent and the Grenadines",
@@ -8843,8 +8650,7 @@
       "ja": "セントビンセントおよびグレナディーン諸島",
       "it": "Saint Vincent e Grenadine",
       "hu": "Saint Vincent és a Grenadine-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Samoa",
@@ -8891,8 +8697,7 @@
       "ja": "サモア",
       "it": "Samoa",
       "hu": "Szamoa"
-    },
-    "independent": false
+    }
   },
   {
     "name": "San Marino",
@@ -8933,8 +8738,7 @@
       "ja": "サンマリノ",
       "it": "San Marino",
       "hu": "San Marino"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Sao Tome and Principe",
@@ -8975,8 +8779,7 @@
       "ja": "サントメ・プリンシペ",
       "it": "São Tomé e Príncipe",
       "hu": "São Tomé és Príncipe"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Saudi Arabia",
@@ -9017,8 +8820,7 @@
       "ja": "サウジアラビア",
       "it": "Arabia Saudita",
       "hu": "Szaúd-Arábia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Senegal",
@@ -9059,8 +8861,7 @@
       "ja": "セネガル",
       "it": "Senegal",
       "hu": "Szenegál"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Serbia",
@@ -9101,8 +8902,7 @@
       "ja": "セルビア",
       "it": "Serbia",
       "hu": "Szerbia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Seychelles",
@@ -9149,8 +8949,7 @@
       "ja": "セーシェル",
       "it": "Seychelles",
       "hu": "Seychelle-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Sierra Leone",
@@ -9191,8 +8990,7 @@
       "ja": "シエラレオネ",
       "it": "Sierra Leone",
       "hu": "Sierra Leone"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Singapore",
@@ -9251,8 +9049,7 @@
       "ja": "シンガポール",
       "it": "Singapore",
       "hu": "Szingapúr"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Sint Maarten (Dutch part)",
@@ -9299,8 +9096,7 @@
       "ja": "Sint Maarten (Dutch part)",
       "it": "Saint Martin (parte olandese)",
       "hu": "Sint Maarten"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Slovakia",
@@ -9341,8 +9137,7 @@
       "ja": "スロバキア",
       "it": "Slovacchia",
       "hu": "Szlovákia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Slovenia",
@@ -9383,8 +9178,7 @@
       "ja": "スロベニア",
       "it": "Slovenia",
       "hu": "Szlovénia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Solomon Islands",
@@ -9425,8 +9219,7 @@
       "ja": "ソロモン諸島",
       "it": "Isole Salomone",
       "hu": "Salamon-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Somalia",
@@ -9473,8 +9266,7 @@
       "ja": "ソマリア",
       "it": "Somalia",
       "hu": "Szomália"
-    },
-    "independent": false
+    }
   },
   {
     "name": "South Africa",
@@ -9569,8 +9361,7 @@
       "ja": "南アフリカ",
       "it": "Sud Africa",
       "hu": "Dél-afrikai Köztársaság"
-    },
-    "independent": false
+    }
   },
   {
     "name": "South Georgia and the South Sandwich Islands",
@@ -9611,8 +9402,7 @@
       "ja": "サウスジョージア・サウスサンドウィッチ諸島",
       "it": "Georgia del Sud e Isole Sandwich Meridionali",
       "hu": "Déli-Georgia és Déli-Sandwich-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Korea (Republic of)",
@@ -9653,8 +9443,7 @@
       "ja": "大韓民国",
       "it": "Corea del Sud",
       "hu": "Dél-Korea"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Spain",
@@ -9695,8 +9484,7 @@
       "ja": "スペイン",
       "it": "Spagna",
       "hu": "Spanyolország"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Sri Lanka",
@@ -9743,8 +9531,7 @@
       "ja": "スリランカ",
       "it": "Sri Lanka",
       "hu": "Srí Lanka"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Sudan",
@@ -9791,8 +9578,7 @@
       "ja": "スーダン",
       "it": "Sudan",
       "hu": "Szudán"
-    },
-    "independent": false
+    }
   },
   {
     "name": "South Sudan",
@@ -9833,8 +9619,7 @@
       "ja": "南スーダン",
       "it": "Sudan del sud",
       "hu": "Dél-Szudán"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Suriname",
@@ -9875,8 +9660,7 @@
       "ja": "スリナム",
       "it": "Suriname",
       "hu": "Suriname"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Svalbard and Jan Mayen",
@@ -9917,8 +9701,7 @@
       "ja": "スヴァールバル諸島およびヤンマイエン島",
       "it": "Svalbard e Jan Mayen",
       "hu": "Spitzbergák és Jan Mayen-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Swaziland",
@@ -9965,8 +9748,7 @@
       "ja": "スワジランド",
       "it": "Swaziland",
       "hu": "Szváziföld"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Sweden",
@@ -10007,8 +9789,7 @@
       "ja": "スウェーデン",
       "it": "Svezia",
       "hu": "Svédország"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Switzerland",
@@ -10065,8 +9846,7 @@
       "ja": "スイス",
       "it": "Svizzera",
       "hu": "Svájc"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Syrian Arab Republic",
@@ -10107,8 +9887,7 @@
       "ja": "シリア・アラブ共和国",
       "it": "Siria",
       "hu": "Szíria"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Taiwan",
@@ -10149,8 +9928,7 @@
       "ja": "台湾（中華民国）",
       "it": "Taiwan",
       "hu": "Tajvan"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Tajikistan",
@@ -10197,8 +9975,7 @@
       "ja": "タジキスタン",
       "it": "Tagikistan",
       "hu": "Tádzsikisztán"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Tanzania, United Republic of",
@@ -10245,8 +10022,7 @@
       "ja": "タンザニア",
       "it": "Tanzania",
       "hu": "Tanzánia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Thailand",
@@ -10287,8 +10063,7 @@
       "ja": "タイ",
       "it": "Tailandia",
       "hu": "Thaiföld"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Timor-Leste",
@@ -10329,8 +10104,7 @@
       "ja": "東ティモール",
       "it": "Timor Est",
       "hu": "Kelet-Timor"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Togo",
@@ -10371,8 +10145,7 @@
       "ja": "トーゴ",
       "it": "Togo",
       "hu": "Togo"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Tokelau",
@@ -10413,8 +10186,7 @@
       "ja": "トケラウ",
       "it": "Isole Tokelau",
       "hu": "Tokelau-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Tonga",
@@ -10461,8 +10233,7 @@
       "ja": "トンガ",
       "it": "Tonga",
       "hu": "Tonga"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Trinidad and Tobago",
@@ -10503,8 +10274,7 @@
       "ja": "トリニダード・トバゴ",
       "it": "Trinidad e Tobago",
       "hu": "Trinidad és Tobago"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Tunisia",
@@ -10545,8 +10315,7 @@
       "ja": "チュニジア",
       "it": "Tunisia",
       "hu": "Tunézia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Turkey",
@@ -10587,8 +10356,7 @@
       "ja": "トルコ",
       "it": "Turchia",
       "hu": "Törökország"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Turkmenistan",
@@ -10635,8 +10403,7 @@
       "ja": "トルクメニスタン",
       "it": "Turkmenistan",
       "hu": "Türkmenisztán"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Turks and Caicos Islands",
@@ -10677,8 +10444,7 @@
       "ja": "タークス・カイコス諸島",
       "it": "Isole Turks e Caicos",
       "hu": "Turks- és Caicos-szigetek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Tuvalu",
@@ -10724,8 +10490,7 @@
       "ja": "ツバル",
       "it": "Tuvalu",
       "hu": "Tuvalu"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Uganda",
@@ -10772,8 +10537,7 @@
       "ja": "ウガンダ",
       "it": "Uganda",
       "hu": "Uganda"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Ukraine",
@@ -10814,8 +10578,7 @@
       "ja": "ウクライナ",
       "it": "Ucraina",
       "hu": "Ukrajna"
-    },
-    "independent": false
+    }
   },
   {
     "name": "United Arab Emirates",
@@ -10856,8 +10619,7 @@
       "ja": "アラブ首長国連邦",
       "it": "Emirati Arabi Uniti",
       "hu": "Egyesült Arab Emírségek"
-    },
-    "independent": false
+    }
   },
   {
     "name": "United Kingdom of Great Britain and Northern Ireland",
@@ -10908,8 +10670,7 @@
       "ja": "イギリス",
       "it": "Regno Unito",
       "hu": "Nagy-Britannia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "United States of America",
@@ -10962,8 +10723,7 @@
       "ja": "アメリカ合衆国",
       "it": "Stati Uniti D'America",
       "hu": "Amerikai Egyesült Államok"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Uruguay",
@@ -11004,8 +10764,7 @@
       "ja": "ウルグアイ",
       "it": "Uruguay",
       "hu": "Uruguay"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Uzbekistan",
@@ -11052,8 +10811,7 @@
       "ja": "ウズベキスタン",
       "it": "Uzbekistan",
       "hu": "Üzbegisztán"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Vanuatu",
@@ -11106,8 +10864,7 @@
       "ja": "バヌアツ",
       "it": "Vanuatu",
       "hu": "Vanuatu"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Venezuela (Bolivarian Republic of)",
@@ -11148,8 +10905,7 @@
       "ja": "ベネズエラ・ボリバル共和国",
       "it": "Venezuela",
       "hu": "Venezuela"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Vietnam",
@@ -11190,8 +10946,7 @@
       "ja": "ベトナム",
       "it": "Vietnam",
       "hu": "Vietnám"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Wallis and Futuna",
@@ -11232,8 +10987,7 @@
       "ja": "ウォリス・フツナ",
       "it": "Wallis e Futuna",
       "hu": "Wallis és Futuna"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Western Sahara",
@@ -11279,8 +11033,7 @@
       "ja": "西サハラ",
       "it": "Sahara Occidentale",
       "hu": "Nyugat-Szahara"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Yemen",
@@ -11321,8 +11074,7 @@
       "ja": "イエメン",
       "it": "Yemen",
       "hu": "Jemen"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Zambia",
@@ -11363,8 +11115,7 @@
       "ja": "ザンビア",
       "it": "Zambia",
       "hu": "Zambia"
-    },
-    "independent": false
+    }
   },
   {
     "name": "Zimbabwe",
@@ -11417,7 +11168,6 @@
       "ja": "ジンバブエ",
       "it": "Zimbabwe",
       "hu": "Zimbabwe"
-    },
-    "independent": false
+    }
   }
 ]

@@ -36,7 +36,6 @@ export const createSearchableListModel = <T extends Record<string, any>>(
   const $searchString = restore(setSearchString, '')
   const debounceSearch = debounce({ source: setSearchString, timeout: 400 })
 
-  const setFilteredList = createEvent<T[]>()
   const $filteredList = createStore<T[]>([])
 
   const setInitialList = createEvent<T[]>()
@@ -67,13 +66,11 @@ export const createSearchableListModel = <T extends Record<string, any>>(
 
   sample({
     clock: setInitialList,
-    source: $initialList,
-    target: setFilteredList,
+    source: { searchString: $searchString, initialList: $initialList },
+    target: searchFx,
   })
 
-  $filteredList
-    .on(searchFx.doneData, (_, payload) => payload)
-    .on(setFilteredList, (_, payload) => payload)
+  $filteredList.on(searchFx.doneData, (_, payload) => payload)
 
   const searchStringModel = {
     $state: $searchString,

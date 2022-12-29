@@ -24,14 +24,9 @@ type ListItemProps<DataItem> = {
   setSelectedItemId: Event<SelectedItemId>
 }
 
-function SelectItem<DataItem>({
-  renderItem,
-  item,
-  itemId,
-  style,
-  selectedItemId,
-  setSelectedItemId,
-}: ListItemProps<DataItem>) {
+const SelectItem = <DataItem,>(props: ListItemProps<DataItem>) => {
+  const { renderItem, item, itemId, style, selectedItemId, setSelectedItemId } =
+    props
   const Item = renderItem(item)
 
   return (
