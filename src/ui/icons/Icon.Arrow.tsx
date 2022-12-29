@@ -3,7 +3,7 @@ import Svg, { Path } from 'react-native-svg'
 import { IconProps } from './_types'
 
 export default function ArrowIcon({
-  size,
+  size = 24,
   color = '#303535',
   style,
 }: IconProps) {

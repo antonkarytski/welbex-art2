@@ -14,11 +14,11 @@ const CreatePostScreen = () => {
   return (
     <TabStackNavigator>
       <Stack.Screen
-        name={links.uploadPostImage}
+        name={links.createPostUploadImage}
         component={UploadPostImageScreen}
       />
       <Stack.Screen
-        name={links.addPostDescription}
+        name={links.createPostAddDescription}
         component={AddPostDescriptionScreen}
       />
     </TabStackNavigator>

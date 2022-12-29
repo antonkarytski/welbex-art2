@@ -6,6 +6,8 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
+import { useNavigate } from '../../navigation'
+import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import Span from '../../ui/Span'
 import PlusIcon from '../../ui/icons/Icon.Plus'
@@ -24,12 +26,18 @@ const UploadFromCameraRollBlock = ({
   style,
 }: UploadFromCameraRollBlockProps) => {
   const text = useText()
+  const navigate = useNavigate()
   const { styles, colors } = useTheme(themedStyles)
 
   return (
     <TouchableOpacity
-      onPress={() => {
-        pickFromCameraRoll().catch(() => {})
+      onPress={async () => {
+        pickFromCameraRoll()
+          .then((asset) => {
+            if (!asset) return
+            navigate(links.createPostAddDescription, { asset })
+          })
+          .catch(() => {})
       }}
       style={[styles.container, style]}
     >

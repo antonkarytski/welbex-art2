@@ -5,17 +5,19 @@ import UploadFromCameraRollBlock from '../../features/imagePick/Block.UploadFrom
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
-import { ScreenHeaderStyles } from '../../navigation/elements/styles'
+import { primaryHeaderThemedStyles } from '../../navigation/elements/styles'
+import { useText } from '../../translations/hook'
 
 export default function UploadPostImageScreen() {
+  const text = useText()
   const { styles } = useThemedStyleList({
-    header: headerThemedStyles,
+    header: primaryHeaderThemedStyles,
     common: themedStyle,
   })
 
   return (
     <View>
-      <ScreenHeader style={styles.header} title={'Upload Image'} />
+      <ScreenHeader style={styles.header} title={text.uploadImage} />
       <View style={styles.common.contentContainer}>
         <UploadFromCameraRollBlock style={styles.common.cameraRollBlock} />
         <UploadFromCameraBlock />
@@ -31,17 +33,6 @@ const themedStyle = createThemedStyle(() =>
     },
     cameraRollBlock: {
       marginBottom: 20,
-    },
-  })
-)
-
-const headerThemedStyles = createThemedStyle<ScreenHeaderStyles>((colors) =>
-  StyleSheet.create({
-    container: {
-      backgroundColor: colors.primary1,
-    },
-    line: {
-      marginBottom: 32,
     },
   })
 )

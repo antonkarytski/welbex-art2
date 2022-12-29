@@ -1,15 +1,18 @@
 import { createEffect } from 'effector/effector.cjs'
-import * as ImagePicker from 'expo-image-picker'
-import { ImagePickerAsset } from 'expo-image-picker/src/ImagePicker.types'
+import {
+  ImagePickerAsset,
+  MediaTypeOptions,
+  launchImageLibraryAsync,
+} from 'expo-image-picker'
 import { getMediaLibraryPermission } from './model.permissions'
 
 export const pickFromCameraRoll = createEffect(async () => {
   const isPermissionGranted = await getMediaLibraryPermission()
   if (!isPermissionGranted) return
-  const result = await ImagePicker.launchImageLibraryAsync({
+  const result = await launchImageLibraryAsync({
     allowsEditing: true,
     quality: 1,
-    mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    mediaTypes: MediaTypeOptions.Images,
   })
   if (!result.canceled) return result as ImagePickerAsset
 })

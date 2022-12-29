@@ -1,3 +1,4 @@
+import { ImagePickerAsset } from 'expo-image-picker'
 import { CompetitionCategory } from '../features/categories/types'
 import { Drawing } from '../features/drawing/types'
 import { GalleryType } from '../features/gallery/types'
@@ -13,4 +14,5 @@ export type ScreensProps = ScreensPropsProto<{
   [links.galleryBest]: { type: GalleryType.BEST }
   [links.galleryNew]: { type: GalleryType.NEW }
   [links.galleryFollowing]: { type: GalleryType.FOLLOWING }
+  [links.createPostAddDescription]: { asset: ImagePickerAsset }
 }>
