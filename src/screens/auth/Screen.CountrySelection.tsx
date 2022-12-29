@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react'
-import React, { useCallback } from 'react'
+import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
 import COUNTRIES from '../../../assets/countries.json'
 import CountryRow from '../../features/countries/CountryRow'
@@ -15,7 +15,7 @@ import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import PresetButton from '../../ui/buttons/PresetButton'
-import ListSelect from '../../ui/select/ListSelect'
+import ListSelect from '../../ui/selects/ListSelect'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
 
@@ -24,6 +24,8 @@ const countryModel = createSelectModel()
 const searchModel = createSearchableListModel<Country>({
   filterExtractor: countyNameExtractor,
 })
+
+const renderCountryRow = (item: Country) => <CountryRow item={item} />
 
 const CountrySelectionScreen = () => {
   const navigate = useNavigate()
@@ -38,11 +40,6 @@ const CountrySelectionScreen = () => {
     console.log('countryId', countryId)
     navigate(links.phoneEnter)
   }
-
-  const renderCountryRow = useCallback(
-    (item: Country) => <CountryRow item={item} />,
-    []
-  )
 
   return (
     <AuthScreenContainer>
