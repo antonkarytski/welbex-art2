@@ -26,13 +26,17 @@ const PasswordEnterScreen = () => {
     <AuthScreenContainer>
       <H2 label={t.enterPassword} style={[styles.common.title]} />
 
-      <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
+      <KeyboardAvoidingView
+        behavior={IS_IOS ? 'padding' : 'height'}
+        style={styles.common.flexGrown}
+      >
         {/* <CheckBox label={'hello'} value={'l'} onChange={() => {}} /> */}
 
         <PresetButton
           label={t.createAccountButton}
           onPress={onCreateAccount}
           preset={styles.button}
+          style={styles.common.bottomButton}
         />
       </KeyboardAvoidingView>
     </AuthScreenContainer>

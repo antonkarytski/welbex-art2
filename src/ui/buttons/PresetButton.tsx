@@ -1,27 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import {
-  StyleProp,
   StyleSheet,
-  TextStyle,
   TouchableHighlight,
-  ViewStyle,
 } from 'react-native'
 import { ColorThemes } from '../../features/themed/theme'
-import { Fn, NodeFn } from '../../types'
 import Span from '../Span'
 import { ButtonPresetName, buttonStyles, themedButtonPreset } from './styles'
-import { Preset, PresetButtonStates } from './types'
-
-export type PresetButtonProps = {
-  onPress: Fn
-  label?: string
-  disabled?: boolean
-  preset?: PresetButtonStates
-  style?: StyleProp<ViewStyle>
-  disabledStyle?: StyleProp<ViewStyle>
-  labelStyle?: StyleProp<TextStyle>
-  children?: NodeFn<Preset>
-}
+import { PresetButtonProps} from './types'
 
 export default function PresetButton({
   onPress,

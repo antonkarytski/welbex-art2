@@ -1,8 +1,9 @@
 import { useStore } from 'effector-react'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { KeyboardAvoidingView } from 'react-native'
 import COUNTRIES from '../../../assets/countries.json'
 import CountryRow from '../../features/countries/CountryRow'
+import { countyNameExtractor } from '../../features/countries/helpers'
 import { Country } from '../../features/countries/types'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { createSearchableListModel } from '../../lib/componentsModels/model.search'
@@ -14,14 +15,14 @@ import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import PresetButton from '../../ui/buttons/PresetButton'
-import ListSelect from '../../ui/listSelect/ListSelect'
+import ListSelect from '../../ui/select/ListSelect'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
 
 const countryModel = createSelectModel()
 
 const searchModel = createSearchableListModel<Country>({
-  filterExtractor: (item) => item.name + ' ' + item.nativeName,
+  filterExtractor: countyNameExtractor,
 })
 
 const CountrySelectionScreen = () => {
@@ -38,25 +39,30 @@ const CountrySelectionScreen = () => {
     navigate(links.phoneEnter)
   }
 
+  const renderCountryRow = useCallback(
+    (item: Country) => <CountryRow item={item} />,
+    []
+  )
+
   return (
     <AuthScreenContainer>
       <H2 label={t.chooseCountry} style={styles.common.title} />
       <KeyboardAvoidingView
         behavior={IS_IOS ? 'padding' : 'height'}
-        style={[styles.common.flexGrown]}
+        style={styles.common.flexGrown}
       >
         <ListSelect<Country>
           data={COUNTRIES}
-          idExtractorName={'alpha3Code'}
+          idExtractor={({ alpha3Code }) => alpha3Code}
           searchModel={searchModel}
-          selectModel={countryModel}
-          renderItem={(item) => <CountryRow item={item} />}
+          model={countryModel}
+          renderItem={renderCountryRow}
         />
         <PresetButton
           label={t.continue}
           onPress={onContinue}
           preset={styles.button}
-          style={[styles.common.bottomButton]}
+          style={styles.common.bottomButton}
           disabled={!countryId}
         />
       </KeyboardAvoidingView>

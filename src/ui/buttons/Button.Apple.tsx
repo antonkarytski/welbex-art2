@@ -1,36 +1,33 @@
 import React from 'react'
-import { StyleProp, StyleSheet, TextStyle, ViewStyle } from 'react-native'
-import { Fn } from '../../types'
+import { StyleSheet } from 'react-native'
 import Row from '../Row'
 import Span from '../Span'
 import AppleIcon from '../icons/Icon.Apple'
 import PresetButton from './PresetButton'
-import { PresetButtonStates } from './types'
-
-type AppleButtonProps = {
-  label?: string
-  onPress: Fn
-  style?: StyleProp<ViewStyle>
-  styleIcon?: StyleProp<ViewStyle>
-  styleLabel?: StyleProp<TextStyle>
-  preset?: PresetButtonStates
-}
+import { IconButtonProps } from './types'
 
 const AppleButton = ({
   label,
   onPress,
-  style,
-  styleIcon,
-  styleLabel,
+  styles,
   preset,
-}: AppleButtonProps) => {
+  disabled,
+}: IconButtonProps) => {
   return (
-    <PresetButton onPress={onPress} style={style} preset={preset}>
+    <PresetButton
+      onPress={onPress}
+      style={styles?.button}
+      preset={preset}
+      disabled={disabled}
+    >
       {() => (
-        <Row>
-          <AppleIcon size={24} style={styleIcon} />
+        <Row style={styles?.row}>
+          <AppleIcon size={24} style={styles?.icon} />
           {label && (
-            <Span label={label} style={[styles.labelMargin, styleLabel]} />
+            <Span
+              label={label}
+              style={[appleButtonStyles.labelMargin, styles?.label]}
+            />
           )}
         </Row>
       )}
@@ -38,7 +35,7 @@ const AppleButton = ({
   )
 }
 
-const styles = StyleSheet.create({
+const appleButtonStyles = StyleSheet.create({
   labelMargin: {
     marginLeft: 12,
   },
