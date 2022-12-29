@@ -1,3 +1,5 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { ImagePickerResult } from 'expo-image-picker'
 import { CompetitionCategory } from '../features/categories/types'
 import { Drawing } from '../features/drawing/types'
 import { GalleryType } from '../features/gallery/types'
@@ -13,4 +15,12 @@ export type ScreensProps = ScreensPropsProto<{
   [links.galleryBest]: { type: GalleryType.BEST }
   [links.galleryNew]: { type: GalleryType.NEW }
   [links.galleryFollowing]: { type: GalleryType.FOLLOWING }
+  [links.createPostAddDescription]: {
+    asset: Exclude<ImagePickerResult['assets'], null>
+  }
 }>
+
+export type RouterScreenProps<L extends links> = NativeStackScreenProps<
+  ScreensProps,
+  L
+>

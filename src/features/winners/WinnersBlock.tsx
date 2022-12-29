@@ -16,6 +16,7 @@ const WinnersBlock = () => {
   const { styles } = useThemedStyleList({
     common: themedStyles,
     card: winnerCardThemedStyles,
+    header: headerStyles,
   })
   const text = useText()
 
@@ -37,7 +38,7 @@ const WinnersBlock = () => {
 
   return (
     <View style={styles.common.container}>
-      <AppHeader />
+      <AppHeader style={styles.header} />
       <H2 style={styles.common.title} label={text.winners} />
       <FlatList
         contentContainerStyle={styles.common.listContent}
@@ -50,6 +51,14 @@ const WinnersBlock = () => {
     </View>
   )
 }
+
+const headerStyles = createThemedStyle((colors) =>
+  StyleSheet.create({
+    title: {
+      color: '#FFF',
+    },
+  })
+)
 
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({

@@ -1,4 +1,5 @@
 export enum links {
+  authRouter = 'authRouter',
   signUp = 'signUp',
   countrySelection = 'countrySelection',
   phoneEnter = 'phoneEnter',
@@ -20,8 +21,8 @@ export enum links {
   galleryMain = 'galleryMain',
   galleryFilter = 'galleryFilter',
   createPostTab = 'createPostTab',
-  uploadPostImage = 'uploadPostImage',
-  addPostDescription = 'addPostDescription',
+  createPostUploadImage = 'createPostUploadImage',
+  createPostAddDescription = 'createPostAddDescription',
   postCard = 'postCard',
   profile = 'profile',
   profileTab = 'profileTab',

@@ -9,7 +9,9 @@ type AppHeaderProps = {
 
 const AppHeader = ({ style }: AppHeaderProps) => {
   return (
-    <ScreenHeader style={style} title={<Sup label={'ART'} supLabel={'2'} />} />
+    <ScreenHeader style={style}>
+      <Sup style={style?.title} label={'ART'} supLabel={'2'} />
+    </ScreenHeader>
   )
 }
 
