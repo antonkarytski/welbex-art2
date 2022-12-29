@@ -1,18 +1,20 @@
 import { useStoreMap } from 'effector-react'
 import React from 'react'
 import { KeyboardTypeOptions } from 'react-native'
-import { FormModel } from '../../lib/componentModels/model.form'
+import {
+  FormFieldComponentProps,
+  FormModel,
+  useFormField,
+} from '../../lib/componentsModels/model.form'
 import Input from '../input'
 import { InputStyles } from '../input/styles'
 
 type FieldProps<T extends Record<string, string>> = {
-  name: keyof T
   type?: KeyboardTypeOptions
-  formModel: FormModel<T>
   placeholder?: string
   label?: string
   styles?: InputStyles
-}
+} & FormFieldComponentProps<T>
 
 function Field<T extends Record<string, string>>({
   name,
@@ -23,16 +25,11 @@ function Field<T extends Record<string, string>>({
   styles,
   ...props
 }: FieldProps<T>) {
-  const { $store, setField } = formModel
-  const value = useStoreMap({
-    store: $store,
-    keys: [name],
-    fn: (form) => form[name]?.toString() || '',
-  })
+  const [value, setValue] = useFormField(formModel, name)
 
   return (
     <Input
-      onChangeText={(text) => setField({ value: text, key: name })}
+      onChangeText={setValue}
       value={value}
       placeholder={placeholder}
       label={label}

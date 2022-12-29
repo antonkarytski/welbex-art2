@@ -1,5 +1,7 @@
 import React from 'react'
 import { Image, ScrollView, StyleSheet, View } from 'react-native'
+import ImagePreviewFormField from '../../features/createPost/ImagePreviewFormField'
+import { createPostFormModel } from '../../features/createPost/model'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
@@ -26,9 +28,9 @@ export default function AddPostDescriptionScreen({
         title={text.description}
         style={styles.header}
       />
-      <Image
-        source={{ uri: assets[0].uri }}
-        style={{ width: 150, height: 150 }}
+      <ImagePreviewFormField
+        name={'imageUri'}
+        formModel={createPostFormModel}
       />
       <Span label={text.completeDescription} />
     </ScrollView>
