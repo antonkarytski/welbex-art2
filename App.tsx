@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
 import { NativeBaseProvider } from 'native-base'
 import React from 'react'
+import { MagicModalPortal } from 'react-native-magic-modal'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { useCachedResources } from './src/lib/appInit/hook.cachedResources'
 import Router from './src/screens/Router'
@@ -15,6 +16,7 @@ export default function App() {
     <NativeBaseProvider>
       <SafeAreaProvider>
         <NavigationContainer>
+          <MagicModalPortal />
           <StatusBar style="auto" />
           <Router />
         </NavigationContainer>

@@ -7,6 +7,9 @@ export type InputStyles = {
   input?: ViewStyle
   input__focused?: ViewStyle
   wrapper?: ViewStyle
+  inputWrapper?: ViewStyle
+  pseudoBefore?: ViewStyle
+  pseudoAfter?: ViewStyle
 }
 
 const defaultColors = COLOR_THEMES.LIGHT
@@ -14,8 +17,31 @@ const defaultColors = COLOR_THEMES.LIGHT
 export const placeholderColor = defaultColors.placeholder
 
 export const inputStyles = StyleSheet.create({
-  container: {
+  wrapper: {
     width: '100%',
+  },
+  inputWrapper: {
+    width: '100%',
+    position: 'relative',
+  },
+  input__pseudoBefore: {
+    paddingLeft: 54,
+  },
+  input__pseudoAfter: {
+    paddingRight: 52,
+  },
+  inputPseudo: {
+    position: 'absolute',
+    height: '100%',
+    justifyContent: 'center',
+    zIndex: 2,
+    elevation: 2,
+  },
+  pseudoBefore: {
+    left: 22,
+  },
+  pseudoAfter: {
+    right: 22,
   },
   label: {
     marginBottom: 8,

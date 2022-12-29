@@ -1,4 +1,4 @@
-import { createFormModel } from '../../lib/forms/model'
+import { createFormModel } from '../../lib/componentsModels/model.form'
 
 type SignUpForm = {
   name: string
