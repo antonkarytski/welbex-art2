@@ -6,31 +6,24 @@ import { selectStyles } from './styles'
 
 type SelectItemProps<DataItem> = {
   item: DataItem
-  itemId: number | string
-  selectedItemId: SelectedItemId
   renderItem: (item: DataItem) => ReactNode
-  setSelectedItemId: Event<SelectedItemId>
+  isActive?: boolean
+  onSelect: (item: DataItem) => void
 }
 
 function SelectItem<DataItem>({
   renderItem,
   item,
-  itemId,
-  selectedItemId,
-  setSelectedItemId,
+  isActive,
+  onSelect,
 }: SelectItemProps<DataItem>) {
   const Item = renderItem(item)
 
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      onPress={() => setSelectedItemId(itemId)}
-      style={[
-        selectStyles.item,
-        String(selectedItemId) === String(itemId) &&
-          selectStyles.item__selected,
-      ]}
-      key={itemId}
+      onPress={() => onSelect(item)}
+      style={[selectStyles.item, !!isActive && selectStyles.item__selected]}
     >
       {Item}
     </TouchableOpacity>

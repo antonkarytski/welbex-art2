@@ -1,15 +1,14 @@
-import { ReactNode } from 'react';
-import { SelectModel } from '../../lib/componentsModels/model.select';
+import { ReactNode } from 'react'
+import { StateModel } from 'altek-toolkit'
 import { DropdownStyles } from '../dropdownTab/types'
-
 
 export type SelectProps<DataItem> = {
   label?: string | ReactNode
   data: DataItem[]
   renderItem: (item: DataItem) => ReactNode
-  model: SelectModel
+  model: StateModel<DataItem>
   placeholder?: string
-  idExtractorName?: keyof DataItem
-  nameExtractorName?: keyof DataItem
+  idExtractor: (item: DataItem) => string
+  labelExtractor?: (item: DataItem) => string
   dropdownStyles?: DropdownStyles
 }
