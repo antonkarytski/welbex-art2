@@ -34,15 +34,7 @@ const AttachMenuButtonsBlock = ({
 }: AttachMenuButtonsBlockProps) => {
   const text = useText()
 
-  async function pickFromGallery() {
-    try {
-      const pickResult = await pickFromCameraRoll()
-      return onPick(
-        pickResult ? { type: PickerButton.GALLERY, data: pickResult } : null
-      )
-    } catch {}
-    onPick(null)
-  }
+  async function pickFromGallery() {}
 
   async function pickDocument() {
     try {
