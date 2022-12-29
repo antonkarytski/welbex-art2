@@ -1,5 +1,5 @@
 import { NativeModules } from 'react-native'
-import { IS_IOS } from '../lib/platform/index'
+import { IS_IOS } from '../lib/helpers/native/constants'
 import { Languages } from './types'
 
 /** 'en_US' | 'ru_Us | other */

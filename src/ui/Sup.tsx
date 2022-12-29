@@ -7,13 +7,18 @@ interface SupProps {
   supLabel: string
   styleLabel?: StyleProp<TextStyle>
   styleSup?: StyleProp<TextStyle>
+  style?: StyleProp<TextStyle>
 }
 
-const Sup = ({ label, supLabel, styleLabel, styleSup }: SupProps) => {
+const Sup = ({ label, supLabel, styleLabel, styleSup, style }: SupProps) => {
   return (
     <View style={styles.wrapper}>
-      <Span style={[styles.label, styleLabel]}>{label}</Span>
-      <Span style={[styles.sup, styleSup]}>{supLabel}</Span>
+      <Span weight={600} style={[styles.label, style, styleLabel]}>
+        {label}
+      </Span>
+      <Span weight={600} style={[styles.sup, style, styleSup]}>
+        {supLabel}
+      </Span>
     </View>
   )
 }
