@@ -51,16 +51,30 @@ function DropdownTab({
   return (
     <View style={dropdownStyles.wrapper}>
       {label && (
-        <Span style={[dropdownStyles.label, styles?.label]}>{label}</Span>
+        <Span
+          style={[
+            dropdownStyles.label,
+            styles?.label,
+            isOpened && styles?.activeLabel,
+          ]}
+        >
+          {label}
+        </Span>
       )}
       <TouchableOpacity
         ref={dropdownButtonRef}
         activeOpacity={0.6}
         onPress={onOpenDropdown}
-        style={[dropdownStyles.tab, styles?.tab]}
+        style={[dropdownStyles.tab, styles?.tab, isOpened && styles?.activeTab]}
       >
         <Row style={[dropdownStyles.tabInnerWrapper, styles?.tabInnerWrapper]}>
-          <Span style={[dropdownStyles.tabLabel, styles?.tabLabel]}>
+          <Span
+            style={[
+              dropdownStyles.tabLabel,
+              styles?.tabLabel,
+              isOpened && styles?.activeTabLabel,
+            ]}
+          >
             {tabLabel}
           </Span>
           <ArrowIcon

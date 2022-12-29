@@ -12,8 +12,5 @@ export const primaryHeaderThemedStyles = createThemedStyle((colors) =>
     container: {
       backgroundColor: colors.primary1,
     },
-    line: {
-      marginBottom: 32,
-    },
   })
 )

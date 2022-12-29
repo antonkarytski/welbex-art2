@@ -1,4 +1,4 @@
-import { StyleProp, TextStyle, ViewStyle } from 'react-native'
+import { TextStyle, ViewStyle } from 'react-native'
 
 export type ElementMeasureProps = {
   w: number
@@ -8,10 +8,15 @@ export type ElementMeasureProps = {
 }
 
 export type DropdownStyles = {
-  label?: StyleProp<TextStyle>
+  label?: TextStyle
+  activeLabel?: TextStyle
   dropdownContainer?: ViewStyle
-  tab?: StyleProp<ViewStyle>
-  tabLabel?: StyleProp<TextStyle>
-  tabIcon?: StyleProp<ViewStyle>
-  tabInnerWrapper?: StyleProp<ViewStyle>
+  tab?: ViewStyle
+  activeTab?: ViewStyle
+  tabLabel?: TextStyle
+  activeTabLabel?: TextStyle
+  tabIcon?: ViewStyle
+  tabInnerWrapper?: ViewStyle
+  wrapper?: ViewStyle
+  toggleIcon__opened?: ViewStyle
 }

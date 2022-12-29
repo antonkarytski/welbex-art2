@@ -16,7 +16,7 @@ export type ScreensProps = ScreensPropsProto<{
   [links.galleryNew]: { type: GalleryType.NEW }
   [links.galleryFollowing]: { type: GalleryType.FOLLOWING }
   [links.createPostAddDescription]: {
-    asset: Exclude<ImagePickerResult['assets'], null>
+    assets: Exclude<ImagePickerResult['assets'], null>
   }
 }>
 

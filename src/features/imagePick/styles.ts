@@ -2,13 +2,17 @@ import { StyleSheet } from 'react-native'
 import { themedShadow5Style } from '../../styles/shadows'
 import { createSingleThemedStyle } from '../themed'
 
-export const shadowCardThemedStyle = createSingleThemedStyle((colors) => ({
+export const uploadImageCardThemedStyle = createSingleThemedStyle((colors) => ({
   flexDirection: 'row',
   justifyContent: 'flex-start',
   alignItems: 'center',
   backgroundColor: colors.screenBackground,
   borderRadius: 20,
   padding: 12,
+}))
+
+export const shadowCardThemedStyle = createSingleThemedStyle((colors) => ({
+  ...uploadImageCardThemedStyle(colors),
   ...themedShadow5Style(colors),
 }))
 

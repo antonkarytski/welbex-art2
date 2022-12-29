@@ -11,7 +11,6 @@ import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import Span from '../../ui/Span'
 import PlusIcon from '../../ui/icons/Icon.Plus'
-import { createPostFormModel } from '../createPost/model'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
 import { AVAILABLE_FORMATS, MAX_UPLOAD_SIZE_MB } from './constants'
@@ -34,13 +33,9 @@ const UploadFromCameraRollBlock = ({
     <TouchableOpacity
       onPress={async () => {
         pickFromCameraRoll()
-          .then((asset) => {
-            if (!asset) return
-            createPostFormModel.setField({
-              value: asset[0].uri,
-              key: 'imageUri',
-            })
-            navigate(links.createPostAddDescription, { asset })
+          .then((assets) => {
+            if (!assets) return
+            navigate(links.createPostAddDescription, { assets })
           })
           .catch(() => {})
       }}
