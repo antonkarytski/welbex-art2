@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid'
-import { OrArray, WithUniq } from '../../types'
+import { FnExt, OrArray, WithUniq } from '../../types'
 
 export function generateNumbersArray(min: number, max: number, step: number) {
   const length = Math.floor((max - min) / step) + 1
@@ -39,4 +39,21 @@ export function mapObject<T extends Record<string, any>, R>(
     list[key] = iterator(obj[key], key)
   }
   return list
+}
+
+export function filterArrayBySearchString<T extends Record<string, any>>(
+  array: T[],
+  searchString: string,
+  filterExtractor?: FnExt<T, string>,
+  filterExtractorName = 'name'
+) {
+  return array.filter((item) => {
+    const itemValueToCompare = filterExtractor
+      ? filterExtractor(item)
+      : item[filterExtractorName]
+
+    return itemValueToCompare
+      ?.toLowerCase()
+      ?.includes(searchString.toLowerCase())
+  })
 }

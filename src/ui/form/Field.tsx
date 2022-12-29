@@ -1,7 +1,7 @@
 import { useStoreMap } from 'effector-react'
 import React from 'react'
 import { KeyboardTypeOptions } from 'react-native'
-import { FormModel } from '../../lib/forms/model'
+import { FormModel } from '../../lib/componentModels/model.form'
 import Input from '../input'
 import { InputStyles } from '../input/styles'
 

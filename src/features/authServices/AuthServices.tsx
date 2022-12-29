@@ -1,11 +1,12 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { buttonLightThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import LineSeparator from '../../ui/LineSeparator'
 import AppleButton from '../../ui/buttons/Button.Apple'
 import GoogleButton from '../../ui/buttons/Button.Google'
 import { createThemedStyle } from '../themed'
-import { useThemedStyle } from '../themed/hooks'
+import { useThemedStyleList } from '../themed/hooks'
 
 type AuthWithServicesProps = {
   showLineSeparator?: boolean
@@ -15,29 +16,34 @@ const AuthWithServices = ({
   showLineSeparator = true,
 }: AuthWithServicesProps) => {
   const t = useText()
-  const styles = useThemedStyle(themedStyles)
+  const { styles } = useThemedStyleList({
+    feature: themedStyles,
+    button: buttonLightThemedPreset,
+  })
   const onContinueWithGoogle = () => {}
   const onContinueWithApple = () => {}
 
   return (
-    <View style={styles.container}>
+    <View style={styles.feature.container}>
       {showLineSeparator && (
         <LineSeparator
           label={t.or}
-          style={styles.separatorLineWrapper}
-          styleLabel={styles.text}
-          styleLine={styles.separatorLine}
+          style={styles.feature.separatorLineWrapper}
+          styleLabel={styles.feature.text}
+          styleLine={styles.feature.separatorLine}
         />
       )}
       <GoogleButton
         label={t.continueWithGoogle}
         onPress={onContinueWithGoogle}
-        style={styles.button}
+        style={styles.feature.button}
+        preset={styles.button}
       />
       <AppleButton
         onPress={onContinueWithApple}
         label={t.continueWithApple}
-        style={[styles.lastButton]}
+        style={[styles.feature.lastButton]}
+        preset={styles.button}
       />
     </View>
   )

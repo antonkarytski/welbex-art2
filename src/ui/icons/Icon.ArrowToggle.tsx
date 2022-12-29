@@ -2,23 +2,24 @@ import React from 'react'
 import Svg, { Path } from 'react-native-svg'
 import { IconProps } from './_types'
 
-export default function CrossIcon({
-  size = 16,
+export default function ArrowIcon({
+  size = 8,
   color = '#303535',
   style,
 }: IconProps) {
   return (
     <Svg
       width={size}
-      height={size}
+      height={size / 1.6}
       style={style}
       fill="none"
-      viewBox="0 0 16 16"
+      viewBox="0 0 10 6"
     >
       <Path
-        d="M1 11L11 1M1 1L11 11"
+        d="M1 1L5 5L9 1"
         stroke={color}
         strokeWidth="1.6"
+        strokeLinecap="round"
         strokeLinejoin="round"
       />
     </Svg>

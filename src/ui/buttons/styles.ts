@@ -13,19 +13,19 @@ export const themedButtonPreset = createThemedPreset<
   return {
     [ButtonPresetName.WHITE]: {
       common: {
-        background: colors.whiteButton,
-        label: colors.whiteButtonElements,
-        border: colors.whiteButtonElements,
+        background: colors.buttonLightBackground,
+        label: colors.buttonLightText,
+        border: colors.buttonLightBorder,
       },
       active: {
-        background: colors.whiteButtonPressed,
-        label: colors.whiteButtonPressedElements,
-        border: colors.whiteButtonPressedElements,
+        background: colors.buttonLightBackgroundPressed,
+        label: colors.buttonLightTextPressed,
+        border: colors.buttonLightBorderPressed,
       },
       disabled: {
-        background: colors.whiteButton,
-        label: colors.whiteButtonDisabledElements,
-        border: colors.whiteButtonDisabledElements,
+        background: colors.buttonLightBackgroundDisabled,
+        label: colors.buttonLightTextDisabled,
+        border: colors.buttonLightBorderDisabled,
       },
     },
     [ButtonPresetName.COMMON]: {
