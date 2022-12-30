@@ -12,7 +12,8 @@ const Router = React.memo(() => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (isAuth) navigate(links.mainTabs)
+    if (isAuth) return navigate(links.mainTabs)
+    navigate(links.authRouter)
   }, [isAuth, navigate])
 
   return (

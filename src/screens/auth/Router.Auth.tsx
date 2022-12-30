@@ -1,5 +1,5 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
+import { Stack } from '../../navigation/elements/StackNavigator'
 import { links } from '../../navigation/links'
 import CountrySelectionScreen from './Screen.CountrySelection'
 import NewPasswordScreen from './Screen.CreateNewPassword'
@@ -9,8 +9,6 @@ import PhoneEnterScreen from './Screen.PhoneEnter'
 import RecoverPasswordScreen from './Screen.RecoverPassword'
 import SignUpScreen from './Screen.SignUp'
 import VerificationScreen from './Screen.Verification'
-
-const Stack = createNativeStackNavigator()
 
 export default function AuthScreenRouter() {
   return (

@@ -1,17 +1,13 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { createThemedStyle } from '../../features/themed'
-import { useTheme, useThemedStyle } from '../../features/themed/hooks'
+import { useTheme } from '../../features/themed/hooks'
 import { PopUpModel } from '../../lib/componentsModels/popUp/model'
 import { useText } from '../../translations/hook'
 import { LangFn } from '../../translations/types'
 import Span from '../Span'
 import PresetButton from '../buttons/PresetButton'
-import {
-  ButtonPresetName,
-  getButtonPreset,
-  themedButtonPreset,
-} from '../buttons/styles'
+import { ButtonPresetName, getButtonPreset } from '../buttons/styles'
 import PopUpCard from './PopUpCard'
 
 type SubmitPopUpCardProps = {
@@ -63,7 +59,7 @@ const themedStyles = createThemedStyle((colors) =>
     card: {
       paddingTop: 32,
       alignItems: 'center',
-      maxWidth: 320,
+      width: 320,
     },
     header: {
       fontSize: 16,

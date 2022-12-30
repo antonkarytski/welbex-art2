@@ -5,7 +5,7 @@ import { MOCK_CATEGORIES } from '../../_mock/categories'
 import ImagePreviewFormField from '../../features/createPost/ImagePreviewFormField'
 import { createPostFormModel } from '../../features/createPost/model'
 import BlockUploadFromCamera from '../../features/imagePick/Block.UploadFromCamera'
-import PopUpDeleteCard from '../../features/popUp/PopUp.DeleteCard'
+import PopUpLogOut from '../../features/popUp/PopUp.LogOut'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
@@ -46,7 +46,7 @@ export default function AddPostDescriptionScreen({
 
   return (
     <View style={styles.common.container}>
-      <PopUpDeleteCard onSubmit={() => {}} />
+      <PopUpLogOut />
       <ScreenHeader
         backAvailable
         title={text.description}
@@ -57,7 +57,7 @@ export default function AddPostDescriptionScreen({
         style={styles.common.scroll}
         contentContainerStyle={styles.common.scrollContent}
       >
-        <TouchableOpacity onPress={() => PopUpDeleteCard.showSync()}>
+        <TouchableOpacity onPress={() => PopUpLogOut.showSync()}>
           <ImagePreviewFormField
             name={'imageUri'}
             formModel={createPostFormModel}
