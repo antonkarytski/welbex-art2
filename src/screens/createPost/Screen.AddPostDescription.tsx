@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react'
-import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import { createStateModel } from 'altek-toolkit'
 import { MOCK_CATEGORIES } from '../../_mock/categories'
 import ImagePreviewFormField from '../../features/createPost/ImagePreviewFormField'
 import { createPostFormModel } from '../../features/createPost/model'
 import BlockUploadFromCamera from '../../features/imagePick/Block.UploadFromCamera'
-import PopUpLogOut from '../../features/popUp/PopUp.LogOut'
-import PopUpUnexpectedError from '../../features/popUp/PopUp.UnexpectedError'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
@@ -47,8 +45,6 @@ export default function AddPostDescriptionScreen({
 
   return (
     <View style={styles.common.container}>
-      <PopUpLogOut />
-      <PopUpUnexpectedError />
       <ScreenHeader
         backAvailable
         title={text.description}
@@ -59,13 +55,11 @@ export default function AddPostDescriptionScreen({
         style={styles.common.scroll}
         contentContainerStyle={styles.common.scrollContent}
       >
-        <TouchableOpacity onPress={() => PopUpUnexpectedError.showSync()}>
-          <ImagePreviewFormField
-            name={'imageUri'}
-            formModel={createPostFormModel}
-            style={styles.common.image}
-          />
-        </TouchableOpacity>
+        <ImagePreviewFormField
+          name={'imageUri'}
+          formModel={createPostFormModel}
+          style={styles.common.image}
+        />
 
         <H3 style={styles.common.header} label={text.completeDescription} />
         <Field
