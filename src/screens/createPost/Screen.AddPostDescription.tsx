@@ -15,9 +15,9 @@ import { useText } from '../../translations/hook'
 import H3 from '../../ui/H3'
 import Span from '../../ui/Span'
 import PresetButton from '../../ui/buttons/PresetButton'
-import Select from '../../ui/dropdownSelect/DropdownSelect'
 import { DropdownStyles } from '../../ui/dropdownTab/types'
 import Field from '../../ui/form/Field'
+import DropdownSelect from '../../ui/selects/DropdownSelect'
 
 const selectedCategoryModel = createStateModel(MOCK_CATEGORIES[0])
 
@@ -66,14 +66,14 @@ export default function AddPostDescriptionScreen({
           name={'title'}
           formModel={createPostFormModel}
         />
-        <Select
+        <DropdownSelect
           label={text.category}
           model={selectedCategoryModel}
           data={MOCK_CATEGORIES}
           labelExtractor={(val) => val.label}
           renderItem={(val) => <Span label={val.label} />}
           idExtractor={({ name }) => name}
-          dropdownStyles={styles.select}
+          styles={{ dropdownTab: styles.select }}
         />
         <Field
           disabled

@@ -4,7 +4,7 @@ import { useStateStore } from 'altek-toolkit'
 import ListItemSeparator from './ListItemSeparator'
 import SelectItem from './SelectItem'
 import { selectStyles } from './styles'
-import { ItemId, SelectProps } from './types'
+import { SelectProps } from './types'
 
 const Select = <Item,>({
   data,
@@ -15,32 +15,27 @@ const Select = <Item,>({
   ItemSeparatorComponent,
   showSelectedIcon,
 }: SelectProps<Item>) => {
-  const [selectedItemId, setSelectedItemId] = useStateStore(model)
+  const [selectedItem, setSelectedItem] = useStateStore(model)
 
-  const checkIsSelected = useCallback(
-    (itemId: ItemId) => String(selectedItemId) === String(itemId),
-    [selectedItemId]
-  )
-
-  const preRenderItem: ListRenderItem<Item> = useCallback(
+  const selectedId = idExtractor(selectedItem)
+  const renderSelect: ListRenderItem<Item> = useCallback(
     ({ item }) => (
       <SelectItem
         renderItem={renderItem}
         item={item}
-        idExtractor={idExtractor}
-        checkIsSelected={checkIsSelected}
         styles={styles?.item}
-        onSelect={setSelectedItemId}
+        onSelect={setSelectedItem}
+        isSelected={selectedId === idExtractor(item)}
         showSelectedIcon={showSelectedIcon}
       />
     ),
     [
-      checkIsSelected,
-      setSelectedItemId,
       renderItem,
-      idExtractor,
       showSelectedIcon,
       styles,
+      setSelectedItem,
+      idExtractor,
+      selectedId,
     ]
   )
 
@@ -48,7 +43,7 @@ const Select = <Item,>({
     <View style={[selectStyles.listWrapper, styles?.listWrapper]}>
       <FlatList
         data={data}
-        renderItem={preRenderItem}
+        renderItem={renderSelect}
         keyExtractor={idExtractor}
         ItemSeparatorComponent={
           ItemSeparatorComponent === null ? undefined : ListItemSeparator

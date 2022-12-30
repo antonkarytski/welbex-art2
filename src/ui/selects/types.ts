@@ -1,17 +1,12 @@
-import { Event } from 'effector'
 import React, { ReactNode } from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
+import { StateModel } from 'altek-toolkit'
 import { SearchableListModel } from '../../lib/componentsModels/model.search'
-import {
-  SelectModel,
-  SelectedItemId,
-} from '../../lib/componentsModels/model.select'
 import { FnExt } from '../../types'
 import { DropdownStyles } from '../dropdownTab/types'
 import { InputStyles } from '../input/styles'
 
-export type ItemId = SelectedItemId
-export type KeyExtractor<T> = FnExt<T, string>
+export type StringExtractor<T> = FnExt<T, string>
 export type RenderItem<T> = FnExt<T, ReactNode>
 
 export type SelectItemStyles = {
@@ -24,12 +19,12 @@ export type SelectItemStyles = {
 
 export type SelectItemProps<Item> = {
   item: Item
-  onSelect: Event<SelectedItemId>
+  onSelect: (item: Item) => void
   renderItem: RenderItem<Item>
-  checkIsSelected: (itemId: ItemId) => boolean
-  idExtractor?: KeyExtractor<Item>
+  idExtractor?: StringExtractor<Item>
   showSelectedIcon?: boolean
   styles?: SelectItemStyles
+  isSelected?: boolean
 }
 
 export type SelectStyles = {
@@ -38,11 +33,12 @@ export type SelectStyles = {
 }
 
 export type SelectProps<Item> = {
+  label?: string | ReactNode
   data: Item[]
   renderItem: RenderItem<Item>
-  idExtractor?: KeyExtractor<Item>
+  idExtractor: StringExtractor<Item>
   ItemSeparatorComponent?: React.ComponentType<any> | null
-  model: SelectModel
+  model: StateModel<Item>
   styles?: SelectStyles
   showSelectedIcon?: boolean
 }
@@ -51,8 +47,7 @@ export type DropdownSelectProps<Item> = SelectProps<Item> & {
   placeholder?: string
   label?: string | ReactNode
   styles?: SelectStyles & { dropdownTab?: DropdownStyles }
-  labelExtractor: KeyExtractor<Item>
-  selectedItemId: SelectedItemId
+  labelExtractor: StringExtractor<Item>
 }
 
 export type ListSelectProps<Item> = SelectProps<Item> & {

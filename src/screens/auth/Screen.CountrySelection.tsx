@@ -1,13 +1,13 @@
 import { useStore } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
-import COUNTRIES from '../../../assets/countries.json'
+import { createStateModel } from 'altek-toolkit'
+import { COUNTRIES, COUNTRIES_LIST } from '../../../assets/countriesList'
 import CountryRow from '../../features/countries/CountryRow'
 import { countyNameExtractor } from '../../features/countries/helpers'
 import { Country } from '../../features/countries/types'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { createSearchableListModel } from '../../lib/componentsModels/model.search'
-import { createSelectModel } from '../../lib/componentsModels/model.select'
 import { IS_IOS } from '../../lib/helpers/native/constants'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
@@ -19,25 +19,26 @@ import ListSelect from '../../ui/selects/ListSelect'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
 
-const countryModel = createSelectModel()
+const countryModel = createStateModel(COUNTRIES.RU)
 
 const searchModel = createSearchableListModel<Country>({
   filterExtractor: countyNameExtractor,
 })
+const countryIdExtractor = ({ alpha3Code }: Country) => alpha3Code
 
 const renderCountryRow = (item: Country) => <CountryRow item={item} />
 
 const CountrySelectionScreen = () => {
   const navigate = useNavigate()
   const t = useText()
-  const countryId = useStore(countryModel.$state)
+  const country = useStore(countryModel.$state)
   const { styles } = useThemedStyleList({
     common: themedCommonStyles,
     button: buttonPrimaryThemedPreset,
   })
 
   const onContinue = () => {
-    console.log('countryId', countryId)
+    console.log('countryId', country.alpha3Code)
     navigate(links.phoneEnter)
   }
 
@@ -48,9 +49,9 @@ const CountrySelectionScreen = () => {
         behavior={IS_IOS ? 'padding' : 'height'}
         style={styles.common.flexGrown}
       >
-        <ListSelect<Country>
-          data={COUNTRIES}
-          idExtractor={({ alpha3Code }) => alpha3Code}
+        <ListSelect
+          data={COUNTRIES_LIST}
+          idExtractor={countryIdExtractor}
           searchModel={searchModel}
           model={countryModel}
           renderItem={renderCountryRow}
@@ -60,7 +61,7 @@ const CountrySelectionScreen = () => {
           onPress={onContinue}
           preset={styles.button}
           style={styles.common.bottomButton}
-          disabled={!countryId}
+          disabled={!country}
         />
       </KeyboardAvoidingView>
     </AuthScreenContainer>

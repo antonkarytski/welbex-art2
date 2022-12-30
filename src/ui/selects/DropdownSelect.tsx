@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import { StyleSheet } from 'react-native'
+import { useStateStore } from 'altek-toolkit'
 import DropdownTab from '../dropdownTab'
 import Select from './Select'
 import { DropdownSelectProps } from './types'
 
-function DropdownSelect<DataItem extends Record<string, any>>({
+function DropdownSelect<Item>({
   label,
   placeholder = 'Выберите значение из списка',
   data,
@@ -13,21 +14,14 @@ function DropdownSelect<DataItem extends Record<string, any>>({
   renderItem,
   model,
   styles,
-  ItemSeparatorComponent,
-  selectedItemId,
-}: DropdownSelectProps<DataItem>) {
-  const selectedItemName = useMemo(() => {
-    const selectedItem = data.find((item) => {
-      const itemId = idExtractor ? idExtractor(item) : item.id
-      return String(selectedItemId) === String(itemId)
-    })
-    return selectedItem && labelExtractor(selectedItem)
-  }, [data, selectedItemId, idExtractor, labelExtractor])
+  ItemSeparatorComponent = null,
+}: DropdownSelectProps<Item>) {
+  const [selectedItem] = useStateStore(model)
 
   return (
     <DropdownTab
       label={label}
-      tabLabel={selectedItemName ?? placeholder}
+      tabLabel={labelExtractor?.(selectedItem) ?? placeholder}
       styles={styles?.dropdownTab}
     >
       <Select
@@ -40,7 +34,7 @@ function DropdownSelect<DataItem extends Record<string, any>>({
           item: itemStyles,
           listWrapper: listStyles.wrapper,
         }}
-        ItemSeparatorComponent={ItemSeparatorComponent || null}
+        ItemSeparatorComponent={ItemSeparatorComponent}
         showSelectedIcon={false}
       />
     </DropdownTab>
