@@ -13,15 +13,26 @@ import PopUpCard from './PopUpCard'
 type SubmitPopUpCardProps = {
   model: PopUpModel
   title: LangFn | string
-  onSubmit: () => void
-  onCancel?: () => void
-}
+  onClose?: () => void
+  closeButtonLabel?: string | LangFn
+} & (
+  | {
+      hideSubmit?: never
+      onSubmit: () => void
+    }
+  | {
+      hideSubmit: true
+      onSubmit?: never
+    }
+)
 
 const SubmitPopUpCard = ({
   model,
   title,
   onSubmit,
-  onCancel,
+  onClose,
+  hideSubmit,
+  closeButtonLabel,
 }: SubmitPopUpCardProps) => {
   const text = useText()
   const { styles, theme } = useTheme(themedStyles)
@@ -33,21 +44,27 @@ const SubmitPopUpCard = ({
         style={styles.header}
         label={typeof title === 'function' ? title(text) : title}
       />
-      <PresetButton
-        style={styles.submitButton}
-        preset={getButtonPreset(theme, ButtonPresetName.COMMON)}
-        label={text.yes}
-        onPress={() => {
-          model.hideSync()
-          onSubmit()
-        }}
-      />
+      {!hideSubmit && (
+        <PresetButton
+          style={styles.submitButton}
+          preset={getButtonPreset(theme, ButtonPresetName.COMMON)}
+          label={text.yes}
+          onPress={() => {
+            model.hideSync()
+            onSubmit()
+          }}
+        />
+      )}
       <PresetButton
         preset={getButtonPreset(theme, ButtonPresetName.WO_BORDER)}
-        label={text.no}
+        label={
+          (typeof closeButtonLabel === 'function'
+            ? closeButtonLabel(text)
+            : closeButtonLabel) || text.no
+        }
         onPress={() => {
           model.hideSync()
-          onCancel?.()
+          onClose?.()
         }}
       />
     </PopUpCard>
