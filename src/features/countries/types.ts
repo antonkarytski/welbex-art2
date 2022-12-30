@@ -1,8 +1,3 @@
-export type ICountry = {
-  fullName: string
-  flag: string
-}
-
 export type Country = {
   name: string
   nativeName: string
@@ -18,6 +13,7 @@ export type Country = {
   currencies?: Currency[]
   languages: Languages[]
   translations: CountryTranslations
+  emoji: string
 }
 
 export type Currency = {

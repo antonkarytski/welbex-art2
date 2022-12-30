@@ -2,8 +2,11 @@ import { useStore } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
 import { createStateModel } from 'altek-toolkit'
-import { COUNTRIES, COUNTRIES_LIST } from '../../../assets/countriesList'
 import CountryRow from '../../features/countries/CountryRow'
+import {
+  COUNTRIES,
+  COUNTRIES_LIST,
+} from '../../features/countries/countriesList'
 import { countyNameExtractor } from '../../features/countries/helpers'
 import { Country } from '../../features/countries/types'
 import { useThemedStyleList } from '../../features/themed/hooks'

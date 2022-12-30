@@ -1,11 +1,11 @@
-import { COUNTIES_LIST, Country } from '../countries/countries'
+import { COUNTRIES, CountryName } from '../countries/countriesList'
 
-export function getCountry(country: Country) {
-  return COUNTIES_LIST[country]
+export function getCountry(country: CountryName) {
+  return COUNTRIES[country]
 }
 
-export function countryFullName(countryShort: Country) {
+export function countryFullName(countryShort: CountryName) {
   const country = getCountry(countryShort)
 
-  return `${country.flag} ${country.fullName}`
+  return `${country.emoji} ${country.name}`
 }

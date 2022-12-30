@@ -1,9 +1,9 @@
 import { ImageSourcePropType } from 'react-native'
-import { Country } from '../countries/countries'
+import { CountryName } from '../countries/countriesList'
 
 export type User = {
   avatar: ImageSourcePropType
   name: string
-  country: Country
+  country: CountryName
   age: number
 }
