@@ -91,6 +91,7 @@ const themedStyles = createThemedStyle((colors) =>
       paddingTop: 32,
       alignItems: 'center',
       width: 320,
+      paddingBottom: 16.5,
     },
     header: {
       fontSize: 16,
@@ -99,9 +100,10 @@ const themedStyles = createThemedStyle((colors) =>
       textAlign: 'center',
     },
     submitButton: {
-      marginBottom: 14,
+      marginBottom: 8.5,
     },
     cancelButton: {
+      paddingVertical: 15.5,
       paddingHorizontal: 20,
     },
     cancelButtonLabel: {

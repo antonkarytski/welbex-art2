@@ -59,7 +59,7 @@ export default function AddPostDescriptionScreen({
         style={styles.common.scroll}
         contentContainerStyle={styles.common.scrollContent}
       >
-        <TouchableOpacity onPress={() => PopUpLogOut.showSync()}>
+        <TouchableOpacity onPress={() => PopUpUnexpectedError.showSync()}>
           <ImagePreviewFormField
             name={'imageUri'}
             formModel={createPostFormModel}
