@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native'
+import { DropdownStyles } from './types'
 
 export const DEFAULT_DROPDOWN_HEIGHT = 200
 
-export const dropdownStyles = StyleSheet.create({
+export const dropdownStyles = StyleSheet.create<DropdownStyles>({
   label: {
     marginBottom: 8,
   },

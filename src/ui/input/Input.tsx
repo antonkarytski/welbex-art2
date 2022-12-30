@@ -18,7 +18,7 @@ export type InputProps = {
   styles?: InputStyles
   InputPseudoBefore?: ReactNode
   InputPseudoAfter?: ReactNode
-} & Omit<TextInputProps, 'onChange'>
+} & Omit<TextInputProps, 'onChange' | 'editable'>
 
 const Input = forwardRef<TextInput, InputProps>(
   (

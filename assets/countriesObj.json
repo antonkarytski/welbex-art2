@@ -1,11 +1,15 @@
-[
-  {
+{
+  "AF": {
     "name": "Afghanistan",
     "alpha2Code": "AF",
     "alpha3Code": "AFG",
-    "callingCodes": ["93"],
+    "callingCodes": [
+      "93"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+04:30"],
+    "timezones": [
+      "UTC+04:30"
+    ],
     "nativeName": "افغانستان",
     "flags": {
       "svg": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_the_Taliban.svg",
@@ -50,15 +54,20 @@
       "ja": "アフガニスタン",
       "it": "Afghanistan",
       "hu": "Afganisztán"
-    }
+    },
+    "emoji": "🇦🇫"
   },
-  {
+  "AX": {
     "name": "Åland Islands",
     "alpha2Code": "AX",
     "alpha3Code": "ALA",
-    "callingCodes": ["358"],
+    "callingCodes": [
+      "358"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Åland",
     "flags": {
       "svg": "https://flagcdn.com/ax.svg",
@@ -91,15 +100,20 @@
       "ja": "オーランド諸島",
       "it": "Isole Aland",
       "hu": "Åland-szigetek"
-    }
+    },
+    "emoji": "🇦🇽"
   },
-  {
+  "AL": {
     "name": "Albania",
     "alpha2Code": "AL",
     "alpha3Code": "ALB",
-    "callingCodes": ["355"],
+    "callingCodes": [
+      "355"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Shqipëria",
     "flags": {
       "svg": "https://flagcdn.com/al.svg",
@@ -132,15 +146,20 @@
       "ja": "アルバニア",
       "it": "Albania",
       "hu": "Albánia"
-    }
+    },
+    "emoji": "🇦🇱"
   },
-  {
+  "DZ": {
     "name": "Algeria",
     "alpha2Code": "DZ",
     "alpha3Code": "DZA",
-    "callingCodes": ["213"],
+    "callingCodes": [
+      "213"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "الجزائر",
     "flags": {
       "svg": "https://flagcdn.com/dz.svg",
@@ -173,15 +192,20 @@
       "ja": "アルジェリア",
       "it": "Algeria",
       "hu": "Algéria"
-    }
+    },
+    "emoji": "🇩🇿"
   },
-  {
+  "AS": {
     "name": "American Samoa",
     "alpha2Code": "AS",
     "alpha3Code": "ASM",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC-11:00"],
+    "timezones": [
+      "UTC-11:00"
+    ],
     "nativeName": "American Samoa",
     "flags": {
       "svg": "https://flagcdn.com/as.svg",
@@ -220,15 +244,20 @@
       "ja": "アメリカ領サモア",
       "it": "Samoa Americane",
       "hu": "Amerikai Szamoa"
-    }
+    },
+    "emoji": "🇦🇸"
   },
-  {
+  "AD": {
     "name": "Andorra",
     "alpha2Code": "AD",
     "alpha3Code": "AND",
-    "callingCodes": ["376"],
+    "callingCodes": [
+      "376"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Andorra",
     "flags": {
       "svg": "https://flagcdn.com/ad.svg",
@@ -261,15 +290,20 @@
       "ja": "アンドラ",
       "it": "Andorra",
       "hu": "Andorra"
-    }
+    },
+    "emoji": "🇦🇩"
   },
-  {
+  "AO": {
     "name": "Angola",
     "alpha2Code": "AO",
     "alpha3Code": "AGO",
-    "callingCodes": ["244"],
+    "callingCodes": [
+      "244"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Angola",
     "flags": {
       "svg": "https://flagcdn.com/ao.svg",
@@ -302,15 +336,20 @@
       "ja": "アンゴラ",
       "it": "Angola",
       "hu": "Angola"
-    }
+    },
+    "emoji": "🇦🇴"
   },
-  {
+  "AI": {
     "name": "Anguilla",
     "alpha2Code": "AI",
     "alpha3Code": "AIA",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Anguilla",
     "flags": {
       "svg": "https://flagcdn.com/ai.svg",
@@ -343,13 +382,16 @@
       "ja": "アンギラ",
       "it": "Anguilla",
       "hu": "Anguilla"
-    }
+    },
+    "emoji": "🇦🇮"
   },
-  {
+  "AQ": {
     "name": "Antarctica",
     "alpha2Code": "AQ",
     "alpha3Code": "ATA",
-    "callingCodes": ["672"],
+    "callingCodes": [
+      "672"
+    ],
     "region": "Polar",
     "timezones": [
       "UTC-03:00",
@@ -392,15 +434,20 @@
       "ja": "南極大陸",
       "it": "Antartide",
       "hu": "Antarktisz"
-    }
+    },
+    "emoji": "🇦🇶"
   },
-  {
+  "AG": {
     "name": "Antigua and Barbuda",
     "alpha2Code": "AG",
     "alpha3Code": "ATG",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Antigua and Barbuda",
     "flags": {
       "svg": "https://flagcdn.com/ag.svg",
@@ -433,15 +480,20 @@
       "ja": "アンティグア・バーブーダ",
       "it": "Antigua e Barbuda",
       "hu": "Antigua és Barbuda"
-    }
+    },
+    "emoji": "🇦🇬"
   },
-  {
+  "AR": {
     "name": "Argentina",
     "alpha2Code": "AR",
     "alpha3Code": "ARG",
-    "callingCodes": ["54"],
+    "callingCodes": [
+      "54"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-03:00"],
+    "timezones": [
+      "UTC-03:00"
+    ],
     "nativeName": "Argentina",
     "flags": {
       "svg": "https://flagcdn.com/ar.svg",
@@ -480,15 +532,20 @@
       "ja": "アルゼンチン",
       "it": "Argentina",
       "hu": "Argentína"
-    }
+    },
+    "emoji": "🇦🇷"
   },
-  {
+  "AM": {
     "name": "Armenia",
     "alpha2Code": "AM",
     "alpha3Code": "ARM",
-    "callingCodes": ["374"],
+    "callingCodes": [
+      "374"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+04:00"],
+    "timezones": [
+      "UTC+04:00"
+    ],
     "nativeName": "Հայաստան",
     "flags": {
       "svg": "https://flagcdn.com/am.svg",
@@ -521,15 +578,20 @@
       "ja": "アルメニア",
       "it": "Armenia",
       "hu": "Örményország"
-    }
+    },
+    "emoji": "🇦🇲"
   },
-  {
+  "AW": {
     "name": "Aruba",
     "alpha2Code": "AW",
     "alpha3Code": "ABW",
-    "callingCodes": ["297"],
+    "callingCodes": [
+      "297"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Aruba",
     "flags": {
       "svg": "https://flagcdn.com/aw.svg",
@@ -568,13 +630,16 @@
       "ja": "アルバ",
       "it": "Aruba",
       "hu": "Aruba"
-    }
+    },
+    "emoji": "🇦🇼"
   },
-  {
+  "AU": {
     "name": "Australia",
     "alpha2Code": "AU",
     "alpha3Code": "AUS",
-    "callingCodes": ["61"],
+    "callingCodes": [
+      "61"
+    ],
     "region": "Oceania",
     "timezones": [
       "UTC+05:00",
@@ -618,15 +683,20 @@
       "ja": "オーストラリア",
       "it": "Australia",
       "hu": "Ausztrália"
-    }
+    },
+    "emoji": "🇦🇺"
   },
-  {
+  "AT": {
     "name": "Austria",
     "alpha2Code": "AT",
     "alpha3Code": "AUT",
-    "callingCodes": ["43"],
+    "callingCodes": [
+      "43"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Österreich",
     "flags": {
       "svg": "https://flagcdn.com/at.svg",
@@ -659,15 +729,20 @@
       "ja": "オーストリア",
       "it": "Austria",
       "hu": "Ausztria"
-    }
+    },
+    "emoji": "🇦🇹"
   },
-  {
+  "AZ": {
     "name": "Azerbaijan",
     "alpha2Code": "AZ",
     "alpha3Code": "AZE",
-    "callingCodes": ["994"],
+    "callingCodes": [
+      "994"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+04:00"],
+    "timezones": [
+      "UTC+04:00"
+    ],
     "nativeName": "Azərbaycan",
     "flags": {
       "svg": "https://flagcdn.com/az.svg",
@@ -700,15 +775,20 @@
       "ja": "アゼルバイジャン",
       "it": "Azerbaijan",
       "hu": "Azerbajdzsán"
-    }
+    },
+    "emoji": "🇦🇿"
   },
-  {
+  "BS": {
     "name": "Bahamas",
     "alpha2Code": "BS",
     "alpha3Code": "BHS",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-05:00"],
+    "timezones": [
+      "UTC-05:00"
+    ],
     "nativeName": "Bahamas",
     "flags": {
       "svg": "https://flagcdn.com/bs.svg",
@@ -741,15 +821,20 @@
       "ja": "バハマ",
       "it": "Bahamas",
       "hu": "Bahama-szigetek"
-    }
+    },
+    "emoji": "🇧🇸"
   },
-  {
+  "BH": {
     "name": "Bahrain",
     "alpha2Code": "BH",
     "alpha3Code": "BHR",
-    "callingCodes": ["973"],
+    "callingCodes": [
+      "973"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "‏البحرين",
     "flags": {
       "svg": "https://flagcdn.com/bh.svg",
@@ -782,15 +867,20 @@
       "ja": "バーレーン",
       "it": "Bahrein",
       "hu": "Bahrein"
-    }
+    },
+    "emoji": "🇧🇭"
   },
-  {
+  "BD": {
     "name": "Bangladesh",
     "alpha2Code": "BD",
     "alpha3Code": "BGD",
-    "callingCodes": ["880"],
+    "callingCodes": [
+      "880"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+06:00"],
+    "timezones": [
+      "UTC+06:00"
+    ],
     "nativeName": "Bangladesh",
     "flags": {
       "svg": "https://flagcdn.com/bd.svg",
@@ -823,15 +913,20 @@
       "ja": "バングラデシュ",
       "it": "Bangladesh",
       "hu": "Banglades"
-    }
+    },
+    "emoji": "🇧🇩"
   },
-  {
+  "BB": {
     "name": "Barbados",
     "alpha2Code": "BB",
     "alpha3Code": "BRB",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Barbados",
     "flags": {
       "svg": "https://flagcdn.com/bb.svg",
@@ -864,15 +959,20 @@
       "ja": "バルバドス",
       "it": "Barbados",
       "hu": "Barbados"
-    }
+    },
+    "emoji": "🇧🇧"
   },
-  {
+  "BY": {
     "name": "Belarus",
     "alpha2Code": "BY",
     "alpha3Code": "BLR",
-    "callingCodes": ["375"],
+    "callingCodes": [
+      "375"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "Белару́сь",
     "flags": {
       "svg": "https://flagcdn.com/by.svg",
@@ -916,15 +1016,20 @@
       "ja": "ベラルーシ",
       "it": "Bielorussia",
       "hu": "Fehéroroszország"
-    }
+    },
+    "emoji": "🇧🇾"
   },
-  {
+  "BE": {
     "name": "Belgium",
     "alpha2Code": "BE",
     "alpha3Code": "BEL",
-    "callingCodes": ["32"],
+    "callingCodes": [
+      "32"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "België",
     "flags": {
       "svg": "https://flagcdn.com/be.svg",
@@ -969,15 +1074,20 @@
       "ja": "ベルギー",
       "it": "Belgio",
       "hu": "Belgium"
-    }
+    },
+    "emoji": "🇧🇪"
   },
-  {
+  "BZ": {
     "name": "Belize",
     "alpha2Code": "BZ",
     "alpha3Code": "BLZ",
-    "callingCodes": ["501"],
+    "callingCodes": [
+      "501"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-06:00"],
+    "timezones": [
+      "UTC-06:00"
+    ],
     "nativeName": "Belize",
     "flags": {
       "svg": "https://flagcdn.com/bz.svg",
@@ -1016,15 +1126,20 @@
       "ja": "ベリーズ",
       "it": "Belize",
       "hu": "Belize"
-    }
+    },
+    "emoji": "🇧🇿"
   },
-  {
+  "BJ": {
     "name": "Benin",
     "alpha2Code": "BJ",
     "alpha3Code": "BEN",
-    "callingCodes": ["229"],
+    "callingCodes": [
+      "229"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Bénin",
     "flags": {
       "svg": "https://flagcdn.com/bj.svg",
@@ -1057,15 +1172,20 @@
       "ja": "ベナン",
       "it": "Benin",
       "hu": "Benin"
-    }
+    },
+    "emoji": "🇧🇯"
   },
-  {
+  "BM": {
     "name": "Bermuda",
     "alpha2Code": "BM",
     "alpha3Code": "BMU",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Bermuda",
     "flags": {
       "svg": "https://flagcdn.com/bm.svg",
@@ -1098,15 +1218,20 @@
       "ja": "バミューダ",
       "it": "Bermuda",
       "hu": "Bermuda"
-    }
+    },
+    "emoji": "🇧🇲"
   },
-  {
+  "BT": {
     "name": "Bhutan",
     "alpha2Code": "BT",
     "alpha3Code": "BTN",
-    "callingCodes": ["975"],
+    "callingCodes": [
+      "975"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+06:00"],
+    "timezones": [
+      "UTC+06:00"
+    ],
     "nativeName": "ʼbrug-yul",
     "flags": {
       "svg": "https://flagcdn.com/bt.svg",
@@ -1144,15 +1269,20 @@
       "ja": "ブータン",
       "it": "Bhutan",
       "hu": "Bhután"
-    }
+    },
+    "emoji": "🇧🇹"
   },
-  {
+  "BO": {
     "name": "Bolivia (Plurinational State of)",
     "alpha2Code": "BO",
     "alpha3Code": "BOL",
-    "callingCodes": ["591"],
+    "callingCodes": [
+      "591"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Bolivia",
     "flags": {
       "svg": "https://flagcdn.com/bo.svg",
@@ -1197,15 +1327,20 @@
       "ja": "ボリビア多民族国",
       "it": "Bolivia",
       "hu": "Bolívia"
-    }
+    },
+    "emoji": "🇧🇴"
   },
-  {
+  "BQ": {
     "name": "Bonaire, Sint Eustatius and Saba",
     "alpha2Code": "BQ",
     "alpha3Code": "BES",
-    "callingCodes": ["599"],
+    "callingCodes": [
+      "599"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Bonaire",
     "flags": {
       "svg": "https://flagcdn.com/bq.svg",
@@ -1238,15 +1373,20 @@
       "ja": "Bonaire, Sint Eustatius and Saba",
       "it": "Bonaire, Saint-Eustache e Saba",
       "hu": "Bonaire"
-    }
+    },
+    "emoji": "🇧🇶"
   },
-  {
+  "BA": {
     "name": "Bosnia and Herzegovina",
     "alpha2Code": "BA",
     "alpha3Code": "BIH",
-    "callingCodes": ["387"],
+    "callingCodes": [
+      "387"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Bosna i Hercegovina",
     "flags": {
       "svg": "https://flagcdn.com/ba.svg",
@@ -1291,15 +1431,20 @@
       "ja": "ボスニア・ヘルツェゴビナ",
       "it": "Bosnia ed Erzegovina",
       "hu": "Bosznia-Hercegovina"
-    }
+    },
+    "emoji": "🇧🇦"
   },
-  {
+  "BW": {
     "name": "Botswana",
     "alpha2Code": "BW",
     "alpha3Code": "BWA",
-    "callingCodes": ["267"],
+    "callingCodes": [
+      "267"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Botswana",
     "flags": {
       "svg": "https://flagcdn.com/bw.svg",
@@ -1338,15 +1483,20 @@
       "ja": "ボツワナ",
       "it": "Botswana",
       "hu": "Botswana"
-    }
+    },
+    "emoji": "🇧🇼"
   },
-  {
+  "BV": {
     "name": "Bouvet Island",
     "alpha2Code": "BV",
     "alpha3Code": "BVT",
-    "callingCodes": ["47"],
+    "callingCodes": [
+      "47"
+    ],
     "region": "Antarctic Ocean",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Bouvetøya",
     "flags": {
       "svg": "https://flagcdn.com/bv.svg",
@@ -1391,15 +1541,23 @@
       "ja": "ブーベ島",
       "it": "Isola Bouvet",
       "hu": "Bouvet-sziget"
-    }
+    },
+    "emoji": "🇧🇻"
   },
-  {
+  "BR": {
     "name": "Brazil",
     "alpha2Code": "BR",
     "alpha3Code": "BRA",
-    "callingCodes": ["55"],
+    "callingCodes": [
+      "55"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-05:00", "UTC-04:00", "UTC-03:00", "UTC-02:00"],
+    "timezones": [
+      "UTC-05:00",
+      "UTC-04:00",
+      "UTC-03:00",
+      "UTC-02:00"
+    ],
     "nativeName": "Brasil",
     "flags": {
       "svg": "https://flagcdn.com/br.svg",
@@ -1432,15 +1590,20 @@
       "ja": "ブラジル",
       "it": "Brasile",
       "hu": "Brazília"
-    }
+    },
+    "emoji": "🇧🇷"
   },
-  {
+  "IO": {
     "name": "British Indian Ocean Territory",
     "alpha2Code": "IO",
     "alpha3Code": "IOT",
-    "callingCodes": ["246"],
+    "callingCodes": [
+      "246"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+06:00"],
+    "timezones": [
+      "UTC+06:00"
+    ],
     "nativeName": "British Indian Ocean Territory",
     "flags": {
       "svg": "https://flagcdn.com/io.svg",
@@ -1473,15 +1636,22 @@
       "ja": "イギリス領インド洋地域",
       "it": "Territorio britannico dell'oceano indiano",
       "hu": "Brit Indiai-óceáni Terület"
-    }
+    },
+    "emoji": "🇮🇴"
   },
-  {
+  "UM": {
     "name": "United States Minor Outlying Islands",
     "alpha2Code": "UM",
     "alpha3Code": "UMI",
-    "callingCodes": ["246"],
+    "callingCodes": [
+      "246"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-11:00", "UTC-10:00", "UTC+12:00"],
+    "timezones": [
+      "UTC-11:00",
+      "UTC-10:00",
+      "UTC+12:00"
+    ],
     "nativeName": "United States Minor Outlying Islands",
     "flags": {
       "svg": "https://flagcdn.com/um.svg",
@@ -1514,15 +1684,20 @@
       "ja": "合衆国領有小離島",
       "it": "Isole minori esterne degli Stati Uniti d'America",
       "hu": "Amerikai Egyesült Államok lakatlan külbirtokai"
-    }
+    },
+    "emoji": "🇺🇲"
   },
-  {
+  "VG": {
     "name": "Virgin Islands (British)",
     "alpha2Code": "VG",
     "alpha3Code": "VGB",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "British Virgin Islands",
     "flags": {
       "svg": "https://flagcdn.com/vg.svg",
@@ -1555,15 +1730,20 @@
       "ja": "イギリス領ヴァージン諸島",
       "it": "Isole Vergini Britanniche",
       "hu": "Brit Virgin-szigetek"
-    }
+    },
+    "emoji": "🇻🇬"
   },
-  {
+  "VI": {
     "name": "Virgin Islands (U.S.)",
     "alpha2Code": "VI",
     "alpha3Code": "VIR",
-    "callingCodes": ["1 340"],
+    "callingCodes": [
+      "1 340"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Virgin Islands of the United States",
     "flags": {
       "svg": "https://flagcdn.com/vi.svg",
@@ -1596,15 +1776,20 @@
       "ja": "アメリカ領ヴァージン諸島",
       "it": "Isole Vergini americane",
       "hu": "Amerikai Virgin-szigetek"
-    }
+    },
+    "emoji": "🇻🇮"
   },
-  {
+  "BN": {
     "name": "Brunei Darussalam",
     "alpha2Code": "BN",
     "alpha3Code": "BRN",
-    "callingCodes": ["673"],
+    "callingCodes": [
+      "673"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+08:00"],
+    "timezones": [
+      "UTC+08:00"
+    ],
     "nativeName": "Negara Brunei Darussalam",
     "flags": {
       "svg": "https://flagcdn.com/bn.svg",
@@ -1642,15 +1827,20 @@
       "ja": "ブルネイ・ダルサラーム",
       "it": "Brunei",
       "hu": "Brunei"
-    }
+    },
+    "emoji": "🇧🇳"
   },
-  {
+  "BG": {
     "name": "Bulgaria",
     "alpha2Code": "BG",
     "alpha3Code": "BGR",
-    "callingCodes": ["359"],
+    "callingCodes": [
+      "359"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "България",
     "flags": {
       "svg": "https://flagcdn.com/bg.svg",
@@ -1683,15 +1873,20 @@
       "ja": "ブルガリア",
       "it": "Bulgaria",
       "hu": "Bulgária"
-    }
+    },
+    "emoji": "🇧🇬"
   },
-  {
+  "BF": {
     "name": "Burkina Faso",
     "alpha2Code": "BF",
     "alpha3Code": "BFA",
-    "callingCodes": ["226"],
+    "callingCodes": [
+      "226"
+    ],
     "region": "Africa",
-    "timezones": ["UTC"],
+    "timezones": [
+      "UTC"
+    ],
     "nativeName": "Burkina Faso",
     "flags": {
       "svg": "https://flagcdn.com/bf.svg",
@@ -1730,15 +1925,20 @@
       "ja": "ブルキナファソ",
       "it": "Burkina Faso",
       "hu": "Burkina Faso"
-    }
+    },
+    "emoji": "🇧🇫"
   },
-  {
+  "BI": {
     "name": "Burundi",
     "alpha2Code": "BI",
     "alpha3Code": "BDI",
-    "callingCodes": ["257"],
+    "callingCodes": [
+      "257"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Burundi",
     "flags": {
       "svg": "https://flagcdn.com/bi.svg",
@@ -1777,15 +1977,20 @@
       "ja": "ブルンジ",
       "it": "Burundi",
       "hu": "Burundi"
-    }
+    },
+    "emoji": "🇧🇮"
   },
-  {
+  "KH": {
     "name": "Cambodia",
     "alpha2Code": "KH",
     "alpha3Code": "KHM",
-    "callingCodes": ["855"],
+    "callingCodes": [
+      "855"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+07:00"],
+    "timezones": [
+      "UTC+07:00"
+    ],
     "nativeName": "Kâmpŭchéa",
     "flags": {
       "svg": "https://flagcdn.com/kh.svg",
@@ -1823,15 +2028,20 @@
       "ja": "カンボジア",
       "it": "Cambogia",
       "hu": "Kambodzsa"
-    }
+    },
+    "emoji": "🇰🇭"
   },
-  {
+  "CM": {
     "name": "Cameroon",
     "alpha2Code": "CM",
     "alpha3Code": "CMR",
-    "callingCodes": ["237"],
+    "callingCodes": [
+      "237"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Cameroon",
     "flags": {
       "svg": "https://flagcdn.com/cm.svg",
@@ -1870,13 +2080,16 @@
       "ja": "カメルーン",
       "it": "Camerun",
       "hu": "Kamerun"
-    }
+    },
+    "emoji": "🇨🇲"
   },
-  {
+  "CA": {
     "name": "Canada",
     "alpha2Code": "CA",
     "alpha3Code": "CAN",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
     "timezones": [
       "UTC-08:00",
@@ -1924,15 +2137,20 @@
       "ja": "カナダ",
       "it": "Canada",
       "hu": "Kanada"
-    }
+    },
+    "emoji": "🇨🇦"
   },
-  {
+  "CV": {
     "name": "Cabo Verde",
     "alpha2Code": "CV",
     "alpha3Code": "CPV",
-    "callingCodes": ["238"],
+    "callingCodes": [
+      "238"
+    ],
     "region": "Africa",
-    "timezones": ["UTC-01:00"],
+    "timezones": [
+      "UTC-01:00"
+    ],
     "nativeName": "Cabo Verde",
     "flags": {
       "svg": "https://flagcdn.com/cv.svg",
@@ -1965,15 +2183,20 @@
       "ja": "カーボベルデ",
       "it": "Capo Verde",
       "hu": "Zöld-foki Köztársaság"
-    }
+    },
+    "emoji": "🇨🇻"
   },
-  {
+  "KY": {
     "name": "Cayman Islands",
     "alpha2Code": "KY",
     "alpha3Code": "CYM",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-05:00"],
+    "timezones": [
+      "UTC-05:00"
+    ],
     "nativeName": "Cayman Islands",
     "flags": {
       "svg": "https://flagcdn.com/ky.svg",
@@ -2006,15 +2229,20 @@
       "ja": "ケイマン諸島",
       "it": "Isole Cayman",
       "hu": "Kajmán-szigetek"
-    }
+    },
+    "emoji": "🇰🇾"
   },
-  {
+  "CF": {
     "name": "Central African Republic",
     "alpha2Code": "CF",
     "alpha3Code": "CAF",
-    "callingCodes": ["236"],
+    "callingCodes": [
+      "236"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Ködörösêse tî Bêafrîka",
     "flags": {
       "svg": "https://flagcdn.com/cf.svg",
@@ -2053,15 +2281,20 @@
       "ja": "中央アフリカ共和国",
       "it": "Repubblica Centrafricana",
       "hu": "Közép-afrikai Köztársaság"
-    }
+    },
+    "emoji": "🇨🇫"
   },
-  {
+  "TD": {
     "name": "Chad",
     "alpha2Code": "TD",
     "alpha3Code": "TCD",
-    "callingCodes": ["235"],
+    "callingCodes": [
+      "235"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Tchad",
     "flags": {
       "svg": "https://flagcdn.com/td.svg",
@@ -2100,15 +2333,21 @@
       "ja": "チャド",
       "it": "Ciad",
       "hu": "Csád"
-    }
+    },
+    "emoji": "🇹🇩"
   },
-  {
+  "CL": {
     "name": "Chile",
     "alpha2Code": "CL",
     "alpha3Code": "CHL",
-    "callingCodes": ["56"],
+    "callingCodes": [
+      "56"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-06:00", "UTC-04:00"],
+    "timezones": [
+      "UTC-06:00",
+      "UTC-04:00"
+    ],
     "nativeName": "Chile",
     "flags": {
       "svg": "https://flagcdn.com/cl.svg",
@@ -2141,15 +2380,20 @@
       "ja": "チリ",
       "it": "Cile",
       "hu": "Chile"
-    }
+    },
+    "emoji": "🇨🇱"
   },
-  {
+  "CN": {
     "name": "China",
     "alpha2Code": "CN",
     "alpha3Code": "CHN",
-    "callingCodes": ["86"],
+    "callingCodes": [
+      "86"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+08:00"],
+    "timezones": [
+      "UTC+08:00"
+    ],
     "nativeName": "中国",
     "flags": {
       "svg": "https://flagcdn.com/cn.svg",
@@ -2182,15 +2426,20 @@
       "ja": "中国",
       "it": "Cina",
       "hu": "Kína"
-    }
+    },
+    "emoji": "🇨🇳"
   },
-  {
+  "CX": {
     "name": "Christmas Island",
     "alpha2Code": "CX",
     "alpha3Code": "CXR",
-    "callingCodes": ["61"],
+    "callingCodes": [
+      "61"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+07:00"],
+    "timezones": [
+      "UTC+07:00"
+    ],
     "nativeName": "Christmas Island",
     "flags": {
       "svg": "https://flagcdn.com/cx.svg",
@@ -2223,15 +2472,20 @@
       "ja": "クリスマス島",
       "it": "Isola di Natale",
       "hu": "Karácsony-sziget"
-    }
+    },
+    "emoji": "🇨🇽"
   },
-  {
+  "CC": {
     "name": "Cocos (Keeling) Islands",
     "alpha2Code": "CC",
     "alpha3Code": "CCK",
-    "callingCodes": ["61"],
+    "callingCodes": [
+      "61"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+06:30"],
+    "timezones": [
+      "UTC+06:30"
+    ],
     "nativeName": "Cocos (Keeling) Islands",
     "flags": {
       "svg": "https://flagcdn.com/cc.svg",
@@ -2264,15 +2518,20 @@
       "ja": "ココス（キーリング）諸島",
       "it": "Isole Cocos e Keeling",
       "hu": "Kókusz-szigetek"
-    }
+    },
+    "emoji": "🇨🇨"
   },
-  {
+  "CO": {
     "name": "Colombia",
     "alpha2Code": "CO",
     "alpha3Code": "COL",
-    "callingCodes": ["57"],
+    "callingCodes": [
+      "57"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-05:00"],
+    "timezones": [
+      "UTC-05:00"
+    ],
     "nativeName": "Colombia",
     "flags": {
       "svg": "https://flagcdn.com/co.svg",
@@ -2305,15 +2564,20 @@
       "ja": "コロンビア",
       "it": "Colombia",
       "hu": "Kolumbia"
-    }
+    },
+    "emoji": "🇨🇴"
   },
-  {
+  "KM": {
     "name": "Comoros",
     "alpha2Code": "KM",
     "alpha3Code": "COM",
-    "callingCodes": ["269"],
+    "callingCodes": [
+      "269"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "Komori",
     "flags": {
       "svg": "https://flagcdn.com/km.svg",
@@ -2352,15 +2616,20 @@
       "ja": "コモロ",
       "it": "Comore",
       "hu": "Comore-szigetek"
-    }
+    },
+    "emoji": "🇰🇲"
   },
-  {
+  "CG": {
     "name": "Congo",
     "alpha2Code": "CG",
     "alpha3Code": "COG",
-    "callingCodes": ["242"],
+    "callingCodes": [
+      "242"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "République du Congo",
     "flags": {
       "svg": "https://flagcdn.com/cg.svg",
@@ -2399,15 +2668,21 @@
       "ja": "コンゴ共和国",
       "it": "Congo",
       "hu": "Kongói Köztársaság"
-    }
+    },
+    "emoji": "🇨🇬"
   },
-  {
+  "CD": {
     "name": "Congo (Democratic Republic of the)",
     "alpha2Code": "CD",
     "alpha3Code": "COD",
-    "callingCodes": ["243"],
+    "callingCodes": [
+      "243"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+01:00", "UTC+02:00"],
+    "timezones": [
+      "UTC+01:00",
+      "UTC+02:00"
+    ],
     "nativeName": "République démocratique du Congo",
     "flags": {
       "svg": "https://flagcdn.com/cd.svg",
@@ -2464,15 +2739,20 @@
       "ja": "コンゴ民主共和国",
       "it": "Congo (Rep. Dem.)",
       "hu": "Kongói Demokratikus Köztársaság"
-    }
+    },
+    "emoji": "🇨🇩"
   },
-  {
+  "CK": {
     "name": "Cook Islands",
     "alpha2Code": "CK",
     "alpha3Code": "COK",
-    "callingCodes": ["682"],
+    "callingCodes": [
+      "682"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC-10:00"],
+    "timezones": [
+      "UTC-10:00"
+    ],
     "nativeName": "Cook Islands",
     "flags": {
       "svg": "https://flagcdn.com/ck.svg",
@@ -2515,15 +2795,20 @@
       "ja": "クック諸島",
       "it": "Isole Cook",
       "hu": "Cook-szigetek"
-    }
+    },
+    "emoji": "🇨🇰"
   },
-  {
+  "CR": {
     "name": "Costa Rica",
     "alpha2Code": "CR",
     "alpha3Code": "CRI",
-    "callingCodes": ["506"],
+    "callingCodes": [
+      "506"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-06:00"],
+    "timezones": [
+      "UTC-06:00"
+    ],
     "nativeName": "Costa Rica",
     "flags": {
       "svg": "https://flagcdn.com/cr.svg",
@@ -2556,15 +2841,20 @@
       "ja": "コスタリカ",
       "it": "Costa Rica",
       "hu": "Costa Rica"
-    }
+    },
+    "emoji": "🇨🇷"
   },
-  {
+  "HR": {
     "name": "Croatia",
     "alpha2Code": "HR",
     "alpha3Code": "HRV",
-    "callingCodes": ["385"],
+    "callingCodes": [
+      "385"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Hrvatska",
     "flags": {
       "svg": "https://flagcdn.com/hr.svg",
@@ -2597,15 +2887,20 @@
       "ja": "クロアチア",
       "it": "Croazia",
       "hu": "Horvátország"
-    }
+    },
+    "emoji": "🇭🇷"
   },
-  {
+  "CU": {
     "name": "Cuba",
     "alpha2Code": "CU",
     "alpha3Code": "CUB",
-    "callingCodes": ["53"],
+    "callingCodes": [
+      "53"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-05:00"],
+    "timezones": [
+      "UTC-05:00"
+    ],
     "nativeName": "Cuba",
     "flags": {
       "svg": "https://flagcdn.com/cu.svg",
@@ -2643,15 +2938,20 @@
       "ja": "キューバ",
       "it": "Cuba",
       "hu": "Kuba"
-    }
+    },
+    "emoji": "🇨🇺"
   },
-  {
+  "CW": {
     "name": "Curaçao",
     "alpha2Code": "CW",
     "alpha3Code": "CUW",
-    "callingCodes": ["599"],
+    "callingCodes": [
+      "599"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Curaçao",
     "flags": {
       "svg": "https://flagcdn.com/cw.svg",
@@ -2696,15 +2996,20 @@
       "ja": "Curaçao",
       "it": "Curaçao",
       "hu": "Curaçao"
-    }
+    },
+    "emoji": "🇨🇼"
   },
-  {
+  "CY": {
     "name": "Cyprus",
     "alpha2Code": "CY",
     "alpha3Code": "CYP",
-    "callingCodes": ["357"],
+    "callingCodes": [
+      "357"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Κύπρος",
     "flags": {
       "svg": "https://flagcdn.com/cy.svg",
@@ -2749,15 +3054,20 @@
       "ja": "キプロス",
       "it": "Cipro",
       "hu": "Ciprus"
-    }
+    },
+    "emoji": "🇨🇾"
   },
-  {
+  "CZ": {
     "name": "Czech Republic",
     "alpha2Code": "CZ",
     "alpha3Code": "CZE",
-    "callingCodes": ["420"],
+    "callingCodes": [
+      "420"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Česká republika",
     "flags": {
       "svg": "https://flagcdn.com/cz.svg",
@@ -2796,15 +3106,24 @@
       "ja": "チェコ",
       "it": "Repubblica Ceca",
       "hu": "Csehország"
-    }
+    },
+    "emoji": "🇨🇿"
   },
-  {
+  "DK": {
     "name": "Denmark",
     "alpha2Code": "DK",
     "alpha3Code": "DNK",
-    "callingCodes": ["45"],
+    "callingCodes": [
+      "45"
+    ],
     "region": "Europe",
-    "timezones": ["UTC-04:00", "UTC-03:00", "UTC-01:00", "UTC", "UTC+01:00"],
+    "timezones": [
+      "UTC-04:00",
+      "UTC-03:00",
+      "UTC-01:00",
+      "UTC",
+      "UTC+01:00"
+    ],
     "nativeName": "Danmark",
     "flags": {
       "svg": "https://flagcdn.com/dk.svg",
@@ -2837,15 +3156,20 @@
       "ja": "デンマーク",
       "it": "Danimarca",
       "hu": "Dánia"
-    }
+    },
+    "emoji": "🇩🇰"
   },
-  {
+  "DJ": {
     "name": "Djibouti",
     "alpha2Code": "DJ",
     "alpha3Code": "DJI",
-    "callingCodes": ["253"],
+    "callingCodes": [
+      "253"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "Djibouti",
     "flags": {
       "svg": "https://flagcdn.com/dj.svg",
@@ -2884,15 +3208,20 @@
       "ja": "ジブチ",
       "it": "Gibuti",
       "hu": "Dzsibuti"
-    }
+    },
+    "emoji": "🇩🇯"
   },
-  {
+  "DM": {
     "name": "Dominica",
     "alpha2Code": "DM",
     "alpha3Code": "DMA",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Dominica",
     "flags": {
       "svg": "https://flagcdn.com/dm.svg",
@@ -2925,15 +3254,20 @@
       "ja": "ドミニカ国",
       "it": "Dominica",
       "hu": "Dominikai Közösség"
-    }
+    },
+    "emoji": "🇩🇲"
   },
-  {
+  "DO": {
     "name": "Dominican Republic",
     "alpha2Code": "DO",
     "alpha3Code": "DOM",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "República Dominicana",
     "flags": {
       "svg": "https://flagcdn.com/do.svg",
@@ -2966,15 +3300,21 @@
       "ja": "ドミニカ共和国",
       "it": "Repubblica Dominicana",
       "hu": "Dominikai Köztársaság"
-    }
+    },
+    "emoji": "🇩🇴"
   },
-  {
+  "EC": {
     "name": "Ecuador",
     "alpha2Code": "EC",
     "alpha3Code": "ECU",
-    "callingCodes": ["593"],
+    "callingCodes": [
+      "593"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-06:00", "UTC-05:00"],
+    "timezones": [
+      "UTC-06:00",
+      "UTC-05:00"
+    ],
     "nativeName": "Ecuador",
     "flags": {
       "svg": "https://flagcdn.com/ec.svg",
@@ -3007,15 +3347,20 @@
       "ja": "エクアドル",
       "it": "Ecuador",
       "hu": "Ecuador"
-    }
+    },
+    "emoji": "🇪🇨"
   },
-  {
+  "EG": {
     "name": "Egypt",
     "alpha2Code": "EG",
     "alpha3Code": "EGY",
-    "callingCodes": ["20"],
+    "callingCodes": [
+      "20"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "مصر‎",
     "flags": {
       "svg": "https://flagcdn.com/eg.svg",
@@ -3048,15 +3393,20 @@
       "ja": "エジプト",
       "it": "Egitto",
       "hu": "Egyiptom"
-    }
+    },
+    "emoji": "🇪🇬"
   },
-  {
+  "SV": {
     "name": "El Salvador",
     "alpha2Code": "SV",
     "alpha3Code": "SLV",
-    "callingCodes": ["503"],
+    "callingCodes": [
+      "503"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-06:00"],
+    "timezones": [
+      "UTC-06:00"
+    ],
     "nativeName": "El Salvador",
     "flags": {
       "svg": "https://flagcdn.com/sv.svg",
@@ -3089,15 +3439,20 @@
       "ja": "エルサルバドル",
       "it": "El Salvador",
       "hu": "Salvador"
-    }
+    },
+    "emoji": "🇸🇻"
   },
-  {
+  "GQ": {
     "name": "Equatorial Guinea",
     "alpha2Code": "GQ",
     "alpha3Code": "GNQ",
-    "callingCodes": ["240"],
+    "callingCodes": [
+      "240"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Guinea Ecuatorial",
     "flags": {
       "svg": "https://flagcdn.com/gq.svg",
@@ -3147,15 +3502,20 @@
       "ja": "赤道ギニア",
       "it": "Guinea Equatoriale",
       "hu": "Egyenlítői-Guinea"
-    }
+    },
+    "emoji": "🇬🇶"
   },
-  {
+  "ER": {
     "name": "Eritrea",
     "alpha2Code": "ER",
     "alpha3Code": "ERI",
-    "callingCodes": ["291"],
+    "callingCodes": [
+      "291"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "ኤርትራ",
     "flags": {
       "svg": "https://flagcdn.com/er.svg",
@@ -3231,15 +3591,20 @@
       "ja": "エリトリア",
       "it": "Eritrea",
       "hu": "Eritrea"
-    }
+    },
+    "emoji": "🇪🇷"
   },
-  {
+  "EE": {
     "name": "Estonia",
     "alpha2Code": "EE",
     "alpha3Code": "EST",
-    "callingCodes": ["372"],
+    "callingCodes": [
+      "372"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Eesti",
     "flags": {
       "svg": "https://flagcdn.com/ee.svg",
@@ -3272,15 +3637,20 @@
       "ja": "エストニア",
       "it": "Estonia",
       "hu": "Észtország"
-    }
+    },
+    "emoji": "🇪🇪"
   },
-  {
+  "ET": {
     "name": "Ethiopia",
     "alpha2Code": "ET",
     "alpha3Code": "ETH",
-    "callingCodes": ["251"],
+    "callingCodes": [
+      "251"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "ኢትዮጵያ",
     "flags": {
       "svg": "https://flagcdn.com/et.svg",
@@ -3313,15 +3683,20 @@
       "ja": "エチオピア",
       "it": "Etiopia",
       "hu": "Etiópia"
-    }
+    },
+    "emoji": "🇪🇹"
   },
-  {
+  "FK": {
     "name": "Falkland Islands (Malvinas)",
     "alpha2Code": "FK",
     "alpha3Code": "FLK",
-    "callingCodes": ["500"],
+    "callingCodes": [
+      "500"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Falkland Islands",
     "flags": {
       "svg": "https://flagcdn.com/fk.svg",
@@ -3354,15 +3729,20 @@
       "ja": "フォークランド（マルビナス）諸島",
       "it": "Isole Falkland o Isole Malvine",
       "hu": "Falkland-szigetek"
-    }
+    },
+    "emoji": "🇫🇰"
   },
-  {
+  "FO": {
     "name": "Faroe Islands",
     "alpha2Code": "FO",
     "alpha3Code": "FRO",
-    "callingCodes": ["298"],
+    "callingCodes": [
+      "298"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+00:00"],
+    "timezones": [
+      "UTC+00:00"
+    ],
     "nativeName": "Føroyar",
     "flags": {
       "svg": "https://flagcdn.com/fo.svg",
@@ -3400,15 +3780,20 @@
       "ja": "フェロー諸島",
       "it": "Isole Far Oer",
       "hu": "Feröer"
-    }
+    },
+    "emoji": "🇫🇴"
   },
-  {
+  "FJ": {
     "name": "Fiji",
     "alpha2Code": "FJ",
     "alpha3Code": "FJI",
-    "callingCodes": ["679"],
+    "callingCodes": [
+      "679"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+12:00"],
+    "timezones": [
+      "UTC+12:00"
+    ],
     "nativeName": "Fiji",
     "flags": {
       "svg": "https://flagcdn.com/fj.svg",
@@ -3457,15 +3842,20 @@
       "ja": "フィジー",
       "it": "Figi",
       "hu": "Fidzsi-szigetek"
-    }
+    },
+    "emoji": "🇫🇯"
   },
-  {
+  "FI": {
     "name": "Finland",
     "alpha2Code": "FI",
     "alpha3Code": "FIN",
-    "callingCodes": ["358"],
+    "callingCodes": [
+      "358"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Suomi",
     "flags": {
       "svg": "https://flagcdn.com/fi.svg",
@@ -3504,13 +3894,16 @@
       "ja": "フィンランド",
       "it": "Finlandia",
       "hu": "Finnország"
-    }
+    },
+    "emoji": "🇫🇮"
   },
-  {
+  "FR": {
     "name": "France",
     "alpha2Code": "FR",
     "alpha3Code": "FRA",
-    "callingCodes": ["33"],
+    "callingCodes": [
+      "33"
+    ],
     "region": "Europe",
     "timezones": [
       "UTC-10:00",
@@ -3560,15 +3953,20 @@
       "ja": "フランス",
       "it": "Francia",
       "hu": "Franciaország"
-    }
+    },
+    "emoji": "🇫🇷"
   },
-  {
+  "GF": {
     "name": "French Guiana",
     "alpha2Code": "GF",
     "alpha3Code": "GUF",
-    "callingCodes": ["594"],
+    "callingCodes": [
+      "594"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-03:00"],
+    "timezones": [
+      "UTC-03:00"
+    ],
     "nativeName": "Guyane française",
     "flags": {
       "svg": "https://flagcdn.com/gf.svg",
@@ -3601,15 +3999,22 @@
       "ja": "フランス領ギアナ",
       "it": "Guyana francese",
       "hu": "Francia Guyana"
-    }
+    },
+    "emoji": "🇬🇫"
   },
-  {
+  "PF": {
     "name": "French Polynesia",
     "alpha2Code": "PF",
     "alpha3Code": "PYF",
-    "callingCodes": ["689"],
+    "callingCodes": [
+      "689"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC-10:00", "UTC-09:30", "UTC-09:00"],
+    "timezones": [
+      "UTC-10:00",
+      "UTC-09:30",
+      "UTC-09:00"
+    ],
     "nativeName": "Polynésie française",
     "flags": {
       "svg": "https://flagcdn.com/pf.svg",
@@ -3642,15 +4047,20 @@
       "ja": "フランス領ポリネシア",
       "it": "Polinesia Francese",
       "hu": "Francia Polinézia"
-    }
+    },
+    "emoji": "🇵🇫"
   },
-  {
+  "TF": {
     "name": "French Southern Territories",
     "alpha2Code": "TF",
     "alpha3Code": "ATF",
-    "callingCodes": ["262"],
+    "callingCodes": [
+      "262"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+05:00"],
+    "timezones": [
+      "UTC+05:00"
+    ],
     "nativeName": "Territoire des Terres australes et antarctiques françaises",
     "flags": {
       "svg": "https://flagcdn.com/tf.svg",
@@ -3683,15 +4093,20 @@
       "ja": "フランス領南方・南極地域",
       "it": "Territori Francesi del Sud",
       "hu": "Francia déli és antarktiszi területek"
-    }
+    },
+    "emoji": "🇹🇫"
   },
-  {
+  "GA": {
     "name": "Gabon",
     "alpha2Code": "GA",
     "alpha3Code": "GAB",
-    "callingCodes": ["241"],
+    "callingCodes": [
+      "241"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Gabon",
     "flags": {
       "svg": "https://flagcdn.com/ga.svg",
@@ -3724,15 +4139,20 @@
       "ja": "ガボン",
       "it": "Gabon",
       "hu": "Gabon"
-    }
+    },
+    "emoji": "🇬🇦"
   },
-  {
+  "GM": {
     "name": "Gambia",
     "alpha2Code": "GM",
     "alpha3Code": "GMB",
-    "callingCodes": ["220"],
+    "callingCodes": [
+      "220"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+00:00"],
+    "timezones": [
+      "UTC+00:00"
+    ],
     "nativeName": "Gambia",
     "flags": {
       "svg": "https://flagcdn.com/gm.svg",
@@ -3765,15 +4185,20 @@
       "ja": "ガンビア",
       "it": "Gambia",
       "hu": "Gambia"
-    }
+    },
+    "emoji": "🇬🇲"
   },
-  {
+  "GE": {
     "name": "Georgia",
     "alpha2Code": "GE",
     "alpha3Code": "GEO",
-    "callingCodes": ["995"],
+    "callingCodes": [
+      "995"
+    ],
     "region": "Asia",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "საქართველო",
     "flags": {
       "svg": "https://flagcdn.com/ge.svg",
@@ -3806,15 +4231,20 @@
       "ja": "グルジア",
       "it": "Georgia",
       "hu": "Grúzia"
-    }
+    },
+    "emoji": "🇬🇪"
   },
-  {
+  "DE": {
     "name": "Germany",
     "alpha2Code": "DE",
     "alpha3Code": "DEU",
-    "callingCodes": ["49"],
+    "callingCodes": [
+      "49"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Deutschland",
     "flags": {
       "svg": "https://flagcdn.com/de.svg",
@@ -3847,15 +4277,20 @@
       "ja": "ドイツ",
       "it": "Germania",
       "hu": "Grúzia"
-    }
+    },
+    "emoji": "🇩🇪"
   },
-  {
+  "GH": {
     "name": "Ghana",
     "alpha2Code": "GH",
     "alpha3Code": "GHA",
-    "callingCodes": ["233"],
+    "callingCodes": [
+      "233"
+    ],
     "region": "Africa",
-    "timezones": ["UTC"],
+    "timezones": [
+      "UTC"
+    ],
     "nativeName": "Ghana",
     "flags": {
       "svg": "https://flagcdn.com/gh.svg",
@@ -3888,15 +4323,20 @@
       "ja": "ガーナ",
       "it": "Ghana",
       "hu": "Ghána"
-    }
+    },
+    "emoji": "🇬🇭"
   },
-  {
+  "GI": {
     "name": "Gibraltar",
     "alpha2Code": "GI",
     "alpha3Code": "GIB",
-    "callingCodes": ["350"],
+    "callingCodes": [
+      "350"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Gibraltar",
     "flags": {
       "svg": "https://flagcdn.com/gi.svg",
@@ -3929,15 +4369,20 @@
       "ja": "ジブラルタル",
       "it": "Gibilterra",
       "hu": "Gibraltár"
-    }
+    },
+    "emoji": "🇬🇮"
   },
-  {
+  "GR": {
     "name": "Greece",
     "alpha2Code": "GR",
     "alpha3Code": "GRC",
-    "callingCodes": ["30"],
+    "callingCodes": [
+      "30"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Ελλάδα",
     "flags": {
       "svg": "https://flagcdn.com/gr.svg",
@@ -3970,15 +4415,23 @@
       "ja": "ギリシャ",
       "it": "Grecia",
       "hu": "Görögország"
-    }
+    },
+    "emoji": "🇬🇷"
   },
-  {
+  "GL": {
     "name": "Greenland",
     "alpha2Code": "GL",
     "alpha3Code": "GRL",
-    "callingCodes": ["299"],
+    "callingCodes": [
+      "299"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00", "UTC-03:00", "UTC-01:00", "UTC+00:00"],
+    "timezones": [
+      "UTC-04:00",
+      "UTC-03:00",
+      "UTC-01:00",
+      "UTC+00:00"
+    ],
     "nativeName": "Kalaallit Nunaat",
     "flags": {
       "svg": "https://flagcdn.com/gl.svg",
@@ -4011,15 +4464,20 @@
       "ja": "グリーンランド",
       "it": "Groenlandia",
       "hu": "Grönland"
-    }
+    },
+    "emoji": "🇬🇱"
   },
-  {
+  "GD": {
     "name": "Grenada",
     "alpha2Code": "GD",
     "alpha3Code": "GRD",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Grenada",
     "flags": {
       "svg": "https://flagcdn.com/gd.svg",
@@ -4052,15 +4510,20 @@
       "ja": "グレナダ",
       "it": "Grenada",
       "hu": "Grenada"
-    }
+    },
+    "emoji": "🇬🇩"
   },
-  {
+  "GP": {
     "name": "Guadeloupe",
     "alpha2Code": "GP",
     "alpha3Code": "GLP",
-    "callingCodes": ["590"],
+    "callingCodes": [
+      "590"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Guadeloupe",
     "flags": {
       "svg": "https://flagcdn.com/gp.svg",
@@ -4093,15 +4556,20 @@
       "ja": "グアドループ",
       "it": "Guadeloupa",
       "hu": "Guadeloupe"
-    }
+    },
+    "emoji": "🇬🇵"
   },
-  {
+  "GU": {
     "name": "Guam",
     "alpha2Code": "GU",
     "alpha3Code": "GUM",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+10:00"],
+    "timezones": [
+      "UTC+10:00"
+    ],
     "nativeName": "Guam",
     "flags": {
       "svg": "https://flagcdn.com/gu.svg",
@@ -4146,15 +4614,20 @@
       "ja": "グアム",
       "it": "Guam",
       "hu": "Guam"
-    }
+    },
+    "emoji": "🇬🇺"
   },
-  {
+  "GT": {
     "name": "Guatemala",
     "alpha2Code": "GT",
     "alpha3Code": "GTM",
-    "callingCodes": ["502"],
+    "callingCodes": [
+      "502"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-06:00"],
+    "timezones": [
+      "UTC-06:00"
+    ],
     "nativeName": "Guatemala",
     "flags": {
       "svg": "https://flagcdn.com/gt.svg",
@@ -4187,15 +4660,20 @@
       "ja": "グアテマラ",
       "it": "Guatemala",
       "hu": "Guatemala"
-    }
+    },
+    "emoji": "🇬🇹"
   },
-  {
+  "GG": {
     "name": "Guernsey",
     "alpha2Code": "GG",
     "alpha3Code": "GGY",
-    "callingCodes": ["44"],
+    "callingCodes": [
+      "44"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+00:00"],
+    "timezones": [
+      "UTC+00:00"
+    ],
     "nativeName": "Guernsey",
     "flags": {
       "svg": "https://flagcdn.com/gg.svg",
@@ -4239,15 +4717,20 @@
       "ja": "ガーンジー",
       "it": "Guernsey",
       "hu": "Guernsey"
-    }
+    },
+    "emoji": "🇬🇬"
   },
-  {
+  "GN": {
     "name": "Guinea",
     "alpha2Code": "GN",
     "alpha3Code": "GIN",
-    "callingCodes": ["224"],
+    "callingCodes": [
+      "224"
+    ],
     "region": "Africa",
-    "timezones": ["UTC"],
+    "timezones": [
+      "UTC"
+    ],
     "nativeName": "Guinée",
     "flags": {
       "svg": "https://flagcdn.com/gn.svg",
@@ -4286,15 +4769,20 @@
       "ja": "ギニア",
       "it": "Guinea",
       "hu": "Guinea"
-    }
+    },
+    "emoji": "🇬🇳"
   },
-  {
+  "GW": {
     "name": "Guinea-Bissau",
     "alpha2Code": "GW",
     "alpha3Code": "GNB",
-    "callingCodes": ["245"],
+    "callingCodes": [
+      "245"
+    ],
     "region": "Africa",
-    "timezones": ["UTC"],
+    "timezones": [
+      "UTC"
+    ],
     "nativeName": "Guiné-Bissau",
     "flags": {
       "svg": "https://flagcdn.com/gw.svg",
@@ -4327,15 +4815,20 @@
       "ja": "ギニアビサウ",
       "it": "Guinea-Bissau",
       "hu": "Bissau-Guinea"
-    }
+    },
+    "emoji": "🇬🇼"
   },
-  {
+  "GY": {
     "name": "Guyana",
     "alpha2Code": "GY",
     "alpha3Code": "GUY",
-    "callingCodes": ["592"],
+    "callingCodes": [
+      "592"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Guyana",
     "flags": {
       "svg": "https://flagcdn.com/gy.svg",
@@ -4368,15 +4861,20 @@
       "ja": "ガイアナ",
       "it": "Guyana",
       "hu": "Guyana"
-    }
+    },
+    "emoji": "🇬🇾"
   },
-  {
+  "HT": {
     "name": "Haiti",
     "alpha2Code": "HT",
     "alpha3Code": "HTI",
-    "callingCodes": ["509"],
+    "callingCodes": [
+      "509"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-05:00"],
+    "timezones": [
+      "UTC-05:00"
+    ],
     "nativeName": "Haïti",
     "flags": {
       "svg": "https://flagcdn.com/ht.svg",
@@ -4415,15 +4913,20 @@
       "ja": "ハイチ",
       "it": "Haiti",
       "hu": "Haiti"
-    }
+    },
+    "emoji": "🇭🇹"
   },
-  {
+  "HM": {
     "name": "Heard Island and McDonald Islands",
     "alpha2Code": "HM",
     "alpha3Code": "HMD",
-    "callingCodes": ["672"],
+    "callingCodes": [
+      "672"
+    ],
     "region": "Antarctic",
-    "timezones": ["UTC+05:00"],
+    "timezones": [
+      "UTC+05:00"
+    ],
     "nativeName": "Heard Island and McDonald Islands",
     "flags": {
       "svg": "https://flagcdn.com/hm.svg",
@@ -4456,15 +4959,20 @@
       "ja": "ハード島とマクドナルド諸島",
       "it": "Isole Heard e McDonald",
       "hu": "Heard-sziget és McDonald-szigetek"
-    }
+    },
+    "emoji": "🇭🇲"
   },
-  {
+  "VA": {
     "name": "Vatican City",
     "alpha2Code": "VA",
     "alpha3Code": "VAT",
-    "callingCodes": ["379"],
+    "callingCodes": [
+      "379"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Status Civitatis Vaticanae",
     "flags": {
       "svg": "https://flagcdn.com/va.svg",
@@ -4515,15 +5023,20 @@
       "ja": "聖座",
       "it": "Santa Sede",
       "hu": "Vatikán"
-    }
+    },
+    "emoji": "🇻🇦"
   },
-  {
+  "HN": {
     "name": "Honduras",
     "alpha2Code": "HN",
     "alpha3Code": "HND",
-    "callingCodes": ["504"],
+    "callingCodes": [
+      "504"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-06:00"],
+    "timezones": [
+      "UTC-06:00"
+    ],
     "nativeName": "Honduras",
     "flags": {
       "svg": "https://flagcdn.com/hn.svg",
@@ -4556,15 +5069,20 @@
       "ja": "ホンジュラス",
       "it": "Honduras",
       "hu": "Honduras"
-    }
+    },
+    "emoji": "🇭🇳"
   },
-  {
+  "HU": {
     "name": "Hungary",
     "alpha2Code": "HU",
     "alpha3Code": "HUN",
-    "callingCodes": ["36"],
+    "callingCodes": [
+      "36"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Magyarország",
     "flags": {
       "svg": "https://flagcdn.com/hu.svg",
@@ -4597,15 +5115,20 @@
       "ja": "ハンガリー",
       "it": "Ungheria",
       "hu": "Magyarország"
-    }
+    },
+    "emoji": "🇭🇺"
   },
-  {
+  "HK": {
     "name": "Hong Kong",
     "alpha2Code": "HK",
     "alpha3Code": "HKG",
-    "callingCodes": ["852"],
+    "callingCodes": [
+      "852"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+08:00"],
+    "timezones": [
+      "UTC+08:00"
+    ],
     "nativeName": "香港",
     "flags": {
       "svg": "https://flagcdn.com/hk.svg",
@@ -4644,15 +5167,20 @@
       "ja": "香港",
       "it": "Hong Kong",
       "hu": "Hong Kong"
-    }
+    },
+    "emoji": "🇭🇰"
   },
-  {
+  "IS": {
     "name": "Iceland",
     "alpha2Code": "IS",
     "alpha3Code": "ISL",
-    "callingCodes": ["354"],
+    "callingCodes": [
+      "354"
+    ],
     "region": "Europe",
-    "timezones": ["UTC"],
+    "timezones": [
+      "UTC"
+    ],
     "nativeName": "Ísland",
     "flags": {
       "svg": "https://flagcdn.com/is.svg",
@@ -4685,15 +5213,20 @@
       "ja": "アイスランド",
       "it": "Islanda",
       "hu": "Izland"
-    }
+    },
+    "emoji": "🇮🇸"
   },
-  {
+  "IN": {
     "name": "India",
     "alpha2Code": "IN",
     "alpha3Code": "IND",
-    "callingCodes": ["91"],
+    "callingCodes": [
+      "91"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+05:30"],
+    "timezones": [
+      "UTC+05:30"
+    ],
     "nativeName": "भारत",
     "flags": {
       "svg": "https://flagcdn.com/in.svg",
@@ -4732,15 +5265,22 @@
       "ja": "インド",
       "it": "India",
       "hu": "India"
-    }
+    },
+    "emoji": "🇮🇳"
   },
-  {
+  "ID": {
     "name": "Indonesia",
     "alpha2Code": "ID",
     "alpha3Code": "IDN",
-    "callingCodes": ["62"],
+    "callingCodes": [
+      "62"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+07:00", "UTC+08:00", "UTC+09:00"],
+    "timezones": [
+      "UTC+07:00",
+      "UTC+08:00",
+      "UTC+09:00"
+    ],
     "nativeName": "Indonesia",
     "flags": {
       "svg": "https://flagcdn.com/id.svg",
@@ -4773,15 +5313,20 @@
       "ja": "インドネシア",
       "it": "Indonesia",
       "hu": "Indonézia"
-    }
+    },
+    "emoji": "🇮🇩"
   },
-  {
+  "CI": {
     "name": "Ivory Coast",
     "alpha2Code": "CI",
     "alpha3Code": "CIV",
-    "callingCodes": ["225"],
+    "callingCodes": [
+      "225"
+    ],
     "region": "Africa",
-    "timezones": ["UTC"],
+    "timezones": [
+      "UTC"
+    ],
     "nativeName": "Côte d'Ivoire",
     "flags": {
       "svg": "https://flagcdn.com/ci.svg",
@@ -4814,15 +5359,20 @@
       "ja": "コートジボワール",
       "it": "Costa D'Avorio",
       "hu": "Elefántcsontpart"
-    }
+    },
+    "emoji": "🇨🇮"
   },
-  {
+  "IR": {
     "name": "Iran (Islamic Republic of)",
     "alpha2Code": "IR",
     "alpha3Code": "IRN",
-    "callingCodes": ["98"],
+    "callingCodes": [
+      "98"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+03:30"],
+    "timezones": [
+      "UTC+03:30"
+    ],
     "nativeName": "ایران",
     "flags": {
       "svg": "https://flagcdn.com/ir.svg",
@@ -4855,15 +5405,20 @@
       "ja": "イラン・イスラム共和国",
       "it": "Iran (Islamic Republic of)",
       "hu": "Irán"
-    }
+    },
+    "emoji": "🇮🇷"
   },
-  {
+  "IQ": {
     "name": "Iraq",
     "alpha2Code": "IQ",
     "alpha3Code": "IRQ",
-    "callingCodes": ["964"],
+    "callingCodes": [
+      "964"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "العراق",
     "flags": {
       "svg": "https://flagcdn.com/iq.svg",
@@ -4902,15 +5457,20 @@
       "ja": "イラク",
       "it": "Iraq",
       "hu": "Irak"
-    }
+    },
+    "emoji": "🇮🇶"
   },
-  {
+  "IE": {
     "name": "Ireland",
     "alpha2Code": "IE",
     "alpha3Code": "IRL",
-    "callingCodes": ["353"],
+    "callingCodes": [
+      "353"
+    ],
     "region": "Europe",
-    "timezones": ["UTC"],
+    "timezones": [
+      "UTC"
+    ],
     "nativeName": "Éire",
     "flags": {
       "svg": "https://flagcdn.com/ie.svg",
@@ -4949,15 +5509,20 @@
       "ja": "アイルランド",
       "it": "Irlanda",
       "hu": "Írország"
-    }
+    },
+    "emoji": "🇮🇪"
   },
-  {
+  "IM": {
     "name": "Isle of Man",
     "alpha2Code": "IM",
     "alpha3Code": "IMN",
-    "callingCodes": ["44"],
+    "callingCodes": [
+      "44"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+00:00"],
+    "timezones": [
+      "UTC+00:00"
+    ],
     "nativeName": "Isle of Man",
     "flags": {
       "svg": "https://flagcdn.com/im.svg",
@@ -5001,15 +5566,20 @@
       "ja": "マン島",
       "it": "Isola di Man",
       "hu": "Man"
-    }
+    },
+    "emoji": "🇮🇲"
   },
-  {
+  "IL": {
     "name": "Israel",
     "alpha2Code": "IL",
     "alpha3Code": "ISR",
-    "callingCodes": ["972"],
+    "callingCodes": [
+      "972"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "יִשְׂרָאֵל",
     "flags": {
       "svg": "https://flagcdn.com/il.svg",
@@ -5048,15 +5618,20 @@
       "ja": "イスラエル",
       "it": "Israele",
       "hu": "Izrael"
-    }
+    },
+    "emoji": "🇮🇱"
   },
-  {
+  "IT": {
     "name": "Italy",
     "alpha2Code": "IT",
     "alpha3Code": "ITA",
-    "callingCodes": ["39"],
+    "callingCodes": [
+      "39"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Italia",
     "flags": {
       "svg": "https://flagcdn.com/it.svg",
@@ -5089,15 +5664,20 @@
       "ja": "イタリア",
       "it": "Italia",
       "hu": "Olaszország"
-    }
+    },
+    "emoji": "🇮🇹"
   },
-  {
+  "JM": {
     "name": "Jamaica",
     "alpha2Code": "JM",
     "alpha3Code": "JAM",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-05:00"],
+    "timezones": [
+      "UTC-05:00"
+    ],
     "nativeName": "Jamaica",
     "flags": {
       "svg": "https://flagcdn.com/jm.svg",
@@ -5130,15 +5710,20 @@
       "ja": "ジャマイカ",
       "it": "Giamaica",
       "hu": "Jamaica"
-    }
+    },
+    "emoji": "🇯🇲"
   },
-  {
+  "JP": {
     "name": "Japan",
     "alpha2Code": "JP",
     "alpha3Code": "JPN",
-    "callingCodes": ["81"],
+    "callingCodes": [
+      "81"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+09:00"],
+    "timezones": [
+      "UTC+09:00"
+    ],
     "nativeName": "日本",
     "flags": {
       "svg": "https://flagcdn.com/jp.svg",
@@ -5171,15 +5756,20 @@
       "ja": "日本",
       "it": "Giappone",
       "hu": "Japán"
-    }
+    },
+    "emoji": "🇯🇵"
   },
-  {
+  "JE": {
     "name": "Jersey",
     "alpha2Code": "JE",
     "alpha3Code": "JEY",
-    "callingCodes": ["44"],
+    "callingCodes": [
+      "44"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Jersey",
     "flags": {
       "svg": "https://flagcdn.com/je.svg",
@@ -5223,15 +5813,20 @@
       "ja": "ジャージー",
       "it": "Isola di Jersey",
       "hu": "Jersey"
-    }
+    },
+    "emoji": "🇯🇪"
   },
-  {
+  "JO": {
     "name": "Jordan",
     "alpha2Code": "JO",
     "alpha3Code": "JOR",
-    "callingCodes": ["962"],
+    "callingCodes": [
+      "962"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "الأردن",
     "flags": {
       "svg": "https://flagcdn.com/jo.svg",
@@ -5264,15 +5859,22 @@
       "ja": "ヨルダン",
       "it": "Giordania",
       "hu": "Jordánia"
-    }
+    },
+    "emoji": "🇯🇴"
   },
-  {
+  "KZ": {
     "name": "Kazakhstan",
     "alpha2Code": "KZ",
     "alpha3Code": "KAZ",
-    "callingCodes": ["76", "77"],
+    "callingCodes": [
+      "76",
+      "77"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+05:00", "UTC+06:00"],
+    "timezones": [
+      "UTC+05:00",
+      "UTC+06:00"
+    ],
     "nativeName": "Қазақстан",
     "flags": {
       "svg": "https://flagcdn.com/kz.svg",
@@ -5311,15 +5913,20 @@
       "ja": "カザフスタン",
       "it": "Kazakistan",
       "hu": "Kazahsztán"
-    }
+    },
+    "emoji": "🇰🇿"
   },
-  {
+  "KE": {
     "name": "Kenya",
     "alpha2Code": "KE",
     "alpha3Code": "KEN",
-    "callingCodes": ["254"],
+    "callingCodes": [
+      "254"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "Kenya",
     "flags": {
       "svg": "https://flagcdn.com/ke.svg",
@@ -5358,15 +5965,22 @@
       "ja": "ケニア",
       "it": "Kenya",
       "hu": "Kenya"
-    }
+    },
+    "emoji": "🇰🇪"
   },
-  {
+  "KI": {
     "name": "Kiribati",
     "alpha2Code": "KI",
     "alpha3Code": "KIR",
-    "callingCodes": ["686"],
+    "callingCodes": [
+      "686"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+12:00", "UTC+13:00", "UTC+14:00"],
+    "timezones": [
+      "UTC+12:00",
+      "UTC+13:00",
+      "UTC+14:00"
+    ],
     "nativeName": "Kiribati",
     "flags": {
       "svg": "https://flagcdn.com/ki.svg",
@@ -5404,15 +6018,20 @@
       "ja": "キリバス",
       "it": "Kiribati",
       "hu": "Kiribati"
-    }
+    },
+    "emoji": "🇰🇮"
   },
-  {
+  "KW": {
     "name": "Kuwait",
     "alpha2Code": "KW",
     "alpha3Code": "KWT",
-    "callingCodes": ["965"],
+    "callingCodes": [
+      "965"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "الكويت",
     "flags": {
       "svg": "https://flagcdn.com/kw.svg",
@@ -5445,15 +6064,20 @@
       "ja": "クウェート",
       "it": "Kuwait",
       "hu": "Kuvait"
-    }
+    },
+    "emoji": "🇰🇼"
   },
-  {
+  "KG": {
     "name": "Kyrgyzstan",
     "alpha2Code": "KG",
     "alpha3Code": "KGZ",
-    "callingCodes": ["996"],
+    "callingCodes": [
+      "996"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+06:00"],
+    "timezones": [
+      "UTC+06:00"
+    ],
     "nativeName": "Кыргызстан",
     "flags": {
       "svg": "https://flagcdn.com/kg.svg",
@@ -5492,15 +6116,20 @@
       "ja": "キルギス",
       "it": "Kirghizistan",
       "hu": "Kirgizisztán"
-    }
+    },
+    "emoji": "🇰🇬"
   },
-  {
+  "LA": {
     "name": "Lao People's Democratic Republic",
     "alpha2Code": "LA",
     "alpha3Code": "LAO",
-    "callingCodes": ["856"],
+    "callingCodes": [
+      "856"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+07:00"],
+    "timezones": [
+      "UTC+07:00"
+    ],
     "nativeName": "ສາທາລະນະລັດ ປະຊາທິປະໄຕ ປະຊາຊົນລາວ",
     "flags": {
       "svg": "https://flagcdn.com/la.svg",
@@ -5533,15 +6162,20 @@
       "ja": "ラオス人民民主共和国",
       "it": "Laos",
       "hu": "Laosz"
-    }
+    },
+    "emoji": "🇱🇦"
   },
-  {
+  "LV": {
     "name": "Latvia",
     "alpha2Code": "LV",
     "alpha3Code": "LVA",
-    "callingCodes": ["371"],
+    "callingCodes": [
+      "371"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Latvija",
     "flags": {
       "svg": "https://flagcdn.com/lv.svg",
@@ -5574,15 +6208,20 @@
       "ja": "ラトビア",
       "it": "Lettonia",
       "hu": "Lettország"
-    }
+    },
+    "emoji": "🇱🇻"
   },
-  {
+  "LB": {
     "name": "Lebanon",
     "alpha2Code": "LB",
     "alpha3Code": "LBN",
-    "callingCodes": ["961"],
+    "callingCodes": [
+      "961"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "لبنان",
     "flags": {
       "svg": "https://flagcdn.com/lb.svg",
@@ -5621,15 +6260,20 @@
       "ja": "レバノン",
       "it": "Libano",
       "hu": "Libanon"
-    }
+    },
+    "emoji": "🇱🇧"
   },
-  {
+  "LS": {
     "name": "Lesotho",
     "alpha2Code": "LS",
     "alpha3Code": "LSO",
-    "callingCodes": ["266"],
+    "callingCodes": [
+      "266"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Lesotho",
     "flags": {
       "svg": "https://flagcdn.com/ls.svg",
@@ -5673,15 +6317,20 @@
       "ja": "レソト",
       "it": "Lesotho",
       "hu": "Lesotho"
-    }
+    },
+    "emoji": "🇱🇸"
   },
-  {
+  "LR": {
     "name": "Liberia",
     "alpha2Code": "LR",
     "alpha3Code": "LBR",
-    "callingCodes": ["231"],
+    "callingCodes": [
+      "231"
+    ],
     "region": "Africa",
-    "timezones": ["UTC"],
+    "timezones": [
+      "UTC"
+    ],
     "nativeName": "Liberia",
     "flags": {
       "svg": "https://flagcdn.com/lr.svg",
@@ -5714,15 +6363,20 @@
       "ja": "リベリア",
       "it": "Liberia",
       "hu": "Libéria"
-    }
+    },
+    "emoji": "🇱🇷"
   },
-  {
+  "LY": {
     "name": "Libya",
     "alpha2Code": "LY",
     "alpha3Code": "LBY",
-    "callingCodes": ["218"],
+    "callingCodes": [
+      "218"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "‏ليبيا",
     "flags": {
       "svg": "https://flagcdn.com/ly.svg",
@@ -5755,15 +6409,20 @@
       "ja": "リビア",
       "it": "Libia",
       "hu": "Líbia"
-    }
+    },
+    "emoji": "🇱🇾"
   },
-  {
+  "LI": {
     "name": "Liechtenstein",
     "alpha2Code": "LI",
     "alpha3Code": "LIE",
-    "callingCodes": ["423"],
+    "callingCodes": [
+      "423"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Liechtenstein",
     "flags": {
       "svg": "https://flagcdn.com/li.svg",
@@ -5796,15 +6455,20 @@
       "ja": "リヒテンシュタイン",
       "it": "Liechtenstein",
       "hu": "Liechtenstein"
-    }
+    },
+    "emoji": "🇱🇮"
   },
-  {
+  "LT": {
     "name": "Lithuania",
     "alpha2Code": "LT",
     "alpha3Code": "LTU",
-    "callingCodes": ["370"],
+    "callingCodes": [
+      "370"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Lietuva",
     "flags": {
       "svg": "https://flagcdn.com/lt.svg",
@@ -5837,15 +6501,20 @@
       "ja": "リトアニア",
       "it": "Lituania",
       "hu": "Litvánia"
-    }
+    },
+    "emoji": "🇱🇹"
   },
-  {
+  "LU": {
     "name": "Luxembourg",
     "alpha2Code": "LU",
     "alpha3Code": "LUX",
-    "callingCodes": ["352"],
+    "callingCodes": [
+      "352"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Lëtzebuerg",
     "flags": {
       "svg": "https://flagcdn.com/lu.svg",
@@ -5890,15 +6559,20 @@
       "ja": "ルクセンブルク",
       "it": "Lussemburgo",
       "hu": "Luxemburg"
-    }
+    },
+    "emoji": "🇱🇺"
   },
-  {
+  "MO": {
     "name": "Macao",
     "alpha2Code": "MO",
     "alpha3Code": "MAC",
-    "callingCodes": ["853"],
+    "callingCodes": [
+      "853"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+08:00"],
+    "timezones": [
+      "UTC+08:00"
+    ],
     "nativeName": "澳門",
     "flags": {
       "svg": "https://flagcdn.com/mo.svg",
@@ -5937,15 +6611,20 @@
       "ja": "マカオ",
       "it": "Macao",
       "hu": "Makaó"
-    }
+    },
+    "emoji": "🇲🇴"
   },
-  {
+  "MK": {
     "name": "North Macedonia",
     "alpha2Code": "MK",
     "alpha3Code": "MKD",
-    "callingCodes": ["389"],
+    "callingCodes": [
+      "389"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Македонија",
     "flags": {
       "svg": "https://flagcdn.com/mk.svg",
@@ -5977,15 +6656,20 @@
       "ja": "マケドニア旧ユーゴスラビア共和国",
       "it": "Macedonia",
       "hu": "Macedónia"
-    }
+    },
+    "emoji": "🇲🇰"
   },
-  {
+  "MG": {
     "name": "Madagascar",
     "alpha2Code": "MG",
     "alpha3Code": "MDG",
-    "callingCodes": ["261"],
+    "callingCodes": [
+      "261"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "Madagasikara",
     "flags": {
       "svg": "https://flagcdn.com/mg.svg",
@@ -6024,15 +6708,20 @@
       "ja": "マダガスカル",
       "it": "Madagascar",
       "hu": "Madagaszkár"
-    }
+    },
+    "emoji": "🇲🇬"
   },
-  {
+  "MW": {
     "name": "Malawi",
     "alpha2Code": "MW",
     "alpha3Code": "MWI",
-    "callingCodes": ["265"],
+    "callingCodes": [
+      "265"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Malawi",
     "flags": {
       "svg": "https://flagcdn.com/mw.svg",
@@ -6071,15 +6760,20 @@
       "ja": "マラウイ",
       "it": "Malawi",
       "hu": "Malawi"
-    }
+    },
+    "emoji": "🇲🇼"
   },
-  {
+  "MY": {
     "name": "Malaysia",
     "alpha2Code": "MY",
     "alpha3Code": "MYS",
-    "callingCodes": ["60"],
+    "callingCodes": [
+      "60"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+08:00"],
+    "timezones": [
+      "UTC+08:00"
+    ],
     "nativeName": "Malaysia",
     "flags": {
       "svg": "https://flagcdn.com/my.svg",
@@ -6112,15 +6806,20 @@
       "ja": "マレーシア",
       "it": "Malesia",
       "hu": "Malajzia"
-    }
+    },
+    "emoji": "🇲🇾"
   },
-  {
+  "MV": {
     "name": "Maldives",
     "alpha2Code": "MV",
     "alpha3Code": "MDV",
-    "callingCodes": ["960"],
+    "callingCodes": [
+      "960"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+05:00"],
+    "timezones": [
+      "UTC+05:00"
+    ],
     "nativeName": "Maldives",
     "flags": {
       "svg": "https://flagcdn.com/mv.svg",
@@ -6153,15 +6852,20 @@
       "ja": "モルディブ",
       "it": "Maldive",
       "hu": "Maldív-szigetek"
-    }
+    },
+    "emoji": "🇲🇻"
   },
-  {
+  "ML": {
     "name": "Mali",
     "alpha2Code": "ML",
     "alpha3Code": "MLI",
-    "callingCodes": ["223"],
+    "callingCodes": [
+      "223"
+    ],
     "region": "Africa",
-    "timezones": ["UTC"],
+    "timezones": [
+      "UTC"
+    ],
     "nativeName": "Mali",
     "flags": {
       "svg": "https://flagcdn.com/ml.svg",
@@ -6194,15 +6898,20 @@
       "ja": "マリ",
       "it": "Mali",
       "hu": "Mali"
-    }
+    },
+    "emoji": "🇲🇱"
   },
-  {
+  "MT": {
     "name": "Malta",
     "alpha2Code": "MT",
     "alpha3Code": "MLT",
-    "callingCodes": ["356"],
+    "callingCodes": [
+      "356"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Malta",
     "flags": {
       "svg": "https://flagcdn.com/mt.svg",
@@ -6241,15 +6950,20 @@
       "ja": "マルタ",
       "it": "Malta",
       "hu": "Málta"
-    }
+    },
+    "emoji": "🇲🇹"
   },
-  {
+  "MH": {
     "name": "Marshall Islands",
     "alpha2Code": "MH",
     "alpha3Code": "MHL",
-    "callingCodes": ["692"],
+    "callingCodes": [
+      "692"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+12:00"],
+    "timezones": [
+      "UTC+12:00"
+    ],
     "nativeName": "M̧ajeļ",
     "flags": {
       "svg": "https://flagcdn.com/mh.svg",
@@ -6288,15 +7002,20 @@
       "ja": "マーシャル諸島",
       "it": "Isole Marshall",
       "hu": "Marshall-szigetek"
-    }
+    },
+    "emoji": "🇲🇭"
   },
-  {
+  "MQ": {
     "name": "Martinique",
     "alpha2Code": "MQ",
     "alpha3Code": "MTQ",
-    "callingCodes": ["596"],
+    "callingCodes": [
+      "596"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Martinique",
     "flags": {
       "svg": "https://flagcdn.com/mq.svg",
@@ -6329,15 +7048,20 @@
       "ja": "マルティニーク",
       "it": "Martinica",
       "hu": "Martinique"
-    }
+    },
+    "emoji": "🇲🇶"
   },
-  {
+  "MR": {
     "name": "Mauritania",
     "alpha2Code": "MR",
     "alpha3Code": "MRT",
-    "callingCodes": ["222"],
+    "callingCodes": [
+      "222"
+    ],
     "region": "Africa",
-    "timezones": ["UTC"],
+    "timezones": [
+      "UTC"
+    ],
     "nativeName": "موريتانيا",
     "flags": {
       "svg": "https://flagcdn.com/mr.svg",
@@ -6370,15 +7094,20 @@
       "ja": "モーリタニア",
       "it": "Mauritania",
       "hu": "Mauritánia"
-    }
+    },
+    "emoji": "🇲🇷"
   },
-  {
+  "MU": {
     "name": "Mauritius",
     "alpha2Code": "MU",
     "alpha3Code": "MUS",
-    "callingCodes": ["230"],
+    "callingCodes": [
+      "230"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+04:00"],
+    "timezones": [
+      "UTC+04:00"
+    ],
     "nativeName": "Maurice",
     "flags": {
       "svg": "https://flagcdn.com/mu.svg",
@@ -6411,15 +7140,20 @@
       "ja": "モーリシャス",
       "it": "Mauritius",
       "hu": "Mauritius"
-    }
+    },
+    "emoji": "🇲🇺"
   },
-  {
+  "YT": {
     "name": "Mayotte",
     "alpha2Code": "YT",
     "alpha3Code": "MYT",
-    "callingCodes": ["262"],
+    "callingCodes": [
+      "262"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "Mayotte",
     "flags": {
       "svg": "https://flagcdn.com/yt.svg",
@@ -6452,15 +7186,22 @@
       "ja": "マヨット",
       "it": "Mayotte",
       "hu": "Mayotte"
-    }
+    },
+    "emoji": "🇾🇹"
   },
-  {
+  "MX": {
     "name": "Mexico",
     "alpha2Code": "MX",
     "alpha3Code": "MEX",
-    "callingCodes": ["52"],
+    "callingCodes": [
+      "52"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-08:00", "UTC-07:00", "UTC-06:00"],
+    "timezones": [
+      "UTC-08:00",
+      "UTC-07:00",
+      "UTC-06:00"
+    ],
     "nativeName": "México",
     "flags": {
       "svg": "https://flagcdn.com/mx.svg",
@@ -6493,15 +7234,21 @@
       "ja": "メキシコ",
       "it": "Messico",
       "hu": "Mexikó"
-    }
+    },
+    "emoji": "🇲🇽"
   },
-  {
+  "FM": {
     "name": "Micronesia (Federated States of)",
     "alpha2Code": "FM",
     "alpha3Code": "FSM",
-    "callingCodes": ["691"],
+    "callingCodes": [
+      "691"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+10:00", "UTC+11:00"],
+    "timezones": [
+      "UTC+10:00",
+      "UTC+11:00"
+    ],
     "nativeName": "Micronesia",
     "flags": {
       "svg": "https://flagcdn.com/fm.svg",
@@ -6534,15 +7281,20 @@
       "ja": "ミクロネシア連邦",
       "it": "Micronesia",
       "hu": "Mikronézia"
-    }
+    },
+    "emoji": "🇫🇲"
   },
-  {
+  "MD": {
     "name": "Moldova (Republic of)",
     "alpha2Code": "MD",
     "alpha3Code": "MDA",
-    "callingCodes": ["373"],
+    "callingCodes": [
+      "373"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Moldova",
     "flags": {
       "svg": "https://flagcdn.com/md.svg",
@@ -6575,15 +7327,20 @@
       "ja": "モルドバ共和国",
       "it": "Moldavia",
       "hu": "Moldova"
-    }
+    },
+    "emoji": "🇲🇩"
   },
-  {
+  "MC": {
     "name": "Monaco",
     "alpha2Code": "MC",
     "alpha3Code": "MCO",
-    "callingCodes": ["377"],
+    "callingCodes": [
+      "377"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Monaco",
     "flags": {
       "svg": "https://flagcdn.com/mc.svg",
@@ -6616,15 +7373,21 @@
       "ja": "モナコ",
       "it": "Principato di Monaco",
       "hu": "Monaco"
-    }
+    },
+    "emoji": "🇲🇨"
   },
-  {
+  "MN": {
     "name": "Mongolia",
     "alpha2Code": "MN",
     "alpha3Code": "MNG",
-    "callingCodes": ["976"],
+    "callingCodes": [
+      "976"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+07:00", "UTC+08:00"],
+    "timezones": [
+      "UTC+07:00",
+      "UTC+08:00"
+    ],
     "nativeName": "Монгол улс",
     "flags": {
       "svg": "https://flagcdn.com/mn.svg",
@@ -6657,15 +7420,20 @@
       "ja": "モンゴル",
       "it": "Mongolia",
       "hu": "Mongólia"
-    }
+    },
+    "emoji": "🇲🇳"
   },
-  {
+  "ME": {
     "name": "Montenegro",
     "alpha2Code": "ME",
     "alpha3Code": "MNE",
-    "callingCodes": ["382"],
+    "callingCodes": [
+      "382"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Црна Гора",
     "flags": {
       "svg": "https://flagcdn.com/me.svg",
@@ -6716,15 +7484,20 @@
       "ja": "モンテネグロ",
       "it": "Montenegro",
       "hu": "Montenegró"
-    }
+    },
+    "emoji": "🇲🇪"
   },
-  {
+  "MS": {
     "name": "Montserrat",
     "alpha2Code": "MS",
     "alpha3Code": "MSR",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Montserrat",
     "flags": {
       "svg": "https://flagcdn.com/ms.svg",
@@ -6757,15 +7530,20 @@
       "ja": "モントセラト",
       "it": "Montserrat",
       "hu": "Montserrat"
-    }
+    },
+    "emoji": "🇲🇸"
   },
-  {
+  "MA": {
     "name": "Morocco",
     "alpha2Code": "MA",
     "alpha3Code": "MAR",
-    "callingCodes": ["212"],
+    "callingCodes": [
+      "212"
+    ],
     "region": "Africa",
-    "timezones": ["UTC"],
+    "timezones": [
+      "UTC"
+    ],
     "nativeName": "المغرب",
     "flags": {
       "svg": "https://flagcdn.com/ma.svg",
@@ -6798,15 +7576,20 @@
       "ja": "モロッコ",
       "it": "Marocco",
       "hu": "Marokkó"
-    }
+    },
+    "emoji": "🇲🇦"
   },
-  {
+  "MZ": {
     "name": "Mozambique",
     "alpha2Code": "MZ",
     "alpha3Code": "MOZ",
-    "callingCodes": ["258"],
+    "callingCodes": [
+      "258"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Moçambique",
     "flags": {
       "svg": "https://flagcdn.com/mz.svg",
@@ -6839,15 +7622,20 @@
       "ja": "モザンビーク",
       "it": "Mozambico",
       "hu": "Mozambik"
-    }
+    },
+    "emoji": "🇲🇿"
   },
-  {
+  "MM": {
     "name": "Myanmar",
     "alpha2Code": "MM",
     "alpha3Code": "MMR",
-    "callingCodes": ["95"],
+    "callingCodes": [
+      "95"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+06:30"],
+    "timezones": [
+      "UTC+06:30"
+    ],
     "nativeName": "Myanma",
     "flags": {
       "svg": "https://flagcdn.com/mm.svg",
@@ -6880,15 +7668,20 @@
       "ja": "ミャンマー",
       "it": "Birmania",
       "hu": "Mianmar"
-    }
+    },
+    "emoji": "🇲🇲"
   },
-  {
+  "NA": {
     "name": "Namibia",
     "alpha2Code": "NA",
     "alpha3Code": "NAM",
-    "callingCodes": ["264"],
+    "callingCodes": [
+      "264"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Namibia",
     "flags": {
       "svg": "https://flagcdn.com/na.svg",
@@ -6932,15 +7725,20 @@
       "ja": "ナミビア",
       "it": "Namibia",
       "hu": "Namíbia"
-    }
+    },
+    "emoji": "🇳🇦"
   },
-  {
+  "NR": {
     "name": "Nauru",
     "alpha2Code": "NR",
     "alpha3Code": "NRU",
-    "callingCodes": ["674"],
+    "callingCodes": [
+      "674"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+12:00"],
+    "timezones": [
+      "UTC+12:00"
+    ],
     "nativeName": "Nauru",
     "flags": {
       "svg": "https://flagcdn.com/nr.svg",
@@ -6979,15 +7777,20 @@
       "ja": "ナウル",
       "it": "Nauru",
       "hu": "Nauru"
-    }
+    },
+    "emoji": "🇳🇷"
   },
-  {
+  "NP": {
     "name": "Nepal",
     "alpha2Code": "NP",
     "alpha3Code": "NPL",
-    "callingCodes": ["977"],
+    "callingCodes": [
+      "977"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+05:45"],
+    "timezones": [
+      "UTC+05:45"
+    ],
     "nativeName": "नेपाल",
     "flags": {
       "svg": "https://flagcdn.com/np.svg",
@@ -7020,15 +7823,21 @@
       "ja": "ネパール",
       "it": "Nepal",
       "hu": "Nepál"
-    }
+    },
+    "emoji": "🇳🇵"
   },
-  {
+  "NL": {
     "name": "Netherlands",
     "alpha2Code": "NL",
     "alpha3Code": "NLD",
-    "callingCodes": ["31"],
+    "callingCodes": [
+      "31"
+    ],
     "region": "Europe",
-    "timezones": ["UTC-04:00", "UTC+01:00"],
+    "timezones": [
+      "UTC-04:00",
+      "UTC+01:00"
+    ],
     "nativeName": "Nederland",
     "flags": {
       "svg": "https://flagcdn.com/nl.svg",
@@ -7061,15 +7870,20 @@
       "ja": "オランダ",
       "it": "Paesi Bassi",
       "hu": "Hollandia"
-    }
+    },
+    "emoji": "🇳🇱"
   },
-  {
+  "NC": {
     "name": "New Caledonia",
     "alpha2Code": "NC",
     "alpha3Code": "NCL",
-    "callingCodes": ["687"],
+    "callingCodes": [
+      "687"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+11:00"],
+    "timezones": [
+      "UTC+11:00"
+    ],
     "nativeName": "Nouvelle-Calédonie",
     "flags": {
       "svg": "https://flagcdn.com/nc.svg",
@@ -7102,13 +7916,16 @@
       "ja": "ニューカレドニア",
       "it": "Nuova Caledonia",
       "hu": "Új-Kaledónia"
-    }
+    },
+    "emoji": "🇳🇨"
   },
-  {
+  "NZ": {
     "name": "New Zealand",
     "alpha2Code": "NZ",
     "alpha3Code": "NZL",
-    "callingCodes": ["64"],
+    "callingCodes": [
+      "64"
+    ],
     "region": "Oceania",
     "timezones": [
       "UTC-11:00",
@@ -7155,15 +7972,20 @@
       "ja": "ニュージーランド",
       "it": "Nuova Zelanda",
       "hu": "Új-Zéland"
-    }
+    },
+    "emoji": "🇳🇿"
   },
-  {
+  "NI": {
     "name": "Nicaragua",
     "alpha2Code": "NI",
     "alpha3Code": "NIC",
-    "callingCodes": ["505"],
+    "callingCodes": [
+      "505"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-06:00"],
+    "timezones": [
+      "UTC-06:00"
+    ],
     "nativeName": "Nicaragua",
     "flags": {
       "svg": "https://flagcdn.com/ni.svg",
@@ -7196,15 +8018,20 @@
       "ja": "ニカラグア",
       "it": "Nicaragua",
       "hu": "Nicaragua"
-    }
+    },
+    "emoji": "🇳🇮"
   },
-  {
+  "NE": {
     "name": "Niger",
     "alpha2Code": "NE",
     "alpha3Code": "NER",
-    "callingCodes": ["227"],
+    "callingCodes": [
+      "227"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Niger",
     "flags": {
       "svg": "https://flagcdn.com/ne.svg",
@@ -7237,15 +8064,20 @@
       "ja": "ニジェール",
       "it": "Niger",
       "hu": "Niger"
-    }
+    },
+    "emoji": "🇳🇪"
   },
-  {
+  "NG": {
     "name": "Nigeria",
     "alpha2Code": "NG",
     "alpha3Code": "NGA",
-    "callingCodes": ["234"],
+    "callingCodes": [
+      "234"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Nigeria",
     "flags": {
       "svg": "https://flagcdn.com/ng.svg",
@@ -7278,15 +8110,20 @@
       "ja": "ナイジェリア",
       "it": "Nigeria",
       "hu": "Nigéria"
-    }
+    },
+    "emoji": "🇳🇬"
   },
-  {
+  "NU": {
     "name": "Niue",
     "alpha2Code": "NU",
     "alpha3Code": "NIU",
-    "callingCodes": ["683"],
+    "callingCodes": [
+      "683"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC-11:00"],
+    "timezones": [
+      "UTC-11:00"
+    ],
     "nativeName": "Niuē",
     "flags": {
       "svg": "https://flagcdn.com/nu.svg",
@@ -7324,15 +8161,20 @@
       "ja": "ニウエ",
       "it": "Niue",
       "hu": "Niue"
-    }
+    },
+    "emoji": "🇳🇺"
   },
-  {
+  "NF": {
     "name": "Norfolk Island",
     "alpha2Code": "NF",
     "alpha3Code": "NFK",
-    "callingCodes": ["672"],
+    "callingCodes": [
+      "672"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+11:30"],
+    "timezones": [
+      "UTC+11:30"
+    ],
     "nativeName": "Norfolk Island",
     "flags": {
       "svg": "https://flagcdn.com/nf.svg",
@@ -7365,15 +8207,20 @@
       "ja": "ノーフォーク島",
       "it": "Isola Norfolk",
       "hu": "Norfolk-sziget"
-    }
+    },
+    "emoji": "🇳🇫"
   },
-  {
+  "KP": {
     "name": "Korea (Democratic People's Republic of)",
     "alpha2Code": "KP",
     "alpha3Code": "PRK",
-    "callingCodes": ["850"],
+    "callingCodes": [
+      "850"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+09:00"],
+    "timezones": [
+      "UTC+09:00"
+    ],
     "nativeName": "북한",
     "flags": {
       "svg": "https://flagcdn.com/kp.svg",
@@ -7406,15 +8253,20 @@
       "ja": "朝鮮民主主義人民共和国",
       "it": "Corea del Nord",
       "hu": "Észak-Korea"
-    }
+    },
+    "emoji": "🇰🇵"
   },
-  {
+  "MP": {
     "name": "Northern Mariana Islands",
     "alpha2Code": "MP",
     "alpha3Code": "MNP",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+10:00"],
+    "timezones": [
+      "UTC+10:00"
+    ],
     "nativeName": "Northern Mariana Islands",
     "flags": {
       "svg": "https://flagcdn.com/mp.svg",
@@ -7453,15 +8305,20 @@
       "ja": "北マリアナ諸島",
       "it": "Isole Marianne Settentrionali",
       "hu": "Északi-Mariana-szigetek"
-    }
+    },
+    "emoji": "🇲🇵"
   },
-  {
+  "NO": {
     "name": "Norway",
     "alpha2Code": "NO",
     "alpha3Code": "NOR",
-    "callingCodes": ["47"],
+    "callingCodes": [
+      "47"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Norge",
     "flags": {
       "svg": "https://flagcdn.com/no.svg",
@@ -7506,15 +8363,20 @@
       "ja": "ノルウェー",
       "it": "Norvegia",
       "hu": "Norvégia"
-    }
+    },
+    "emoji": "🇳🇴"
   },
-  {
+  "OM": {
     "name": "Oman",
     "alpha2Code": "OM",
     "alpha3Code": "OMN",
-    "callingCodes": ["968"],
+    "callingCodes": [
+      "968"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+04:00"],
+    "timezones": [
+      "UTC+04:00"
+    ],
     "nativeName": "عمان",
     "flags": {
       "svg": "https://flagcdn.com/om.svg",
@@ -7547,15 +8409,20 @@
       "ja": "オマーン",
       "it": "oman",
       "hu": "Omán"
-    }
+    },
+    "emoji": "🇴🇲"
   },
-  {
+  "PK": {
     "name": "Pakistan",
     "alpha2Code": "PK",
     "alpha3Code": "PAK",
-    "callingCodes": ["92"],
+    "callingCodes": [
+      "92"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+05:00"],
+    "timezones": [
+      "UTC+05:00"
+    ],
     "nativeName": "Pakistan",
     "flags": {
       "svg": "https://flagcdn.com/pk.svg",
@@ -7594,15 +8461,20 @@
       "ja": "パキスタン",
       "it": "Pakistan",
       "hu": "Pakisztán"
-    }
+    },
+    "emoji": "🇵🇰"
   },
-  {
+  "PW": {
     "name": "Palau",
     "alpha2Code": "PW",
     "alpha3Code": "PLW",
-    "callingCodes": ["680"],
+    "callingCodes": [
+      "680"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+09:00"],
+    "timezones": [
+      "UTC+09:00"
+    ],
     "nativeName": "Palau",
     "flags": {
       "svg": "https://flagcdn.com/pw.svg",
@@ -7635,15 +8507,20 @@
       "ja": "パラオ",
       "it": "Palau",
       "hu": "Palau"
-    }
+    },
+    "emoji": "🇵🇼"
   },
-  {
+  "PS": {
     "name": "Palestine, State of",
     "alpha2Code": "PS",
     "alpha3Code": "PSE",
-    "callingCodes": ["970"],
+    "callingCodes": [
+      "970"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "فلسطين",
     "flags": {
       "svg": "https://flagcdn.com/ps.svg",
@@ -7686,15 +8563,20 @@
       "ja": "パレスチナ",
       "it": "Palestina",
       "hu": "Palesztina"
-    }
+    },
+    "emoji": "🇵🇸"
   },
-  {
+  "PA": {
     "name": "Panama",
     "alpha2Code": "PA",
     "alpha3Code": "PAN",
-    "callingCodes": ["507"],
+    "callingCodes": [
+      "507"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-05:00"],
+    "timezones": [
+      "UTC-05:00"
+    ],
     "nativeName": "Panamá",
     "flags": {
       "svg": "https://flagcdn.com/pa.svg",
@@ -7732,15 +8614,20 @@
       "ja": "パナマ",
       "it": "Panama",
       "hu": "Panama"
-    }
+    },
+    "emoji": "🇵🇦"
   },
-  {
+  "PG": {
     "name": "Papua New Guinea",
     "alpha2Code": "PG",
     "alpha3Code": "PNG",
-    "callingCodes": ["675"],
+    "callingCodes": [
+      "675"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+10:00"],
+    "timezones": [
+      "UTC+10:00"
+    ],
     "nativeName": "Papua Niugini",
     "flags": {
       "svg": "https://flagcdn.com/pg.svg",
@@ -7773,15 +8660,20 @@
       "ja": "パプアニューギニア",
       "it": "Papua Nuova Guinea",
       "hu": "Pápua Új-Guinea"
-    }
+    },
+    "emoji": "🇵🇬"
   },
-  {
+  "PY": {
     "name": "Paraguay",
     "alpha2Code": "PY",
     "alpha3Code": "PRY",
-    "callingCodes": ["595"],
+    "callingCodes": [
+      "595"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Paraguay",
     "flags": {
       "svg": "https://flagcdn.com/py.svg",
@@ -7820,15 +8712,20 @@
       "ja": "パラグアイ",
       "it": "Paraguay",
       "hu": "Paraguay"
-    }
+    },
+    "emoji": "🇵🇾"
   },
-  {
+  "PE": {
     "name": "Peru",
     "alpha2Code": "PE",
     "alpha3Code": "PER",
-    "callingCodes": ["51"],
+    "callingCodes": [
+      "51"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-05:00"],
+    "timezones": [
+      "UTC-05:00"
+    ],
     "nativeName": "Perú",
     "flags": {
       "svg": "https://flagcdn.com/pe.svg",
@@ -7861,15 +8758,20 @@
       "ja": "ペルー",
       "it": "Perù",
       "hu": "Peru"
-    }
+    },
+    "emoji": "🇵🇪"
   },
-  {
+  "PH": {
     "name": "Philippines",
     "alpha2Code": "PH",
     "alpha3Code": "PHL",
-    "callingCodes": ["63"],
+    "callingCodes": [
+      "63"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+08:00"],
+    "timezones": [
+      "UTC+08:00"
+    ],
     "nativeName": "Pilipinas",
     "flags": {
       "svg": "https://flagcdn.com/ph.svg",
@@ -7902,15 +8804,20 @@
       "ja": "フィリピン",
       "it": "Filippine",
       "hu": "Fülöp-szigetek"
-    }
+    },
+    "emoji": "🇵🇭"
   },
-  {
+  "PN": {
     "name": "Pitcairn",
     "alpha2Code": "PN",
     "alpha3Code": "PCN",
-    "callingCodes": ["64"],
+    "callingCodes": [
+      "64"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC-08:00"],
+    "timezones": [
+      "UTC-08:00"
+    ],
     "nativeName": "Pitcairn Islands",
     "flags": {
       "svg": "https://flagcdn.com/pn.svg",
@@ -7948,15 +8855,20 @@
       "ja": "ピトケアン",
       "it": "Isole Pitcairn",
       "hu": "Pitcairn-szigetek"
-    }
+    },
+    "emoji": "🇵🇳"
   },
-  {
+  "PL": {
     "name": "Poland",
     "alpha2Code": "PL",
     "alpha3Code": "POL",
-    "callingCodes": ["48"],
+    "callingCodes": [
+      "48"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Polska",
     "flags": {
       "svg": "https://flagcdn.com/pl.svg",
@@ -7989,15 +8901,21 @@
       "ja": "ポーランド",
       "it": "Polonia",
       "hu": "Lengyelország"
-    }
+    },
+    "emoji": "🇵🇱"
   },
-  {
+  "PT": {
     "name": "Portugal",
     "alpha2Code": "PT",
     "alpha3Code": "PRT",
-    "callingCodes": ["351"],
+    "callingCodes": [
+      "351"
+    ],
     "region": "Europe",
-    "timezones": ["UTC-01:00", "UTC"],
+    "timezones": [
+      "UTC-01:00",
+      "UTC"
+    ],
     "nativeName": "Portugal",
     "flags": {
       "svg": "https://flagcdn.com/pt.svg",
@@ -8030,15 +8948,20 @@
       "ja": "ポルトガル",
       "it": "Portogallo",
       "hu": "Portugália"
-    }
+    },
+    "emoji": "🇵🇹"
   },
-  {
+  "PR": {
     "name": "Puerto Rico",
     "alpha2Code": "PR",
     "alpha3Code": "PRI",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Puerto Rico",
     "flags": {
       "svg": "https://flagcdn.com/pr.svg",
@@ -8077,15 +9000,20 @@
       "ja": "プエルトリコ",
       "it": "Porto Rico",
       "hu": "Puerto Rico"
-    }
+    },
+    "emoji": "🇵🇷"
   },
-  {
+  "QA": {
     "name": "Qatar",
     "alpha2Code": "QA",
     "alpha3Code": "QAT",
-    "callingCodes": ["974"],
+    "callingCodes": [
+      "974"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "قطر",
     "flags": {
       "svg": "https://flagcdn.com/qa.svg",
@@ -8118,15 +9046,20 @@
       "ja": "カタール",
       "it": "Qatar",
       "hu": "Katar"
-    }
+    },
+    "emoji": "🇶🇦"
   },
-  {
+  "XK": {
     "name": "Republic of Kosovo",
     "alpha2Code": "XK",
     "alpha3Code": "UNK",
-    "callingCodes": ["383"],
+    "callingCodes": [
+      "383"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Republika e Kosovës",
     "flags": {
       "svg": "https://flagcdn.com/xk.svg",
@@ -8165,15 +9098,20 @@
       "ja": "Republic of Kosovo",
       "it": "Republic of Kosovo",
       "hu": "Koszovó"
-    }
+    },
+    "emoji": "🇽🇰"
   },
-  {
+  "RE": {
     "name": "Réunion",
     "alpha2Code": "RE",
     "alpha3Code": "REU",
-    "callingCodes": ["262"],
+    "callingCodes": [
+      "262"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+04:00"],
+    "timezones": [
+      "UTC+04:00"
+    ],
     "nativeName": "La Réunion",
     "flags": {
       "svg": "https://flagcdn.com/re.svg",
@@ -8206,15 +9144,20 @@
       "ja": "レユニオン",
       "it": "Riunione",
       "hu": "Réunion"
-    }
+    },
+    "emoji": "🇷🇪"
   },
-  {
+  "RO": {
     "name": "Romania",
     "alpha2Code": "RO",
     "alpha3Code": "ROU",
-    "callingCodes": ["40"],
+    "callingCodes": [
+      "40"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "România",
     "flags": {
       "svg": "https://flagcdn.com/ro.svg",
@@ -8247,13 +9190,16 @@
       "ja": "ルーマニア",
       "it": "Romania",
       "hu": "Románia"
-    }
+    },
+    "emoji": "🇷🇴"
   },
-  {
+  "RU": {
     "name": "Russian Federation",
     "alpha2Code": "RU",
     "alpha3Code": "RUS",
-    "callingCodes": ["7"],
+    "callingCodes": [
+      "7"
+    ],
     "region": "Europe",
     "timezones": [
       "UTC+03:00",
@@ -8298,15 +9244,20 @@
       "ja": "ロシア連邦",
       "it": "Russia",
       "hu": "Oroszország"
-    }
+    },
+    "emoji": "🇷🇺"
   },
-  {
+  "RW": {
     "name": "Rwanda",
     "alpha2Code": "RW",
     "alpha3Code": "RWA",
-    "callingCodes": ["250"],
+    "callingCodes": [
+      "250"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Rwanda",
     "flags": {
       "svg": "https://flagcdn.com/rw.svg",
@@ -8351,15 +9302,20 @@
       "ja": "ルワンダ",
       "it": "Ruanda",
       "hu": "Ruanda"
-    }
+    },
+    "emoji": "🇷🇼"
   },
-  {
+  "BL": {
     "name": "Saint Barthélemy",
     "alpha2Code": "BL",
     "alpha3Code": "BLM",
-    "callingCodes": ["590"],
+    "callingCodes": [
+      "590"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Saint-Barthélemy",
     "flags": {
       "svg": "https://flagcdn.com/bl.svg",
@@ -8392,15 +9348,20 @@
       "ja": "サン・バルテルミー",
       "it": "Antille Francesi",
       "hu": "Saint-Barthélemy"
-    }
+    },
+    "emoji": "🇧🇱"
   },
-  {
+  "SH": {
     "name": "Saint Helena, Ascension and Tristan da Cunha",
     "alpha2Code": "SH",
     "alpha3Code": "SHN",
-    "callingCodes": ["290"],
+    "callingCodes": [
+      "290"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+00:00"],
+    "timezones": [
+      "UTC+00:00"
+    ],
     "nativeName": "Saint Helena",
     "flags": {
       "svg": "https://flagcdn.com/sh.svg",
@@ -8433,15 +9394,20 @@
       "ja": "セントヘレナ・アセンションおよびトリスタンダクーニャ",
       "it": "Sant'Elena",
       "hu": "Szent Ilona"
-    }
+    },
+    "emoji": "🇸🇭"
   },
-  {
+  "KN": {
     "name": "Saint Kitts and Nevis",
     "alpha2Code": "KN",
     "alpha3Code": "KNA",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Saint Kitts and Nevis",
     "flags": {
       "svg": "https://flagcdn.com/kn.svg",
@@ -8474,15 +9440,20 @@
       "ja": "セントクリストファー・ネイビス",
       "it": "Saint Kitts e Nevis",
       "hu": "Saint Kitts és Nevis"
-    }
+    },
+    "emoji": "🇰🇳"
   },
-  {
+  "LC": {
     "name": "Saint Lucia",
     "alpha2Code": "LC",
     "alpha3Code": "LCA",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Saint Lucia",
     "flags": {
       "svg": "https://flagcdn.com/lc.svg",
@@ -8515,15 +9486,20 @@
       "ja": "セントルシア",
       "it": "Santa Lucia",
       "hu": "Saint Lucia"
-    }
+    },
+    "emoji": "🇱🇨"
   },
-  {
+  "MF": {
     "name": "Saint Martin (French part)",
     "alpha2Code": "MF",
     "alpha3Code": "MAF",
-    "callingCodes": ["590"],
+    "callingCodes": [
+      "590"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Saint-Martin",
     "flags": {
       "svg": "https://flagcdn.com/mf.svg",
@@ -8568,15 +9544,20 @@
       "ja": "サン・マルタン（フランス領）",
       "it": "Saint Martin",
       "hu": "Saint-Martin"
-    }
+    },
+    "emoji": "🇲🇫"
   },
-  {
+  "PM": {
     "name": "Saint Pierre and Miquelon",
     "alpha2Code": "PM",
     "alpha3Code": "SPM",
-    "callingCodes": ["508"],
+    "callingCodes": [
+      "508"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-03:00"],
+    "timezones": [
+      "UTC-03:00"
+    ],
     "nativeName": "Saint-Pierre-et-Miquelon",
     "flags": {
       "svg": "https://flagcdn.com/pm.svg",
@@ -8609,15 +9590,20 @@
       "ja": "サンピエール島・ミクロン島",
       "it": "Saint-Pierre e Miquelon",
       "hu": "Saint-Pierre és Miquelon"
-    }
+    },
+    "emoji": "🇵🇲"
   },
-  {
+  "VC": {
     "name": "Saint Vincent and the Grenadines",
     "alpha2Code": "VC",
     "alpha3Code": "VCT",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Saint Vincent and the Grenadines",
     "flags": {
       "svg": "https://flagcdn.com/vc.svg",
@@ -8650,15 +9636,20 @@
       "ja": "セントビンセントおよびグレナディーン諸島",
       "it": "Saint Vincent e Grenadine",
       "hu": "Saint Vincent és a Grenadine-szigetek"
-    }
+    },
+    "emoji": "🇻🇨"
   },
-  {
+  "WS": {
     "name": "Samoa",
     "alpha2Code": "WS",
     "alpha3Code": "WSM",
-    "callingCodes": ["685"],
+    "callingCodes": [
+      "685"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+13:00"],
+    "timezones": [
+      "UTC+13:00"
+    ],
     "nativeName": "Samoa",
     "flags": {
       "svg": "https://flagcdn.com/ws.svg",
@@ -8697,15 +9688,20 @@
       "ja": "サモア",
       "it": "Samoa",
       "hu": "Szamoa"
-    }
+    },
+    "emoji": "🇼🇸"
   },
-  {
+  "SM": {
     "name": "San Marino",
     "alpha2Code": "SM",
     "alpha3Code": "SMR",
-    "callingCodes": ["378"],
+    "callingCodes": [
+      "378"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "San Marino",
     "flags": {
       "svg": "https://flagcdn.com/sm.svg",
@@ -8738,15 +9734,20 @@
       "ja": "サンマリノ",
       "it": "San Marino",
       "hu": "San Marino"
-    }
+    },
+    "emoji": "🇸🇲"
   },
-  {
+  "ST": {
     "name": "Sao Tome and Principe",
     "alpha2Code": "ST",
     "alpha3Code": "STP",
-    "callingCodes": ["239"],
+    "callingCodes": [
+      "239"
+    ],
     "region": "Africa",
-    "timezones": ["UTC"],
+    "timezones": [
+      "UTC"
+    ],
     "nativeName": "São Tomé e Príncipe",
     "flags": {
       "svg": "https://flagcdn.com/st.svg",
@@ -8779,15 +9780,20 @@
       "ja": "サントメ・プリンシペ",
       "it": "São Tomé e Príncipe",
       "hu": "São Tomé és Príncipe"
-    }
+    },
+    "emoji": "🇸🇹"
   },
-  {
+  "SA": {
     "name": "Saudi Arabia",
     "alpha2Code": "SA",
     "alpha3Code": "SAU",
-    "callingCodes": ["966"],
+    "callingCodes": [
+      "966"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "العربية السعودية",
     "flags": {
       "svg": "https://flagcdn.com/sa.svg",
@@ -8820,15 +9826,20 @@
       "ja": "サウジアラビア",
       "it": "Arabia Saudita",
       "hu": "Szaúd-Arábia"
-    }
+    },
+    "emoji": "🇸🇦"
   },
-  {
+  "SN": {
     "name": "Senegal",
     "alpha2Code": "SN",
     "alpha3Code": "SEN",
-    "callingCodes": ["221"],
+    "callingCodes": [
+      "221"
+    ],
     "region": "Africa",
-    "timezones": ["UTC"],
+    "timezones": [
+      "UTC"
+    ],
     "nativeName": "Sénégal",
     "flags": {
       "svg": "https://flagcdn.com/sn.svg",
@@ -8861,15 +9872,20 @@
       "ja": "セネガル",
       "it": "Senegal",
       "hu": "Szenegál"
-    }
+    },
+    "emoji": "🇸🇳"
   },
-  {
+  "RS": {
     "name": "Serbia",
     "alpha2Code": "RS",
     "alpha3Code": "SRB",
-    "callingCodes": ["381"],
+    "callingCodes": [
+      "381"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Србија",
     "flags": {
       "svg": "https://flagcdn.com/rs.svg",
@@ -8902,15 +9918,20 @@
       "ja": "セルビア",
       "it": "Serbia",
       "hu": "Szerbia"
-    }
+    },
+    "emoji": "🇷🇸"
   },
-  {
+  "SC": {
     "name": "Seychelles",
     "alpha2Code": "SC",
     "alpha3Code": "SYC",
-    "callingCodes": ["248"],
+    "callingCodes": [
+      "248"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+04:00"],
+    "timezones": [
+      "UTC+04:00"
+    ],
     "nativeName": "Seychelles",
     "flags": {
       "svg": "https://flagcdn.com/sc.svg",
@@ -8949,15 +9970,20 @@
       "ja": "セーシェル",
       "it": "Seychelles",
       "hu": "Seychelle-szigetek"
-    }
+    },
+    "emoji": "🇸🇨"
   },
-  {
+  "SL": {
     "name": "Sierra Leone",
     "alpha2Code": "SL",
     "alpha3Code": "SLE",
-    "callingCodes": ["232"],
+    "callingCodes": [
+      "232"
+    ],
     "region": "Africa",
-    "timezones": ["UTC"],
+    "timezones": [
+      "UTC"
+    ],
     "nativeName": "Sierra Leone",
     "flags": {
       "svg": "https://flagcdn.com/sl.svg",
@@ -8990,15 +10016,20 @@
       "ja": "シエラレオネ",
       "it": "Sierra Leone",
       "hu": "Sierra Leone"
-    }
+    },
+    "emoji": "🇸🇱"
   },
-  {
+  "SG": {
     "name": "Singapore",
     "alpha2Code": "SG",
     "alpha3Code": "SGP",
-    "callingCodes": ["65"],
+    "callingCodes": [
+      "65"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+08:00"],
+    "timezones": [
+      "UTC+08:00"
+    ],
     "nativeName": "Singapore",
     "flags": {
       "svg": "https://flagcdn.com/sg.svg",
@@ -9049,15 +10080,20 @@
       "ja": "シンガポール",
       "it": "Singapore",
       "hu": "Szingapúr"
-    }
+    },
+    "emoji": "🇸🇬"
   },
-  {
+  "SX": {
     "name": "Sint Maarten (Dutch part)",
     "alpha2Code": "SX",
     "alpha3Code": "SXM",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Sint Maarten",
     "flags": {
       "svg": "https://flagcdn.com/sx.svg",
@@ -9096,15 +10132,20 @@
       "ja": "Sint Maarten (Dutch part)",
       "it": "Saint Martin (parte olandese)",
       "hu": "Sint Maarten"
-    }
+    },
+    "emoji": "🇸🇽"
   },
-  {
+  "SK": {
     "name": "Slovakia",
     "alpha2Code": "SK",
     "alpha3Code": "SVK",
-    "callingCodes": ["421"],
+    "callingCodes": [
+      "421"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Slovensko",
     "flags": {
       "svg": "https://flagcdn.com/sk.svg",
@@ -9137,15 +10178,20 @@
       "ja": "スロバキア",
       "it": "Slovacchia",
       "hu": "Szlovákia"
-    }
+    },
+    "emoji": "🇸🇰"
   },
-  {
+  "SI": {
     "name": "Slovenia",
     "alpha2Code": "SI",
     "alpha3Code": "SVN",
-    "callingCodes": ["386"],
+    "callingCodes": [
+      "386"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Slovenija",
     "flags": {
       "svg": "https://flagcdn.com/si.svg",
@@ -9178,15 +10224,20 @@
       "ja": "スロベニア",
       "it": "Slovenia",
       "hu": "Szlovénia"
-    }
+    },
+    "emoji": "🇸🇮"
   },
-  {
+  "SB": {
     "name": "Solomon Islands",
     "alpha2Code": "SB",
     "alpha3Code": "SLB",
-    "callingCodes": ["677"],
+    "callingCodes": [
+      "677"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+11:00"],
+    "timezones": [
+      "UTC+11:00"
+    ],
     "nativeName": "Solomon Islands",
     "flags": {
       "svg": "https://flagcdn.com/sb.svg",
@@ -9219,15 +10270,20 @@
       "ja": "ソロモン諸島",
       "it": "Isole Salomone",
       "hu": "Salamon-szigetek"
-    }
+    },
+    "emoji": "🇸🇧"
   },
-  {
+  "SO": {
     "name": "Somalia",
     "alpha2Code": "SO",
     "alpha3Code": "SOM",
-    "callingCodes": ["252"],
+    "callingCodes": [
+      "252"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "Soomaaliya",
     "flags": {
       "svg": "https://flagcdn.com/so.svg",
@@ -9266,15 +10322,20 @@
       "ja": "ソマリア",
       "it": "Somalia",
       "hu": "Szomália"
-    }
+    },
+    "emoji": "🇸🇴"
   },
-  {
+  "ZA": {
     "name": "South Africa",
     "alpha2Code": "ZA",
     "alpha3Code": "ZAF",
-    "callingCodes": ["27"],
+    "callingCodes": [
+      "27"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "South Africa",
     "flags": {
       "svg": "https://flagcdn.com/za.svg",
@@ -9361,15 +10422,20 @@
       "ja": "南アフリカ",
       "it": "Sud Africa",
       "hu": "Dél-afrikai Köztársaság"
-    }
+    },
+    "emoji": "🇿🇦"
   },
-  {
+  "GS": {
     "name": "South Georgia and the South Sandwich Islands",
     "alpha2Code": "GS",
     "alpha3Code": "SGS",
-    "callingCodes": ["500"],
+    "callingCodes": [
+      "500"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-02:00"],
+    "timezones": [
+      "UTC-02:00"
+    ],
     "nativeName": "South Georgia",
     "flags": {
       "svg": "https://flagcdn.com/gs.svg",
@@ -9402,15 +10468,20 @@
       "ja": "サウスジョージア・サウスサンドウィッチ諸島",
       "it": "Georgia del Sud e Isole Sandwich Meridionali",
       "hu": "Déli-Georgia és Déli-Sandwich-szigetek"
-    }
+    },
+    "emoji": "🇬🇸"
   },
-  {
+  "KR": {
     "name": "Korea (Republic of)",
     "alpha2Code": "KR",
     "alpha3Code": "KOR",
-    "callingCodes": ["82"],
+    "callingCodes": [
+      "82"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+09:00"],
+    "timezones": [
+      "UTC+09:00"
+    ],
     "nativeName": "대한민국",
     "flags": {
       "svg": "https://flagcdn.com/kr.svg",
@@ -9443,15 +10514,21 @@
       "ja": "大韓民国",
       "it": "Corea del Sud",
       "hu": "Dél-Korea"
-    }
+    },
+    "emoji": "🇰🇷"
   },
-  {
+  "ES": {
     "name": "Spain",
     "alpha2Code": "ES",
     "alpha3Code": "ESP",
-    "callingCodes": ["34"],
+    "callingCodes": [
+      "34"
+    ],
     "region": "Europe",
-    "timezones": ["UTC", "UTC+01:00"],
+    "timezones": [
+      "UTC",
+      "UTC+01:00"
+    ],
     "nativeName": "España",
     "flags": {
       "svg": "https://flagcdn.com/es.svg",
@@ -9484,15 +10561,20 @@
       "ja": "スペイン",
       "it": "Spagna",
       "hu": "Spanyolország"
-    }
+    },
+    "emoji": "🇪🇸"
   },
-  {
+  "LK": {
     "name": "Sri Lanka",
     "alpha2Code": "LK",
     "alpha3Code": "LKA",
-    "callingCodes": ["94"],
+    "callingCodes": [
+      "94"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+05:30"],
+    "timezones": [
+      "UTC+05:30"
+    ],
     "nativeName": "śrī laṃkāva",
     "flags": {
       "svg": "https://flagcdn.com/lk.svg",
@@ -9531,15 +10613,20 @@
       "ja": "スリランカ",
       "it": "Sri Lanka",
       "hu": "Srí Lanka"
-    }
+    },
+    "emoji": "🇱🇰"
   },
-  {
+  "SD": {
     "name": "Sudan",
     "alpha2Code": "SD",
     "alpha3Code": "SDN",
-    "callingCodes": ["249"],
+    "callingCodes": [
+      "249"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "السودان",
     "flags": {
       "svg": "https://flagcdn.com/sd.svg",
@@ -9578,15 +10665,20 @@
       "ja": "スーダン",
       "it": "Sudan",
       "hu": "Szudán"
-    }
+    },
+    "emoji": "🇸🇩"
   },
-  {
+  "SS": {
     "name": "South Sudan",
     "alpha2Code": "SS",
     "alpha3Code": "SSD",
-    "callingCodes": ["211"],
+    "callingCodes": [
+      "211"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "South Sudan",
     "flags": {
       "svg": "https://flagcdn.com/ss.svg",
@@ -9619,15 +10711,20 @@
       "ja": "南スーダン",
       "it": "Sudan del sud",
       "hu": "Dél-Szudán"
-    }
+    },
+    "emoji": "🇸🇸"
   },
-  {
+  "SR": {
     "name": "Suriname",
     "alpha2Code": "SR",
     "alpha3Code": "SUR",
-    "callingCodes": ["597"],
+    "callingCodes": [
+      "597"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-03:00"],
+    "timezones": [
+      "UTC-03:00"
+    ],
     "nativeName": "Suriname",
     "flags": {
       "svg": "https://flagcdn.com/sr.svg",
@@ -9660,15 +10757,20 @@
       "ja": "スリナム",
       "it": "Suriname",
       "hu": "Suriname"
-    }
+    },
+    "emoji": "🇸🇷"
   },
-  {
+  "SJ": {
     "name": "Svalbard and Jan Mayen",
     "alpha2Code": "SJ",
     "alpha3Code": "SJM",
-    "callingCodes": ["47"],
+    "callingCodes": [
+      "47"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Svalbard og Jan Mayen",
     "flags": {
       "svg": "https://flagcdn.com/sj.svg",
@@ -9701,15 +10803,20 @@
       "ja": "スヴァールバル諸島およびヤンマイエン島",
       "it": "Svalbard e Jan Mayen",
       "hu": "Spitzbergák és Jan Mayen-szigetek"
-    }
+    },
+    "emoji": "🇸🇯"
   },
-  {
+  "SZ": {
     "name": "Swaziland",
     "alpha2Code": "SZ",
     "alpha3Code": "SWZ",
-    "callingCodes": ["268"],
+    "callingCodes": [
+      "268"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Swaziland",
     "flags": {
       "svg": "https://flagcdn.com/sz.svg",
@@ -9748,15 +10855,20 @@
       "ja": "スワジランド",
       "it": "Swaziland",
       "hu": "Szváziföld"
-    }
+    },
+    "emoji": "🇸🇿"
   },
-  {
+  "SE": {
     "name": "Sweden",
     "alpha2Code": "SE",
     "alpha3Code": "SWE",
-    "callingCodes": ["46"],
+    "callingCodes": [
+      "46"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Sverige",
     "flags": {
       "svg": "https://flagcdn.com/se.svg",
@@ -9789,15 +10901,20 @@
       "ja": "スウェーデン",
       "it": "Svezia",
       "hu": "Svédország"
-    }
+    },
+    "emoji": "🇸🇪"
   },
-  {
+  "CH": {
     "name": "Switzerland",
     "alpha2Code": "CH",
     "alpha3Code": "CHE",
-    "callingCodes": ["41"],
+    "callingCodes": [
+      "41"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "Schweiz",
     "flags": {
       "svg": "https://flagcdn.com/ch.svg",
@@ -9846,15 +10963,20 @@
       "ja": "スイス",
       "it": "Svizzera",
       "hu": "Svájc"
-    }
+    },
+    "emoji": "🇨🇭"
   },
-  {
+  "SY": {
     "name": "Syrian Arab Republic",
     "alpha2Code": "SY",
     "alpha3Code": "SYR",
-    "callingCodes": ["963"],
+    "callingCodes": [
+      "963"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "سوريا",
     "flags": {
       "svg": "https://flagcdn.com/sy.svg",
@@ -9887,15 +11009,20 @@
       "ja": "シリア・アラブ共和国",
       "it": "Siria",
       "hu": "Szíria"
-    }
+    },
+    "emoji": "🇸🇾"
   },
-  {
+  "TW": {
     "name": "Taiwan",
     "alpha2Code": "TW",
     "alpha3Code": "TWN",
-    "callingCodes": ["886"],
+    "callingCodes": [
+      "886"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+08:00"],
+    "timezones": [
+      "UTC+08:00"
+    ],
     "nativeName": "臺灣",
     "flags": {
       "svg": "https://flagcdn.com/tw.svg",
@@ -9928,15 +11055,20 @@
       "ja": "台湾（中華民国）",
       "it": "Taiwan",
       "hu": "Tajvan"
-    }
+    },
+    "emoji": "🇹🇼"
   },
-  {
+  "TJ": {
     "name": "Tajikistan",
     "alpha2Code": "TJ",
     "alpha3Code": "TJK",
-    "callingCodes": ["992"],
+    "callingCodes": [
+      "992"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+05:00"],
+    "timezones": [
+      "UTC+05:00"
+    ],
     "nativeName": "Тоҷикистон",
     "flags": {
       "svg": "https://flagcdn.com/tj.svg",
@@ -9975,15 +11107,20 @@
       "ja": "タジキスタン",
       "it": "Tagikistan",
       "hu": "Tádzsikisztán"
-    }
+    },
+    "emoji": "🇹🇯"
   },
-  {
+  "TZ": {
     "name": "Tanzania, United Republic of",
     "alpha2Code": "TZ",
     "alpha3Code": "TZA",
-    "callingCodes": ["255"],
+    "callingCodes": [
+      "255"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "Tanzania",
     "flags": {
       "svg": "https://flagcdn.com/tz.svg",
@@ -10022,15 +11159,20 @@
       "ja": "タンザニア",
       "it": "Tanzania",
       "hu": "Tanzánia"
-    }
+    },
+    "emoji": "🇹🇿"
   },
-  {
+  "TH": {
     "name": "Thailand",
     "alpha2Code": "TH",
     "alpha3Code": "THA",
-    "callingCodes": ["66"],
+    "callingCodes": [
+      "66"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+07:00"],
+    "timezones": [
+      "UTC+07:00"
+    ],
     "nativeName": "ประเทศไทย",
     "flags": {
       "svg": "https://flagcdn.com/th.svg",
@@ -10063,15 +11205,20 @@
       "ja": "タイ",
       "it": "Tailandia",
       "hu": "Thaiföld"
-    }
+    },
+    "emoji": "🇹🇭"
   },
-  {
+  "TL": {
     "name": "Timor-Leste",
     "alpha2Code": "TL",
     "alpha3Code": "TLS",
-    "callingCodes": ["670"],
+    "callingCodes": [
+      "670"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+09:00"],
+    "timezones": [
+      "UTC+09:00"
+    ],
     "nativeName": "Timor-Leste",
     "flags": {
       "svg": "https://flagcdn.com/tl.svg",
@@ -10104,15 +11251,20 @@
       "ja": "東ティモール",
       "it": "Timor Est",
       "hu": "Kelet-Timor"
-    }
+    },
+    "emoji": "🇹🇱"
   },
-  {
+  "TG": {
     "name": "Togo",
     "alpha2Code": "TG",
     "alpha3Code": "TGO",
-    "callingCodes": ["228"],
+    "callingCodes": [
+      "228"
+    ],
     "region": "Africa",
-    "timezones": ["UTC"],
+    "timezones": [
+      "UTC"
+    ],
     "nativeName": "Togo",
     "flags": {
       "svg": "https://flagcdn.com/tg.svg",
@@ -10145,15 +11297,20 @@
       "ja": "トーゴ",
       "it": "Togo",
       "hu": "Togo"
-    }
+    },
+    "emoji": "🇹🇬"
   },
-  {
+  "TK": {
     "name": "Tokelau",
     "alpha2Code": "TK",
     "alpha3Code": "TKL",
-    "callingCodes": ["690"],
+    "callingCodes": [
+      "690"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+13:00"],
+    "timezones": [
+      "UTC+13:00"
+    ],
     "nativeName": "Tokelau",
     "flags": {
       "svg": "https://flagcdn.com/tk.svg",
@@ -10186,15 +11343,20 @@
       "ja": "トケラウ",
       "it": "Isole Tokelau",
       "hu": "Tokelau-szigetek"
-    }
+    },
+    "emoji": "🇹🇰"
   },
-  {
+  "TO": {
     "name": "Tonga",
     "alpha2Code": "TO",
     "alpha3Code": "TON",
-    "callingCodes": ["676"],
+    "callingCodes": [
+      "676"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+13:00"],
+    "timezones": [
+      "UTC+13:00"
+    ],
     "nativeName": "Tonga",
     "flags": {
       "svg": "https://flagcdn.com/to.svg",
@@ -10233,15 +11395,20 @@
       "ja": "トンガ",
       "it": "Tonga",
       "hu": "Tonga"
-    }
+    },
+    "emoji": "🇹🇴"
   },
-  {
+  "TT": {
     "name": "Trinidad and Tobago",
     "alpha2Code": "TT",
     "alpha3Code": "TTO",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Trinidad and Tobago",
     "flags": {
       "svg": "https://flagcdn.com/tt.svg",
@@ -10274,15 +11441,20 @@
       "ja": "トリニダード・トバゴ",
       "it": "Trinidad e Tobago",
       "hu": "Trinidad és Tobago"
-    }
+    },
+    "emoji": "🇹🇹"
   },
-  {
+  "TN": {
     "name": "Tunisia",
     "alpha2Code": "TN",
     "alpha3Code": "TUN",
-    "callingCodes": ["216"],
+    "callingCodes": [
+      "216"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+01:00"],
+    "timezones": [
+      "UTC+01:00"
+    ],
     "nativeName": "تونس",
     "flags": {
       "svg": "https://flagcdn.com/tn.svg",
@@ -10315,15 +11487,20 @@
       "ja": "チュニジア",
       "it": "Tunisia",
       "hu": "Tunézia"
-    }
+    },
+    "emoji": "🇹🇳"
   },
-  {
+  "TR": {
     "name": "Turkey",
     "alpha2Code": "TR",
     "alpha3Code": "TUR",
-    "callingCodes": ["90"],
+    "callingCodes": [
+      "90"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "Türkiye",
     "flags": {
       "svg": "https://flagcdn.com/tr.svg",
@@ -10356,15 +11533,20 @@
       "ja": "トルコ",
       "it": "Turchia",
       "hu": "Törökország"
-    }
+    },
+    "emoji": "🇹🇷"
   },
-  {
+  "TM": {
     "name": "Turkmenistan",
     "alpha2Code": "TM",
     "alpha3Code": "TKM",
-    "callingCodes": ["993"],
+    "callingCodes": [
+      "993"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+05:00"],
+    "timezones": [
+      "UTC+05:00"
+    ],
     "nativeName": "Türkmenistan",
     "flags": {
       "svg": "https://flagcdn.com/tm.svg",
@@ -10403,15 +11585,20 @@
       "ja": "トルクメニスタン",
       "it": "Turkmenistan",
       "hu": "Türkmenisztán"
-    }
+    },
+    "emoji": "🇹🇲"
   },
-  {
+  "TC": {
     "name": "Turks and Caicos Islands",
     "alpha2Code": "TC",
     "alpha3Code": "TCA",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Turks and Caicos Islands",
     "flags": {
       "svg": "https://flagcdn.com/tc.svg",
@@ -10444,15 +11631,20 @@
       "ja": "タークス・カイコス諸島",
       "it": "Isole Turks e Caicos",
       "hu": "Turks- és Caicos-szigetek"
-    }
+    },
+    "emoji": "🇹🇨"
   },
-  {
+  "TV": {
     "name": "Tuvalu",
     "alpha2Code": "TV",
     "alpha3Code": "TUV",
-    "callingCodes": ["688"],
+    "callingCodes": [
+      "688"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+12:00"],
+    "timezones": [
+      "UTC+12:00"
+    ],
     "nativeName": "Tuvalu",
     "flags": {
       "svg": "https://flagcdn.com/tv.svg",
@@ -10490,15 +11682,20 @@
       "ja": "ツバル",
       "it": "Tuvalu",
       "hu": "Tuvalu"
-    }
+    },
+    "emoji": "🇹🇻"
   },
-  {
+  "UG": {
     "name": "Uganda",
     "alpha2Code": "UG",
     "alpha3Code": "UGA",
-    "callingCodes": ["256"],
+    "callingCodes": [
+      "256"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "Uganda",
     "flags": {
       "svg": "https://flagcdn.com/ug.svg",
@@ -10537,15 +11734,20 @@
       "ja": "ウガンダ",
       "it": "Uganda",
       "hu": "Uganda"
-    }
+    },
+    "emoji": "🇺🇬"
   },
-  {
+  "UA": {
     "name": "Ukraine",
     "alpha2Code": "UA",
     "alpha3Code": "UKR",
-    "callingCodes": ["380"],
+    "callingCodes": [
+      "380"
+    ],
     "region": "Europe",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Україна",
     "flags": {
       "svg": "https://flagcdn.com/ua.svg",
@@ -10578,15 +11780,20 @@
       "ja": "ウクライナ",
       "it": "Ucraina",
       "hu": "Ukrajna"
-    }
+    },
+    "emoji": "🇺🇦"
   },
-  {
+  "AE": {
     "name": "United Arab Emirates",
     "alpha2Code": "AE",
     "alpha3Code": "ARE",
-    "callingCodes": ["971"],
+    "callingCodes": [
+      "971"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+04:00"],
+    "timezones": [
+      "UTC+04:00"
+    ],
     "nativeName": "دولة الإمارات العربية المتحدة",
     "flags": {
       "svg": "https://flagcdn.com/ae.svg",
@@ -10619,13 +11826,16 @@
       "ja": "アラブ首長国連邦",
       "it": "Emirati Arabi Uniti",
       "hu": "Egyesült Arab Emírségek"
-    }
+    },
+    "emoji": "🇦🇪"
   },
-  {
+  "GB": {
     "name": "United Kingdom of Great Britain and Northern Ireland",
     "alpha2Code": "GB",
     "alpha3Code": "GBR",
-    "callingCodes": ["44"],
+    "callingCodes": [
+      "44"
+    ],
     "region": "Europe",
     "timezones": [
       "UTC-08:00",
@@ -10670,13 +11880,16 @@
       "ja": "イギリス",
       "it": "Regno Unito",
       "hu": "Nagy-Britannia"
-    }
+    },
+    "emoji": "🇬🇧"
   },
-  {
+  "US": {
     "name": "United States of America",
     "alpha2Code": "US",
     "alpha3Code": "USA",
-    "callingCodes": ["1"],
+    "callingCodes": [
+      "1"
+    ],
     "region": "Americas",
     "timezones": [
       "UTC-12:00",
@@ -10723,15 +11936,20 @@
       "ja": "アメリカ合衆国",
       "it": "Stati Uniti D'America",
       "hu": "Amerikai Egyesült Államok"
-    }
+    },
+    "emoji": "🇺🇸"
   },
-  {
+  "UY": {
     "name": "Uruguay",
     "alpha2Code": "UY",
     "alpha3Code": "URY",
-    "callingCodes": ["598"],
+    "callingCodes": [
+      "598"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-03:00"],
+    "timezones": [
+      "UTC-03:00"
+    ],
     "nativeName": "Uruguay",
     "flags": {
       "svg": "https://flagcdn.com/uy.svg",
@@ -10764,15 +11982,20 @@
       "ja": "ウルグアイ",
       "it": "Uruguay",
       "hu": "Uruguay"
-    }
+    },
+    "emoji": "🇺🇾"
   },
-  {
+  "UZ": {
     "name": "Uzbekistan",
     "alpha2Code": "UZ",
     "alpha3Code": "UZB",
-    "callingCodes": ["998"],
+    "callingCodes": [
+      "998"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+05:00"],
+    "timezones": [
+      "UTC+05:00"
+    ],
     "nativeName": "O‘zbekiston",
     "flags": {
       "svg": "https://flagcdn.com/uz.svg",
@@ -10811,15 +12034,20 @@
       "ja": "ウズベキスタン",
       "it": "Uzbekistan",
       "hu": "Üzbegisztán"
-    }
+    },
+    "emoji": "🇺🇿"
   },
-  {
+  "VU": {
     "name": "Vanuatu",
     "alpha2Code": "VU",
     "alpha3Code": "VUT",
-    "callingCodes": ["678"],
+    "callingCodes": [
+      "678"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+11:00"],
+    "timezones": [
+      "UTC+11:00"
+    ],
     "nativeName": "Vanuatu",
     "flags": {
       "svg": "https://flagcdn.com/vu.svg",
@@ -10864,15 +12092,20 @@
       "ja": "バヌアツ",
       "it": "Vanuatu",
       "hu": "Vanuatu"
-    }
+    },
+    "emoji": "🇻🇺"
   },
-  {
+  "VE": {
     "name": "Venezuela (Bolivarian Republic of)",
     "alpha2Code": "VE",
     "alpha3Code": "VEN",
-    "callingCodes": ["58"],
+    "callingCodes": [
+      "58"
+    ],
     "region": "Americas",
-    "timezones": ["UTC-04:00"],
+    "timezones": [
+      "UTC-04:00"
+    ],
     "nativeName": "Venezuela",
     "flags": {
       "svg": "https://flagcdn.com/ve.svg",
@@ -10905,15 +12138,20 @@
       "ja": "ベネズエラ・ボリバル共和国",
       "it": "Venezuela",
       "hu": "Venezuela"
-    }
+    },
+    "emoji": "🇻🇪"
   },
-  {
+  "VN": {
     "name": "Vietnam",
     "alpha2Code": "VN",
     "alpha3Code": "VNM",
-    "callingCodes": ["84"],
+    "callingCodes": [
+      "84"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+07:00"],
+    "timezones": [
+      "UTC+07:00"
+    ],
     "nativeName": "Việt Nam",
     "flags": {
       "svg": "https://flagcdn.com/vn.svg",
@@ -10946,15 +12184,20 @@
       "ja": "ベトナム",
       "it": "Vietnam",
       "hu": "Vietnám"
-    }
+    },
+    "emoji": "🇻🇳"
   },
-  {
+  "WF": {
     "name": "Wallis and Futuna",
     "alpha2Code": "WF",
     "alpha3Code": "WLF",
-    "callingCodes": ["681"],
+    "callingCodes": [
+      "681"
+    ],
     "region": "Oceania",
-    "timezones": ["UTC+12:00"],
+    "timezones": [
+      "UTC+12:00"
+    ],
     "nativeName": "Wallis et Futuna",
     "flags": {
       "svg": "https://flagcdn.com/wf.svg",
@@ -10987,15 +12230,20 @@
       "ja": "ウォリス・フツナ",
       "it": "Wallis e Futuna",
       "hu": "Wallis és Futuna"
-    }
+    },
+    "emoji": "🇼🇫"
   },
-  {
+  "EH": {
     "name": "Western Sahara",
     "alpha2Code": "EH",
     "alpha3Code": "ESH",
-    "callingCodes": ["212"],
+    "callingCodes": [
+      "212"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+00:00"],
+    "timezones": [
+      "UTC+00:00"
+    ],
     "nativeName": "الصحراء الغربية",
     "flags": {
       "svg": "https://flagcdn.com/eh.svg",
@@ -11033,15 +12281,20 @@
       "ja": "西サハラ",
       "it": "Sahara Occidentale",
       "hu": "Nyugat-Szahara"
-    }
+    },
+    "emoji": "🇪🇭"
   },
-  {
+  "YE": {
     "name": "Yemen",
     "alpha2Code": "YE",
     "alpha3Code": "YEM",
-    "callingCodes": ["967"],
+    "callingCodes": [
+      "967"
+    ],
     "region": "Asia",
-    "timezones": ["UTC+03:00"],
+    "timezones": [
+      "UTC+03:00"
+    ],
     "nativeName": "اليَمَن",
     "flags": {
       "svg": "https://flagcdn.com/ye.svg",
@@ -11074,15 +12327,20 @@
       "ja": "イエメン",
       "it": "Yemen",
       "hu": "Jemen"
-    }
+    },
+    "emoji": "🇾🇪"
   },
-  {
+  "ZM": {
     "name": "Zambia",
     "alpha2Code": "ZM",
     "alpha3Code": "ZMB",
-    "callingCodes": ["260"],
+    "callingCodes": [
+      "260"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Zambia",
     "flags": {
       "svg": "https://flagcdn.com/zm.svg",
@@ -11115,15 +12373,20 @@
       "ja": "ザンビア",
       "it": "Zambia",
       "hu": "Zambia"
-    }
+    },
+    "emoji": "🇿🇲"
   },
-  {
+  "ZW": {
     "name": "Zimbabwe",
     "alpha2Code": "ZW",
     "alpha3Code": "ZWE",
-    "callingCodes": ["263"],
+    "callingCodes": [
+      "263"
+    ],
     "region": "Africa",
-    "timezones": ["UTC+02:00"],
+    "timezones": [
+      "UTC+02:00"
+    ],
     "nativeName": "Zimbabwe",
     "flags": {
       "svg": "https://flagcdn.com/zw.svg",
@@ -11168,6 +12431,7 @@
       "ja": "ジンバブエ",
       "it": "Zimbabwe",
       "hu": "Zimbabwe"
-    }
+    },
+    "emoji": "🇿🇼"
   }
-]
+}
