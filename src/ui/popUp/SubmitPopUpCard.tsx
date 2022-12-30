@@ -1,20 +1,24 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TextStyle } from 'react-native'
 import { createThemedStyle } from '../../features/themed'
 import { useTheme } from '../../features/themed/hooks'
+import { ColorFn } from '../../features/themed/theme'
 import { PopUpModel } from '../../lib/componentsModels/popUp/model'
 import { useText } from '../../translations/hook'
 import { LangFn } from '../../translations/types'
 import Span from '../Span'
+import TextButton from '../buttons/Button.Text'
 import PresetButton from '../buttons/PresetButton'
 import { ButtonPresetName, getButtonPreset } from '../buttons/styles'
 import PopUpCard from './PopUpCard'
 
-type SubmitPopUpCardProps = {
+export type SubmitPopUpCardProps = {
   model: PopUpModel
   title: LangFn | string
   onClose?: () => void
   closeButtonLabel?: string | LangFn
+  closeButtonLabelStyle?: TextStyle | ColorFn<TextStyle>
+  headerStyle?: TextStyle
 } & (
   | {
       hideSubmit?: never
@@ -32,16 +36,18 @@ const SubmitPopUpCard = ({
   onSubmit,
   onClose,
   hideSubmit,
+  headerStyle,
+  closeButtonLabelStyle,
   closeButtonLabel,
 }: SubmitPopUpCardProps) => {
   const text = useText()
-  const { styles, theme } = useTheme(themedStyles)
+  const { styles, theme, colors } = useTheme(themedStyles)
 
   return (
     <PopUpCard style={styles.card} model={model}>
       <Span
         weight={600}
-        style={styles.header}
+        style={[styles.header, headerStyle]}
         label={typeof title === 'function' ? title(text) : title}
       />
       {!hideSubmit && (
@@ -55,8 +61,16 @@ const SubmitPopUpCard = ({
           }}
         />
       )}
-      <PresetButton
-        preset={getButtonPreset(theme, ButtonPresetName.WO_BORDER)}
+      <TextButton
+        style={{
+          label: [
+            styles.cancelButtonLabel,
+            typeof closeButtonLabelStyle === 'function'
+              ? closeButtonLabelStyle(colors)
+              : closeButtonLabelStyle,
+          ],
+          button: styles.cancelButton,
+        }}
         label={
           (typeof closeButtonLabel === 'function'
             ? closeButtonLabel(text)
@@ -85,7 +99,13 @@ const themedStyles = createThemedStyle((colors) =>
       textAlign: 'center',
     },
     submitButton: {
-      marginBottom: 9.5,
+      marginBottom: 14,
+    },
+    cancelButton: {
+      paddingHorizontal: 20,
+    },
+    cancelButtonLabel: {
+      color: colors.tipText,
     },
   })
 )

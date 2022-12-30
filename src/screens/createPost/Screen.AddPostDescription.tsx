@@ -6,6 +6,7 @@ import ImagePreviewFormField from '../../features/createPost/ImagePreviewFormFie
 import { createPostFormModel } from '../../features/createPost/model'
 import BlockUploadFromCamera from '../../features/imagePick/Block.UploadFromCamera'
 import PopUpLogOut from '../../features/popUp/PopUp.LogOut'
+import PopUpUnexpectedError from '../../features/popUp/PopUp.UnexpectedError'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
@@ -47,6 +48,7 @@ export default function AddPostDescriptionScreen({
   return (
     <View style={styles.common.container}>
       <PopUpLogOut />
+      <PopUpUnexpectedError />
       <ScreenHeader
         backAvailable
         title={text.description}
