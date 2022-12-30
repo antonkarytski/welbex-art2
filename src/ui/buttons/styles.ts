@@ -1,10 +1,12 @@
 import { StyleSheet } from 'react-native'
 import { createThemedPreset } from '../../features/themed/createThemedStyles'
+import { ColorThemes } from '../../features/themed/theme'
 import { PresetButtonStates } from './types'
 
 export enum ButtonPresetName {
   COMMON = 'COMMON',
   WHITE = 'WHITE',
+  WO_BORDER = 'WO_BORDER',
 }
 
 export const themedButtonPreset = createThemedPreset<
@@ -28,6 +30,23 @@ export const themedButtonPreset = createThemedPreset<
         border: colors.buttonLightBorderDisabled,
       },
     },
+    [ButtonPresetName.WO_BORDER]: {
+      common: {
+        background: 'transparent',
+        label: colors.buttonLightText,
+        border: 'transparent',
+      },
+      active: {
+        background: 'transparent',
+        label: colors.buttonLightTextPressed,
+        border: 'transparent',
+      },
+      disabled: {
+        background: 'transparent',
+        label: colors.buttonLightTextDisabled,
+        border: 'transparent',
+      },
+    },
     [ButtonPresetName.COMMON]: {
       common: {
         background: colors.button,
@@ -44,6 +63,14 @@ export const themedButtonPreset = createThemedPreset<
     },
   }
 })
+
+export function getButtonPreset(
+  theme: ColorThemes,
+  presetName: ButtonPresetName
+) {
+  const presets = themedButtonPreset(theme)
+  return presets[presetName]
+}
 
 export const buttonStyles = StyleSheet.create({
   button: {

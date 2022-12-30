@@ -3,7 +3,6 @@ import React, { ReactNode } from 'react'
 import {
   Animated,
   Dimensions,
-  Pressable,
   StyleProp,
   StyleSheet,
   TouchableOpacity,
@@ -31,7 +30,7 @@ const PopUpCard = React.memo<PopUpCardProps>(({ model, children, style }) => {
     <Animated.View style={[styles.overlay, opacityStyle]}>
       <TouchableOpacity
         onPress={model.hideSync}
-        activeOpacity={0.9}
+        activeOpacity={0.95}
         style={styles.overlayButton}
       />
       <View style={[styles.card, style]}>{children}</View>
@@ -48,6 +47,7 @@ const themedStyle = createThemedStyle((colors) =>
       width: '100%',
       zIndex: 100,
       justifyContent: 'center',
+      alignItems: 'center',
     },
     overlayButton: {
       flex: 1,
@@ -63,7 +63,6 @@ const themedStyle = createThemedStyle((colors) =>
       padding: 20,
       zIndex: 20,
       width: Dimensions.get('window').width - 40,
-      left: 20,
       alignSelf: 'center',
       position: 'absolute',
     },
