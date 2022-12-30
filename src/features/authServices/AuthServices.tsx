@@ -36,13 +36,12 @@ const AuthWithServices = ({
       <GoogleButton
         label={t.continueWithGoogle}
         onPress={onContinueWithGoogle}
-        style={styles.feature.button}
+        styles={{ button: styles.feature.button }}
         preset={styles.button}
       />
       <AppleButton
         onPress={onContinueWithApple}
         label={t.continueWithApple}
-        style={[styles.feature.lastButton]}
         preset={styles.button}
       />
     </View>

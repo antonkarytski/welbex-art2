@@ -19,12 +19,7 @@ const Overlay = ({ onPress, backgroundColor }: OverlayProps) => {
     <TouchableOpacity
       activeOpacity={1}
       onPress={onPress}
-      style={{
-        ...styles.overlay,
-        ...{
-          backgroundColor: defaults.backgroundColor,
-        },
-      }}
+      style={[styles.overlay, { backgroundColor: defaults.backgroundColor }]}
     />
   )
 }

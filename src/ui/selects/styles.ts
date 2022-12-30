@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 import { InputStyles } from '../input/styles'
 
-export const listStyles = StyleSheet.create({
+export const selectStyles = StyleSheet.create({
   item: {
     position: 'relative',
     paddingVertical: 20,
@@ -12,7 +12,7 @@ export const listStyles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#F2F4F4',
   },
-  list: {
+  listWrapper: {
     paddingHorizontal: 12,
     backgroundColor: '#fff',
   },
