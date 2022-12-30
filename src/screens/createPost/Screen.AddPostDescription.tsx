@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { createStateModel } from 'altek-toolkit'
 import { MOCK_CATEGORIES } from '../../_mock/categories'
 import ImagePreviewFormField from '../../features/createPost/ImagePreviewFormField'
 import { createPostFormModel } from '../../features/createPost/model'
 import BlockUploadFromCamera from '../../features/imagePick/Block.UploadFromCamera'
+import PopUpRecoverPassword from '../../features/popUp/PopUp.RecoverPassword'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
@@ -45,6 +46,7 @@ export default function AddPostDescriptionScreen({
 
   return (
     <View style={styles.common.container}>
+      <PopUpRecoverPassword />
       <ScreenHeader
         backAvailable
         title={text.description}
@@ -55,11 +57,20 @@ export default function AddPostDescriptionScreen({
         style={styles.common.scroll}
         contentContainerStyle={styles.common.scrollContent}
       >
-        <ImagePreviewFormField
-          name={'imageUri'}
-          formModel={createPostFormModel}
-          style={styles.common.image}
-        />
+        <TouchableOpacity
+          onPress={() =>
+            PopUpRecoverPassword.showSync({
+              props: { email: 'welbex@mail.ru' },
+            })
+          }
+        >
+          <ImagePreviewFormField
+            name={'imageUri'}
+            formModel={createPostFormModel}
+            style={styles.common.image}
+          />
+        </TouchableOpacity>
+
         <H3 style={styles.common.header} label={text.completeDescription} />
         <Field
           label={text.title}

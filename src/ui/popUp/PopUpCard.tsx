@@ -1,56 +1,71 @@
 import { useStore } from 'effector-react'
 import React, { ReactNode } from 'react'
-import { Animated, StyleSheet } from 'react-native'
+import {
+  Animated,
+  Dimensions,
+  Pressable,
+  StyleProp,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from 'react-native'
 import { createThemedStyle } from '../../features/themed'
 import { useTheme } from '../../features/themed/hooks'
-import { getMoveStyle } from '../../lib/componentsModels/popUp/helpers'
 import { PopUpModel } from '../../lib/componentsModels/popUp/model'
 
 export type PopUpCardProps = {
   model: PopUpModel
-  isClosable?: boolean
-  onPress?: () => void
   children: ReactNode
+  style?: StyleProp<ViewStyle>
 }
 
-const PopUpCard = React.memo<PopUpCardProps>(({ model, children }) => {
+const PopUpCard = React.memo<PopUpCardProps>(({ model, children, style }) => {
   const isMounted = useStore(model.$isMounted)
-  const { styles, colors } = useTheme(themedStyle)
-
-  const translateStyle = getMoveStyle(model.value)
+  const { styles } = useTheme(themedStyle)
   const opacityStyle = { opacity: model.value }
 
   if (!isMounted) return null
 
   return (
-    <Animated.View style={[styles.container, translateStyle, opacityStyle]}>
-      {children}
+    <Animated.View style={[styles.overlay, opacityStyle]}>
+      <TouchableOpacity
+        onPress={model.hideSync}
+        activeOpacity={0.9}
+        style={styles.overlayButton}
+      />
+      <View style={[styles.card, style]}>{children}</View>
     </Animated.View>
   )
 })
 
 const themedStyle = createThemedStyle((colors) =>
   StyleSheet.create({
-    container: {
+    overlay: {
       position: 'absolute',
+      height: '100%',
+      top: 0,
       width: '100%',
-      paddingHorizontal: 16,
-      top: 117,
+      zIndex: 100,
+      justifyContent: 'center',
+    },
+    overlayButton: {
+      flex: 1,
+      backgroundColor: colors.modalOverlay,
+      height: '100%',
+      width: '100%',
+      paddingHorizontal: 20,
+      zIndex: -1,
     },
     card: {
-      borderWidth: 1,
-      borderRadius: 10,
-      backgroundColor: colors.card,
-      paddingTop: 20,
-      paddingRight: 20,
-      paddingBottom: 18,
-      flexDirection: 'row',
-    },
-    iconBlock: { paddingLeft: 20 },
-    textBlock: { marginLeft: 12, flex: 1 },
-    title: { fontSize: 16, marginBottom: 8 },
-    text: {
-      color: colors.text,
+      backgroundColor: colors.screenBackground,
+      borderRadius: 20,
+      padding: 20,
+      zIndex: 20,
+      width: Dimensions.get('window').width - 40,
+      left: 20,
+      alignSelf: 'center',
+      position: 'absolute',
     },
   })
 )
