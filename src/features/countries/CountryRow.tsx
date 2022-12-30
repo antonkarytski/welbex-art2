@@ -8,18 +8,21 @@ type CountryRowProps = {
   item: Country
 }
 
-const CountryRow = ({ item }: CountryRowProps) => {
-  const { name, nativeName, alpha3Code, flags } = item
-  return (
-    <Row key={alpha3Code} style={styles.rowWrapper}>
-      <Image source={{ uri: flags.png }} style={styles.flag} />
-      <Span>{name}</Span>
-      {name !== nativeName && (
-        <Span style={styles.nativeName}>&#40;{nativeName}&#41;</Span>
-      )}
-    </Row>
-  )
-}
+const CountryRow = React.memo(
+  ({ item }: CountryRowProps) => {
+    const { name, nativeName, alpha3Code, flags } = item
+    return (
+      <Row key={alpha3Code} style={styles.rowWrapper}>
+        <Image source={{ uri: flags.png }} style={styles.flag} />
+        <Span>{name}</Span>
+        {name !== nativeName && (
+          <Span style={styles.nativeName}>&#40;{nativeName}&#41;</Span>
+        )}
+      </Row>
+    )
+  },
+  (prev, next) => JSON.stringify(prev) === JSON.stringify(next)
+)
 
 const styles = StyleSheet.create({
   rowWrapper: {

@@ -3,6 +3,7 @@ import {
   createEffect,
   createEvent,
   createStore,
+  merge,
   restore,
   sample,
 } from 'effector'
@@ -59,13 +60,7 @@ export const createSearchableListModel = <T extends Record<string, any>>(
   })
 
   sample({
-    clock: debounceSearch,
-    source: { searchString: $searchString, initialList: $initialList },
-    target: searchFx,
-  })
-
-  sample({
-    clock: setInitialList,
+    clock: merge([debounceSearch, setInitialList]),
     source: { searchString: $searchString, initialList: $initialList },
     target: searchFx,
   })

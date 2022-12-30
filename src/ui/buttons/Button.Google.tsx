@@ -1,36 +1,22 @@
 import React from 'react'
-import { StyleProp, StyleSheet, TextStyle, ViewStyle } from 'react-native'
-import { Fn } from '../../types'
+import { StyleSheet } from 'react-native'
 import Row from '../Row'
 import Span from '../Span'
 import GoogleIcon from '../icons/Icon.Google'
 import PresetButton from './PresetButton'
-import { PresetButtonStates } from './types'
+import { IconButtonProps } from './types'
 
-type GoogleButtonProps = {
-  label?: string
-  onPress: Fn
-  style?: StyleProp<ViewStyle>
-  styleIcon?: StyleProp<ViewStyle>
-  styleLabel?: StyleProp<TextStyle>
-  preset?: PresetButtonStates
-}
-
-const GoogleButton = ({
-  label,
-  onPress,
-  style,
-  styleIcon,
-  styleLabel,
-  preset,
-}: GoogleButtonProps) => {
+const GoogleButton = ({ label, onPress, styles, preset }: IconButtonProps) => {
   return (
-    <PresetButton onPress={onPress} style={style} preset={preset}>
+    <PresetButton onPress={onPress} style={styles?.button} preset={preset}>
       {() => (
-        <Row>
-          <GoogleIcon size={24} style={styleIcon} />
+        <Row style={styles?.row}>
+          <GoogleIcon size={24} style={styles?.icon} />
           {label && (
-            <Span label={label} style={[styles.labelMargin, styleLabel]} />
+            <Span
+              label={label}
+              style={[googleButtonStyles.labelMargin, styles?.label]}
+            />
           )}
         </Row>
       )}
@@ -38,7 +24,7 @@ const GoogleButton = ({
   )
 }
 
-const styles = StyleSheet.create({
+const googleButtonStyles = StyleSheet.create({
   labelMargin: {
     marginLeft: 12,
   },

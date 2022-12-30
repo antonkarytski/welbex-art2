@@ -33,12 +33,16 @@ const NewPasswordScreen = () => {
         style={styles.common.titleDescription}
         weight={400}
       />
-      <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
+      <KeyboardAvoidingView
+        behavior={IS_IOS ? 'padding' : 'height'}
+        style={styles.common.flexGrown}
+      >
         {/* <PasswordForm /> */}
         <PresetButton
           label={t.continue}
           onPress={onLogin}
           preset={styles.button}
+          style={styles.common.bottomButton}
         />
       </KeyboardAvoidingView>
     </AuthScreenContainer>
