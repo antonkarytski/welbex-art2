@@ -25,7 +25,10 @@ export const createThemedStylesWithMemo = <T extends NStyle<T>>(
   styleGenerator: CreateStyleFn<T>
 ): UseStyleFn<T> => {
   const memoizedStyles = createEmptyThemesList<T | NamedStyles<T>>()
-  return memoizedThemedListGetter(memoizedStyles, styleGenerator)
+  return memoizedThemedListGetter(
+    memoizedStyles,
+    styleGenerator
+  ) as UseStyleFn<T>
 }
 
 export const createThemedPreset = <P extends Record<string, any>>(

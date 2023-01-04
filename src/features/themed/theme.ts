@@ -12,7 +12,7 @@ export enum ColorThemes {
   LIGHT = 'LIGHT',
   DARK = 'DARK',
 }
-export type ColorFn = (structure: ColorThemeStructure) => string
+export type ColorFn<R = string> = (structure: ColorThemeStructure) => R
 
 const LIGHT = {
   whiteText: '#FFFFFF',

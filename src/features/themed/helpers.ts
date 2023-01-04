@@ -4,8 +4,10 @@ import { COLOR_THEMES, ColorThemeStructure, ColorThemes } from './theme'
 export const memoizedThemedListGetter = <L extends Record<ColorThemes, any>>(
   list: L,
   generator: (colors: ColorThemeStructure, theme: ColorThemes) => UnionFrom<L>
-) => {
-  return (theme: ColorThemes) => {
+): (<Theme extends ColorThemes>(
+  theme: ColorThemes
+) => Exclude<L[Theme], null>) => {
+  return (theme) => {
     return (
       list[theme] ||
       (() => {

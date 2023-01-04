@@ -37,7 +37,7 @@ const SignUp = () => {
         <TextButton
           label={t.logIn}
           onPress={onGoToLogIn}
-          styles={styles.textButton}
+          style={styles.textButton}
         />
       </Row>
     </AuthScreenContainer>

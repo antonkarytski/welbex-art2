@@ -60,6 +60,7 @@ export default function AddPostDescriptionScreen({
           formModel={createPostFormModel}
           style={styles.common.image}
         />
+
         <H3 style={styles.common.header} label={text.completeDescription} />
         <Field
           label={text.title}

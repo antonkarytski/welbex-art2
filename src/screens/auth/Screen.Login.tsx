@@ -37,7 +37,7 @@ export default function SignUp() {
         <TextButton
           label={t.createAccountButton}
           onPress={onGoToSignUp}
-          styles={styles.textButton}
+          style={styles.textButton}
         />
       </Row>
     </AuthScreenContainer>

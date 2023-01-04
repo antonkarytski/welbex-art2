@@ -44,7 +44,7 @@ const LogInForm = () => {
       <TextButton
         label={t.forgotPasswordQ}
         onPress={onForgotPassword}
-        styles={{ button: featureStyles.forgotPasswordButton }}
+        style={{ button: featureStyles.forgotPasswordButton }}
       />
       <Button label={t.logInButton} onPress={logIn} preset={styles.button} />
     </KeyboardAvoidingView>
