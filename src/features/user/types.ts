@@ -8,4 +8,8 @@ export type User = {
   age: number
 }
 
-export type UserFull = {}
+export type UserExt = User & {
+  following_count: number
+  followers_count: number
+  postsCount: number
+}

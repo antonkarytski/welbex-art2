@@ -1,30 +1,35 @@
+import { useStore } from 'effector-react'
 import React from 'react'
-import { TouchableOpacity, View } from 'react-native'
-import ProfileCountersBlock from '../../features/profile/ProfileCountersBlock'
-import ProfileHeader from '../../features/profile/ProfileHeader'
+import { StyleSheet, View } from 'react-native'
 import ProfileWorksTabs from '../../features/profile/ProfileWorksTabs'
-import { useNavigate } from '../../navigation'
-import { links } from '../../navigation/links'
-import Span from '../../ui/Span'
+import UserScreenHeader from '../../features/profile/UserScreenHeader'
+import { $userProfile } from '../../features/profile/model'
+import UserCountersBlock from '../../features/user/UserCountersBlock'
+import { useText } from '../../translations/hook'
 
 const ProfileScreen = () => {
-  const navigate = useNavigate()
+  const text = useText()
+  const profile = useStore($userProfile)
 
   return (
-    <View style={{ flex: 1 }}>
-      <ProfileHeader />
-      <ProfileCountersBlock
-        style={{
-          marginTop: 32,
-        }}
-      />
-      <ProfileWorksTabs
-        style={{
-          marginTop: 20,
-        }}
-      />
+    <View style={styles.container}>
+      <UserScreenHeader item={profile} label={text.myProfile} />
+      <UserCountersBlock style={styles.countersBlock} item={profile} />
+      <ProfileWorksTabs style={styles.tabs} />
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  countersBlock: {
+    marginTop: 32,
+  },
+  tabs: {
+    marginTop: 20,
+  },
+})
 
 export default ProfileScreen
