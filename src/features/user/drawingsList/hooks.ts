@@ -1,12 +1,7 @@
 import { useCallback, useRef, useState } from 'react'
 import { Drawing } from '../../drawing/types'
-import {
-  GetUserDrawingsListRequestResult,
-  getUserDrawingsList,
-} from '../request.drawingList'
+import { getUserDrawingsList } from '../request.drawingList'
 import { User, UserDrawingListType } from '../types'
-
-type DrawingsListGetter = () => Promise<GetUserDrawingsListRequestResult>
 
 export function useDrawingsList(item: User, type: UserDrawingListType) {
   const [list, setList] = useState<Drawing[]>([])
@@ -33,7 +28,7 @@ export function useDrawingsList(item: User, type: UserDrawingListType) {
 
   return [list, getFirstPage, getNextPage] as [
     Drawing[],
-    DrawingsListGetter,
-    DrawingsListGetter
+    () => void,
+    () => void
   ]
 }

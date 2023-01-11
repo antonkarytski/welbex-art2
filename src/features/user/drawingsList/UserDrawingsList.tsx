@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { noop } from '../../../lib/helpers'
 import DrawingsList from '../../drawing/DrawingsList'
 import { User, UserDrawingListType } from '../types'
 import { useDrawingsList } from './hooks'
@@ -16,7 +15,7 @@ const UserDrawingsList = ({ item, type }: UserDrawingsListProps) => {
   const [list, getFirst, getNext] = useDrawingsList(item, type)
 
   useEffect(() => {
-    getFirst().catch(noop)
+    getFirst()
   }, [getFirst])
 
   return <DrawingsList onEndReach={getNext} data={list} />
