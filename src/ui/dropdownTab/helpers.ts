@@ -9,9 +9,5 @@ export const calculateDropdownHeight = (dropdownStyle?: ViewStyle) => {
     typeof dropdownStyle?.height === 'number'
       ? dropdownStyle.height
       : DEFAULT_DROPDOWN_HEIGHT
-  console.log(
-    ' customHeight < DROPDOWN_MAX_HEIGHT ',
-    customHeight < DROPDOWN_MAX_HEIGHT
-  )
   return customHeight < DROPDOWN_MAX_HEIGHT ? customHeight : DROPDOWN_MAX_HEIGHT
 }

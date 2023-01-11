@@ -5,11 +5,11 @@ import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import WideScreenHeader from '../../navigation/elements/WideScreenHeader'
 import { ScreenHeaderStyles } from '../../navigation/elements/styles'
 import { useText } from '../../translations/hook'
+import { $userProfile } from '../profile/model'
 import { createThemedStyle } from '../themed'
 import { useThemedStyle } from '../themed/hooks'
-import UserAvatar from '../user/UserAvatar'
-import { User } from '../user/types'
-import { $userProfile } from './model'
+import UserAvatar from './UserAvatar'
+import { User } from './types'
 
 type UserScreenHeaderProps = {
   item: User

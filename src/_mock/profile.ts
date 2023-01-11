@@ -1,4 +1,5 @@
 import { UserProfile } from '../features/profile/types'
+import { createRandomGallery } from './drawings'
 import { romanov } from './users'
 
 export const MOCK_PROFILE_WELBEX: UserProfile = {

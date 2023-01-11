@@ -6,16 +6,16 @@ import { useThemedStyle } from '../../themed/hooks'
 import ActiveLineTint from './ActiveLineTint'
 import TabMenuButtons from './TabMenuButtons'
 
-type ProfileTabMenuProps = SceneRendererProps & {
+type UserDrawingsTabMenuProps = SceneRendererProps & {
   routes: { key: string; title: string }[]
 }
 
-const ProfileTabMenu = ({
+const UserDrawingsTabMenu = ({
   jumpTo,
   position,
   layout,
   routes,
-}: ProfileTabMenuProps) => {
+}: UserDrawingsTabMenuProps) => {
   const styles = useThemedStyle(themedStyles)
 
   return (
@@ -53,4 +53,4 @@ const themedStyles = createThemedStyle((colors) =>
   })
 )
 
-export default ProfileTabMenu
+export default UserDrawingsTabMenu

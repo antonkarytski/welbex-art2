@@ -10,6 +10,8 @@ export const cat = createDrawing({
   user: romanov,
   likesCount: 110,
   name: 'Koshechka',
+  isLiked: false,
+  isSaved: false,
 })
 
 export const nature = createDrawing({
@@ -18,6 +20,8 @@ export const nature = createDrawing({
   user: romanov,
   likesCount: 110,
   name: 'Priroda Priroda',
+  isLiked: false,
+  isSaved: false,
 })
 
 export const stones = createDrawing({
@@ -26,6 +30,8 @@ export const stones = createDrawing({
   user: romanov,
   likesCount: 110,
   name: 'Kamushki',
+  isLiked: false,
+  isSaved: false,
 })
 
 export const sunrise = createDrawing({
@@ -34,24 +40,34 @@ export const sunrise = createDrawing({
   user: romanov,
   likesCount: 110,
   name: 'Voshod Voshod Voshod Voshod Voshod Voshod',
+  isLiked: false,
+  isSaved: false,
 })
 
 const drawingsSet = [cat, nature, stones, sunrise]
 
-export const createRandomDrawing = (idModifier: string | number = '') => {
+export const createRandomDrawing = (
+  idModifier: string | number = '',
+  mod?: Partial<Drawing>
+) => {
   const randomIndex = getRandomBetween(0, drawingsSet.length - 1)
   const drawing = drawingsSet[randomIndex]
   return {
     ...drawing,
     likesCount: getRandomBetween(0, 1000),
     id: `${drawing.id}${idModifier}`,
+    ...mod,
   }
 }
 
-export const createRandomGallery = (galleryId: string, size = 10) => {
+export const createRandomGallery = (
+  galleryId: string,
+  size = 10,
+  mod?: Partial<Drawing>
+) => {
   return Array(size)
     .fill(null)
-    .map((_, index) => createRandomDrawing(`${index}${galleryId}`))
+    .map((_, index) => createRandomDrawing(`${index}${galleryId}`, mod))
 }
 
 export const MOCK_RANDOM_DRAWINGS = createRandomGallery('randomStone')
