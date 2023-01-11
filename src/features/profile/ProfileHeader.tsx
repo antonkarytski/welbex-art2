@@ -13,10 +13,11 @@ const ProfileHeader = ({}: ProfileHeaderProps) => {
   const colors = useColors()
 
   return (
-    <View>
+    <View style={{ marginBottom: -56 }}>
       <View
         style={{
           backgroundColor: colors.primary1,
+          paddingBottom: 80,
         }}
       >
         <ScreenHeader
@@ -30,23 +31,17 @@ const ProfileHeader = ({}: ProfileHeaderProps) => {
           }}
           title={text.myProfile}
         />
-        <View
-          style={{
-            height: 80,
-          }}
-        >
-          <ProfileAvatar
-            style={{
-              transform: [{ translateY: 24 }],
-              alignSelf: 'center',
-            }}
-            avatarStyle={{
-              borderColor: colors.primary1,
-            }}
-            ageTextGenerator={localeAgeTextFull(text)}
-          />
-        </View>
       </View>
+      <ProfileAvatar
+        style={{
+          transform: [{ translateY: -56 }],
+          alignSelf: 'center',
+        }}
+        avatarStyle={{
+          borderColor: colors.primary1,
+        }}
+        ageTextGenerator={localeAgeTextFull(text)}
+      />
     </View>
   )
 }
