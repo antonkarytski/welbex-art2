@@ -11,13 +11,9 @@ import Span from '../../ui/Span'
 import { useColors } from '../themed'
 
 type ProfileWorksTabsProps = {}
-const FirstRoute = () => (
-  <View style={{ flex: 1, backgroundColor: '#ff4081' }} />
-)
+const FirstRoute = () => <View style={{ flex: 1 }} />
 
-const SecondRoute = () => (
-  <View style={{ flex: 1, backgroundColor: '#673ab7' }} />
-)
+const SecondRoute = () => <View style={{ flex: 1 }} />
 
 const renderScene = SceneMap({
   first: FirstRoute,
@@ -38,6 +34,7 @@ const ProfileWorksTabs = ({}: ProfileWorksTabsProps) => {
     <TabView
       style={{
         marginTop: 20,
+        paddingHorizontal: 20,
       }}
       renderTabBar={({ position, jumpTo, layout, navigationState }) => {
         return (
@@ -59,7 +56,14 @@ const ProfileWorksTabs = ({}: ProfileWorksTabsProps) => {
                     }}
                     key={key}
                   >
-                    <Span label={title} />
+                    <Span
+                      weight={500}
+                      style={{
+                        fontSize: 18,
+                        color: colors.profileTabText,
+                      }}
+                      label={title}
+                    />
                   </TouchableOpacity>
                 )
               })}
@@ -74,16 +78,17 @@ const ProfileWorksTabs = ({}: ProfileWorksTabsProps) => {
               <Animated.View
                 style={{
                   left: 0,
+                  top: 0,
                   position: 'absolute',
                   width: '50%',
-                  backgroundColor: 'black',
-                  height: 6,
+                  backgroundColor: colors.tabsSelectedTint,
+                  height: 1,
                   transform: [
                     {
                       translateX: animationInterpolate(
                         position,
                         [0, 1],
-                        [0, layout.width / 2]
+                        [0, (layout.width - 40) / 2]
                       ),
                     },
                   ],

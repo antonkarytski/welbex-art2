@@ -37,10 +37,6 @@ const ProfileHeader = ({}: ProfileHeaderProps) => {
           transform: [{ translateY: -56 }],
           alignSelf: 'center',
         }}
-        avatarStyle={{
-          borderColor: colors.primary1,
-        }}
-        ageTextGenerator={localeAgeTextFull(text)}
       />
     </View>
   )

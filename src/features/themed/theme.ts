@@ -39,6 +39,7 @@ const LIGHT = {
   tabsLine: '#DDDDDD',
   tabsSelectedTint: '#242424',
   profileTabLine: '#E1E1E1',
+  profileTabText: '#BABABA',
   /** Common */
   appHeaderTextLight: COMMON.WHITE,
   appHeaderBorderLight: GREEN_BLUE.MEDIUM_LIGHT,
@@ -122,6 +123,7 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   tabsLine: '#DDDDDD',
   tabsSelectedTint: '#242424',
   profileTabLine: '#E1E1E1',
+  profileTabText: '#BABABA',
   /** Common */
   appHeaderTextLight: COMMON.WHITE,
   appHeaderBorderLight: GREEN_BLUE.MEDIUM_LIGHT,

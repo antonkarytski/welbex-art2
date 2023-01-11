@@ -7,3 +7,5 @@ export type User = {
   country: CountryCode
   age: number
 }
+
+export type UserFull = {}
