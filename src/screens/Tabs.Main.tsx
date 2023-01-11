@@ -57,14 +57,6 @@ const MainTabsRouter = React.memo(() => {
       })}
     </BottomTab.Navigator>
   )
-
-  // return (
-  //   <BottomTab.Navigator>
-  //     <BottomTab.Screen name={links.gallery} component={GalleryRouter} />
-  //     <BottomTab.Screen name={links.createPost} component={CreatePostRouter} />
-  //     <BottomTab.Screen name={links.profile} component={ProfileRouter} />
-  //   </BottomTab.Navigator>
-  // )
 })
 
 export default MainTabsRouter

@@ -17,6 +17,7 @@ export const EN = {
   to: 'to',
   no: 'No',
   or: 'or',
+  atAge: 'at',
   get: 'Get',
   tryAgain: 'Try again',
   update: 'Update',

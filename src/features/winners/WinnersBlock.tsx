@@ -55,7 +55,7 @@ const WinnersBlock = () => {
 const headerStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     title: {
-      color: '#FFF',
+      color: colors.whiteText,
     },
   })
 )

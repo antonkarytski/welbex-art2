@@ -3,9 +3,11 @@ import { FlatList, StyleSheet } from 'react-native'
 import { noop } from '../../lib/helpers'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
+import { useText } from '../../translations/hook'
 import { drawingKeyExtractor } from '../drawing/helpers'
 import { Drawing } from '../drawing/types'
 import { useThemedStyleList } from '../themed/hooks'
+import { localeAgeTextShort } from '../user/UserDescription'
 import GalleryItem from './GalleryItem'
 import { useGallery } from './hooks'
 import { getGalleryNextPageRequest } from './request'
@@ -22,6 +24,7 @@ const GalleryList = ({ type }: GalleryListProps) => {
   const { styles } = useThemedStyleList({
     item: galleryItemThemedStyles,
   })
+  const text = useText()
 
   const renderItem = useCallback(
     ({ item }: { item: Drawing }) => {
@@ -30,12 +33,13 @@ const GalleryList = ({ type }: GalleryListProps) => {
           onPress={(drawing) =>
             navigate(links.galleryDrawingDetails, { item: drawing })
           }
+          ageTextGenerator={localeAgeTextShort(text)}
           style={styles.item}
           item={item}
         />
       )
     },
-    [styles, navigate]
+    [styles, navigate, text]
   )
 
   const getNextPage = useCallback(() => {

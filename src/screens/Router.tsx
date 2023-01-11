@@ -6,6 +6,7 @@ import StackNavigator, { Stack } from '../navigation/elements/StackNavigator'
 import { links } from '../navigation/links'
 import MainTabsRouter from './Tabs.Main'
 import AuthScreenRouter from './auth/Router.Auth'
+import EditProfileScreen from './profile/Screen.EditProfile'
 
 const Router = React.memo(() => {
   const isAuth = useStore($isAuth)
@@ -22,6 +23,7 @@ const Router = React.memo(() => {
         <Stack.Screen name={links.authRouter} component={AuthScreenRouter} />
       )}
       <Stack.Screen name={links.mainTabs} component={MainTabsRouter} />
+      <Stack.Screen name={links.editProfile} component={EditProfileScreen} />
     </StackNavigator>
   )
 })

@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Image,
   ImageSourcePropType,
+  StyleProp,
   StyleSheet,
   View,
   ViewStyle,
@@ -11,7 +12,7 @@ type AvatarProps = {
   size?: number
   borderSize?: number
   src: ImageSourcePropType
-  style?: ViewStyle
+  style?: StyleProp<ViewStyle>
 }
 
 const DEFAULT_BORDER_SIZE = 2

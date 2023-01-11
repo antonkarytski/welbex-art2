@@ -19,6 +19,7 @@ export const RU: LangStructure = {
   or: 'или',
   from: 'от',
   to: 'к',
+  atAge: '',
   get: 'Получить',
   tryAgain: 'Попробовать снова',
   update: 'Обновить',
