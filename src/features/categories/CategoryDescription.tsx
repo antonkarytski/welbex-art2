@@ -26,10 +26,10 @@ const CategoryDescription = ({ item }: CategoryDescriptionProps) => {
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     container: {
-      marginTop: 12,
       marginBottom: 8,
     },
     header: {
+      marginTop: 0,
       color: colors.text,
     },
     text: {

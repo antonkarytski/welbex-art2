@@ -4,7 +4,7 @@ import { useText } from '../../translations/hook'
 import Avatar from '../../ui/Avatar'
 import { createThemedStyle } from '../themed'
 import { useThemedStyle } from '../themed/hooks'
-import UserDescription, { localeAgeTextShort } from './UserDescription'
+import UserDescription, { localeAgeTextFull } from './UserDescription'
 import { User } from './types'
 
 type UserAvatarProps = {
@@ -22,7 +22,7 @@ const UserAvatar = ({ item, style }: UserAvatarProps) => {
       <UserDescription
         style={styles}
         hideSeparator
-        ageTextGenerator={localeAgeTextShort(text)}
+        ageTextGenerator={localeAgeTextFull(text)}
         item={item}
       />
     </View>

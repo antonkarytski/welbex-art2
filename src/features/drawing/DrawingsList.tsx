@@ -17,7 +17,7 @@ import { Drawing } from './types'
 
 type DrawingsListProps = {
   data: Drawing[]
-  ListHeader: ReactElement
+  ListHeader?: ReactElement
 }
 
 const PADDING_SIZE = 20
@@ -80,6 +80,7 @@ const themedStyles = createThemedStyle((colors) =>
     },
     itemContainer: themedShadow5Style(colors),
     listContentContainer: {
+      paddingVertical: 24,
       paddingHorizontal: PADDING_SIZE,
     },
   })

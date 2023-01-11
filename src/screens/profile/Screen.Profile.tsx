@@ -18,7 +18,11 @@ const ProfileScreen = () => {
           marginTop: 32,
         }}
       />
-      <ProfileWorksTabs />
+      <ProfileWorksTabs
+        style={{
+          marginTop: 20,
+        }}
+      />
     </View>
   )
 }
