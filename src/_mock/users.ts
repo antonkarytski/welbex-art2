@@ -29,3 +29,5 @@ export const reginaRomanovaFull: UserExt = {
   followers_count: 100,
   postsCount: 60,
 }
+
+export const USERS_FULL = [romanovFull, reginaRomanovaFull]

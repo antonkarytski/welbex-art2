@@ -6,6 +6,7 @@ import AutoHeightImage from '../features/images/AutoHeightImage'
 import { createThemedStyle } from '../features/themed'
 import { useThemedStyleList } from '../features/themed/hooks'
 import UserCardPreview from '../features/user/UserCardPreview'
+import { useNavigate } from '../navigation'
 import AppHeader from '../navigation/elements/AppHeader'
 import { ScreenHeaderStyles } from '../navigation/elements/styles'
 import { links } from '../navigation/links'
@@ -20,6 +21,7 @@ const DrawingDetailsScreen = ({
   ScreensProps,
   links.drawingDetails | links.galleryDrawingDetails
 >) => {
+  const navigate = useNavigate()
   const drawing = route.params.item
   const text = useText()
   const { styles } = useThemedStyleList({
@@ -32,7 +34,12 @@ const DrawingDetailsScreen = ({
       <AppHeader style={styles.header} />
 
       <ScrollView bounces={false} style={styles.common.contentContainer}>
-        <UserCardPreview item={drawing.user} />
+        <UserCardPreview
+          onAvatarPress={(item) => {
+            navigate(links.userProfile, { item })
+          }}
+          item={drawing.user}
+        />
         <AutoHeightImage
           image={drawing.image}
           widthGenerator={() => {

@@ -6,13 +6,15 @@ import { ScreenHeaderStyles } from './styles'
 type WideScreenHeaderProps = {
   style?: ScreenHeaderStyles
   label: string
+  backAvailable?: boolean
 }
 
 const WideScreenHeader = React.memo(
-  ({ style, label }: WideScreenHeaderProps) => {
+  ({ style, label, backAvailable }: WideScreenHeaderProps) => {
     return (
       <View style={[styles.container, style?.container]}>
         <ScreenHeader
+          backAvailable={backAvailable}
           style={{
             title: style?.title,
             line: style?.line,

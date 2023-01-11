@@ -15,9 +15,10 @@ import { User } from './types'
 
 type UserCardPreviewProps = {
   item: User
+  onAvatarPress?: (item: User) => void
 }
 
-const UserCardPreview = ({ item }: UserCardPreviewProps) => {
+const UserCardPreview = ({ item, onAvatarPress }: UserCardPreviewProps) => {
   const text = useText()
   const { styles, theme } = useThemedStyleList({
     common: themedStyles,
@@ -26,7 +27,11 @@ const UserCardPreview = ({ item }: UserCardPreviewProps) => {
 
   return (
     <View style={styles.common.container}>
-      <Avatar style={styles.common.avatar} src={item.avatar} />
+      <Avatar
+        onPress={() => onAvatarPress?.(item)}
+        style={styles.common.avatar}
+        src={item.avatar}
+      />
       <UserDescription
         ageTextGenerator={localeAgeTextShort(text)}
         style={styles.description}

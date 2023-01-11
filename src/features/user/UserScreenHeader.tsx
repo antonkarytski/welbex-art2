@@ -14,17 +14,21 @@ import { User } from './types'
 type UserScreenHeaderProps = {
   item: User
   label: string
+  backAvailable?: boolean
 }
 
 const UserScreenHeader = React.memo(
-  ({ item, label }: UserScreenHeaderProps) => {
+  ({ item, label, backAvailable }: UserScreenHeaderProps) => {
     const headerStyles = useThemedStyle(headerThemedStyles)
-    const user = useStore($userProfile)
 
     return (
       <View style={styles.container}>
-        <WideScreenHeader style={headerStyles} label={label} />
-        <UserAvatar style={styles.avatar} item={user} />
+        <WideScreenHeader
+          backAvailable={backAvailable}
+          style={headerStyles}
+          label={label}
+        />
+        <UserAvatar style={styles.avatar} item={item} />
       </View>
     )
   }
