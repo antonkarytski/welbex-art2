@@ -3,8 +3,8 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { $userProfile } from '../../features/profile/model'
 import UserCountersBlock from '../../features/user/UserCountersBlock'
-import UserDrawingsListTabs from '../../features/user/UserDrawingsListTabs'
 import UserScreenHeader from '../../features/user/UserScreenHeader'
+import UserDrawingsListTabs from '../../features/user/drawingsList/UserDrawingsListTabs'
 import { useText } from '../../translations/hook'
 
 const ProfileScreen = () => {
@@ -14,7 +14,7 @@ const ProfileScreen = () => {
   return (
     <View style={styles.container}>
       <UserScreenHeader item={profile} label={text.myProfile} />
-      <UserCountersBlock style={styles.countersBlock} item={profile} />
+      <UserCountersBlock item={profile} style={styles.countersBlock} />
       <UserDrawingsListTabs item={profile} style={styles.tabs} />
     </View>
   )

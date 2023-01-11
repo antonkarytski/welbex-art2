@@ -2,10 +2,10 @@ import React, { useCallback, useMemo } from 'react'
 import { StyleProp, ViewStyle, useWindowDimensions } from 'react-native'
 import { SceneMap, TabView } from 'react-native-tab-view'
 import { SceneRendererProps } from 'react-native-tab-view/lib/typescript/src/types'
-import { useText } from '../../translations/hook'
+import { useText } from '../../../translations/hook'
+import UserDrawingsTabMenu from '../tabMenu/UserDrawingsTabMenu'
+import { UserDrawingListType, UserExt } from '../types'
 import UserDrawingsList from './UserDrawingsList'
-import UserDrawingsTabMenu from './tabMenu/UserDrawingsTabMenu'
-import { UserDrawingListType, UserExt } from './types'
 
 type UserDrawingsListTabsProps = {
   item: UserExt
