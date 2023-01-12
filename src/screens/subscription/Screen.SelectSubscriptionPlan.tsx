@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import PlanSelectBlock from '../../features/subscriptionPlans/PlanSelectBlock'
 import SubscriptionBenefitsBlock from '../../features/subscriptionPlans/SubscriptionBenefitsBlock'
 import { subscriptionBenefitsBlockThemedStyles } from '../../features/subscriptionPlans/styles'
 import { createThemedStyle, useColors } from '../../features/themed'
@@ -24,6 +25,7 @@ const SelectSubscriptionPlanScreen = () => {
           <SubscriptionBenefitsBlock style={styles.benefitsList} />
         </View>
       </View>
+      <PlanSelectBlock />
     </View>
   )
 }
