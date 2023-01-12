@@ -36,7 +36,7 @@ export enum links {
   notifications = 'notifications',
   deleteAccount = 'deleteAccount',
   subscriptionOptions = 'subscriptionOptions',
-  userSubscription = 'userSubscription',
+  selectSubscriptionPlan = 'selectSubscriptionPlan',
   addPaymentCard = 'addPaymentCard',
   paymentMethod = 'paymentMethod',
 }

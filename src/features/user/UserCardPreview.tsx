@@ -16,9 +16,14 @@ import { User } from './types'
 type UserCardPreviewProps = {
   item: User
   onAvatarPress?: (item: User) => void
+  onSubscribePress?: (item: User) => void
 }
 
-const UserCardPreview = ({ item, onAvatarPress }: UserCardPreviewProps) => {
+const UserCardPreview = ({
+  item,
+  onAvatarPress,
+  onSubscribePress,
+}: UserCardPreviewProps) => {
   const text = useText()
   const { styles, theme } = useThemedStyleList({
     common: themedStyles,
@@ -44,7 +49,7 @@ const UserCardPreview = ({ item, onAvatarPress }: UserCardPreviewProps) => {
           state: SubscribeButtonState.POSITIVE,
         })}
         style={styles.common.button}
-        onPress={() => {}}
+        onPress={() => onSubscribePress?.(item)}
       />
     </View>
   )

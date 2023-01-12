@@ -3,8 +3,8 @@ import React from 'react'
 import { links } from '../../navigation/links'
 import AddPaymentCardScreen from './Screen.AddPaymentCard'
 import PaymentMethodsScreen from './Screen.PaymentMethods'
+import SelectSubscriptionPlan from './Screen.SelectSubscriptionPlan'
 import SubscriptionOptionsScreen from './Screen.SubscriptionOptions'
-import UserSubscriptionScreen from './Screen.UserSubscription'
 
 const Stack = createNativeStackNavigator()
 
@@ -16,8 +16,8 @@ export default function SubscriptionRouter() {
         component={SubscriptionOptionsScreen}
       />
       <Stack.Screen
-        name={links.userSubscription}
-        component={UserSubscriptionScreen}
+        name={links.selectSubscriptionPlan}
+        component={SelectSubscriptionPlan}
       />
       <Stack.Screen
         name={links.addPaymentCard}
