@@ -1,6 +1,9 @@
 import { ColorThemes } from '../../../features/themed/theme'
+import {
+  buttonCommonThemedPreset,
+  buttonLightThemedPreset,
+} from '../../../styles/buttons'
 import { LangStructure } from '../../../translations/types'
-import { themedButtonPreset } from '../styles'
 
 export enum SubscribeButtonState {
   NEGATIVE,
@@ -9,11 +12,11 @@ export enum SubscribeButtonState {
 
 const SUBSCRIBE_BUTTON_PRESETS = {
   [SubscribeButtonState.NEGATIVE]: {
-    preset: (theme: ColorThemes) => themedButtonPreset(theme).WHITE,
+    preset: (theme: ColorThemes) => buttonLightThemedPreset(theme),
     label: (text: LangStructure) => text.unfollow,
   },
   [SubscribeButtonState.POSITIVE]: {
-    preset: (theme: ColorThemes) => themedButtonPreset(theme).COMMON,
+    preset: (theme: ColorThemes) => buttonCommonThemedPreset(theme),
     label: (text: LangStructure) => text.follow,
   },
 }

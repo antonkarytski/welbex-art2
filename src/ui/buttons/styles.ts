@@ -1,67 +1,24 @@
 import { StyleSheet } from 'react-native'
-import { createThemedPreset } from '../../features/themed/createThemedStyles'
+import { BLACK, COMMON, GREEN_BLUE, GREY } from '../../styles/colors'
 import { PresetButtonStates } from './types'
 
-export enum ButtonPresetName {
-  COMMON = 'COMMON',
-  WHITE = 'WHITE',
-  WO_BORDER = 'WO_BORDER',
+export const defaultButtonPreset: PresetButtonStates = {
+  common: {
+    background: COMMON.WHITE,
+    label: BLACK.TEXT,
+    border: BLACK.TEXT,
+  },
+  active: {
+    background: GREY.BACKGROUND_EXTRA_LIGHT,
+    label: GREEN_BLUE.PRIMARY,
+    border: GREEN_BLUE.PRIMARY,
+  },
+  disabled: {
+    background: COMMON.WHITE,
+    label: GREY.TEXT_LIGHT,
+    border: GREY.TEXT_LIGHT,
+  },
 }
-
-export const themedButtonPreset = createThemedPreset<
-  Record<ButtonPresetName, PresetButtonStates>
->((colors) => {
-  return {
-    [ButtonPresetName.WHITE]: {
-      common: {
-        background: colors.buttonLightBackground,
-        label: colors.buttonLightText,
-        border: colors.buttonLightBorder,
-      },
-      active: {
-        background: colors.buttonLightBackgroundPressed,
-        label: colors.buttonLightTextPressed,
-        border: colors.buttonLightBorderPressed,
-      },
-      disabled: {
-        background: colors.buttonLightBackgroundDisabled,
-        label: colors.buttonLightTextDisabled,
-        border: colors.buttonLightBorderDisabled,
-      },
-    },
-    [ButtonPresetName.WO_BORDER]: {
-      common: {
-        background: 'transparent',
-        label: colors.buttonLightText,
-        border: 'transparent',
-      },
-      active: {
-        background: 'transparent',
-        label: colors.buttonLightTextPressed,
-        border: 'transparent',
-      },
-      disabled: {
-        background: 'transparent',
-        label: colors.buttonLightTextDisabled,
-        border: 'transparent',
-      },
-    },
-    [ButtonPresetName.COMMON]: {
-      common: {
-        background: colors.button,
-        label: colors.buttonLabel,
-      },
-      active: {
-        background: colors.buttonPressed,
-        label: colors.buttonLabel,
-      },
-      disabled: {
-        background: colors.buttonDisabled,
-        label: colors.buttonDisabledLabel,
-      },
-    },
-  }
-})
 
 export const buttonStyles = StyleSheet.create({
   button: {
