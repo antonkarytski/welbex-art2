@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native'
 import { createThemedPreset } from '../../features/themed/createThemedStyles'
-import { ColorThemes } from '../../features/themed/theme'
 import { PresetButtonStates } from './types'
 
 export enum ButtonPresetName {
@@ -63,14 +62,6 @@ export const themedButtonPreset = createThemedPreset<
     },
   }
 })
-
-export function getButtonPreset(
-  theme: ColorThemes,
-  presetName: ButtonPresetName
-) {
-  const presets = themedButtonPreset(theme)
-  return presets[presetName]
-}
 
 export const buttonStyles = StyleSheet.create({
   button: {

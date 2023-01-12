@@ -1,15 +1,15 @@
 import React from 'react'
 import { StyleSheet, TextStyle } from 'react-native'
 import { createThemedStyle } from '../../features/themed'
-import { useTheme } from '../../features/themed/hooks'
+import { useThemedStyleList } from '../../features/themed/hooks'
 import { ColorFn } from '../../features/themed/theme'
 import { PopUpModel } from '../../lib/componentsModels/popUp/model'
+import { buttonCommonThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import { LangFn } from '../../translations/types'
 import Span from '../Span'
 import TextButton from '../buttons/Button.Text'
 import PresetButton from '../buttons/PresetButton'
-import { ButtonPresetName, getButtonPreset } from '../buttons/styles'
 import PopUpCard from './PopUpCard'
 
 export type SubmitPopUpCardProps = {
@@ -41,19 +41,22 @@ const SubmitPopUpCard = ({
   closeButtonLabel,
 }: SubmitPopUpCardProps) => {
   const text = useText()
-  const { styles, theme, colors } = useTheme(themedStyles)
+  const { styles, colors } = useThemedStyleList({
+    common: themedStyles,
+    button: buttonCommonThemedPreset,
+  })
 
   return (
-    <PopUpCard style={styles.card} model={model}>
+    <PopUpCard style={styles.common.card} model={model}>
       <Span
         weight={600}
-        style={[styles.header, headerStyle]}
+        style={[styles.common.header, headerStyle]}
         label={typeof title === 'function' ? title(text) : title}
       />
       {!hideSubmit && (
         <PresetButton
-          style={styles.submitButton}
-          preset={getButtonPreset(theme, ButtonPresetName.COMMON)}
+          style={styles.common.submitButton}
+          preset={styles.button}
           label={text.yes}
           onPress={() => {
             model.hideSync()
@@ -64,12 +67,12 @@ const SubmitPopUpCard = ({
       <TextButton
         style={{
           label: [
-            styles.cancelButtonLabel,
+            styles.common.cancelButtonLabel,
             typeof closeButtonLabelStyle === 'function'
               ? closeButtonLabelStyle(colors)
               : closeButtonLabelStyle,
           ],
-          button: styles.cancelButton,
+          button: styles.common.cancelButton,
         }}
         label={
           (typeof closeButtonLabel === 'function'
