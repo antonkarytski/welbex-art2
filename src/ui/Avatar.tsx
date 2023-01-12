@@ -2,8 +2,9 @@ import React from 'react'
 import {
   Image,
   ImageSourcePropType,
+  StyleProp,
   StyleSheet,
-  View,
+  TouchableOpacity,
   ViewStyle,
 } from 'react-native'
 
@@ -11,7 +12,8 @@ type AvatarProps = {
   size?: number
   borderSize?: number
   src: ImageSourcePropType
-  style?: ViewStyle
+  style?: StyleProp<ViewStyle>
+  onPress?: () => void
 }
 
 const DEFAULT_BORDER_SIZE = 2
@@ -21,9 +23,12 @@ const Avatar = ({
   src,
   style,
   borderSize = DEFAULT_BORDER_SIZE,
+  onPress,
 }: AvatarProps) => {
   return (
-    <View
+    <TouchableOpacity
+      activeOpacity={onPress ? 0.8 : 1}
+      onPress={onPress}
       style={[
         styles.container,
         style,
@@ -39,7 +44,7 @@ const Avatar = ({
           height: size - borderSize * 2,
         }}
       />
-    </View>
+    </TouchableOpacity>
   )
 }
 

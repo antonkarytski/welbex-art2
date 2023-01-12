@@ -7,4 +7,6 @@ export type Drawing = {
   user: User
   name: string
   likesCount: number
+  isLiked: boolean
+  isSaved: boolean
 }

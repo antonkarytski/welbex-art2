@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
+import { ScreensProps } from '../../navigation/types.screenProps'
 import { themedShadow5Style } from '../../styles/shadows'
 import { createThemedStyle } from '../themed'
 import { useThemedStyle } from '../themed/hooks'
@@ -15,9 +16,12 @@ import DrawingItem from './DrawingItem'
 import { drawingKeyExtractor } from './helpers'
 import { Drawing } from './types'
 
-type DrawingsListProps = {
+type DrawingsListProps<L extends links> = {
   data: Drawing[]
-  ListHeader: ReactElement
+  ListHeader?: ReactElement
+  detailsLink?: ScreensProps[L] extends { item: Drawing } ? L : never
+  onEndReach?: () => void
+  onRefresh?: () => void
 }
 
 const PADDING_SIZE = 20
@@ -26,7 +30,12 @@ function getImageSize() {
   return (screenWidth - PADDING_SIZE * 3) / 2
 }
 
-const DrawingsList = ({ data, ListHeader }: DrawingsListProps) => {
+const DrawingsList = <L extends links>({
+  data,
+  ListHeader,
+  onEndReach,
+  onRefresh,
+}: DrawingsListProps<L>) => {
   const imageSize = getImageSize()
   const styles = useThemedStyle(themedStyles)
   const navigate = useNavigate()
@@ -61,6 +70,8 @@ const DrawingsList = ({ data, ListHeader }: DrawingsListProps) => {
         numColumns={2}
         renderItem={renderItem}
         keyExtractor={drawingKeyExtractor}
+        onEndReached={onEndReach}
+        onRefresh={onRefresh}
       />
     </View>
   )
@@ -80,6 +91,7 @@ const themedStyles = createThemedStyle((colors) =>
     },
     itemContainer: themedShadow5Style(colors),
     listContentContainer: {
+      paddingVertical: 24,
       paddingHorizontal: PADDING_SIZE,
     },
   })

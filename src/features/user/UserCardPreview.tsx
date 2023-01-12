@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { useText } from '../../translations/hook'
+import Avatar from '../../ui/Avatar'
 import SubscribeButton from '../../ui/buttons/subscribeButton/SubscribeButton'
 import {
   SubscribeButtonState,
@@ -8,16 +9,16 @@ import {
 } from '../../ui/buttons/subscribeButton/styles'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
-import Avatar from './Avatar'
-import UserDescription from './UserDescription'
+import UserDescription, { localeAgeTextShort } from './UserDescription'
 import { UserDescriptionStyles } from './styles'
 import { User } from './types'
 
 type UserCardPreviewProps = {
   item: User
+  onAvatarPress?: (item: User) => void
 }
 
-const UserCardPreview = ({ item }: UserCardPreviewProps) => {
+const UserCardPreview = ({ item, onAvatarPress }: UserCardPreviewProps) => {
   const text = useText()
   const { styles, theme } = useThemedStyleList({
     common: themedStyles,
@@ -26,8 +27,16 @@ const UserCardPreview = ({ item }: UserCardPreviewProps) => {
 
   return (
     <View style={styles.common.container}>
-      <Avatar style={styles.common.avatar} src={item.avatar} />
-      <UserDescription style={styles.description} item={item} />
+      <Avatar
+        onPress={() => onAvatarPress?.(item)}
+        style={styles.common.avatar}
+        src={item.avatar}
+      />
+      <UserDescription
+        ageTextGenerator={localeAgeTextShort(text)}
+        style={styles.description}
+        item={item}
+      />
       <SubscribeButton
         theme={getSubscribeButtonPreset({
           theme,
