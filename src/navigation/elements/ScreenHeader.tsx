@@ -7,7 +7,7 @@ import Span from '../../ui/Span'
 import ArrowIcon from '../../ui/icons/Icon.Arrow'
 import { ScreenHeaderStyles } from './styles'
 
-type ScreenHeaderProps =
+export type ScreenHeaderProps =
   | {
       headerRight?: ReactNode
       style?: ScreenHeaderStyles
