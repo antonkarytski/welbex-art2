@@ -1,7 +1,9 @@
+import { CountryCode } from './countriesList'
+
 export type Country = {
   name: string
   nativeName: string
-  alpha2Code: string
+  alpha2Code: CountryCode
   alpha3Code: string
   callingCodes: string[]
   flags: {

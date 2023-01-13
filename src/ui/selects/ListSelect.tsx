@@ -1,12 +1,12 @@
 import { useEvent, useStore } from 'effector-react'
 import React, { useEffect } from 'react'
-import { Dimensions, View } from 'react-native'
+import { Dimensions, StyleSheet, View } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
 import CrossButton from '../buttons/Button.Cross'
 import SearchIcon from '../icons/Icon.Search'
 import Input from '../input'
+import { InputStyles } from '../input/styles'
 import Select from './Select'
-import { inputStyles } from './styles'
 import { ListSelectProps } from './types'
 
 const { height } = Dimensions.get('window')
@@ -16,7 +16,7 @@ function ListSelect<DataItem extends Record<string, any>>({
   data,
   renderItem,
   ItemSeparatorComponent,
-  styles,
+  style,
   searchable = true,
   searchModel,
   model,
@@ -32,14 +32,14 @@ function ListSelect<DataItem extends Record<string, any>>({
   }, [data, setInitialDataList])
 
   return (
-    <View style={styles?.wrapper}>
+    <View style={style?.wrapper}>
       {searchable && (
         <Input
           value={searchString}
           onChangeText={setSearchString}
           InputPseudoBefore={<SearchIcon />}
           InputPseudoAfter={<CrossButton onPress={() => setSearchString('')} />}
-          styles={{ ...inputStyles, ...styles?.inputStyles }}
+          styles={{ ...inputStyles, ...style?.inputStyles }}
         />
       )}
       <Select
@@ -47,11 +47,17 @@ function ListSelect<DataItem extends Record<string, any>>({
         idExtractor={idExtractor}
         renderItem={renderItem}
         model={model}
-        styles={{ ...styles, listWrapper: { height: LIST_MAX_HEIGHT } }}
+        style={{ ...style, listWrapper: { height: LIST_MAX_HEIGHT } }}
         ItemSeparatorComponent={ItemSeparatorComponent}
       />
     </View>
   )
 }
+
+const inputStyles: InputStyles = StyleSheet.create({
+  wrapper: {
+    marginBottom: 4,
+  },
+})
 
 export default ListSelect

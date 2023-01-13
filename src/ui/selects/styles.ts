@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import { InputStyles } from '../input/styles'
 
 export const selectStyles = StyleSheet.create({
   item: {
@@ -25,11 +24,5 @@ export const selectStyles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'flex-end',
-  },
-})
-
-export const inputStyles: InputStyles = StyleSheet.create({
-  wrapper: {
-    marginBottom: 4,
   },
 })

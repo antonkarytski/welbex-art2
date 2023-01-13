@@ -1,4 +1,4 @@
-import React, { ReactNode, useRef } from 'react'
+import React, { useRef } from 'react'
 import { Modal, TouchableOpacity, View } from 'react-native'
 import DropdownContainer from '../DropdownContainer'
 import Overlay from '../Overlay'
@@ -6,24 +6,15 @@ import Row from '../Row'
 import Span from '../Span'
 import ArrowIcon from '../icons/Icon.ArrowToggle'
 import { useDropdownLayout } from './hooks'
-import { dropdownStyles } from './styles'
-import { DropdownStyles } from './types'
-
-type DropdownTabProps = {
-  label?: string | ReactNode
-  tabLabel: string | ReactNode
-  children: ReactNode | ReactNode[]
-  indentFromTab?: number
-  styles?: DropdownStyles
-  overlayBackgroundColor?: string
-}
+import { styles } from './styles'
+import { DropdownTabProps } from './types'
 
 function DropdownTab({
   label,
   tabLabel = 'Dropdown tab',
   children,
   indentFromTab = 4,
-  styles,
+  style,
   overlayBackgroundColor,
 }: DropdownTabProps) {
   const dropdownButtonRef = useRef<TouchableOpacity>(null)
@@ -33,13 +24,12 @@ function DropdownTab({
     onDropdownButtonLayout,
     calculatedContainerStyle,
   } = useDropdownLayout({
-    dropdownStyle: styles?.dropdownContainer,
+    dropdownStyle: style?.dropdownContainer,
     indentFromTab,
   })
 
   const onOpenDropdown = () => {
     dropdownButtonRef.current?.measure((fx, fy, w, h, px, py) => {
-      console.log('fx, fy, w, h, px, py', fx, fy, w, h, px, py)
       onDropdownButtonLayout({ w, h, px, py })
       setIsOpened(true)
     })
@@ -49,14 +39,10 @@ function DropdownTab({
     setIsOpened(false)
   }
   return (
-    <View style={dropdownStyles.wrapper}>
+    <View style={[styles.wrapper, style?.wrapper]}>
       {label && (
         <Span
-          style={[
-            dropdownStyles.label,
-            styles?.label,
-            isOpened && styles?.activeLabel,
-          ]}
+          style={[styles.label, style?.label, isOpened && style?.activeLabel]}
         >
           {label}
         </Span>
@@ -65,24 +51,21 @@ function DropdownTab({
         ref={dropdownButtonRef}
         activeOpacity={0.6}
         onPress={onOpenDropdown}
-        style={[dropdownStyles.tab, styles?.tab, isOpened && styles?.activeTab]}
+        style={[styles.tab, style?.tab, isOpened && style?.activeTab]}
       >
-        <Row style={[dropdownStyles.tabInnerWrapper, styles?.tabInnerWrapper]}>
+        <Row style={[styles.tabInnerWrapper, style?.tabInnerWrapper]}>
           <Span
             style={[
-              dropdownStyles.tabLabel,
-              styles?.tabLabel,
-              isOpened && styles?.activeTabLabel,
+              styles.tabLabel,
+              style?.tabLabel,
+              isOpened && style?.activeTabLabel,
             ]}
           >
             {tabLabel}
           </Span>
           <ArrowIcon
             size={8}
-            style={[
-              styles?.tabIcon,
-              isOpened && dropdownStyles.toggleIcon__opened,
-            ]}
+            style={[style?.tabIcon, isOpened && styles.toggleIcon__opened]}
           />
         </Row>
       </TouchableOpacity>

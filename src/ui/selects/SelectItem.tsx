@@ -7,7 +7,7 @@ import { SelectItemProps } from './types'
 const SelectItem = <Item,>({
   renderItem,
   item,
-  styles,
+  style,
   onSelect,
   showSelectedIcon = true,
   isSelected,
@@ -18,24 +18,20 @@ const SelectItem = <Item,>({
       onPress={() => onSelect(item)}
       style={[
         selectStyles.item,
-        styles?.wrapper,
-        isSelected && styles?.item__selected,
+        style?.wrapper,
+        isSelected && style?.item__selected,
       ]}
     >
-      <View style={styles?.row_wrapper}>
+      <View style={style?.row_wrapper}>
         {renderItem(item)}
         <View
           style={[
             selectStyles.icon_checkMark__wrapper,
-            styles?.icon_checkMark__wrapper,
+            style?.icon_checkMark__wrapper,
           ]}
         >
           {showSelectedIcon && isSelected && (
-            <OkIcon
-              color={'#347B81'}
-              size={24}
-              style={styles?.icon_checkMark}
-            />
+            <OkIcon color={'#347B81'} size={24} style={style?.icon_checkMark} />
           )}
         </View>
       </View>

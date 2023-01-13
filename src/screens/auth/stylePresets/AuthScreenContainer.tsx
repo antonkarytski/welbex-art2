@@ -14,9 +14,14 @@ import { themedCommonStyles, themedScreenHeaderStyles } from './styles'
 type AuthScreenContainerProps = {
   children: ReactNode | ReactNode[]
   style?: StyleProp<ViewStyle>
+  backAvailable?: boolean
 }
 
-const AuthScreenContainer = ({ children, style }: AuthScreenContainerProps) => {
+const AuthScreenContainer = ({
+  children,
+  style,
+  backAvailable = true,
+}: AuthScreenContainerProps) => {
   const { styles } = useThemedStyleList({
     screenHeader: themedScreenHeaderStyles,
     common: themedCommonStyles,
@@ -26,7 +31,10 @@ const AuthScreenContainer = ({ children, style }: AuthScreenContainerProps) => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View>
         <ScreenWrapper style={[styles.common.screenWrapper, style]}>
-          <AppHeader style={styles.screenHeader} />
+          <AppHeader
+            style={styles.screenHeader}
+            backAvailable={backAvailable}
+          />
           {children}
         </ScreenWrapper>
       </View>

@@ -5,11 +5,12 @@ import { ScreenHeaderStyles } from './styles'
 
 type AppHeaderProps = {
   style?: ScreenHeaderStyles
+  backAvailable?: boolean
 }
 
-const AppHeader = ({ style }: AppHeaderProps) => {
+const AppHeader = ({ style, backAvailable }: AppHeaderProps) => {
   return (
-    <ScreenHeader style={style}>
+    <ScreenHeader style={style} backAvailable={backAvailable}>
       <Sup style={style?.title} label={'ART'} supLabel={'2'} />
     </ScreenHeader>
   )
