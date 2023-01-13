@@ -10,7 +10,7 @@ import { ScreensProps } from '../../navigation/types.screenProps'
 
 const CurrentSubscriptionScreen = ({
   navigation,
-}: NativeStackScreenProps<ScreensProps, links.subscriptionSelectPlan>) => {
+}: NativeStackScreenProps<ScreensProps, links.subscriptionCurrent>) => {
   const currentSubscription = useStore($currentSubscription)
 
   useLayoutEffect(() => {
