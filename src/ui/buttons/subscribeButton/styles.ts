@@ -12,11 +12,11 @@ export enum SubscribeButtonState {
 
 const SUBSCRIBE_BUTTON_PRESETS = {
   [SubscribeButtonState.NEGATIVE]: {
-    preset: (theme: ColorThemes) => buttonLightThemedPreset(theme),
+    preset: buttonLightThemedPreset,
     label: (text: LangStructure) => text.unfollow,
   },
   [SubscribeButtonState.POSITIVE]: {
-    preset: (theme: ColorThemes) => buttonCommonThemedPreset(theme),
+    preset: buttonCommonThemedPreset,
     label: (text: LangStructure) => text.follow,
   },
 }
