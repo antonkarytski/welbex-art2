@@ -17,55 +17,47 @@ export type SubscriptionSelectItemStyles = {
   price?: TextStyle
 }
 
-type SubscriptionSelectItemProps = {
+export type SubscriptionSelectItemProps = {
   style?: SubscriptionSelectItemStyles
   promotion?: string
   value: string | number
   measure: string
   price: string
-  index: number
-  onPress?: (index: number) => void
+  onPress?: () => void
 }
 
-const SubscriptionSelectItem = React.memo(
-  ({
-    style,
-    promotion,
-    measure,
-    price,
-    value,
-    onPress,
-    index,
-  }: SubscriptionSelectItemProps) => {
-    return (
-      <TouchableOpacity
-        activeOpacity={0.95}
-        onPress={() => onPress?.(index)}
-        style={[styles.container, style?.container]}
-      >
-        {promotion ? (
-          <View style={styles.promotionContainer}>
-            <View style={styles.promotionCard}>
-              <Span
-                style={[styles.promotionText, style?.promotionText]}
-                label={promotion}
-              />
-            </View>
+const SubscriptionSelectItem = ({
+  style,
+  promotion,
+  measure,
+  price,
+  value,
+  onPress,
+}: SubscriptionSelectItemProps) => {
+  return (
+    <TouchableOpacity
+      activeOpacity={0.95}
+      onPress={onPress}
+      style={[styles.container, style?.container]}
+    >
+      {promotion ? (
+        <View style={styles.promotionContainer}>
+          <View style={styles.promotionCard}>
+            <Span
+              style={[styles.promotionText, style?.promotionText]}
+              label={promotion}
+            />
           </View>
-        ) : null}
-        <View style={styles.contentContainer}>
-          <Span
-            weight={600}
-            style={[styles.count, style?.value]}
-            label={value}
-          />
-          <Span style={[styles.measure, style?.measure]} label={measure} />
-          <Span style={[styles.price, style?.price]} label={price} />
         </View>
-      </TouchableOpacity>
-    )
-  }
-)
+      ) : null}
+      <View style={styles.contentContainer}>
+        <Span weight={600} style={[styles.count, style?.value]} label={value} />
+        <Span style={[styles.measure, style?.measure]} label={measure} />
+        <Span style={[styles.price, style?.price]} label={price} />
+      </View>
+    </TouchableOpacity>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {

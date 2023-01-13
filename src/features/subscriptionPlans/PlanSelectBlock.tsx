@@ -1,8 +1,10 @@
 import { useStore } from 'effector-react'
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import { useText } from '../../translations/hook'
-import SubscriptionSelectItem from '../../ui/lists/SubscriptionSelectItem'
+import SubscriptionSelectItem, {
+  SubscriptionSelectItemProps,
+} from '../../ui/lists/SubscriptionSelectItem'
 import { useThemedStyleList } from '../themed/hooks'
 import {
   $selectedSubscriptionPlanIndex,
@@ -14,9 +16,29 @@ import {
   subscriptionSelectSelectedItemStyles,
 } from './styles'
 
-type PlanSelectBlockProps = {}
+type PlanSelectBlockProps = {
+  style?: StyleProp<ViewStyle>
+}
 
-const PlanSelectBlock = ({}: PlanSelectBlockProps) => {
+type SelectItemProps = Omit<SubscriptionSelectItemProps, 'onPress'> & {
+  index: number
+  activeStyle?: SubscriptionSelectItemProps['style']
+  isActive: boolean
+}
+
+const SelectItem = React.memo(
+  ({ style, activeStyle, index, isActive, ...props }: SelectItemProps) => {
+    return (
+      <SubscriptionSelectItem
+        style={isActive ? activeStyle : style}
+        onPress={() => setSubscriptionPlanIndex(index)}
+        {...props}
+      />
+    )
+  }
+)
+
+const PlanSelectBlock = ({ style }: PlanSelectBlockProps) => {
   const selectedItemIndex = useStore($selectedSubscriptionPlanIndex)
   const text = useText()
   const { styles } = useThemedStyleList({
@@ -25,21 +47,20 @@ const PlanSelectBlock = ({}: PlanSelectBlockProps) => {
   })
 
   return (
-    <View style={commonStyles.container}>
+    <View style={[commonStyles.container, style]}>
       {SUBSCRIPTION_PLANS.map(
         ({ monthsAmount, pricePerMonth, promotion }, index) => {
           return (
-            <SubscriptionSelectItem
-              index={index}
+            <SelectItem
               key={index}
-              style={
-                index === selectedItemIndex ? styles.selectedItem : styles.item
-              }
+              index={index}
+              style={styles.item}
+              activeStyle={styles.selectedItem}
+              isActive={index === selectedItemIndex}
               value={monthsAmount}
               measure={text.months}
               price={`$ ${pricePerMonth} / ${text.month}`}
               promotion={promotion ? `${text.save} ${promotion} %` : ''}
-              onPress={setSubscriptionPlanIndex}
             />
           )
         }

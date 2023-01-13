@@ -39,7 +39,7 @@ const DrawingDetailsScreen = ({
             navigate(links.userProfile, { item })
           }}
           onSubscribePress={() => {
-            navigate(links.selectSubscriptionPlan)
+            navigate(links.subscriptionCurrent)
           }}
           item={drawing.user}
         />

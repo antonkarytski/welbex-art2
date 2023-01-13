@@ -8,6 +8,7 @@ import UserProfileScreen from './Screen.UserProfile'
 import MainTabsRouter from './Tabs.Main'
 import AuthScreenRouter from './auth/Router.Auth'
 import EditProfileScreen from './profile/Screen.EditProfile'
+import CurrentSubscriptionScreen from './subscription/Screen.CurrentSubscription'
 import SelectSubscriptionPlanScreen from './subscription/Screen.SelectSubscriptionPlan'
 
 const Router = React.memo(() => {
@@ -28,8 +29,12 @@ const Router = React.memo(() => {
       <Stack.Screen name={links.editProfile} component={EditProfileScreen} />
       <Stack.Screen name={links.userProfile} component={UserProfileScreen} />
       <Stack.Screen
-        name={links.selectSubscriptionPlan}
+        name={links.subscriptionSelectPlan}
         component={SelectSubscriptionPlanScreen}
+      />
+      <Stack.Screen
+        name={links.subscriptionCurrent}
+        component={CurrentSubscriptionScreen}
       />
     </StackNavigator>
   )

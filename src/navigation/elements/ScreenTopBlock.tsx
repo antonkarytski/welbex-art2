@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
 import ScreenHeader from './ScreenHeader'
 import { ScreenHeaderStyles } from './styles'
 
