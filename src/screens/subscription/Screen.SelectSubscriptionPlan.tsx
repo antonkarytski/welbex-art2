@@ -2,15 +2,15 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import PlanSelectBlock from '../../features/subscriptionPlans/PlanSelectBlock'
 import SelectSubscriptionPlanButton from '../../features/subscriptionPlans/SelectSubscriptionPlanButton'
-import SubscriptionPlansHeader from '../../features/subscriptionPlans/SubscriptionPlansHeader'
+import SubscriptionPlansTopBlock from '../../features/subscriptionPlans/SubscriptionPlansTopBlock'
 import StarsImage from '../../ui/images/StarsImage'
 
 const SelectSubscriptionPlanScreen = () => {
   return (
     <View>
-      <SubscriptionPlansHeader>
+      <SubscriptionPlansTopBlock>
         <StarsImage style={styles.image} />
-      </SubscriptionPlansHeader>
+      </SubscriptionPlansTopBlock>
       <PlanSelectBlock style={styles.selectBlock} />
       <View style={styles.buttonContainer}>
         <SelectSubscriptionPlanButton />

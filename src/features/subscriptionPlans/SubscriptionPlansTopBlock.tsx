@@ -8,11 +8,11 @@ import { useThemedStyleList } from '../themed/hooks'
 import SubscriptionBenefitsBlock from './SubscriptionBenefitsBlock'
 import { subscriptionBenefitsBlockThemedStyles } from './styles'
 
-type SubscriptionPlansHeaderProps = {}
+type SubscriptionPlansTopBlockProps = {}
 
-const SubscriptionPlansHeader = ({
+const SubscriptionPlansTopBlock = ({
   children,
-}: PropsWithChildren<SubscriptionPlansHeaderProps>) => {
+}: PropsWithChildren<SubscriptionPlansTopBlockProps>) => {
   const text = useText()
   const { styles } = useThemedStyleList({
     benefitsList: subscriptionBenefitsBlockThemedStyles,
@@ -48,4 +48,4 @@ const commonStyles = StyleSheet.create({
   },
 })
 
-export default SubscriptionPlansHeader
+export default SubscriptionPlansTopBlock

@@ -1,21 +1,21 @@
-import { NavigationProp, useNavigation } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useStore } from 'effector-react'
 import moment from 'moment'
-import React, { useEffect, useLayoutEffect } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useLayoutEffect } from 'react'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { $currentSubscription } from '../../features/profile/model'
-import SubscriptionPlansHeader from '../../features/subscriptionPlans/SubscriptionPlansHeader'
+import SubscriptionPlansTopBlock from '../../features/subscriptionPlans/SubscriptionPlansTopBlock'
 import { getSubscriptionPriceText } from '../../features/subscriptionPlans/helpers'
 import { subscriptionCurrentItemThemedStyles } from '../../features/subscriptionPlans/styles'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
-import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { ScreensProps } from '../../navigation/types.screenProps'
 import { useText } from '../../translations/hook'
+import DataRow from '../../ui/DataRow'
 import H2 from '../../ui/H2'
 import Span from '../../ui/Span'
+import PresetButton from '../../ui/buttons/PresetButton'
 import RefreshIcon from '../../ui/icons/Icon.Refresh'
 import SubscriptionSelectItem from '../../ui/lists/SubscriptionSelectItem'
 
@@ -39,8 +39,8 @@ const CurrentSubscriptionScreen = ({
   if (!currentSubscription) return null
 
   return (
-    <View>
-      <SubscriptionPlansHeader>
+    <View style={styles.common.container}>
+      <SubscriptionPlansTopBlock>
         <H2 style={styles.common.header} label={text.myTariff} />
         <View style={styles.common.subscriptionControllersContainer}>
           <View style={styles.common.item}>
@@ -68,20 +68,18 @@ const CurrentSubscriptionScreen = ({
             />
           </TouchableOpacity>
         </View>
-      </SubscriptionPlansHeader>
+      </SubscriptionPlansTopBlock>
       <View style={styles.common.contentContainer}>
-        <View style={styles.common.expireInContainer}>
-          <Span
-            style={styles.common.contentText}
-            weight={600}
-            label={`${text.subscriptionEndDate}:`}
-          />
-          <Span
-            weight={500}
-            style={styles.common.contentText}
-            label={moment(currentSubscription.expiresIn).format('DD.MM.YYYY')}
-          />
-        </View>
+        <DataRow
+          textStyle={styles.common.contentText}
+          title={`${text.subscriptionEndDate}:`}
+          value={moment(currentSubscription.expiresIn).format('DD.MM.YYYY')}
+        />
+        <PresetButton
+          style={{ marginTop: 'auto' }}
+          label={text.unsubscribe}
+          onPress={() => {}}
+        />
       </View>
     </View>
   )
@@ -89,6 +87,10 @@ const CurrentSubscriptionScreen = ({
 
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingBottom: 45,
+    },
     header: {
       color: colors.whiteText,
       marginLeft: 20,
@@ -117,13 +119,10 @@ const themedStyles = createThemedStyle((colors) =>
       color: colors.whiteText,
       marginTop: 15,
     },
-    expireInContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      paddingTop: 24,
-    },
     contentContainer: {
       paddingHorizontal: 20,
+      paddingTop: 24,
+      flex: 1,
     },
     contentText: {
       color: colors.text,
