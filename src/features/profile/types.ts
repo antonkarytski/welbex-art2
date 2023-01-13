@@ -1,6 +1,7 @@
-import { User, UserExt } from '../user/types'
+import { CurrentSubscription } from '../subscriptionPlans/types'
+import { UserExt } from '../user/types'
 
 export type UserProfile = {
   email: string
-  subscriptionExpiresIn: number | null
+  subscription: CurrentSubscription | null
 } & UserExt

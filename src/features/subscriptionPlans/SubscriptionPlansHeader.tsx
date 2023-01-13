@@ -43,9 +43,7 @@ const headerThemedStyles = createThemedStyle<ScreenHeaderStyles>((colors) =>
 
 const commonStyles = StyleSheet.create({
   contentContainer: {
-    paddingTop: 24,
     paddingBottom: 27,
-    paddingHorizontal: 34,
     width: '100%',
   },
 })

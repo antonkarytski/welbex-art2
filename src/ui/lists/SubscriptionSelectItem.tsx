@@ -36,7 +36,7 @@ const SubscriptionSelectItem = ({
 }: SubscriptionSelectItemProps) => {
   return (
     <TouchableOpacity
-      activeOpacity={0.95}
+      activeOpacity={onPress ? 0.95 : 1}
       onPress={onPress}
       style={[styles.container, style?.container]}
     >
@@ -64,11 +64,9 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderColor: '#D5DDDC',
     borderWidth: 1,
-    minWidth: 98,
-    maxWidth: 120,
-    height: 131,
     alignItems: 'center',
     justifyContent: 'center',
+    flex: 1,
   },
   promotionContainer: {
     position: 'absolute',

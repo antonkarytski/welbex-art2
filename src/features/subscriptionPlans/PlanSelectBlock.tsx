@@ -6,14 +6,15 @@ import SubscriptionSelectItem, {
   SubscriptionSelectItemProps,
 } from '../../ui/lists/SubscriptionSelectItem'
 import { useThemedStyleList } from '../themed/hooks'
+import { getSubscriptionPriceText } from './helpers'
 import {
   $selectedSubscriptionPlanIndex,
   SUBSCRIPTION_PLANS,
   setSubscriptionPlanIndex,
 } from './model'
 import {
-  subscriptionSelectItemThemedStyles,
-  subscriptionSelectSelectedItemStyles,
+  subscriptionItemThemedStyles,
+  subscriptionSelectedItemThemedStyles,
 } from './styles'
 
 type PlanSelectBlockProps = {
@@ -29,11 +30,13 @@ type SelectItemProps = Omit<SubscriptionSelectItemProps, 'onPress'> & {
 const SelectItem = React.memo(
   ({ style, activeStyle, index, isActive, ...props }: SelectItemProps) => {
     return (
-      <SubscriptionSelectItem
-        style={isActive ? activeStyle : style}
-        onPress={() => setSubscriptionPlanIndex(index)}
-        {...props}
-      />
+      <View style={commonStyles.item}>
+        <SubscriptionSelectItem
+          style={isActive ? activeStyle : style}
+          onPress={() => setSubscriptionPlanIndex(index)}
+          {...props}
+        />
+      </View>
     )
   }
 )
@@ -42,8 +45,8 @@ const PlanSelectBlock = ({ style }: PlanSelectBlockProps) => {
   const selectedItemIndex = useStore($selectedSubscriptionPlanIndex)
   const text = useText()
   const { styles } = useThemedStyleList({
-    item: subscriptionSelectItemThemedStyles,
-    selectedItem: subscriptionSelectSelectedItemStyles,
+    item: subscriptionItemThemedStyles,
+    selectedItem: subscriptionSelectedItemThemedStyles,
   })
 
   return (
@@ -59,7 +62,7 @@ const PlanSelectBlock = ({ style }: PlanSelectBlockProps) => {
               isActive={index === selectedItemIndex}
               value={monthsAmount}
               measure={text.months}
-              price={`$ ${pricePerMonth} / ${text.month}`}
+              price={getSubscriptionPriceText(pricePerMonth, text)}
               promotion={promotion ? `${text.save} ${promotion} %` : ''}
             />
           )
@@ -74,6 +77,14 @@ const commonStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     paddingTop: 15,
+    paddingHorizontal: 13,
+  },
+  item: {
+    height: 131,
+    minWidth: 98,
+    maxWidth: 120,
+    marginHorizontal: 7,
+    flex: 1,
   },
 })
 

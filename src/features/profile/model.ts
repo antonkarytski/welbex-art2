@@ -6,3 +6,6 @@ export const setUserProfile = createEvent<UserProfile>()
 export const $userProfile = restore(setUserProfile, MOCK_PROFILE_WELBEX)
 
 export const $userEmail = $userProfile.map((profile) => profile?.email ?? null)
+export const $currentSubscription = $userProfile.map(
+  ({ subscription }) => subscription
+)

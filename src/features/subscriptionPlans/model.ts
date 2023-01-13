@@ -1,11 +1,5 @@
 import { createEvent, restore } from 'effector'
-
-type PlanDescriptor = {
-  monthsAmount: number
-  pricePerMonth: number
-  promotion?: number
-  fullPrice: number
-}
+import { PlanDescriptor } from './types'
 
 export const SUBSCRIPTION_PLANS: PlanDescriptor[] = [
   { monthsAmount: 6, pricePerMonth: 1.67, fullPrice: 10 },

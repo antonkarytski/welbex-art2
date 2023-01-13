@@ -1,6 +1,6 @@
 import { days } from 'altek-toolkit'
 import { UserProfile } from '../features/profile/types'
-import { createRandomGallery } from './drawings'
+import { SUBSCRIPTION_PLANS } from '../features/subscriptionPlans/model'
 import { romanov } from './users'
 
 export const MOCK_PROFILE_WELBEX: UserProfile = {
@@ -9,5 +9,8 @@ export const MOCK_PROFILE_WELBEX: UserProfile = {
   followers_count: 100,
   following_count: 200,
   postsCount: 100,
-  subscriptionExpiresIn: Date.now() + days(365),
+  subscription: {
+    expiresIn: Date.now() + days(365),
+    ...SUBSCRIPTION_PLANS[1],
+  },
 }

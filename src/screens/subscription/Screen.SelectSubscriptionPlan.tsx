@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   image: {
+    paddingTop: 24,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',

@@ -11,13 +11,16 @@ export type SubscriptionBenefitsBlockStyles = {
 export const subscriptionBenefitsBlockThemedStyles =
   createThemedStyle<SubscriptionBenefitsBlockStyles>((colors) =>
     StyleSheet.create({
+      container: {
+        paddingHorizontal: 34,
+      },
       itemText: {
         color: colors.whiteText,
       },
     })
   )
 
-export const subscriptionSelectItemThemedStyles =
+export const subscriptionItemThemedStyles =
   createThemedStyle<SubscriptionSelectItemStyles>((colors) =>
     StyleSheet.create({
       value: {
@@ -27,10 +30,10 @@ export const subscriptionSelectItemThemedStyles =
         color: colors.tipText,
       },
       price: {
-        color: colors.buttonPressed,
+        color: colors.primary1,
       },
       promotionCard: {
-        backgroundColor: colors.buttonPressed,
+        backgroundColor: colors.primary1,
       },
       promotionText: {
         color: colors.whiteText,
@@ -41,13 +44,31 @@ export const subscriptionSelectItemThemedStyles =
     })
   )
 
-export const subscriptionSelectSelectedItemStyles = createThemedStyle(
+export const subscriptionSelectedItemThemedStyles = createThemedStyle(
   (colors, theme) =>
     StyleSheet.create({
-      ...subscriptionSelectItemThemedStyles(theme),
+      ...subscriptionItemThemedStyles(theme),
       container: {
-        borderColor: colors.buttonPressed,
+        borderColor: colors.primary1,
         backgroundColor: colors.planSelectedBackground,
       },
     })
+)
+
+export const subscriptionCurrentItemThemedStyles = createThemedStyle((colors) =>
+  StyleSheet.create({
+    value: {
+      color: colors.primary1,
+    },
+    measure: {
+      color: colors.primary1,
+    },
+    price: {
+      color: colors.primary2,
+    },
+    container: {
+      borderWidth: 0,
+      backgroundColor: colors.screenBackground,
+    },
+  })
 )
