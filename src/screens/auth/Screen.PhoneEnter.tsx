@@ -79,6 +79,7 @@ const PhoneEnterScreen = () => {
           onPress={onContinue}
           preset={styles.button}
           style={styles.common.bottomButton}
+          disabled={!phoneNumber}
         />
       </KeyboardAvoidingView>
     </AuthScreenContainer>

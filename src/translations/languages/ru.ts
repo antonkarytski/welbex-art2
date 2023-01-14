@@ -17,6 +17,7 @@ export const RU: LangStructure = {
   yes: 'Да',
   no: 'Нет',
   or: 'или',
+  secondsAbbriviated: 'сек',
   from: 'от',
   to: 'к',
   atAge: '',
