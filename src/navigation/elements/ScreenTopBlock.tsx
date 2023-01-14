@@ -1,35 +1,35 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import React, { PropsWithChildren } from 'react'
+import { View } from 'react-native'
 import ScreenHeader from './ScreenHeader'
 import { ScreenHeaderStyles } from './styles'
 
 type WideScreenHeaderProps = {
   style?: ScreenHeaderStyles
-  label: string
+  title: string
   backAvailable?: boolean
 }
 
-const WideScreenHeader = React.memo(
-  ({ style, label, backAvailable }: WideScreenHeaderProps) => {
+const ScreenTopBlock = React.memo(
+  ({
+    style,
+    title,
+    backAvailable,
+    children,
+  }: PropsWithChildren<WideScreenHeaderProps>) => {
     return (
-      <View style={[styles.container, style?.container]}>
+      <View style={style?.container}>
         <ScreenHeader
           backAvailable={backAvailable}
           style={{
             title: style?.title,
             line: style?.line,
           }}
-          title={label}
+          title={title}
         />
+        {children}
       </View>
     )
   }
 )
 
-const styles = StyleSheet.create({
-  container: {
-    paddingBottom: 80,
-  },
-})
-
-export default WideScreenHeader
+export default ScreenTopBlock

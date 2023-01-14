@@ -1,11 +1,7 @@
-import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import ScreenHeader from '../../navigation/elements/ScreenHeader'
-import WideScreenHeader from '../../navigation/elements/WideScreenHeader'
+import ScreenTopBlock from '../../navigation/elements/ScreenTopBlock'
 import { ScreenHeaderStyles } from '../../navigation/elements/styles'
-import { useText } from '../../translations/hook'
-import { $userProfile } from '../profile/model'
 import { createThemedStyle } from '../themed'
 import { useThemedStyle } from '../themed/hooks'
 import UserAvatar from './UserAvatar'
@@ -23,11 +19,13 @@ const UserScreenHeader = React.memo(
 
     return (
       <View style={styles.container}>
-        <WideScreenHeader
+        <ScreenTopBlock
           backAvailable={backAvailable}
           style={headerStyles}
-          label={label}
-        />
+          title={label}
+        >
+          <View style={styles.topBlock} />
+        </ScreenTopBlock>
         <UserAvatar style={styles.avatar} item={item} />
       </View>
     )
@@ -55,6 +53,9 @@ const styles = StyleSheet.create({
   avatar: {
     transform: [{ translateY: -56 }],
     alignSelf: 'center',
+  },
+  topBlock: {
+    height: 80,
   },
 })
 export default UserScreenHeader

@@ -38,6 +38,21 @@ export const buttonLightThemedPreset = createThemedPreset((colors) => ({
   },
 }))
 
+export const buttonCommonThemedPreset = createThemedPreset((colors) => ({
+  common: {
+    background: colors.button,
+    label: colors.buttonLabel,
+  },
+  active: {
+    background: colors.buttonPressed,
+    label: colors.buttonLabel,
+  },
+  disabled: {
+    background: colors.buttonDisabled,
+    label: colors.buttonDisabledLabel,
+  },
+}))
+
 export const buttonTextThemedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     label: {
