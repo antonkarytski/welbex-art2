@@ -9,6 +9,5 @@ codeModel.$state.watch(async (code) => {
   if (code.length === 4) {
     // await... api request to check, if success ->
     isCodeValidModel.set(true)
-    codeModel.set('')
   }
 })

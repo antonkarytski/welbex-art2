@@ -10,12 +10,17 @@ import {
 import { Cursor } from 'react-native-confirmation-code-field'
 import Span from '../Span'
 
+export type CellStyle = {
+  cell?: StyleProp<ViewStyle>
+  cell__focused?: StyleProp<ViewStyle>
+  text?: StyleProp<TextStyle>
+}
+
 export type CellProps = {
   isFocused?: boolean
   symbol?: string
   onLayout: (event: LayoutChangeEvent) => void
-  style?: StyleProp<ViewStyle>
-  textStyle?: StyleProp<TextStyle>
+  style?: CellStyle
 }
 
 export default function NumberCell({
@@ -23,13 +28,19 @@ export default function NumberCell({
   symbol,
   onLayout,
   style,
-  textStyle,
 }: CellProps) {
   return (
-    <View style={[styles.cell, isFocused && styles.cell__focused, style]}>
+    <View
+      style={[
+        styles.cell,
+        isFocused && styles.cell__focused,
+        style?.cell,
+        isFocused && style?.cell__focused,
+      ]}
+    >
       <Span
         weight={500}
-        style={[styles.cellText, textStyle]}
+        style={[styles.cellText, style?.text]}
         onLayout={onLayout}
       >
         {symbol || (isFocused ? <Cursor /> : null)}
@@ -49,7 +60,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#F9FAF9',
     borderColor: '#D5DDDC',
   },
-
   cell__focused: {
     borderColor: '#347B81',
     backgroundColor: '#ffffff',

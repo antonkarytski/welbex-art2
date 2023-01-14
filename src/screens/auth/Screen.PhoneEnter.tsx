@@ -10,6 +10,7 @@ import { IS_IOS } from '../../lib/helpers/native/constants'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
+import { inputThemedStyles } from '../../styles/inputs'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import Span from '../../ui/Span'
@@ -34,6 +35,7 @@ const PhoneEnterScreen = () => {
   const { styles } = useThemedStyleList({
     common: themedCommonStyles,
     button: buttonPrimaryThemedPreset,
+    input: inputThemedStyles,
   })
 
   const [phoneNumber] = useStateStore(phoneInputModel.purePhoneModel)
@@ -71,8 +73,11 @@ const PhoneEnterScreen = () => {
           selectedCountryModel={countryModel}
           countryCodeExtractor={({ alpha2Code }) => alpha2Code}
           countryLabelExtractor={({ emoji }) => emoji}
-          style={{ select: { dropdownTab: tabCountryStyles } }}
           isValid={isPressedToContinue ? isPhoneValid : undefined}
+          style={{
+            input: styles.input,
+            select: { dropdownTab: tabCountryStyles },
+          }}
         />
         <PresetButton
           label={t.send}

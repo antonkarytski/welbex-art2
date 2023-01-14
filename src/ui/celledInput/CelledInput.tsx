@@ -3,7 +3,6 @@ import {
   KeyboardType,
   StyleProp,
   StyleSheet,
-  TextStyle,
   View,
   ViewStyle,
 } from 'react-native'
@@ -12,7 +11,7 @@ import {
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field'
 import { StateModel, useStateStore } from 'altek-toolkit'
-import Cell from './Cell'
+import Cell, { CellStyle } from './Cell'
 import { TextContentType } from './types'
 
 type CelledInputProps = {
@@ -21,9 +20,8 @@ type CelledInputProps = {
   keyboardType?: KeyboardType
   textContentType?: TextContentType
   style?: {
-    rootStyle: StyleProp<ViewStyle>
-    cell: StyleProp<ViewStyle>
-    cellText: StyleProp<TextStyle>
+    rootStyle?: StyleProp<ViewStyle>
+    cell?: CellStyle
   }
 }
 
@@ -52,7 +50,6 @@ export default function CelledInput({
         renderCell={({ index, symbol, isFocused }) => (
           <Cell
             style={style?.cell}
-            textStyle={style?.cellText}
             key={index}
             symbol={symbol}
             isFocused={isFocused}

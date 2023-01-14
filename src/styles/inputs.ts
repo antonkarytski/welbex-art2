@@ -19,3 +19,16 @@ export const inputThemedStyles = createThemedStyle((colors) =>
     },
   })
 )
+
+export const cellThemedStyles = createThemedStyle((colors) =>
+  StyleSheet.create({
+    cell: {
+      borderColor: colors.inputBorder,
+      backgroundColor: colors.inputBackground,
+    },
+    cell__focused: {
+      borderColor: colors.inputFocusedBorder,
+      backgroundColor: colors.inputFocusedBackground,
+    },
+  })
+)
