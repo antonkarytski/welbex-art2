@@ -6,7 +6,10 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import { useThemedStyleList } from '../../../features/themed/hooks'
+import {
+  useThemeColors,
+  useThemedStyleList,
+} from '../../../features/themed/hooks'
 import AppHeader from '../../../navigation/elements/AppHeader'
 import ScreenWrapper from '../../../ui/ScreenWrapper'
 import { themedCommonStyles, themedScreenHeaderStyles } from './styles'
@@ -27,6 +30,8 @@ const AuthScreenContainer = ({
     common: themedCommonStyles,
   })
 
+  const themedColors = useThemeColors()
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View>
@@ -34,6 +39,7 @@ const AuthScreenContainer = ({
           <AppHeader
             style={styles.screenHeader}
             backAvailable={backAvailable}
+            backArrowColor={themedColors.text}
           />
           {children}
         </ScreenWrapper>

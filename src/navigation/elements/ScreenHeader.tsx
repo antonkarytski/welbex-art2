@@ -13,6 +13,7 @@ type ScreenHeaderProps =
       style?: ScreenHeaderStyles
       onBack?: () => void
       backAvailable?: boolean
+      backArrowColor?: string
     } & (
       | {
           title?: never
@@ -31,6 +32,7 @@ const ScreenHeader = ({
   onBack,
   backAvailable,
   children,
+  backArrowColor,
 }: ScreenHeaderProps) => {
   const navigation = useNavigation()
   const { colors, styles } = useTheme(themedStyles)
@@ -44,7 +46,7 @@ const ScreenHeader = ({
               onPress={() => navigation.goBack()}
               style={styles.backButton}
             >
-              <ArrowIcon color={colors.primary2} />
+              <ArrowIcon color={backArrowColor ?? colors.primary2} />
             </TouchableOpacity>
           ) : null}
         </View>
@@ -57,7 +59,7 @@ const ScreenHeader = ({
             </Span>
           )}
         </View>
-        <View style={styles.sideBlock}></View>
+        <View style={styles.sideBlock} />
       </View>
       <View style={[styles.line, style?.line]} />
     </View>
@@ -86,6 +88,7 @@ const themedStyles = createThemedStyle((colors) =>
       height: 1,
       backgroundColor: colors.primary3,
     },
+
     backButton: {
       paddingHorizontal: 24,
       paddingVertical: 18,
