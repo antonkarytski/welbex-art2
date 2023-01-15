@@ -11,6 +11,7 @@ export const EN = {
   skipForNow: 'Skip for now',
   continue: 'Continue',
   close: 'Close',
+  expirationDate: 'Expiration date',
   save: 'Save',
   yes: 'Yes',
   from: 'from',
@@ -141,6 +142,7 @@ export const EN = {
   successfullySignedOff: 'You have successfully signed off',
   planWillBeInEffectUntil: 'Your plan will be in effect until',
   addingACard: 'Adding a card',
+  cvc: 'CVV/CVC',
   addCard: 'Add Card',
   paymentMethod: 'Payment method',
   subscribedFor: 'Subscribed for',
@@ -166,4 +168,6 @@ export const EN = {
   cardDeleted: 'Card deleted',
   backToPaymentMethods: 'Back to payment methods',
   saveDiscount: 'Save',
+  nameOnCard: 'Name on card',
+  fullName: 'Full name',
 }

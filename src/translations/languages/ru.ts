@@ -171,4 +171,8 @@ export const RU: LangStructure = {
   saveDiscount: 'Сохранить',
   home: 'Главная',
   profile: 'Профиль',
+  expirationDate: 'Срок действия',
+  nameOnCard: 'Имя на карте',
+  fullName: 'Полное имя',
+  cvc: 'CVV/CVC',
 }
