@@ -4,9 +4,9 @@ export const EN = {
   quoteByPabloPicasso:
     '“It took me four years to paint like Raphael, but a lifetime to paint like a child.”',
   pabloPicasso: 'Pablo Picasso',
-  appDescription1: 'View and like children drawings',
-  appDescription2: 'Upload your child’s drawings',
-  appDescription3: 'Win and get rewards',
+  viewAndLikeChildrenDrawings: 'View and like children drawings',
+  uploadYourChildDrawings: 'Upload your child’s drawings',
+  winAndGetRewards: 'Win and get rewards',
   next: 'Next',
   skipForNow: 'Skip for now',
   continue: 'Continue',

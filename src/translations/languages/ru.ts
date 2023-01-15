@@ -6,9 +6,9 @@ export const RU: LangStructure = {
   quoteByPabloPicasso:
     '“Мне понадобилось 4 года, чтобы научиться рисовать как Рафаэль, и вся жизнь, чтобы научиться рисовать как ребенок.”',
   pabloPicasso: 'Пабло Пикассо',
-  appDescription1: 'Просматривайте и голосуйте за работы детей',
-  appDescription2: 'Загружайте работы вашего ребенка',
-  appDescription3: 'Побеждайте и получайте награды',
+  viewAndLikeChildrenDrawings: 'Просматривайте и голосуйте за работы детей',
+  uploadYourChildDrawings: 'Загружайте работы вашего ребенка',
+  winAndGetRewards: 'Побеждайте и получайте награды',
   next: 'Далее',
   skipForNow: 'Пропустить',
   continue: 'Продолжить',

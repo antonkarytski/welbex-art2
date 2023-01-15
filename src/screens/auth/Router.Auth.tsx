@@ -9,10 +9,27 @@ import PhoneEnterScreen from './Screen.PhoneEnter'
 import RecoverPasswordScreen from './Screen.RecoverPassword'
 import SignUpScreen from './Screen.SignUp'
 import VerificationScreen from './Screen.Verification'
+import GetRewards from './greetings/Screen.GetRewards'
+import PicassoQuoteScreen from './greetings/Screen.PicassoQuote'
+import UploadDrawings from './greetings/Screen.UploadDrawings'
+import ViewDrawingsScreen from './greetings/Screen.ViewDrawings'
 
 export default function AuthScreenRouter() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen
+        name={links.greetingPicassoQuote}
+        component={PicassoQuoteScreen}
+      />
+      <Stack.Screen
+        name={links.greetingViewDrawings}
+        component={ViewDrawingsScreen}
+      />
+      <Stack.Screen
+        name={links.greetingUploadDrawings}
+        component={UploadDrawings}
+      />
+      <Stack.Screen name={links.greetingGetRewards} component={GetRewards} />
       <Stack.Screen name={links.signUp} component={SignUpScreen} />
       <Stack.Screen
         name={links.countrySelection}
