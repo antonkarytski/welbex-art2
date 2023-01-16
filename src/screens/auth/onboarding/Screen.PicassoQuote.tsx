@@ -1,6 +1,5 @@
 import React from 'react'
-import { Image, StyleSheet, View } from 'react-native'
-import { createThemedStyle } from '../../../features/themed'
+import { Image, View } from 'react-native'
 import { useThemedStyleList } from '../../../features/themed/hooks'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
@@ -9,7 +8,6 @@ import { useText } from '../../../translations/hook'
 import Span from '../../../ui/Span'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import AuthScreenContainer from '../stylePresets/AuthScreenContainer'
-import { themedCommonStyles } from '../stylePresets/styles'
 import { themedGreetingsStyles } from './styles'
 
 const decorativeImage = require('../../../../assets/images/onboarding_picasso_quote.png')

@@ -37,7 +37,7 @@ type OnboardingSliderProps = {
   }
 }
 
-type renderItemProps = { item: OnboardingSliderItem }
+type RenderItemProps = { item: OnboardingSliderItem }
 
 const imageWidth = getSize({})
 
@@ -55,7 +55,7 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
   }, [])
 
   const renderItem = useCallback(
-    ({ item }: renderItemProps) => <SliderItem item={item} style={style} />,
+    ({ item }: RenderItemProps) => <SliderItem item={item} style={style} />,
     [style]
   )
 
