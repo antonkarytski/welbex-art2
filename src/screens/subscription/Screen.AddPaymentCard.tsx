@@ -1,69 +1,69 @@
 import React from 'react'
-import { View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import AddPaymentCardForm from '../../features/payment/AddPaymentCardForm'
-import { addCardFormModel } from '../../features/payment/model.addCard'
+import PaymentSecuredText from '../../features/payment/PaymentSecuredText'
+import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
+import { ScreenHeaderStyles } from '../../navigation/elements/styles'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
-import Row from '../../ui/Row'
-import Span from '../../ui/Span'
 import PresetButton from '../../ui/buttons/PresetButton'
-import Field from '../../ui/form/Field'
-import LockIcon from '../../ui/icons/Icon.Lock'
 
 const AddPaymentCardScreen = () => {
   const text = useText()
-  const { colors, styles } = useThemedStyleList({
+  const { styles } = useThemedStyleList({
     buttonPreset: buttonPrimaryThemedPreset,
+    header: headerThemedStyles,
   })
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={commonStyles.container}>
       <ScreenHeader
-        style={{
-          title: {
-            color: colors.text,
-          },
-        }}
+        style={styles.header}
         backAvailable
         title={text.addingACard}
       />
-      <View
-        style={{
-          paddingHorizontal: 20,
-          paddingTop: 24,
-          paddingBottom: 58,
-          height: 'auto',
-          flex: 1,
-          justifyContent: 'flex-start',
-        }}
-      >
+      <View style={commonStyles.contentContainer}>
         <AddPaymentCardForm />
-        <View
-          style={{
-            marginTop: 24,
-            flexDirection: 'row',
-          }}
-        >
-          <LockIcon />
-          <Span
-            label={text.cardInfoSecure}
-            style={{
-              flex: 1,
-              marginLeft: 10,
-            }}
-          />
-        </View>
+        <PaymentSecuredText style={commonStyles.securityText} />
         <PresetButton
           preset={styles.buttonPreset}
           label={text.addCard}
           onPress={() => {}}
-          style={{ marginTop: 'auto' }}
+          style={commonStyles.button}
         />
       </View>
     </View>
   )
 }
+
+const headerThemedStyles = createThemedStyle<ScreenHeaderStyles>((colors) =>
+  StyleSheet.create({
+    title: {
+      color: colors.text,
+    },
+  })
+)
+
+const commonStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  contentContainer: {
+    paddingHorizontal: 20,
+    paddingTop: 24,
+    paddingBottom: 58,
+    height: 'auto',
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
+  securityText: {
+    marginTop: 24,
+  },
+  button: {
+    marginTop: 'auto',
+  },
+})
 
 export default AddPaymentCardScreen
