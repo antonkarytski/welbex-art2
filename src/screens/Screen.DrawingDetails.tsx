@@ -38,6 +38,9 @@ const DrawingDetailsScreen = ({
           onAvatarPress={(item) => {
             navigate(links.userProfile, { item })
           }}
+          onSubscribePress={() => {
+            navigate(links.subscriptionCurrent)
+          }}
           item={drawing.user}
         />
         <AutoHeightImage

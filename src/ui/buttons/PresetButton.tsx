@@ -1,18 +1,14 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import {
-  StyleSheet,
-  TouchableHighlight,
-} from 'react-native'
-import { ColorThemes } from '../../features/themed/theme'
+import { StyleSheet, TouchableHighlight } from 'react-native'
 import Span from '../Span'
-import { ButtonPresetName, buttonStyles, themedButtonPreset } from './styles'
-import { PresetButtonProps} from './types'
+import { buttonStyles, defaultButtonPreset } from './styles'
+import { PresetButtonProps } from './types'
 
 export default function PresetButton({
   onPress,
   children,
   disabled,
-  preset = themedButtonPreset(ColorThemes.LIGHT)[ButtonPresetName.WHITE],
+  preset = defaultButtonPreset,
   style,
   label,
   labelStyle,
