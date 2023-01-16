@@ -1,5 +1,9 @@
 import { StyleSheet } from 'react-native'
 import { createThemedStyle } from '../../../features/themed'
+import { getSize } from '../../../lib/dimensions/getSize'
+
+const imageWidth = getSize({})
+const imageHeight = imageWidth * 1.075
 
 export const themedGreetingsStyles = createThemedStyle((colors) =>
   StyleSheet.create({
@@ -20,7 +24,8 @@ export const themedGreetingsStyles = createThemedStyle((colors) =>
       marginTop: 'auto',
     },
     img: {
-      width: '100%',
+      width: imageWidth,
+      height: imageHeight,
     },
     imgWrp: {
       borderRadius: 10,

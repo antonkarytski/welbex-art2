@@ -12,7 +12,7 @@ import AuthScreenContainer from '../stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from '../stylePresets/styles'
 import { themedGreetingsStyles } from './styles'
 
-const decorativeImage = require('../../../../assets/images/greetings_picasso_quote.png')
+const decorativeImage = require('../../../../assets/images/onboarding_picasso_quote.png')
 
 export default function PicassoQuoteScreen() {
   const t = useText()
@@ -40,7 +40,7 @@ export default function PicassoQuoteScreen() {
       <PresetButton
         label={t.next}
         onPress={() => {
-          navigate(links.greetingViewDrawings)
+          navigate(links.onboarding)
         }}
         preset={styles.button}
         style={styles.common.button}
