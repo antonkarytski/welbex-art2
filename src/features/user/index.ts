@@ -1,4 +1,5 @@
-import { COUNTRIES, CountryCode } from '../countries/countriesList'
+import { CountryCode } from '../countries'
+import { COUNTRIES } from '../countries/countriesList'
 
 export function getCountry(country: CountryCode) {
   return COUNTRIES[country]

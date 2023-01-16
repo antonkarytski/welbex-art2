@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleProp, StyleSheet, TextStyle, ViewStyle } from 'react-native'
 import { Fn } from '../../types'
 import Row from '../Row'
-import Span from '../Span'
+import Span, { SpanProps } from '../Span'
 import ArrowIcon from '../icons/Icon.Arrow'
 import TextButton from './Button.Text'
 
@@ -19,7 +19,7 @@ type ArrowButtonProps = {
   style?: Style
   iconColor?: string
   iconSize?: number
-  fontWeight?: number
+  fontWeight?: SpanProps['weight']
 }
 
 const ArrowButton = ({

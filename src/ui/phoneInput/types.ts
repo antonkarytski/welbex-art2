@@ -1,6 +1,6 @@
-import { CountryCode } from 'libphonenumber-js'
 import { StyleProp, ViewStyle } from 'react-native'
 import { StateModel } from 'altek-toolkit'
+import { CountryCode } from '../../features/countries'
 import { PhoneInputModel } from '../../lib/componentsModels/phoneNumber/model.phoneNumber'
 import { InputStyles } from '../input/types'
 import {
