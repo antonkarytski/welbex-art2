@@ -159,7 +159,7 @@ export const EN = {
   digits: 'digits',
   amountOfDigitsOnCardNumber: 'From 16 to 19 digits',
   numbers: 'numbers',
-  cardnfoSecure:
+  cardInfoSecure:
     'HTTPS/SSL The data is transmitted over a secure connection. Card information will not be available to third parties.',
   pay: 'Pay',
   deleteCard: 'Delete card',

@@ -1,11 +1,11 @@
 import React from 'react'
-import { Text, View } from 'react-native'
-import { signUpFormModel } from '../../features/signUp/model'
+import { View } from 'react-native'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { createFormModel } from '../../lib/componentsModels/model.form'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import { useText } from '../../translations/hook'
 import Row from '../../ui/Row'
+import Span from '../../ui/Span'
 import Field from '../../ui/form/Field'
 
 type AddCardForm = {
@@ -79,6 +79,7 @@ const AddPaymentCardScreen = () => {
           name={'nameOnCard'}
           styles={{}}
         />
+        <Span label={text.cardInfoSecure} />
       </View>
     </View>
   )
