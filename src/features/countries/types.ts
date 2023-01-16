@@ -1,4 +1,6 @@
-import { CountryCode } from './countriesList'
+import countriesObj from '../../../assets/countriesObj.json'
+
+export type CountryCode = keyof typeof countriesObj
 
 export type Country = {
   name: string

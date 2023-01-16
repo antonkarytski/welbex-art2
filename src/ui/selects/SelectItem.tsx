@@ -22,7 +22,7 @@ const SelectItem = <Item,>({
         isSelected && style?.item__selected,
       ]}
     >
-      <View style={style?.row_wrapper}>
+      <View style={[selectStyles.row_wrapper, style?.row_wrapper]}>
         {renderItem(item)}
         <View
           style={[

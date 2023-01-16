@@ -1,4 +1,4 @@
-import { Store, createEvent, createStore, sample } from 'effector'
+import { Store, combine, createEvent, createStore, restore } from 'effector'
 import { CountryCode } from 'libphonenumber-js'
 import { StateModel } from 'altek-toolkit'
 import { formatPhone, purifyPhone } from './helpers/formatPhone'
@@ -11,44 +11,31 @@ export type PhoneInputModel = {
   $isPhoneValid: Store<boolean>
 }
 
-type CheckPhoneEventParams = {
-  purePhone: string
-  countryCode: CountryCode | null
-}
-
 export const createPhoneInputModel = (
   defaultCountryCode?: CountryCode
 ): PhoneInputModel => {
   const setCountryCode = createEvent<CountryCode | null>()
-  const $countryCode = createStore<CountryCode | null>(
+  const $countryCode = restore<CountryCode | null>(
+    setCountryCode,
     defaultCountryCode || null
-  ).on(setCountryCode, (_, code) => code)
+  )
 
   const setPurePhone = createEvent<string>()
   const $purePhone = createStore('').on(setPurePhone, (_, phone) =>
     purifyPhone(phone)
   )
 
-  const setFormattedPhone = createEvent<CheckPhoneEventParams>()
-  const $formattedPhone = createStore('').on(
-    setFormattedPhone,
-    (_, { purePhone, countryCode }) => formatPhone(purePhone, countryCode)
-  )
-
-  const setIsPhoneValidModel = createEvent<CheckPhoneEventParams>()
-  const $isPhoneValid = createStore(true).on(
-    setIsPhoneValidModel,
-    (_, { purePhone, countryCode }) => validatePhone(purePhone, countryCode)
-  )
-
-  sample({
-    clock: [setPurePhone, setCountryCode],
-    source: {
-      purePhone: $purePhone,
-      countryCode: $countryCode,
-    },
-    target: [setFormattedPhone, setIsPhoneValidModel],
+  const $fullPhone = combine({
+    purePhone: $purePhone,
+    countryCode: $countryCode,
   })
+
+  const $isPhoneValid = $fullPhone.map(({ purePhone, countryCode }) =>
+    validatePhone(purePhone, countryCode)
+  )
+  const $formattedPhone = $fullPhone.map(({ purePhone, countryCode }) =>
+    formatPhone(purePhone, countryCode)
+  )
 
   const purePhoneModel = {
     $state: $purePhone,

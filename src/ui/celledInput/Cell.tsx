@@ -33,8 +33,8 @@ export default function NumberCell({
     <View
       style={[
         styles.cell,
-        isFocused && styles.cell__focused,
         style?.cell,
+        isFocused && styles.cell__focused,
         isFocused && style?.cell__focused,
       ]}
     >
