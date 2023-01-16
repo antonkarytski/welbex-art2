@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react'
-import React, { useCallback, useEffect, useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import {
   ImageStyle,
   StyleProp,
@@ -48,6 +48,7 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
     useStateStore(activeSlideModel)
   const isLastSlideActive = useStore($isLastSlideActive)
   const data = useMemo(() => onboardingSliderData(t), [t])
+  const carouselRef = useRef<Carousel<OnboardingSliderItem>>(null)
 
   useEffect(() => {
     setActiveSlideIndex(0)
@@ -63,8 +64,10 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
       navigate(links.login)
       return
     }
+    carouselRef.current?.snapToNext()
     setActiveSlideIndex(activeSlideIndex + 1)
   }
+
   return (
     <View style={styles.wrapper}>
       <Carousel
@@ -74,6 +77,10 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
         sliderWidth={imageWidth}
         itemWidth={imageWidth}
         vertical={false}
+        enableSnap
+        scrollEnabled
+        useScrollView
+        ref={carouselRef}
       />
       <Pagination
         dotsLength={data.length}
