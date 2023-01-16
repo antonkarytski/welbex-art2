@@ -12,45 +12,40 @@ const AddPaymentCardForm = ({}: AddPaymentCardFormProps) => {
 
   return (
     <View>
-      <View>
-        <Field
-          label={text.paymentCardNumber}
-          placeholder={text.amountOfDigitsOnCardNumber}
-          formModel={addCardFormModel}
-          name={'number'}
-          styles={{}}
-        />
-      </View>
-
+      <Field
+        label={text.paymentCardNumber}
+        placeholder={text.amountOfDigitsOnCardNumber}
+        formModel={addCardFormModel}
+        name={addCardFormModel.fields.number}
+        styles={{}}
+      />
       <Row style={styles.middleRowContainer}>
-        <View style={styles.expirationDateInput}>
-          <Field
-            label={text.expirationDate}
-            placeholder={'mm/yy'}
-            formModel={addCardFormModel}
-            name={'expirationDate'}
-            styles={{}}
-          />
-        </View>
-        <View style={styles.cvcInput}>
-          <Field
-            label={text.cvc}
-            placeholder={`3 ${text.numbers}`}
-            formModel={addCardFormModel}
-            name={'cvc'}
-            styles={{}}
-          />
-        </View>
-      </Row>
-      <View>
         <Field
-          label={text.nameOnCard}
-          placeholder={text.fullName}
+          label={text.expirationDate}
+          placeholder={'mm/yy'}
           formModel={addCardFormModel}
-          name={'nameOnCard'}
-          styles={{}}
+          name={addCardFormModel.fields.expirationDate}
+          styles={{
+            container: styles.expirationDateInput,
+          }}
         />
-      </View>
+        <Field
+          label={text.cvc}
+          placeholder={`3 ${text.numbers}`}
+          formModel={addCardFormModel}
+          name={addCardFormModel.fields.cvc}
+          styles={{
+            container: styles.cvcInput,
+          }}
+        />
+      </Row>
+      <Field
+        label={text.nameOnCard}
+        placeholder={text.fullName}
+        formModel={addCardFormModel}
+        name={addCardFormModel.fields.nameOnCard}
+        styles={{}}
+      />
     </View>
   )
 }

@@ -7,6 +7,7 @@ import {
 } from 'react-native'
 
 export type InputStyles = {
+  container?: ViewStyle
   label?: TextStyle
   input?: ViewStyle
   input__focused?: ViewStyle
