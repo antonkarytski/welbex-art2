@@ -61,7 +61,7 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
 
   const onGoNext = () => {
     if (isLastSlideActive) {
-      navigate(links.login)
+      navigate(links.signUp)
       return
     }
     carouselRef.current?.snapToNext()
