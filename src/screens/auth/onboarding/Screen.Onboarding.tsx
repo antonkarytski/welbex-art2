@@ -13,7 +13,7 @@ import ArrowButton from '../../../ui/buttons/Button.Arrow'
 import AuthScreenContainer from '../stylePresets/AuthScreenContainer'
 import { themedGreetingsStyles } from './styles'
 
-const ViewDrawingsScreen = () => {
+const OnboardingScreen = () => {
   const t = useText()
   const navigate = useNavigate()
   const isLastSlideActive = useStore($isLastSlideActive)
@@ -57,4 +57,4 @@ const themedStyles = createThemedStyle((colors) =>
   })
 )
 
-export default ViewDrawingsScreen
+export default OnboardingScreen
