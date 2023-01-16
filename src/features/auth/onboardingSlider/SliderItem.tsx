@@ -9,10 +9,10 @@ import {
   ViewStyle,
 } from 'react-native'
 import Span from '../../../ui/Span'
-import { OnboardingSlider } from './onboardingSliderData'
+import { OnboardingSliderItem } from './onboardingSliderData'
 
 type SliderItemProps = {
-  item: OnboardingSlider
+  item: OnboardingSliderItem
   style?: {
     img: StyleProp<ImageStyle>
     imgWrp: StyleProp<ViewStyle>

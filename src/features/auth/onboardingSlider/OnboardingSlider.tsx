@@ -19,7 +19,10 @@ import PresetButton from '../../../ui/buttons/PresetButton'
 import { PresetButtonStates } from '../../../ui/buttons/types'
 import SliderItem from './SliderItem'
 import { $isLastSlideActive, activeSlideModel } from './model.onboardingSlider'
-import { OnboardingSlider, onboardingSliderData } from './onboardingSliderData'
+import {
+  OnboardingSliderItem,
+  onboardingSliderData,
+} from './onboardingSliderData'
 
 type OnboardingSliderProps = {
   onSnapToItem?: (index: number) => void
@@ -34,7 +37,7 @@ type OnboardingSliderProps = {
   }
 }
 
-type renderItemProps = {item: OnboardingSlider}
+type renderItemProps = { item: OnboardingSliderItem }
 
 const imageWidth = getSize({})
 

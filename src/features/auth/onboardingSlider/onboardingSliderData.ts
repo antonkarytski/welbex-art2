@@ -5,13 +5,15 @@ const viewDrawingsImg = require('../../../../assets/images/onboarding_view_drawi
 const uploadDrawingsImg = require('../../../../assets/images/onboarding_upload_drawings.png')
 const getRewardsImg = require('../../../../assets/images/onboarding_get_rewards.png')
 
-export type OnboardingSlider = {
+export type OnboardingSliderItem = {
   indexNumber: number
   img: ImageSourcePropType
   description: string
 }
 
-export function onboardingSliderData(text?: LangStructure): OnboardingSlider[] {
+export function onboardingSliderData(
+  text?: LangStructure
+): OnboardingSliderItem[] {
   return [
     {
       indexNumber: 0,
