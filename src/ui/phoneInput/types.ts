@@ -22,7 +22,7 @@ export type PhoneInputProps = {
 }
 
 export type CountrySelectablePhoneInputProps<T> = PhoneInputProps & {
-  countries: any[]
+  countries: T[]
   renderCountryItem: RenderItem<T>
   countryLabelExtractor: StringExtractor<T>
   selectedCountryModel: StateModel<T>

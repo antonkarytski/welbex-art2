@@ -10,14 +10,16 @@ type CountryRowProps = {
 
 const CountryRow = React.memo(
   ({ item }: CountryRowProps) => {
-    const { name, nativeName, alpha3Code, emoji } = item
+    const { name, nativeName, emoji } = item
     return (
-      <Row key={alpha3Code} style={styles.rowWrapper}>
+      <Row style={styles.rowWrapper}>
         <Span style={styles.flagEmoji}>{emoji}</Span>
-        <Span>{name}</Span>
-        {name !== nativeName && (
-          <Span style={styles.nativeName}>&#40;{nativeName}&#41;</Span>
-        )}
+        <Row style={styles.nameRow}>
+          <Span>{name}</Span>
+          {name !== nativeName && (
+            <Span style={styles.nativeName}>&#40;{nativeName}&#41;</Span>
+          )}
+        </Row>
       </Row>
     )
   },
@@ -27,6 +29,10 @@ const CountryRow = React.memo(
 const styles = StyleSheet.create({
   rowWrapper: {
     justifyContent: 'flex-start',
+  },
+  nameRow: {
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
   },
   flag: {
     width: 24,

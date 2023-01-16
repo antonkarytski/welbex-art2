@@ -14,14 +14,11 @@ export function formatPhone(
   rawValue: string,
   countryCode?: CountryCode | null
 ) {
-  console.log('formatPhone', countryCode)
   let result = rawValue
   if (countryCode) {
-    // result = addPlus(rawValue)
     const phoneNumber = parsePhoneNumber(result, countryCode)
     if (phoneNumber) {
       const formattedPhone = phoneNumber.format('INTERNATIONAL')
-      console.log('INTERNATIONAL', formattedPhone)
       result = String(formattedPhone)
     }
     return result

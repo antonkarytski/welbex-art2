@@ -26,8 +26,6 @@ const CountrySelectablePhoneInput = <CountryItem extends Record<string, any>>({
   const setCountryCode = useEvent(phoneModel.countryCodeModel.set)
 
   useEffect(() => {
-    // phoneModel.countryCodeModel.set(countryCodeExtractor(selectedCountry))
-
     setCountryCode(countryCodeExtractor(selectedCountry))
   }, [selectedCountry, countryCodeExtractor, setCountryCode])
 

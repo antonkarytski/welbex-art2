@@ -1,9 +1,9 @@
 import countriesObj from '../../../assets/countriesObj.json'
-import { Country } from './types'
+import { Country, CountryCode } from './types'
 
-export type CountryCode = keyof typeof countriesObj
-// @ts-ignore
+const typedCountriesObj = countriesObj as Record<CountryCode, Country>
+
 export const COUNTRIES: Record<CountryCode, Country> = {
-  ...countriesObj,
+  ...typedCountriesObj,
 }
 export const COUNTRIES_LIST: Country[] = Object.values(COUNTRIES)
