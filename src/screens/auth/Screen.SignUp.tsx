@@ -26,7 +26,7 @@ const SignUp = () => {
   }
 
   return (
-    <AuthScreenContainer backAvailable={false}>
+    <AuthScreenContainer>
       <SignUpForm />
       <AuthServices />
       <Row>

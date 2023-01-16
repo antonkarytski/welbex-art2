@@ -53,6 +53,8 @@ const LIGHT = {
   screenBackgroundAccent: GREEN_BLUE.BODY_GRADIENT,
   modalOverlay: GREY.MODAL_OVERLAY,
   scrollBarThumb: GREY.DETAILS,
+  sliderDot: GREY.DETAILS,
+  sliderDotActive: GREEN_BLUE.PRIMARY,
   /** Main navigation */
   navBarBackground: GREEN_BLUE.NAV_BAR_GRADIENT,
   navBarText: GREEN_BLUE.LIGHT,

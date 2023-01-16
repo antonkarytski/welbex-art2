@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import {
   StyleProp,
   StyleSheet,
@@ -10,7 +10,7 @@ import { COLOR_THEMES } from '../../features/themed/theme'
 import { Fn } from '../../types'
 import Span from '../Span'
 
-type Styles = {
+type ButtonStyle = {
   button?: StyleProp<ViewStyle>
   buttonDisabled?: StyleProp<ViewStyle>
   label?: StyleProp<TextStyle>
@@ -21,15 +21,16 @@ export type ButtonProps = {
   onPress: Fn
   label?: string
   disabled?: boolean
-  style?: Styles
+  style?: ButtonStyle
 }
 
 export default function TextButton({
   onPress,
   disabled,
   label,
+  children,
   style,
-}: ButtonProps) {
+}: PropsWithChildren<ButtonProps>) {
   return (
     <TouchableOpacity
       disabled={disabled}
@@ -37,11 +38,15 @@ export default function TextButton({
       activeOpacity={0.6}
       style={[styles.button, style?.button, disabled && style?.buttonDisabled]}
     >
-      <Span
-        weight={500}
-        style={[styles.label, style?.label, disabled && style?.labelDisabled]}
-        label={label}
-      />
+      {label ? (
+        <Span
+          weight={500}
+          style={[styles.label, style?.label, disabled && style?.labelDisabled]}
+          label={label}
+        />
+      ) : (
+        children
+      )}
     </TouchableOpacity>
   )
 }

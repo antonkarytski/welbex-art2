@@ -1,5 +1,7 @@
 export enum links {
   authRouter = 'authRouter',
+  onboardingPicassoQuote = 'onboardingPicassoQuote',
+  onboarding = 'onboarding',
   signUp = 'signUp',
   countrySelection = 'countrySelection',
   phoneEnter = 'phoneEnter',
