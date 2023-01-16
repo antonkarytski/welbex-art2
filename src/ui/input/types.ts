@@ -20,7 +20,7 @@ export type InputProps = {
   onChangeText?: (text: string) => void
   type?: KeyboardTypeOptions
   label?: string
-  isValid?: boolean
+  isValid?: boolean | null
   disabled?: boolean
   styles?: InputStyles
   InputPseudoBefore?: ReactNode

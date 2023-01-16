@@ -28,6 +28,8 @@ const Input = forwardRef<TextInput, InputProps>(
       setIsFocused(false)
     }
 
+    const isInvalid = isValid !== undefined && isValid !== null && !isValid
+
     return (
       <>
         {label && (
@@ -63,7 +65,7 @@ const Input = forwardRef<TextInput, InputProps>(
                   inputStyles.input__focused,
                   styles?.input__focused,
                 ],
-                isValid !== undefined && !isValid && inputStyles.input__invalid,
+                isInvalid && inputStyles.input__invalid,
                 isValid && inputStyles.input__valid,
                 disabled && inputStyles.input__disabled,
               ]}
