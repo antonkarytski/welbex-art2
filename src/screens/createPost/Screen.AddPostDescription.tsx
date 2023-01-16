@@ -74,7 +74,7 @@ export default function AddPostDescriptionScreen({
           labelExtractor={(val) => val.label}
           renderItem={(val) => <Span label={val.label} />}
           idExtractor={({ name }) => name}
-          styles={{ dropdownTab: styles.select }}
+          style={{ dropdownTab: styles.select }}
         />
         <Field
           disabled

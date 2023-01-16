@@ -3,15 +3,16 @@ import { DropdownStyles } from './types'
 
 export const DEFAULT_DROPDOWN_HEIGHT = 200
 
-export const dropdownStyles = StyleSheet.create<DropdownStyles>({
+export const styles = StyleSheet.create<DropdownStyles>({
   label: {
     marginBottom: 8,
   },
   wrapper: {
-    width: '100%',
+    flexGrow: 1,
   },
   tab: {
     width: '100%',
+    alignItems: 'center',
     paddingVertical: 16,
     paddingHorizontal: 20,
     paddingRight: 24,

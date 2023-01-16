@@ -22,7 +22,7 @@ import ListSelect from '../../ui/selects/ListSelect'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
 
-const countryModel = createStateModel(COUNTRIES.RU)
+export const countryModel = createStateModel(COUNTRIES.RU)
 
 const searchModel = createSearchableListModel<Country>({
   filterExtractor: countyNameExtractor,

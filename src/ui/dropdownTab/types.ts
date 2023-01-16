@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { TextStyle, ViewStyle } from 'react-native'
 
 export type ElementMeasureProps = {
@@ -5,6 +6,15 @@ export type ElementMeasureProps = {
   h: number
   px: number
   py: number
+}
+
+export type DropdownTabProps = {
+  label?: string | ReactNode
+  tabLabel: string | ReactNode
+  children: ReactNode | ReactNode[]
+  indentFromTab?: number
+  style?: DropdownStyles
+  overlayBackgroundColor?: string
 }
 
 export type DropdownStyles = {

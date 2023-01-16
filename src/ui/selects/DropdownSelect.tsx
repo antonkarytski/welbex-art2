@@ -13,7 +13,7 @@ function DropdownSelect<Item>({
   labelExtractor,
   renderItem,
   model,
-  styles,
+  style,
   ItemSeparatorComponent = null,
 }: DropdownSelectProps<Item>) {
   const [selectedItem] = useStateStore(model)
@@ -22,17 +22,17 @@ function DropdownSelect<Item>({
     <DropdownTab
       label={label}
       tabLabel={labelExtractor?.(selectedItem) ?? placeholder}
-      styles={styles?.dropdownTab}
+      style={style?.dropdownTab}
     >
       <Select
         data={data}
         idExtractor={idExtractor}
         renderItem={renderItem}
         model={model}
-        styles={{
-          ...styles,
+        style={{
           item: itemStyles,
           listWrapper: listStyles.wrapper,
+          ...style?.select,
         }}
         ItemSeparatorComponent={ItemSeparatorComponent}
         showSelectedIcon={false}

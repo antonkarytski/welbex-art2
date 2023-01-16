@@ -1,7 +1,11 @@
+import countriesObj from '../../../assets/countriesObj.json'
+
+export type CountryCode = keyof typeof countriesObj
+
 export type Country = {
   name: string
   nativeName: string
-  alpha2Code: string
+  alpha2Code: CountryCode
   alpha3Code: string
   callingCodes: string[]
   flags: {

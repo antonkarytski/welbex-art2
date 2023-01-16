@@ -18,7 +18,7 @@ export const placeholderColor = defaultColors.placeholder
 
 export const inputStyles = StyleSheet.create({
   wrapper: {
-    width: '100%',
+    flexGrow: 1,
   },
   inputWrapper: {
     width: '100%',

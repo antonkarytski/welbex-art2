@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
-import { $isAuth } from '../features/authServices/model'
+import { $isAuth } from '../features/auth/model'
 import { useNavigate } from '../navigation'
 import StackNavigator, { Stack } from '../navigation/elements/StackNavigator'
 import { links } from '../navigation/links'

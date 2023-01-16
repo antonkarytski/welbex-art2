@@ -10,13 +10,13 @@ import { ScreenHeaderStyles } from './styles'
 
 export type ScreenHeaderProps =
   | {
-      iconColor?: string
       headerRight?: ReactNode
       style?:
         | ScreenHeaderStyles
         | ((colors: ColorThemeStructure) => ScreenHeaderStyles)
       onBack?: () => void
       backAvailable?: boolean
+      backArrowColor?: string
     } & (
       | {
           title?: never
@@ -35,7 +35,7 @@ const ScreenHeader = ({
   onBack,
   backAvailable,
   children,
-  iconColor,
+  backArrowColor,
 }: ScreenHeaderProps) => {
   const navigation = useNavigation()
   const { colors, styles } = useTheme(themedStyles)
@@ -50,7 +50,7 @@ const ScreenHeader = ({
               onPress={navigation.goBack}
               style={styles.backButton}
             >
-              <ArrowIcon color={iconColor || colors.primary2} />
+              <ArrowIcon color={backArrowColor ?? colors.primary2} />
             </TouchableOpacity>
           ) : null}
         </View>
@@ -63,7 +63,7 @@ const ScreenHeader = ({
             </Span>
           )}
         </View>
-        <View style={styles.sideBlock}></View>
+        <View style={styles.sideBlock} />
       </View>
       <View style={[styles.line, style?.line]} />
     </View>

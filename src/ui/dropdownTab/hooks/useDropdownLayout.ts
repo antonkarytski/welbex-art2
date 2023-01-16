@@ -22,7 +22,7 @@ export const useDropdownLayout = ({
   const [dropdownHEIGHT, setDropdownHEIGHT] = useState(() => {
     return calculateDropdownHeight(dropdownStyle)
   })
-  const [dropdownWIDTH, setDropdownWIDTH] = useState(0)
+  const [dropdownWIDTH, setDropdownWIDTH] = useState<string | number>(0)
   const remainigHeightAvoidKeyboard = useKeyboardRemainingScreenHeight()
 
   useEffect(() => {
@@ -39,9 +39,7 @@ export const useDropdownLayout = ({
       setDropdownPX(px)
       setDropdownPY(py + h + indentFromTab)
     }
-    setDropdownWIDTH(
-      typeof dropdownStyle?.width === 'number' ? dropdownStyle.width : w
-    )
+    setDropdownWIDTH(dropdownStyle?.width ?? w)
   }
 
   const calculatedContainerStyle: ViewStyle = useMemo(() => {
@@ -56,7 +54,7 @@ export const useDropdownLayout = ({
       top: top,
       height: dropdownHEIGHT,
       width: dropdownWIDTH,
-      right: dropdownStyle?.right || dropdownPX,
+      left: dropdownStyle?.left || dropdownPX,
     }
   }, [
     dropdownStyle,
