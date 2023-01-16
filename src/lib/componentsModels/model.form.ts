@@ -12,10 +12,6 @@ export type FormFieldComponentProps<T extends Record<string, string>> = {
   name: keyof T
   formModel: FormModel<T>
 }
-//
-// class FormModel<T extends Record<string, string>> {
-//   public readonly setField  = createEvent<SetFieldPayload<T>>()
-// }
 
 export const createFormModel = <T extends Record<string, string>>(
   initialFormState: T
