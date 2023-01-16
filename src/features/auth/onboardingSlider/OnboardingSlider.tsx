@@ -1,7 +1,6 @@
 import { useStore } from 'effector-react'
 import React, { useCallback, useEffect, useMemo } from 'react'
 import {
-  Image,
   ImageStyle,
   StyleProp,
   StyleSheet,
@@ -18,15 +17,11 @@ import { useText } from '../../../translations/hook'
 import Span from '../../../ui/Span'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import { PresetButtonStates } from '../../../ui/buttons/types'
+import SliderItem from './SliderItem'
 import { $isLastSlideActive, activeSlideModel } from './model.onboardingSlider'
-import { onboardingSliderData } from './onboardingSliderData'
+import { OnboardingSlider, onboardingSliderData } from './onboardingSliderData'
 
-type renderItemProps = {
-  item: any
-  index: number
-}
-
-type GreetingSliderProps = {
+type OnboardingSliderProps = {
   onSnapToItem?: (index: number) => void
   style?: {
     img: StyleProp<ImageStyle>
@@ -38,9 +33,12 @@ type GreetingSliderProps = {
     button: PresetButtonStates
   }
 }
+
+type renderItemProps = {item: OnboardingSlider}
+
 const imageWidth = getSize({})
 
-const OnboardingSlider = ({ style }: GreetingSliderProps) => {
+const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
   const t = useText()
   const navigate = useNavigate()
   const [activeSlideIndex, setActiveSlideIndex] =
@@ -53,16 +51,7 @@ const OnboardingSlider = ({ style }: GreetingSliderProps) => {
   }, [])
 
   const renderItem = useCallback(
-    ({ item, index }: renderItemProps) => {
-      return (
-        <View>
-          <View style={[style?.imgWrp]}>
-            <Image style={[styles?.img, style?.img]} source={item.img} />
-          </View>
-          <Span label={item.description} style={style?.caption} />
-        </View>
-      )
-    },
+    ({ item }: renderItemProps) => <SliderItem item={item} style={style} />,
     [style]
   )
 
@@ -107,9 +96,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     marginBottom: 32,
   },
-
-  imgWrp: {},
-  img: {},
   paginationDot: {
     width: 8,
     height: 8,
