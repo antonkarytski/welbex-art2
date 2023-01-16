@@ -11,7 +11,7 @@ const Select = <Item,>({
   idExtractor,
   renderItem,
   model,
-  styles,
+  style,
   ItemSeparatorComponent,
   showSelectedIcon,
 }: SelectProps<Item>) => {
@@ -23,7 +23,7 @@ const Select = <Item,>({
       <SelectItem
         renderItem={renderItem}
         item={item}
-        styles={styles?.item}
+        style={style?.item}
         onSelect={setSelectedItem}
         isSelected={selectedId === idExtractor(item)}
         showSelectedIcon={showSelectedIcon}
@@ -32,7 +32,7 @@ const Select = <Item,>({
     [
       renderItem,
       showSelectedIcon,
-      styles,
+      style,
       setSelectedItem,
       idExtractor,
       selectedId,
@@ -40,7 +40,7 @@ const Select = <Item,>({
   )
 
   return (
-    <View style={[selectStyles.listWrapper, styles?.listWrapper]}>
+    <View style={[selectStyles.listWrapper, style?.listWrapper]}>
       <FlatList
         data={data}
         renderItem={renderSelect}

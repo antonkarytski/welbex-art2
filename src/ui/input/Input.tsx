@@ -1,24 +1,8 @@
-import React, { ReactNode, forwardRef, useState } from 'react'
-import {
-  KeyboardTypeOptions,
-  TextInput,
-  TextInputProps,
-  View,
-} from 'react-native'
+import React, { forwardRef, useState } from 'react'
+import { TextInput, View } from 'react-native'
 import Span from '../Span'
-import { InputStyles, inputStyles, placeholderColor } from './styles'
-
-export type InputProps = {
-  onChangeText?: (text: string) => void
-  type?: KeyboardTypeOptions
-  label?: string
-  isInvalid?: boolean
-  isValid?: boolean
-  disabled?: boolean
-  styles?: InputStyles
-  InputPseudoBefore?: ReactNode
-  InputPseudoAfter?: ReactNode
-} & Omit<TextInputProps, 'onChange' | 'editable'>
+import { inputStyles, placeholderColor } from './styles'
+import { InputProps } from './types'
 
 const Input = forwardRef<TextInput, InputProps>(
   (
@@ -27,7 +11,6 @@ const Input = forwardRef<TextInput, InputProps>(
       type = 'phone-pad',
       label,
       children,
-      isInvalid,
       isValid,
       disabled,
       styles,
@@ -80,7 +63,7 @@ const Input = forwardRef<TextInput, InputProps>(
                   inputStyles.input__focused,
                   styles?.input__focused,
                 ],
-                isInvalid && inputStyles.input__invalid,
+                isValid !== undefined && !isValid && inputStyles.input__invalid,
                 isValid && inputStyles.input__valid,
                 disabled && inputStyles.input__disabled,
               ]}

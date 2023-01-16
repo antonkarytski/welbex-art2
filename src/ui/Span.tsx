@@ -1,10 +1,17 @@
 import React, { PropsWithChildren } from 'react'
-import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native'
+import {
+  LayoutChangeEvent,
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextStyle,
+} from 'react-native'
 
 export type SpanProps = {
   label?: string | number
   style?: StyleProp<TextStyle>
   weight?: 400 | 500 | 600 | 700
+  onLayout?: (event: LayoutChangeEvent) => void
 }
 
 const Span = ({
@@ -12,9 +19,10 @@ const Span = ({
   label,
   style,
   weight = 400,
+  onLayout,
 }: PropsWithChildren<SpanProps>) => {
   return (
-    <Text style={[styles.common, weights[weight], style]}>
+    <Text style={[styles.common, weights[weight], style]} onLayout={onLayout}>
       {label || children}
     </Text>
   )
