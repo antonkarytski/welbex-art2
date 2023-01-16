@@ -4,8 +4,8 @@ import {
   useFormField,
 } from '../../lib/componentsModels/model.form'
 import Input from '../input'
-import { InputProps } from '../input/Input'
 import { InputStyles } from '../input/styles'
+import { InputProps } from '../input/types'
 
 type FieldProps<T extends Record<string, string>> = {
   label?: string

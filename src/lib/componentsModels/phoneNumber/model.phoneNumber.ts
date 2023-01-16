@@ -1,6 +1,6 @@
 import { Store, combine, createEvent, createStore, restore } from 'effector'
-import { CountryCode } from 'libphonenumber-js'
 import { StateModel } from 'altek-toolkit'
+import { CountryCode } from '../../../features/countries'
 import { formatPhone, purifyPhone } from './helpers/formatPhone'
 import { validatePhone } from './helpers/validatePhone'
 

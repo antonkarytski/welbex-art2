@@ -3,6 +3,7 @@ import React, { ReactNode } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { createThemedStyle } from '../../features/themed'
 import { useTheme } from '../../features/themed/hooks'
+import { ColorThemeStructure } from '../../features/themed/theme'
 import Span from '../../ui/Span'
 import ArrowIcon from '../../ui/icons/Icon.Arrow'
 import { ScreenHeaderStyles } from './styles'
@@ -10,7 +11,9 @@ import { ScreenHeaderStyles } from './styles'
 export type ScreenHeaderProps =
   | {
       headerRight?: ReactNode
-      style?: ScreenHeaderStyles
+      style?:
+        | ScreenHeaderStyles
+        | ((colors: ColorThemeStructure) => ScreenHeaderStyles)
       onBack?: () => void
       backAvailable?: boolean
       backArrowColor?: string
@@ -28,7 +31,7 @@ export type ScreenHeaderProps =
 const ScreenHeader = ({
   title,
   headerRight,
-  style,
+  style: styleOrFn,
   onBack,
   backAvailable,
   children,
@@ -36,6 +39,7 @@ const ScreenHeader = ({
 }: ScreenHeaderProps) => {
   const navigation = useNavigation()
   const { colors, styles } = useTheme(themedStyles)
+  const style = typeof styleOrFn === 'function' ? styleOrFn(colors) : styleOrFn
 
   return (
     <View>
@@ -43,7 +47,7 @@ const ScreenHeader = ({
         <View style={styles.sideBlock}>
           {backAvailable ? (
             <TouchableOpacity
-              onPress={() => navigation.goBack()}
+              onPress={navigation.goBack}
               style={styles.backButton}
             >
               <ArrowIcon color={backArrowColor ?? colors.primary2} />
@@ -88,7 +92,6 @@ const themedStyles = createThemedStyle((colors) =>
       height: 1,
       backgroundColor: colors.primary3,
     },
-
     backButton: {
       paddingHorizontal: 24,
       paddingVertical: 18,

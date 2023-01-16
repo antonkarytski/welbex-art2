@@ -1,5 +1,5 @@
 import { ImageSourcePropType } from 'react-native'
-import { CountryCode } from '../countries/countriesList'
+import { CountryCode } from '../countries'
 
 export type User = {
   id: string

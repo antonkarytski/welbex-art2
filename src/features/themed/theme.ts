@@ -184,6 +184,8 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   inputCheckedBackground: COMMON.WHITE,
   inputCheckedBackgroundActive: GREEN_BLUE.PRIMARY,
   switchBackgroundInactive: GREY.DETAILS,
+  sliderDot: GREY.DETAILS,
+  sliderDotActive: GREEN_BLUE.PRIMARY,
 }
 
 export const COLOR_THEMES: Record<ColorThemes, ColorThemeStructure> = {

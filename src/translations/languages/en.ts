@@ -11,6 +11,7 @@ export const EN = {
   skipForNow: 'Skip for now',
   continue: 'Continue',
   close: 'Close',
+  expirationDate: 'Expiration date',
   save: 'Save',
   yes: 'Yes',
   from: 'from',
@@ -142,6 +143,7 @@ export const EN = {
   successfullySignedOff: 'You have successfully signed off',
   planWillBeInEffectUntil: 'Your plan will be in effect until',
   addingACard: 'Adding a card',
+  cvc: 'CVV/CVC',
   addCard: 'Add Card',
   paymentMethod: 'Payment method',
   subscribedFor: 'Subscribed for',
@@ -158,7 +160,7 @@ export const EN = {
   digits: 'digits',
   amountOfDigitsOnCardNumber: 'From 16 to 19 digits',
   numbers: 'numbers',
-  cardnfoSecure:
+  cardInfoSecure:
     'HTTPS/SSL The data is transmitted over a secure connection. Card information will not be available to third parties.',
   pay: 'Pay',
   deleteCard: 'Delete card',
@@ -167,4 +169,6 @@ export const EN = {
   cardDeleted: 'Card deleted',
   backToPaymentMethods: 'Back to payment methods',
   saveDiscount: 'Save',
+  nameOnCard: 'Name on card',
+  fullName: 'Full name',
 }

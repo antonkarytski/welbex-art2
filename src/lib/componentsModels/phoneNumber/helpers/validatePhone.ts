@@ -1,4 +1,5 @@
-import { CountryCode, isValidPhoneNumber } from 'libphonenumber-js'
+import { isValidPhoneNumber } from 'libphonenumber-js'
+import { CountryCode } from '../../../../features/countries'
 
 export function validatePhone(
   phone: string,

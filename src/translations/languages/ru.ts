@@ -161,7 +161,7 @@ export const RU: LangStructure = {
   digits: 'цифры',
   amountOfDigitsOnCardNumber: 'От 16 до 19 цифр',
   numbers: 'цифры',
-  cardnfoSecure:
+  cardInfoSecure:
     'HTTPS/SSL Данные передаются по безопасному протоколу передачи данных. Данные будут не доступны третьим лицам.',
   pay: 'Оплатить',
   deleteCard: 'Удалить карту',
@@ -172,4 +172,8 @@ export const RU: LangStructure = {
   saveDiscount: 'Сохранить',
   home: 'Главная',
   profile: 'Профиль',
+  expirationDate: 'Срок действия',
+  nameOnCard: 'Имя на карте',
+  fullName: 'Полное имя',
+  cvc: 'CVV/CVC',
 }

@@ -19,7 +19,7 @@ type UserDescriptionProps = {
 }
 
 export const localeAgeTextShort = createMemoByWeakMap((text: LangStructure) => {
-  return (age: number) => `${text.atAge} ${age} ${text.yearsOldAbbriviated}`
+  return (age: number) => `${text.atAge} ${age} ${text.yearsOldAbbreviated}`
 })
 export const localeAgeTextFull = createMemoByWeakMap((text: LangStructure) => {
   return (age: number) => `${age} ${text.yearsOld}`

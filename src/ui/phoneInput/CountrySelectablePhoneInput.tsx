@@ -21,7 +21,6 @@ const CountrySelectablePhoneInput = <CountryItem extends Record<string, any>>({
   isValid,
 }: CountrySelectablePhoneInputProps<CountryItem>) => {
   const [selectedCountry] = useStateStore(selectedCountryModel)
-  useEvent
 
   const setCountryCode = useEvent(phoneModel.countryCodeModel.set)
 

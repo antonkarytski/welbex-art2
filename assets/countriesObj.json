@@ -385,58 +385,6 @@
     },
     "emoji": "🇦🇮"
   },
-  "AQ": {
-    "name": "Antarctica",
-    "alpha2Code": "AQ",
-    "alpha3Code": "ATA",
-    "callingCodes": [
-      "672"
-    ],
-    "region": "Polar",
-    "timezones": [
-      "UTC-03:00",
-      "UTC+03:00",
-      "UTC+05:00",
-      "UTC+06:00",
-      "UTC+07:00",
-      "UTC+08:00",
-      "UTC+10:00",
-      "UTC+12:00"
-    ],
-    "nativeName": "Antarctica",
-    "flags": {
-      "svg": "https://flagcdn.com/aq.svg",
-      "png": "https://flagcdn.com/w320/aq.png"
-    },
-    "languages": [
-      {
-        "iso639_1": "en",
-        "iso639_2": "eng",
-        "name": "English",
-        "nativeName": "English"
-      },
-      {
-        "iso639_1": "ru",
-        "iso639_2": "rus",
-        "name": "Russian",
-        "nativeName": "Русский"
-      }
-    ],
-    "translations": {
-      "br": "Antarktika",
-      "pt": "Antárctida",
-      "nl": "Antarctica",
-      "hr": "Antarktika",
-      "fa": "جنوبگان",
-      "de": "Antarktika",
-      "es": "Antártida",
-      "fr": "Antarctique",
-      "ja": "南極大陸",
-      "it": "Antartide",
-      "hu": "Antarktisz"
-    },
-    "emoji": "🇦🇶"
-  },
   "AG": {
     "name": "Antigua and Barbuda",
     "alpha2Code": "AG",
@@ -1486,64 +1434,6 @@
     },
     "emoji": "🇧🇼"
   },
-  "BV": {
-    "name": "Bouvet Island",
-    "alpha2Code": "BV",
-    "alpha3Code": "BVT",
-    "callingCodes": [
-      "47"
-    ],
-    "region": "Antarctic Ocean",
-    "timezones": [
-      "UTC+01:00"
-    ],
-    "nativeName": "Bouvetøya",
-    "flags": {
-      "svg": "https://flagcdn.com/bv.svg",
-      "png": "https://flagcdn.com/w320/bv.png"
-    },
-    "currencies": [
-      {
-        "code": "NOK",
-        "name": "Norwegian krone",
-        "symbol": "kr"
-      }
-    ],
-    "languages": [
-      {
-        "iso639_1": "no",
-        "iso639_2": "nor",
-        "name": "Norwegian",
-        "nativeName": "Norsk"
-      },
-      {
-        "iso639_1": "nb",
-        "iso639_2": "nob",
-        "name": "Norwegian Bokmål",
-        "nativeName": "Norsk bokmål"
-      },
-      {
-        "iso639_1": "nn",
-        "iso639_2": "nno",
-        "name": "Norwegian Nynorsk",
-        "nativeName": "Norsk nynorsk"
-      }
-    ],
-    "translations": {
-      "br": "Enez Bouvet",
-      "pt": "Ilha Bouvet",
-      "nl": "Bouveteiland",
-      "hr": "Otok Bouvet",
-      "fa": "جزیره بووه",
-      "de": "Bouvetinsel",
-      "es": "Isla Bouvet",
-      "fr": "Île Bouvet",
-      "ja": "ブーベ島",
-      "it": "Isola Bouvet",
-      "hu": "Bouvet-sziget"
-    },
-    "emoji": "🇧🇻"
-  },
   "BR": {
     "name": "Brazil",
     "alpha2Code": "BR",
@@ -1638,54 +1528,6 @@
       "hu": "Brit Indiai-óceáni Terület"
     },
     "emoji": "🇮🇴"
-  },
-  "UM": {
-    "name": "United States Minor Outlying Islands",
-    "alpha2Code": "UM",
-    "alpha3Code": "UMI",
-    "callingCodes": [
-      "246"
-    ],
-    "region": "Americas",
-    "timezones": [
-      "UTC-11:00",
-      "UTC-10:00",
-      "UTC+12:00"
-    ],
-    "nativeName": "United States Minor Outlying Islands",
-    "flags": {
-      "svg": "https://flagcdn.com/um.svg",
-      "png": "https://flagcdn.com/w320/um.png"
-    },
-    "currencies": [
-      {
-        "code": "GBP",
-        "name": "British pound",
-        "symbol": "£"
-      }
-    ],
-    "languages": [
-      {
-        "iso639_1": "en",
-        "iso639_2": "eng",
-        "name": "English",
-        "nativeName": "English"
-      }
-    ],
-    "translations": {
-      "br": "Inizi Minor A-bell Stadoù-Unanet",
-      "pt": "Ilhas Menores Distantes dos Estados Unidos",
-      "nl": "Kleine afgelegen eilanden van de Verenigde Staten",
-      "hr": "Mali udaljeni otoci SAD-a",
-      "fa": "جزایر کوچک حاشیه‌ای ایالات متحده آمریکا",
-      "de": "Kleinere Inselbesitzungen der Vereinigten Staaten",
-      "es": "Islas Ultramarinas Menores de Estados Unidos",
-      "fr": "Îles mineures éloignées des États-Unis",
-      "ja": "合衆国領有小離島",
-      "it": "Isole minori esterne degli Stati Uniti d'America",
-      "hu": "Amerikai Egyesült Államok lakatlan külbirtokai"
-    },
-    "emoji": "🇺🇲"
   },
   "VG": {
     "name": "Virgin Islands (British)",
@@ -4050,52 +3892,6 @@
     },
     "emoji": "🇵🇫"
   },
-  "TF": {
-    "name": "French Southern Territories",
-    "alpha2Code": "TF",
-    "alpha3Code": "ATF",
-    "callingCodes": [
-      "262"
-    ],
-    "region": "Africa",
-    "timezones": [
-      "UTC+05:00"
-    ],
-    "nativeName": "Territoire des Terres australes et antarctiques françaises",
-    "flags": {
-      "svg": "https://flagcdn.com/tf.svg",
-      "png": "https://flagcdn.com/w320/tf.png"
-    },
-    "currencies": [
-      {
-        "code": "EUR",
-        "name": "Euro",
-        "symbol": "€"
-      }
-    ],
-    "languages": [
-      {
-        "iso639_1": "fr",
-        "iso639_2": "fra",
-        "name": "French",
-        "nativeName": "français"
-      }
-    ],
-    "translations": {
-      "br": "Douaroù Aostral hag Antarktikel Frañs",
-      "pt": "Terras Austrais e Antárticas Francesas",
-      "nl": "Franse Gebieden in de zuidelijke Indische Oceaan",
-      "hr": "Francuski južni i antarktički teritoriji",
-      "fa": "سرزمین‌های جنوبی و جنوبگانی فرانسه",
-      "de": "Französische Süd- und Antarktisgebiete",
-      "es": "Tierras Australes y Antárticas Francesas",
-      "fr": "Terres australes et antarctiques françaises",
-      "ja": "フランス領南方・南極地域",
-      "it": "Territori Francesi del Sud",
-      "hu": "Francia déli és antarktiszi területek"
-    },
-    "emoji": "🇹🇫"
-  },
   "GA": {
     "name": "Gabon",
     "alpha2Code": "GA",
@@ -4915,52 +4711,6 @@
       "hu": "Haiti"
     },
     "emoji": "🇭🇹"
-  },
-  "HM": {
-    "name": "Heard Island and McDonald Islands",
-    "alpha2Code": "HM",
-    "alpha3Code": "HMD",
-    "callingCodes": [
-      "672"
-    ],
-    "region": "Antarctic",
-    "timezones": [
-      "UTC+05:00"
-    ],
-    "nativeName": "Heard Island and McDonald Islands",
-    "flags": {
-      "svg": "https://flagcdn.com/hm.svg",
-      "png": "https://flagcdn.com/w320/hm.png"
-    },
-    "currencies": [
-      {
-        "code": "AUD",
-        "name": "Australian dollar",
-        "symbol": "$"
-      }
-    ],
-    "languages": [
-      {
-        "iso639_1": "en",
-        "iso639_2": "eng",
-        "name": "English",
-        "nativeName": "English"
-      }
-    ],
-    "translations": {
-      "br": "Inizi Heard ha McDonald",
-      "pt": "Ilha Heard e Ilhas McDonald",
-      "nl": "Heard- en McDonaldeilanden",
-      "hr": "Otok Heard i otočje McDonald",
-      "fa": "جزیره هرد و جزایر مک‌دونالد",
-      "de": "Heard und die McDonaldinseln",
-      "es": "Islas Heard y McDonald",
-      "fr": "Îles Heard-et-MacDonald",
-      "ja": "ハード島とマクドナルド諸島",
-      "it": "Isole Heard e McDonald",
-      "hu": "Heard-sziget és McDonald-szigetek"
-    },
-    "emoji": "🇭🇲"
   },
   "VA": {
     "name": "Vatican City",
@@ -8807,57 +8557,6 @@
     },
     "emoji": "🇵🇭"
   },
-  "PN": {
-    "name": "Pitcairn",
-    "alpha2Code": "PN",
-    "alpha3Code": "PCN",
-    "callingCodes": [
-      "64"
-    ],
-    "region": "Oceania",
-    "timezones": [
-      "UTC-08:00"
-    ],
-    "nativeName": "Pitcairn Islands",
-    "flags": {
-      "svg": "https://flagcdn.com/pn.svg",
-      "png": "https://flagcdn.com/w320/pn.png"
-    },
-    "currencies": [
-      {
-        "code": "NZD",
-        "name": "New Zealand dollar",
-        "symbol": "$"
-      },
-      {
-        "code": "PND",
-        "name": "Pitcairn Islands dollar",
-        "symbol": "$"
-      }
-    ],
-    "languages": [
-      {
-        "iso639_1": "en",
-        "iso639_2": "eng",
-        "name": "English",
-        "nativeName": "English"
-      }
-    ],
-    "translations": {
-      "br": "Inizi Pitcairn",
-      "pt": "Ilhas Picárnia",
-      "nl": "Pitcairneilanden",
-      "hr": "Pitcairnovo otočje",
-      "fa": "پیتکرن",
-      "de": "Pitcairn",
-      "es": "Islas Pitcairn",
-      "fr": "Îles Pitcairn",
-      "ja": "ピトケアン",
-      "it": "Isole Pitcairn",
-      "hu": "Pitcairn-szigetek"
-    },
-    "emoji": "🇵🇳"
-  },
   "PL": {
     "name": "Poland",
     "alpha2Code": "PL",
@@ -10424,52 +10123,6 @@
       "hu": "Dél-afrikai Köztársaság"
     },
     "emoji": "🇿🇦"
-  },
-  "GS": {
-    "name": "South Georgia and the South Sandwich Islands",
-    "alpha2Code": "GS",
-    "alpha3Code": "SGS",
-    "callingCodes": [
-      "500"
-    ],
-    "region": "Americas",
-    "timezones": [
-      "UTC-02:00"
-    ],
-    "nativeName": "South Georgia",
-    "flags": {
-      "svg": "https://flagcdn.com/gs.svg",
-      "png": "https://flagcdn.com/w320/gs.png"
-    },
-    "currencies": [
-      {
-        "code": "FKP",
-        "name": "Falkland Islands Pound",
-        "symbol": "£"
-      }
-    ],
-    "languages": [
-      {
-        "iso639_1": "en",
-        "iso639_2": "eng",
-        "name": "English",
-        "nativeName": "English"
-      }
-    ],
-    "translations": {
-      "br": "Georgia ar Su hag Inizi Sandwich ar Su",
-      "pt": "Ilhas Geórgia do Sul e Sanduíche do Sul",
-      "nl": "Zuid-Georgia en Zuidelijke Sandwicheilanden",
-      "hr": "Južna Georgija i otočje Južni Sandwich",
-      "fa": "جزایر جورجیای جنوبی و ساندویچ جنوبی",
-      "de": "Südgeorgien und die Südlichen Sandwichinseln",
-      "es": "Islas Georgias del Sur y Sandwich del Sur",
-      "fr": "Géorgie du Sud-et-les Îles Sandwich du Sud",
-      "ja": "サウスジョージア・サウスサンドウィッチ諸島",
-      "it": "Georgia del Sud e Isole Sandwich Meridionali",
-      "hu": "Déli-Georgia és Déli-Sandwich-szigetek"
-    },
-    "emoji": "🇬🇸"
   },
   "KR": {
     "name": "Korea (Republic of)",
