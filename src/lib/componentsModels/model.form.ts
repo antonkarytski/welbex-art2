@@ -1,4 +1,4 @@
-import { Event, Store, createEvent, createStore } from 'effector'
+import { createEvent, createStore } from 'effector'
 import { useStoreMap } from 'effector-react'
 import { useCallback } from 'react'
 
