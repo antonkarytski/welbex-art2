@@ -1,7 +1,6 @@
 import { PropsWithChildren } from 'react'
 import { StyleProp, TextStyle, ViewStyle } from 'react-native'
 import { FormModel } from '../../lib/componentsModels/model.form'
-import { FnExt } from '../../types'
 import { SpanProps } from '../Span'
 import { InputStyles } from '../input/types'
 
@@ -19,17 +18,10 @@ export type NoteProps = {
 
 export type SecureFieldProps<T extends Record<string, string>> = {
   placeholder: string
-  name: string
+  name: keyof T
   model: FormModel<T>
   isValid?: boolean | null
   iconColor?: string
   style?: InputStyles
   iconSize?: number
-}
-
-export type ToggleSecureIconProps = {
-  secure: boolean
-  setSecure: FnExt<boolean>
-  color?: string
-  size?: number
 }

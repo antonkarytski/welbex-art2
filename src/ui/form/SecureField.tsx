@@ -1,26 +1,7 @@
 import React, { useState } from 'react'
-import { TouchableOpacity, View } from 'react-native'
-import EyeIcon from '../icons/Icon.Eye'
-import EyeClosedIcon from '../icons/Icon.EyeClosed'
+import ToggleSecureButton from '../buttons/Button.ToggleHiding'
 import Field from './Field'
-import { SecureFieldProps, ToggleSecureIconProps } from './_types'
-
-const ToggleSecureIcon = ({
-  secure,
-  setSecure,
-  color = '#303535',
-  size = 24,
-}: ToggleSecureIconProps) => {
-  return (
-    <TouchableOpacity onPress={() => setSecure(!secure)} activeOpacity={0.6}>
-      {secure ? (
-        <EyeClosedIcon color={color} size={size} />
-      ) : (
-        <EyeIcon color={color} size={size} />
-      )}
-    </TouchableOpacity>
-  )
-}
+import { SecureFieldProps } from './_types'
 
 const SecureField = <T extends Record<string, string>>({
   placeholder,
@@ -31,31 +12,32 @@ const SecureField = <T extends Record<string, string>>({
   style,
   iconSize,
 }: SecureFieldProps<T>) => {
-  const [secure, setSecure] = useState(true)
+  const [isSecure, setIsSecure] = useState(true)
+  const onToggleSecure = () => {
+    setIsSecure((prev) => !prev)
+  }
   return (
-    <View>
-      <Field
-        placeholder={placeholder}
-        formModel={model}
-        name={name}
-        style={style}
-        isValid={isValid}
-        textContentType={'password'}
-        type={'default'}
-        secureTextEntry={secure}
-        autoCorrect={false}
-        autoCapitalize="none"
-        enablesReturnKeyAutomatically
-        InputPseudoAfter={
-          <ToggleSecureIcon
-            secure={secure}
-            setSecure={setSecure}
-            color={iconColor}
-            size={iconSize}
-          />
-        }
-      />
-    </View>
+    <Field
+      placeholder={placeholder}
+      formModel={model}
+      name={name}
+      style={style}
+      isValid={isValid}
+      textContentType={'password'}
+      type={'default'}
+      secureTextEntry={isSecure}
+      autoCorrect={false}
+      autoCapitalize="none"
+      enablesReturnKeyAutomatically
+      InputPseudoAfter={
+        <ToggleSecureButton
+          secure={isSecure}
+          onPress={onToggleSecure}
+          color={iconColor}
+          size={iconSize}
+        />
+      }
+    />
   )
 }
 

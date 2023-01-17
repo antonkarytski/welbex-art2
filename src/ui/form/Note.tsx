@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import Row from '../Row'
 import Span from '../Span'
-import { NoteProps } from './types'
+import { NoteProps } from './_types'
 
 const Note = ({ label, labelFontWeight = 400, style, children }: NoteProps) => {
   return (

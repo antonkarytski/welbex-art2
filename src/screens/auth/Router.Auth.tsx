@@ -15,7 +15,7 @@ import PicassoQuoteScreen from './onboarding/Screen.PicassoQuote'
 export default function AuthScreenRouter() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen
+      {/* <Stack.Screen
         name={links.onboardingPicassoQuote}
         component={PicassoQuoteScreen}
       />
@@ -27,7 +27,7 @@ export default function AuthScreenRouter() {
       />
       <Stack.Screen name={links.login} component={LoginScreen} />
       <Stack.Screen name={links.phoneEnter} component={PhoneEnterScreen} />
-      <Stack.Screen name={links.verification} component={VerificationScreen} />
+      <Stack.Screen name={links.verification} component={VerificationScreen} /> */}
       <Stack.Screen
         name={links.createPassword}
         component={CreatePasswordScreen}

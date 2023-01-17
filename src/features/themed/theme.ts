@@ -52,9 +52,8 @@ const LIGHT = {
   screenBackground: COMMON.WHITE,
   screenBackgroundAccent: GREEN_BLUE.BODY_GRADIENT,
   modalOverlay: GREY.MODAL_OVERLAY,
-  scrollBarThumb: GREY.DETAILS,
-  sliderDot: GREY.DETAILS,
-  sliderDotActive: GREEN_BLUE.PRIMARY,
+  detailsActive: GREEN_BLUE.PRIMARY,
+  detailsInactive: GREY.DETAILS,
   /** Main navigation */
   navBarBackground: GREEN_BLUE.NAV_BAR_GRADIENT,
   navBarText: GREEN_BLUE.LIGHT,
@@ -96,9 +95,13 @@ const LIGHT = {
   inputFocusedBorder: GREEN_BLUE.PRIMARY,
   inputDisabledText: GREY.TEXT_LIGHT,
   inputDisabledBackground: GREY.BACKGROUND_DISABLED, //'#F2F4F4'
-  inputCheckedBackground: COMMON.WHITE,
-  inputCheckedBackgroundActive: GREEN_BLUE.PRIMARY,
-  switchBackgroundInactive: GREY.DETAILS,
+  checkboxIcon: COMMON.WHITE,
+  checkboxBackground: COMMON.WHITE,
+  checkboxBackgroundActive: GREEN_BLUE.PRIMARY,
+  checkboxBorder: BLACK.TEXT,
+  switchThumbBackground: COMMON.WHITE,
+  switchTrackBackground: GREY.DETAILS,
+  switchTrackBackgroundActive: GREEN_BLUE.PRIMARY,
 }
 
 const DARK: Record<keyof ColorThemeStructure, string> = {
@@ -139,7 +142,8 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   screenBackground: COMMON.WHITE,
   screenBackgroundAccent: GREEN_BLUE.BODY_GRADIENT,
   modalOverlay: GREY.MODAL_OVERLAY,
-  scrollBarThumb: GREY.DETAILS,
+  detailsActive: GREEN_BLUE.PRIMARY,
+  detailsInactive: GREY.DETAILS,
   /** Main navigation */
   navBarBackground: GREEN_BLUE.NAV_BAR_GRADIENT,
   navBarText: GREEN_BLUE.LIGHT,
@@ -181,11 +185,13 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   inputFocusedBorder: GREEN_BLUE.PRIMARY,
   inputDisabledText: GREY.TEXT_LIGHT,
   inputDisabledBackground: GREY.BACKGROUND_DISABLED,
-  inputCheckedBackground: COMMON.WHITE,
-  inputCheckedBackgroundActive: GREEN_BLUE.PRIMARY,
-  switchBackgroundInactive: GREY.DETAILS,
-  sliderDot: GREY.DETAILS,
-  sliderDotActive: GREEN_BLUE.PRIMARY,
+  checkboxIcon: COMMON.WHITE,
+  checkboxBackground: COMMON.WHITE,
+  checkboxBackgroundActive: GREEN_BLUE.PRIMARY,
+  checkboxBorder: BLACK.TEXT,
+  switchThumbBackground: COMMON.WHITE,
+  switchTrackBackground: GREY.DETAILS,
+  switchTrackBackgroundActive: GREEN_BLUE.PRIMARY,
 }
 
 export const COLOR_THEMES: Record<ColorThemes, ColorThemeStructure> = {

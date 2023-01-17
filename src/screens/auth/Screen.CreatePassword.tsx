@@ -27,23 +27,21 @@ const CreatePasswordScreen = () => {
     button: buttonPrimaryThemedPreset,
   })
   const setIsAuthenticated = useEvent(setIsAuth)
-  const setArePasswordsValid = useEvent(passwordsModel.setArePasswordsValidFx)
+  const checkPasswords = useEvent(passwordsModel.validateFx)
   const [isUserAcceptAgreement] = useStateStore(userAgreementModel)
   const [isUserAgreementInvalid, setIsUserAgreementInvalid] =
     useState<UserAgreementProps['isInvalid']>()
 
   const onCreateAccount = () => {
-    setArePasswordsValid().then((valid) => {
-      console.log('setArePasswordsValid', valid)
+    checkPasswords().then((isValid) => {
       if (!isUserAcceptAgreement) {
         setIsUserAgreementInvalid(true)
         return
       }
-      if (valid && isUserAcceptAgreement) {
+      if (isValid && isUserAcceptAgreement) {
         setIsAuthenticated(true)
       }
     })
-    console.log('passwordInputsModel', passwordsModel.$store.getState())
   }
 
   return (

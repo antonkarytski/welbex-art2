@@ -1,4 +1,4 @@
-import { Event, Store, createEvent, createStore } from 'effector'
+import { createEvent, createStore } from 'effector'
 import { useStoreMap } from 'effector-react'
 import { useCallback } from 'react'
 
@@ -9,7 +9,7 @@ export type FormFieldComponentProps<T extends Record<string, string>> = {
   formModel: FormModel<T>
 }
 
-class FormModel<T extends Record<string, string>> {
+export class FormModel<T extends Record<string, string>> {
   public readonly setField = createEvent<SetFieldPayload<T>>()
   public readonly $store
   public readonly fields: { [K in keyof T]: K }

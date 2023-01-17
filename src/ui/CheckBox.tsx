@@ -1,5 +1,7 @@
-import { Checkbox as BaseCheckBox } from 'native-base'
+import { Checkbox as BaseCheckBox, Icon } from 'native-base'
 import React, { PropsWithChildren } from 'react'
+import { StyleSheet } from 'react-native'
+import OkIcon from './icons/Icon.Ok'
 
 type CheckboxProps = {
   label?: string
@@ -8,6 +10,8 @@ type CheckboxProps = {
   disabled?: boolean
   isInvalid?: boolean
   defaultIsChecked?: boolean
+  iconSize?: number
+  iconColor?: string
 } & PropsWithChildren
 
 const Checkbox = ({
@@ -18,6 +22,8 @@ const Checkbox = ({
   children,
   isInvalid,
   defaultIsChecked,
+  iconSize = 12,
+  iconColor = '#ffffff',
 }: CheckboxProps) => {
   return (
     <BaseCheckBox
@@ -26,10 +32,20 @@ const Checkbox = ({
       isDisabled={disabled}
       isInvalid={isInvalid}
       defaultIsChecked={defaultIsChecked}
+      icon={<Icon as={<OkIcon size={iconSize} color={iconColor} />} />}
+      style={styles.checkbox}
+      // colorScheme={'#347B81'}
     >
       {children || label}
     </BaseCheckBox>
   )
 }
+
+const styles = StyleSheet.create({
+  checkbox: {
+    // width: 16,
+    // hight: 16,
+  },
+})
 
 export default Checkbox
