@@ -25,7 +25,6 @@ export enum links {
   createPostTab = 'createPostTab',
   createPostUploadImage = 'createPostUploadImage',
   createPostAddDescription = 'createPostAddDescription',
-  postCard = 'postCard',
   profile = 'profile',
   profileTab = 'profileTab',
   editProfile = 'editProfile',
@@ -41,4 +40,5 @@ export enum links {
   subscriptionSelectPlan = 'subscriptionSelectPlan',
   addPaymentCard = 'addPaymentCard',
   paymentMethod = 'paymentMethod',
+  resultMessage = 'resultMessage',
 }
