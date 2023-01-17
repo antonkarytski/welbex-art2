@@ -1,4 +1,4 @@
-import { useEvent, useStore } from 'effector-react'
+import { useEvent } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
 import { useThemedStyleList } from '../../features/themed/hooks'
@@ -22,10 +22,10 @@ const NewPasswordScreen = () => {
     button: buttonPrimaryThemedPreset,
   })
 
-  const setArePasswordsValid = useEvent(passwordsModel.setArePasswordsValidFx)
+  const setArePasswordsValid = useEvent(passwordsModel.validateFx)
 
   const onLogin = () => {
-    setArePasswordsValid().then((res) => {
+    setArePasswordsValid().then((isValid) => {
       //
     })
   }
