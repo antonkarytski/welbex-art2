@@ -1,21 +1,24 @@
-import { useEvent, useStore } from 'effector-react'
-import React from 'react'
-import { KeyboardAvoidingView } from 'react-native'
+import { useEvent } from 'effector-react'
+import React, { useState } from 'react'
+import { KeyboardAvoidingView, StyleSheet } from 'react-native'
+import { useStateStore } from 'altek-toolkit'
+import UserAgreement, {
+  UserAgreementProps,
+  userAgreementModel,
+} from '../../features/auth/UserAgreement'
 import { setIsAuth } from '../../features/auth/model'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { createPasswordFormModel } from '../../lib/componentsModels/passwordsForm/model.passwordsForm'
 import { IS_IOS } from '../../lib/helpers/native/constants'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
-// import CheckBox from '../../ui/CheckBox'
 import H2 from '../../ui/H2'
 import PasswordInputs from '../../ui/PasswordInputs'
-import Span from '../../ui/Span'
 import PresetButton from '../../ui/buttons/PresetButton'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
 
-const { passwordsModel, arePasswordsValidModel } = createPasswordFormModel()
+const passwordsModel = createPasswordFormModel()
 
 const CreatePasswordScreen = () => {
   const t = useText()
@@ -24,13 +27,21 @@ const CreatePasswordScreen = () => {
     button: buttonPrimaryThemedPreset,
   })
   const setIsAuthenticated = useEvent(setIsAuth)
-  const arePasswordsValid = useStore(arePasswordsValidModel.$store)
-  const setArePasswordsValid = useEvent(arePasswordsValidModel.set)
+  const setArePasswordsValid = useEvent(passwordsModel.setArePasswordsValidFx)
+  const [isUserAcceptAgreement] = useStateStore(userAgreementModel)
+  const [isUserAgreementInvalid, setIsUserAgreementInvalid] =
+    useState<UserAgreementProps['isInvalid']>()
 
   const onCreateAccount = () => {
-    setArePasswordsValid().then((res) => {
-      console.log('setArePasswordsValid', res)
-      setIsAuthenticated(true)
+    setArePasswordsValid().then((valid) => {
+      console.log('setArePasswordsValid', valid)
+      if (!isUserAcceptAgreement) {
+        setIsUserAgreementInvalid(true)
+        return
+      }
+      if (valid && isUserAcceptAgreement) {
+        setIsAuthenticated(true)
+      }
     })
     console.log('passwordInputsModel', passwordsModel.$store.getState())
   }
@@ -47,12 +58,11 @@ const CreatePasswordScreen = () => {
           passwordPlaceholder={t.password}
           repeatPasswordPlaceholder={t.repeatPassword}
           model={passwordsModel}
-          areValid={arePasswordsValid}
           validLabel={t.checkPasswordMatchSuccess}
           invalidLabel={t.checkPasswordMatchError}
+          style={{ formWrapper: screenStyles.passwordFormWrapper }}
         />
-        {/* <CheckBox label={'hello'} value={'l'} onChange={() => {}} /> */}
-
+        <UserAgreement isInvalid={isUserAgreementInvalid} />
         <PresetButton
           label={t.createAccountButton}
           onPress={onCreateAccount}
@@ -63,5 +73,11 @@ const CreatePasswordScreen = () => {
     </AuthScreenContainer>
   )
 }
+
+const screenStyles = StyleSheet.create({
+  passwordFormWrapper: {
+    marginBottom: 12,
+  },
+})
 
 export default CreatePasswordScreen

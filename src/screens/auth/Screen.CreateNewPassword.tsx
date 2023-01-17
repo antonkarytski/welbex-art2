@@ -13,7 +13,7 @@ import PresetButton from '../../ui/buttons/PresetButton'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
 
-const { passwordsModel, arePasswordsValidModel } = createPasswordFormModel()
+const passwordsModel = createPasswordFormModel()
 
 const NewPasswordScreen = () => {
   const t = useText()
@@ -22,8 +22,7 @@ const NewPasswordScreen = () => {
     button: buttonPrimaryThemedPreset,
   })
 
-  const arePasswordsValid = useStore(arePasswordsValidModel.$store)
-  const setArePasswordsValid = useEvent(arePasswordsValidModel.set)
+  const setArePasswordsValid = useEvent(passwordsModel.setArePasswordsValidFx)
 
   const onLogin = () => {
     setArePasswordsValid().then((res) => {
@@ -50,7 +49,6 @@ const NewPasswordScreen = () => {
           passwordPlaceholder={t.password}
           repeatPasswordPlaceholder={t.repeatPassword}
           model={passwordsModel}
-          areValid={arePasswordsValid}
           validLabel={t.checkPasswordMatchSuccess}
           invalidLabel={t.checkPasswordMatchError}
         />

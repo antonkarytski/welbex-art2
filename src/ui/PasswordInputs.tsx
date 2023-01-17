@@ -1,15 +1,17 @@
+import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
-import { FormModel } from '../lib/componentsModels/model.form'
-import { PasswordsForm } from '../lib/componentsModels/passwordsForm/types'
+import {
+  PasswordsForm,
+  PasswordsModel,
+} from '../lib/componentsModels/passwordsForm/types'
 import { ErrorNote, SecureField, SuccessNote } from './form'
 import { InputStyles } from './input/types'
 
 type PasswordInputsProps = {
   passwordPlaceholder: string
   repeatPasswordPlaceholder: string
-  model: FormModel<PasswordsForm & Record<string, string>>
-  areValid: boolean | null
+  model: PasswordsModel
   validLabel?: string
   invalidLabel?: string
   iconColors?: {
@@ -26,32 +28,33 @@ const PasswordInputs = ({
   passwordPlaceholder,
   repeatPasswordPlaceholder,
   model,
-  areValid,
   validLabel = '',
   invalidLabel = '',
   iconColors,
   style,
 }: PasswordInputsProps) => {
+  const arePasswordsValid = useStore(model.$arePasswordsValid)
+
   return (
     <View style={style?.formWrapper}>
       <SecureField<PasswordsForm>
         placeholder={passwordPlaceholder}
         model={model}
         name={'password'}
-        isValid={areValid}
+        isValid={arePasswordsValid}
         style={{ ...styles, ...style?.input }}
       />
       <SecureField<PasswordsForm>
         placeholder={repeatPasswordPlaceholder}
         model={model}
         name={'repeatingPassword'}
-        isValid={areValid}
+        isValid={arePasswordsValid}
         style={{ ...styles, ...style?.input }}
       />
-      {areValid !== null && !areValid && (
+      {arePasswordsValid === false && (
         <ErrorNote label={invalidLabel} iconColor={iconColors?.error} />
       )}
-      {areValid !== null && areValid && (
+      {arePasswordsValid === true && (
         <SuccessNote label={validLabel} iconColor={iconColors?.success} />
       )}
     </View>
