@@ -31,7 +31,7 @@ const Input = forwardRef<TextInput, InputProps>(
     const isInvalid = isValid !== undefined && isValid !== null && !isValid
 
     return (
-      <>
+      <View style={styles?.container}>
         {label && (
           <Span style={[inputStyles.label, styles?.label]}>{label}</Span>
         )}
@@ -86,7 +86,7 @@ const Input = forwardRef<TextInput, InputProps>(
           </View>
           {children}
         </View>
-      </>
+      </View>
     )
   }
 )
