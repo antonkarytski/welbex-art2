@@ -28,7 +28,7 @@ const SignUp = () => {
   return (
     <AuthScreenContainer>
       <SignUpForm />
-      <AuthServices />
+      <AuthServices style={styles.common.bottomButton} />
       <Row>
         <Span
           label={t.haveAccountQ}

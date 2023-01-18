@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import AuthServices from '../../features/auth/AuthServices'
-import LogInForm from '../../features/logIn/LogInForm'
+import LogInForm from '../../features/auth/logIn/LogInForm'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
@@ -28,7 +28,7 @@ export default function SignUp() {
   return (
     <AuthScreenContainer>
       <LogInForm />
-      <AuthServices />
+      <AuthServices style={styles.common.bottomButton} />
       <Row>
         <Span
           label={t.dontHaveAccountQ}
