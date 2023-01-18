@@ -30,8 +30,7 @@ const PasswordInputs = ({
   iconColors,
   style,
 }: PasswordInputsProps) => {
-  const isValidResult = useStore(model.$isValid)
-  const isValid = isValidResult?.result
+  const isValid = useStore(model.$isValid)
 
   return (
     <View style={style?.formWrapper}>

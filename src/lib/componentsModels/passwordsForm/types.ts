@@ -7,6 +7,6 @@ export type PasswordsForm = {
 }
 
 export type PasswordsModel = FormModel<PasswordsForm> & {
-  $isValid: Store<{ params: void; result: boolean } | null>
+  $isValid: Store<boolean | null>
   validateFx: Effect<void, boolean>
 }

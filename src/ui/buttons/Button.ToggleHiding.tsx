@@ -5,25 +5,22 @@ import EyeIcon from '../icons/Icon.Eye'
 import EyeClosedIcon from '../icons/Icon.EyeClosed'
 
 export type ToggleHidingButtonProps = {
-  secure: boolean
+  isHidden: boolean
   onPress: Fn
   color?: string
   size?: number
 }
 
 const ToggleHidingButton = ({
-  secure,
+  isHidden,
   onPress,
   color = '#303535',
   size = 24,
 }: ToggleHidingButtonProps) => {
+  const Icon = isHidden ? EyeClosedIcon : EyeIcon
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={0.6}>
-      {secure ? (
-        <EyeClosedIcon color={color} size={size} />
-      ) : (
-        <EyeIcon color={color} size={size} />
-      )}
+      <Icon color={color} size={size} />
     </TouchableOpacity>
   )
 }

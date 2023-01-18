@@ -1,4 +1,4 @@
-import { attach, createEffect, restore, sample } from 'effector'
+import { attach, createEffect, createStore, sample } from 'effector'
 import { createFormModel } from '../../../lib/componentsModels/model.form'
 import { validatePasswords } from './passwordValidation'
 import { PasswordsForm, PasswordsModel } from './types'
@@ -16,7 +16,10 @@ export const createPasswordFormModel = (): PasswordsModel => {
     effect: createEffect(validatePasswords),
   })
 
-  const $isValid = restore(validateFx.done, null)
+  const $isValid = createStore<null | boolean>(null).on(
+    validateFx.done,
+    (_, { result }) => result
+  )
 
   sample({
     clock: passwordsModel.$store,
