@@ -34,10 +34,10 @@ export const themedGreetingsStyles = createThemedStyle((colors) =>
       marginBottom: 60,
     },
     paginationDot: {
-      backgroundColor: colors.sliderDotActive,
+      backgroundColor: colors.detailsActive,
     },
     paginationDotInactive: {
-      backgroundColor: colors.sliderDot,
+      backgroundColor: colors.detailsInactive,
     },
     paginationContainer: {
       backgroundColor: 'transparent',
