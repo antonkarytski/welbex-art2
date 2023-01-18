@@ -6,12 +6,17 @@ import FaqScreen from './Screen.Faq'
 import FeedBackScreen from './Screen.FeedBack'
 import LanguageScreen from './Screen.Language'
 import NotificationsScreen from './Screen.Notifications'
+import SettingsScreen from './Screen.Settings'
 
 const Stack = createNativeStackNavigator()
 
-export default function SettingsRouter() {
+export default function SettingsStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      initialRouteName={links.settings}
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name={links.settings} component={SettingsScreen} />
       <Stack.Screen name={links.faq} component={FaqScreen} />
       <Stack.Screen name={links.feedback} component={FeedBackScreen} />
       <Stack.Screen name={links.language} component={LanguageScreen} />

@@ -13,7 +13,7 @@ import { IWinner } from './types'
 const keyExtractor = ({ id }: IWinner) => id
 
 const WinnersBlock = () => {
-  const { styles } = useThemedStyleList({
+  const { styles, colors } = useThemedStyleList({
     common: themedStyles,
     card: winnerCardThemedStyles,
     header: headerStyles,
@@ -38,7 +38,7 @@ const WinnersBlock = () => {
 
   return (
     <View style={styles.common.container}>
-      <AppHeader style={styles.header} />
+      <AppHeader style={styles.header} iconsColor={colors.appHeaderIconLight} />
       <H2 style={styles.common.title} label={text.winners} />
       <FlatList
         contentContainerStyle={styles.common.listContent}

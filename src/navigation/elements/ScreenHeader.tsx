@@ -1,11 +1,10 @@
-import { useNavigation } from '@react-navigation/native'
 import React, { ReactNode } from 'react'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { createThemedStyle } from '../../features/themed'
 import { useTheme } from '../../features/themed/hooks'
 import { ColorThemeStructure } from '../../features/themed/theme'
 import Span from '../../ui/Span'
-import ArrowIcon from '../../ui/icons/Icon.Arrow'
+import NavigationBackButton from './Button.NavigationBack'
 import { ScreenHeaderStyles } from './styles'
 
 export type ScreenHeaderProps =
@@ -37,7 +36,6 @@ const ScreenHeader = ({
   children,
   backArrowColor,
 }: ScreenHeaderProps) => {
-  const navigation = useNavigation()
   const { colors, styles } = useTheme(themedStyles)
   const style = typeof styleOrFn === 'function' ? styleOrFn(colors) : styleOrFn
 
@@ -46,12 +44,11 @@ const ScreenHeader = ({
       <View style={[styles.container, style?.container]}>
         <View style={styles.sideBlock}>
           {backAvailable ? (
-            <TouchableOpacity
-              onPress={navigation.goBack}
+            <NavigationBackButton
               style={styles.backButton}
-            >
-              <ArrowIcon color={backArrowColor ?? colors.primary2} />
-            </TouchableOpacity>
+              iconColor={backArrowColor ?? colors.primary2}
+              onPress={onBack}
+            />
           ) : null}
         </View>
         <View style={styles.titleContainer}>
@@ -63,7 +60,7 @@ const ScreenHeader = ({
             </Span>
           )}
         </View>
-        <View style={styles.sideBlock} />
+        <View style={styles.sideBlock}>{headerRight}</View>
       </View>
       <View style={[styles.line, style?.line]} />
     </View>

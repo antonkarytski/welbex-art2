@@ -1,18 +1,18 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { TouchableOpacity, ViewStyle } from 'react-native'
-import HeaderBackChevronIcon from '../../ui/icons/Icon.HeaderBackChevron'
+import ArrowIcon from '../../ui/icons/Icon.Arrow'
 
 type NavigationBackButtonProps = {
   style?: ViewStyle
-  color: string
+  iconColor: string
   iconSize?: number
   onPress?: () => void
 }
 
 const NavigationBackButton = ({
   style,
-  color,
+  iconColor,
   iconSize,
   onPress,
 }: NavigationBackButtonProps) => {
@@ -26,7 +26,7 @@ const NavigationBackButton = ({
         navigation.goBack()
       }}
     >
-      <HeaderBackChevronIcon size={iconSize} color={color} />
+      <ArrowIcon size={iconSize} color={iconColor} />
     </TouchableOpacity>
   )
 }

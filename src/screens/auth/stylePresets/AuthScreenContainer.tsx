@@ -34,7 +34,7 @@ const AuthScreenContainer = ({
           <AppHeader
             style={styles.screenHeader}
             backAvailable={backAvailable}
-            backArrowColor={colors.text}
+            backArrowColor={colors.appHeaderIconDark}
           />
           {children}
         </ScreenWrapper>
