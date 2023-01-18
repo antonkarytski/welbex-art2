@@ -1,9 +1,10 @@
-import { Text } from 'react-native'
+import React from 'react'
+import { useText } from '../../translations/hook'
+import SettingScreenContainer from './stylePresets/SettingScreenContainer'
 
 export default function FeedbackScreen() {
-	return (
-		<Text>
-			FeedbackScreen
-		</Text>
-	)
+  const t = useText()
+  return (
+    <SettingScreenContainer title={t.feedback}>{/*  */}</SettingScreenContainer>
+  )
 }

@@ -33,7 +33,7 @@ export default function CrossIcon({
         <Path
           d="M6 6L10 10"
           stroke={color}
-          stroke-width="1.6"
+          strokeWidth="1.6"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
