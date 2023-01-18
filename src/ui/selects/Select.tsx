@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { FlatList, ListRenderItem, View } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
-import ListItemSeparator from './ListItemSeparator'
+import ListItemSeparator from '../ListItemSeparator'
 import SelectItem from './SelectItem'
 import { selectStyles } from './styles'
 import { SelectProps } from './types'

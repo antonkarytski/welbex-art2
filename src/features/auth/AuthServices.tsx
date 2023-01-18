@@ -38,7 +38,7 @@ const AuthWithServices = ({
       <GoogleButton
         label={t.continueWithGoogle}
         onPress={onContinueWithGoogle}
-        styles={{ button: styles.feature.button }}
+        style={{ button: styles.feature.button }}
         preset={styles.button}
       />
       <AppleButton

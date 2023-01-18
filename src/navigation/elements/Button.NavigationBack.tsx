@@ -20,6 +20,7 @@ const NavigationBackButton = ({
 
   return (
     <TouchableOpacity
+      activeOpacity={0.6}
       style={style}
       onPress={() => {
         onPress?.()

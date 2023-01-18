@@ -1,9 +1,9 @@
 import React from 'react'
-import AppleIcon from '../icons/Icon.Apple'
+import OutComingArrowIcon from '../icons/Icon.OutcomingArrow'
 import IconButton from './IconButton'
 import { IconButtonProps } from './types'
 
-const AppleButton = ({
+const LogoutButton = ({
   label,
   onPress,
   style,
@@ -18,9 +18,9 @@ const AppleButton = ({
       disabled={disabled}
       label={label}
     >
-      <AppleIcon size={24} style={style?.icon} />
+      <OutComingArrowIcon size={24} style={style?.icon} />
     </IconButton>
   )
 }
 
-export default AppleButton
+export default LogoutButton

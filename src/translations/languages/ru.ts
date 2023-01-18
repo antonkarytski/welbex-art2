@@ -24,6 +24,7 @@ export const RU: LangStructure = {
   get: 'Получить',
   tryAgain: 'Попробовать снова',
   update: 'Обновить',
+  delete: 'Удалить',
   submit: 'Предоставить на рассмотрение',
   send: 'Отправить',
   search: 'Поиск',

@@ -28,7 +28,7 @@ export type PresetButtonProps = ButtonProps & {
 }
 
 export type IconButtonProps = ButtonProps & {
-  styles?: {
+  style?: {
     icon?: StyleProp<ViewStyle>
     row?: StyleProp<ViewStyle>
     label?: StyleProp<TextStyle>

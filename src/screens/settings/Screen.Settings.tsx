@@ -1,55 +1,29 @@
-import React, { useMemo } from 'react'
-import { FlatList, TouchableOpacity } from 'react-native'
-import { useNavigate } from '../../navigation'
-import { links } from '../../navigation/links'
+import { useEvent } from 'effector-react'
+import React from 'react'
+import { setIsAuth } from '../../features/auth/model'
+import SettingsList from '../../features/settings/SettingsList'
+import { useThemedStyleList } from '../../features/themed/hooks'
+import { buttonLightThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
-import Row from '../../ui/Row'
-import Span from '../../ui/Span'
-import FeedbackIcon from '../../ui/icons/Icon.Comment'
-import NotificationsIcon from '../../ui/icons/Icon.Notifications'
-import QuestionIcon from '../../ui/icons/Icon.Question'
-import StarIcon from '../../ui/icons/Icon.Star'
+import LogoutButton from '../../ui/buttons/Button.Logout'
 import SettingScreenContainer from './stylePresets/SettingScreenContainer'
 
 const SettingsScreen = () => {
   const t = useText()
-  const navigate = useNavigate()
+  const setIsAuthenticated = useEvent(setIsAuth)
 
-  const data = useMemo(
-    () => [
-      {
-        name: t.subscription,
-        icon: <StarIcon />,
-        navigateTo: links.subscriptionCurrent,
-      },
-      { name: t.faq, icon: <QuestionIcon />, navigateTo: links.faq },
-      { name: t.feedback, icon: <FeedbackIcon />, navigateTo: links.feedback },
-      {
-        name: t.notifications,
-        icon: <NotificationsIcon />,
-        navigateTo: links.notifications,
-      },
-    ],
-    [t]
-  )
+  const { styles } = useThemedStyleList({ button: buttonLightThemedPreset })
+  const onLogout = () => {
+    setIsAuthenticated(false)
+  }
 
   return (
     <SettingScreenContainer title={t.settings}>
-      <FlatList
-        data={data}
-        renderItem={({ item }) => {
-          return (
-            <TouchableOpacity
-              onPress={() => navigate(item.navigateTo)}
-              activeOpacity={0.6}
-            >
-              <Row>
-                {item.icon}
-                <Span label={item.name} />
-              </Row>
-            </TouchableOpacity>
-          )
-        }}
+      <SettingsList />
+      <LogoutButton
+        label={t.logOut}
+        onPress={onLogout}
+        preset={styles.button}
       />
     </SettingScreenContainer>
   )
