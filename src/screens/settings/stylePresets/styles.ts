@@ -5,6 +5,8 @@ export const themedScreenHeaderStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     title: {
       color: colors.appHeaderTextDark,
+      fontSize: 18,
+      fontWeight: '600',
     },
     line: {
       backgroundColor: colors.appHeaderBorderDark,

@@ -13,7 +13,7 @@ const SettingsScreen = () => {
   const onLogout = () => {
     setIsAuth(false)
   }
-
+  // TO DO: adds checking if user registered (show logout button or not)
   return (
     <SettingScreenContainer title={t.settings}>
       <SettingsList />
