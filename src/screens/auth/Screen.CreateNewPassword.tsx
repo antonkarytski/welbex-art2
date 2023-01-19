@@ -1,4 +1,4 @@
-import { useEvent, useStore } from 'effector-react'
+import { useStore } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
 import { setIsAuth } from '../../features/auth/model'
@@ -23,13 +23,11 @@ const NewPasswordScreen = () => {
     button: buttonPrimaryThemedPreset,
   })
 
-  const setArePasswordsValid = useEvent(passwordsModel.validateFx)
   const passwords = useStore(passwordsModel.$store)
-  const setIsAuthenticated = useEvent(setIsAuth)
 
   const onLogin = () => {
-    setArePasswordsValid().then((isValid) => {
-      if (isValid) setIsAuthenticated(true) // ! TEST
+    passwordsModel.validateFx().then((isValid) => {
+      if (isValid) setIsAuth(true) // TEST
     })
   }
 

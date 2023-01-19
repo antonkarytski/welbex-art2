@@ -38,7 +38,11 @@ const WinnersBlock = () => {
 
   return (
     <View style={styles.common.container}>
-      <AppHeader style={styles.header} iconsColor={colors.appHeaderIconLight} />
+      <AppHeader
+        style={styles.header}
+        iconsColor={colors.appHeaderIconLight}
+        settingsAvailable={true}
+      />
       <H2 style={styles.common.title} label={text.winners} />
       <FlatList
         contentContainerStyle={styles.common.listContent}

@@ -1,4 +1,3 @@
-import { useEvent } from 'effector-react'
 import React from 'react'
 import { setIsAuth } from '../../features/auth/model'
 import SettingsList from '../../features/settings/SettingsList'
@@ -10,11 +9,9 @@ import SettingScreenContainer from './stylePresets/SettingScreenContainer'
 
 const SettingsScreen = () => {
   const t = useText()
-  const setIsAuthenticated = useEvent(setIsAuth)
-
   const { styles } = useThemedStyleList({ button: buttonLightThemedPreset })
   const onLogout = () => {
-    setIsAuthenticated(false)
+    setIsAuth(false)
   }
 
   return (

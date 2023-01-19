@@ -1,4 +1,3 @@
-import { useEvent } from 'effector-react'
 import React, { useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
@@ -26,20 +25,18 @@ const CreatePasswordScreen = () => {
     common: themedCommonStyles,
     button: buttonPrimaryThemedPreset,
   })
-  const setIsAuthenticated = useEvent(setIsAuth)
-  const checkPasswords = useEvent(passwordsModel.validateFx)
   const [isUserAcceptAgreement] = useStateStore(userAgreementModel)
   const [isUserAgreementInvalid, setIsUserAgreementInvalid] =
     useState<UserAgreementProps['isInvalid']>()
 
   const onCreateAccount = () => {
-    checkPasswords().then((isValid) => {
+    passwordsModel.validateFx().then((isValid) => {
       if (!isUserAcceptAgreement) {
         setIsUserAgreementInvalid(true)
         return
       }
       if (isValid && isUserAcceptAgreement) {
-        setIsAuthenticated(true)
+        setIsAuth(true)
       }
     })
   }
