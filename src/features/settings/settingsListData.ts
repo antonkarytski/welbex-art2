@@ -11,8 +11,8 @@ import { IconProps } from '../../ui/icons/_types'
 
 export type SettingItem = {
   name: string
-  icon: ({ size, color, style }: IconProps) => React.ReactElement
-  navigateTo: keyof typeof links
+  icon: (props: IconProps) => React.ReactElement
+  navigateTo: links
 }
 
 export const getSettingsList = (t: LangStructure): SettingItem[] => [

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
 import Sup from '../../ui/Sup'
 import SettingsButton from './NavigationButton.Settings'
@@ -13,7 +13,6 @@ type AppHeaderProps = {
   backArrowColor?: string
   settingsAvailable?: boolean
   settingsIconColor?: string
-  headerRight?: ReactNode
   iconsColor?: string
 }
 
@@ -21,22 +20,20 @@ const AppHeader = ({
   style,
   backAvailable,
   backArrowColor,
-  settingsAvailable = true,
+  settingsAvailable,
   settingsIconColor,
-  headerRight,
   iconsColor,
 }: AppHeaderProps) => {
-  const rightHeaderComponent =
-    headerRight || settingsAvailable ? (
-      <SettingsButton iconColor={settingsIconColor || iconsColor} />
-    ) : null
-
   return (
     <ScreenHeader
       style={style}
       backAvailable={backAvailable}
       backArrowColor={backArrowColor || iconsColor}
-      headerRight={rightHeaderComponent}
+      headerRight={
+        settingsAvailable && (
+          <SettingsButton iconColor={settingsIconColor || iconsColor} />
+        )
+      }
     >
       <Sup style={style?.title} label={'ART'} supLabel={'2'} />
     </ScreenHeader>

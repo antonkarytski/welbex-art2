@@ -5,7 +5,7 @@ import Row from '../../ui/Row'
 import Span from '../../ui/Span'
 import ArrowToggleIcon from '../../ui/icons/Icon.ArrowToggle'
 import { createThemedStyle } from '../themed'
-import { useThemeColors, useThemedStyle } from '../themed/hooks'
+import { useTheme } from '../themed/hooks'
 import { SettingItem } from './settingsListData'
 
 type SettingsListItemProps = {
@@ -14,8 +14,7 @@ type SettingsListItemProps = {
 
 const SettingsListItem = ({ item }: SettingsListItemProps) => {
   const navigate = useNavigate()
-  const styles = useThemedStyle(themedStyles)
-  const colors = useThemeColors()
+  const { styles, colors } = useTheme(themedStyles)
 
   const Icon = item.icon
   return (
