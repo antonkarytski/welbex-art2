@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
@@ -13,6 +14,7 @@ export default function DeleteAccountScreen() {
   const { styles } = useThemedStyleList({
     button: buttonPrimaryThemedPreset,
     common: themedCommonStyles,
+    screen: screenStyles,
   })
   const onDeleteAccount = () => {}
 
@@ -21,11 +23,13 @@ export default function DeleteAccountScreen() {
       <View style={styles.common.flexGrown}>
         <Span
           label={t.deleteAccountWarn}
-          style={[screenStyles.deleteAccountWarn]}
+          style={styles.screen.deleteAccountWarn}
+          weight={500}
         />
         <Span
           label={t.deleteAccountDescription}
-          style={[screenStyles.descriptionText]}
+          style={styles.screen.descriptionText}
+          weight={400}
         />
         <PresetButton
           label={t.delete}
@@ -38,12 +42,20 @@ export default function DeleteAccountScreen() {
   )
 }
 
-const screenStyles = StyleSheet.create({
-  deleteAccountWarn: {
-    marginTop: 24,
-    marginBottom: 8,
-  },
-  descriptionText: {
-    marginBottom: 10,
-  },
-})
+const screenStyles = createThemedStyle((colors) =>
+  StyleSheet.create({
+    deleteAccountWarn: {
+      marginTop: 24,
+      marginBottom: 8,
+      color: colors.text,
+      fontSize: 16,
+      lineHeight: 20,
+    },
+    descriptionText: {
+      marginBottom: 10,
+      color: colors.textGrey,
+      fontSize: 14,
+      lineHeight: 21,
+    },
+  })
+)
