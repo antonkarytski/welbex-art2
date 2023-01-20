@@ -38,6 +38,7 @@ export type SelectProps<Item> = {
   renderItem: RenderItem<Item>
   idExtractor: StringExtractor<Item>
   ItemSeparatorComponent?: React.ComponentType<any> | null
+  ListFooterComponent?: React.ComponentType<any> | null
   model: StateModel<Item>
   style?: SelectStyles
   showSelectedIcon?: boolean

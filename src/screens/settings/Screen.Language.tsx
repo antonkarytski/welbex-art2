@@ -11,8 +11,8 @@ import Span from '../../ui/Span'
 import Select from '../../ui/selects/Select'
 import SettingScreenContainer from './stylePresets/SettingScreenContainer'
 
-const selectModel = createStateModel(LANGUAGES_LIST[0])
-selectModel.$state.watch((languageItem) => {
+const selectLanguageModel = createStateModel(LANGUAGES_LIST[0])
+selectLanguageModel.$state.watch((languageItem) => {
   languageModel.set(languageItem.key)
 })
 
@@ -31,7 +31,8 @@ export default function LanguageScreen() {
         renderItem={renderItem}
         ItemSeparatorComponent={ListItemSeparator}
         idExtractor={({ key }) => key}
-        model={selectModel}
+        model={selectLanguageModel}
+        ListFooterComponent={ListItemSeparator}
       />
     </SettingScreenContainer>
   )

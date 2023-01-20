@@ -15,6 +15,7 @@ const FaqList = () => {
       data={MOCK_FAQ}
       renderItem={renderItem}
       ItemSeparatorComponent={ListItemSeparator}
+      ListFooterComponent={ListItemSeparator}
     />
   )
 }

@@ -14,6 +14,7 @@ const Select = <Item,>({
   style,
   ItemSeparatorComponent,
   showSelectedIcon,
+  ListFooterComponent,
 }: SelectProps<Item>) => {
   const [selectedItem, setSelectedItem] = useStateStore(model)
 
@@ -48,6 +49,7 @@ const Select = <Item,>({
         ItemSeparatorComponent={
           ItemSeparatorComponent === null ? undefined : ListItemSeparator
         }
+        ListFooterComponent={ListFooterComponent}
       />
     </View>
   )

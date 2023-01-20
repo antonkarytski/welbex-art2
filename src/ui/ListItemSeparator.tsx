@@ -3,7 +3,7 @@ import React from 'react'
 import { StyleProp, StyleSheet, ViewStyle } from 'react-native'
 
 type ListItemSeparatorProps = {
-  style: StyleProp<ViewStyle>
+  style?: StyleProp<ViewStyle>
 }
 
 const ListItemSeparator = React.memo(({ style }: ListItemSeparatorProps) => {
