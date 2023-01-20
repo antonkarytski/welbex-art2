@@ -11,7 +11,7 @@ import TextButton from '../../../ui/buttons/Button.Text'
 import Button from '../../../ui/buttons/PresetButton'
 import Field from '../../../ui/form/Field'
 import { useThemedStyleList } from '../../themed/hooks'
-import { logIn, logInFormModel } from './model'
+import { logIn, logInFormModel } from './model.logIn'
 
 const LogInForm = () => {
   const navigate = useNavigate()
@@ -33,13 +33,13 @@ const LogInForm = () => {
         placeholder={t.email}
         formModel={logInFormModel}
         name={'email'}
-        styles={styles.field}
+        style={styles.field}
       />
       <Field
         placeholder={t.password}
         formModel={logInFormModel}
         name={'password'}
-        styles={styles.field}
+        style={styles.field}
       />
       <TextButton
         label={t.forgotPasswordQ}

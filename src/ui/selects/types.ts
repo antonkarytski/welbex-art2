@@ -4,7 +4,7 @@ import { StateModel } from 'altek-toolkit'
 import { SearchableListModel } from '../../lib/componentsModels/model.search'
 import { FnExt } from '../../types'
 import { DropdownStyles } from '../dropdownTab/types'
-import { InputStyles } from '../input/styles'
+import { InputStyles } from '../input/types'
 
 export type StringExtractor<T> = FnExt<T, string>
 export type RenderItem<T> = FnExt<T, ReactNode>

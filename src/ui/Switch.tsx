@@ -7,12 +7,18 @@ import {
   ViewStyle,
 } from 'react-native'
 import { StateModel, useStateStore } from 'altek-toolkit'
+import {
+  FormFieldComponentProps,
+  FormModel,
+  useFormField,
+} from '../lib/componentsModels/model.testForm'
 import Row from '../ui/Row'
 import Span, { SpanProps } from '../ui/Span'
 
-interface SwitchProp {
+type SwitchProp<T extends Record<string, boolean>> = {
   label?: string
-  model: StateModel<boolean>
+  // model: StateModel<boolean>
+  // formModel:
   disabled?: boolean
   colors?: {
     thumb?: string
@@ -24,17 +30,20 @@ interface SwitchProp {
     label?: StyleProp<TextStyle>
   }
   labelWeight?: SpanProps['weight']
-}
+} & FormFieldComponentProps<boolean, T>
 
-const Switch = ({
+const Switch = <T extends Record<string, boolean>>({
   label,
-  model,
+  // model,
+  formModel,
+  name,
   disabled,
   colors,
   style,
   labelWeight = 500,
-}: SwitchProp) => {
-  const [isEnabled, setIsEnabled] = useStateStore(model)
+}: SwitchProp<T>) => {
+  // const [isEnabled, setIsEnabled] = useStateStore(model)
+  const [isEnabled, setIsEnabled] = useFormField(formModel, name)
 
   return (
     <Row style={[styles.wrapper, style?.wrapper]}>
@@ -53,6 +62,8 @@ const Switch = ({
         thumbColor={colors?.thumb || '#ffffff'}
         onValueChange={setIsEnabled}
         value={isEnabled}
+        // onValueChange={setIsEnabled}
+        // value={isEnabled}
         disabled={disabled}
       />
     </Row>

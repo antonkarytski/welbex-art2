@@ -1,20 +1,21 @@
 import { ReactNode } from 'react'
 import {
   KeyboardTypeOptions,
+  StyleProp,
   TextInputProps,
   TextStyle,
   ViewStyle,
 } from 'react-native'
 
 export type InputStyles = {
-  container?: ViewStyle
-  label?: TextStyle
-  input?: ViewStyle
-  input__focused?: ViewStyle
-  wrapper?: ViewStyle
-  inputWrapper?: ViewStyle
-  pseudoBefore?: ViewStyle
-  pseudoAfter?: ViewStyle
+  container?: StyleProp<ViewStyle>
+  label?: StyleProp<TextStyle>
+  input?: StyleProp<ViewStyle>
+  input__focused?: StyleProp<ViewStyle>
+  wrapper?: StyleProp<ViewStyle>
+  inputWrapper?: StyleProp<ViewStyle>
+  pseudoBefore?: StyleProp<ViewStyle>
+  pseudoAfter?: StyleProp<ViewStyle>
 }
 
 export type InputProps = {
