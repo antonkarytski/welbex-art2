@@ -1,5 +1,4 @@
-import { useStore } from 'effector-react'
-import React, { useEffect } from 'react'
+import React from 'react'
 import NotesSettingsList from '../../features/notifications/NotesSettingsList'
 import { useText } from '../../translations/hook'
 import SettingScreenContainer from './stylePresets/SettingScreenContainer'

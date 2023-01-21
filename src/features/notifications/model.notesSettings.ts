@@ -9,15 +9,16 @@ export const notesSettingsForm: NotesForm = {
 
 type NotesFields = 'like' | 'contestInfo' | 'promotionalNotices'
 
-export type NotesForm = Record<keyof NotesTranslations, boolean>
+export type NotesForm = Record<NotesTranslations, boolean>
 
-type NotesTranslations = Omit<
+export type NotesTranslations = keyof Omit<
   LangStructure,
   Exclude<keyof LangStructure, NotesFields>
 >
+
 export const notesSettingsList = Object.keys(
   notesSettingsForm
-) as (keyof NotesForm)[]
+) as NotesTranslations[]
 
 export const notesSettingsModel = createFormModel<boolean, NotesForm>(
   notesSettingsForm
