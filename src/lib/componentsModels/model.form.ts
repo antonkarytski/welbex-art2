@@ -9,7 +9,16 @@ export type FormFieldComponentProps<T extends Record<string, string>> = {
   formModel: FormModel<T>
 }
 
-class FormModel<T extends Record<string, string>> {
+export type TypedFormFieldComponentProps<
+  T extends Record<string, any>,
+  K extends keyof T,
+  ST
+> = {
+  name: K
+  formModel: T[K] extends ST ? FormModel<T> : never
+}
+
+class FormModel<T extends Record<string, any>> {
   public readonly setField = createEvent<SetFieldPayload<T>>()
   public readonly $store
   public readonly fields: { [K in keyof T]: K }
@@ -29,13 +38,13 @@ class FormModel<T extends Record<string, string>> {
   }
 }
 
-export const createFormModel = <T extends Record<string, string>>(
+export const createFormModel = <T extends Record<string, any>>(
   initialFormState: T
 ) => {
   return new FormModel<T>(initialFormState)
 }
 
-export const useFormField = <T extends Record<string, string>>(
+export const useFormField = <T extends Record<string, any>>(
   form: FormModel<T>,
   key: keyof T
 ) => {
