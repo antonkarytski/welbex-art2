@@ -1,6 +1,7 @@
 import { createEvent, createStore } from 'effector'
 import { useStoreMap } from 'effector-react'
 import { useCallback } from 'react'
+import { ShouldBeAssignableTo } from '../../types/errors'
 
 export type SetFieldPayload<T> = { key: keyof T; value: string }
 
@@ -14,8 +15,8 @@ export type TypedFormFieldComponentProps<
   K extends keyof T,
   ST
 > = {
-  name: T[K] extends ST ? K : never
-  formModel: T[K] extends ST ? FormModel<T> : never
+  name: T[K] extends ST ? K : ShouldBeAssignableTo<K, T[K], ST>
+  formModel: T[K] extends ST ? FormModel<T> : ShouldBeAssignableTo<K, T[K], ST>
 }
 
 class FormModel<T extends Record<string, any>> {
