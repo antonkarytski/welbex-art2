@@ -1,4 +1,4 @@
-import { LogInForm } from '../features/logIn/model'
+import { LogInForm } from '../features/auth/logIn/model'
 
 export const MOCK_LOGIN_USERS: LogInForm[] = [
   {

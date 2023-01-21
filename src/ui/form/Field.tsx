@@ -11,7 +11,7 @@ type FieldProps<T extends Record<string, any>, N extends keyof T> = {
   label?: string
   style?: InputStyles
 } & TypedFormFieldComponentProps<T, N, string> &
-  InputProps
+  Omit<InputProps, 'style'>
 
 function Field<T extends Record<string, any>, N extends keyof T>({
   name,

@@ -1,7 +1,7 @@
 import React from 'react'
 import { inputThemedStyles } from '../../../styles/inputs'
 import { useText } from '../../../translations/hook'
-import Field from '../../../ui/form/Field'
+import { Field } from '../../../ui/form'
 import { useThemedStyleList } from '../../themed/hooks'
 import { recoverPasswordFormModel } from './model.recoverPassword'
 
