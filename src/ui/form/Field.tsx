@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  FormFieldComponentProps,
   TypedFormFieldComponentProps,
   useFormField,
 } from '../../lib/componentsModels/model.form'
