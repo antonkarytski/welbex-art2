@@ -13,12 +13,12 @@ export type TypedFormFieldComponentProps<
   T extends Record<string, any>,
   K extends keyof T,
   ST
-> = {
+  > = {
   name: T[K] extends ST ? K : never
   formModel: T[K] extends ST ? FormModel<T> : never
 }
 
-class FormModel<T extends Record<string, any>> {
+export class FormModel<T extends Record<string, any>> {
   public readonly setField = createEvent<SetFieldPayload<T>>()
   public readonly $store
   public readonly fields: { [K in keyof T]: K }

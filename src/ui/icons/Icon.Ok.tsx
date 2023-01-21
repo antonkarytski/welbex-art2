@@ -18,7 +18,7 @@ export default function OkIcon({
       <Path
         d="M20 6L9 17L4 12"
         stroke={color}
-        strokeWidth="2"
+        strokeWidth="3"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

@@ -9,7 +9,7 @@ import { InputProps } from '../input/types'
 
 type FieldProps<T extends Record<string, any>, N extends keyof T> = {
   label?: string
-  styles?: InputStyles
+  style?: InputStyles
 } & TypedFormFieldComponentProps<T, N, string> &
   InputProps
 
@@ -17,7 +17,7 @@ function Field<T extends Record<string, any>, N extends keyof T>({
   name,
   formModel,
   label,
-  styles,
+  style,
   ...props
 }: FieldProps<T, N>) {
   const [value, setValue] = useFormField(formModel, name)
@@ -27,7 +27,7 @@ function Field<T extends Record<string, any>, N extends keyof T>({
       onChangeText={setValue}
       value={value}
       label={label}
-      styles={styles}
+      styles={style}
       {...props}
     />
   )

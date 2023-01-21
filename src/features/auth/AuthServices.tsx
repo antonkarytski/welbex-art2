@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import { buttonLightThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import LineSeparator from '../../ui/LineSeparator'
@@ -10,10 +10,12 @@ import { useThemedStyleList } from '../themed/hooks'
 
 type AuthWithServicesProps = {
   showLineSeparator?: boolean
+  style?: StyleProp<ViewStyle>
 }
 
 const AuthWithServices = ({
   showLineSeparator = true,
+  style,
 }: AuthWithServicesProps) => {
   const t = useText()
   const { styles } = useThemedStyleList({
@@ -24,7 +26,7 @@ const AuthWithServices = ({
   const onContinueWithApple = () => {}
 
   return (
-    <View style={styles.feature.container}>
+    <View style={[styles.feature.container, style]}>
       {showLineSeparator && (
         <LineSeparator
           label={t.or}

@@ -32,7 +32,7 @@ const OnboardingScreen = () => {
         <ArrowButton
           label={t.skipForNow}
           onPress={() => {
-            navigate(links.login)
+            navigate(links.mainTabs)
           }}
           fontWeight={500}
           iconColor={colors.textLightGrey}

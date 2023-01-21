@@ -34,8 +34,7 @@ export default function NumberCell({
       style={[
         styles.cell,
         style?.cell,
-        isFocused && styles.cell__focused,
-        isFocused && style?.cell__focused,
+        isFocused && [styles.cell__focused, style?.cell__focused],
       ]}
     >
       <Span

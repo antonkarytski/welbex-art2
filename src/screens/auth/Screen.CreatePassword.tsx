@@ -1,25 +1,47 @@
-import React from 'react'
-import { KeyboardAvoidingView } from 'react-native'
+import { useEvent } from 'effector-react'
+import React, { useState } from 'react'
+import { KeyboardAvoidingView, StyleSheet } from 'react-native'
+import { useStateStore } from 'altek-toolkit'
+import UserAgreement, {
+  UserAgreementProps,
+  userAgreementModel,
+} from '../../features/auth/UserAgreement'
+import { setIsAuth } from '../../features/auth/model'
 import { useThemedStyleList } from '../../features/themed/hooks'
+import { createPasswordFormModel } from '../../lib/componentsModels/passwordsForm/model.passwordsForm'
 import { IS_IOS } from '../../lib/helpers/native/constants'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
-// import CheckBox from '../../ui/CheckBox'
 import H2 from '../../ui/H2'
-import Span from '../../ui/Span'
+import PasswordInputs from '../../ui/PasswordInputs'
 import PresetButton from '../../ui/buttons/PresetButton'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
 
-const PasswordEnterScreen = () => {
+const passwordsModel = createPasswordFormModel()
+
+const CreatePasswordScreen = () => {
   const t = useText()
   const { styles } = useThemedStyleList({
     common: themedCommonStyles,
     button: buttonPrimaryThemedPreset,
   })
+  const setIsAuthenticated = useEvent(setIsAuth)
+  const checkPasswords = useEvent(passwordsModel.validateFx)
+  const [isUserAcceptAgreement] = useStateStore(userAgreementModel)
+  const [isUserAgreementInvalid, setIsUserAgreementInvalid] =
+    useState<UserAgreementProps['isInvalid']>()
 
   const onCreateAccount = () => {
-    // change isAuth state to true
+    checkPasswords().then((isValid) => {
+      if (!isUserAcceptAgreement) {
+        setIsUserAgreementInvalid(true)
+        return
+      }
+      if (isValid && isUserAcceptAgreement) {
+        setIsAuthenticated(true)
+      }
+    })
   }
 
   return (
@@ -30,8 +52,15 @@ const PasswordEnterScreen = () => {
         behavior={IS_IOS ? 'padding' : 'height'}
         style={styles.common.flexGrown}
       >
-        {/* <CheckBox label={'hello'} value={'l'} onChange={() => {}} /> */}
-
+        <PasswordInputs
+          passwordPlaceholder={t.password}
+          repeatPasswordPlaceholder={t.repeatPassword}
+          model={passwordsModel}
+          validLabel={t.checkPasswordMatchSuccess}
+          invalidLabel={t.checkPasswordMatchError}
+          style={{ formWrapper: screenStyles.passwordFormWrapper }}
+        />
+        <UserAgreement isInvalid={isUserAgreementInvalid} />
         <PresetButton
           label={t.createAccountButton}
           onPress={onCreateAccount}
@@ -43,4 +72,10 @@ const PasswordEnterScreen = () => {
   )
 }
 
-export default PasswordEnterScreen
+const screenStyles = StyleSheet.create({
+  passwordFormWrapper: {
+    marginBottom: 12,
+  },
+})
+
+export default CreatePasswordScreen
