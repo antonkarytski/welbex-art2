@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native'
 import { createThemedStyle } from '../features/themed'
+import { InputStyles } from '../ui/input/styles'
 
-export const inputThemedStyles = createThemedStyle((colors) =>
+export const inputThemedStyles = createThemedStyle<InputStyles>((colors) =>
   StyleSheet.create({
     wrapper: {
       marginBottom: 12,

@@ -3,7 +3,7 @@ import React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import { PasswordsModel } from '../lib/componentsModels/passwordsForm/types'
 import { ErrorNote, SecureField, SuccessNote } from './form'
-import { InputStyles } from './input/types'
+import { InputStyles } from './input/styles'
 
 type PasswordInputsProps = {
   passwordPlaceholder: string
@@ -36,14 +36,14 @@ const PasswordInputs = ({
     <View style={style?.formWrapper}>
       <SecureField
         placeholder={passwordPlaceholder}
-        model={model}
+        formModel={model}
         name={model.fields.password}
         isValid={isValid}
         style={{ ...styles, ...style?.input }}
       />
       <SecureField
         placeholder={repeatPasswordPlaceholder}
-        model={model}
+        formModel={model}
         name={model.fields.repeatingPassword}
         isValid={isValid}
         style={{ ...styles, ...style?.input }}

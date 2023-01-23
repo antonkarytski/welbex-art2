@@ -12,7 +12,7 @@ import PresetButton from '../../ui/buttons/PresetButton'
 
 const AddPaymentCardScreen = () => {
   const text = useText()
-  const { styles } = useThemedStyleList({
+  const { colors, styles } = useThemedStyleList({
     buttonPreset: buttonPrimaryThemedPreset,
     header: headerThemedStyles,
   })
@@ -23,6 +23,7 @@ const AddPaymentCardScreen = () => {
         style={styles.header}
         backAvailable
         title={text.addingACard}
+        backArrowColor={colors.text}
       />
       <View style={commonStyles.contentContainer}>
         <AddPaymentCardForm />

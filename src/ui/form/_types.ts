@@ -1,8 +1,8 @@
 import { PropsWithChildren } from 'react'
 import { StyleProp, TextStyle, ViewStyle } from 'react-native'
-import { FormModel } from '../../lib/componentsModels/model.form'
+import { TypedFormFieldComponentProps } from '../../lib/componentsModels/model.form'
 import { SpanProps } from '../Span'
-import { InputStyles } from '../input/types'
+import { InputStyles } from "../input/styles";
 
 export type NoteProps = {
   label: string
@@ -16,12 +16,13 @@ export type NoteProps = {
   }
 } & PropsWithChildren
 
-export type SecureFieldProps<T extends Record<string, string>> = {
+export type SecureFieldProps<
+  T extends Record<string, any>,
+  K extends keyof T
+> = {
   placeholder: string
-  name: keyof T
-  model: FormModel<T>
   isValid?: boolean | null
   iconColor?: string
   style?: InputStyles
   iconSize?: number
-}
+} & TypedFormFieldComponentProps<T, K, string>

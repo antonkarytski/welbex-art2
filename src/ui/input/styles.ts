@@ -3,6 +3,7 @@ import { COLOR_THEMES } from '../../features/themed/theme'
 import * as FONTS from '../../styles/fonts'
 
 export type InputStyles = {
+  container?: ViewStyle
   label?: TextStyle
   input?: ViewStyle
   input__focused?: ViewStyle

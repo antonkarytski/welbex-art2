@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import { useText } from '../../translations/hook'
 import Row from '../../ui/Row'
 import Field from '../../ui/form/Field'
-import { addCardFormModel } from './model.addCard'
+import { addCardFormModel } from './model.addCardForm'
 
 type AddPaymentCardFormProps = {}
 
