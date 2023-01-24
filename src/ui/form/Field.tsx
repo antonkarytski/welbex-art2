@@ -1,24 +1,24 @@
 import React from 'react'
 import {
-  FormFieldComponentProps,
+  TypedFormFieldComponentProps,
   useFormField,
 } from '../../lib/componentsModels/model.form'
 import Input from '../input'
 import { InputProps, InputStyles } from '../input/types'
 
-type FieldProps<T extends Record<string, string>> = {
+type FieldProps<T extends Record<string, any>, N extends keyof T> = {
   label?: string
   style?: InputStyles
-} & FormFieldComponentProps<T> &
-  InputProps
+} & TypedFormFieldComponentProps<T, N, string> &
+  Omit<InputProps, 'style'>
 
-function Field<T extends Record<string, string>>({
+function Field<T extends Record<string, any>, N extends keyof T>({
   name,
   formModel,
   label,
   style,
   ...props
-}: FieldProps<T>) {
+}: FieldProps<T, N>) {
   const [value, setValue] = useFormField(formModel, name)
 
   return (

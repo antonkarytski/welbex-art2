@@ -1,22 +1,6 @@
 import { ReactNode } from 'react'
-import {
-  KeyboardTypeOptions,
-  StyleProp,
-  TextInputProps,
-  TextStyle,
-  ViewStyle,
-} from 'react-native'
-
-export type InputStyles = {
-  container?: StyleProp<ViewStyle>
-  label?: StyleProp<TextStyle>
-  input?: StyleProp<ViewStyle>
-  input__focused?: StyleProp<ViewStyle>
-  wrapper?: StyleProp<ViewStyle>
-  inputWrapper?: StyleProp<ViewStyle>
-  pseudoBefore?: StyleProp<ViewStyle>
-  pseudoAfter?: StyleProp<ViewStyle>
-}
+import { KeyboardTypeOptions, TextInputProps } from 'react-native'
+import { InputStyles } from './styles'
 
 export type InputProps = {
   onChangeText?: (text: string) => void
