@@ -1,6 +1,6 @@
 import React from 'react'
 import { setIsAuth } from '../../features/auth/model'
-import SettingsList from '../../features/settings/SettingsList'
+import SettingsList from '../../features/settings/settingsList/SettingsList'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { buttonLightThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
@@ -13,7 +13,7 @@ const SettingsScreen = () => {
   const onLogout = () => {
     setIsAuth(false)
   }
-  // TO DO: adds checking if user registered (show logout button or not)
+  // TODO: adds checking if user registered (show logout button or not)
   return (
     <SettingScreenContainer title={t.settings}>
       <SettingsList />

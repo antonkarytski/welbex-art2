@@ -1,18 +1,18 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
-import { useNavigate } from '../../navigation'
-import Row from '../../ui/Row'
-import Span from '../../ui/Span'
-import ArrowToggleIcon from '../../ui/icons/Icon.ArrowToggle'
-import { createThemedStyle } from '../themed'
-import { useTheme } from '../themed/hooks'
+import { useNavigate } from '../../../navigation'
+import Row from '../../../ui/Row'
+import Span from '../../../ui/Span'
+import ArrowToggleIcon from '../../../ui/icons/Icon.ArrowToggle'
+import { createThemedStyle } from '../../themed'
+import { useTheme } from '../../themed/hooks'
 import { SettingItem } from './settingsListData'
 
 type SettingsListItemProps = {
   item: SettingItem
 }
 
-const SettingsListItem = ({ item }: SettingsListItemProps) => {
+const SettingsListItem = React.memo(({ item }: SettingsListItemProps) => {
   const navigate = useNavigate()
   const { styles, colors } = useTheme(themedStyles)
 
@@ -34,7 +34,7 @@ const SettingsListItem = ({ item }: SettingsListItemProps) => {
       </Row>
     </TouchableOpacity>
   )
-}
+})
 
 const themedStyles = createThemedStyle((colors) => ({
   item: {

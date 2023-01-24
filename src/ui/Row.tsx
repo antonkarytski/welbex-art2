@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 
-interface FlexRowProp {
-  children: ReactNode[]
+interface RowProp {
+  children: ReactNode
   style?: StyleProp<ViewStyle>
 }
 
-const FlexRow = ({ children, style }: FlexRowProp) => {
+const Row = ({ children, style }: RowProp) => {
   return <View style={[styles.container, style]}>{children}</View>
 }
 
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default FlexRow
+export default Row

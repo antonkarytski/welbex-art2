@@ -7,7 +7,7 @@ import ScreenWrapper from '../../../ui/ScreenWrapper'
 import { themedCommonStyles, themedScreenHeaderStyles } from './styles'
 
 type SettingScreenContainerProps = {
-  children: ReactNode | ReactNode[]
+  children: ReactNode
   title: string
   style?: StyleProp<ViewStyle>
   backAvailable?: boolean

@@ -1,5 +1,5 @@
 import React from 'react'
-import NotesSettingsList from '../../features/notifications/NotesSettingsList'
+import NotesSettingsList from '../../features/settings/notifications/NotificationsSettingList'
 import { useText } from '../../translations/hook'
 import SettingScreenContainer from './stylePresets/SettingScreenContainer'
 

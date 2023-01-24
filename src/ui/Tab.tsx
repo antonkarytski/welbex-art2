@@ -13,7 +13,7 @@ import Span, { SpanProps } from './Span'
 import MinusIcon from './icons/Icon.Minus'
 import PlusIcon from './icons/Icon.Plus'
 
-type TabStyles = {
+export type TabStyles = {
   wrapper?: StyleProp<ViewStyle>
   tab?: StyleProp<ViewStyle>
   label?: StyleProp<TextStyle>
@@ -23,7 +23,7 @@ type TabStyles = {
   contentText?: StyleProp<TextStyle>
 }
 
-type TabProps = {
+type TabProps = PropsWithChildren<{
   label?: string
   labelComponent?: ReactNode
   content?: string
@@ -32,7 +32,7 @@ type TabProps = {
   style?: TabStyles
   labelFontWeight?: SpanProps['weight']
   contentFontWeight?: SpanProps['weight']
-} & PropsWithChildren
+}>
 
 const Tab = ({
   label,

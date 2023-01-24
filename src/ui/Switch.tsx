@@ -7,28 +7,32 @@ import {
   ViewStyle,
 } from 'react-native'
 import {
-  FormFieldComponentProps,
+  TypedFormFieldComponentProps,
   useFormField,
-} from '../lib/componentsModels/model.testForm'
+} from '../lib/componentsModels/model.form'
 import Row from '../ui/Row'
 import Span, { SpanProps } from '../ui/Span'
 
-type SwitchProp<T extends Record<string, boolean>> = {
+export type SwitcherColors = {
+  thumb?: string
+  trackActive?: string
+  track?: string
+}
+
+export type SwitcherStyles = {
+  wrapper?: StyleProp<ViewStyle>
+  label?: StyleProp<TextStyle>
+}
+
+type SwitchProp<T extends Record<string, boolean>, K extends keyof T> = {
   label?: string
   disabled?: boolean
-  colors?: {
-    thumb?: string
-    trackActive?: string
-    track?: string
-  }
-  style?: {
-    wrapper?: StyleProp<ViewStyle>
-    label?: StyleProp<TextStyle>
-  }
+  colors?: SwitcherColors
+  style?: SwitcherStyles
   labelWeight?: SpanProps['weight']
-} & FormFieldComponentProps<boolean, T>
+} & TypedFormFieldComponentProps<T, K, boolean>
 
-const Switch = <T extends Record<string, boolean>>({
+const Switch = <T extends Record<string, boolean>, K extends keyof T>({
   label,
   formModel,
   name,
@@ -36,8 +40,8 @@ const Switch = <T extends Record<string, boolean>>({
   colors,
   style,
   labelWeight = 500,
-}: SwitchProp<T>) => {
-  const [isEnabled, setIsEnabled] = useFormField(formModel, name)
+}: SwitchProp<T, K>) => {
+  const [isEnabled, setIsEnabled] = useFormField<T, boolean>(formModel, name)
 
   return (
     <Row style={[styles.wrapper, style?.wrapper]}>

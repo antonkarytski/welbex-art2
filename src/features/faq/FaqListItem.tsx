@@ -1,16 +1,15 @@
 import React from 'react'
 import { FaqItem } from '../../_mock/faq'
-import Tab from '../../ui/Tab'
-import { createThemedStyle } from '../themed'
-import { useTheme } from '../themed/hooks'
+import Tab, { TabStyles } from '../../ui/Tab'
+import { ColorThemeStructure } from '../themed/theme'
 
 type FaqListItemProps = {
   item: FaqItem
+  styles: TabStyles
+  colors: ColorThemeStructure
 }
 
-const FaqListItem = ({ item }: FaqListItemProps) => {
-  const { styles, colors } = useTheme(themedTabStyles)
-
+const FaqListItem = React.memo(({ item, styles, colors }: FaqListItemProps) => {
   return (
     <Tab
       label={item.question}
@@ -19,18 +18,6 @@ const FaqListItem = ({ item }: FaqListItemProps) => {
       style={styles}
     />
   )
-}
-
-const themedTabStyles = createThemedStyle((colors) => ({
-  label: {
-    color: colors.text,
-  },
-  label__opened: {
-    color: colors.textAccent,
-  },
-  contentText: {
-    color: colors.textGrey,
-  },
-}))
+})
 
 export default FaqListItem

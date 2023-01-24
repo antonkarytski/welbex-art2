@@ -12,7 +12,7 @@ const IconButton = ({
   preset,
   disabled,
   children,
-}: IconButtonProps & PropsWithChildren) => {
+}: PropsWithChildren<IconButtonProps>) => {
   return (
     <PresetButton
       onPress={onPress}

@@ -1,13 +1,13 @@
 import React from 'react'
-import { links } from '../../navigation/links'
-import { LangStructure } from '../../translations/types'
-import FeedbackIcon from '../../ui/icons/Icon.Comment'
-import DeleteIcon from '../../ui/icons/Icon.Delete'
-import LanguageIcon from '../../ui/icons/Icon.Language'
-import NotificationsIcon from '../../ui/icons/Icon.Notifications'
-import QuestionIcon from '../../ui/icons/Icon.Question'
-import StarIcon from '../../ui/icons/Icon.Star'
-import { IconProps } from '../../ui/icons/_types'
+import { links } from '../../../navigation/links'
+import { LangStructure } from '../../../translations/types'
+import FeedbackIcon from '../../../ui/icons/Icon.Comment'
+import DeleteIcon from '../../../ui/icons/Icon.Delete'
+import LanguageIcon from '../../../ui/icons/Icon.Language'
+import NotificationsIcon from '../../../ui/icons/Icon.Notifications'
+import QuestionIcon from '../../../ui/icons/Icon.Question'
+import StarIcon from '../../../ui/icons/Icon.Star'
+import { IconProps } from '../../../ui/icons/_types'
 
 export type SettingItem = {
   name: string

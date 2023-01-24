@@ -46,10 +46,10 @@ const FeedbackForm = () => {
         formModel={feedbackFormModel}
         name={feedbackFormModel.fields.question}
         multiline={true}
-        style={
-          (styles.field,
-          { input: { ...styles.field.input, ...featureStyles.textarea } })
-        }
+        style={{
+          ...styles.field,
+          input: { ...styles.field.input, ...featureStyles.textarea },
+        }}
       />
       <PresetButton
         label={t.send}

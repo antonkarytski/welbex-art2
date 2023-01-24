@@ -1,17 +1,6 @@
-import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { COLOR_THEMES } from '../../features/themed/theme'
 import * as FONTS from '../../styles/fonts'
-
-export type InputStyles = {
-  container?: ViewStyle
-  label?: TextStyle
-  input?: ViewStyle
-  input__focused?: ViewStyle
-  wrapper?: ViewStyle
-  inputWrapper?: ViewStyle
-  pseudoBefore?: ViewStyle
-  pseudoAfter?: ViewStyle
-}
 
 const defaultColors = COLOR_THEMES.LIGHT
 

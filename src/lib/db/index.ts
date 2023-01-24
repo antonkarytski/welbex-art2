@@ -1,4 +1,5 @@
 import { AsyncDbManager } from 'altek-toolkit'
+import { NotificationsSetting } from '../../features/settings/notifications/model.notificationsSetting'
 import { Languages } from '../../translations/types'
 import { DbFields } from './fields'
 
@@ -9,7 +10,7 @@ type CameraProps = {
 }
 
 export type DeterminedDbProps = {
-  [DbFields.NOTIFICATIONS_ENABLED]: number
+  [DbFields.NOTIFICATIONS_ENABLED]: NotificationsSetting
   [DbFields.LANGUAGE]: Languages
 }
 

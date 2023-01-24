@@ -13,7 +13,7 @@ import ScreenWrapper from '../../../ui/ScreenWrapper'
 import { themedCommonStyles, themedScreenHeaderStyles } from './styles'
 
 type AuthScreenContainerProps = {
-  children: ReactNode | ReactNode[]
+  children: ReactNode
   style?: StyleProp<ViewStyle>
   backAvailable?: boolean
 }

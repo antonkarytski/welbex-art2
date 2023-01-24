@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 
 type DropdownContainerProps = {
-  children: ReactNode | ReactNode[]
+  children: ReactNode
   style?: StyleProp<ViewStyle>
 }
 

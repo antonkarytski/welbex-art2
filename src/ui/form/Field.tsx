@@ -19,7 +19,7 @@ function Field<T extends Record<string, any>, N extends keyof T>({
   style,
   ...props
 }: FieldProps<T, N>) {
-  const [value, setValue] = useFormField(formModel, name)
+  const [value, setValue] = useFormField<T, string>(formModel, name)
 
   return (
     <Input
