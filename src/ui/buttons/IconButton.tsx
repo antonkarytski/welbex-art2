@@ -20,18 +20,16 @@ const IconButton = ({
       preset={preset}
       disabled={disabled}
     >
-      {() => (
-        <Row style={style?.row}>
-          {children}
-          {label && (
-            <Span
-              label={label}
-              weight={500}
-              style={[styles.label, style?.label]}
-            />
-          )}
-        </Row>
-      )}
+      <Row style={style?.row}>
+        {children}
+        {label && (
+          <Span
+            label={label}
+            weight={500}
+            style={[styles.label, style?.label]}
+          />
+        )}
+      </Row>
     </PresetButton>
   )
 }

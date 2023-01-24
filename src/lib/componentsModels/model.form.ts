@@ -51,7 +51,7 @@ export const useFormField = <T extends Record<string, any>, R>(
   const fieldValue = useStoreMap({
     store: form.$store,
     keys: [key, form],
-    fn: (fields) => typeof fields[key],
+    fn: (fields) => fields[key],
   })
 
   const updateField = useCallback(
@@ -59,5 +59,5 @@ export const useFormField = <T extends Record<string, any>, R>(
     [form, key]
   )
 
-  return [fieldValue, updateField] as unknown as [R, (value: R) => void]
+  return [fieldValue, updateField] as [R, (value: R) => void]
 }

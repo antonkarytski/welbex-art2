@@ -56,7 +56,11 @@ export default function PresetButton({
       ]}
     >
       {children ? (
-        children(presetState)
+        typeof children === 'function' ? (
+          children(presetState)
+        ) : (
+          children
+        )
       ) : (
         <Span
           weight={500}
