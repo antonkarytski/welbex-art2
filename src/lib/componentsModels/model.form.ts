@@ -14,8 +14,8 @@ export type TypedFormFieldComponentProps<
   K extends keyof T,
   ST
 > = {
-  name: K
-  formModel: T[K] extends ST ? FormModel<T> : never
+  name: T[K] extends ST ? K : never
+  formModel: FormModel<T>
 }
 
 export class FormModel<T extends Record<string, any>> {
