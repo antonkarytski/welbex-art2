@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 
-interface RowProp {
+interface RowProps {
   children: ReactNode
   style?: StyleProp<ViewStyle>
 }
 
-const Row = ({ children, style }: RowProp) => {
+const Row = ({ children, style }: RowProps) => {
   return <View style={[styles.container, style]}>{children}</View>
 }
 

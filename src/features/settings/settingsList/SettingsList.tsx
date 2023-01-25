@@ -1,17 +1,26 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback } from 'react'
 import { FlatList } from 'react-native'
 import { useText } from '../../../translations/hook'
 import ListItemSeparator from '../../../ui/ListItemSeparator'
+import { createThemedStyle } from '../../themed'
+import { useTheme } from '../../themed/hooks'
 import SettingsListItem from './SettingsListItem'
-import { SettingItem, getSettingsList } from './settingsListData'
+import { SettingItem, settingsList } from './settingsListData'
 
 const SettingsList = () => {
   const t = useText()
-  const settingsList = useMemo(() => getSettingsList(t), [t])
+  const { styles, colors } = useTheme(themedStyles)
 
   const renderItem = useCallback(
-    ({ item }: { item: SettingItem }) => <SettingsListItem item={item} />,
-    []
+    ({ item }: { item: SettingItem }) => (
+      <SettingsListItem
+        item={item}
+        text={t}
+        textColor={colors.text}
+        style={styles}
+      />
+    ),
+    [colors.text, styles, t]
   )
 
   return (
@@ -22,5 +31,26 @@ const SettingsList = () => {
     />
   )
 }
+
+const themedStyles = createThemedStyle((colors) => ({
+  item: {
+    paddingVertical: 20,
+  },
+  row: {
+    justifyContent: 'flex-start',
+  },
+  settingIcon: {
+    marginRight: 18,
+  },
+  toggleIcon: {
+    marginLeft: 'auto',
+    transform: [{ rotate: '-90deg' }],
+  },
+  label: {
+    fontSize: 16,
+    lineHeight: 19,
+    color: colors.text,
+  },
+}))
 
 export default SettingsList

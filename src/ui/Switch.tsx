@@ -41,7 +41,7 @@ const Switch = <T extends Record<string, boolean>, K extends keyof T>({
   style,
   labelWeight = 500,
 }: SwitchProp<T, K>) => {
-  const [isEnabled, setIsEnabled] = useFormField<T, boolean>(formModel, name)
+  const [isEnabled, setIsEnabled] = useFormField(formModel, name)
 
   return (
     <Row style={[styles.wrapper, style?.wrapper]}>

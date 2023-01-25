@@ -14,7 +14,7 @@ const ImagePreviewFormField = <T extends Record<string, string>>({
   formModel,
   style,
 }: ImagePreviewFormFieldProps<T>) => {
-  const [value] = useFormField<T, string>(formModel, name)
+  const [value] = useFormField(formModel, name)
 
   return <Image source={{ uri: value || undefined }} style={style} />
 }

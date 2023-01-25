@@ -2,7 +2,7 @@ import { createEvent, createStore } from 'effector'
 import { useStoreMap } from 'effector-react'
 import { useCallback } from 'react'
 
-export type SetFieldPayload<T> = { key: keyof T; value: any }
+export type SetFieldPayload<T, K extends keyof T> = { key: K; value: T[K] }
 
 export type FormFieldComponentProps<T extends Record<string, string>> = {
   name: keyof T
@@ -19,7 +19,7 @@ export type TypedFormFieldComponentProps<
 }
 
 export class FormModel<T extends Record<string, any>> {
-  public readonly setField = createEvent<SetFieldPayload<T>>()
+  public readonly setField = createEvent<SetFieldPayload<T, keyof T>>()
   public readonly set = createEvent<T>()
   public readonly $store
   public readonly fields: { [K in keyof T]: K }
@@ -44,9 +44,9 @@ export const createFormModel = <T extends Record<string, any>>(
   return new FormModel<T>(initialFormState)
 }
 
-export const useFormField = <T extends Record<string, any>, R>(
+export const useFormField = <T extends Record<string, any>, K extends keyof T>(
   form: FormModel<T>,
-  key: keyof T
+  key: K
 ) => {
   const fieldValue = useStoreMap({
     store: form.$store,
@@ -55,9 +55,9 @@ export const useFormField = <T extends Record<string, any>, R>(
   })
 
   const updateField = useCallback(
-    (value: R) => form.setField({ value, key }),
+    (value: T[K]) => form.setField({ value, key }),
     [form, key]
   )
 
-  return [fieldValue, updateField] as [R, (value: R) => void]
+  return [fieldValue, updateField] as [T[K], (value: T[K]) => void]
 }

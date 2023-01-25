@@ -22,12 +22,12 @@ export const notificationsInitialState: NotificationsSetting = {
   promotionalNotices: false,
 }
 
-const NOTIFICATIONS_NAMES = Object.values(NotificationType)
+export const NOTIFICATIONS_NAMES = Object.values(NotificationType)
 
 export const NOTIFICATIONS_DESCRIPTORS: NotificationSwitchDescriptor[] =
-  NOTIFICATIONS_NAMES.map((key) => ({
-    name: key,
-    label: (text) => text[key],
+  NOTIFICATIONS_NAMES.map((name) => ({
+    name,
+    label: (text) => text[name],
   }))
 
 export const notificationsSettingModel = createFormModel(

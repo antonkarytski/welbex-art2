@@ -13,18 +13,20 @@ import {
 const NotificationsSettingList = () => {
   const t = useText()
   const colors = useThemeColors()
-  const switcherColors = getSwitcherThemedColors(colors)
 
   const renderItem = useCallback(
-    ({ item }: { item: NotificationSwitchDescriptor }) => (
-      <NoteSettingItem
-        label={item.label(t)}
-        name={item.name}
-        switcherColors={switcherColors}
-        style={switcherStyles}
-      />
-    ),
-    [switcherColors, t]
+    ({ item }: { item: NotificationSwitchDescriptor }) => {
+      const switcherColors = getSwitcherThemedColors(colors)
+      return (
+        <NoteSettingItem
+          label={item.label(t)}
+          name={item.name}
+          switcherColors={switcherColors}
+          style={switcherStyles}
+        />
+      )
+    },
+    [t, colors]
   )
 
   return (
