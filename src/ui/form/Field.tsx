@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   TypedFormFieldComponentProps,
-  useFormField,
   useSpecificTypeFormField,
 } from '../../lib/componentsModels/model.form'
 import Input from '../input'
