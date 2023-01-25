@@ -14,7 +14,7 @@ export type TypedFormFieldComponentProps<
   K extends keyof T,
   ST
 > = {
-  name: T[K] extends ST ? K : never
+  name: K
   formModel: T[K] extends ST ? FormModel<T> : never
 }
 
@@ -60,4 +60,11 @@ export const useFormField = <T extends Record<string, any>, K extends keyof T>(
   )
 
   return [fieldValue, updateField] as [T[K], (value: T[K]) => void]
+}
+
+export const useSpecificTypeFormField = <LT extends Record<string, any>, T>(
+  form: FormModel<LT>,
+  name: keyof LT
+) => {
+  return useFormField(form, name) as [T, (value: T) => void]
 }

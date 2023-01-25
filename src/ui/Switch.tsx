@@ -9,6 +9,7 @@ import {
 import {
   TypedFormFieldComponentProps,
   useFormField,
+  useSpecificTypeFormField,
 } from '../lib/componentsModels/model.form'
 import Row from '../ui/Row'
 import Span, { SpanProps } from '../ui/Span'
@@ -41,7 +42,10 @@ const Switch = <T extends Record<string, boolean>, K extends keyof T>({
   style,
   labelWeight = 500,
 }: SwitchProp<T, K>) => {
-  const [isEnabled, setIsEnabled] = useFormField(formModel, name)
+  const [isEnabled, setIsEnabled] = useSpecificTypeFormField<T, boolean>(
+    formModel,
+    name
+  )
 
   return (
     <Row style={[styles.wrapper, style?.wrapper]}>

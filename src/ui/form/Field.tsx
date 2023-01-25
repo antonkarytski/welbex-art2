@@ -2,6 +2,7 @@ import React from 'react'
 import {
   TypedFormFieldComponentProps,
   useFormField,
+  useSpecificTypeFormField,
 } from '../../lib/componentsModels/model.form'
 import Input from '../input'
 import { InputProps, InputStyles } from '../input/types'
@@ -19,7 +20,7 @@ function Field<T extends Record<string, any>, N extends keyof T>({
   style,
   ...props
 }: FieldProps<T, N>) {
-  const [value, setValue] = useFormField(formModel, name)
+  const [value, setValue] = useSpecificTypeFormField<T, string>(formModel, name)
 
   return (
     <Input

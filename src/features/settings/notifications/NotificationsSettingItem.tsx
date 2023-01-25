@@ -12,18 +12,21 @@ type NotificationsSettingItemProps = {
   style: SwitcherStyles
 }
 
-const NotificationsSettingItem = React.memo(
-  ({ name, label, switcherColors, style }: NotificationsSettingItemProps) => {
-    return (
-      <Switch
-        label={label}
-        formModel={notificationsSettingModel}
-        name={name}
-        colors={switcherColors}
-        style={style}
-      />
-    )
-  }
-)
+const NotificationsSettingItem = ({
+  name,
+  label,
+  switcherColors,
+  style,
+}: NotificationsSettingItemProps) => {
+  return (
+    <Switch
+      label={label}
+      formModel={notificationsSettingModel}
+      name={name}
+      colors={switcherColors}
+      style={style}
+    />
+  )
+}
 
 export default NotificationsSettingItem
