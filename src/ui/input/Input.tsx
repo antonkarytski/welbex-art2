@@ -17,7 +17,7 @@ const Input = forwardRef<TextInput, InputProps>(
       InputPseudoBefore,
       InputPseudoAfter,
       ...props
-    },
+    }: InputProps,
     ref
   ) => {
     const [isFocused, setIsFocused] = useState(false)

@@ -11,7 +11,7 @@ export type ElementMeasureProps = {
 export type DropdownTabProps = {
   label?: string | ReactNode
   tabLabel: string | ReactNode
-  children: ReactNode | ReactNode[]
+  children: ReactNode
   indentFromTab?: number
   style?: DropdownStyles
   overlayBackgroundColor?: string

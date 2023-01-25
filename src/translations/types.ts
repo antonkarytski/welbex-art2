@@ -7,3 +7,4 @@ export enum Languages {
 
 export type LangStructure = typeof EN
 export type LangFn = (text: LangStructure) => string
+export type LanguagesDescriptor = Record<Languages, keyof LangStructure>

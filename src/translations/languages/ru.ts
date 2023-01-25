@@ -24,6 +24,7 @@ export const RU: LangStructure = {
   get: 'Получить',
   tryAgain: 'Попробовать снова',
   update: 'Обновить',
+  delete: 'Удалить',
   submit: 'Предоставить на рассмотрение',
   send: 'Отправить',
   search: 'Поиск',
@@ -134,7 +135,7 @@ export const RU: LangStructure = {
   subscription: 'Подписка',
   disableAds: 'Отключение рекламы',
   increasedNumberOfContestUploads:
-    'Увеличенное количество категорий для участия Increased number of contest uploads',
+    'Увеличенное количество категорий для участия',
   supportChildCreativity: 'Поддерживайте детское творчество',
   subscriptionEndDate: 'Дата окончания подписки',
   unsubscribe: 'Отменить подписку',

@@ -1,6 +1,7 @@
-import { useEvent } from 'effector-react'
+import { useStore } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
+import { setIsAuth } from '../../features/auth/model'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { createPasswordFormModel } from '../../lib/componentsModels/passwordsForm/model.passwordsForm'
 import { IS_IOS } from '../../lib/helpers/native/constants'
@@ -22,11 +23,11 @@ const NewPasswordScreen = () => {
     button: buttonPrimaryThemedPreset,
   })
 
-  const setArePasswordsValid = useEvent(passwordsModel.validateFx)
+  const passwords = useStore(passwordsModel.$store)
 
   const onLogin = () => {
-    setArePasswordsValid().then((isValid) => {
-      //
+    passwordsModel.validateFx().then((isValid) => {
+      if (isValid) setIsAuth(true) // TEST
     })
   }
 
@@ -57,6 +58,7 @@ const NewPasswordScreen = () => {
           onPress={onLogin}
           preset={styles.button}
           style={styles.common.bottomButton}
+          disabled={!passwords.repeatingPassword || !passwords.password}
         />
       </KeyboardAvoidingView>
     </AuthScreenContainer>

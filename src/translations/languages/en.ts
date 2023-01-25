@@ -23,6 +23,7 @@ export const EN = {
   get: 'Get',
   tryAgain: 'Try again',
   update: 'Update',
+  delete: 'Delete',
   submit: 'Submit',
   send: 'Send',
   search: 'Search',

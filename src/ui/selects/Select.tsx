@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { FlatList, ListRenderItem, View } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
-import ListItemSeparator from './ListItemSeparator'
+import ListItemSeparator from '../ListItemSeparator'
 import SelectItem from './SelectItem'
 import { selectStyles } from './styles'
 import { SelectProps } from './types'
@@ -14,6 +14,7 @@ const Select = <Item,>({
   style,
   ItemSeparatorComponent,
   showSelectedIcon,
+  ListFooterComponent,
 }: SelectProps<Item>) => {
   const [selectedItem, setSelectedItem] = useStateStore(model)
 
@@ -48,6 +49,7 @@ const Select = <Item,>({
         ItemSeparatorComponent={
           ItemSeparatorComponent === null ? undefined : ListItemSeparator
         }
+        ListFooterComponent={ListFooterComponent}
       />
     </View>
   )

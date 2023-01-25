@@ -4,7 +4,7 @@ import { StateModel } from 'altek-toolkit'
 import { SearchableListModel } from '../../lib/componentsModels/model.search'
 import { FnExt } from '../../types'
 import { DropdownStyles } from '../dropdownTab/types'
-import { InputStyles } from '../input/styles'
+import { InputStyles } from '../input/types'
 
 export type StringExtractor<T> = FnExt<T, string>
 export type RenderItem<T> = FnExt<T, ReactNode>
@@ -38,6 +38,7 @@ export type SelectProps<Item> = {
   renderItem: RenderItem<Item>
   idExtractor: StringExtractor<Item>
   ItemSeparatorComponent?: React.ComponentType<any> | null
+  ListFooterComponent?: React.ComponentType<any> | null
   model: StateModel<Item>
   style?: SelectStyles
   showSelectedIcon?: boolean

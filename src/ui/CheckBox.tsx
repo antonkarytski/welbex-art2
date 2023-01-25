@@ -3,7 +3,7 @@ import React, { PropsWithChildren } from 'react'
 import { StyleSheet } from 'react-native'
 import OkIcon from './icons/Icon.Ok'
 
-type CheckboxProps = {
+type CheckboxProps = PropsWithChildren<{
   label?: string
   value: string
   onChange: (checked: boolean) => void
@@ -12,7 +12,7 @@ type CheckboxProps = {
   defaultIsChecked?: boolean
   iconSize?: number
   iconColor?: string
-} & PropsWithChildren
+}>
 
 const Checkbox = ({
   label = '',

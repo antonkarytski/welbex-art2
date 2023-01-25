@@ -2,7 +2,7 @@ import { createEvent, createStore } from 'effector'
 import { useStoreMap } from 'effector-react'
 import { useCallback } from 'react'
 
-export type SetFieldPayload<T> = { key: keyof T; value: string }
+export type SetFieldPayload<T, K extends keyof T> = { key: K; value: T[K] }
 
 export type FormFieldComponentProps<T extends Record<string, string>> = {
   name: keyof T
@@ -13,24 +13,24 @@ export type TypedFormFieldComponentProps<
   T extends Record<string, any>,
   K extends keyof T,
   ST
-  > = {
+> = {
   name: T[K] extends ST ? K : never
   formModel: T[K] extends ST ? FormModel<T> : never
 }
 
 export class FormModel<T extends Record<string, any>> {
-  public readonly setField = createEvent<SetFieldPayload<T>>()
+  public readonly setField = createEvent<SetFieldPayload<T, keyof T>>()
+  public readonly set = createEvent<T>()
   public readonly $store
   public readonly fields: { [K in keyof T]: K }
 
   constructor(initialFormState: T) {
-    this.$store = createStore<T>(initialFormState).on(
-      this.setField,
-      (store, { key, value }) => ({
+    this.$store = createStore<T>(initialFormState)
+      .on(this.setField, (store, { key, value }) => ({
         ...store,
         [key]: value,
-      })
-    )
+      }))
+      .on(this.set, (_, payload) => payload)
 
     this.fields = Object.fromEntries(
       Object.keys(initialFormState).map((key) => [key, key])
@@ -44,20 +44,20 @@ export const createFormModel = <T extends Record<string, any>>(
   return new FormModel<T>(initialFormState)
 }
 
-export const useFormField = <T extends Record<string, any>>(
+export const useFormField = <T extends Record<string, any>, K extends keyof T>(
   form: FormModel<T>,
-  key: keyof T
+  key: K
 ) => {
   const fieldValue = useStoreMap({
     store: form.$store,
     keys: [key, form],
-    fn: (fields) => fields[key] || '',
+    fn: (fields) => fields[key],
   })
 
   const updateField = useCallback(
-    (value: string) => form.setField({ value, key }),
+    (value: T[K]) => form.setField({ value, key }),
     [form, key]
   )
 
-  return [fieldValue, updateField] as [string, (value: string) => void]
+  return [fieldValue, updateField] as [T[K], (value: T[K]) => void]
 }

@@ -8,6 +8,7 @@ import UserProfileScreen from './Screen.UserProfile'
 import MainTabsRouter from './Tabs.Main'
 import AuthScreenRouter from './auth/Router.Auth'
 import EditProfileScreen from './profile/Screen.EditProfile'
+import SettingsStack from './settings/Router.Settings'
 import AddPaymentCardScreen from './subscription/Screen.AddPaymentCard'
 import CurrentSubscriptionScreen from './subscription/Screen.CurrentSubscription'
 import SelectSubscriptionPlanScreen from './subscription/Screen.SelectSubscriptionPlan'
@@ -41,6 +42,7 @@ const Router = React.memo(() => {
         name={links.addPaymentCard}
         component={AddPaymentCardScreen}
       />
+      <Stack.Screen name={links.settingsStack} component={SettingsStack} />
     </StackNavigator>
   )
 })

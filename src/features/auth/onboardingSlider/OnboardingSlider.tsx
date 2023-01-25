@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react'
-import React, { useCallback, useEffect, useMemo, useRef } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import {
   ImageStyle,
   StyleProp,
@@ -14,7 +14,6 @@ import { getSize } from '../../../lib/dimensions/getSize'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
 import { useText } from '../../../translations/hook'
-import Span from '../../../ui/Span'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import { PresetButtonStates } from '../../../ui/buttons/types'
 import SliderItem from './SliderItem'
@@ -27,13 +26,13 @@ import {
 type OnboardingSliderProps = {
   onSnapToItem?: (index: number) => void
   style?: {
-    img: StyleProp<ImageStyle>
-    imgWrp: StyleProp<ViewStyle>
-    caption: StyleProp<TextStyle>
-    paginationDot: StyleProp<ViewStyle>
-    paginationDotInactive: StyleProp<ViewStyle>
-    paginationContainer: StyleProp<ViewStyle>
-    button: PresetButtonStates
+    img?: StyleProp<ImageStyle>
+    imgWrp?: StyleProp<ViewStyle>
+    caption?: StyleProp<TextStyle>
+    paginationDot?: StyleProp<ViewStyle>
+    paginationDotInactive?: StyleProp<ViewStyle>
+    paginationContainer?: StyleProp<ViewStyle>
+    button?: PresetButtonStates
   }
 }
 
@@ -47,7 +46,6 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
   const [activeSlideIndex, setActiveSlideIndex] =
     useStateStore(activeSlideModel)
   const isLastSlideActive = useStore($isLastSlideActive)
-  const data = useMemo(() => onboardingSliderData(t), [t])
   const carouselRef = useRef<Carousel<OnboardingSliderItem>>(null)
 
   useEffect(() => {
@@ -55,8 +53,10 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
   }, [])
 
   const renderItem = useCallback(
-    ({ item }: RenderItemProps) => <SliderItem item={item} style={style} />,
-    [style]
+    ({ item }: RenderItemProps) => (
+      <SliderItem item={item} text={t} style={style} />
+    ),
+    [style, t]
   )
 
   const onGoNext = () => {
@@ -71,7 +71,7 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
   return (
     <View style={styles.wrapper}>
       <Carousel
-        data={data}
+        data={onboardingSliderData}
         renderItem={renderItem}
         onSnapToItem={setActiveSlideIndex}
         sliderWidth={imageWidth}
@@ -83,7 +83,7 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
         ref={carouselRef}
       />
       <Pagination
-        dotsLength={data.length}
+        dotsLength={onboardingSliderData.length}
         activeDotIndex={activeSlideIndex}
         containerStyle={[styles.toBottom, style?.paginationContainer]}
         dotStyle={[styles.paginationDot, style?.paginationDot]}

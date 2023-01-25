@@ -1,44 +1,26 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
-import Row from '../Row'
-import Span from '../Span'
 import AppleIcon from '../icons/Icon.Apple'
-import PresetButton from './PresetButton'
+import IconButton from './IconButton'
 import { IconButtonProps } from './types'
 
 const AppleButton = ({
   label,
   onPress,
-  styles,
+  style,
   preset,
   disabled,
 }: IconButtonProps) => {
   return (
-    <PresetButton
+    <IconButton
       onPress={onPress}
-      style={styles?.button}
+      style={style}
       preset={preset}
       disabled={disabled}
+      label={label}
     >
-      {() => (
-        <Row style={styles?.row}>
-          <AppleIcon size={24} style={styles?.icon} />
-          {label && (
-            <Span
-              label={label}
-              style={[appleButtonStyles.labelMargin, styles?.label]}
-            />
-          )}
-        </Row>
-      )}
-    </PresetButton>
+      <AppleIcon size={24} style={style?.icon} />
+    </IconButton>
   )
 }
-
-const appleButtonStyles = StyleSheet.create({
-  labelMargin: {
-    marginLeft: 12,
-  },
-})
 
 export default AppleButton

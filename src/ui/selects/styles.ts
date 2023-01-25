@@ -7,11 +7,6 @@ export const selectStyles = StyleSheet.create({
     paddingRight: 40,
   },
   row_wrapper: {},
-  itemSeparator: {
-    height: 1,
-    width: '100%',
-    backgroundColor: '#F2F4F4',
-  },
   listWrapper: {
     paddingHorizontal: 12,
     backgroundColor: '#fff',

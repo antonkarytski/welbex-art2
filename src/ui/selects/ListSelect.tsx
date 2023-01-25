@@ -5,7 +5,7 @@ import { useStateStore } from 'altek-toolkit'
 import CrossButton from '../buttons/Button.Cross'
 import SearchIcon from '../icons/Icon.Search'
 import Input from '../input'
-import { InputStyles } from '../input/styles'
+import { InputStyles } from '../input/types'
 import Select from './Select'
 import { ListSelectProps } from './types'
 

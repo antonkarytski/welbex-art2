@@ -23,7 +23,6 @@ const SignUpForm = () => {
   // const [isAbleToContinue, setIsAbleToContinue] = useState(false)
 
   const onContinueSignUp = () => {
-    console.log(signUpFormModel.$store.getState())
     navigate(links.countrySelection)
   }
 

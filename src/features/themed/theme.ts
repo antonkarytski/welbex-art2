@@ -43,8 +43,10 @@ const LIGHT = {
   planSelectedBackground: '#F0FBFC',
   /** Common */
   appHeaderTextLight: COMMON.WHITE,
+  appHeaderIconLight: GREEN_BLUE.LIGHT,
   appHeaderBorderLight: GREEN_BLUE.MEDIUM_LIGHT,
   appHeaderTextDark: BLACK.TEXT,
+  appHeaderIconDark: BLACK.TEXT,
   appHeaderBorderDark: GREY.DETAILS,
   textAccent: GREEN_BLUE.PRIMARY,
   textGrey: GREY.TEXT,
@@ -133,8 +135,10 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   planSelectedBackground: '#F0FBFC',
   /** Common */
   appHeaderTextLight: COMMON.WHITE,
+  appHeaderIconLight: GREEN_BLUE.LIGHT,
   appHeaderBorderLight: GREEN_BLUE.MEDIUM_LIGHT,
   appHeaderTextDark: BLACK.TEXT,
+  appHeaderIconDark: BLACK.TEXT,
   appHeaderBorderDark: GREY.DETAILS,
   textAccent: GREEN_BLUE.PRIMARY,
   textGrey: GREY.TEXT,

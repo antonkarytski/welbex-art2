@@ -9,14 +9,16 @@ export const themedScreenHeaderStyles = createThemedStyle((colors) =>
     line: {
       backgroundColor: colors.appHeaderBorderDark,
     },
+    container: {
+      backgroundColor: colors.screenBackground,
+    },
   })
 )
 
 export const themedCommonStyles = createThemedStyle((colors) =>
   StyleSheet.create({
-    screenWrapper: {
+    wrapper: {
       backgroundColor: colors.screenBackground,
-      paddingBottom: 45,
     },
     text: {
       color: colors.text,

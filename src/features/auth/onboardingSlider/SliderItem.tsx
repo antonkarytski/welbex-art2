@@ -8,25 +8,27 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
+import { LangStructure } from '../../../translations/types'
 import Span from '../../../ui/Span'
 import { OnboardingSliderItem } from './onboardingSliderData'
 
 type SliderItemProps = {
   item: OnboardingSliderItem
+  text: LangStructure
   style?: {
-    img: StyleProp<ImageStyle>
-    imgWrp: StyleProp<ViewStyle>
-    caption: StyleProp<TextStyle>
+    img?: StyleProp<ImageStyle>
+    imgWrp?: StyleProp<ViewStyle>
+    caption?: StyleProp<TextStyle>
   }
 }
 
-const SliderItem = ({ item, style }: SliderItemProps) => {
+const SliderItem = ({ item, style, text }: SliderItemProps) => {
   return (
     <View>
       <View style={[style?.imgWrp]}>
         <Image style={[styles?.img, style?.img]} source={item.img} />
       </View>
-      <Span label={item.description} style={style?.caption} />
+      <Span label={item.description(text)} style={style?.caption} />
     </View>
   )
 }

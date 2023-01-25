@@ -2,9 +2,9 @@ import { PropsWithChildren } from 'react'
 import { StyleProp, TextStyle, ViewStyle } from 'react-native'
 import { TypedFormFieldComponentProps } from '../../lib/componentsModels/model.form'
 import { SpanProps } from '../Span'
-import { InputStyles } from "../input/styles";
+import { InputStyles } from '../input/types'
 
-export type NoteProps = {
+export type NoteProps = PropsWithChildren<{
   label: string
   iconColor?: string
   iconSize?: number
@@ -14,7 +14,7 @@ export type NoteProps = {
     icon?: StyleProp<ViewStyle>
     label?: StyleProp<TextStyle>
   }
-} & PropsWithChildren
+}>
 
 export type SecureFieldProps<
   T extends Record<string, any>,

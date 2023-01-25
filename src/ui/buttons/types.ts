@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { StyleProp, TextStyle, ViewStyle } from 'react-native'
 import { Fn, NodeFn } from '../../types'
 
@@ -23,12 +24,12 @@ export type ButtonProps = {
 
 export type PresetButtonProps = ButtonProps & {
   labelStyle?: StyleProp<TextStyle>
-  children?: NodeFn<Preset>
+  children?: NodeFn<Preset> | ReactNode
   style?: StyleProp<ViewStyle>
 }
 
 export type IconButtonProps = ButtonProps & {
-  styles?: {
+  style?: {
     icon?: StyleProp<ViewStyle>
     row?: StyleProp<ViewStyle>
     label?: StyleProp<TextStyle>
