@@ -8,6 +8,7 @@ import {
   buttonLightThemedPreset,
   buttonPrimaryThemedPreset,
 } from '../../../styles/buttons'
+import { FONT_MEDIUM } from '../../../styles/fonts'
 import { inputThemedStyles } from '../../../styles/inputs'
 import { useText } from '../../../translations/hook'
 import Span from '../../../ui/Span'
@@ -15,12 +16,15 @@ import DeleteButton from '../../../ui/buttons/Button.Delete'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import Input from '../../../ui/input'
 import DropdownSelect from '../../../ui/selects/DropdownSelect'
-import { COUNTRIES_LIST } from '../../countries'
+import CountriesDropdownSelect, {
+  createCountryModel,
+} from '../../countries/CountriesDropdownSelect'
+import { countryModel as profileCountryModel } from '../../profile/editProfile/model.editProfile'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
 
 const categoryModel = createStateModel(MOCK_CATEGORIES[0])
-const countryModel = createStateModel(COUNTRIES_LIST[0])
+const countryModel = createCountryModel()
 const drawingNameModel = createStateModel('')
 
 const GalleryFilter = () => {
@@ -52,18 +56,8 @@ const GalleryFilter = () => {
           renderItem={(item) => <Span label={item.label} />}
           labelExtractor={({ label }) => label}
           style={{ dropdownTab: styles.dropdownTab }}
-          labelWeight={500}
         />
-        <DropdownSelect
-          label={t.country}
-          data={COUNTRIES_LIST}
-          idExtractor={({ alpha2Code }) => alpha2Code}
-          model={countryModel}
-          renderItem={(item) => <Span label={item.name} />}
-          labelExtractor={({ name }) => name}
-          style={{ dropdownTab: styles.dropdownTab }}
-          labelWeight={500}
-        />
+        <CountriesDropdownSelect model={countryModel} />
         <Input
           label={t.drawingName}
           value={drawingName}
@@ -93,6 +87,7 @@ const dropdownTabThemedStyles = createThemedStyle((colors) =>
       color: colors.textGrey,
       fontSize: 14,
       lineHeight: 20,
+      fontFamily: FONT_MEDIUM,
     },
     wrapper: {
       marginBottom: 20,

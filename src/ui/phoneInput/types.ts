@@ -31,6 +31,7 @@ export type CountrySelectablePhoneInputProps<T> = PhoneInputProps & {
   selectPlaceholder?: string
   style?: {
     wrapper?: StyleProp<ViewStyle>
+    innerWrapper?: StyleProp<ViewStyle>
     select?: DropdownSelectStyles
     input?: InputStyles
   }

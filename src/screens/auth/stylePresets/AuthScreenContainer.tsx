@@ -8,9 +8,10 @@ import {
 } from 'react-native'
 import { useThemedStyleList } from '../../../features/themed/hooks'
 import AppHeader from '../../../navigation/elements/AppHeader'
+import { darkScreenHeaderThemedStyles } from '../../../styles/screen'
 import ScreenContainer from '../../../ui/ScreenContainer'
 import ScreenWrapper from '../../../ui/ScreenWrapper'
-import { themedCommonStyles, themedScreenHeaderStyles } from './styles'
+import { themedCommonStyles } from './styles'
 
 type AuthScreenContainerProps = {
   children: ReactNode
@@ -24,7 +25,7 @@ const AuthScreenContainer = ({
   backAvailable = true,
 }: AuthScreenContainerProps) => {
   const { styles, colors } = useThemedStyleList({
-    screenHeader: themedScreenHeaderStyles,
+    screenHeader: darkScreenHeaderThemedStyles,
     common: themedCommonStyles,
   })
 

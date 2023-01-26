@@ -202,3 +202,5 @@ export const COLOR_THEMES: Record<ColorThemes, ColorThemeStructure> = {
   LIGHT,
   DARK,
 }
+
+export const defaultColors = COLOR_THEMES.LIGHT

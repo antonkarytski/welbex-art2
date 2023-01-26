@@ -58,9 +58,11 @@ const ScreenHeader = ({
           {children ? (
             children
           ) : (
-            <Span weight={600} style={[styles.title, style?.title]}>
-              {title}
-            </Span>
+            <Span
+              label={title}
+              weight={600}
+              style={[styles.title, style?.title]}
+            />
           )}
         </View>
         <View style={styles.sideBlock}>{headerRight}</View>
@@ -76,6 +78,7 @@ const themedStyles = createThemedStyle((colors) =>
       paddingTop: 56,
       flexDirection: 'row',
       justifyContent: 'space-between',
+      alignItems: 'center',
     },
     sideBlock: {
       width: 100,

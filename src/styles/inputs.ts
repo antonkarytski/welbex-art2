@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native'
 import { createThemedStyle } from '../features/themed'
 import { InputStyles } from '../ui/input/types'
+import { FONT_MEDIUM } from './fonts'
 
 export const inputThemedStyles = createThemedStyle<InputStyles>((colors) =>
   StyleSheet.create({
@@ -17,6 +18,7 @@ export const inputThemedStyles = createThemedStyle<InputStyles>((colors) =>
     },
     label: {
       color: colors.inputTitle,
+      fontFamily: FONT_MEDIUM,
     },
   })
 )

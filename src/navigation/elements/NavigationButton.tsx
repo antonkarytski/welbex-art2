@@ -16,7 +16,7 @@ export type NavigateButtonProps = {
 
 type NavigateBaseButtonProps = NavigateButtonProps & {
   Icon: React.ComponentType<any>
-  navigateTo: keyof typeof links
+  navigateTo: links
 }
 
 const NavigationButton = ({

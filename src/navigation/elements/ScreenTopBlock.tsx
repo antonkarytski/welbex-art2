@@ -1,12 +1,13 @@
 import React, { PropsWithChildren } from 'react'
 import { View } from 'react-native'
-import ScreenHeader from './ScreenHeader'
+import ScreenHeader, { ScreenHeaderProps } from './ScreenHeader'
 import { ScreenHeaderStyles } from './styles'
 
 type WideScreenHeaderProps = {
   style?: ScreenHeaderStyles
   title: string
   backAvailable?: boolean
+  headerRight?: ScreenHeaderProps['headerRight']
 }
 
 const ScreenTopBlock = React.memo(
@@ -15,6 +16,7 @@ const ScreenTopBlock = React.memo(
     title,
     backAvailable,
     children,
+    headerRight,
   }: PropsWithChildren<WideScreenHeaderProps>) => {
     return (
       <View style={style?.container}>
@@ -25,6 +27,7 @@ const ScreenTopBlock = React.memo(
             line: style?.line,
           }}
           title={title}
+          headerRight={headerRight}
         />
         {children}
       </View>

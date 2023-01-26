@@ -1,31 +1,32 @@
+import { sample } from 'effector'
 import { useStore } from 'effector-react'
 import React, { useState } from 'react'
-import { KeyboardAvoidingView, StyleSheet } from 'react-native'
-import { createStateModel } from 'altek-toolkit'
+import { KeyboardAvoidingView } from 'react-native'
+import PhoneEnter, {
+  countryModel,
+  phoneInputModel,
+} from '../../features/auth/PhoneEnter'
 import SendPhoneButton from '../../features/auth/SendPhoneButton'
-import { COUNTRIES_LIST, Country, CountryCode } from '../../features/countries'
-import CountryRow from '../../features/countries/CountryRow'
 import { useThemedStyleList } from '../../features/themed/hooks'
-import { createPhoneInputModel } from '../../lib/componentsModels/phoneNumber/model.phoneNumber'
 import { IS_IOS } from '../../lib/helpers/native/constants'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { inputThemedStyles } from '../../styles/inputs'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import Span from '../../ui/Span'
-import CountrySelectablePhoneInput from '../../ui/phoneInput/CountrySelectablePhoneInput'
 import { countryModel as prevStageCountryModel } from './Screen.CountrySelection'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
 
-const phoneInputModel = createPhoneInputModel()
-const countryModel = createStateModel(COUNTRIES_LIST[0])
-const renderCountryRow = (item: Country) => <CountryRow item={item} />
-
-prevStageCountryModel.$state.watch((country) => {
-  if (!phoneInputModel.purePhoneModel.$state.getState()) {
-    countryModel.set(country)
-  }
+sample({
+  clock: prevStageCountryModel.set,
+  source: {
+    prevStageCountry: prevStageCountryModel.$state,
+    country: phoneInputModel.purePhoneModel.$state,
+  },
+  filter: ({ country }) => !country,
+  fn: ({ prevStageCountry }) => prevStageCountry,
+  target: countryModel.set,
 })
 
 const PhoneEnterScreen = () => {
@@ -54,17 +55,10 @@ const PhoneEnterScreen = () => {
         behavior={IS_IOS ? 'padding' : 'height'}
         style={styles.common.flexGrown}
       >
-        <CountrySelectablePhoneInput
-          phoneModel={phoneInputModel}
-          countries={COUNTRIES_LIST}
-          renderCountryItem={renderCountryRow}
-          selectedCountryModel={countryModel}
-          countryCodeExtractor={({ alpha2Code }) => alpha2Code}
-          countryLabelExtractor={({ emoji }) => emoji}
+        <PhoneEnter
           isValid={isPressedToContinue ? isPhoneValid : undefined}
           style={{
             input: styles.input,
-            select: { dropdownTab: tabCountryStyles },
           }}
         />
         <SendPhoneButton
@@ -76,9 +70,5 @@ const PhoneEnterScreen = () => {
     </AuthScreenContainer>
   )
 }
-
-const tabCountryStyles = StyleSheet.create({
-  tabLabel: { fontSize: 20 },
-})
 
 export default PhoneEnterScreen

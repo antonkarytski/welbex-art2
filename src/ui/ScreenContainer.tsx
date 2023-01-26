@@ -4,10 +4,19 @@ import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 interface ScreenContainerProps {
   children: ReactNode
   style?: StyleProp<ViewStyle>
+  backgroundColor?: string
 }
 
-const ScreenContainer = ({ children, style }: ScreenContainerProps) => {
-  return <View style={[styles.container, style]}>{children}</View>
+const ScreenContainer = ({
+  children,
+  style,
+  backgroundColor,
+}: ScreenContainerProps) => {
+  return (
+    <View style={[styles.container, { backgroundColor }, style]}>
+      {children}
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({

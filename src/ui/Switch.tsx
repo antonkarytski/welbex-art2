@@ -11,7 +11,7 @@ import {
   useSpecificTypeFormField,
 } from '../lib/componentsModels/model.form'
 import Row from '../ui/Row'
-import Span, { SpanProps } from '../ui/Span'
+import Span from '../ui/Span'
 
 export type SwitcherColors = {
   thumb?: string
@@ -29,7 +29,6 @@ type SwitchProp<T extends Record<string, boolean>, K extends keyof T> = {
   disabled?: boolean
   colors?: SwitcherColors
   style?: SwitcherStyles
-  labelWeight?: SpanProps['weight']
 } & TypedFormFieldComponentProps<T, K, boolean>
 
 const Switch = <T extends Record<string, boolean>, K extends keyof T>({
@@ -39,7 +38,6 @@ const Switch = <T extends Record<string, boolean>, K extends keyof T>({
   disabled,
   colors,
   style,
-  labelWeight = 500,
 }: SwitchProp<T, K>) => {
   const [isEnabled, setIsEnabled] = useSpecificTypeFormField<T, boolean>(
     formModel,
@@ -49,11 +47,7 @@ const Switch = <T extends Record<string, boolean>, K extends keyof T>({
   return (
     <Row style={[styles.wrapper, style?.wrapper]}>
       {label && (
-        <Span
-          label={label}
-          style={[styles.label, style?.label]}
-          weight={labelWeight}
-        />
+        <Span label={label} style={[styles.label, style?.label]} weight={500} />
       )}
       <BaseSwitch
         trackColor={{

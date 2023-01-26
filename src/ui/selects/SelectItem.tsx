@@ -23,7 +23,7 @@ const SelectItem = <Item,>({
       ]}
     >
       <View style={[selectStyles.row_wrapper, style?.row_wrapper]}>
-        {renderItem(item)}
+        {renderItem(item, isSelected)}
         <View
           style={[
             selectStyles.icon_checkMark__wrapper,

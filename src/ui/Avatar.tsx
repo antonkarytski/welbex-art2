@@ -1,3 +1,4 @@
+import { View } from 'native-base'
 import React from 'react'
 import {
   Image,
@@ -7,6 +8,7 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native'
+import EditIcon from '../ui/icons/Icon.Edit'
 
 type AvatarProps = {
   size?: number
@@ -14,6 +16,8 @@ type AvatarProps = {
   src: ImageSourcePropType
   style?: StyleProp<ViewStyle>
   onPress?: () => void
+  showEditIcon?: boolean
+  editIconColor?: string
 }
 
 const DEFAULT_BORDER_SIZE = 2
@@ -24,6 +28,8 @@ const Avatar = ({
   style,
   borderSize = DEFAULT_BORDER_SIZE,
   onPress,
+  showEditIcon,
+  editIconColor = '#ffffff',
 }: AvatarProps) => {
   return (
     <TouchableOpacity
@@ -44,13 +50,31 @@ const Avatar = ({
           height: size - borderSize * 2,
         }}
       />
+      {showEditIcon && (
+        <View style={styles.editIconWrapper}>
+          <EditIcon color={editIconColor} />
+        </View>
+      )}
     </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
+    position: 'relative',
     borderRadius: 100,
+  },
+  editIconWrapper: {
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+    width: 24,
+    height: 24,
+    padding: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 8,
+    backgroundColor: '#84BDBE',
   },
 })
 

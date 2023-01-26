@@ -15,7 +15,6 @@ function DropdownTab({
   children,
   indentFromTab = 4,
   style,
-  labelWeight,
   overlayBackgroundColor,
 }: DropdownTabProps) {
   const dropdownButtonRef = useRef<TouchableOpacity>(null)
@@ -44,7 +43,7 @@ function DropdownTab({
       {label && (
         <Span
           style={[styles.label, style?.label, isOpened && style?.activeLabel]}
-          weight={labelWeight}
+          weight={500}
         >
           {label}
         </Span>

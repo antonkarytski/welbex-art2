@@ -1,5 +1,7 @@
 import React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
+import { useNavigate } from '../../navigation'
+import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import Avatar from '../../ui/Avatar'
 import { createThemedStyle } from '../themed'
@@ -14,11 +16,22 @@ type UserAvatarProps = {
 
 const UserAvatar = ({ item, style }: UserAvatarProps) => {
   const text = useText()
+  const navigate = useNavigate()
   const styles = useThemedStyle(themedStyles)
+
+  // TODO !!! showEditIcon - добавить проверку
 
   return (
     <View style={style}>
-      <Avatar style={styles.avatar} size={116} src={item.avatar} />
+      <Avatar
+        style={styles.avatar}
+        size={116}
+        src={item.avatar}
+        showEditIcon={true}
+        onPress={() => {
+          navigate(links.editProfile)
+        }}
+      />
       <UserDescription
         style={styles}
         hideSeparator

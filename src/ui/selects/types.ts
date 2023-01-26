@@ -3,12 +3,11 @@ import { StyleProp, ViewStyle } from 'react-native'
 import { StateModel } from 'altek-toolkit'
 import { SearchableListModel } from '../../lib/componentsModels/model.search'
 import { FnExt } from '../../types'
-import { SpanProps } from '../Span'
 import { DropdownStyles } from '../dropdownTab/types'
 import { InputStyles } from '../input/types'
 
 export type StringExtractor<T> = FnExt<T, string>
-export type RenderItem<T> = FnExt<T, ReactNode>
+export type RenderItem<T> = (item: T, isSelected?: boolean) => ReactNode
 
 export type SelectItemStyles = {
   wrapper?: StyleProp<ViewStyle>
@@ -35,7 +34,6 @@ export type SelectStyles = {
 
 export type SelectProps<Item> = {
   label?: string | ReactNode
-  labelWeight?: SpanProps['weight']
   data: Item[]
   renderItem: RenderItem<Item>
   idExtractor: StringExtractor<Item>
