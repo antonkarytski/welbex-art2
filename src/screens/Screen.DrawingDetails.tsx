@@ -40,10 +40,7 @@ const DrawingDetailsScreen = ({
             navigate(links.userProfile, { item })
           }}
           onSubscribePress={() => {
-            //navigate(links.subscriptionCurrent)
-            navigate(links.infoMessage, {
-              type: InfoMessageType.CARD_DELETED,
-            })
+            navigate(links.subscriptionCurrent)
           }}
           item={drawing.user}
         />
