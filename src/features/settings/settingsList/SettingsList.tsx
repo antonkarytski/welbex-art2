@@ -15,7 +15,7 @@ const SettingsList = () => {
     ({ item }: { item: SettingItem }) => (
       <SettingsListItem
         item={item}
-        text={t}
+        label={item.label(t)}
         textColor={colors.text}
         style={styles}
       />

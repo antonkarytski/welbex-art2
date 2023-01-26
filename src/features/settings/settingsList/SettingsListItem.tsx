@@ -1,7 +1,6 @@
 import React from 'react'
 import { StyleProp, TextStyle, TouchableOpacity, ViewStyle } from 'react-native'
 import { useNavigate } from '../../../navigation'
-import { LangStructure } from '../../../translations/types'
 import Row from '../../../ui/Row'
 import Span from '../../../ui/Span'
 import ArrowToggleIcon from '../../../ui/icons/Icon.ArrowToggle'
@@ -9,7 +8,7 @@ import { SettingItem } from './settingsListData'
 
 type SettingsListItemProps = {
   item: SettingItem
-  text: LangStructure
+  label: string
   textColor: string
   style: {
     item: StyleProp<ViewStyle>
@@ -21,7 +20,7 @@ type SettingsListItemProps = {
 }
 
 const SettingsListItem = React.memo(
-  ({ item, text, textColor, style }: SettingsListItemProps) => {
+  ({ item, label, textColor, style }: SettingsListItemProps) => {
     const navigate = useNavigate()
 
     const Icon = item.icon
@@ -33,7 +32,7 @@ const SettingsListItem = React.memo(
       >
         <Row style={style.row}>
           <Icon size={24} color={textColor} style={style.settingIcon} />
-          <Span label={item.label(text)} weight={500} style={style.label} />
+          <Span label={label} weight={500} style={style.label} />
           <ArrowToggleIcon
             size={12}
             style={style.toggleIcon}
