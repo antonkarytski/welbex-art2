@@ -62,7 +62,9 @@ const PaymentMethodsScreen = ({
 }
 
 const commonStyles = StyleSheet.create({
-  container: { flex: 1 },
+  container: {
+    flex: 1,
+  },
   contentContainer: {
     paddingHorizontal: 20,
     paddingTop: 24,
