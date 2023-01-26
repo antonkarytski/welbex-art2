@@ -4,6 +4,7 @@ import { $isAuth } from '../features/auth/model'
 import { useNavigate } from '../navigation'
 import StackNavigator, { Stack } from '../navigation/elements/StackNavigator'
 import { links } from '../navigation/links'
+import ScreenInfoMessage from './Screen.InfoMessage'
 import UserProfileScreen from './Screen.UserProfile'
 import MainTabsRouter from './Tabs.Main'
 import AuthScreenRouter from './auth/Router.Auth'
@@ -43,6 +44,7 @@ const Router = React.memo(() => {
         component={AddPaymentCardScreen}
       />
       <Stack.Screen name={links.settingsStack} component={SettingsStack} />
+      <Stack.Screen name={links.infoMessage} component={ScreenInfoMessage} />
     </StackNavigator>
   )
 })

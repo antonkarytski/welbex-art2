@@ -3,6 +3,7 @@ import React from 'react'
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
 import DrawingInteractionPanel from '../features/drawing/DrawingInteractivePanel'
 import AutoHeightImage from '../features/images/AutoHeightImage'
+import { InfoMessageType } from '../features/infoMessage/types'
 import { createThemedStyle } from '../features/themed'
 import { useThemedStyleList } from '../features/themed/hooks'
 import UserCardPreview from '../features/user/UserCardPreview'
@@ -39,7 +40,10 @@ const DrawingDetailsScreen = ({
             navigate(links.userProfile, { item })
           }}
           onSubscribePress={() => {
-            navigate(links.subscriptionCurrent)
+            //navigate(links.subscriptionCurrent)
+            navigate(links.infoMessage, {
+              type: InfoMessageType.CARD_DELETED,
+            })
           }}
           item={drawing.user}
         />
