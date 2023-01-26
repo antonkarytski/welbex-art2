@@ -1,17 +1,21 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { InfoMessageType } from '../../features/infoMessage/types'
 import AddPaymentCardForm from '../../features/payment/AddPaymentCardForm'
 import PaymentSecuredText from '../../features/payment/PaymentSecuredText'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
+import { useNavigate } from '../../navigation'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import { ScreenHeaderStyles } from '../../navigation/elements/styles'
+import { links } from '../../navigation/links'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import PresetButton from '../../ui/buttons/PresetButton'
 
 const AddPaymentCardScreen = () => {
   const text = useText()
+  const navigate = useNavigate()
   const { colors, styles } = useThemedStyleList({
     buttonPreset: buttonPrimaryThemedPreset,
     header: headerThemedStyles,
@@ -31,7 +35,9 @@ const AddPaymentCardScreen = () => {
         <PresetButton
           preset={styles.buttonPreset}
           label={text.addCard}
-          onPress={() => {}}
+          onPress={() =>
+            navigate(links.infoMessage, { type: InfoMessageType.CARD_SAVED })
+          }
           style={commonStyles.button}
         />
       </View>

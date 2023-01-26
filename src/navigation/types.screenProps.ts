@@ -3,6 +3,7 @@ import { ImagePickerResult } from 'expo-image-picker'
 import { CompetitionCategory } from '../features/categories/types'
 import { Drawing } from '../features/drawing/types'
 import { GalleryType } from '../features/gallery/types'
+import { InfoMessageType } from '../features/infoMessage/types'
 import { User } from '../features/user/types'
 import { links } from './links'
 
@@ -20,6 +21,7 @@ export type ScreensProps = ScreensPropsProto<{
     assets: Exclude<ImagePickerResult['assets'], null>
   }
   [links.userProfile]: { item: User }
+  [links.infoMessage]: { type: InfoMessageType }
 }>
 
 export type RouterScreenProps<L extends links> = NativeStackScreenProps<
