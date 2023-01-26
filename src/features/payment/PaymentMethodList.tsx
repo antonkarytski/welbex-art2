@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react'
-import React, { useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
@@ -33,6 +33,9 @@ const PaymentMethodList = ({
               styles.item,
               isSelected && styles.selectedItem,
             ]}
+            checkboxColor={(isSelected) => {
+              return isSelected ? colors.primary1 : colors.text
+            }}
             isSelected={selectedMethod === method}
             onPress={({ item, nextState }) => onSelect(nextState ? item : null)}
             item={method}
@@ -47,6 +50,7 @@ const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     item: {
       marginBottom: 20,
+      borderColor: colors.darkLine,
     },
     selectedItem: {
       borderColor: colors.primary1,

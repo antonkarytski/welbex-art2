@@ -10,11 +10,11 @@ import PaymentSuccessInfoMessage from '../features/infoMessage/PaymentSuccessInf
 import SignedOffInfoMessage from '../features/infoMessage/SignedOffInfoMessage'
 import { InfoMessageType } from '../features/infoMessage/types'
 import { links } from '../navigation/links'
-import { ScreensProps } from '../navigation/types.screenProps'
+import { ScreenComponentProps } from '../navigation/types.screenProps'
 
 const InfoMessageScreen = ({
   route,
-}: NativeStackScreenProps<ScreensProps, links.infoMessage>) => {
+}: ScreenComponentProps<links.infoMessage>) => {
   const params = route.params
   if (params.type === InfoMessageType.CONNECTION_ERROR) {
     return <ConnectionErrorInfoMessage />

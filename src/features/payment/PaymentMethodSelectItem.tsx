@@ -9,6 +9,7 @@ type PaymentMethodSelectItemProps<I extends PaymentMethodDescriptor> = {
   onPress: (props: { item: I; nextState: boolean }) => void
   item: I
   style?: ((state: boolean) => StyleProp<ViewStyle>) | StyleProp<ViewStyle>
+  checkboxColor?: ((state: boolean) => string) | string
 }
 
 const PaymentMethodSelectItem = <I extends PaymentMethodDescriptor>({
@@ -16,9 +17,11 @@ const PaymentMethodSelectItem = <I extends PaymentMethodDescriptor>({
   item,
   style,
   onPress,
+  checkboxColor,
 }: PaymentMethodSelectItemProps<I>) => {
   return (
     <CheckBoxCard
+      checkboxColor={checkboxColor}
       style={style}
       isSelected={isSelected}
       onPress={(nextState) => onPress({ item, nextState })}

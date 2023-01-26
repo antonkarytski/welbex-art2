@@ -10,7 +10,7 @@ import { useThemedStyleList } from '../../features/themed/hooks'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import { primaryHeaderThemedStyles } from '../../navigation/elements/styles'
 import { links } from '../../navigation/links'
-import { RouterScreenProps } from '../../navigation/types.screenProps'
+import { ScreenComponentProps } from '../../navigation/types.screenProps'
 import { useText } from '../../translations/hook'
 import H3 from '../../ui/H3'
 import Span from '../../ui/Span'
@@ -27,7 +27,7 @@ selectedCategoryModel.$state.watch((value) => {
 
 export default function AddPostDescriptionScreen({
   route,
-}: RouterScreenProps<links.createPostAddDescription>) {
+}: ScreenComponentProps<links.createPostAddDescription>) {
   const assets = route.params.assets
   const text = useText()
   const { styles } = useThemedStyleList({

@@ -5,11 +5,15 @@ import { PaymentMethod } from '../../features/payment/types'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import { transparentThemedHeaderStyles } from '../../navigation/elements/styles'
+import { links } from '../../navigation/links'
+import { ScreenComponentProps } from '../../navigation/types.screenProps'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import PresetButton from '../../ui/buttons/PresetButton'
 
-const PaymentMethodsScreen = () => {
+const PaymentMethodsScreen = ({
+  route,
+}: ScreenComponentProps<links.paymentMethod>) => {
   const { colors, styles } = useThemedStyleList({
     header: transparentThemedHeaderStyles,
     buttonPreset: buttonPrimaryThemedPreset,
@@ -34,6 +38,7 @@ const PaymentMethodsScreen = () => {
           onSelect={setSelectedMethod}
         />
         <PresetButton
+          disabled={!selectedMethod}
           style={commonStyles.button}
           label={text.pay}
           onPress={() => {}}
