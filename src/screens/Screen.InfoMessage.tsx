@@ -1,4 +1,3 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
 import CardDeletedInfoMessage from '../features/infoMessage/CardDeletedInfoMessage'
 import CardSavedInfoMessage from '../features/infoMessage/CardSavedInfoMessage'
@@ -23,7 +22,9 @@ const InfoMessageScreen = ({
     return <PaymentErrorInfoMessage reason={PaymentErrorReason.BALANCE} />
   }
   if (params.type === InfoMessageType.CARD_SAVED) {
-    return <CardSavedInfoMessage amountToPay={'25.00'} />
+    return (
+      <CardSavedInfoMessage currentPayment={params.payload?.currentPayment} />
+    )
   }
   if (params.type === InfoMessageType.SUCCESSFUL_PAYMENT) {
     return <PaymentSuccessInfoMessage subscriptionMonthsAmount={'six'} />

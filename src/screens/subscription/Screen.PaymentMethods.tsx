@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
+import { InfoMessageType } from '../../features/infoMessage/types'
 import PaymentMethodList from '../../features/payment/PaymentMethodList'
 import { PaymentMethod } from '../../features/payment/types'
 import { useThemedStyleList } from '../../features/themed/hooks'
+import { twoDigits } from '../../lib/helpers/numbers'
+import { useNavigate } from '../../navigation'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import { transparentThemedHeaderStyles } from '../../navigation/elements/styles'
 import { links } from '../../navigation/links'
@@ -14,6 +17,8 @@ import PresetButton from '../../ui/buttons/PresetButton'
 const PaymentMethodsScreen = ({
   route,
 }: ScreenComponentProps<links.paymentMethod>) => {
+  const navigate = useNavigate()
+  const paymentPlan = route.params?.currentPayment
   const { colors, styles } = useThemedStyleList({
     header: transparentThemedHeaderStyles,
     buttonPreset: buttonPrimaryThemedPreset,
@@ -36,14 +41,21 @@ const PaymentMethodsScreen = ({
         <PaymentMethodList
           selectedMethod={selectedMethod}
           onSelect={setSelectedMethod}
+          currentPayment={paymentPlan}
         />
-        <PresetButton
-          disabled={!selectedMethod}
-          style={commonStyles.button}
-          label={text.pay}
-          onPress={() => {}}
-          preset={styles.buttonPreset}
-        />
+        {!!paymentPlan && (
+          <PresetButton
+            disabled={!selectedMethod}
+            style={commonStyles.button}
+            label={`${text.pay} $${twoDigits(paymentPlan.fullPrice)}`}
+            onPress={() =>
+              navigate(links.infoMessage, {
+                type: InfoMessageType.SUCCESSFUL_PAYMENT,
+              })
+            }
+            preset={styles.buttonPreset}
+          />
+        )}
       </View>
     </View>
   )

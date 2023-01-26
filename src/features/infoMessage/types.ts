@@ -1,3 +1,6 @@
+import { IfIncludeUndefined, UnionFrom } from '../../types'
+import { PlanDescriptor } from '../subscriptionPlans/types'
+
 export enum InfoMessageType {
   CARD_DELETED = 'CARD_DELETED',
   SUCCESSFUL_PAYMENT = 'SUCCESSFUL_PAYMENT',
@@ -7,19 +10,22 @@ export enum InfoMessageType {
   CONNECTION_ERROR = 'CONNECTION_ERROR',
 }
 
-type InfoMessageSpecifiedScreenProps<
-  N extends InfoMessageType,
-  Payload extends Record<string, string | number> | never = never
-> = {
-  type: InfoMessageType
-} & Payload extends never
-  ? { payload?: never }
-  : { payload: Payload }
+type InfoMessageScreenPropsProto<
+  T extends Partial<Record<InfoMessageType, any>>
+> =
+  | UnionFrom<{
+      [K in keyof T]: IfIncludeUndefined<
+        T[K],
+        { type: K; payload?: T[K] },
+        { type: K; payload: T[K] }
+      >
+    }>
+  | UnionFrom<{
+      [K in Exclude<InfoMessageType, keyof T>]: { type: K; payload?: never }
+    }>
 
-type PaymentSuccessfulInfoMessageProps = InfoMessageSpecifiedScreenProps<
-  InfoMessageType.SUCCESSFUL_PAYMENT,
-  {
-    subscriptionAmount: number
-  }
->
+export type InfoMessageScreenProps = InfoMessageScreenPropsProto<{
+  [InfoMessageType.CARD_SAVED]: { currentPayment?: PlanDescriptor } | undefined
+}>
+
 export type InfoMessageScreenVariant = 'light' | 'primary'

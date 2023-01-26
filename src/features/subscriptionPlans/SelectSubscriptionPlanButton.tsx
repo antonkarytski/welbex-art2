@@ -20,7 +20,7 @@ const SelectSubscriptionPlanButton = () => {
         text.months
       } / ${twoDigits(selectedPlan.fullPrice)}`}
       onPress={() =>
-        navigate(links.paymentMethod, { currentPaymentPlan: selectedPlan })
+        navigate(links.paymentMethod, { currentPayment: selectedPlan })
       }
       preset={styles.preset}
     />

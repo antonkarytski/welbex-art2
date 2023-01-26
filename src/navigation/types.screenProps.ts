@@ -3,7 +3,7 @@ import { ImagePickerResult } from 'expo-image-picker'
 import { CompetitionCategory } from '../features/categories/types'
 import { Drawing } from '../features/drawing/types'
 import { GalleryType } from '../features/gallery/types'
-import { InfoMessageType } from '../features/infoMessage/types'
+import { InfoMessageScreenProps } from '../features/infoMessage/types'
 import { PlanDescriptor } from '../features/subscriptionPlans/types'
 import { User } from '../features/user/types'
 import { links } from './links'
@@ -22,8 +22,9 @@ export type ScreensProps = ScreensPropsProto<{
     assets: Exclude<ImagePickerResult['assets'], null>
   }
   [links.userProfile]: { item: User }
-  [links.infoMessage]: { type: InfoMessageType }
-  [links.paymentMethod]?: { currentPaymentPlan?: PlanDescriptor }
+  [links.infoMessage]: InfoMessageScreenProps
+  [links.paymentMethod]?: { currentPayment?: PlanDescriptor }
+  [links.addPaymentCard]?: { currentPayment?: PlanDescriptor }
 }>
 
 export type ScreenComponentProps<L extends links> = NativeStackScreenProps<
