@@ -9,7 +9,10 @@ import { useThemedStyleList } from '../features/themed/hooks'
 import UserCardPreview from '../features/user/UserCardPreview'
 import { useNavigate } from '../navigation'
 import AppHeader from '../navigation/elements/AppHeader'
-import { ScreenHeaderStyles } from '../navigation/elements/styles'
+import {
+  ScreenHeaderStyles,
+  transparentThemedHeaderStyles,
+} from '../navigation/elements/styles'
 import { links } from '../navigation/links'
 import { ScreensProps } from '../navigation/types.screenProps'
 import { themedShadow5Style } from '../styles/shadows'
@@ -27,7 +30,7 @@ const DrawingDetailsScreen = ({
   const text = useText()
   const { styles } = useThemedStyleList({
     common: themedStyles,
-    header: themedHeaderStyles,
+    header: transparentThemedHeaderStyles,
   })
 
   return (
@@ -61,17 +64,6 @@ const DrawingDetailsScreen = ({
     </View>
   )
 }
-
-const themedHeaderStyles = createThemedStyle<ScreenHeaderStyles>((colors) =>
-  StyleSheet.create({
-    title: {
-      color: colors.text,
-    },
-    line: {
-      backgroundColor: colors.darkLine,
-    },
-  })
-)
 
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({

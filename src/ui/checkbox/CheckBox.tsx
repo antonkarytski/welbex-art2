@@ -1,7 +1,7 @@
 import { Checkbox as BaseCheckBox, Icon } from 'native-base'
 import React, { PropsWithChildren } from 'react'
 import { StyleSheet } from 'react-native'
-import OkIcon from './icons/Icon.Ok'
+import OkIcon from '../icons/Icon.Ok'
 
 type CheckboxProps = PropsWithChildren<{
   label?: string
