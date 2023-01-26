@@ -14,6 +14,7 @@ function DropdownSelect<Item>({
   renderItem,
   model,
   style,
+  labelWeight,
   ItemSeparatorComponent = null,
 }: DropdownSelectProps<Item>) {
   const [selectedItem] = useStateStore(model)
@@ -21,6 +22,7 @@ function DropdownSelect<Item>({
   return (
     <DropdownTab
       label={label}
+      labelWeight={labelWeight}
       tabLabel={labelExtractor?.(selectedItem) ?? placeholder}
       style={style?.dropdownTab}
     >

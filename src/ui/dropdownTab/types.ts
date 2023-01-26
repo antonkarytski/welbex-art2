@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import { TextStyle, ViewStyle } from 'react-native'
+import { SpanProps } from '../Span'
 
 export type ElementMeasureProps = {
   w: number
@@ -14,6 +15,7 @@ export type DropdownTabProps = {
   children: ReactNode
   indentFromTab?: number
   style?: DropdownStyles
+  labelWeight?: SpanProps['weight']
   overlayBackgroundColor?: string
 }
 

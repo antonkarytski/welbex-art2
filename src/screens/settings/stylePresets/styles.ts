@@ -16,6 +16,7 @@ export const themedScreenHeaderStyles = createThemedStyle((colors) =>
     },
   })
 )
+
 export const themedCommonStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     wrapper: {

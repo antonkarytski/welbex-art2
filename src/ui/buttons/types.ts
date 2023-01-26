@@ -29,6 +29,7 @@ export type PresetButtonProps = ButtonProps & {
 }
 
 export type IconButtonProps = ButtonProps & {
+  iconColor?: string
   style?: {
     icon?: StyleProp<ViewStyle>
     row?: StyleProp<ViewStyle>

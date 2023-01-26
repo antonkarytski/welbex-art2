@@ -11,8 +11,10 @@ const deviceLanguage = (
   IS_IOS ? deviceLocale.split('-') : deviceLocale.split('_')
 )[0].toUpperCase()
 
-export const DEFAULT_LANGUAGE = Object.values(Languages).includes(
-  deviceLanguage as unknown as Languages
-)
-  ? deviceLanguage
-  : Languages.EN
+// export const DEFAULT_LANGUAGE = Object.values(Languages).includes(
+//   deviceLanguage as unknown as Languages
+// )
+//   ? deviceLanguage
+//   : Languages.EN
+
+export const DEFAULT_LANGUAGE = Languages.EN
