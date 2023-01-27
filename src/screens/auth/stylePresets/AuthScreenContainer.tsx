@@ -17,12 +17,14 @@ type AuthScreenContainerProps = {
   children: ReactNode
   style?: StyleProp<ViewStyle>
   backAvailable?: boolean
+  enableScrollView?: boolean
 }
 
 const AuthScreenContainer = ({
   children,
   style,
   backAvailable = true,
+  enableScrollView,
 }: AuthScreenContainerProps) => {
   const { styles, colors } = useThemedStyleList({
     screenHeader: darkScreenHeaderThemedStyles,
@@ -39,7 +41,10 @@ const AuthScreenContainer = ({
             backAvailable={backAvailable}
             backArrowColor={colors.appHeaderIconDark}
           />
-          <ScreenContainer style={styles.common.wrapper}>
+          <ScreenContainer
+            enableScrollView={enableScrollView}
+            style={styles.common.wrapper}
+          >
             {children}
           </ScreenContainer>
         </ScreenWrapper>

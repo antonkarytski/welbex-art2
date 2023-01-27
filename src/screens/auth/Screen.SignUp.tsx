@@ -26,7 +26,7 @@ const SignUp = () => {
   }
 
   return (
-    <AuthScreenContainer>
+    <AuthScreenContainer enableScrollView>
       <SignUpForm />
       <AuthServices style={styles.common.bottomButton} />
       <Row>

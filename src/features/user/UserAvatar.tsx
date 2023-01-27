@@ -5,7 +5,7 @@ import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import Avatar from '../../ui/Avatar'
 import { createThemedStyle } from '../themed'
-import { useThemedStyle } from '../themed/hooks'
+import { useTheme } from '../themed/hooks'
 import UserDescription, { localeAgeTextFull } from './UserDescription'
 import { User } from './types'
 
@@ -17,9 +17,9 @@ type UserAvatarProps = {
 const UserAvatar = ({ item, style }: UserAvatarProps) => {
   const text = useText()
   const navigate = useNavigate()
-  const styles = useThemedStyle(themedStyles)
+  const { styles, colors } = useTheme(themedStyles)
 
-  // TODO !!! showEditIcon - добавить проверку
+  // TODO !!! onEditProfile - добавить проверку
 
   return (
     <View style={style}>
@@ -27,9 +27,12 @@ const UserAvatar = ({ item, style }: UserAvatarProps) => {
         style={styles.avatar}
         size={116}
         src={item.avatar}
-        showEditIcon={true}
-        onPress={() => {
+        onEditProfile={() => {
           navigate(links.editProfile)
+        }}
+        actionColors={{
+          icon: colors.whiteText,
+          button: colors.lightAccentDetails,
         }}
       />
       <UserDescription

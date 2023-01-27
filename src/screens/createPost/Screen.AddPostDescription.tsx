@@ -72,7 +72,6 @@ export default function AddPostDescriptionScreen({
           model={selectedCategoryModel}
           data={MOCK_CATEGORIES}
           labelExtractor={(val) => val.label}
-          renderItem={(val) => <Span label={val.label} />}
           idExtractor={({ name }) => name}
           style={{ dropdownTab: styles.select }}
         />

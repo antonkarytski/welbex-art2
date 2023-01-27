@@ -1,4 +1,3 @@
-import { View } from 'native-base'
 import React from 'react'
 import {
   Image,
@@ -6,18 +5,25 @@ import {
   StyleProp,
   StyleSheet,
   TouchableOpacity,
+  View,
   ViewStyle,
 } from 'react-native'
 import EditIcon from '../ui/icons/Icon.Edit'
+import PlusIcon from '../ui/icons/Icon.Plus'
+import UserIcon from '../ui/icons/Icon.User'
 
 type AvatarProps = {
   size?: number
   borderSize?: number
-  src: ImageSourcePropType
+  src?: ImageSourcePropType
   style?: StyleProp<ViewStyle>
   onPress?: () => void
-  showEditIcon?: boolean
-  editIconColor?: string
+  onEditProfile?: () => void
+  onAddPhoto?: () => void
+  actionColors?: {
+    icon?: string
+    button?: string
+  }
 }
 
 const DEFAULT_BORDER_SIZE = 2
@@ -28,32 +34,53 @@ const Avatar = ({
   style,
   borderSize = DEFAULT_BORDER_SIZE,
   onPress,
-  showEditIcon,
-  editIconColor = '#ffffff',
+  onEditProfile,
+  onAddPhoto,
+  actionColors = { icon: '#ffffff' },
 }: AvatarProps) => {
   return (
     <TouchableOpacity
       activeOpacity={onPress ? 0.8 : 1}
-      onPress={onPress}
+      onPress={onPress || onEditProfile || onAddPhoto}
       style={[
         styles.container,
         style,
-        { width: size, height: size, borderWidth: borderSize },
+        {
+          width: size,
+          height: size,
+          borderWidth: borderSize,
+        },
       ]}
     >
-      <Image
-        source={src}
-        resizeMode={'cover'}
-        borderRadius={100}
-        style={{
-          width: size - borderSize * 2,
-          height: size - borderSize * 2,
-        }}
-      />
-      {showEditIcon && (
-        <View style={styles.editIconWrapper}>
-          <EditIcon color={editIconColor} />
+      {src ? (
+        <Image
+          source={src}
+          resizeMode={'cover'}
+          borderRadius={100}
+          style={{
+            width: size - borderSize * 2,
+            height: size - borderSize * 2,
+          }}
+        />
+      ) : (
+        <View style={[styles.defaultImage]}>
+          <UserIcon size={size / 3.3} />
         </View>
+      )}
+      {(onEditProfile || onAddPhoto) && (
+        <TouchableOpacity
+          onPress={onEditProfile}
+          style={[
+            styles.actionIconWrapper,
+            { backgroundColor: actionColors.button },
+          ]}
+          activeOpacity={0.8}
+        >
+          {onEditProfile && <EditIcon color={actionColors.icon} />}
+          {onAddPhoto && (
+            <PlusIcon color={actionColors.icon} variant={'regular'} />
+          )}
+        </TouchableOpacity>
       )}
     </TouchableOpacity>
   )
@@ -63,8 +90,9 @@ const styles = StyleSheet.create({
   container: {
     position: 'relative',
     borderRadius: 100,
+    borderColor: '#84BDBE',
   },
-  editIconWrapper: {
+  actionIconWrapper: {
     position: 'absolute',
     right: 0,
     bottom: 0,
@@ -75,6 +103,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 8,
     backgroundColor: '#84BDBE',
+  },
+  defaultImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 100,
+    backgroundColor: '#F2F4F4',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })
 

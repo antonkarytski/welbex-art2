@@ -41,7 +41,6 @@ const SignUpForm = () => {
           />
         )
       })}
-
       <Button
         label={t.continue}
         onPress={onContinueSignUp}

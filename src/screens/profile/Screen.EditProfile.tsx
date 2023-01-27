@@ -1,4 +1,5 @@
 import React from 'react'
+import { ScrollView } from 'react-native'
 import EditProfileForm from '../../features/profile/editProfile/EditProfileForm'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
@@ -25,9 +26,11 @@ export default function EditProfileScreen() {
         backArrowColor={colors.appHeaderIconDark}
         style={styles.screenHeader}
       />
-      <ScreenContainer style={styles.screen.background}>
-        <EditProfileForm />
-      </ScreenContainer>
+      <ScrollView>
+        <ScreenContainer style={styles.screen.background}>
+          <EditProfileForm />
+        </ScreenContainer>
+      </ScrollView>
     </ScreenWrapper>
   )
 }
