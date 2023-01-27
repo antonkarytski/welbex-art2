@@ -15,6 +15,7 @@ function DropdownSelect<Item>({
   model,
   style,
   ItemSeparatorComponent = null,
+  handleOpenDropdown,
 }: DropdownSelectProps<Item>) {
   const [selectedItem] = useStateStore(model)
 
@@ -23,6 +24,7 @@ function DropdownSelect<Item>({
       label={label}
       tabLabel={labelExtractor?.(selectedItem) ?? placeholder}
       style={style?.dropdownTab}
+      handleOpenDropdown={handleOpenDropdown}
     >
       <Select
         data={data}

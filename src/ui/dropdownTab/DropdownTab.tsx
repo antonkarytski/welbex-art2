@@ -18,6 +18,7 @@ function DropdownTab({
   style,
   overlayBackgroundColor,
   toggleIconColors,
+  handleOpenDropdown,
 }: DropdownTabProps) {
   const dropdownButtonRef = useRef<TouchableOpacity>(null)
   const {
@@ -35,6 +36,7 @@ function DropdownTab({
       onDropdownButtonLayout({ w, h, px, py })
       setIsOpened(true)
     })
+    handleOpenDropdown?.()
   }
 
   const onCloseDropdown = () => {

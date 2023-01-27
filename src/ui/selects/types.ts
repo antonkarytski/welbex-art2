@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
 import { StateModel } from 'altek-toolkit'
 import { SearchableListModel } from '../../lib/componentsModels/model.search'
-import { FnExt } from '../../types'
+import { Fn, FnExt } from '../../types'
 import { DropdownStyles } from '../dropdownTab/types'
 import { InputStyles } from '../input/types'
 
@@ -55,6 +55,7 @@ export type DropdownSelectProps<Item> = SelectProps<Item> & {
   placeholder?: string
   label?: string | ReactNode
   style?: DropdownSelectStyles
+  handleOpenDropdown?: Fn
 }
 
 export type ListSelectProps<Item> = SelectProps<Item> & {

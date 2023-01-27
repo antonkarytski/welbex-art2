@@ -3,10 +3,12 @@ import { StyleProp, StyleSheet, TextStyle, ViewStyle } from 'react-native'
 import { FONT_MEDIUM } from '../../styles/fonts'
 import Row from '../../ui/Row'
 import Span from '../../ui/Span'
+import { defaultColors } from '../themed/theme'
 import { Country } from './types'
 
 type CountryRowProps = {
   item: Country
+  isSelected?: boolean
   style?: {
     rowWrapper?: StyleProp<ViewStyle>
     nameRow?: StyleProp<ViewStyle>
@@ -17,13 +19,21 @@ type CountryRowProps = {
 }
 
 const CountryRow = React.memo(
-  ({ item, style }: CountryRowProps) => {
+  ({ item, style, isSelected }: CountryRowProps) => {
     const { name, nativeName, emoji } = item
     return (
       <Row style={[styles.rowWrapper, style?.rowWrapper]}>
         <Span style={[styles.flagEmoji, style?.flag]}>{emoji}</Span>
         <Row style={[styles.nameRow, style?.nameRow]}>
-          <Span style={[styles.name, style?.name]}>{name}</Span>
+          <Span
+            style={[
+              styles.name,
+              style?.name,
+              isSelected && styles.name__selected,
+            ]}
+          >
+            {name}
+          </Span>
           {name !== nativeName && (
             <Span
               style={[
@@ -31,6 +41,7 @@ const CountryRow = React.memo(
                 styles.nativeName,
                 style?.name,
                 style?.nativeName,
+                isSelected && styles.name__selected,
               ]}
             >
               &#40;{nativeName}&#41;
@@ -53,8 +64,11 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
-    lineHeight: 21,
+    lineHeight: 19,
     fontFamily: FONT_MEDIUM,
+  },
+  name__selected: {
+    color: defaultColors.textAccent,
   },
   flag: {
     width: 24,

@@ -74,9 +74,6 @@ const dropdownTabThemedStyles = createThemedStyle((colors) =>
       fontSize: 14,
       lineHeight: 20,
     },
-    tabLabel: {
-      fontSize: 20,
-    },
   })
 )
 

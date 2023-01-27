@@ -1,4 +1,5 @@
-import { StyleProp, ViewStyle } from 'react-native'
+import React from 'react'
+import { StyleProp, TextInput, TextInputProps, ViewStyle } from 'react-native'
 import { StateModel } from 'altek-toolkit'
 import { CountryCode } from '../../features/countries'
 import { PhoneInputModel } from '../../lib/componentsModels/phoneNumber/model.phoneNumber'
@@ -15,6 +16,10 @@ export type PhoneInputProps = {
   disabled?: boolean
   placeholder?: string
   isValid?: boolean
+  ref?: React.RefObject<TextInput>
+  focused?: boolean
+  onBlur?: TextInputProps['onBlur']
+  onFocus?: TextInputProps['onFocus']
   style?: {
     wrapper?: StyleProp<ViewStyle>
     input?: InputStyles

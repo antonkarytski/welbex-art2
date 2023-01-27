@@ -1,5 +1,5 @@
 import { useEvent } from 'effector-react'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
 import { defaultColors } from '../../features/themed/theme'
@@ -22,8 +22,8 @@ const CountrySelectablePhoneInput = <CountryItem extends Record<string, any>>({
   selectPlaceholder,
   isValid,
 }: CountrySelectablePhoneInputProps<CountryItem>) => {
+  const [isFocused, setIsFocused] = useState(false)
   const [selectedCountry] = useStateStore(selectedCountryModel)
-
   const setCountryCode = useEvent(phoneModel.countryCodeModel.set)
 
   useEffect(() => {
@@ -43,10 +43,12 @@ const CountrySelectablePhoneInput = <CountryItem extends Record<string, any>>({
           labelExtractor={countryLabelExtractor}
           idExtractor={countryCodeExtractor}
           placeholder={selectPlaceholder}
+          handleOpenDropdown={() => setIsFocused(true)}
           style={{
             dropdownTab: {
               ...dropdownTabStyles,
               ...style?.select?.dropdownTab,
+              tab: [dropdownTabStyles.tab, isFocused && styles.tab__focused],
             },
             select: style?.select?.select,
           }}
@@ -57,6 +59,9 @@ const CountrySelectablePhoneInput = <CountryItem extends Record<string, any>>({
           placeholder={inputPlaceholder}
           style={{ wrapper: styles.phoneInputWrapper, input: style?.input }}
           isValid={isValid}
+          onBlur={() => setIsFocused(false)}
+          onFocus={() => setIsFocused(true)}
+          focused={isFocused}
         />
       </View>
     </View>
@@ -77,6 +82,9 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
     flexGrow: 1,
+  },
+  tab__focused: {
+    borderColor: defaultColors.detailsActive,
   },
 })
 

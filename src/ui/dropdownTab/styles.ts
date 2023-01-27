@@ -14,7 +14,6 @@ export const styles = StyleSheet.create<DropdownStyles>({
   },
   tab: {
     width: '100%',
-    alignItems: 'center',
     paddingVertical: 16,
     paddingHorizontal: 20,
     paddingRight: 24,
@@ -25,16 +24,19 @@ export const styles = StyleSheet.create<DropdownStyles>({
   },
   activeTab: {
     borderColor: defaultColors.detailsActive,
+    backgroundColor: '#ffffff',
   },
   tabLabel: {
     marginRight: 10,
     fontSize: 16,
     lineHeight: 21,
     fontFamily: FONT_MEDIUM,
+    textAlignVertical: 'center',
     color: defaultColors.text,
   },
   tabInnerWrapper: {
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   toggleIcon__opened: {
     transform: [{ rotate: '180deg' }],

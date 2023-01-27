@@ -6,10 +6,13 @@ import CountryRow from '../../features/countries/CountryRow'
 import { createPhoneInputModel } from '../../lib/componentsModels/phoneNumber/model.phoneNumber'
 import CountrySelectablePhoneInput from '../../ui/phoneInput/CountrySelectablePhoneInput'
 import { CountrySelectablePhoneInputProps } from '../../ui/phoneInput/types'
+import { RenderItem } from '../../ui/selects/types'
 
 export const phoneInputModel = createPhoneInputModel()
 export const countryModel = createStateModel(COUNTRIES_LIST[0])
-const renderCountryRow = (item: Country) => <CountryRow item={item} />
+const renderCountryRow: RenderItem<Country> = (item, isSelected) => (
+  <CountryRow item={item} isSelected={isSelected} />
+)
 
 type PhoneEnterProps = {
   label?: string
@@ -18,6 +21,12 @@ type PhoneEnterProps = {
 }
 
 const PhoneEnter = ({ label, isValid, style }: PhoneEnterProps) => {
+  const dropdownTabStyle = style?.select?.dropdownTab
+  const dropdownTabLabelStyle = {
+    ...styles.tabLabel,
+    ...dropdownTabStyle?.tabLabel,
+  }
+
   return (
     <CountrySelectablePhoneInput
       label={label}
@@ -29,15 +38,24 @@ const PhoneEnter = ({ label, isValid, style }: PhoneEnterProps) => {
       countryLabelExtractor={({ emoji }) => emoji}
       isValid={isValid}
       style={{
-        select: { dropdownTab: tabStyles },
         ...style,
+        select: {
+          ...style?.select,
+          dropdownTab: {
+            ...dropdownTabStyle,
+            tabLabel: dropdownTabLabelStyle,
+          },
+        },
       }}
     />
   )
 }
 
-const tabStyles = StyleSheet.create({
-  tabLabel: { fontSize: 20 },
+const styles = StyleSheet.create({
+  tabLabel: {
+    fontSize: 20,
+    lineHeight: 26,
+  },
 })
 
 export default PhoneEnter
