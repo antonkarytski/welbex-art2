@@ -16,16 +16,17 @@ import DeleteButton from '../../../ui/buttons/Button.Delete'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import Input from '../../../ui/input'
 import DropdownSelect from '../../../ui/selects/DropdownSelect'
+import MultiSlider from '../../../ui/slider/MultiSlider'
 import CountriesDropdownSelect, {
   createCountryModel,
 } from '../../countries/CountriesDropdownSelect'
-import { countryModel as profileCountryModel } from '../../profile/editProfile/model.editProfile'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
 
 const categoryModel = createStateModel(MOCK_CATEGORIES[0])
 const countryModel = createCountryModel()
 const drawingNameModel = createStateModel('')
+const ageModel = createStateModel([2, 7])
 
 const GalleryFilter = () => {
   const t = useText()
@@ -64,6 +65,7 @@ const GalleryFilter = () => {
           onChangeText={setDrawingName}
           styles={styles.input}
         />
+        <MultiSlider model={ageModel} label={t.age} min={2} max={15} step={1} />
       </KeyboardAvoidingView>
       <PresetButton
         label={`${t.show} ${resultsCount} ${t.filterResults}`}
