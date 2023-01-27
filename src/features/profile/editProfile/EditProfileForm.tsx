@@ -68,13 +68,13 @@ const EditProfileForm = () => {
           label={t.uploadChildDocument}
           style={styles.common.uploadDocumentsBlock}
         />
+
+        <PresetButton
+          label={t.save}
+          onPress={onSaveChanges}
+          preset={styles.buttonPrimary}
+        />
       </KeyboardAvoidingView>
-      <PresetButton
-        label={t.save}
-        onPress={onSaveChanges}
-        preset={styles.buttonPrimary}
-        style={styles.common.resultsButton}
-      />
     </>
   )
 }
@@ -104,10 +104,6 @@ const themedStyles = createThemedStyle((colors) =>
       borderColor: colors.inputBorder,
       borderWidth: 1,
       borderRadius: 20,
-    },
-    resultsButton: {
-      marginTop: 'auto',
-      marginBottom: 12,
     },
   })
 )

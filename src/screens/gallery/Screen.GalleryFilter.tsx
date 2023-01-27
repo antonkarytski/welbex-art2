@@ -25,7 +25,7 @@ export default function GalleryFilterScreen() {
         backArrowColor={colors.appHeaderIconDark}
         style={styles.screenHeader}
       />
-      <ScreenContainer style={styles.screen.background}>
+      <ScreenContainer style={styles.screen.background} enableScrollView>
         <GalleryFilter />
       </ScreenContainer>
     </ScreenWrapper>

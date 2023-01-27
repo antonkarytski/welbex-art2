@@ -1,7 +1,7 @@
 import { KeyboardAvoidingView } from 'native-base'
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
-import {  useStateStore } from 'altek-toolkit'
+import { useStateStore } from 'altek-toolkit'
 import { MOCK_CATEGORIES } from '../../../_mock/categories'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
 import {
@@ -64,6 +64,7 @@ const GalleryFilter = () => {
         />
         <MultiSlider label={t.age} model={ageModel} min={2} max={15} step={1} />
       </KeyboardAvoidingView>
+
       <PresetButton
         label={`${t.show} ${resultsCount} ${t.filterResults}`}
         onPress={onShowResults}

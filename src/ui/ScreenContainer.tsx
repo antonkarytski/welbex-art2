@@ -1,8 +1,10 @@
 import React, { ReactNode } from 'react'
 import {
+  Keyboard,
   ScrollView,
   StyleProp,
   StyleSheet,
+  TouchableWithoutFeedback,
   View,
   ViewStyle,
 } from 'react-native'
@@ -27,7 +29,9 @@ const ScreenContainer = ({
       <View style={styles.innerContainer}>{children}</View>
     </ScrollView>
   ) : (
-    <View style={containerStyles}>{children}</View>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={containerStyles}>{children}</View>
+    </TouchableWithoutFeedback>
   )
 }
 

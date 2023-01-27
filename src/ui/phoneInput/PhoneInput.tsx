@@ -66,6 +66,7 @@ const PhoneInput = ({
         onBlur={handleBlur}
         onFocus={handleFocus}
         ref={ref || inputRef}
+        type={'phone-pad'}
       />
     </TouchableOpacity>
   )

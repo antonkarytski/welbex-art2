@@ -1,11 +1,5 @@
 import React, { ReactNode } from 'react'
-import {
-  Keyboard,
-  StyleProp,
-  TouchableWithoutFeedback,
-  View,
-  ViewStyle,
-} from 'react-native'
+import { StyleProp, ViewStyle } from 'react-native'
 import { useThemedStyleList } from '../../../features/themed/hooks'
 import AppHeader from '../../../navigation/elements/AppHeader'
 import { darkScreenHeaderThemedStyles } from '../../../styles/screen'
@@ -32,24 +26,20 @@ const AuthScreenContainer = ({
   })
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View>
-        <ScreenWrapper style={[styles.common.wrapper, style]}>
-          <AppHeader
-            style={styles.screenHeader}
-            settingsAvailable={false}
-            backAvailable={backAvailable}
-            backArrowColor={colors.appHeaderIconDark}
-          />
-          <ScreenContainer
-            enableScrollView={enableScrollView}
-            style={styles.common.wrapper}
-          >
-            {children}
-          </ScreenContainer>
-        </ScreenWrapper>
-      </View>
-    </TouchableWithoutFeedback>
+    <ScreenWrapper style={[styles.common.wrapper, style]}>
+      <AppHeader
+        style={styles.screenHeader}
+        settingsAvailable={false}
+        backAvailable={backAvailable}
+        backArrowColor={colors.appHeaderIconDark}
+      />
+      <ScreenContainer
+        enableScrollView={enableScrollView}
+        style={styles.common.wrapper}
+      >
+        {children}
+      </ScreenContainer>
+    </ScreenWrapper>
   )
 }
 export default AuthScreenContainer
