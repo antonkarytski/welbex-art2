@@ -1,16 +1,14 @@
 import React from 'react'
 import { View } from 'react-native'
 import Svg, { Path } from 'react-native-svg'
-import { IconProps } from 'altek-ui'
-
-type StarsImageProps = { secondaryColor?: string } & IconProps
+import { SVGImageProps } from './_types'
 
 const StarsImage = ({
   color = '#B4DCD8',
   secondaryColor = '#84BDBE',
   size = 93,
   style,
-}: StarsImageProps) => {
+}: SVGImageProps) => {
   return (
     <View style={style}>
       <Svg

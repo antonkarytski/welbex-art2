@@ -40,5 +40,5 @@ export enum links {
   subscriptionSelectPlan = 'subscriptionSelectPlan',
   addPaymentCard = 'addPaymentCard',
   paymentMethod = 'paymentMethod',
-  resultMessage = 'resultMessage',
+  infoMessage = 'infoMessage',
 }

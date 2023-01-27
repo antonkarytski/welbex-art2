@@ -170,8 +170,11 @@ export const EN = {
   cardValidationError: 'Incorrect card data',
   deleteCardConfirmationQ: 'Do you really want to delete this card?',
   cardDeleted: 'Card deleted',
+  cardSaved: 'Card saved',
   backToPaymentMethods: 'Back to payment methods',
   saveDiscount: 'Save',
   nameOnCard: 'Name on card',
   fullName: 'Full name',
+  subscriptionEndMessage: 'Your subscription will end on',
+  ok: 'Ok',
 }

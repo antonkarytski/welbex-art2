@@ -12,3 +12,9 @@ export type OrArray<T> = T | T[]
 export type WithUniq<I> = I & { uniqId: string }
 export type NodeGenerator<T> = (props: T, index: number) => ReactNode
 export type NodeFn<T> = (props: T) => ReactNode
+export type IfIncludeUndefined<T, IfTrue, IfFalse> = Extract<
+  T,
+  undefined
+> extends never
+  ? IfFalse
+  : IfTrue

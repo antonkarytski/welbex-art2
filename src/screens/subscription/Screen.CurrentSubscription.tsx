@@ -6,11 +6,11 @@ import { $currentSubscription } from '../../features/profile/model'
 import CurrentSubscriptionContent from '../../features/subscriptionCurrent/CurrentSubscriptionContent'
 import CurrentSubscriptionTopBlock from '../../features/subscriptionCurrent/CurrentSubscriptionTopBlock'
 import { links } from '../../navigation/links'
-import { ScreensProps } from '../../navigation/types.screenProps'
+import { ScreenComponentProps } from '../../navigation/types.screenProps'
 
 const CurrentSubscriptionScreen = ({
   navigation,
-}: NativeStackScreenProps<ScreensProps, links.subscriptionCurrent>) => {
+}: ScreenComponentProps<links.subscriptionCurrent>) => {
   const currentSubscription = useStore($currentSubscription)
 
   useLayoutEffect(() => {

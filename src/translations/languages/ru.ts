@@ -179,4 +179,7 @@ export const RU: LangStructure = {
   nameOnCard: 'Имя на карте',
   fullName: 'Полное имя',
   cvc: 'CVV/CVC',
+  subscriptionEndMessage: 'Подписка закончится',
+  ok: 'Ок',
+  cardSaved: 'Карта сохранена',
 }
