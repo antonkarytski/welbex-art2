@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import { Modal, TouchableOpacity, View } from 'react-native'
+import { defaultColors } from '../../features/themed/theme'
 import DropdownContainer from '../DropdownContainer'
 import Overlay from '../Overlay'
 import Row from '../Row'
@@ -16,6 +17,7 @@ function DropdownTab({
   indentFromTab = 4,
   style,
   overlayBackgroundColor,
+  toggleIconColors,
 }: DropdownTabProps) {
   const dropdownButtonRef = useRef<TouchableOpacity>(null)
   const {
@@ -52,7 +54,11 @@ function DropdownTab({
         ref={dropdownButtonRef}
         activeOpacity={0.6}
         onPress={onOpenDropdown}
-        style={[styles.tab, style?.tab, isOpened && style?.activeTab]}
+        style={[
+          styles.tab,
+          style?.tab,
+          isOpened && [styles.activeTab, style?.activeTab],
+        ]}
       >
         <Row style={[styles.tabInnerWrapper, style?.tabInnerWrapper]}>
           <Span
@@ -65,8 +71,13 @@ function DropdownTab({
             {tabLabel}
           </Span>
           <ArrowIcon
-            size={8}
+            size={10}
             style={[style?.tabIcon, isOpened && styles.toggleIcon__opened]}
+            color={
+              isOpened
+                ? toggleIconColors?.opened || defaultColors.detailsActive
+                : toggleIconColors?.default
+            }
           />
         </Row>
       </TouchableOpacity>

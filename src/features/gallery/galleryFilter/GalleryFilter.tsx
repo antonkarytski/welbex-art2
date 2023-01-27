@@ -52,9 +52,8 @@ const GalleryFilter = () => {
         <DropdownSelect
           label={t.categories}
           data={MOCK_CATEGORIES}
-          idExtractor={({ label }) => label}
           model={categoryModel}
-          renderItem={(item) => <Span label={item.label} />}
+          idExtractor={({ label }) => label}
           labelExtractor={({ label }) => label}
           style={{ dropdownTab: styles.dropdownTab }}
         />
@@ -65,7 +64,7 @@ const GalleryFilter = () => {
           onChangeText={setDrawingName}
           styles={styles.input}
         />
-        <MultiSlider model={ageModel} label={t.age} min={2} max={15} step={1} />
+        <MultiSlider label={t.age} model={ageModel} min={2} max={15} step={1} />
       </KeyboardAvoidingView>
       <PresetButton
         label={`${t.show} ${resultsCount} ${t.filterResults}`}

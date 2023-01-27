@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleProp, StyleSheet, TextStyle, ViewStyle } from 'react-native'
+import { FONT_MEDIUM } from '../../styles/fonts'
 import Row from '../../ui/Row'
 import Span from '../../ui/Span'
 import { Country } from './types'
@@ -24,7 +25,14 @@ const CountryRow = React.memo(
         <Row style={[styles.nameRow, style?.nameRow]}>
           <Span style={[styles.name, style?.name]}>{name}</Span>
           {name !== nativeName && (
-            <Span style={[styles.nativeName, style?.name, style?.nativeName]}>
+            <Span
+              style={[
+                styles.name,
+                styles.nativeName,
+                style?.name,
+                style?.nativeName,
+              ]}
+            >
               &#40;{nativeName}&#41;
             </Span>
           )}
@@ -43,7 +51,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     flexWrap: 'wrap',
   },
-  name: {},
+  name: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontFamily: FONT_MEDIUM,
+  },
   flag: {
     width: 24,
     height: 20,

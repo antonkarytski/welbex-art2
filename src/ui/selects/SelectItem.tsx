@@ -1,5 +1,6 @@
 import React from 'react'
 import { TouchableOpacity, View } from 'react-native'
+import Span from '../Span'
 import OkIcon from '../icons/Icon.Ok'
 import { selectStyles } from './styles'
 import { SelectItemProps } from './types'
@@ -11,6 +12,7 @@ const SelectItem = <Item,>({
   onSelect,
   showSelectedIcon = true,
   isSelected,
+  labelExtractor,
 }: SelectItemProps<Item>) => {
   return (
     <TouchableOpacity
@@ -23,7 +25,17 @@ const SelectItem = <Item,>({
       ]}
     >
       <View style={[selectStyles.row_wrapper, style?.row_wrapper]}>
-        {renderItem(item, isSelected)}
+        {renderItem
+          ? renderItem(item, isSelected)
+          : labelExtractor && (
+              <Span
+                label={labelExtractor(item)}
+                style={[
+                  selectStyles.item_label,
+                  isSelected && selectStyles.item_label__selected,
+                ]}
+              />
+            )}
         <View
           style={[
             selectStyles.icon_checkMark__wrapper,

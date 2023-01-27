@@ -20,8 +20,9 @@ export type SelectItemStyles = {
 export type SelectItemProps<Item> = {
   item: Item
   onSelect: (item: Item) => void
-  renderItem: RenderItem<Item>
+  renderItem?: RenderItem<Item>
   idExtractor?: StringExtractor<Item>
+  labelExtractor?: StringExtractor<Item>
   showSelectedIcon?: boolean
   style?: SelectItemStyles
   isSelected?: boolean
@@ -35,8 +36,9 @@ export type SelectStyles = {
 export type SelectProps<Item> = {
   label?: string | ReactNode
   data: Item[]
-  renderItem: RenderItem<Item>
+  renderItem?: RenderItem<Item>
   idExtractor: StringExtractor<Item>
+  labelExtractor?: StringExtractor<Item>
   ItemSeparatorComponent?: React.ComponentType<any> | null
   ListFooterComponent?: React.ComponentType<any> | null
   model: StateModel<Item>
@@ -53,7 +55,6 @@ export type DropdownSelectProps<Item> = SelectProps<Item> & {
   placeholder?: string
   label?: string | ReactNode
   style?: DropdownSelectStyles
-  labelExtractor: StringExtractor<Item>
 }
 
 export type ListSelectProps<Item> = SelectProps<Item> & {

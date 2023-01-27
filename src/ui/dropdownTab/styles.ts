@@ -1,4 +1,6 @@
 import { StyleSheet } from 'react-native'
+import { defaultColors } from '../../features/themed/theme'
+import { FONT_MEDIUM } from '../../styles/fonts'
 import { DropdownStyles } from './types'
 
 export const DEFAULT_DROPDOWN_HEIGHT = 200
@@ -18,11 +20,18 @@ export const styles = StyleSheet.create<DropdownStyles>({
     paddingRight: 24,
     borderWidth: 1,
     borderRadius: 8,
-    borderColor: '#347B81',
-    backgroundColor: '#ffffff',
+    borderColor: defaultColors.detailsInactive,
+    backgroundColor: defaultColors.formFieldBackground,
+  },
+  activeTab: {
+    borderColor: defaultColors.detailsActive,
   },
   tabLabel: {
     marginRight: 10,
+    fontSize: 16,
+    lineHeight: 21,
+    fontFamily: FONT_MEDIUM,
+    color: defaultColors.text,
   },
   tabInnerWrapper: {
     justifyContent: 'space-between',

@@ -89,6 +89,7 @@ const LIGHT = {
   buttonLightBorderDisabled: GREY.TEXT_LIGHT,
   buttonLightBorderPressed: GREEN_BLUE.PRIMARY,
   /** Inputs */
+  formFieldBackground: GREY.BACKGROUND_EXTRA_LIGHT,
   placeholder: GREY.TEXT_LIGHT,
   inputTitle: GREY.TEXT,
   inputBorder: GREY.DETAILS,
@@ -181,6 +182,7 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   buttonLightBorderDisabled: GREY.TEXT_LIGHT,
   buttonLightBorderPressed: GREEN_BLUE.PRIMARY,
   /** Inputs */
+  formFieldBackground: GREY.BACKGROUND_EXTRA_LIGHT,
   placeholder: GREY.TEXT_LIGHT,
   inputTitle: GREY.TEXT,
   inputBorder: GREY.DETAILS,
