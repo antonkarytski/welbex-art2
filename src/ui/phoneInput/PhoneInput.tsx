@@ -1,6 +1,7 @@
 import { useEvent, useStore } from 'effector-react'
 import React, { useRef } from 'react'
 import { StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import { defaultColors } from '../../features/themed/theme'
 import Span from '../Span'
 import Input from '../input'
 import { PhoneInputProps } from './types'
@@ -48,12 +49,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#ffffff',
+    backgroundColor: defaultColors.formFieldBackground,
     borderRadius: 8,
-    color: '#303535',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: '#347B81',
+    borderColor: defaultColors.inputBorder,
   },
   wrapper__invalid: {
     borderColor: '#E75958',
