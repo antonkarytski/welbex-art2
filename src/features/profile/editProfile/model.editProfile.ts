@@ -1,6 +1,6 @@
 import { createFormModel } from '../../../lib/componentsModels/model.form'
 import { LangFn } from '../../../translations/types'
-import { createCountryModel } from '../../countries/CountriesDropdownSelect'
+import { createCountryModel } from '../../countries/model.countriesDropdown'
 
 enum EditProfileFormType {
   NAME = 'name',

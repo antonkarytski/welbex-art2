@@ -1,7 +1,7 @@
 import { KeyboardAvoidingView } from 'native-base'
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
-import { createStateModel, useStateStore } from 'altek-toolkit'
+import {  useStateStore } from 'altek-toolkit'
 import { MOCK_CATEGORIES } from '../../../_mock/categories'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
 import {
@@ -11,22 +11,20 @@ import {
 import { FONT_MEDIUM } from '../../../styles/fonts'
 import { inputThemedStyles } from '../../../styles/inputs'
 import { useText } from '../../../translations/hook'
-import Span from '../../../ui/Span'
 import DeleteButton from '../../../ui/buttons/Button.Delete'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import Input from '../../../ui/input'
 import DropdownSelect from '../../../ui/selects/DropdownSelect'
 import MultiSlider from '../../../ui/slider/MultiSlider'
-import CountriesDropdownSelect, {
-  createCountryModel,
-} from '../../countries/CountriesDropdownSelect'
+import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
-
-const categoryModel = createStateModel(MOCK_CATEGORIES[0])
-const countryModel = createCountryModel()
-const drawingNameModel = createStateModel('')
-const ageModel = createStateModel([2, 7])
+import {
+  ageModel,
+  categoryModel,
+  countryModel,
+  drawingNameModel,
+} from './model.galleryFilter'
 
 const GalleryFilter = () => {
   const t = useText()

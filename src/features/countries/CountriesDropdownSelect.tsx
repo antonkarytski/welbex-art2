@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { StateModel, createStateModel } from 'altek-toolkit'
+import { StateModel } from 'altek-toolkit'
 import { FONT_MEDIUM } from '../../styles/fonts'
 import { useText } from '../../translations/hook'
 import DropdownSelect from '../../ui/selects/DropdownSelect'
@@ -9,8 +9,6 @@ import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import { COUNTRIES_LIST, Country } from './'
 import CountryRow from './CountryRow'
-
-export const createCountryModel = () => createStateModel(COUNTRIES_LIST[0])
 
 type CountriesDropdownSelectProps = {
   model: StateModel<Country>
