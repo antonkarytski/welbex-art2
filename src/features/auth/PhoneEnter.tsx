@@ -1,15 +1,30 @@
-import React from 'react'
+import { sample } from 'effector'
+import { useStore } from 'effector-react'
+import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
-import { createStateModel } from 'altek-toolkit'
 import { COUNTRIES_LIST, Country } from '../../features/countries'
 import CountryRow from '../../features/countries/CountryRow'
 import { createPhoneInputModel } from '../../lib/componentsModels/phoneNumber/model.phoneNumber'
 import CountrySelectablePhoneInput from '../../ui/phoneInput/CountrySelectablePhoneInput'
 import { CountrySelectablePhoneInputProps } from '../../ui/phoneInput/types'
 import { RenderItem } from '../../ui/selects/types'
+import { createCountryModel } from '../countries/model.countriesDropdown'
+import { profileCountryModel } from './model.profileCountry'
 
 export const phoneInputModel = createPhoneInputModel()
-export const countryModel = createStateModel(COUNTRIES_LIST[0])
+export const phoneCountryModel = createCountryModel()
+
+sample({
+  clock: profileCountryModel.set,
+  source: {
+    profileCountry: profileCountryModel.$state,
+    country: phoneInputModel.purePhoneModel.$state,
+  },
+  filter: ({ country }) => !country,
+  fn: ({ profileCountry }) => profileCountry,
+  target: phoneCountryModel.set,
+})
+
 const renderCountryRow: RenderItem<Country> = (item, isSelected) => (
   <CountryRow item={item} isSelected={isSelected} />
 )
@@ -21,6 +36,9 @@ type PhoneEnterProps = {
 }
 
 const PhoneEnter = ({ label, isValid, style }: PhoneEnterProps) => {
+  const isPhoneValid = useStore(phoneInputModel.$isPhoneValid)
+  const [isPhoneChecked, setIsPhoneChecked] = useState(false)
+
   const dropdownTabStyle = style?.select?.dropdownTab
   const dropdownTabLabelStyle = {
     ...styles.tabLabel,
@@ -33,10 +51,12 @@ const PhoneEnter = ({ label, isValid, style }: PhoneEnterProps) => {
       phoneModel={phoneInputModel}
       countries={COUNTRIES_LIST}
       renderCountryItem={renderCountryRow}
-      selectedCountryModel={countryModel}
+      selectedCountryModel={phoneCountryModel}
       countryCodeExtractor={({ alpha2Code }) => alpha2Code}
       countryLabelExtractor={({ emoji }) => emoji}
-      isValid={isValid}
+      isValid={isValid || (isPhoneChecked ? isPhoneValid : undefined)}
+      onFocus={() => setIsPhoneChecked(false)}
+      onBlur={() => setIsPhoneChecked(true)}
       style={{
         ...style,
         select: {

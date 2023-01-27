@@ -1,6 +1,6 @@
 import { useEvent } from 'effector-react'
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, TextInputProps, View } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
 import { defaultColors } from '../../features/themed/theme'
 import Span from '../Span'
@@ -21,6 +21,8 @@ const CountrySelectablePhoneInput = <CountryItem extends Record<string, any>>({
   inputPlaceholder,
   selectPlaceholder,
   isValid,
+  onBlur,
+  onFocus,
 }: CountrySelectablePhoneInputProps<CountryItem>) => {
   const [isFocused, setIsFocused] = useState(false)
   const [selectedCountry] = useStateStore(selectedCountryModel)
@@ -29,6 +31,15 @@ const CountrySelectablePhoneInput = <CountryItem extends Record<string, any>>({
   useEffect(() => {
     setCountryCode(countryCodeExtractor(selectedCountry))
   }, [selectedCountry, countryCodeExtractor, setCountryCode])
+
+  const handleBlur: TextInputProps['onBlur'] = (e) => {
+    setIsFocused(false)
+    onBlur?.(e)
+  }
+  const handleFocus: TextInputProps['onFocus'] = (e) => {
+    setIsFocused(true)
+    onFocus?.(e)
+  }
 
   return (
     <View style={style?.wrapper}>
@@ -59,8 +70,8 @@ const CountrySelectablePhoneInput = <CountryItem extends Record<string, any>>({
           placeholder={inputPlaceholder}
           style={{ wrapper: styles.phoneInputWrapper, input: style?.input }}
           isValid={isValid}
-          onBlur={() => setIsFocused(false)}
-          onFocus={() => setIsFocused(true)}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
           focused={isFocused}
         />
       </View>

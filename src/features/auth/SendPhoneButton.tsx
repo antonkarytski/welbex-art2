@@ -6,19 +6,18 @@ import { PhoneInputModel } from '../../lib/componentsModels/phoneNumber/model.ph
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
-import { FnExt } from '../../types'
 import PresetButton from '../../ui/buttons/PresetButton'
 import { PresetButtonStates } from '../../ui/buttons/types'
 
 type SendPhoneButtonProps = {
   buttonPreset: PresetButtonStates
-  setIsPressedToContinue: FnExt<boolean>
+  onPress?: () => void
   phoneInputModel: PhoneInputModel
 }
 
 const SendPhoneButton = ({
   buttonPreset,
-  setIsPressedToContinue,
+  onPress,
   phoneInputModel,
 }: SendPhoneButtonProps) => {
   const navigate = useNavigate()
@@ -28,8 +27,8 @@ const SendPhoneButton = ({
   const isPhoneValid = useStore(phoneInputModel.$isPhoneValid)
 
   const onContinue = () => {
+    onPress?.()
     if (!isPhoneValid) {
-      setIsPressedToContinue(true)
       return
     }
     console.log('phoneNumber', phoneNumber)
@@ -42,7 +41,7 @@ const SendPhoneButton = ({
       onPress={onContinue}
       preset={buttonPreset}
       style={styles.button}
-      disabled={!phoneNumber}
+      disabled={!isPhoneValid}
     />
   )
 }

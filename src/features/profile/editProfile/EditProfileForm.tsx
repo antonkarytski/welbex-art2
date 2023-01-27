@@ -11,15 +11,12 @@ import Avatar from '../../../ui/Avatar'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import Field from '../../../ui/form/Field'
 import PhoneEnter from '../../auth/PhoneEnter'
+import { profileCountryModel } from '../../auth/model.profileCountry'
 import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
 import UploadFromCameraBlock from '../../imagePick/Block.UploadFromCamera'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
-import {
-  PROFILE_FORM_DESCRIPTORS,
-  countryModel,
-  profileFormModel,
-} from './model.editProfile'
+import { PROFILE_FORM_DESCRIPTORS, profileFormModel } from './model.editProfile'
 
 const EditProfileForm = () => {
   const t = useText()
@@ -66,7 +63,7 @@ const EditProfileForm = () => {
             select: { dropdownTab: styles.dropdownTab },
           }}
         />
-        <CountriesDropdownSelect model={countryModel} />
+        <CountriesDropdownSelect model={profileCountryModel} />
         <UploadFromCameraBlock
           label={t.uploadChildDocument}
           style={styles.common.uploadDocumentsBlock}

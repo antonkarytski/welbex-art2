@@ -1,6 +1,5 @@
 import { createFormModel } from '../../../lib/componentsModels/model.form'
 import { LangFn } from '../../../translations/types'
-import { createCountryModel } from '../../countries/model.countriesDropdown'
 
 enum EditProfileFormType {
   NAME = 'name',
@@ -29,5 +28,3 @@ export const PROFILE_FORM_DESCRIPTORS: ProfileFormDescriptor[] = Object.values(
 }))
 
 export const profileFormModel = createFormModel(initialProfileFormState)
-
-export const countryModel = createCountryModel()

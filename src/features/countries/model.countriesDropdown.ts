@@ -1,4 +1,4 @@
 import { createStateModel } from 'altek-toolkit'
-import { COUNTRIES_LIST } from './'
+import { DEFAULT_COUNTRY } from './'
 
-export const createCountryModel = () => createStateModel(COUNTRIES_LIST[0])
+export const createCountryModel = () => createStateModel(DEFAULT_COUNTRY)
