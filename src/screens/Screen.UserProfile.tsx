@@ -1,4 +1,3 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import ProfileDrawingsListTabs from '../features/profile/ProfileDrawingsListTabs'
@@ -7,11 +6,11 @@ import UserScreenHeader from '../features/user/UserScreenHeader'
 import { getUserExt } from '../features/user/request'
 import { UserExt } from '../features/user/types'
 import { links } from '../navigation/links'
-import { ScreensProps } from '../navigation/types.screenProps'
+import { ScreenComponentProps } from '../navigation/types.screenProps'
 
 const UserProfileScreen = ({
   route,
-}: NativeStackScreenProps<ScreensProps, links.userProfile>) => {
+}: ScreenComponentProps<links.userProfile>) => {
   const item = route.params.item
   const [userExt, setUserExt] = useState<UserExt | null>(null)
 

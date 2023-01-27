@@ -1,4 +1,3 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
 import CardDeletedInfoMessage from '../features/infoMessage/CardDeletedInfoMessage'
 import CardSavedInfoMessage from '../features/infoMessage/CardSavedInfoMessage'
@@ -10,11 +9,11 @@ import PaymentSuccessInfoMessage from '../features/infoMessage/PaymentSuccessInf
 import SignedOffInfoMessage from '../features/infoMessage/SignedOffInfoMessage'
 import { InfoMessageType } from '../features/infoMessage/types'
 import { links } from '../navigation/links'
-import { ScreensProps } from '../navigation/types.screenProps'
+import { ScreenComponentProps } from '../navigation/types.screenProps'
 
 const InfoMessageScreen = ({
   route,
-}: NativeStackScreenProps<ScreensProps, links.infoMessage>) => {
+}: ScreenComponentProps<links.infoMessage>) => {
   const params = route.params
   if (params.type === InfoMessageType.CONNECTION_ERROR) {
     return <ConnectionErrorInfoMessage />
@@ -23,7 +22,9 @@ const InfoMessageScreen = ({
     return <PaymentErrorInfoMessage reason={PaymentErrorReason.BALANCE} />
   }
   if (params.type === InfoMessageType.CARD_SAVED) {
-    return <CardSavedInfoMessage amountToPay={'25.00'} />
+    return (
+      <CardSavedInfoMessage currentPayment={params.payload?.currentPayment} />
+    )
   }
   if (params.type === InfoMessageType.SUCCESSFUL_PAYMENT) {
     return <PaymentSuccessInfoMessage subscriptionMonthsAmount={'six'} />

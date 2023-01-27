@@ -9,11 +9,15 @@ import { useNavigate } from '../../navigation'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import { ScreenHeaderStyles } from '../../navigation/elements/styles'
 import { links } from '../../navigation/links'
+import { ScreenComponentProps } from '../../navigation/types.screenProps'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import PresetButton from '../../ui/buttons/PresetButton'
 
-const AddPaymentCardScreen = () => {
+const AddPaymentCardScreen = ({
+  route,
+}: ScreenComponentProps<links.addPaymentCard>) => {
+  const currentPayment = route.params?.currentPayment
   const text = useText()
   const navigate = useNavigate()
   const { colors, styles } = useThemedStyleList({
@@ -35,9 +39,12 @@ const AddPaymentCardScreen = () => {
         <PresetButton
           preset={styles.buttonPreset}
           label={text.addCard}
-          onPress={() =>
-            navigate(links.infoMessage, { type: InfoMessageType.CARD_SAVED })
-          }
+          onPress={() => {
+            navigate(links.infoMessage, {
+              type: InfoMessageType.CARD_SAVED,
+              payload: { currentPayment },
+            })
+          }}
           style={commonStyles.button}
         />
       </View>
