@@ -2,7 +2,7 @@ import React from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import { getSwitcherThemedColors } from '../../../styles/switch'
 import { useText } from '../../../translations/hook'
-import ListItemSeparator from '../../../ui/ListItemSeparator'
+import ListItemSeparator from '../../../ui/lists/ListItemSeparator'
 import { useThemeColors } from '../../themed/hooks'
 import NotificationsSettingItem from './NotificationsSettingItem'
 import {

@@ -15,6 +15,7 @@ import { profileCountryModel } from '../../auth/model.profileCountry'
 import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
 import UploadFromCameraBlock from '../../imagePick/Block.UploadFromCamera'
 import PhotoEditPopUp from '../../popUp/PopUp.PhotoEditActionSelect'
+import SaveChangesPopUp from '../../popUp/PopUp.SaveChanges'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
 import { PROFILE_FORM_DESCRIPTORS, profileFormModel } from './model.editProfile'
@@ -29,7 +30,9 @@ const EditProfileForm = () => {
     common: themedStyles,
   })
 
-  const onSaveChanges = () => {}
+  const onSaveChanges = () => {
+    SaveChangesPopUp.showSync()
+  }
   const onEditPhoto = () => {
     PhotoEditPopUp.showSync()
   }
