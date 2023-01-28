@@ -1,12 +1,14 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { PopUpFactory } from '../../lib/componentsModels/popUp/factory'
-import { usePopUpModel } from '../../lib/componentsModels/popUp/hooks'
-import { useText } from '../../translations/hook'
-import H2 from '../../ui/H2'
-import Span from '../../ui/Span'
-import PresetButton from '../../ui/buttons/PresetButton'
-import PopUpCard from '../../ui/popUp/PopUpCard'
+import { PopUpFactory } from '../../../lib/componentsModels/popUp/factory'
+import { usePopUpModel } from '../../../lib/componentsModels/popUp/hooks'
+import { useNavigate } from '../../../navigation'
+import { links } from '../../../navigation/links'
+import { useText } from '../../../translations/hook'
+import H2 from '../../../ui/H2'
+import Span from '../../../ui/Span'
+import PresetButton from '../../../ui/buttons/PresetButton'
+import PopUpCard from '../../../ui/popUp/PopUpCard'
 
 type PopUpRecoverPasswordProps = {}
 type PopUpOpenProps = {
@@ -18,6 +20,7 @@ const model = PopUpFactory.createModel<PopUpOpenProps>()
 const PopUpRecoverPassword = PopUpFactory.appendModel(
   ({}: PopUpRecoverPasswordProps) => {
     const text = useText()
+    const navigate = useNavigate()
     const popUp = usePopUpModel(model)
     if (popUp.props) {
       popUp.props.email
@@ -37,7 +40,10 @@ const PopUpRecoverPassword = PopUpFactory.appendModel(
         <PresetButton
           style={styles.button}
           label={text.backToLogIn}
-          onPress={() => {}}
+          onPress={() => {
+            navigate(links.login)
+            PopUpRecoverPassword.hide()
+          }}
         />
       </PopUpCard>
     )
