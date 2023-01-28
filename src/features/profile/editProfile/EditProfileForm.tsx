@@ -14,6 +14,7 @@ import PhoneEnter from '../../auth/PhoneEnter'
 import { profileCountryModel } from '../../auth/model.profileCountry'
 import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
 import UploadFromCameraBlock from '../../imagePick/Block.UploadFromCamera'
+import PhotoEditPopUp from '../../popUp/PopUp.PhotoEditActionSelect'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
 import { PROFILE_FORM_DESCRIPTORS, profileFormModel } from './model.editProfile'
@@ -29,7 +30,9 @@ const EditProfileForm = () => {
   })
 
   const onSaveChanges = () => {}
-
+  const onEditPhoto = () => {
+    PhotoEditPopUp.showSync()
+  }
   return (
     <>
       <KeyboardAvoidingView
@@ -38,7 +41,7 @@ const EditProfileForm = () => {
       >
         <Avatar
           size={112}
-          onAddPhoto={() => {}}
+          onAddPhoto={onEditPhoto}
           style={styles.common.avatar}
           actionColors={{
             icon: colors.whiteText,

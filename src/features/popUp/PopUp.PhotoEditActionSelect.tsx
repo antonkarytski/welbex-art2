@@ -1,12 +1,16 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { PopUpFactory } from '../../lib/componentsModels/popUp/factory'
 import { usePopUpModel } from '../../lib/componentsModels/popUp/hooks'
 import { useText } from '../../translations/hook'
-import H2 from '../../ui/H2'
-import Span from '../../ui/Span'
-import PresetButton from '../../ui/buttons/PresetButton'
+import ListItemSeparator from '../../ui/ListItemSeparator'
+import TouchableRow from '../../ui/TouchableRow'
+import CameraIcon from '../../ui/icons/Icon.Camera'
+import DeleteIcon from '../../ui/icons/Icon.Delete'
+import ImageIcon from '../../ui/icons/Icon.Image'
 import PopUpCard from '../../ui/popUp/PopUpCard'
+import { createThemedStyle } from '../themed'
+import { useThemedStyleList } from '../themed/hooks'
 
 type PopUpPhotoEditActionSelectProps = {}
 
@@ -16,33 +20,63 @@ const PopUpPhotoEditActionSelect = PopUpFactory.appendModel(
   ({}: PopUpPhotoEditActionSelectProps) => {
     const text = useText()
     const popUp = usePopUpModel(model)
-    if (popUp.props) {
-      popUp.props.email
-    }
+
+    const { styles, colors } = useThemedStyleList({
+      row: touchableRowThemedStyles,
+      common: themedStyles,
+    })
 
     return (
-      <PopUpCard style={styles.card} model={model}>
-        <View />
+      <PopUpCard style={styles.common.card} model={model}>
+        <TouchableRow
+          label={text.selectFromGallery}
+          Icon={ImageIcon}
+          onPress={() => {}}
+          iconColor={colors.text}
+          style={styles.row}
+        />
+        <ListItemSeparator />
+        <TouchableRow
+          label={text.takePhoto}
+          Icon={CameraIcon}
+          onPress={() => {}}
+          iconColor={colors.text}
+          style={styles.row}
+        />
+        <ListItemSeparator />
+        <TouchableRow
+          label={text.deleteCurrentPhoto}
+          Icon={DeleteIcon}
+          onPress={() => {}}
+          iconColor={colors.errorText}
+          style={{ ...styles.row, label: styles.common.deleteLabel }}
+        />
       </PopUpCard>
     )
   },
   model
 )
 
-const styles = StyleSheet.create({
-  card: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingBottom: 32,
-    paddingHorizontal: 24,
-  },
-  header: {
-    marginTop: 12,
-    marginBottom: 12,
-  },
-  button: {
-    marginTop: 32,
-  },
-})
+const themedStyles = createThemedStyle((colors) =>
+  StyleSheet.create({
+    card: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingVertical: 8,
+      paddingHorizontal: 20,
+    },
+    deleteLabel: {
+      color: colors.errorText,
+    },
+  })
+)
+
+const touchableRowThemedStyles = createThemedStyle((colors) =>
+  StyleSheet.create({
+    label: {
+      color: colors.text,
+    },
+  })
+)
 
 export default PopUpPhotoEditActionSelect

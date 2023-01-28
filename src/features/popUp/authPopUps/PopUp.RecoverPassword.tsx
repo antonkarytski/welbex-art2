@@ -42,7 +42,7 @@ const PopUpRecoverPassword = PopUpFactory.appendModel(
           label={text.backToLogIn}
           onPress={() => {
             navigate(links.login)
-            PopUpRecoverPassword.hide()
+            model.hideSync()
           }}
         />
       </PopUpCard>
