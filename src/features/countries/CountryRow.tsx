@@ -1,23 +1,51 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleProp, StyleSheet, TextStyle, ViewStyle } from 'react-native'
+import { FONT_MEDIUM } from '../../styles/fonts'
 import Row from '../../ui/Row'
 import Span from '../../ui/Span'
+import { defaultColors } from '../themed/theme'
 import { Country } from './types'
 
 type CountryRowProps = {
   item: Country
+  isSelected?: boolean
+  style?: {
+    rowWrapper?: StyleProp<ViewStyle>
+    nameRow?: StyleProp<ViewStyle>
+    flag?: StyleProp<TextStyle>
+    nativeName?: StyleProp<TextStyle>
+    name?: StyleProp<TextStyle>
+  }
 }
 
 const CountryRow = React.memo(
-  ({ item }: CountryRowProps) => {
+  ({ item, style, isSelected }: CountryRowProps) => {
     const { name, nativeName, emoji } = item
     return (
-      <Row style={styles.rowWrapper}>
-        <Span style={styles.flagEmoji}>{emoji}</Span>
-        <Row style={styles.nameRow}>
-          <Span>{name}</Span>
+      <Row style={[styles.rowWrapper, style?.rowWrapper]}>
+        <Span style={[styles.flagEmoji, style?.flag]}>{emoji}</Span>
+        <Row style={[styles.nameRow, style?.nameRow]}>
+          <Span
+            style={[
+              styles.name,
+              style?.name,
+              isSelected && styles.name__selected,
+            ]}
+          >
+            {name}
+          </Span>
           {name !== nativeName && (
-            <Span style={styles.nativeName}>&#40;{nativeName}&#41;</Span>
+            <Span
+              style={[
+                styles.name,
+                styles.nativeName,
+                style?.name,
+                style?.nativeName,
+                isSelected && styles.name__selected,
+              ]}
+            >
+              &#40;{nativeName}&#41;
+            </Span>
           )}
         </Row>
       </Row>
@@ -33,6 +61,14 @@ const styles = StyleSheet.create({
   nameRow: {
     justifyContent: 'flex-start',
     flexWrap: 'wrap',
+  },
+  name: {
+    fontSize: 16,
+    lineHeight: 19,
+    fontFamily: FONT_MEDIUM,
+  },
+  name__selected: {
+    color: defaultColors.textAccent,
   },
   flag: {
     width: 24,

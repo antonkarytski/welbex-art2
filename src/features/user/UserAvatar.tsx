@@ -1,9 +1,13 @@
 import React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
+import { useNavigate } from '../../navigation'
+import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import Avatar from '../../ui/Avatar'
+import IconButton from '../../ui/buttons/IconButton'
+import EditIcon from '../../ui/icons/Icon.Edit'
 import { createThemedStyle } from '../themed'
-import { useThemedStyle } from '../themed/hooks'
+import { useTheme } from '../themed/hooks'
 import UserDescription, { localeAgeTextFull } from './UserDescription'
 import { User } from './types'
 
@@ -14,11 +18,23 @@ type UserAvatarProps = {
 
 const UserAvatar = ({ item, style }: UserAvatarProps) => {
   const text = useText()
-  const styles = useThemedStyle(themedStyles)
+  const navigate = useNavigate()
+  const { styles, colors } = useTheme(themedStyles)
+
+  // TODO !!! onEditProfile - добавить проверку
 
   return (
     <View style={style}>
-      <Avatar style={styles.avatar} size={116} src={item.avatar} />
+      <Avatar style={styles.avatar} size={116} src={item.avatar}>
+        <IconButton
+          Icon={EditIcon}
+          onPress={() => {
+            navigate(links.editProfile)
+          }}
+          iconColor={colors.whiteText}
+          style={styles.editProfileButton}
+        />
+      </Avatar>
       <UserDescription
         style={styles}
         hideSeparator
@@ -46,6 +62,12 @@ const themedStyles = createThemedStyle((colors) =>
     },
     subText: {
       marginTop: 8,
+    },
+    editProfileButton: {
+      position: 'absolute',
+      right: 0,
+      bottom: 0,
+      backgroundColor: colors.lightAccentDetails,
     },
   })
 )

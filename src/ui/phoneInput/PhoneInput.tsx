@@ -1,6 +1,12 @@
 import { useEvent, useStore } from 'effector-react'
-import React, { useRef } from 'react'
-import { StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import React, { useRef, useState } from 'react'
+import {
+  StyleSheet,
+  TextInput,
+  TextInputProps,
+  TouchableOpacity,
+} from 'react-native'
+import { defaultColors } from '../../features/themed/theme'
 import Span from '../Span'
 import Input from '../input'
 import { PhoneInputProps } from './types'
@@ -12,20 +18,39 @@ const PhoneInput = ({
   placeholder = '( ___ ) ___ - __ - __',
   style,
   isValid,
+  focused,
+  onBlur,
+  onFocus,
 }: PhoneInputProps) => {
+  const [isFocused, setIsFocused] = useState(false)
   const setPhone = useEvent(phoneModel.purePhoneModel.set)
   const formattedPhone = useStore(phoneModel.$formattedPhone)
   const inputRef = useRef<TextInput>(null)
+
+  const handleFocus: TextInputProps['onFocus'] = (e) => {
+    setIsFocused(false)
+    onFocus?.(e)
+  }
+
+  const handleBlur: TextInputProps['onBlur'] = (e) => {
+    setIsFocused(false)
+    onBlur?.(e)
+  }
 
   return (
     <TouchableOpacity
       activeOpacity={0.9}
       style={[
         styles.wrapper,
-        !isValid && isValid !== undefined && styles.wrapper__invalid,
         style?.wrapper,
+        !isValid && isValid !== undefined && styles.wrapper__invalid,
+        (focused || (isFocused && focused !== undefined)) &&
+          styles.wrapper__focused,
       ]}
-      onPress={() => inputRef.current?.focus()}
+      onPress={() => {
+        inputRef.current?.focus()
+        setIsFocused(true)
+      }}
     >
       {!formattedPhone.startsWith('+') && (
         <Span label={'+'} style={styles.plus} />
@@ -37,7 +62,9 @@ const PhoneInput = ({
         disabled={disabled}
         placeholder={placeholder}
         styles={{ ...inputStyles, ...style?.input }}
-        ref={inputRef}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
+        type={'phone-pad'}
       />
     </TouchableOpacity>
   )
@@ -48,15 +75,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#ffffff',
+    backgroundColor: defaultColors.formFieldBackground,
     borderRadius: 8,
-    color: '#303535',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: '#347B81',
+    borderColor: defaultColors.inputBorder,
+  },
+  wrapper__focused: {
+    borderColor: defaultColors.inputFocusedBorder,
+    backgroundColor: '#ffffff',
   },
   wrapper__invalid: {
-    borderColor: '#E75958',
+    borderColor: defaultColors.errorBorder,
   },
   plus: {
     fontSize: 16,

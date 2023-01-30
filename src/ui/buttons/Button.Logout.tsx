@@ -1,7 +1,7 @@
 import React from 'react'
 import OutComingArrowIcon from '../icons/Icon.OutcomingArrow'
-import IconButton from './IconButton'
-import { IconButtonProps } from './types'
+import BigIconButton from './BigIconButton'
+import { BigIconButtonProps } from './types'
 
 const LogoutButton = ({
   label,
@@ -9,9 +9,9 @@ const LogoutButton = ({
   style,
   preset,
   disabled,
-}: IconButtonProps) => {
+}: BigIconButtonProps) => {
   return (
-    <IconButton
+    <BigIconButton
       onPress={onPress}
       style={style}
       preset={preset}
@@ -19,7 +19,7 @@ const LogoutButton = ({
       label={label}
     >
       <OutComingArrowIcon size={24} style={style?.icon} />
-    </IconButton>
+    </BigIconButton>
   )
 }
 

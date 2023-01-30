@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import { TextStyle, ViewStyle } from 'react-native'
+import { Fn } from '../../types'
 
 export type ElementMeasureProps = {
   w: number
@@ -15,6 +16,11 @@ export type DropdownTabProps = {
   indentFromTab?: number
   style?: DropdownStyles
   overlayBackgroundColor?: string
+  onOpenDropdown?: Fn
+  iconColors?: {
+    opened: string
+    default: string
+  }
 }
 
 export type DropdownStyles = {

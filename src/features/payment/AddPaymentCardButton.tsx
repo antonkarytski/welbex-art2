@@ -31,7 +31,7 @@ const AddPaymentCardButton = ({
       activeOpacity={0.8}
       style={[styles.container, style]}
     >
-      <PlusIcon color={textColor} variant={'regular'} />
+      <PlusIcon color={textColor}/>
       <Span
         weight={500}
         style={[styles.label, { color: textColor }]}

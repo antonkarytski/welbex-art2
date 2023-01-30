@@ -8,7 +8,7 @@ const Input = forwardRef<TextInput, InputProps>(
   (
     {
       onChangeText,
-      type = 'phone-pad',
+      type,
       label,
       children,
       isValid,

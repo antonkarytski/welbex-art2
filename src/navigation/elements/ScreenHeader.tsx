@@ -4,12 +4,13 @@ import { createThemedStyle } from '../../features/themed'
 import { useTheme } from '../../features/themed/hooks'
 import { ColorThemeStructure } from '../../features/themed/theme'
 import Span from '../../ui/Span'
-import NavigationBackButton from './Button.NavigationBack'
+import NavigationBackButton from './NavigationButton.Back'
 import { ScreenHeaderStyles } from './styles'
 
 export type ScreenHeaderProps =
   | {
       headerRight?: ReactNode
+      headerLeft?: ReactNode
       style?:
         | ScreenHeaderStyles
         | ((colors: ColorThemeStructure) => ScreenHeaderStyles)
@@ -30,6 +31,7 @@ export type ScreenHeaderProps =
 const ScreenHeader = ({
   title,
   headerRight,
+  headerLeft,
   style: styleOrFn,
   onBack,
   backAvailable,
@@ -43,21 +45,24 @@ const ScreenHeader = ({
     <View>
       <View style={[styles.container, style?.container]}>
         <View style={styles.sideBlock}>
-          {backAvailable ? (
-            <NavigationBackButton
-              style={styles.backButton}
-              iconColor={backArrowColor ?? colors.primary2}
-              onPress={onBack}
-            />
-          ) : null}
+          {headerLeft ||
+            (backAvailable && (
+              <NavigationBackButton
+                style={styles.backButton}
+                iconColor={backArrowColor ?? colors.primary2}
+                onPress={onBack}
+              />
+            ))}
         </View>
         <View style={styles.titleContainer}>
           {children ? (
             children
           ) : (
-            <Span weight={600} style={[styles.title, style?.title]}>
-              {title}
-            </Span>
+            <Span
+              label={title}
+              weight={600}
+              style={[styles.title, style?.title]}
+            />
           )}
         </View>
         <View style={styles.sideBlock}>{headerRight}</View>
@@ -73,6 +78,7 @@ const themedStyles = createThemedStyle((colors) =>
       paddingTop: 56,
       flexDirection: 'row',
       justifyContent: 'space-between',
+      alignItems: 'center',
     },
     sideBlock: {
       width: 100,

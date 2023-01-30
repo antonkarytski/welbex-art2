@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 import { createThemedStyle } from '../../../features/themed'
-import { getSize } from '../../../lib/dimensions/getSize'
+import { getSize } from '../../../lib/device/dimensions'
 
 const imageWidth = getSize({})
 const imageHeight = imageWidth * 1.075

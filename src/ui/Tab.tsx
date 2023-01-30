@@ -63,11 +63,7 @@ const Tab = ({
           />
         )}
         <View style={[styles.toggleIcon_wrapper, style?.toggleIcon_wrapper]}>
-          <Icon
-            size={toggleIconSize}
-            color={toggleIconColor}
-            variant={'regular'}
-          />
+          <Icon size={toggleIconSize} color={toggleIconColor} />
         </View>
       </Row>
       {isOpened && (

@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 import Carousel, { Pagination } from 'react-native-snap-carousel'
 import { useStateStore } from 'altek-toolkit'
-import { getSize } from '../../../lib/dimensions/getSize'
+import { getSize } from '../../../lib/device/dimensions'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
 import { useText } from '../../../translations/hook'

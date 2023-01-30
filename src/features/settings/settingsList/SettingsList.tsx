@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { FlatList } from 'react-native'
 import { useText } from '../../../translations/hook'
-import ListItemSeparator from '../../../ui/ListItemSeparator'
+import ListItemSeparator from '../../../ui/lists/ListItemSeparator'
 import { createThemedStyle } from '../../themed'
 import { useTheme } from '../../themed/hooks'
 import SettingsListItem from './SettingsListItem'

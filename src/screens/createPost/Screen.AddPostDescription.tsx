@@ -13,7 +13,6 @@ import { links } from '../../navigation/links'
 import { ScreenComponentProps } from '../../navigation/types.screenProps'
 import { useText } from '../../translations/hook'
 import H3 from '../../ui/H3'
-import Span from '../../ui/Span'
 import PresetButton from '../../ui/buttons/PresetButton'
 import { DropdownStyles } from '../../ui/dropdownTab/types'
 import Field from '../../ui/form/Field'
@@ -72,7 +71,6 @@ export default function AddPostDescriptionScreen({
           model={selectedCategoryModel}
           data={MOCK_CATEGORIES}
           labelExtractor={(val) => val.label}
-          renderItem={(val) => <Span label={val.label} />}
           idExtractor={({ name }) => name}
           style={{ dropdownTab: styles.select }}
         />

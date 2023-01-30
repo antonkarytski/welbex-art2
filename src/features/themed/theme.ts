@@ -48,6 +48,7 @@ const LIGHT = {
   appHeaderTextDark: BLACK.TEXT,
   appHeaderIconDark: BLACK.TEXT,
   appHeaderBorderDark: GREY.DETAILS,
+  lightAccentDetails: GREEN_BLUE.MEDIUM_LIGHT,
   textAccent: GREEN_BLUE.PRIMARY,
   textGrey: GREY.TEXT,
   textLightGrey: GREY.TEXT_LIGHT,
@@ -89,6 +90,7 @@ const LIGHT = {
   buttonLightBorderDisabled: GREY.TEXT_LIGHT,
   buttonLightBorderPressed: GREEN_BLUE.PRIMARY,
   /** Inputs */
+  formFieldBackground: GREY.BACKGROUND_EXTRA_LIGHT,
   placeholder: GREY.TEXT_LIGHT,
   inputTitle: GREY.TEXT,
   inputBorder: GREY.DETAILS,
@@ -140,6 +142,7 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   appHeaderTextDark: BLACK.TEXT,
   appHeaderIconDark: BLACK.TEXT,
   appHeaderBorderDark: GREY.DETAILS,
+  lightAccentDetails: GREEN_BLUE.MEDIUM_LIGHT,
   textAccent: GREEN_BLUE.PRIMARY,
   textGrey: GREY.TEXT,
   textLightGrey: GREY.TEXT_LIGHT,
@@ -181,6 +184,7 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   buttonLightBorderDisabled: GREY.TEXT_LIGHT,
   buttonLightBorderPressed: GREEN_BLUE.PRIMARY,
   /** Inputs */
+  formFieldBackground: GREY.BACKGROUND_EXTRA_LIGHT,
   placeholder: GREY.TEXT_LIGHT,
   inputTitle: GREY.TEXT,
   inputBorder: GREY.DETAILS,
@@ -202,3 +206,5 @@ export const COLOR_THEMES: Record<ColorThemes, ColorThemeStructure> = {
   LIGHT,
   DARK,
 }
+
+export const defaultColors = COLOR_THEMES.LIGHT

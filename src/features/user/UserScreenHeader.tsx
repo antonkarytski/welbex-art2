@@ -1,9 +1,10 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import SettingsNavigationButton from '../../navigation/elements/NavigationButton.Settings'
 import ScreenTopBlock from '../../navigation/elements/ScreenTopBlock'
 import { ScreenHeaderStyles } from '../../navigation/elements/styles'
 import { createThemedStyle } from '../themed'
-import { useThemedStyle } from '../themed/hooks'
+import { useTheme } from '../themed/hooks'
 import UserAvatar from './UserAvatar'
 import { User } from './types'
 
@@ -15,7 +16,7 @@ type UserScreenHeaderProps = {
 
 const UserScreenHeader = React.memo(
   ({ item, label, backAvailable }: UserScreenHeaderProps) => {
-    const headerStyles = useThemedStyle(headerThemedStyles)
+    const { styles: headerStyles, colors } = useTheme(headerThemedStyles)
 
     return (
       <View style={styles.container}>
@@ -23,6 +24,9 @@ const UserScreenHeader = React.memo(
           backAvailable={backAvailable}
           style={headerStyles}
           title={label}
+          headerRight={
+            <SettingsNavigationButton iconColor={colors.appHeaderIconLight} />
+          }
         >
           <View style={styles.topBlock} />
         </ScreenTopBlock>

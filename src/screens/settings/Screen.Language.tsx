@@ -8,8 +8,8 @@ import {
   languageModel,
 } from '../../translations/model.languages'
 import { Languages } from '../../translations/types'
-import ListItemSeparator from '../../ui/ListItemSeparator'
 import Span from '../../ui/Span'
+import ListItemSeparator from '../../ui/lists/ListItemSeparator'
 import Select from '../../ui/selects/Select'
 import SettingScreenContainer from './stylePresets/SettingScreenContainer'
 

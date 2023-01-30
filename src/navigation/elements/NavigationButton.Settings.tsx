@@ -1,42 +1,27 @@
 import React from 'react'
-import {
-  StyleProp,
-  StyleSheet,
-  TouchableOpacity,
-  ViewStyle,
-} from 'react-native'
-import { useNavigate } from '..'
+import { StyleSheet } from 'react-native'
 import SettingsIcon from '../../ui/icons/Icon.Settings'
 import { links } from '../links'
-
-type SettingsNavigateButtonProps = {
-  iconColor?: string
-  iconSize?: number
-  style?: StyleProp<ViewStyle>
-}
+import NavigationButton, { NavigateButtonProps } from './NavigationButton'
 
 const SettingsNavigationButton = ({
   iconColor,
   iconSize = 24,
   style,
-}: SettingsNavigateButtonProps) => {
-  const navigate = useNavigate()
-
+}: NavigateButtonProps) => {
   return (
-    <TouchableOpacity
-      onPress={() => navigate(links.settingsStack)}
-      activeOpacity={0.7}
-      style={[styles.button, style]}
-    >
-      <SettingsIcon color={iconColor} size={iconSize} />
-    </TouchableOpacity>
+    <NavigationButton
+      Icon={SettingsIcon}
+      navigateTo={links.settingsStack}
+      iconColor={iconColor}
+      iconSize={iconSize}
+      style={[styles?.button, style]}
+    />
   )
 }
 
 const styles = StyleSheet.create({
   button: {
-    paddingHorizontal: 20,
-    paddingVertical: 16,
     alignItems: 'flex-end',
   },
 })

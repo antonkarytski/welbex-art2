@@ -8,6 +8,7 @@ import { GALLERIES } from '../../features/gallery/descriptors'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { useScreenLoading } from '../../lib/helpers/native/hook.screenLoad'
+import NavigationFilterButton from '../../navigation/elements/NavigationButton.Filter'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import { links } from '../../navigation/links'
 import { ScreensProps } from '../../navigation/types.screenProps'
@@ -19,7 +20,7 @@ const Tab = createMaterialTopTabNavigator<ScreensProps>()
 
 const GalleriesTabsScreen = () => {
   const text = useText()
-  const { styles } = useThemedStyleList({
+  const { styles, colors } = useThemedStyleList({
     header: headerThemedStyles,
     tabs: tabsThemedStyles,
   })
@@ -27,7 +28,13 @@ const GalleriesTabsScreen = () => {
 
   return (
     <View style={screenStyles.container}>
-      <ScreenHeader style={styles.header} title={text.gallery} />
+      <ScreenHeader
+        style={styles.header}
+        title={text.gallery}
+        headerLeft={
+          <NavigationFilterButton iconColor={colors.appHeaderIconLight} />
+        }
+      />
       {isLoaded ? (
         <Tab.Navigator
           style={styles.tabs.container}

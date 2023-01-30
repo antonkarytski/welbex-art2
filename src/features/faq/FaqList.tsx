@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { FlatList } from 'react-native'
 import { FaqItem, MOCK_FAQ } from '../../_mock/faq'
-import ListItemSeparator from '../../ui/ListItemSeparator'
+import ListItemSeparator from '../../ui/lists/ListItemSeparator'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
 import FaqListItem from './FaqListItem'

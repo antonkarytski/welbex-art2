@@ -6,7 +6,6 @@ import { createTabScreenDescription } from '../../navigation/helpers'
 import { links } from '../../navigation/links'
 import DrawingDetailsScreen from '../Screen.DrawingDetails'
 import GalleriesTabsScreen from './Screen.GalleriesTabs'
-import GalleryFilterScreen from './Screen.GalleryFilter'
 
 const GalleryTabScreen = () => {
   return (
@@ -15,10 +14,6 @@ const GalleryTabScreen = () => {
       <Stack.Screen
         name={links.galleryDrawingDetails}
         component={DrawingDetailsScreen}
-      />
-      <Stack.Screen
-        name={links.galleryFilter}
-        component={GalleryFilterScreen}
       />
     </TabStackNavigator>
   )

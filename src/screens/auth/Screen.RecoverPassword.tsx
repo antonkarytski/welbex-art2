@@ -1,11 +1,11 @@
+import { useStore } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
 import RecoverPasswordForm from '../../features/auth/recoverPassword/RecoverPasswordForm'
-import PopUpRecoverPassword from '../../features/popUp/PopUp.RecoverPassword'
+import { recoverPasswordFormModel } from '../../features/auth/recoverPassword/model.recoverPassword'
+import PopUpRecoverPassword from '../../features/popUp/authPopUps/PopUp.RecoverPassword'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { IS_IOS } from '../../lib/helpers/native/constants'
-import { useNavigate } from '../../navigation'
-import { links } from '../../navigation/links'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
@@ -16,14 +16,20 @@ import { themedCommonStyles } from './stylePresets/styles'
 
 export default function PasswordRecover() {
   const t = useText()
-  const navigate = useNavigate()
   const { styles } = useThemedStyleList({
     common: themedCommonStyles,
     button: buttonPrimaryThemedPreset,
   })
 
+  const { email } = useStore(recoverPasswordFormModel.$store)
+
   const onResetPassword = () => {
-    navigate(links.createNewPassword) // TEST
+    // TODO: correct according to requests
+
+    // API_request.then(() => {
+    PopUpRecoverPassword.showSync({ props: { email } })
+    // })
+    // TODO: (links.createNewPassword) --- на эту страницу должен быть переход из имэйл сообщения
   }
 
   return (

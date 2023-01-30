@@ -15,6 +15,7 @@ function DropdownSelect<Item>({
   model,
   style,
   ItemSeparatorComponent = null,
+  onOpenDropdown,
 }: DropdownSelectProps<Item>) {
   const [selectedItem] = useStateStore(model)
 
@@ -23,6 +24,7 @@ function DropdownSelect<Item>({
       label={label}
       tabLabel={labelExtractor?.(selectedItem) ?? placeholder}
       style={style?.dropdownTab}
+      onOpenDropdown={onOpenDropdown}
     >
       <Select
         data={data}
@@ -36,6 +38,7 @@ function DropdownSelect<Item>({
         }}
         ItemSeparatorComponent={ItemSeparatorComponent}
         showSelectedIcon={false}
+        labelExtractor={labelExtractor}
       />
     </DropdownTab>
   )

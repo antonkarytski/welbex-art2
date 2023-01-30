@@ -1,12 +1,9 @@
 import { useStore } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
-import { createStateModel } from 'altek-toolkit'
+import { profileCountryModel } from '../../features/auth/model.profileCountry'
 import CountryRow from '../../features/countries/CountryRow'
-import {
-  COUNTRIES,
-  COUNTRIES_LIST,
-} from '../../features/countries/countriesList'
+import { COUNTRIES_LIST } from '../../features/countries/countriesList'
 import { countyNameExtractor } from '../../features/countries/helpers'
 import { Country } from '../../features/countries/types'
 import { useThemedStyleList } from '../../features/themed/hooks'
@@ -22,8 +19,6 @@ import ListSelect from '../../ui/selects/ListSelect'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
 
-export const countryModel = createStateModel(COUNTRIES.RU)
-
 const searchModel = createSearchableListModel<Country>({
   filterExtractor: countyNameExtractor,
 })
@@ -34,7 +29,7 @@ const renderCountryRow = (item: Country) => <CountryRow item={item} />
 const CountrySelectionScreen = () => {
   const navigate = useNavigate()
   const t = useText()
-  const country = useStore(countryModel.$state)
+  const country = useStore(profileCountryModel.$state)
   const { styles } = useThemedStyleList({
     common: themedCommonStyles,
     button: buttonPrimaryThemedPreset,
@@ -56,7 +51,7 @@ const CountrySelectionScreen = () => {
           data={COUNTRIES_LIST}
           idExtractor={countryIdExtractor}
           searchModel={searchModel}
-          model={countryModel}
+          model={profileCountryModel}
           renderItem={renderCountryRow}
         />
         <PresetButton

@@ -2,9 +2,10 @@ import React, { ReactNode } from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
 import { useThemedStyleList } from '../../../features/themed/hooks'
 import ScreenHeader from '../../../navigation/elements/ScreenHeader'
+import { darkScreenHeaderThemedStyles } from '../../../styles/screen'
 import ScreenContainer from '../../../ui/ScreenContainer'
 import ScreenWrapper from '../../../ui/ScreenWrapper'
-import { themedCommonStyles, themedScreenHeaderStyles } from './styles'
+import { themedCommonStyles } from './styles'
 
 type SettingScreenContainerProps = {
   children: ReactNode
@@ -20,7 +21,7 @@ const SettingScreenContainer = ({
   style,
 }: SettingScreenContainerProps) => {
   const { styles, colors } = useThemedStyleList({
-    screenHeader: themedScreenHeaderStyles,
+    screenHeader: darkScreenHeaderThemedStyles,
     common: themedCommonStyles,
   })
 

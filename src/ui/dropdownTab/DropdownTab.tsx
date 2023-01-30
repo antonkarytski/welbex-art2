@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import { Modal, TouchableOpacity, View } from 'react-native'
+import { defaultColors } from '../../features/themed/theme'
 import DropdownContainer from '../DropdownContainer'
 import Overlay from '../Overlay'
 import Row from '../Row'
@@ -16,6 +17,8 @@ function DropdownTab({
   indentFromTab = 4,
   style,
   overlayBackgroundColor,
+  iconColors,
+  onOpenDropdown,
 }: DropdownTabProps) {
   const dropdownButtonRef = useRef<TouchableOpacity>(null)
   const {
@@ -28,11 +31,12 @@ function DropdownTab({
     indentFromTab,
   })
 
-  const onOpenDropdown = () => {
+  const handleOpenDropdown = () => {
     dropdownButtonRef.current?.measure((fx, fy, w, h, px, py) => {
       onDropdownButtonLayout({ w, h, px, py })
       setIsOpened(true)
     })
+    onOpenDropdown?.()
   }
 
   const onCloseDropdown = () => {
@@ -43,6 +47,7 @@ function DropdownTab({
       {label && (
         <Span
           style={[styles.label, style?.label, isOpened && style?.activeLabel]}
+          weight={500}
         >
           {label}
         </Span>
@@ -50,8 +55,12 @@ function DropdownTab({
       <TouchableOpacity
         ref={dropdownButtonRef}
         activeOpacity={0.6}
-        onPress={onOpenDropdown}
-        style={[styles.tab, style?.tab, isOpened && style?.activeTab]}
+        onPress={handleOpenDropdown}
+        style={[
+          styles.tab,
+          style?.tab,
+          isOpened && [styles.activeTab, style?.activeTab],
+        ]}
       >
         <Row style={[styles.tabInnerWrapper, style?.tabInnerWrapper]}>
           <Span
@@ -64,8 +73,13 @@ function DropdownTab({
             {tabLabel}
           </Span>
           <ArrowIcon
-            size={8}
+            size={10}
             style={[style?.tabIcon, isOpened && styles.toggleIcon__opened]}
+            color={
+              isOpened
+                ? iconColors?.opened || defaultColors.detailsActive
+                : iconColors?.default
+            }
           />
         </Row>
       </TouchableOpacity>

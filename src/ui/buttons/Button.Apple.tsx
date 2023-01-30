@@ -1,7 +1,7 @@
 import React from 'react'
 import AppleIcon from '../icons/Icon.Apple'
-import IconButton from './IconButton'
-import { IconButtonProps } from './types'
+import BigIconButton from './BigIconButton'
+import { BigIconButtonProps } from './types'
 
 const AppleButton = ({
   label,
@@ -9,9 +9,9 @@ const AppleButton = ({
   style,
   preset,
   disabled,
-}: IconButtonProps) => {
+}: BigIconButtonProps) => {
   return (
-    <IconButton
+    <BigIconButton
       onPress={onPress}
       style={style}
       preset={preset}
@@ -19,7 +19,7 @@ const AppleButton = ({
       label={label}
     >
       <AppleIcon size={24} style={style?.icon} />
-    </IconButton>
+    </BigIconButton>
   )
 }
 
