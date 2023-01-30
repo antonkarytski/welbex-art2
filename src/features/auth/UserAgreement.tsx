@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 import { createStateModel, useStateStore } from 'altek-toolkit'
 import { useText } from '../../translations/hook'
 import Row from '../../ui/Row'
@@ -25,27 +25,24 @@ const UserAgreement = ({ isInvalid }: UserAgreementProps) => {
 
   return (
     <CheckBox
-      value={'userAgreement'}
-      onChange={setIsPolicyAccepted}
-      defaultIsChecked={isPolicyAccepted}
+      onSelect={setIsPolicyAccepted}
+      isSelected={isPolicyAccepted}
       isInvalid={isPolicyAccepted ? false : isInvalid}
     >
-      <View>
-        <Row>
-          <Span style={styles.feature.text}>{`${t.IAccept} `}</Span>
-          <TouchableOpacity onPress={onOpenUserAgreement} activeOpacity={0.6}>
-            <Span style={[styles.feature.text, styles.feature.links]}>
-              {`${t.userAgreement} `}
-            </Span>
-          </TouchableOpacity>
-          <Span style={styles.feature.text}>{`${t.and} `}</Span>
-          <TouchableOpacity onPress={onOpenPrivacyPolicy} activeOpacity={0.6}>
-            <Span style={[styles.feature.text, styles.feature.links]}>
-              {t.privacyPolicy}
-            </Span>
-          </TouchableOpacity>
-        </Row>
-      </View>
+      <Row>
+        <Span style={styles.feature.text}>{`${t.IAccept} `}</Span>
+        <TouchableOpacity onPress={onOpenUserAgreement} activeOpacity={0.6}>
+          <Span style={[styles.feature.text, styles.feature.links]}>
+            {`${t.userAgreement} `}
+          </Span>
+        </TouchableOpacity>
+        <Span style={styles.feature.text}>{`${t.and} `}</Span>
+        <TouchableOpacity onPress={onOpenPrivacyPolicy} activeOpacity={0.6}>
+          <Span style={[styles.feature.text, styles.feature.links]}>
+            {t.privacyPolicy}
+          </Span>
+        </TouchableOpacity>
+      </Row>
     </CheckBox>
   )
 }

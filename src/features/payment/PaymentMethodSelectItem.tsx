@@ -1,7 +1,7 @@
 import React from 'react'
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
-import Span from '../../ui/Span'
+import { StyleProp, ViewStyle } from 'react-native'
 import CheckBoxCard from '../../ui/checkbox/CheckBoxCard'
+import PaymentMethodItem from './PaymentMethodItem'
 import { PaymentMethodDescriptor } from './types'
 
 type PaymentMethodSelectItemProps<I extends PaymentMethodDescriptor> = {
@@ -26,23 +26,9 @@ const PaymentMethodSelectItem = <I extends PaymentMethodDescriptor>({
       isSelected={isSelected}
       onPress={(nextState) => onPress({ item, nextState })}
     >
-      <View style={styles.contentContainer}>
-        <item.Icon />
-        <Span weight={500} label={item.label} style={styles.label} />
-      </View>
+      <PaymentMethodItem item={item} />
     </CheckBoxCard>
   )
 }
-
-const styles = StyleSheet.create({
-  contentContainer: {
-    flexDirection: 'row',
-    padding: 20,
-    alignItems: 'center',
-  },
-  label: {
-    marginLeft: 14,
-  },
-})
 
 export default PaymentMethodSelectItem

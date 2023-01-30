@@ -32,7 +32,11 @@ const CircleCheckBox = ({
   color,
 }: CircleCheckBoxProps) => {
   return (
-    <TouchableOpacity style={style} onPress={() => onSelect?.(!isSelected)}>
+    <TouchableOpacity
+      activeOpacity={onSelect ? 0.7 : 1}
+      style={style}
+      onPress={() => onSelect?.(!isSelected)}
+    >
       <View
         style={[
           styles.common,

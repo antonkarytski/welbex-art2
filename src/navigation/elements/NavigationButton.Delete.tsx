@@ -1,19 +1,24 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import FilterIcon from '../../ui/icons/Icon.Filter'
+import DeleteIcon from '../../ui/icons/Icon.Delete'
 import { links } from '../links'
 import NavigationButton, { NavigateButtonProps } from './NavigationButton'
 
-const FilterNavigationButton = ({
+type DeleteNavigationButtonProps = {
+  navigateTo: links
+} & NavigateButtonProps
+
+const DeleteNavigationButton = ({
+  navigateTo,
   iconColor,
   iconSize = 24,
   style,
-}: NavigateButtonProps) => {
+}: DeleteNavigationButtonProps) => {
   return (
     <NavigationButton
-      Icon={FilterIcon}
+      Icon={DeleteIcon}
       style={[styles.button, style]}
-      navigateTo={links.galleryFilter}
+      navigateTo={navigateTo}
       iconColor={iconColor}
       iconSize={iconSize}
     />
@@ -22,8 +27,8 @@ const FilterNavigationButton = ({
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: 'flex-start',
+    alignItems: 'flex-end',
   },
 })
 
-export default FilterNavigationButton
+export default DeleteNavigationButton
