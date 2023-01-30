@@ -5,32 +5,43 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native'
-import { useNavigate } from '..'
+import { useNavigate } from '../index'
 import { links } from '../links'
+import { ScreensProps } from '../types.screenProps'
 
-export type NavigateButtonProps = {
+export type NavigateButtonProps<L extends keyof ScreensProps> = {
   iconColor?: string
   iconSize?: number
   style?: StyleProp<ViewStyle>
+  navigateTo: L
+  navigateParams?: ScreensProps[L]
 }
 
-type NavigateBaseButtonProps = NavigateButtonProps & {
+export type SpecificNavigateButtonProps<L extends links> = Omit<
+  NavigateButtonProps<L>,
+  'navigateTo'
+>
+
+type NavigateBaseButtonProps<L extends links> = NavigateButtonProps<L> & {
   Icon: React.ComponentType<any>
-  navigateTo: links
 }
 
-const NavigationButton = ({
+const NavigationButton = <L extends links>({
   iconColor,
   iconSize = 24,
   style,
   Icon,
   navigateTo,
-}: NavigateBaseButtonProps) => {
+  navigateParams,
+}: NavigateBaseButtonProps<L>) => {
   const navigate = useNavigate()
 
   return (
     <TouchableOpacity
-      onPress={() => navigate(navigateTo)}
+      onPress={() => {
+        //@ts-ignore
+        navigate(navigateTo, navigateParams)
+      }}
       activeOpacity={0.6}
       style={[styles.button, style]}
     >

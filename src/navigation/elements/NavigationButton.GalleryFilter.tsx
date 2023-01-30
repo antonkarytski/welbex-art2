@@ -2,13 +2,15 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import FilterIcon from '../../ui/icons/Icon.Filter'
 import { links } from '../links'
-import NavigationButton, { NavigateButtonProps } from './NavigationButton'
+import NavigationButton, {
+  SpecificNavigateButtonProps,
+} from './NavigationButton'
 
 const GalleryFilterNavigationButton = ({
   iconColor,
   iconSize = 24,
   style,
-}: NavigateButtonProps) => {
+}: SpecificNavigateButtonProps<links.galleryFilter>) => {
   return (
     <NavigationButton
       Icon={FilterIcon}

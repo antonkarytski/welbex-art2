@@ -2,13 +2,15 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import SettingsIcon from '../../ui/icons/Icon.Settings'
 import { links } from '../links'
-import NavigationButton, { NavigateButtonProps } from './NavigationButton'
+import NavigationButton, {
+  SpecificNavigateButtonProps,
+} from './NavigationButton'
 
 const SettingsNavigationButton = ({
   iconColor,
   iconSize = 24,
   style,
-}: NavigateButtonProps) => {
+}: SpecificNavigateButtonProps<links.settingsStack>) => {
   return (
     <NavigationButton
       Icon={SettingsIcon}
