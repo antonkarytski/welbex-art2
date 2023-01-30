@@ -5,6 +5,7 @@ import AppHeader from '../../navigation/elements/AppHeader'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import Gradient from '../../ui/grdients/Gradient'
+import { primaryGradientPreset } from '../../ui/grdients/styles'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import CardWinner from './Card.Winner'
@@ -37,9 +38,11 @@ const WinnersBlock = () => {
     [styles]
   )
 
+  const gradientColors = primaryGradientPreset(colors)
+
   return (
     <View style={styles.common.container}>
-      <Gradient>
+      <Gradient startColor={gradientColors.start} endColor={gradientColors.end}>
         <AppHeader
           style={styles.header}
           iconsColor={colors.appHeaderIconLight}

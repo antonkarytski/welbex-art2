@@ -9,7 +9,7 @@ import Svg, {
   Stop,
 } from 'react-native-svg'
 
-type GradientsProps = {
+export type GradientsProps = {
   style?: StyleProp<ViewStyle>
   startColor?: string
   endColor?: string
@@ -58,6 +58,8 @@ const Gradient = ({
 
 const styles = StyleSheet.create({
   container: {
+    height: '100%',
+    width: '100%',
     flex: 1,
   },
 })

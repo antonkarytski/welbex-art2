@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import { View } from 'react-native'
+import AdaptiveGradient from '../../ui/grdients/AdaptiveGradient'
 import ScreenHeader, { ScreenHeaderProps } from './ScreenHeader'
 import { ScreenHeaderStyles } from './styles'
 
@@ -8,6 +8,8 @@ type WideScreenHeaderProps = {
   title: string
   backAvailable?: boolean
   headerRight?: ScreenHeaderProps['headerRight']
+  gradientStartColor?: string
+  gradientEndColor?: string
 }
 
 const ScreenTopBlock = React.memo(
@@ -17,9 +19,14 @@ const ScreenTopBlock = React.memo(
     backAvailable,
     children,
     headerRight,
+    gradientEndColor,
+    gradientStartColor,
   }: PropsWithChildren<WideScreenHeaderProps>) => {
     return (
-      <View style={style?.container}>
+      <AdaptiveGradient
+        startColor={gradientStartColor}
+        endColor={gradientEndColor}
+      >
         <ScreenHeader
           backAvailable={backAvailable}
           style={{
@@ -30,7 +37,7 @@ const ScreenTopBlock = React.memo(
           headerRight={headerRight}
         />
         {children}
-      </View>
+      </AdaptiveGradient>
     )
   }
 )
