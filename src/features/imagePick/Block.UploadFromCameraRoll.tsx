@@ -10,7 +10,7 @@ import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import Span from '../../ui/Span'
-import PlusIcon from '../../ui/icons/Icon.Plus'
+import PlusIcon from '../../ui/icons/Icon.PlusThin'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
 import { AVAILABLE_FORMATS, MAX_UPLOAD_SIZE_MB } from './constants'
@@ -42,7 +42,7 @@ const UploadFromCameraRollBlock = ({
       style={[styles.container, style]}
     >
       <View style={[uploadBlockCommonStyles.button, styles.button]}>
-        <PlusIcon color={colors.text} variant={'thin'} />
+        <PlusIcon color={colors.text} />
       </View>
       <View style={uploadBlockCommonStyles.textBlock}>
         <Span

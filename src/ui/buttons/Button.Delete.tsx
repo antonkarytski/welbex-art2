@@ -1,7 +1,7 @@
 import React from 'react'
 import DeleteIcon from '../icons/Icon.Delete'
-import IconButton from './IconButton'
-import { IconButtonProps } from './types'
+import BigIconButton from './BigIconButton'
+import { BigIconButtonProps } from './types'
 
 const DeleteButton = ({
   label,
@@ -9,11 +9,16 @@ const DeleteButton = ({
   style,
   preset,
   iconColor,
-}: IconButtonProps) => {
+}: BigIconButtonProps) => {
   return (
-    <IconButton onPress={onPress} style={style} preset={preset} label={label}>
+    <BigIconButton
+      onPress={onPress}
+      style={style}
+      preset={preset}
+      label={label}
+    >
       <DeleteIcon size={24} style={style?.icon} color={iconColor} />
-    </IconButton>
+    </BigIconButton>
   )
 }
 

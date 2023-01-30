@@ -8,8 +8,10 @@ import {
 import { inputThemedStyles } from '../../../styles/inputs'
 import { useText } from '../../../translations/hook'
 import Avatar from '../../../ui/Avatar'
+import IconButton from '../../../ui/buttons/IconButton'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import Field from '../../../ui/form/Field'
+import PlusIcon from '../../../ui/icons/Icon.Plus'
 import { profileCountryModel } from '../../auth/model.profileCountry'
 import PhoneEnter from '../../auth/phoneEnter/PhoneEnter'
 import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
@@ -42,15 +44,14 @@ const EditProfileForm = () => {
         behavior={IS_IOS ? 'padding' : 'height'}
         style={styles.common.fieldsWrapper}
       >
-        <Avatar
-          size={112}
-          onAddIconPress={onEditPhoto}
-          style={styles.common.avatar}
-          actionColors={{
-            icon: colors.whiteText,
-            button: colors.lightAccentDetails,
-          }}
-        />
+        <Avatar size={112} style={styles.common.avatar}>
+          <IconButton
+            Icon={PlusIcon}
+            onPress={onEditPhoto}
+            iconColor={colors.whiteText}
+            style={styles.common.editProfileButton}
+          />
+        </Avatar>
         {PROFILE_FORM_DESCRIPTORS.map((field) => (
           <Field
             key={field.name}
@@ -110,6 +111,12 @@ const themedStyles = createThemedStyle((colors) =>
       borderColor: colors.inputBorder,
       borderWidth: 1,
       borderRadius: 20,
+    },
+    editProfileButton: {
+      position: 'absolute',
+      right: 0,
+      bottom: 0,
+      backgroundColor: colors.lightAccentDetails,
     },
   })
 )

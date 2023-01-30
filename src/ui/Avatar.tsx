@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import {
   Image,
   ImageSourcePropType,
@@ -8,8 +8,6 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import EditIcon from '../ui/icons/Icon.Edit'
-import PlusIcon from '../ui/icons/Icon.Plus'
 import UserIcon from '../ui/icons/Icon.User'
 
 type AvatarProps = {
@@ -18,12 +16,6 @@ type AvatarProps = {
   src?: ImageSourcePropType
   style?: StyleProp<ViewStyle>
   onPress?: () => void
-  onEditIconPress?: () => void
-  onAddIconPress?: () => void
-  actionColors?: {
-    icon?: string
-    button?: string
-  }
 }
 
 const DEFAULT_BORDER_SIZE = 2
@@ -34,14 +26,12 @@ const Avatar = ({
   style,
   borderSize = DEFAULT_BORDER_SIZE,
   onPress,
-  onEditIconPress,
-  onAddIconPress,
-  actionColors = { icon: '#ffffff' },
-}: AvatarProps) => {
+  children,
+}: PropsWithChildren<AvatarProps>) => {
   return (
     <TouchableOpacity
       activeOpacity={onPress ? 0.8 : 1}
-      onPress={onPress || onEditIconPress || onAddIconPress}
+      onPress={onPress}
       style={[
         styles.container,
         style,
@@ -67,21 +57,7 @@ const Avatar = ({
           <UserIcon size={size / 3.3} />
         </View>
       )}
-      {(onEditIconPress || onAddIconPress) && (
-        <TouchableOpacity
-          onPress={onEditIconPress}
-          style={[
-            styles.actionIconWrapper,
-            { backgroundColor: actionColors.button },
-          ]}
-          activeOpacity={0.8}
-        >
-          {onEditIconPress && <EditIcon color={actionColors.icon} />}
-          {onAddIconPress && (
-            <PlusIcon color={actionColors.icon} variant={'regular'} />
-          )}
-        </TouchableOpacity>
-      )}
+      {children}
     </TouchableOpacity>
   )
 }
@@ -91,18 +67,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     borderRadius: 100,
     borderColor: '#84BDBE',
-  },
-  actionIconWrapper: {
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
-    width: 24,
-    height: 24,
-    padding: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-    backgroundColor: '#84BDBE',
   },
   defaultImage: {
     width: '100%',

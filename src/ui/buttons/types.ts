@@ -28,7 +28,7 @@ export type PresetButtonProps = ButtonProps & {
   style?: StyleProp<ViewStyle>
 }
 
-export type IconButtonProps = ButtonProps & {
+export type BigIconButtonProps = ButtonProps & {
   iconColor?: string
   style?: {
     icon?: StyleProp<ViewStyle>

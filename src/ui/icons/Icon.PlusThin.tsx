@@ -2,7 +2,7 @@ import React from 'react'
 import Svg, { Path } from 'react-native-svg'
 import { IconProps } from './_types'
 
-export default function PlusIcon({
+export default function ThinPlusIcon({
   size = 22,
   color = '#303535',
   style,
@@ -16,16 +16,16 @@ export default function PlusIcon({
       style={style}
     >
       <Path
-        d="M5 12H19"
+        d="M11.7141 1.71436V21.7144"
         stroke={color}
-        strokeWidth="2"
+        strokeWidth="1.6"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
-        d="M12 19V5"
+        d="M1.71436 11.7144H21.7144"
         stroke={color}
-        strokeWidth="2"
+        strokeWidth="1.6"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

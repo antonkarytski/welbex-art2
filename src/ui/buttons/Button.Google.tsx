@@ -1,13 +1,23 @@
 import React from 'react'
 import GoogleIcon from '../icons/Icon.Google'
-import IconButton from './IconButton'
-import { IconButtonProps } from './types'
+import BigIconButton from './BigIconButton'
+import { BigIconButtonProps } from './types'
 
-const GoogleButton = ({ label, onPress, style, preset }: IconButtonProps) => {
+const GoogleButton = ({
+  label,
+  onPress,
+  style,
+  preset,
+}: BigIconButtonProps) => {
   return (
-    <IconButton onPress={onPress} style={style} preset={preset} label={label}>
+    <BigIconButton
+      onPress={onPress}
+      style={style}
+      preset={preset}
+      label={label}
+    >
       <GoogleIcon size={24} style={style?.icon} />
-    </IconButton>
+    </BigIconButton>
   )
 }
 
