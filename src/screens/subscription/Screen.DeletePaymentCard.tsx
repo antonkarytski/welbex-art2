@@ -36,9 +36,7 @@ const DeletePaymentCardScreen = () => {
         />
         <PresetButton
           label={text.deleteCard}
-          onPress={() => {
-            DeletePaymentCardPopUp.showSync()
-          }}
+          onPress={DeletePaymentCardPopUp.showSync}
           preset={styles.buttonPreset}
           style={screenStyles.button}
           disabled={!selectedCard}
