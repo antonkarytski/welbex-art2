@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren, useEffect, useMemo, useState } from 'react'
 import {
   StyleProp,
   StyleSheet,
@@ -10,6 +10,8 @@ import {
 import { defaultColors } from '../../features/themed/theme'
 import Span from '../Span'
 import OkIcon from '../icons/Icon.Ok'
+import { defaultCheckboxPreset } from './styles'
+import { PresetCheckboxStates } from './types'
 
 type CheckboxProps = PropsWithChildren<{
   label?: string
@@ -23,39 +25,59 @@ type CheckboxProps = PropsWithChildren<{
     checkbox?: StyleProp<ViewStyle>
     label?: StyleProp<TextStyle>
   }
+  preset?: PresetCheckboxStates
 }>
 
 const Checkbox = ({
   label = '',
   children,
   iconSize = 12,
-  iconColor = '#ffffff',
+  iconColor,
   onSelect,
   isSelected,
   isInvalid,
   style,
+  preset = defaultCheckboxPreset,
 }: CheckboxProps) => {
+  const [presetState, setPresetState] = useState(preset.common)
+
+  const activeStyles = useMemo(
+    () =>
+      StyleSheet.create({
+        checkbox: {
+          backgroundColor: presetState?.checkboxBackground,
+          borderColor: presetState?.checkboxBorder,
+        },
+        label: {
+          color: presetState?.label,
+        },
+      }),
+    [presetState]
+  )
+
+  useEffect(() => {
+    if (isInvalid && preset.invalid) return setPresetState(preset.invalid)
+    if (isSelected && preset.selected) return setPresetState(preset.selected)
+
+    setPresetState(preset.common)
+  }, [isInvalid, isSelected, preset])
+
   return (
     <TouchableOpacity
       style={[styles.container, style?.container]}
       onPress={() => onSelect?.(!isSelected)}
       activeOpacity={onSelect ? 0.7 : 1}
     >
-      <View
-        style={[
-          styles.default,
-          isSelected && styles.selected,
-          isInvalid && styles.invalid,
-          style?.checkbox,
-        ]}
-      >
-        {isSelected && <OkIcon size={iconSize} color={iconColor} />}
+      <View style={[styles.checkbox, activeStyles.checkbox, style?.checkbox]}>
+        {isSelected && (
+          <OkIcon size={iconSize} color={presetState?.icon || iconColor} />
+        )}
       </View>
       {children ||
         (label && (
           <Span
             label={label}
-            style={[styles.label, style?.label]}
+            style={[styles.label, activeStyles.label, style?.label]}
             weight={500}
           />
         ))}
@@ -66,11 +88,13 @@ const Checkbox = ({
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
   },
   label: {
     marginLeft: 12,
   },
-  default: {
+  checkbox: {
     width: 20,
     height: 20,
     alignItems: 'center',
@@ -79,13 +103,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: defaultColors.checkboxBorder,
     backgroundColor: defaultColors.checkboxBackground,
-  },
-  selected: {
-    borderColor: defaultColors.checkboxBackgroundActive,
-    backgroundColor: defaultColors.checkboxBackgroundActive,
-  },
-  invalid: {
-    borderColor: defaultColors.errorBorder,
   },
 })
 

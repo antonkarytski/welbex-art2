@@ -35,7 +35,7 @@ export function convertCardToPaymentMethod(
 
 export function bankCardsToPaymentMethods(
   cards: PaymentCard[]
-): PaymentMethod[] {
+): CardPaymentMethod[] {
   return cards.map(convertCardToPaymentMethod)
 }
 

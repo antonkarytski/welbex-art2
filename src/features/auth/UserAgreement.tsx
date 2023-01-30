@@ -1,6 +1,8 @@
+import { View } from 'native-base'
 import React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import { createStateModel, useStateStore } from 'altek-toolkit'
+import { checkboxThemedPreset } from '../../styles/checkbox'
 import { useText } from '../../translations/hook'
 import Row from '../../ui/Row'
 import Span from '../../ui/Span'
@@ -16,7 +18,10 @@ export type UserAgreementProps = {
 
 const UserAgreement = ({ isInvalid }: UserAgreementProps) => {
   const t = useText()
-  const { styles } = useThemedStyleList({ feature: themedStyles })
+  const { styles } = useThemedStyleList({
+    feature: themedStyles,
+    checkbox: checkboxThemedPreset,
+  })
   const [isPolicyAccepted, setIsPolicyAccepted] =
     useStateStore(userAgreementModel)
 
@@ -28,27 +33,34 @@ const UserAgreement = ({ isInvalid }: UserAgreementProps) => {
       onSelect={setIsPolicyAccepted}
       isSelected={isPolicyAccepted}
       isInvalid={isPolicyAccepted ? false : isInvalid}
+      style={{ checkbox: styles.feature.checkbox }}
+      iconSize={10}
+      preset={styles.checkbox}
     >
-      <Row>
-        <Span style={styles.feature.text}>{`${t.IAccept} `}</Span>
-        <TouchableOpacity onPress={onOpenUserAgreement} activeOpacity={0.6}>
-          <Span style={[styles.feature.text, styles.feature.links]}>
-            {`${t.userAgreement} `}
-          </Span>
-        </TouchableOpacity>
-        <Span style={styles.feature.text}>{`${t.and} `}</Span>
-        <TouchableOpacity onPress={onOpenPrivacyPolicy} activeOpacity={0.6}>
-          <Span style={[styles.feature.text, styles.feature.links]}>
-            {t.privacyPolicy}
-          </Span>
-        </TouchableOpacity>
-      </Row>
+      <View style={styles.feature.rowWrapper}>
+        <Row style={styles.feature.row}>
+          <Span style={styles.feature.text}>{`${t.IAccept} `}</Span>
+          <TouchableOpacity onPress={onOpenUserAgreement} activeOpacity={0.6}>
+            <Span style={[styles.feature.text, styles.feature.links]}>
+              {`${t.userAgreement} `}
+            </Span>
+          </TouchableOpacity>
+          <Span style={styles.feature.text}>{`${t.and} `}</Span>
+          <TouchableOpacity onPress={onOpenPrivacyPolicy} activeOpacity={0.6}>
+            <Span style={[styles.feature.text, styles.feature.links]}>
+              {t.privacyPolicy}
+            </Span>
+          </TouchableOpacity>
+        </Row>
+      </View>
     </CheckBox>
   )
 }
 
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
+    row: { justifyContent: 'flex-start' },
+    rowWrapper: { marginLeft: 12 },
     text: {
       fontSize: 14,
       lineHeight: 21,
@@ -57,6 +69,10 @@ const themedStyles = createThemedStyle((colors) =>
     links: {
       color: colors.textAccent,
       textDecorationLine: 'underline',
+    },
+    checkbox: {
+      width: 16,
+      height: 16,
     },
   })
 )
