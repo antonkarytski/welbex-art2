@@ -19,6 +19,7 @@ export type SettingItem = {
     | links.deleteAccount
     | links.faq
     | links.feedback
+  isAbleWhenUnauthorized: boolean
 }
 
 export const settingsList: SettingItem[] = [
@@ -26,22 +27,36 @@ export const settingsList: SettingItem[] = [
     label: (t) => t.subscription,
     icon: StarIcon,
     navigateTo: links.subscriptionSelectPlan,
+    isAbleWhenUnauthorized: true,
   },
-  { label: (t) => t.faq, icon: QuestionIcon, navigateTo: links.faq },
-  { label: (t) => t.feedback, icon: FeedbackIcon, navigateTo: links.feedback },
+  {
+    label: (t) => t.faq,
+    icon: QuestionIcon,
+    navigateTo: links.faq,
+    isAbleWhenUnauthorized: true,
+  },
+  {
+    label: (t) => t.feedback,
+    icon: FeedbackIcon,
+    navigateTo: links.feedback,
+    isAbleWhenUnauthorized: false,
+  },
   {
     label: (t) => t.notifications,
     icon: NotificationsIcon,
     navigateTo: links.notifications,
+    isAbleWhenUnauthorized: false,
   },
   {
     label: (t) => t.language,
     icon: LanguageIcon,
     navigateTo: links.language,
+    isAbleWhenUnauthorized: true,
   },
   {
     label: (t) => t.deleteAccount,
     icon: DeleteIcon,
     navigateTo: links.deleteAccount,
+    isAbleWhenUnauthorized: false,
   },
 ]

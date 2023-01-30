@@ -1,7 +1,9 @@
+import { useStore } from 'effector-react'
 import React, { useCallback } from 'react'
 import { FlatList } from 'react-native'
 import { useText } from '../../../translations/hook'
 import ListItemSeparator from '../../../ui/lists/ListItemSeparator'
+import { $isAuth } from '../../auth/model'
 import { createThemedStyle } from '../../themed'
 import { useTheme } from '../../themed/hooks'
 import SettingsListItem from './SettingsListItem'
@@ -10,6 +12,8 @@ import { SettingItem, settingsList } from './settingsListData'
 const SettingsList = () => {
   const t = useText()
   const { styles, colors } = useTheme(themedStyles)
+
+  const isAuth = useStore($isAuth)
 
   const renderItem = useCallback(
     ({ item }: { item: SettingItem }) => (
@@ -25,7 +29,13 @@ const SettingsList = () => {
 
   return (
     <FlatList
-      data={settingsList}
+      data={
+        isAuth
+          ? settingsList
+          : settingsList.filter(
+              ({ isAbleWhenUnauthorized }) => isAbleWhenUnauthorized
+            )
+      }
       renderItem={renderItem}
       ItemSeparatorComponent={ListItemSeparator}
     />
