@@ -4,6 +4,7 @@ import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { ColorFn } from '../../features/themed/theme'
 import { PopUpModel } from '../../lib/componentsModels/popUp/model'
+import { useNavigate } from '../../navigation'
 import { buttonCommonThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import { LangFn } from '../../translations/types'
@@ -11,6 +12,8 @@ import Span from '../Span'
 import TextButton from '../buttons/Button.Text'
 import PresetButton from '../buttons/PresetButton'
 import PopUpCard from './PopUpCard'
+
+type OnSubmitProps = { navigate: ReturnType<typeof useNavigate> }
 
 export type SubmitPopUpCardProps = {
   model: PopUpModel
@@ -22,7 +25,7 @@ export type SubmitPopUpCardProps = {
 } & (
   | {
       hideSubmit?: never
-      onSubmit: () => void
+      onSubmit: (props: OnSubmitProps) => void
     }
   | {
       hideSubmit: true
@@ -41,6 +44,7 @@ const SubmitPopUpCard = ({
   closeButtonLabel,
 }: SubmitPopUpCardProps) => {
   const text = useText()
+  const navigate = useNavigate()
   const { styles, colors } = useThemedStyleList({
     common: themedStyles,
     button: buttonCommonThemedPreset,
@@ -60,7 +64,7 @@ const SubmitPopUpCard = ({
           label={text.yes}
           onPress={() => {
             model.hideSync()
-            onSubmit()
+            onSubmit({ navigate })
           }}
         />
       )}

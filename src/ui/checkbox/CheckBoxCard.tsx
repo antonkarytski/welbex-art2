@@ -8,6 +8,7 @@ import {
 import Span from '../Span'
 import CheckBox from './CheckBox'
 import CircleCheckBox from './CircleCheckBox'
+import { PresetCheckboxStates } from './types'
 
 type CheckBoxCardProps = {
   isSelected: boolean
@@ -16,6 +17,7 @@ type CheckBoxCardProps = {
   style?: ((state: boolean) => StyleProp<ViewStyle>) | StyleProp<ViewStyle>
   label?: string
   checkboxForm?: 'circle' | 'square'
+  checkboxPreset?: PresetCheckboxStates
 }
 
 const CheckBoxCard = ({
@@ -26,6 +28,7 @@ const CheckBoxCard = ({
   label,
   children,
   checkboxForm = 'circle',
+  checkboxPreset,
 }: PropsWithChildren<CheckBoxCardProps>) => {
   return (
     <TouchableOpacity
@@ -40,7 +43,7 @@ const CheckBoxCard = ({
       {checkboxForm === 'circle' && (
         <CircleCheckBox
           color={checkboxColor}
-          style={styles.checkbox}
+          style={[styles.checkbox]}
           isSelected={isSelected}
           onSelect={onPress}
         />
@@ -48,8 +51,11 @@ const CheckBoxCard = ({
       {checkboxForm === 'square' && (
         <CheckBox
           isSelected={isSelected}
-          style={{ container: [styles.checkbox] }}
+          style={{
+            container: [styles.checkbox],
+          }}
           onSelect={onPress}
+          preset={checkboxPreset}
         />
       )}
     </TouchableOpacity>
