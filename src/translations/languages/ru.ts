@@ -59,6 +59,7 @@ export const RU: LangStructure = {
   logInButton: 'Войти',
   dontHaveAccountQ: 'Нету учетной записи?',
   haveAccountQ: 'Есть учетная запись?',
+  loginToAccountOrRegister: 'Войдите в свой аккаунт или зарегистрируйтесь',
   recoverPassword: 'Восстановить пароль',
   recoverPasswordDescription:
     'Введите почту, которую вы использовали для регистрации и мы отправим инструкцию',
