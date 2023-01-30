@@ -1,7 +1,9 @@
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
-import PhoneEnter, { phoneInputModel } from '../../features/auth/PhoneEnter'
 import SendPhoneButton from '../../features/auth/SendPhoneButton'
+import PhoneEnter, {
+  phoneInputModel,
+} from '../../features/auth/phoneEnter/PhoneEnter'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { IS_IOS } from '../../lib/helpers/native/constants'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'

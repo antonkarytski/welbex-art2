@@ -18,8 +18,8 @@ type AvatarProps = {
   src?: ImageSourcePropType
   style?: StyleProp<ViewStyle>
   onPress?: () => void
-  onEditProfile?: () => void
-  onAddPhoto?: () => void
+  onEditIconPress?: () => void
+  onAddIconPress?: () => void
   actionColors?: {
     icon?: string
     button?: string
@@ -34,14 +34,14 @@ const Avatar = ({
   style,
   borderSize = DEFAULT_BORDER_SIZE,
   onPress,
-  onEditProfile,
-  onAddPhoto,
+  onEditIconPress,
+  onAddIconPress,
   actionColors = { icon: '#ffffff' },
 }: AvatarProps) => {
   return (
     <TouchableOpacity
       activeOpacity={onPress ? 0.8 : 1}
-      onPress={onPress || onEditProfile || onAddPhoto}
+      onPress={onPress || onEditIconPress || onAddIconPress}
       style={[
         styles.container,
         style,
@@ -67,17 +67,17 @@ const Avatar = ({
           <UserIcon size={size / 3.3} />
         </View>
       )}
-      {(onEditProfile || onAddPhoto) && (
+      {(onEditIconPress || onAddIconPress) && (
         <TouchableOpacity
-          onPress={onEditProfile}
+          onPress={onEditIconPress}
           style={[
             styles.actionIconWrapper,
             { backgroundColor: actionColors.button },
           ]}
           activeOpacity={0.8}
         >
-          {onEditProfile && <EditIcon color={actionColors.icon} />}
-          {onAddPhoto && (
+          {onEditIconPress && <EditIcon color={actionColors.icon} />}
+          {onAddIconPress && (
             <PlusIcon color={actionColors.icon} variant={'regular'} />
           )}
         </TouchableOpacity>

@@ -20,7 +20,7 @@ import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
 import {
-  ageModel,
+  ageRangeModel,
   categoryModel,
   countryModel,
   drawingNameModel,
@@ -62,7 +62,7 @@ const GalleryFilter = () => {
           onChangeText={setDrawingName}
           styles={styles.input}
         />
-        <MultiSlider label={t.age} model={ageModel} min={2} max={15} step={1} />
+        <MultiSlider label={t.age} model={ageRangeModel} min={2} max={15} step={1} />
       </KeyboardAvoidingView>
 
       <PresetButton

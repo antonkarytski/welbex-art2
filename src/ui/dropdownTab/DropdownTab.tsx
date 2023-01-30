@@ -17,8 +17,8 @@ function DropdownTab({
   indentFromTab = 4,
   style,
   overlayBackgroundColor,
-  toggleIconColors,
-  handleOpenDropdown,
+  iconColors,
+  onOpenDropdown,
 }: DropdownTabProps) {
   const dropdownButtonRef = useRef<TouchableOpacity>(null)
   const {
@@ -31,12 +31,12 @@ function DropdownTab({
     indentFromTab,
   })
 
-  const onOpenDropdown = () => {
+  const handleOpenDropdown = () => {
     dropdownButtonRef.current?.measure((fx, fy, w, h, px, py) => {
       onDropdownButtonLayout({ w, h, px, py })
       setIsOpened(true)
     })
-    handleOpenDropdown?.()
+    onOpenDropdown?.()
   }
 
   const onCloseDropdown = () => {
@@ -55,7 +55,7 @@ function DropdownTab({
       <TouchableOpacity
         ref={dropdownButtonRef}
         activeOpacity={0.6}
-        onPress={onOpenDropdown}
+        onPress={handleOpenDropdown}
         style={[
           styles.tab,
           style?.tab,
@@ -77,8 +77,8 @@ function DropdownTab({
             style={[style?.tabIcon, isOpened && styles.toggleIcon__opened]}
             color={
               isOpened
-                ? toggleIconColors?.opened || defaultColors.detailsActive
-                : toggleIconColors?.default
+                ? iconColors?.opened || defaultColors.detailsActive
+                : iconColors?.default
             }
           />
         </Row>

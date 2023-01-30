@@ -27,7 +27,7 @@ const MultiSlider = ({
   style,
   ...props
 }: CustomMultiSliderProps) => {
-  const [isScrollEnabled, setIsScrollEnabled] = useToggle(true)
+  const [isScrollEnabled, toggleScrollEnabled] = useToggle(true)
   const [values, setValues] = useStateStore(model)
 
   return (
@@ -41,8 +41,8 @@ const MultiSlider = ({
           enabledTwo={true}
           isMarkersSeparated={true}
           step={1}
-          onValuesChangeStart={setIsScrollEnabled}
-          onValuesChangeFinish={setIsScrollEnabled}
+          onValuesChangeStart={toggleScrollEnabled}
+          onValuesChangeFinish={toggleScrollEnabled}
           customMarkerLeft={SliderMarker}
           customMarkerRight={SliderMarker}
           trackStyle={styles.track}

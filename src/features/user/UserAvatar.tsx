@@ -27,7 +27,7 @@ const UserAvatar = ({ item, style }: UserAvatarProps) => {
         style={styles.avatar}
         size={116}
         src={item.avatar}
-        onEditProfile={() => {
+        onEditIconPress={() => {
           navigate(links.editProfile)
         }}
         actionColors={{

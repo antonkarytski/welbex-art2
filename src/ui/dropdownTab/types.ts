@@ -16,8 +16,8 @@ export type DropdownTabProps = {
   indentFromTab?: number
   style?: DropdownStyles
   overlayBackgroundColor?: string
-  handleOpenDropdown?: Fn
-  toggleIconColors?: {
+  onOpenDropdown?: Fn
+  iconColors?: {
     opened: string
     default: string
   }

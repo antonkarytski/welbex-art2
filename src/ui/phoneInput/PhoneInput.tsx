@@ -18,7 +18,6 @@ const PhoneInput = ({
   placeholder = '( ___ ) ___ - __ - __',
   style,
   isValid,
-  ref,
   focused,
   onBlur,
   onFocus,
@@ -65,7 +64,6 @@ const PhoneInput = ({
         styles={{ ...inputStyles, ...style?.input }}
         onBlur={handleBlur}
         onFocus={handleFocus}
-        ref={ref || inputRef}
         type={'phone-pad'}
       />
     </TouchableOpacity>

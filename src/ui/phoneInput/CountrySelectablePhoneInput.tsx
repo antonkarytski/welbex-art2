@@ -54,7 +54,7 @@ const CountrySelectablePhoneInput = <CountryItem extends Record<string, any>>({
           labelExtractor={countryLabelExtractor}
           idExtractor={countryCodeExtractor}
           placeholder={selectPlaceholder}
-          handleOpenDropdown={() => setIsFocused(true)}
+          onOpenDropdown={() => setIsFocused(true)}
           style={{
             dropdownTab: {
               ...dropdownTabStyles,

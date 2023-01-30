@@ -55,7 +55,7 @@ export type DropdownSelectProps<Item> = SelectProps<Item> & {
   placeholder?: string
   label?: string | ReactNode
   style?: DropdownSelectStyles
-  handleOpenDropdown?: Fn
+  onOpenDropdown?: Fn
 }
 
 export type ListSelectProps<Item> = SelectProps<Item> & {

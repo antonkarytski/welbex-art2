@@ -10,8 +10,8 @@ import { useText } from '../../../translations/hook'
 import Avatar from '../../../ui/Avatar'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import Field from '../../../ui/form/Field'
-import PhoneEnter from '../../auth/PhoneEnter'
 import { profileCountryModel } from '../../auth/model.profileCountry'
+import PhoneEnter from '../../auth/phoneEnter/PhoneEnter'
 import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
 import UploadFromCameraBlock from '../../imagePick/Block.UploadFromCamera'
 import PhotoEditPopUp from '../../popUp/PopUp.PhotoEditActionSelect'
@@ -44,7 +44,7 @@ const EditProfileForm = () => {
       >
         <Avatar
           size={112}
-          onAddPhoto={onEditPhoto}
+          onAddIconPress={onEditPhoto}
           style={styles.common.avatar}
           actionColors={{
             icon: colors.whiteText,

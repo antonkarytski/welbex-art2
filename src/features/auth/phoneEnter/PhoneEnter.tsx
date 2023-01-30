@@ -1,29 +1,12 @@
-import { sample } from 'effector'
 import { useStore } from 'effector-react'
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
-import { COUNTRIES_LIST, Country } from '../../features/countries'
-import CountryRow from '../../features/countries/CountryRow'
-import { createPhoneInputModel } from '../../lib/componentsModels/phoneNumber/model.phoneNumber'
-import CountrySelectablePhoneInput from '../../ui/phoneInput/CountrySelectablePhoneInput'
-import { CountrySelectablePhoneInputProps } from '../../ui/phoneInput/types'
-import { RenderItem } from '../../ui/selects/types'
-import { createCountryModel } from '../countries/model.countriesDropdown'
-import { profileCountryModel } from './model.profileCountry'
-
-export const phoneInputModel = createPhoneInputModel()
-export const phoneCountryModel = createCountryModel()
-
-sample({
-  clock: profileCountryModel.set,
-  source: {
-    profileCountry: profileCountryModel.$state,
-    country: phoneInputModel.purePhoneModel.$state,
-  },
-  filter: ({ country }) => !country,
-  fn: ({ profileCountry }) => profileCountry,
-  target: phoneCountryModel.set,
-})
+import { COUNTRIES_LIST, Country } from '../../../features/countries'
+import CountryRow from '../../../features/countries/CountryRow'
+import CountrySelectablePhoneInput from '../../../ui/phoneInput/CountrySelectablePhoneInput'
+import { CountrySelectablePhoneInputProps } from '../../../ui/phoneInput/types'
+import { RenderItem } from '../../../ui/selects/types'
+import { phoneCountryModel, phoneInputModel } from './model.phone'
 
 const renderCountryRow: RenderItem<Country> = (item, isSelected) => (
   <CountryRow item={item} isSelected={isSelected} />
