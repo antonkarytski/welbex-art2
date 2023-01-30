@@ -6,6 +6,7 @@ import { PaymentMethod } from '../../features/payment/types'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { twoDigits } from '../../lib/helpers/numbers'
 import { useNavigate } from '../../navigation'
+import DeleteNavigationButton from '../../navigation/elements/NavigationButton.Delete'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import { transparentThemedHeaderStyles } from '../../navigation/elements/styles'
 import { links } from '../../navigation/links'
@@ -36,6 +37,12 @@ const PaymentMethodsScreen = ({
         backAvailable
         style={styles.header}
         title={text.paymentMethod}
+        headerRight={
+          <DeleteNavigationButton
+            navigateTo={links.deletePaymentCard}
+            iconColor={colors.appHeaderIconDark}
+          />
+        }
       />
       <View style={commonStyles.contentContainer}>
         <PaymentMethodList

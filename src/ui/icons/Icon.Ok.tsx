@@ -3,7 +3,7 @@ import Svg, { Path } from 'react-native-svg'
 import { IconProps } from './_types'
 
 export default function OkIcon({
-  size = 24,
+  size = 12,
   color = '#303535',
   style,
 }: IconProps) {
@@ -13,12 +13,12 @@ export default function OkIcon({
       height={size}
       style={style}
       fill="none"
-      viewBox="0 0 24 24"
+      viewBox="0 0 12 12"
     >
       <Path
-        d="M20 6L9 17L4 12"
+        d="M1 8.27273L4.07692 11L11 1"
         stroke={color}
-        strokeWidth="3"
+        strokeWidth="1.6"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

@@ -3,10 +3,10 @@ import {
   StyleProp,
   StyleSheet,
   TouchableOpacity,
-  View,
   ViewStyle,
 } from 'react-native'
 import Span from '../Span'
+import CheckBox from './CheckBox'
 import CircleCheckBox from './CircleCheckBox'
 
 type CheckBoxCardProps = {
@@ -15,6 +15,7 @@ type CheckBoxCardProps = {
   checkboxColor?: ((state: boolean) => string) | string
   style?: ((state: boolean) => StyleProp<ViewStyle>) | StyleProp<ViewStyle>
   label?: string
+  checkboxForm?: 'circle' | 'square'
 }
 
 const CheckBoxCard = ({
@@ -24,6 +25,7 @@ const CheckBoxCard = ({
   checkboxColor,
   label,
   children,
+  checkboxForm = 'circle',
 }: PropsWithChildren<CheckBoxCardProps>) => {
   return (
     <TouchableOpacity
@@ -35,11 +37,21 @@ const CheckBoxCard = ({
       onPress={() => onPress(!isSelected)}
     >
       {children ? children : <Span style={styles.label}>{label}</Span>}
-      <CircleCheckBox
-        color={checkboxColor}
-        style={styles.checkbox}
-        isSelected={isSelected}
-      />
+      {checkboxForm === 'circle' && (
+        <CircleCheckBox
+          color={checkboxColor}
+          style={styles.checkbox}
+          isSelected={isSelected}
+          onSelect={onPress}
+        />
+      )}
+      {checkboxForm === 'square' && (
+        <CheckBox
+          isSelected={isSelected}
+          style={{ container: [styles.checkbox] }}
+          onSelect={onPress}
+        />
+      )}
     </TouchableOpacity>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import PopUpAgeError from './PopUp.AgeError'
-import PopUpDeleteCard from './PopUp.DeleteCard'
+import PopUpDeletePaymentCard from './PopUp.DeletePaymentCard'
 import PopUpPhotoEdit from './PopUp.PhotoEditActionSelect'
 import PopUpSaveChanges from './PopUp.SaveChanges'
 import PopUpUnexpectedError from './PopUp.UnexpectedError'
@@ -11,7 +11,7 @@ export default function AppPopUps() {
     <>
       <AuthPopUps />
       <PopUpAgeError />
-      <PopUpDeleteCard />
+      <PopUpDeletePaymentCard />
       <PopUpPhotoEdit />
       <PopUpSaveChanges />
       <PopUpUnexpectedError />
