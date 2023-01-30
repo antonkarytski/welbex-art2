@@ -8,7 +8,6 @@ import BlockUploadFromCamera from '../../features/imagePick/Block.UploadFromCame
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
-import { primaryHeaderThemedStyles } from '../../navigation/elements/styles'
 import { links } from '../../navigation/links'
 import { ScreenComponentProps } from '../../navigation/types.screenProps'
 import { useText } from '../../translations/hook'
@@ -16,6 +15,8 @@ import H3 from '../../ui/H3'
 import PresetButton from '../../ui/buttons/PresetButton'
 import { DropdownStyles } from '../../ui/dropdownTab/types'
 import Field from '../../ui/form/Field'
+import AdaptiveGradient from '../../ui/gradients/AdaptiveGradient'
+import { primaryGradientPreset } from '../../ui/gradients/styles'
 import DropdownSelect from '../../ui/selects/DropdownSelect'
 
 const selectedCategoryModel = createStateModel(MOCK_CATEGORIES[0])
@@ -29,11 +30,11 @@ export default function AddPostDescriptionScreen({
 }: ScreenComponentProps<links.createPostAddDescription>) {
   const assets = route.params.assets
   const text = useText()
-  const { styles } = useThemedStyleList({
-    header: primaryHeaderThemedStyles,
+  const { styles, colors } = useThemedStyleList({
     common: themedStyles,
     select: themedSelectStyles,
   })
+  const gradient = primaryGradientPreset(colors)
 
   useEffect(() => {
     createPostFormModel.setField({
@@ -44,11 +45,9 @@ export default function AddPostDescriptionScreen({
 
   return (
     <View style={styles.common.container}>
-      <ScreenHeader
-        backAvailable
-        title={text.description}
-        style={styles.header}
-      />
+      <AdaptiveGradient startColor={gradient.start} endColor={gradient.end}>
+        <ScreenHeader backAvailable title={text.description} />
+      </AdaptiveGradient>
       <ScrollView
         bounces={false}
         style={styles.common.scroll}

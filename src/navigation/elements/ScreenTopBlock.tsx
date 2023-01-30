@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import AdaptiveGradient from '../../ui/grdients/AdaptiveGradient'
+import AdaptiveGradient from '../../ui/gradients/AdaptiveGradient'
 import ScreenHeader, { ScreenHeaderProps } from './ScreenHeader'
 import { ScreenHeaderStyles } from './styles'
 

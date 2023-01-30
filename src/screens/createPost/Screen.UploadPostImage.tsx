@@ -5,20 +5,23 @@ import UploadFromCameraRollBlock from '../../features/imagePick/Block.UploadFrom
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
-import { primaryHeaderThemedStyles } from '../../navigation/elements/styles'
 import { themedShadow5Style } from '../../styles/shadows'
 import { useText } from '../../translations/hook'
+import AdaptiveGradient from '../../ui/gradients/AdaptiveGradient'
+import { primaryGradientPreset } from '../../ui/gradients/styles'
 
 export default function UploadPostImageScreen() {
   const text = useText()
-  const { styles } = useThemedStyleList({
-    header: primaryHeaderThemedStyles,
+  const { styles, colors } = useThemedStyleList({
     common: themedStyle,
   })
+  const gradient = primaryGradientPreset(colors)
 
   return (
     <View>
-      <ScreenHeader style={styles.header} title={text.uploadImage} />
+      <AdaptiveGradient startColor={gradient.start} endColor={gradient.end}>
+        <ScreenHeader title={text.uploadImage} />
+      </AdaptiveGradient>
       <View style={styles.common.contentContainer}>
         <UploadFromCameraRollBlock style={styles.common.cameraRollBlock} />
         <UploadFromCameraBlock

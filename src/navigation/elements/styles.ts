@@ -7,15 +7,6 @@ export type ScreenHeaderStyles = {
   title?: TextStyle
 }
 
-export const primaryHeaderThemedStyles = createThemedStyle<ScreenHeaderStyles>(
-  (colors) =>
-    StyleSheet.create({
-      container: {
-        backgroundColor: colors.primary1,
-      },
-    })
-)
-
 export const transparentThemedHeaderStyles =
   createThemedStyle<ScreenHeaderStyles>((colors) =>
     StyleSheet.create({
