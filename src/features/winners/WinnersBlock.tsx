@@ -4,6 +4,7 @@ import { WINNERS_MOCK } from '../../_mock/winners'
 import AppHeader from '../../navigation/elements/AppHeader'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
+import Gradient from '../../ui/grdients/Gradient'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import CardWinner from './Card.Winner'
@@ -38,20 +39,22 @@ const WinnersBlock = () => {
 
   return (
     <View style={styles.common.container}>
-      <AppHeader
-        style={styles.header}
-        iconsColor={colors.appHeaderIconLight}
-        settingsAvailable={true}
-      />
-      <H2 style={styles.common.title} label={text.winners} />
-      <FlatList
-        contentContainerStyle={styles.common.listContent}
-        showsHorizontalScrollIndicator={false}
-        horizontal
-        data={WINNERS_MOCK}
-        renderItem={renderWinnerItem}
-        keyExtractor={keyExtractor}
-      />
+      <Gradient>
+        <AppHeader
+          style={styles.header}
+          iconsColor={colors.appHeaderIconLight}
+          settingsAvailable={true}
+        />
+        <H2 style={styles.common.title} label={text.winners} />
+        <FlatList
+          contentContainerStyle={styles.common.listContent}
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          data={WINNERS_MOCK}
+          renderItem={renderWinnerItem}
+          keyExtractor={keyExtractor}
+        />
+      </Gradient>
     </View>
   )
 }
@@ -70,9 +73,7 @@ const themedStyles = createThemedStyle((colors) =>
       marginLeft: 0,
     },
     container: {
-      backgroundColor: colors.primary1,
       width: '100%',
-      paddingBottom: 24,
       marginBottom: 8,
       height: 445,
     },
