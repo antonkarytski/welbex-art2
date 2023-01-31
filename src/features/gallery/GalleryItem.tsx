@@ -32,6 +32,7 @@ const GalleryItem = React.memo(
             }}
             item={item.user}
             ageTextGenerator={ageTextGenerator}
+            shortenCountryName
           />
           <LikeButton style={style.likeButton} likesCount={item.likesCount} />
           <ShareButton style={style.shareButton} />

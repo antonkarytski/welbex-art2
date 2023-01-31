@@ -5,7 +5,7 @@ import { createMemoByWeakMap } from '../../lib/helpers/memoization'
 import { EN } from '../../translations/languages'
 import { LangStructure } from '../../translations/types'
 import Span from '../../ui/Span'
-import { countryFullName } from './index'
+import { countryFullName, countryFullNameClipped } from './index'
 import { UserDescriptionStyles } from './styles'
 import { User } from './types'
 
@@ -16,6 +16,7 @@ type UserDescriptionProps = {
   style?: UserDescriptionStyles
   ageTextGenerator?: AgeTextGenerator
   hideSeparator?: boolean
+  shortenCountryName?: boolean
 }
 
 export const localeAgeTextShort = createMemoByWeakMap((text: LangStructure) => {
@@ -30,6 +31,7 @@ const UserDescription = ({
   style,
   ageTextGenerator = localeAgeTextShort(EN),
   hideSeparator,
+  shortenCountryName,
 }: UserDescriptionProps) => {
   const ageText = ageTextGenerator(item.age)
 
@@ -38,9 +40,11 @@ const UserDescription = ({
       <Span weight={500} style={[styles.name, style?.name]} label={item.name} />
       <Span
         style={[styles.subText, style?.subText]}
-        label={`${ageText} ${hideSeparator ? ' ' : '|'} ${countryFullName(
-          item.country
-        )}`}
+        label={`${ageText} ${hideSeparator ? ' ' : '|'} ${
+          shortenCountryName
+            ? countryFullNameClipped(item.country)
+            : countryFullName(item.country)
+        }`}
       />
     </View>
   )

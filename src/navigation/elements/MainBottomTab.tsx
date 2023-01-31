@@ -9,15 +9,15 @@ import IconButton from '../../ui/buttons/IconButton'
 import AdaptiveGradient from '../../ui/gradients/AdaptiveGradient'
 
 type CustomBottomTabBarProps = {
-  styles: NamedStyles<MainTabBarStyles>
+  style: NamedStyles<MainTabBarStyles>
   colors: ColorThemeStructure
 } & BottomTabBarProps
 
-const BottomTab = ({
+const MainBottomTab = ({
   state,
   descriptors,
   navigation,
-  styles,
+  style,
   colors,
 }: CustomBottomTabBarProps) => {
   return (
@@ -26,8 +26,8 @@ const BottomTab = ({
       endColor={colors.bottomTabGradientDark}
       stopOffset={'20%'}
     >
-      <View style={styles.tabBar}>
-        <Row style={[styles.row]}>
+      <View style={style.tabBar}>
+        <Row style={[style.row]}>
           {state.routes.map((route, index) => {
             const { options } = descriptors[route.key]
             const { tabBarIcon, title } = options
@@ -64,10 +64,7 @@ const BottomTab = ({
                     ? colors.bottomTabActiveItem
                     : colors.bottomTabInactiveItem
                 }
-                labelStyle={[
-                  styles.tabBarLabel,
-                  isFocused && styles.activeTint,
-                ]}
+                labelStyle={[style.tabBarLabel, isFocused && style.activeTint]}
               />
             )
           })}
@@ -77,4 +74,4 @@ const BottomTab = ({
   )
 }
 
-export default BottomTab
+export default MainBottomTab
