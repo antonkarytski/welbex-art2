@@ -10,7 +10,7 @@ import Select from './Select'
 import { ListSelectProps } from './types'
 
 const { height } = Dimensions.get('window')
-const LIST_MAX_HEIGHT = height * 0.55
+const LIST_MAX_HEIGHT = height * 0.5
 
 function ListSelect<DataItem extends Record<string, any>>({
   data,

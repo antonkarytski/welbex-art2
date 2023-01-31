@@ -2,12 +2,12 @@ import React from 'react'
 import Svg, { Path } from 'react-native-svg'
 import { IconProps } from './_types'
 
-const HomeIcon = ({ size = 20, color = '#303535', style }: IconProps) => {
+const HomeIcon = ({ size = 24, color = '#303535', style }: IconProps) => {
   return (
     <Svg
       width={size}
-      height={size * 1.1}
-      viewBox="0 0 20 22"
+      height={size}
+      viewBox="0 0 24 24"
       fill="none"
       style={style}
     >

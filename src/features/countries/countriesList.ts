@@ -7,4 +7,5 @@ export const COUNTRIES: Record<CountryCode, Country> = {
 }
 export const COUNTRIES_LIST: Country[] = Object.values(COUNTRIES)
 export const DEFAULT_COUNTRY_CODE: CountryCode = deviceCountryCode
-export const DEFAULT_COUNTRY = COUNTRIES[DEFAULT_COUNTRY_CODE]
+export const DEFAULT_COUNTRY =
+  COUNTRIES[DEFAULT_COUNTRY_CODE] || COUNTRIES_LIST[0]

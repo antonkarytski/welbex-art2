@@ -33,7 +33,10 @@ const UserAgreement = ({ isInvalid }: UserAgreementProps) => {
       onSelect={setIsPolicyAccepted}
       isSelected={isPolicyAccepted}
       isInvalid={isPolicyAccepted ? false : isInvalid}
-      style={{ checkbox: styles.feature.checkbox }}
+      style={{
+        checkbox: styles.feature.checkbox,
+        container: styles.feature.container,
+      }}
       iconSize={10}
       preset={styles.checkbox}
     >
@@ -59,6 +62,9 @@ const UserAgreement = ({ isInvalid }: UserAgreementProps) => {
 
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
+    container: {
+      marginBottom: 12,
+    },
     row: { justifyContent: 'flex-start' },
     rowWrapper: { marginLeft: 12 },
     text: {

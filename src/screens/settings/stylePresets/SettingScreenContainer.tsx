@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
 import { useThemedStyleList } from '../../../features/themed/hooks'
 import ScreenHeader from '../../../navigation/elements/ScreenHeader'
-import { darkScreenHeaderThemedStyles } from '../../../styles/screen'
+import { transparentScreenHeaderThemedStyles } from '../../../styles/screen'
 import ScreenContainer from '../../../ui/ScreenContainer'
 import ScreenWrapper from '../../../ui/ScreenWrapper'
 import { themedCommonStyles } from './styles'
@@ -12,6 +12,7 @@ type SettingScreenContainerProps = {
   title: string
   style?: StyleProp<ViewStyle>
   backAvailable?: boolean
+  enableScrollView?: boolean
 }
 
 const SettingScreenContainer = ({
@@ -19,9 +20,10 @@ const SettingScreenContainer = ({
   title,
   backAvailable = true,
   style,
+  enableScrollView,
 }: SettingScreenContainerProps) => {
   const { styles, colors } = useThemedStyleList({
-    screenHeader: darkScreenHeaderThemedStyles,
+    screenHeader: transparentScreenHeaderThemedStyles,
     common: themedCommonStyles,
   })
 
@@ -33,7 +35,10 @@ const SettingScreenContainer = ({
         backArrowColor={colors.appHeaderIconDark}
         style={styles.screenHeader}
       />
-      <ScreenContainer style={styles.common.wrapper}>
+      <ScreenContainer
+        enableScrollView={enableScrollView}
+        style={styles.common.wrapper}
+      >
         {children}
       </ScreenContainer>
     </ScreenWrapper>

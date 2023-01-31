@@ -24,40 +24,42 @@ const FeedbackForm = () => {
   const onSendFeedback = () => {}
 
   return (
-    <KeyboardAvoidingView
-      behavior={IS_IOS ? 'padding' : 'height'}
-      style={featureStyles.formWrapper}
-    >
-      <Field
-        label={t.email}
-        formModel={feedbackFormModel}
-        name={feedbackFormModel.fields.email}
-        style={fieldStyles}
-      />
-      <Field
-        label={t.name}
-        formModel={feedbackFormModel}
-        name={feedbackFormModel.fields.name}
-        style={fieldStyles}
-      />
-      <Field
-        label={t.questionSubject}
-        placeholder={t.yourQuestion}
-        formModel={feedbackFormModel}
-        name={feedbackFormModel.fields.question}
-        multiline={true}
-        style={{
-          ...styles.field,
-          input: { ...styles.field.input, ...featureStyles.textarea },
-        }}
-      />
+    <>
+      <KeyboardAvoidingView
+        behavior={IS_IOS ? 'padding' : 'height'}
+        style={featureStyles.formWrapper}
+      >
+        <Field
+          label={t.email}
+          formModel={feedbackFormModel}
+          name={feedbackFormModel.fields.email}
+          style={fieldStyles}
+        />
+        <Field
+          label={t.name}
+          formModel={feedbackFormModel}
+          name={feedbackFormModel.fields.name}
+          style={fieldStyles}
+        />
+        <Field
+          label={t.questionSubject}
+          placeholder={t.yourQuestion}
+          formModel={feedbackFormModel}
+          name={feedbackFormModel.fields.question}
+          multiline={true}
+          style={{
+            ...styles.field,
+            input: { ...styles.field.input, ...featureStyles.textarea },
+          }}
+        />
+      </KeyboardAvoidingView>
       <PresetButton
         label={t.send}
         onPress={onSendFeedback}
         preset={styles.button}
         style={featureStyles.bottomButton}
       />
-    </KeyboardAvoidingView>
+    </>
   )
 }
 

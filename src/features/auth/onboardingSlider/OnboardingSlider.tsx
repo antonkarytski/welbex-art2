@@ -39,11 +39,8 @@ type OnboardingSliderProps = {
 
 type RenderItemProps = { item: OnboardingSliderItem }
 
-const imageWidth = getSize({})
-const carouselHeight = getSize({
-  measureName: 'height',
-  ratioToScreenSize: 1.57,
-})
+const carouselWidth = getSize({})
+const carouselHeight = carouselWidth * 1.4
 
 const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
   const t = useText()
@@ -80,14 +77,17 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
         renderItem={renderItem}
         onSnapToItem={setActiveSlideIndex}
         height={carouselHeight}
-        width={imageWidth}
+        width={carouselWidth}
         vertical={false}
         ref={carouselRef}
       />
       <Pagination
         dotsLength={onboardingSliderData.length}
         activeDotIndex={activeSlideIndex}
-        containerStyle={[styles.toBottom, style?.paginationContainer]}
+        containerStyle={[
+          styles.paginationContainer,
+          style?.paginationContainer,
+        ]}
         dotStyle={[styles.paginationDot, style?.paginationDot]}
         inactiveDotStyle={[style?.paginationDot, style?.paginationDotInactive]}
         inactiveDotOpacity={1}
@@ -105,12 +105,15 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginBottom: 32,
+    marginBottom: 8,
   },
   paginationDot: {
     width: 8,
     height: 8,
     marginHorizontal: 4,
+  },
+  paginationContainer: {
+    marginTop: 'auto',
   },
   toBottom: {
     marginTop: 'auto',
