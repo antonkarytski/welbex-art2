@@ -41,6 +41,8 @@ const LIGHT = {
   profileTabLine: '#E1E1E1',
   profileTabText: '#BABABA',
   planSelectedBackground: '#F0FBFC',
+  primaryGradientDark: '#46959B',
+  primaryGradientLight: '#94C9CD',
   /** Common */
   appHeaderTextLight: COMMON.WHITE,
   appHeaderIconLight: GREEN_BLUE.LIGHT,
@@ -135,6 +137,8 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   profileTabLine: '#E1E1E1',
   profileTabText: '#BABABA',
   planSelectedBackground: '#F0FBFC',
+  primaryGradientDark: '#46959B',
+  primaryGradientLight: '#94C9CD',
   /** Common */
   appHeaderTextLight: COMMON.WHITE,
   appHeaderIconLight: GREEN_BLUE.LIGHT,

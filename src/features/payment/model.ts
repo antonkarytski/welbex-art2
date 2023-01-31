@@ -1,4 +1,4 @@
-import { attach, createEffect, createEvent, createStore } from 'effector'
+import { attach, createEffect, createStore } from 'effector'
 import { createStateModel } from 'altek-toolkit'
 import { MOCK_PAYMENT_CARDS } from '../../_mock/payment'
 import { CardPaymentMethod, PaymentCard } from './types'
@@ -19,7 +19,7 @@ const deletePaymentCardRequest = createEffect<
 
 export const deletePaymentCardFx = attach({
   source: cardToDeleteModel.$state,
-  mapParams: (_, cardToDelete) => cardToDelete,
+  mapParams: (_: void, cardToDelete) => cardToDelete,
   effect: deletePaymentCardRequest,
 })
 

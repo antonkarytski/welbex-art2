@@ -4,16 +4,13 @@ import DeleteIcon from '../../ui/icons/Icon.Delete'
 import { links } from '../links'
 import NavigationButton, { NavigateButtonProps } from './NavigationButton'
 
-type DeleteNavigationButtonProps = {
-  navigateTo: links
-} & NavigateButtonProps
-
-const DeleteNavigationButton = ({
+const DeleteNavigationButton = <L extends links>({
   navigateTo,
   iconColor,
   iconSize = 24,
   style,
-}: DeleteNavigationButtonProps) => {
+  navigateParams,
+}: NavigateButtonProps<L>) => {
   return (
     <NavigationButton
       Icon={DeleteIcon}
@@ -21,6 +18,7 @@ const DeleteNavigationButton = ({
       navigateTo={navigateTo}
       iconColor={iconColor}
       iconSize={iconSize}
+      navigateParams={navigateParams}
     />
   )
 }

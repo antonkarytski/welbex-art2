@@ -6,7 +6,7 @@ import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
 import AddPaymentCardButton from './AddPaymentCardButton'
 import PaymentMethodSelectItem from './PaymentMethodSelectItem'
-import { cardsToPaymentMethods } from './helpers'
+import { createPaymentMethods } from './helpers'
 import { $paymentCards } from './model'
 import { PaymentMethod } from './types'
 
@@ -24,7 +24,7 @@ const PaymentMethodList = ({
   const { styles, colors } = useTheme(themedStyles)
   const paymentCards = useStore($paymentCards)
   const methods = useMemo<PaymentMethod[]>(() => {
-    return cardsToPaymentMethods(paymentCards)
+    return createPaymentMethods(paymentCards)
   }, [paymentCards])
 
   return (
