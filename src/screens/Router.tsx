@@ -7,7 +7,17 @@ import { links } from '../navigation/links'
 import ScreenInfoMessage from './Screen.InfoMessage'
 import UserProfileScreen from './Screen.UserProfile'
 import MainTabsRouter from './Tabs.Main'
-import AuthScreenRouter from './auth/Router.Auth'
+// import AuthScreenRouter from './auth/Router.Auth'
+import CountrySelectionScreen from './auth/Screen.CountrySelection'
+import NewPasswordScreen from './auth/Screen.CreateNewPassword'
+import CreatePasswordScreen from './auth/Screen.CreatePassword'
+import LoginScreen from './auth/Screen.Login'
+import PhoneEnterScreen from './auth/Screen.PhoneEnter'
+import RecoverPasswordScreen from './auth/Screen.RecoverPassword'
+import SignUpScreen from './auth/Screen.SignUp'
+import VerificationScreen from './auth/Screen.Verification'
+import OnBoardingScreen from './auth/onboarding/Screen.Onboarding'
+import PicassoQuoteScreen from './auth/onboarding/Screen.PicassoQuote'
 import GalleryFilterScreen from './gallery/Screen.GalleryFilter'
 import EditProfileScreen from './profile/Screen.EditProfile'
 import SettingsStack from './settings/Router.Settings'
@@ -23,14 +33,37 @@ const Router = React.memo(() => {
 
   useEffect(() => {
     if (isAuth) return navigate(links.mainTabs)
-    navigate(links.authRouter)
+    // navigate(links.authRouter)
+    navigate(links.onboarding)
   }, [isAuth, navigate])
 
   return (
     <StackNavigator>
-      {!isAuth && (
-        <Stack.Screen name={links.authRouter} component={AuthScreenRouter} />
-      )}
+      <Stack.Screen
+        name={links.onboardingPicassoQuote}
+        component={PicassoQuoteScreen}
+      />
+      <Stack.Screen name={links.onboarding} component={OnBoardingScreen} />
+      <Stack.Screen name={links.signUp} component={SignUpScreen} />
+      <Stack.Screen
+        name={links.countrySelection}
+        component={CountrySelectionScreen}
+      />
+      <Stack.Screen name={links.login} component={LoginScreen} />
+      <Stack.Screen name={links.phoneEnter} component={PhoneEnterScreen} />
+      <Stack.Screen name={links.verification} component={VerificationScreen} />
+      <Stack.Screen
+        name={links.createPassword}
+        component={CreatePasswordScreen}
+      />
+      <Stack.Screen
+        name={links.recoverPassword}
+        component={RecoverPasswordScreen}
+      />
+      <Stack.Screen
+        name={links.createNewPassword}
+        component={NewPasswordScreen}
+      />
       <Stack.Screen name={links.mainTabs} component={MainTabsRouter} />
       <Stack.Screen name={links.editProfile} component={EditProfileScreen} />
       <Stack.Screen name={links.userProfile} component={UserProfileScreen} />
