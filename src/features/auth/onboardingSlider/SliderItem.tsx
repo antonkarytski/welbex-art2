@@ -34,7 +34,9 @@ const SliderItem = ({ item, style, text }: SliderItemProps) => {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    marginBottom: 12,
+  },
   imgWrp: {},
   img: {},
   toBottom: {
