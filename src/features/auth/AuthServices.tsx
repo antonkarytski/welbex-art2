@@ -26,7 +26,7 @@ const AuthWithServices = ({
   const onContinueWithApple = () => {}
 
   return (
-    <View style={[styles.feature.container, style]}>
+    <View style={[style]}>
       {showLineSeparator && (
         <LineSeparator
           label={t.or}
@@ -52,9 +52,6 @@ const AuthWithServices = ({
 
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
-    container: {
-      marginBottom: 24,
-    },
     text: {
       color: colors.textLightGrey,
     },
