@@ -1,5 +1,5 @@
 import { useEvent, useStore } from 'effector-react'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Dimensions, StyleSheet, View } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
 import CrossButton from '../buttons/Button.Cross'
@@ -22,6 +22,7 @@ function ListSelect<DataItem extends Record<string, any>>({
   model,
   idExtractor,
 }: ListSelectProps<DataItem>) {
+  const [containerHeight, setContainerHeight] = useState(LIST_MAX_HEIGHT)
   const { searchStringModel, initialListModel, $filteredList } = searchModel
   const [searchString, setSearchString] = useStateStore(searchStringModel)
   const setInitialDataList = useEvent(initialListModel.set)
@@ -32,7 +33,12 @@ function ListSelect<DataItem extends Record<string, any>>({
   }, [data, setInitialDataList])
 
   return (
-    <View style={style?.wrapper}>
+    <View
+      style={[{ height: containerHeight }, style?.wrapper]}
+      onLayout={({ nativeEvent }) => {
+        setContainerHeight(nativeEvent.layout.height)
+      }}
+    >
       {searchable && (
         <Input
           value={searchString}
@@ -47,7 +53,9 @@ function ListSelect<DataItem extends Record<string, any>>({
         idExtractor={idExtractor}
         renderItem={renderItem}
         model={model}
-        style={{ ...style, listWrapper: { height: LIST_MAX_HEIGHT } }}
+        style={{
+          ...style,
+        }}
         ItemSeparatorComponent={ItemSeparatorComponent}
       />
     </View>
