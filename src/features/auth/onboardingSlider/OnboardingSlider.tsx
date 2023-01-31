@@ -8,7 +8,8 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import Carousel, { Pagination } from 'react-native-snap-carousel'
+import Carousel, { ICarouselInstance } from 'react-native-reanimated-carousel'
+import { Pagination } from 'react-native-snap-carousel'
 import { useStateStore } from 'altek-toolkit'
 import { getSize } from '../../../lib/device/dimensions'
 import { useNavigate } from '../../../navigation'
@@ -39,6 +40,10 @@ type OnboardingSliderProps = {
 type RenderItemProps = { item: OnboardingSliderItem }
 
 const imageWidth = getSize({})
+const carouselHeight = getSize({
+  measureName: 'height',
+  ratioToScreenSize: 1.57,
+})
 
 const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
   const t = useText()
@@ -46,7 +51,7 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
   const [activeSlideIndex, setActiveSlideIndex] =
     useStateStore(activeSlideModel)
   const isLastSlideActive = useStore($isLastSlideActive)
-  const carouselRef = useRef<Carousel<OnboardingSliderItem>>(null)
+  const carouselRef = useRef<ICarouselInstance>(null)
 
   useEffect(() => {
     setActiveSlideIndex(0)
@@ -64,22 +69,19 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
       navigate(links.signUp)
       return
     }
-    carouselRef.current?.snapToNext()
+    carouselRef.current?.next()
     setActiveSlideIndex(activeSlideIndex + 1)
   }
 
   return (
-    <View style={styles.wrapper}>
+    <View style={[styles.wrapper]}>
       <Carousel
         data={onboardingSliderData}
         renderItem={renderItem}
         onSnapToItem={setActiveSlideIndex}
-        sliderWidth={imageWidth}
-        itemWidth={imageWidth}
+        height={carouselHeight}
+        width={imageWidth}
         vertical={false}
-        enableSnap
-        scrollEnabled
-        useScrollView
         ref={carouselRef}
       />
       <Pagination
@@ -103,7 +105,6 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    flexGrow: 1,
     marginBottom: 32,
   },
   paginationDot: {

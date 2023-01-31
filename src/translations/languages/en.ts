@@ -59,6 +59,7 @@ export const EN = {
   logInButton: 'Log in',
   dontHaveAccountQ: 'Don’t have an account?',
   haveAccountQ: 'Do you have an account?',
+  loginToAccountOrRegister: 'Log in to your account or register',
   recoverPassword: 'Recover password',
   recoverPasswordDescription:
     'Enter the email address you used to register and we’ll send you the instruction',
