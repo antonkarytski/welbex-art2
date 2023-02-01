@@ -54,51 +54,31 @@ export default function HomeScreen() {
     [styles]
   )
 
-  const value = useRef(new Animated.Value(0)).current
-  const interpolated = useRef(new Animated.Value(0)).current
-
+  const offset = useRef(new Animated.Value(0)).current
+  const animatedHeight = useRef(new Animated.Value(0)).current
   useEffect(() => {
     if (!contentHeight || !headerHeight) return
-    interpolated.setValue(contentHeight + headerHeight)
-  }, [contentHeight, headerHeight, interpolated])
+    animatedHeight.setValue(contentHeight + headerHeight)
+  }, [contentHeight, headerHeight, animatedHeight])
   const gradientColors = primaryGradientPreset(colors)
-
   useEffect(() => {
-    let current: Animated.CompositeAnimation | null = null
-    let nextValue: number | null = null
-
-    function runAnimation(toValue: number) {
-      nextValue = toValue
-      if (current) return
-      nextValue = null
-      current = Animated.timing(interpolated, {
-        toValue,
-        useNativeDriver: true,
-        duration: 10,
-      })
-      current.start(() => {
-        current = null
-        if (nextValue) runAnimation(nextValue)
-      })
-    }
-
-    const id = value.addListener(({ value }) => {
-      const nextHeight = Math.max(contentHeight - value, 0) + headerHeight
-      //runAnimation(nextHeight)
-      interpolated.setValue(nextHeight)
+    const id = offset.addListener(({ value }) => {
+      animatedHeight.setValue(Math.max(contentHeight - value, 0) + headerHeight)
     })
-    return () => value.removeListener(id)
-  }, [value, interpolated, contentHeight, headerHeight])
+    return () => offset.removeListener(id)
+  }, [offset, animatedHeight, contentHeight, headerHeight])
 
   return (
     <View style={styles.common.wrapper}>
       <Animated.View
-        style={{
-          position: 'absolute',
-          width: '100%',
-          top: 0,
-          height: interpolated,
-        }}
+        style={[
+          {
+            position: 'absolute',
+            width: '100%',
+            top: 0,
+            height: animatedHeight,
+          },
+        ]}
       >
         <Gradient
           startColor={gradientColors.start}
@@ -114,10 +94,12 @@ export default function HomeScreen() {
         settingsAvailable={true}
       />
       <View style={styles.categories.container}>
-        <FlatList
-          onScroll={({ nativeEvent }) => {
-            value.setValue(nativeEvent.contentOffset.y)
-          }}
+        <Animated.FlatList
+          bounces={false}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: offset } } }],
+            { useNativeDriver: true }
+          )}
           ListHeaderComponent={() => {
             return (
               <View>
