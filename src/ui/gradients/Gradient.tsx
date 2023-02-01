@@ -16,8 +16,6 @@ export type GradientColors = {
 
 export type GradientsProps = {
   style?: StyleProp<ViewStyle>
-  startColor?: string
-  endColor?: string
   gradientTransform?: string
   stopOffset?: string
   colors?: GradientColors
@@ -28,8 +26,6 @@ const noise = require('../../../assets/images/noise.png')
 const Gradient = ({
   children,
   style,
-  startColor = '#46959B',
-  endColor = '#94C9CD',
   colors,
   gradientTransform,
   stopOffset,
@@ -42,8 +38,11 @@ const Gradient = ({
             id="grad"
             gradientTransform={gradientTransform || 'rotate(90)'}
           >
-            <Stop offset="0%" stopColor={colors?.start ?? startColor} />
-            <Stop offset={stopOffset || '100%'} stopColor={colors?.end ?? endColor} />
+            <Stop offset="0%" stopColor={colors?.start ?? '#46959B'} />
+            <Stop
+              offset={stopOffset || '100%'}
+              stopColor={colors?.end ?? '#94C9CD'}
+            />
           </LinearGradient>
           <Pattern
             id="noise"

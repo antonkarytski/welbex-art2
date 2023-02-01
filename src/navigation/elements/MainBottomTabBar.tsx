@@ -22,8 +22,10 @@ const MainBottomTabBar = ({
 }: CustomBottomTabBarProps) => {
   return (
     <AdaptiveGradient
-      startColor={colors.bottomTabGradientLight}
-      endColor={colors.bottomTabGradientDark}
+      colors={{
+        start: colors.bottomTabGradientLight,
+        end: colors.bottomTabGradientDark,
+      }}
       stopOffset={'20%'}
     >
       <View style={style.tabBar}>
