@@ -13,6 +13,7 @@ export const categoryCardThemedStyles = createThemedStyle<CategoryCardStyles>(
       container: {
         ...themedShadow5Style(colors),
         marginBottom: 20,
+        marginHorizontal: 20,
       },
       captionContainer: {
         backgroundColor: colors.card,

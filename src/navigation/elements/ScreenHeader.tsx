@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, ViewProps } from 'react-native'
 import { createThemedStyle } from '../../features/themed'
 import { useTheme } from '../../features/themed/hooks'
 import { ColorThemeStructure } from '../../features/themed/theme'
@@ -17,6 +17,7 @@ export type ScreenHeaderProps =
       onBack?: () => void
       backAvailable?: boolean
       backArrowColor?: string
+      onLayout?: ViewProps['onLayout']
     } & (
       | {
           title?: never
@@ -37,12 +38,13 @@ const ScreenHeader = ({
   backAvailable,
   children,
   backArrowColor,
+  onLayout,
 }: ScreenHeaderProps) => {
   const { colors, styles } = useTheme(themedStyles)
   const style = typeof styleOrFn === 'function' ? styleOrFn(colors) : styleOrFn
 
   return (
-    <View>
+    <View style={{ backgroundColor: 'transparent' }} onLayout={onLayout}>
       <View style={[styles.container, style?.container]}>
         <View style={styles.sideBlock}>
           {headerLeft ||

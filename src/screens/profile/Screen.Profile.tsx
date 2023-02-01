@@ -5,17 +5,14 @@ import OfferToGetAuthorization from '../../features/auth/OfferToGetAuthorization
 import { $isAuth } from '../../features/auth/model'
 import ProfileDrawingsListTabs from '../../features/profile/ProfileDrawingsListTabs'
 import { $userProfile } from '../../features/profile/model'
-import { useThemedStyle } from '../../features/themed/hooks'
 import UserCountersBlock from '../../features/user/UserCountersBlock'
 import UserScreenHeader from '../../features/user/UserScreenHeader'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
-import { primaryHeaderThemedStyles } from '../../navigation/elements/styles'
 import { useText } from '../../translations/hook'
 
 const ProfileScreen = () => {
   const text = useText()
   const profile = useStore($userProfile)
-  const headerStyles = useThemedStyle(primaryHeaderThemedStyles)
   // TODO - delete and check if profile null
   const isAuth = useStore($isAuth)
   // TODO
@@ -30,7 +27,7 @@ const ProfileScreen = () => {
         </>
       ) : (
         <>
-          <ScreenHeader title={text.profile} style={headerStyles} />
+          <ScreenHeader title={text.profile} />
           <View style={styles.unauthorizedContainer}>
             <OfferToGetAuthorization enableDescriptionText />
           </View>
