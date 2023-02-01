@@ -9,10 +9,16 @@ import Svg, {
   Stop,
 } from 'react-native-svg'
 
+export type GradientColors = {
+  start?: string
+  end?: string
+}
+
 export type GradientsProps = {
   style?: StyleProp<ViewStyle>
   startColor?: string
   endColor?: string
+  colors?: GradientColors
 }
 
 const noise = require('../../../assets/images/noise.png')
@@ -22,14 +28,15 @@ const Gradient = ({
   style,
   startColor = '#46959B',
   endColor = '#94C9CD',
+  colors,
 }: PropsWithChildren<GradientsProps>) => {
   return (
     <View style={[styles.container, style]}>
       <Svg style={StyleSheet.absoluteFill} width={'100%'} height={'100%'}>
         <Defs>
           <LinearGradient id="grad" gradientTransform="rotate(90)">
-            <Stop offset="0%" stopColor={startColor} />
-            <Stop offset="100%" stopColor={endColor} />
+            <Stop offset="0%" stopColor={colors?.start ?? startColor} />
+            <Stop offset="100%" stopColor={colors?.end ?? endColor} />
           </LinearGradient>
           <Pattern
             id="noise"

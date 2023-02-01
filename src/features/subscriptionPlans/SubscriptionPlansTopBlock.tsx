@@ -1,8 +1,8 @@
 import React, { PropsWithChildren } from 'react'
 import { StyleSheet, View } from 'react-native'
 import ScreenTopBlock from '../../navigation/elements/ScreenTopBlock'
+import { themedPrimaryGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
-import { primaryGradientPreset } from '../../ui/gradients/styles'
 import { useThemedStyleList } from '../themed/hooks'
 import SubscriptionBenefitsBlock from './SubscriptionBenefitsBlock'
 import { subscriptionBenefitsBlockThemedStyles } from './styles'
@@ -15,15 +15,15 @@ const SubscriptionPlansTopBlock = ({
   const text = useText()
   const { styles, colors } = useThemedStyleList({
     benefitsList: subscriptionBenefitsBlockThemedStyles,
+    gradient: themedPrimaryGradient,
   })
-  const gradient = primaryGradientPreset(colors)
 
   return (
     <ScreenTopBlock
       backAvailable
       title={text.subscription}
-      gradientStartColor={gradient.start}
-      gradientEndColor={gradient.end}
+      gradientStartColor={styles.gradient.start}
+      gradientEndColor={styles.gradient.end}
     >
       <View style={commonStyles.contentContainer}>
         {children}

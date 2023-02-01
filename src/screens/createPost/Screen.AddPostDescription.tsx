@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { ImageStyle, ScrollView, StyleSheet, View } from 'react-native'
 import { createStateModel } from 'altek-toolkit'
 import { MOCK_CATEGORIES } from '../../_mock/categories'
 import ImagePreviewFormField from '../../features/createPost/ImagePreviewFormField'
@@ -56,7 +56,7 @@ export default function AddPostDescriptionScreen({
         <ImagePreviewFormField
           name={'imageUri'}
           formModel={createPostFormModel}
-          style={styles.common.image}
+          style={styles.common.image as ImageStyle}
         />
 
         <H3 style={styles.common.header} label={text.completeDescription} />

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, View } from 'react-native'
+import { Image, ImageStyle, View } from 'react-native'
 import { useThemedStyleList } from '../../../features/themed/hooks'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
@@ -23,7 +23,10 @@ export default function PicassoQuoteScreen() {
   return (
     <AuthScreenContainer backAvailable={false}>
       <View style={styles.common.imgWrp}>
-        <Image source={decorativeImage} style={styles.common.img} />
+        <Image
+          source={decorativeImage}
+          style={styles.common.img as ImageStyle}
+        />
       </View>
       <Span
         label={t.quoteByPabloPicasso}

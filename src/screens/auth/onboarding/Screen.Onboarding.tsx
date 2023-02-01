@@ -1,7 +1,9 @@
 import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import OnboardingSlider from '../../../features/auth/onboardingSlider/OnboardingSlider'
+import OnboardingSlider, {
+  OnboardingSliderStyles,
+} from '../../../features/auth/onboardingSlider/OnboardingSlider'
 import { $isLastSlideActive } from '../../../features/auth/onboardingSlider/model.onboardingSlider'
 import { createThemedStyle } from '../../../features/themed'
 import { useThemedStyleList } from '../../../features/themed/hooks'
@@ -26,7 +28,11 @@ const OnboardingScreen = () => {
 
   return (
     <AuthScreenContainer>
-      <OnboardingSlider style={{ ...styles.common, button: styles.button }} />
+      <OnboardingSlider
+        style={
+          { ...styles.common, button: styles.button } as OnboardingSliderStyles
+        }
+      />
 
       {isLastSlideActive && (
         <ArrowButton
