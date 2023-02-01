@@ -44,7 +44,7 @@ const ScreenHeader = ({
   const style = typeof styleOrFn === 'function' ? styleOrFn(colors) : styleOrFn
 
   return (
-    <View style={{ backgroundColor: 'transparent' }} onLayout={onLayout}>
+    <View onLayout={onLayout}>
       <View style={[styles.container, style?.container]}>
         <View style={styles.sideBlock}>
           {headerLeft ||
