@@ -13,6 +13,8 @@ export const inputStyles = StyleSheet.create({
   inputWrapper: {
     width: '100%',
     position: 'relative',
+    zIndex: 2,
+    elevation: 2,
   },
   input__pseudoBefore: {
     paddingLeft: 54,

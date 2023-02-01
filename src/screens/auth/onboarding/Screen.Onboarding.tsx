@@ -27,7 +27,7 @@ const OnboardingScreen = () => {
   })
 
   return (
-    <AuthScreenContainer>
+    <AuthScreenContainer  enableScrollView>
       <OnboardingSlider
         style={
           { ...styles.common, button: styles.button } as OnboardingSliderStyles

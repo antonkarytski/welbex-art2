@@ -21,7 +21,7 @@ export default function PicassoQuoteScreen() {
   })
 
   return (
-    <AuthScreenContainer backAvailable={false}>
+    <AuthScreenContainer backAvailable={false} enableScrollView>
       <View style={styles.common.imgWrp}>
         <Image
           source={decorativeImage}
@@ -35,7 +35,11 @@ export default function PicassoQuoteScreen() {
       />
       <Span
         label={t.pabloPicasso}
-        style={[styles.common.text, styles.common.subCaptionText]}
+        style={[
+          styles.common.text,
+          styles.common.subCaptionText,
+          styles.common.marginBottom,
+        ]}
         weight={400}
       />
       <PresetButton

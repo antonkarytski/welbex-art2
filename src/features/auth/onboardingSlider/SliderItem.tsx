@@ -24,7 +24,7 @@ type SliderItemProps = {
 
 const SliderItem = ({ item, style, text }: SliderItemProps) => {
   return (
-    <View>
+    <View style={styles.container}>
       <View style={[style?.imgWrp]}>
         <Image style={[styles?.img, style?.img]} source={item.img} />
       </View>
@@ -34,6 +34,9 @@ const SliderItem = ({ item, style, text }: SliderItemProps) => {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    marginBottom: 12,
+  },
   imgWrp: {},
   img: {},
   toBottom: {

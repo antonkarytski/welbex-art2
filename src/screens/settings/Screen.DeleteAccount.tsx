@@ -19,7 +19,7 @@ export default function DeleteAccountScreen() {
   const onDeleteAccount = () => {}
 
   return (
-    <SettingScreenContainer title={t.deleteAccount}>
+    <SettingScreenContainer title={t.deleteAccount} enableScrollView>
       <View style={styles.common.flexGrown}>
         <Span
           label={t.deleteAccountWarn}

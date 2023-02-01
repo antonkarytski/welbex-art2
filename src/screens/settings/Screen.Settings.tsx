@@ -28,6 +28,7 @@ const SettingsScreen = () => {
           label={t.logOut}
           onPress={onLogout}
           preset={styles.button}
+          style={{ button: screenStyles.logOutButton }}
         />
       ) : (
         <OfferToGetAuthorization style={screenStyles.authBlock} />
@@ -39,6 +40,9 @@ const SettingsScreen = () => {
 const screenStyles = StyleSheet.create({
   authBlock: {
     flexDirection: 'column-reverse',
+  },
+  logOutButton: {
+    marginTop: 12,
   },
 })
 

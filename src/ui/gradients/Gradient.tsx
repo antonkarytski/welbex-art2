@@ -18,6 +18,8 @@ export type GradientsProps = {
   style?: StyleProp<ViewStyle>
   startColor?: string
   endColor?: string
+  gradientTransform?: string
+  stopOffset?: string
   colors?: GradientColors
 }
 
@@ -29,14 +31,19 @@ const Gradient = ({
   startColor = '#46959B',
   endColor = '#94C9CD',
   colors,
+  gradientTransform,
+  stopOffset,
 }: PropsWithChildren<GradientsProps>) => {
   return (
     <View style={[styles.container, style]}>
       <Svg style={StyleSheet.absoluteFill} width={'100%'} height={'100%'}>
         <Defs>
-          <LinearGradient id="grad" gradientTransform="rotate(90)">
+          <LinearGradient
+            id="grad"
+            gradientTransform={gradientTransform || 'rotate(90)'}
+          >
             <Stop offset="0%" stopColor={colors?.start ?? startColor} />
-            <Stop offset="100%" stopColor={colors?.end ?? endColor} />
+            <Stop offset={stopOffset || '100%'} stopColor={colors?.end ?? endColor} />
           </LinearGradient>
           <Pattern
             id="noise"

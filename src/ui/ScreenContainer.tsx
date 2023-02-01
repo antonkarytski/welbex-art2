@@ -8,6 +8,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
+import { SCREEN_PADDING_HORIZONTAL } from '../styles/constants'
 
 interface ScreenContainerProps {
   children: ReactNode
@@ -37,7 +38,7 @@ const ScreenContainer = ({
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20,
+    paddingHorizontal: SCREEN_PADDING_HORIZONTAL,
     flexGrow: 1,
   },
   innerContainer: { height: '100%' },

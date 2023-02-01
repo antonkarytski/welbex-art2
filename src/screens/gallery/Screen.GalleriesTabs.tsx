@@ -1,9 +1,7 @@
-import {
-  MaterialTopTabBar,
-  createMaterialTopTabNavigator,
-} from '@react-navigation/material-top-tabs'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import GalleryTopBar from '../../features/gallery/GalleryTopBar'
 import { GALLERIES } from '../../features/gallery/descriptors'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
@@ -12,7 +10,6 @@ import NavigationFilterButton from '../../navigation/elements/NavigationButton.G
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import { links } from '../../navigation/links'
 import { ScreensProps } from '../../navigation/types.screenProps'
-import { FONT_MEDIUM } from '../../styles/fonts'
 import { themedPrimaryGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
 import AdaptiveGradient from '../../ui/gradients/AdaptiveGradient'
@@ -36,28 +33,16 @@ const GalleriesTabsScreen = () => {
           headerLeft={
             <NavigationFilterButton iconColor={colors.appHeaderIconLight} />
           }
+          style={{ line: { backgroundColor: 'transparent' } }}
         />
       </AdaptiveGradient>
       {isLoaded ? (
         <Tab.Navigator
           style={styles.tabs.container}
           sceneContainerStyle={styles.tabs.sceneContainer}
-          tabBar={(props) => {
-            return (
-              <View style={styles.tabs.wrapper}>
-                <MaterialTopTabBar {...props} />
-              </View>
-            )
-          }}
-          screenOptions={{
-            tabBarGap: 40,
-            tabBarPressColor: 'transparent',
-            tabBarIndicatorStyle: styles.tabs.indicator,
-            tabBarItemStyle: styles.tabs.item,
-            tabBarLabelStyle: styles.tabs.label,
-            tabBarContentContainerStyle: styles.tabs.itemsContainer,
-            tabBarStyle: styles.tabs.tabBar,
-          }}
+          tabBar={(props) => (
+            <GalleryTopBar {...props} style={styles} colors={colors} />
+          )}
           initialRouteName={links.galleryBest}
         >
           {GALLERIES.map(({ title, type, link }) => {
@@ -93,28 +78,13 @@ export const tabsThemedStyles = createThemedStyle((colors) =>
       backgroundColor: colors.screenBackground,
     },
     label: {
-      fontFamily: FONT_MEDIUM,
-      fontSize: 18,
-      textTransform: 'none',
+      color: colors.textGrey,
+    },
+    labelActive: {
+      color: colors.text,
     },
     tabBar: {
-      justifyContent: 'center',
-      width: '100%',
-      borderBottomWidth: 1,
       borderBottomColor: colors.tabsLine,
-    },
-    item: {
-      width: 'auto',
-      paddingHorizontal: 20,
-      paddingBottom: 12,
-      paddingTop: 32,
-    },
-    indicator: {
-      backgroundColor: colors.tabsSelectedTint,
-      height: 1,
-    },
-    itemsContainer: {
-      justifyContent: 'center',
     },
   })
 )

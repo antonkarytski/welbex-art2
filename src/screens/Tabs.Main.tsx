@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import React from 'react'
 import { useTheme } from '../features/themed/hooks'
+import CustomBottomTab from '../navigation/elements/MainBottomTab'
 import { links } from '../navigation/links'
 import { ScreenDescriptor } from '../navigation/types'
 import { useText } from '../translations/hook'
@@ -25,20 +26,13 @@ const MainTabsRouter = React.memo(() => {
 
   return (
     <BottomTab.Navigator
-      screenOptions={(props) => {
-        const isFocused = props.navigation.isFocused()
-        return {
-          tabBarActiveTintColor: colors.navigationLabelSelected,
-          tabBarInactiveTintColor: colors.primary3,
-          tabBarStyle: styles.tabBar,
-          tabBarLabelStyle: [
-            styles.tabBarLabel,
-            isFocused && styles.activeTint,
-          ],
-          headerShown: false,
-        }
+      screenOptions={{
+        headerShown: false,
       }}
       initialRouteName={links.homeTab}
+      tabBar={({ ...props }) => (
+        <CustomBottomTab {...props} colors={colors} style={styles} />
+      )}
     >
       {SCREENS.map(({ label, link, Icon, Component, customButton }) => {
         return (
@@ -46,7 +40,7 @@ const MainTabsRouter = React.memo(() => {
             key={link}
             options={{
               headerShown: false,
-              tabBarIcon: (p) => Icon({ ...p, size: 20 }),
+              tabBarIcon: Icon,
               title: label(text),
               tabBarButton: customButton,
             }}
