@@ -1,7 +1,7 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import GalleryTopBar from '../../features/gallery/GalleryTopBar'
+import GalleryTabBar from '../../features/gallery/GalleryTabBar'
 import { GALLERIES } from '../../features/gallery/descriptors'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
@@ -41,7 +41,7 @@ const GalleriesTabsScreen = () => {
           style={styles.tabs.container}
           sceneContainerStyle={styles.tabs.sceneContainer}
           tabBar={(props) => (
-            <GalleryTopBar {...props} style={styles} colors={colors} />
+            <GalleryTabBar {...props} style={styles.tabs} colors={colors} />
           )}
           initialRouteName={links.galleryBest}
         >

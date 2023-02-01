@@ -7,11 +7,11 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import { NamedStyles } from '../../features/themed/createThemedStyles'
-import { ColorThemeStructure, defaultColors } from '../../features/themed/theme'
 import { FONT_MEDIUM } from '../../styles/fonts'
 import Row from '../../ui/Row'
 import Span from '../../ui/Span'
+import { NamedStyles } from '../themed/createThemedStyles'
+import { ColorThemeStructure, defaultColors } from '../themed/theme'
 
 type CustomGalleryTopBarProps = {
   style?: NamedStyles<{
@@ -22,19 +22,19 @@ type CustomGalleryTopBarProps = {
   colors: ColorThemeStructure
 } & MaterialTopTabBarProps
 
-const GalleryTopBar = ({
+const GalleryTabBar = ({
   state,
   descriptors,
   navigation,
   style,
-  colors,
 }: CustomGalleryTopBarProps) => {
   return (
     <View style={[styles.tabBar, style?.tabBar]}>
       <Row style={styles.row}>
         {state.routes.map((route, index) => {
-          const { options } = descriptors[route.key]
-          const { title } = options
+          const {
+            options: { title },
+          } = descriptors[route.key]
           const isFocused = state.index === index
 
           const onNavigate = () => {
@@ -45,7 +45,11 @@ const GalleryTopBar = ({
             })
 
             if (!isFocused && !event.defaultPrevented) {
-              navigation.navigate({ name: route.name, merge: true })
+              navigation.navigate({
+                name: route.name,
+                merge: true,
+                params: route.params,
+              })
             }
           }
 
@@ -103,4 +107,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default GalleryTopBar
+export default GalleryTabBar

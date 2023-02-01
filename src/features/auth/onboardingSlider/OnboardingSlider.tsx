@@ -11,7 +11,7 @@ import {
 import Carousel, { ICarouselInstance } from 'react-native-reanimated-carousel'
 import { Pagination } from 'react-native-snap-carousel'
 import { useStateStore } from 'altek-toolkit'
-import { getSize, screenHeight } from '../../../lib/device/dimensions'
+import { getSize } from '../../../lib/device/dimensions'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
 import { useText } from '../../../translations/hook'

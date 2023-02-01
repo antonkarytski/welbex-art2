@@ -13,7 +13,7 @@ type CustomBottomTabBarProps = {
   colors: ColorThemeStructure
 } & BottomTabBarProps
 
-const MainBottomTab = ({
+const MainBottomTabBar = ({
   state,
   descriptors,
   navigation,
@@ -27,7 +27,7 @@ const MainBottomTab = ({
       stopOffset={'20%'}
     >
       <View style={style.tabBar}>
-        <Row style={[style.row]}>
+        <Row style={style.row}>
           {state.routes.map((route, index) => {
             const { options } = descriptors[route.key]
             const { tabBarIcon, title } = options
@@ -41,7 +41,11 @@ const MainBottomTab = ({
               })
 
               if (!isFocused && !event.defaultPrevented) {
-                navigation.navigate({ name: route.name, merge: true })
+                navigation.navigate({
+                  name: route.name,
+                  merge: true,
+                  params: route.params,
+                })
               }
             }
 
@@ -74,4 +78,4 @@ const MainBottomTab = ({
   )
 }
 
-export default MainBottomTab
+export default MainBottomTabBar
