@@ -13,9 +13,9 @@ import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import { links } from '../../navigation/links'
 import { ScreensProps } from '../../navigation/types.screenProps'
 import { FONT_MEDIUM } from '../../styles/fonts'
+import { themedPrimaryGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
 import AdaptiveGradient from '../../ui/gradients/AdaptiveGradient'
-import { primaryGradientPreset } from '../../ui/gradients/styles'
 import ScreenGallery from './Screen.Gallery'
 
 const Tab = createMaterialTopTabNavigator<ScreensProps>()
@@ -24,16 +24,13 @@ const GalleriesTabsScreen = () => {
   const text = useText()
   const { styles, colors } = useThemedStyleList({
     tabs: tabsThemedStyles,
+    gradient: themedPrimaryGradient,
   })
   const isLoaded = useScreenLoading()
-  const gradientColors = primaryGradientPreset(colors)
 
   return (
     <View style={screenStyles.container}>
-      <AdaptiveGradient
-        startColor={gradientColors.start}
-        endColor={gradientColors.end}
-      >
+      <AdaptiveGradient colors={styles.gradient}>
         <ScreenHeader
           title={text.gallery}
           headerLeft={
