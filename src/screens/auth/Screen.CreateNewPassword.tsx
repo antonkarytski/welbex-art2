@@ -32,7 +32,7 @@ const NewPasswordScreen = () => {
   }
 
   return (
-    <AuthScreenContainer>
+    <AuthScreenContainer enableScrollView>
       <H2
         label={t.setNewPassword}
         style={[styles.common.title, styles.common.describedTitle]}
@@ -53,14 +53,14 @@ const NewPasswordScreen = () => {
           validLabel={t.checkPasswordMatchSuccess}
           invalidLabel={t.checkPasswordMatchError}
         />
-        <PresetButton
-          label={t.logInButton}
-          onPress={onLogin}
-          preset={styles.button}
-          style={styles.common.bottomButton}
-          disabled={!passwords.repeatingPassword || !passwords.password}
-        />
       </KeyboardAvoidingView>
+      <PresetButton
+        label={t.logInButton}
+        onPress={onLogin}
+        preset={styles.button}
+        style={styles.common.bottomButton}
+        disabled={!passwords.repeatingPassword || !passwords.password}
+      />
     </AuthScreenContainer>
   )
 }

@@ -13,6 +13,8 @@ export type GradientsProps = {
   style?: StyleProp<ViewStyle>
   startColor?: string
   endColor?: string
+  gradientTransform?: string
+  stopOffset?: string
 }
 
 const noise = require('../../../assets/images/noise.png')
@@ -22,14 +24,19 @@ const Gradient = ({
   style,
   startColor = '#46959B',
   endColor = '#94C9CD',
+  gradientTransform,
+  stopOffset,
 }: PropsWithChildren<GradientsProps>) => {
   return (
     <View style={[styles.container, style]}>
       <Svg style={StyleSheet.absoluteFill} width={'100%'} height={'100%'}>
         <Defs>
-          <LinearGradient id="grad" gradientTransform="rotate(90)">
+          <LinearGradient
+            id="grad"
+            gradientTransform={gradientTransform || 'rotate(90)'}
+          >
             <Stop offset="0%" stopColor={startColor} />
-            <Stop offset="100%" stopColor={endColor} />
+            <Stop offset={stopOffset || '100%'} stopColor={endColor} />
           </LinearGradient>
           <Pattern
             id="noise"

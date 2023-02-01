@@ -3,7 +3,7 @@ import { createThemedStyle } from '../../../features/themed'
 
 export const themedCommonStyles = createThemedStyle((colors) =>
   StyleSheet.create({
-    wrapper: {
+    screenWrapper: {
       backgroundColor: colors.screenBackground,
     },
     text: {

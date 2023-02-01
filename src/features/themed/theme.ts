@@ -41,8 +41,12 @@ const LIGHT = {
   profileTabLine: '#E1E1E1',
   profileTabText: '#BABABA',
   planSelectedBackground: '#F0FBFC',
-  primaryGradientDark: '#46959B',
+  primaryGradientDark: '#46959B', //'#303535'
   primaryGradientLight: '#94C9CD',
+  bottomTabGradientLight: '#75B3B8',
+  bottomTabGradientDark: '#469096',
+  bottomTabActiveItem: COMMON.WHITE,
+  bottomTabInactiveItem: GREEN_BLUE.LIGHT,
   /** Common */
   appHeaderTextLight: COMMON.WHITE,
   appHeaderIconLight: GREEN_BLUE.LIGHT,
@@ -55,12 +59,12 @@ const LIGHT = {
   textGrey: GREY.TEXT,
   textLightGrey: GREY.TEXT_LIGHT,
   screenBackground: COMMON.WHITE,
-  screenBackgroundAccent: GREEN_BLUE.BODY_GRADIENT,
+  screenBackgroundAccent: GREEN_BLUE.GRADIENT,
   modalOverlay: GREY.MODAL_OVERLAY,
   detailsActive: GREEN_BLUE.PRIMARY,
   detailsInactive: GREY.DETAILS,
   /** Main navigation */
-  navBarBackground: GREEN_BLUE.NAV_BAR_GRADIENT,
+  navBarBackground: GREEN_BLUE.GRADIENT,
   navBarText: GREEN_BLUE.LIGHT,
   navBarTextActive: COMMON.WHITE,
   /** Screen navigation */
@@ -139,6 +143,10 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   planSelectedBackground: '#F0FBFC',
   primaryGradientDark: '#46959B',
   primaryGradientLight: '#94C9CD',
+  bottomTabGradientLight: '#469096',
+  bottomTabGradientDark: '#75B3B8',
+  bottomTabActiveItem: COMMON.WHITE,
+  bottomTabInactiveItem: GREEN_BLUE.LIGHT,
   /** Common */
   appHeaderTextLight: COMMON.WHITE,
   appHeaderIconLight: GREEN_BLUE.LIGHT,
@@ -151,12 +159,12 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   textGrey: GREY.TEXT,
   textLightGrey: GREY.TEXT_LIGHT,
   screenBackground: COMMON.WHITE,
-  screenBackgroundAccent: GREEN_BLUE.BODY_GRADIENT,
+  screenBackgroundAccent: GREEN_BLUE.GRADIENT,
   modalOverlay: GREY.MODAL_OVERLAY,
   detailsActive: GREEN_BLUE.PRIMARY,
   detailsInactive: GREY.DETAILS,
   /** Main navigation */
-  navBarBackground: GREEN_BLUE.NAV_BAR_GRADIENT,
+  navBarBackground: GREEN_BLUE.GRADIENT,
   navBarText: GREEN_BLUE.LIGHT,
   navBarTextActive: COMMON.WHITE,
   /** Screen navigation */

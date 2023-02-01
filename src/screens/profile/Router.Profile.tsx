@@ -1,9 +1,9 @@
 import React from 'react'
-import { ProfileIcon } from 'altek-ui'
 import { Stack } from '../../navigation/elements/StackNavigator'
 import TabStackNavigator from '../../navigation/elements/TabStackNavigator'
 import { createTabScreenDescription } from '../../navigation/helpers'
 import { links } from '../../navigation/links'
+import ProfileIcon from '../../ui/icons/Icon.Profile'
 import ProfileScreen from './Screen.Profile'
 
 const ProfileRouterScreen = () => {

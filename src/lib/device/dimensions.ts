@@ -1,16 +1,22 @@
 import { Dimensions } from 'react-native'
 
+export const screenHeight = Dimensions.get('screen').height
+export const screenWidth = Dimensions.get('screen').width
+export const ratioOfScreenHeightToWidth = screenHeight / screenWidth
+
 type GetSizeProps = {
   measureName?: 'width' | 'height'
   paddingSize?: number
-  ratioToScreenSize?: number
+  percentOfScreenSize?: number
 }
 
 export const getSize = ({
   measureName = 'width',
   paddingSize = 20,
-  ratioToScreenSize = 1,
+  percentOfScreenSize,
 }: GetSizeProps) => {
   const screenSize = Dimensions.get('screen')[measureName]
-  return (screenSize - paddingSize * 2) / ratioToScreenSize
+  return percentOfScreenSize
+    ? Math.floor(((screenSize - paddingSize * 2) / 100) * percentOfScreenSize)
+    : Math.floor(screenSize - paddingSize * 2)
 }

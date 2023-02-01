@@ -42,7 +42,7 @@ const CreatePasswordScreen = () => {
   }
 
   return (
-    <AuthScreenContainer>
+    <AuthScreenContainer enableScrollView>
       <H2 label={t.enterPassword} style={[styles.common.title]} />
 
       <KeyboardAvoidingView
@@ -58,13 +58,13 @@ const CreatePasswordScreen = () => {
           style={{ formWrapper: screenStyles.passwordFormWrapper }}
         />
         <UserAgreement isInvalid={isUserAgreementInvalid} />
-        <PresetButton
-          label={t.createAccountButton}
-          onPress={onCreateAccount}
-          preset={styles.button}
-          style={styles.common.bottomButton}
-        />
       </KeyboardAvoidingView>
+      <PresetButton
+        label={t.createAccountButton}
+        onPress={onCreateAccount}
+        preset={styles.button}
+        style={styles.common.bottomButton}
+      />
     </AuthScreenContainer>
   )
 }
