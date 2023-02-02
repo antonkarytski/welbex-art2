@@ -6,14 +6,13 @@ import { GALLERIES } from '../../features/gallery/descriptors'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { useScreenLoading } from '../../lib/helpers/native/hook.screenLoad'
+import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
 import NavigationFilterButton from '../../navigation/elements/NavigationButton.GalleryFilter'
 import SettingsNavigationButton from '../../navigation/elements/NavigationButton.Settings'
-import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import { links } from '../../navigation/links'
 import { ScreensProps } from '../../navigation/types.screenProps'
 import { themedPrimaryGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
-import AdaptiveGradient from '../../ui/gradients/AdaptiveGradient'
 import ScreenGallery from './Screen.Gallery'
 
 const Tab = createMaterialTopTabNavigator<ScreensProps>()
@@ -28,18 +27,17 @@ const GalleriesTabsScreen = () => {
 
   return (
     <View style={screenStyles.container}>
-      <AdaptiveGradient colors={styles.gradient}>
-        <ScreenHeader
-          title={text.gallery}
-          headerLeft={
-            <NavigationFilterButton iconColor={colors.appHeaderIconLight} />
-          }
-          style={{ line: { backgroundColor: 'transparent' } }}
-          headerRight={
-            <SettingsNavigationButton iconColor={colors.appHeaderIconLight} />
-          }
-        />
-      </AdaptiveGradient>
+      <GradientScreenHeader
+        title={text.gallery}
+        headerLeft={
+          <NavigationFilterButton iconColor={colors.appHeaderIconLight} />
+        }
+        style={{ line: { backgroundColor: 'transparent' } }}
+        headerRight={
+          <SettingsNavigationButton iconColor={colors.appHeaderIconLight} />
+        }
+        gradient={{ colors: styles.gradient }}
+      />
       {isLoaded ? (
         <Tab.Navigator
           style={styles.tabs.container}

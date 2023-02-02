@@ -34,23 +34,29 @@ const UserDrawingsListTabs = React.memo(
     const renderTabBar = useCallback(
       (props: SceneRendererProps) => {
         return (
-          <View style={[styles.tabs, style]}>
+          <>
+            <View style={{ height: STATUSBAR_HEIGHT }} />
             <UserDrawingsTabMenu
               {...props}
               routes={routes}
               activeTabKey={activeTabKey}
+              style={[styles.tabs, style]}
             />
-          </View>
+          </>
         )
       },
-      [routes, activeTabKey, style]
+      [routes, style, activeTabKey]
     )
 
     return (
       <>
-        <Gradient style={[styles.statusBarGradient]} />
+        <View style={[styles.statusBarGradient]}>
+          <Gradient />
+        </View>
         <CollapsibleHeaderTabView
-          renderScrollHeader={() => <>{children}</>}
+          renderScrollHeader={() => (
+            <View style={styles.scrollHeaderWrapper}>{children}</View>
+          )}
           renderTabBar={renderTabBar}
           navigationState={{ index, routes: tabsProps.routes }}
           renderScene={scenes}
@@ -70,8 +76,10 @@ const styles = StyleSheet.create({
     top: 0,
     width: '100%',
   },
+  scrollHeaderWrapper: {
+    marginBottom: -STATUSBAR_HEIGHT,
+  },
   tabs: {
-    marginTop: 20,
     backgroundColor: defaultColors.screenBackground,
   },
 })

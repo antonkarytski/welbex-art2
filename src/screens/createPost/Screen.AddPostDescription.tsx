@@ -7,7 +7,7 @@ import { createPostFormModel } from '../../features/createPost/model'
 import BlockUploadFromCamera from '../../features/imagePick/Block.UploadFromCamera'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
-import ScreenHeader from '../../navigation/elements/ScreenHeader'
+import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
 import { links } from '../../navigation/links'
 import { ScreenComponentProps } from '../../navigation/types.screenProps'
 import { themedPrimaryGradient } from '../../styles/gradients'
@@ -16,7 +16,6 @@ import H3 from '../../ui/H3'
 import PresetButton from '../../ui/buttons/PresetButton'
 import { DropdownStyles } from '../../ui/dropdownTab/types'
 import Field from '../../ui/form/Field'
-import AdaptiveGradient from '../../ui/gradients/AdaptiveGradient'
 import DropdownSelect from '../../ui/selects/DropdownSelect'
 
 const selectedCategoryModel = createStateModel(MOCK_CATEGORIES[0])
@@ -45,9 +44,11 @@ export default function AddPostDescriptionScreen({
 
   return (
     <View style={styles.common.container}>
-      <AdaptiveGradient colors={styles.gradient}>
-        <ScreenHeader backAvailable title={text.description} />
-      </AdaptiveGradient>
+      <GradientScreenHeader
+        gradient={{ colors: styles.gradient }}
+        backAvailable
+        title={text.description}
+      />
       <ScrollView
         bounces={false}
         style={styles.common.scroll}
