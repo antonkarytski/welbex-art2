@@ -10,7 +10,8 @@ import { useThemedStyleList } from '../../features/themed/hooks'
 import UserCountersBlock from '../../features/user/UserCountersBlock'
 import UserScreenHeader from '../../features/user/UserScreenHeader'
 import UserDrawingsListTabs from '../../features/user/drawingsList/UserDrawingsListTabs'
-import ScreenHeader from '../../navigation/elements/ScreenHeader'
+import { SCREEN_HEIGHT } from '../../lib/device/dimensions'
+import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
 import { coloredScreenHeaderThemedStyles } from '../../styles/screen'
 import { useText } from '../../translations/hook'
 
@@ -41,13 +42,7 @@ const ProfileScreen = () => {
         </UserDrawingsListTabs>
       ) : (
         <>
-          <ScreenHeader
-            title={text.profile}
-            style={{
-              ...styles.header,
-              line: styles.common.screenHeaderLine,
-            }}
-          />
+          <GradientScreenHeader title={text.profile} />
           <ScrollView style={styles.common.unauthorizedContainer}>
             <OfferToGetAuthorization enableDescriptionText />
           </ScrollView>
@@ -70,8 +65,7 @@ const themedStyles = createThemedStyle((colors) =>
     },
     unauthorizedContainer: {
       paddingHorizontal: 20,
-      marginTop: 'auto',
-      marginBottom: 'auto',
+      padding: SCREEN_HEIGHT / 4.8,
     },
     screen: {
       backgroundColor: colors.screenBackground,

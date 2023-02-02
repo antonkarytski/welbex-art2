@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 32,
     paddingHorizontal: 20,
+    paddingBottom: 24,
   },
   image: {
     paddingTop: 24,
