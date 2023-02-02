@@ -9,10 +9,15 @@ type UseThemeReturn<S> = {
   theme: ColorThemes
   styles: S
 }
-type StylesList<T> = {
-  [K in keyof T]: T[K] extends UseStyleFn<infer S> ? S : never
+type StylesList<T extends UseStyleFnList> = {
+  [K in keyof T]: ReturnType<T[K]> extends UseStyleFn<infer S>
+    ? S
+    : ReturnType<T[K]>
 }
-type UseStyleFnList = Record<string, UseStyleFn<any>>
+type UseStyleFnList = Record<
+  string,
+  ((colors: ColorThemes) => any) | UseStyleFn<any>
+>
 export const useThemedStyleListDev = <T extends UseStyleFnList>(
   stylesList: T
 ): UseThemeReturn<StylesList<T>> => {
@@ -23,6 +28,9 @@ export const useThemedStyleListDev = <T extends UseStyleFnList>(
     colors: COLOR_THEMES[theme],
   }
 }
+
+//<T extends UseStyleFnList>
+//UseThemeReturn<StylesList<T>>
 export const useThemedStyleListWithMemo = <T extends UseStyleFnList>(
   stylesList: T
 ): UseThemeReturn<StylesList<T>> => {

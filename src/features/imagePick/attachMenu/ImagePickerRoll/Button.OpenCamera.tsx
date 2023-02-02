@@ -6,7 +6,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import { RNCamera } from 'react-native-camera'
+// import { RNCamera } from 'react-native-camera'
 import { CameraIcon } from 'altek-ui'
 import { useNavigate } from '../../../../navigation'
 import { links } from '../../../../navigation/links'
@@ -19,7 +19,7 @@ type OpenCameraButtonProps = {
   cameraProps?: CameraProps
 }
 
-export const OpenCameraButton = forwardRef<RNCamera, OpenCameraButtonProps>(
+export const OpenCameraButton = forwardRef<any, OpenCameraButtonProps>(
   ({ isAbleToLoadCamera = true, onPhoto, cameraProps }, ref) => {
     const navigate = useNavigate()
 
@@ -47,20 +47,20 @@ export const OpenCameraButton = forwardRef<RNCamera, OpenCameraButtonProps>(
 
     return (
       <View style={cellsStyles.container}>
-        <RNCamera
-          ref={ref}
-          type={RNCamera.Constants.Type.back}
-          style={styles.camera}
-          ratio={'1:1'}
-          androidCameraPermissionOptions={{
-            title: 'Permission to use camera',
-            message: 'We need your permission to use your camera',
-            buttonPositive: 'Ok',
-            buttonNegative: 'Cancel',
-          }}
-        >
-          <OpenCameraWithoutPreview onPress={onPress} />
-        </RNCamera>
+        {/*<RNCamera*/}
+        {/*  ref={ref}*/}
+        {/*  type={RNCamera.Constants.Type.back}*/}
+        {/*  style={styles.camera}*/}
+        {/*  ratio={'1:1'}*/}
+        {/*  androidCameraPermissionOptions={{*/}
+        {/*    title: 'Permission to use camera',*/}
+        {/*    message: 'We need your permission to use your camera',*/}
+        {/*    buttonPositive: 'Ok',*/}
+        {/*    buttonNegative: 'Cancel',*/}
+        {/*  }}*/}
+        {/*>*/}
+        {/*  <OpenCameraWithoutPreview onPress={onPress} />*/}
+        {/*</RNCamera>*/}
       </View>
     )
   }

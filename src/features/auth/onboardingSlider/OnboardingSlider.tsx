@@ -24,17 +24,19 @@ import {
   onboardingSliderData,
 } from './onboardingSliderData'
 
+export type OnboardingSliderStyles = {
+  img?: StyleProp<ImageStyle>
+  imgWrp?: StyleProp<ViewStyle>
+  caption?: StyleProp<TextStyle>
+  paginationDot?: StyleProp<ViewStyle>
+  paginationDotInactive?: StyleProp<ViewStyle>
+  paginationContainer?: StyleProp<ViewStyle>
+  button?: PresetButtonStates
+}
+
 type OnboardingSliderProps = {
   onSnapToItem?: (index: number) => void
-  style?: {
-    img?: StyleProp<ImageStyle>
-    imgWrp?: StyleProp<ViewStyle>
-    caption?: StyleProp<TextStyle>
-    paginationDot?: StyleProp<ViewStyle>
-    paginationDotInactive?: StyleProp<ViewStyle>
-    paginationContainer?: StyleProp<ViewStyle>
-    button?: PresetButtonStates
-  }
+  style?: OnboardingSliderStyles
 }
 
 type RenderItemProps = { item: OnboardingSliderItem }

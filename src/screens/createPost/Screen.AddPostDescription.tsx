@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { ImageStyle, ScrollView, StyleSheet, View } from 'react-native'
 import { createStateModel } from 'altek-toolkit'
 import { MOCK_CATEGORIES } from '../../_mock/categories'
 import ImagePreviewFormField from '../../features/createPost/ImagePreviewFormField'
@@ -10,13 +10,13 @@ import { useThemedStyleList } from '../../features/themed/hooks'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import { links } from '../../navigation/links'
 import { ScreenComponentProps } from '../../navigation/types.screenProps'
+import { themedPrimaryGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
 import H3 from '../../ui/H3'
 import PresetButton from '../../ui/buttons/PresetButton'
 import { DropdownStyles } from '../../ui/dropdownTab/types'
 import Field from '../../ui/form/Field'
 import AdaptiveGradient from '../../ui/gradients/AdaptiveGradient'
-import { primaryGradientPreset } from '../../ui/gradients/styles'
 import DropdownSelect from '../../ui/selects/DropdownSelect'
 
 const selectedCategoryModel = createStateModel(MOCK_CATEGORIES[0])
@@ -30,11 +30,11 @@ export default function AddPostDescriptionScreen({
 }: ScreenComponentProps<links.createPostAddDescription>) {
   const assets = route.params.assets
   const text = useText()
-  const { styles, colors } = useThemedStyleList({
+  const { styles } = useThemedStyleList({
     common: themedStyles,
     select: themedSelectStyles,
+    gradient: themedPrimaryGradient,
   })
-  const gradient = primaryGradientPreset(colors)
 
   useEffect(() => {
     createPostFormModel.setField({
@@ -45,7 +45,7 @@ export default function AddPostDescriptionScreen({
 
   return (
     <View style={styles.common.container}>
-      <AdaptiveGradient startColor={gradient.start} endColor={gradient.end}>
+      <AdaptiveGradient colors={styles.gradient}>
         <ScreenHeader backAvailable title={text.description} />
       </AdaptiveGradient>
       <ScrollView
@@ -56,7 +56,7 @@ export default function AddPostDescriptionScreen({
         <ImagePreviewFormField
           name={'imageUri'}
           formModel={createPostFormModel}
-          style={styles.common.image}
+          style={styles.common.image as ImageStyle}
         />
 
         <H3 style={styles.common.header} label={text.completeDescription} />

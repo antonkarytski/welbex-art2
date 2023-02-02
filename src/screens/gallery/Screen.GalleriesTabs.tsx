@@ -1,7 +1,7 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import GalleryTopBar from '../../features/gallery/GalleryTopBar'
+import GalleryTabBar from '../../features/gallery/GalleryTabBar'
 import { GALLERIES } from '../../features/gallery/descriptors'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
@@ -11,9 +11,9 @@ import SettingsNavigationButton from '../../navigation/elements/NavigationButton
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import { links } from '../../navigation/links'
 import { ScreensProps } from '../../navigation/types.screenProps'
+import { themedPrimaryGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
 import AdaptiveGradient from '../../ui/gradients/AdaptiveGradient'
-import { primaryGradientPreset } from '../../ui/gradients/styles'
 import ScreenGallery from './Screen.Gallery'
 
 const Tab = createMaterialTopTabNavigator<ScreensProps>()
@@ -22,16 +22,13 @@ const GalleriesTabsScreen = () => {
   const text = useText()
   const { styles, colors } = useThemedStyleList({
     tabs: tabsThemedStyles,
+    gradient: themedPrimaryGradient,
   })
   const isLoaded = useScreenLoading()
-  const gradientColors = primaryGradientPreset(colors)
 
   return (
     <View style={screenStyles.container}>
-      <AdaptiveGradient
-        startColor={gradientColors.start}
-        endColor={gradientColors.end}
-      >
+      <AdaptiveGradient colors={styles.gradient}>
         <ScreenHeader
           title={text.gallery}
           headerLeft={
@@ -48,7 +45,7 @@ const GalleriesTabsScreen = () => {
           style={styles.tabs.container}
           sceneContainerStyle={styles.tabs.sceneContainer}
           tabBar={(props) => (
-            <GalleryTopBar {...props} style={styles} colors={colors} />
+            <GalleryTabBar {...props} style={styles.tabs} colors={colors} />
           )}
           initialRouteName={links.galleryBest}
         >

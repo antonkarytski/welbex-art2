@@ -1,19 +1,22 @@
 import React, { useCallback } from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
+import { Animated, FlatListProps, StyleSheet } from 'react-native'
 import { MOCK_CATEGORIES } from '../../_mock/categories'
-import { useText } from '../../translations/hook'
-import H2 from '../../ui/H2'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import CardCategory from './Card.Category'
 import { categoryCardThemedStyles } from './styles'
 import { CompetitionCategory } from './types'
 
-type CategoriesListProps = {}
+type CategoriesListProps = {
+  ListHeaderComponent?: FlatListProps<any>['ListHeaderComponent']
+  onScroll?: Animated.AnimatedProps<FlatListProps<any>>['onScroll']
+}
 const keyExtractor = ({ name }: CompetitionCategory) => name
 
-const CategoriesList = ({}: CategoriesListProps) => {
-  const text = useText()
+const CategoriesList = ({
+  ListHeaderComponent,
+  onScroll,
+}: CategoriesListProps) => {
   const { styles } = useThemedStyleList({
     common: themedStyles,
     card: categoryCardThemedStyles,
@@ -27,15 +30,16 @@ const CategoriesList = ({}: CategoriesListProps) => {
   )
 
   return (
-    <View style={styles.common.container}>
-      <H2 style={styles.common.title} label={text.categories} />
-      <FlatList
-        contentContainerStyle={styles.common.listContent}
-        data={MOCK_CATEGORIES}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-      />
-    </View>
+    <Animated.FlatList
+      style={styles.common.container}
+      bounces={false}
+      onScroll={onScroll}
+      ListHeaderComponent={ListHeaderComponent}
+      showsVerticalScrollIndicator={false}
+      data={MOCK_CATEGORIES}
+      renderItem={renderItem}
+      keyExtractor={keyExtractor}
+    />
   )
 }
 
@@ -46,9 +50,6 @@ const themedStyles = createThemedStyle(() =>
     },
     title: {
       paddingLeft: 20,
-    },
-    listContent: {
-      paddingHorizontal: 20,
     },
   })
 )

@@ -22,7 +22,11 @@ const Span = ({
   onLayout,
 }: PropsWithChildren<SpanProps>) => {
   return (
-    <Text style={[styles.common, weights[weight], style]} onLayout={onLayout}>
+    <Text
+      allowFontScaling={false}
+      style={[styles.common, weights[weight], style]}
+      onLayout={onLayout}
+    >
       {label || children}
     </Text>
   )
