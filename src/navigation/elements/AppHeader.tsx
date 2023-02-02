@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
 import Sup from '../../ui/Sup'
 import SettingsButton from './NavigationButton.Settings'
-import ScreenHeader from './ScreenHeader'
+import ScreenHeader, { ScreenHeaderProps } from './ScreenHeader'
 import { ScreenHeaderStyles } from './styles'
 
 type AppHeaderProps = {
@@ -14,6 +14,7 @@ type AppHeaderProps = {
   settingsAvailable?: boolean
   settingsIconColor?: string
   iconsColor?: string
+  onLayout?: ScreenHeaderProps['onLayout']
 }
 
 const AppHeader = ({
@@ -23,10 +24,12 @@ const AppHeader = ({
   settingsAvailable,
   settingsIconColor,
   iconsColor,
+  onLayout,
 }: AppHeaderProps) => {
   return (
     <ScreenHeader
       style={style}
+      onLayout={onLayout}
       backAvailable={backAvailable}
       backArrowColor={backArrowColor || iconsColor}
       headerRight={

@@ -11,7 +11,7 @@ import {
 import Carousel, { ICarouselInstance } from 'react-native-reanimated-carousel'
 import { Pagination } from 'react-native-snap-carousel'
 import { useStateStore } from 'altek-toolkit'
-import { getSize, screenHeight } from '../../../lib/device/dimensions'
+import { getSize } from '../../../lib/device/dimensions'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
 import { useText } from '../../../translations/hook'
@@ -24,17 +24,19 @@ import {
   onboardingSliderData,
 } from './onboardingSliderData'
 
+export type OnboardingSliderStyles = {
+  img?: StyleProp<ImageStyle>
+  imgWrp?: StyleProp<ViewStyle>
+  caption?: StyleProp<TextStyle>
+  paginationDot?: StyleProp<ViewStyle>
+  paginationDotInactive?: StyleProp<ViewStyle>
+  paginationContainer?: StyleProp<ViewStyle>
+  button?: PresetButtonStates
+}
+
 type OnboardingSliderProps = {
   onSnapToItem?: (index: number) => void
-  style?: {
-    img?: StyleProp<ImageStyle>
-    imgWrp?: StyleProp<ViewStyle>
-    caption?: StyleProp<TextStyle>
-    paginationDot?: StyleProp<ViewStyle>
-    paginationDotInactive?: StyleProp<ViewStyle>
-    paginationContainer?: StyleProp<ViewStyle>
-    button?: PresetButtonStates
-  }
+  style?: OnboardingSliderStyles
 }
 
 type RenderItemProps = { item: OnboardingSliderItem }

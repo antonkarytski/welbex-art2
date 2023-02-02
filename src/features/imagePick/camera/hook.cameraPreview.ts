@@ -1,10 +1,10 @@
-import { useCallback, useMemo, useRef, useState } from 'react'
-import { RNCamera } from 'react-native-camera'
-import { ViewToken } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
+import { useCallback, useMemo, useRef, useState } from 'react'
+//import { RNCamera } from 'react-native-camera'
+import { ViewToken } from 'react-native'
 
 export function useCameraPreview() {
-  const ref = useRef<RNCamera | null>(null)
+  const ref = useRef<any | null>(null)
   const [reloadKey, setReloadKey] = useState(0)
   const reloadCamera = useCallback(({ changed }: { changed: ViewToken[] }) => {
     if (!ref?.current) return
