@@ -59,7 +59,6 @@ const themedStyles = createThemedStyle((colors) =>
     },
     countersBlock: {
       marginTop: 32,
-      paddingBottom: 20,
     },
     tabs: {
       backgroundColor: colors.screenBackground,

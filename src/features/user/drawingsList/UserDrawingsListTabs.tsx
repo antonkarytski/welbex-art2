@@ -20,6 +20,7 @@ type UserDrawingsListTabsProps<T extends Route> = PropsWithChildren<{
     routes: (T & { title: string })[]
   }
   style?: StyleProp<ViewStyle>
+  scrollHeaderWrapperStyle?: StyleProp<ViewStyle>
 }>
 
 const UserDrawingsListTabs = React.memo(
@@ -27,6 +28,7 @@ const UserDrawingsListTabs = React.memo(
     style,
     children,
     tabsProps,
+    scrollHeaderWrapperStyle,
   }: UserDrawingsListTabsProps<T>) => {
     const [index, setIndex] = useState(0)
     const { scenes, routes } = tabsProps
@@ -55,7 +57,11 @@ const UserDrawingsListTabs = React.memo(
         </View>
         <CollapsibleHeaderTabView
           renderScrollHeader={() => (
-            <View style={styles.scrollHeaderWrapper}>{children}</View>
+            <View
+              style={[styles.scrollHeaderWrapper, scrollHeaderWrapperStyle]}
+            >
+              {children}
+            </View>
           )}
           renderTabBar={renderTabBar}
           navigationState={{ index, routes: tabsProps.routes }}
@@ -78,6 +84,7 @@ const styles = StyleSheet.create({
   },
   scrollHeaderWrapper: {
     marginBottom: -STATUSBAR_HEIGHT,
+    paddingBottom: 20,
   },
   tabs: {
     backgroundColor: defaultColors.screenBackground,
