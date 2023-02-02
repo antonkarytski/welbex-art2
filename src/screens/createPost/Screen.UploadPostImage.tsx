@@ -4,11 +4,10 @@ import UploadFromCameraBlock from '../../features/imagePick/Block.UploadFromCame
 import UploadFromCameraRollBlock from '../../features/imagePick/Block.UploadFromCameraRoll'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
-import ScreenHeader from '../../navigation/elements/ScreenHeader'
+import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
 import { themedPrimaryGradient } from '../../styles/gradients'
 import { themedShadow5Style } from '../../styles/shadows'
 import { useText } from '../../translations/hook'
-import AdaptiveGradient from '../../ui/gradients/AdaptiveGradient'
 
 export default function UploadPostImageScreen() {
   const text = useText()
@@ -19,9 +18,10 @@ export default function UploadPostImageScreen() {
 
   return (
     <View>
-      <AdaptiveGradient colors={styles.gradient}>
-        <ScreenHeader title={text.uploadImage} />
-      </AdaptiveGradient>
+      <GradientScreenHeader
+        title={text.uploadImage}
+        gradient={{ colors: styles.gradient }}
+      />
       <View style={styles.common.contentContainer}>
         <UploadFromCameraRollBlock style={styles.common.cameraRollBlock} />
         <UploadFromCameraBlock

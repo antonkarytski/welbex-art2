@@ -9,16 +9,27 @@ type SpecificUserDrawingListProps = {
 
 type UserDrawingsListProps = {
   type: UserDrawingListType
+  navigationIndex?: number
 } & SpecificUserDrawingListProps
 
-const UserDrawingsList = ({ item, type }: UserDrawingsListProps) => {
+const UserDrawingsList = ({
+  item,
+  type,
+  navigationIndex,
+}: UserDrawingsListProps) => {
   const [list, getFirst, getNext] = useDrawingsList(item, type)
 
   useEffect(() => {
     getFirst()
   }, [getFirst])
 
-  return <DrawingsList onEndReach={getNext} data={list} />
+  return (
+    <DrawingsList
+      onEndReach={getNext}
+      data={list}
+      navigationIndex={navigationIndex}
+    />
+  )
 }
 
 export default UserDrawingsList

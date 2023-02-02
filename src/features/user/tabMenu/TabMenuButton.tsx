@@ -11,14 +11,31 @@ type TabMenuButtonProps = {
   onPress: (key: string) => void
   id: string
   textStyle?: StyleProp<TextStyle>
+  textActiveStyle?: StyleProp<TextStyle>
   label: string
+  isActive: boolean
 }
 
 const TabMenuButton = React.memo(
-  ({ onPress, id, textStyle, label }: TabMenuButtonProps) => {
+  ({
+    onPress,
+    id,
+    textStyle,
+    label,
+    textActiveStyle,
+    isActive,
+  }: TabMenuButtonProps) => {
     return (
-      <TouchableOpacity onPress={() => onPress(id)} style={styles.button}>
-        <Span weight={500} style={[styles.text, textStyle]} label={label} />
+      <TouchableOpacity
+        onPress={() => onPress(id)}
+        style={styles.button}
+        activeOpacity={0.6}
+      >
+        <Span
+          weight={500}
+          style={[styles.text, textStyle, isActive && textActiveStyle]}
+          label={label}
+        />
       </TouchableOpacity>
     )
   }

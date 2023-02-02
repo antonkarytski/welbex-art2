@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import Svg, {
   Defs,
   Image,
@@ -8,18 +8,7 @@ import Svg, {
   Rect,
   Stop,
 } from 'react-native-svg'
-
-export type GradientColors = {
-  start?: string
-  end?: string
-}
-
-export type GradientsProps = {
-  style?: StyleProp<ViewStyle>
-  gradientTransform?: string
-  stopOffset?: string
-  colors?: GradientColors
-}
+import { GradientsProps } from './types'
 
 const noise = require('../../../assets/images/noise.png')
 

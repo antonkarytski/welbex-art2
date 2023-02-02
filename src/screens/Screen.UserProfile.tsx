@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, View } from 'react-native'
-import ProfileDrawingsListTabs from '../features/profile/ProfileDrawingsListTabs'
+import { StyleSheet } from 'react-native'
+import { createThemedStyle } from '../features/themed'
+import { useThemedStyle } from '../features/themed/hooks'
 import UserCountersBlock from '../features/user/UserCountersBlock'
 import UserScreenHeader from '../features/user/UserScreenHeader'
+import UserDrawingsListTabs from '../features/user/drawingsList/UserDrawingsListTabs'
+import { useChildrenDrawingsListTabs } from '../features/user/drawingsList/hooks.drawingTabs'
 import { getUserExt } from '../features/user/request'
 import { UserExt } from '../features/user/types'
 import { links } from '../navigation/links'
@@ -13,6 +16,8 @@ const UserProfileScreen = ({
 }: ScreenComponentProps<links.userProfile>) => {
   const item = route.params.item
   const [userExt, setUserExt] = useState<UserExt | null>(null)
+  const userGalleryTabsProps = useChildrenDrawingsListTabs(item)
+  const styles = useThemedStyle(themedStyles)
 
   useEffect(() => {
     getUserExt(item).then((result) => {
@@ -21,26 +26,24 @@ const UserProfileScreen = ({
   }, [item])
 
   return (
-    <View style={styles.container}>
+    <UserDrawingsListTabs tabsProps={userGalleryTabsProps}>
       <UserScreenHeader backAvailable item={item} label={item.name} />
       {userExt ? (
         <UserCountersBlock item={userExt} style={styles.countersBlock} />
       ) : null}
-      <ProfileDrawingsListTabs style={styles.tabs} />
-    </View>
+    </UserDrawingsListTabs>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  countersBlock: {
-    marginTop: 32,
-  },
-  tabs: {
-    marginTop: 20,
-  },
-})
+const themedStyles = createThemedStyle((colors) =>
+  StyleSheet.create({
+    countersBlock: {
+      marginTop: 32,
+    },
+    tabs: {
+      backgroundColor: colors.screenBackground,
+    },
+  })
+)
 
 export default UserProfileScreen

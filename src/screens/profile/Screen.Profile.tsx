@@ -1,60 +1,79 @@
 import { useStore } from 'effector-react'
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import OfferToGetAuthorization from '../../features/auth/OfferToGetAuthorization'
 import { $isAuth } from '../../features/auth/model'
-import ProfileDrawingsListTabs from '../../features/profile/ProfileDrawingsListTabs'
+import { useProfileDrawingsListTabs } from '../../features/profile/hooks'
 import { $userProfile } from '../../features/profile/model'
-import { useThemedStyle } from '../../features/themed/hooks'
+import { createThemedStyle } from '../../features/themed'
+import { useThemedStyleList } from '../../features/themed/hooks'
 import UserCountersBlock from '../../features/user/UserCountersBlock'
 import UserScreenHeader from '../../features/user/UserScreenHeader'
-import ScreenHeader from '../../navigation/elements/ScreenHeader'
+import UserDrawingsListTabs from '../../features/user/drawingsList/UserDrawingsListTabs'
+import { SCREEN_HEIGHT } from '../../lib/device/dimensions'
+import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
 import { coloredScreenHeaderThemedStyles } from '../../styles/screen'
 import { useText } from '../../translations/hook'
 
 const ProfileScreen = () => {
   const text = useText()
   const profile = useStore($userProfile)
-  const headerStyles = useThemedStyle(coloredScreenHeaderThemedStyles)
+  const { styles } = useThemedStyleList({
+    header: coloredScreenHeaderThemedStyles,
+    common: themedStyles,
+  })
   // TODO - delete and check if profile null
   const isAuth = useStore($isAuth)
-  // TODO
+
+  const profileGalleryTabsProps = useProfileDrawingsListTabs()
 
   return (
-    <View style={styles.container}>
+    <View style={styles.common.container}>
       {isAuth ? (
-        <>
+        <UserDrawingsListTabs
+          tabsProps={profileGalleryTabsProps}
+          style={styles.common.tabs}
+        >
           <UserScreenHeader item={profile} label={text.myProfile} />
-          <UserCountersBlock item={profile} style={styles.countersBlock} />
-          <ProfileDrawingsListTabs style={styles.tabs} />
-        </>
+          <UserCountersBlock
+            item={profile}
+            style={styles.common.countersBlock}
+          />
+        </UserDrawingsListTabs>
       ) : (
         <>
-          <ScreenHeader title={text.profile} style={headerStyles} />
-          <View style={styles.unauthorizedContainer}>
+          <GradientScreenHeader title={text.profile} />
+          <ScrollView style={styles.common.unauthorizedContainer}>
             <OfferToGetAuthorization enableDescriptionText />
-          </View>
+          </ScrollView>
         </>
       )}
     </View>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  countersBlock: {
-    marginTop: 32,
-  },
-  tabs: {
-    marginTop: 20,
-  },
-  unauthorizedContainer: {
-    paddingHorizontal: 20,
-    marginTop: 'auto',
-    marginBottom: 'auto',
-  },
-})
+const themedStyles = createThemedStyle((colors) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+    countersBlock: {
+      marginTop: 32,
+    },
+    tabs: {
+      backgroundColor: colors.screenBackground,
+    },
+    unauthorizedContainer: {
+      paddingHorizontal: 20,
+      padding: SCREEN_HEIGHT / 4.8,
+    },
+    screen: {
+      backgroundColor: colors.screenBackground,
+    },
+    screenHeaderLine: {
+      backgroundColor: 'transparent',
+    },
+  })
+)
 
 export default ProfileScreen

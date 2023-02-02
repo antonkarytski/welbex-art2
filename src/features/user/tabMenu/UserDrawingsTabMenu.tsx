@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, TextStyle, View, ViewStyle } from 'react-native'
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import { SceneRendererProps } from 'react-native-tab-view/lib/typescript/src/types'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyle } from '../../themed/hooks'
@@ -8,6 +8,8 @@ import TabMenuButtons from './TabMenuButtons'
 
 type UserDrawingsTabMenuProps = SceneRendererProps & {
   routes: { key: string; title: string }[]
+  activeTabKey?: string
+  style?: StyleProp<ViewStyle>
 }
 
 const UserDrawingsTabMenu = ({
@@ -15,15 +17,18 @@ const UserDrawingsTabMenu = ({
   position,
   layout,
   routes,
+  activeTabKey,
+  style,
 }: UserDrawingsTabMenuProps) => {
   const styles = useThemedStyle(themedStyles)
-
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <TabMenuButtons
         routes={routes}
         onButtonPress={jumpTo}
         buttonLabelStyle={styles.buttonLabel}
+        buttonActiveLabelStyle={styles.buttonLabelActive}
+        activeTabKey={activeTabKey}
       />
       <ActiveLineTint
         style={styles.line}
@@ -43,6 +48,9 @@ const themedStyles = createThemedStyle((colors) =>
     },
     buttonLabel: {
       color: colors.profileTabText,
+    },
+    buttonLabelActive: {
+      color: colors.text,
     },
     line: {
       backgroundColor: colors.profileTabLine,

@@ -1,6 +1,7 @@
 import React, { PropsWithChildren, useState } from 'react'
 import { View } from 'react-native'
-import Gradient, { GradientsProps } from './Gradient'
+import Gradient from './Gradient'
+import { GradientsProps } from './types'
 
 const AdaptiveGradient = ({
   children,

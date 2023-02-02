@@ -62,7 +62,13 @@ const GalleryFilter = () => {
           onChangeText={setDrawingName}
           styles={styles.input}
         />
-        <MultiSlider label={t.age} model={ageRangeModel} min={2} max={15} step={1} />
+        <MultiSlider
+          label={t.age}
+          model={ageRangeModel}
+          min={2}
+          max={15}
+          step={1}
+        />
       </KeyboardAvoidingView>
 
       <PresetButton
@@ -102,6 +108,7 @@ const commonStyles = StyleSheet.create({
   },
   fieldsWrapper: {
     paddingTop: 24,
+    marginBottom: 24,
   },
 })
 
