@@ -22,15 +22,20 @@ export const childrenDrawingsListTabs: TabsDescriptor = {
 
 export function useDrawingsTabs(tabs: TabsDescriptor, item: User) {
   const text = useText()
-  const scenes = useMemo(
-    () =>
-      SceneMap(
-        mapObject(tabs, (_, key) => {
-          return () => <UserDrawingsList type={key} item={item} />
-        })
-      ),
-    [tabs, item]
-  )
+  const scenes = useMemo(() => {
+    return SceneMap(
+      mapObject(tabs, (_, key) => {
+        const navigationIndex = Object.keys(tabs).indexOf(key)
+        return () => (
+          <UserDrawingsList
+            type={key}
+            item={item}
+            navigationIndex={navigationIndex}
+          />
+        )
+      })
+    )
+  }, [tabs, item])
   const routes = useMemo(
     () =>
       Object.entries(tabs).map(([key, { label }]) => {

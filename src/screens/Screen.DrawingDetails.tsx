@@ -22,14 +22,19 @@ const DrawingDetailsScreen = ({
   const navigate = useNavigate()
   const drawing = route.params.item
   const text = useText()
-  const { styles } = useThemedStyleList({
+  const { styles, colors } = useThemedStyleList({
     common: themedStyles,
     header: transparentThemedHeaderStyles,
   })
 
   return (
     <View style={styles.common.container}>
-      <AppHeader style={styles.header} />
+      <AppHeader
+        style={styles.header}
+        backAvailable
+        settingsAvailable
+        iconsColor={colors.appHeaderIconDark}
+      />
 
       <ScrollView bounces={false} style={styles.common.contentContainer}>
         <UserCardPreview

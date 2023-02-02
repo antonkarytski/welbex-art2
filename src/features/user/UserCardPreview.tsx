@@ -41,6 +41,7 @@ const UserCardPreview = ({
         ageTextGenerator={localeAgeTextShort(text)}
         style={styles.description}
         item={item}
+        shortenCountryName
       />
       <SubscribeButton
         theme={getSubscribeButtonPreset({
@@ -78,6 +79,8 @@ const themedStyles = createThemedStyle((colors) =>
     },
     button: {
       marginLeft: 'auto',
+      paddingVertical: 8,
+      paddingHorizontal: 24,
     },
   })
 )

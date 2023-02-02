@@ -6,12 +6,16 @@ type TabMenuButtonsProps = {
   routes: { key: string; title: string }[]
   onButtonPress: (key: string) => void
   buttonLabelStyle?: StyleProp<TextStyle>
+  buttonActiveLabelStyle?: StyleProp<TextStyle>
+  activeTabKey?: string
 }
 
 const TabMenuButtons = ({
   routes,
   onButtonPress,
   buttonLabelStyle,
+  buttonActiveLabelStyle,
+  activeTabKey,
 }: TabMenuButtonsProps) => {
   return (
     <View style={styles.container}>
@@ -19,6 +23,8 @@ const TabMenuButtons = ({
         return (
           <TabMenuButton
             textStyle={buttonLabelStyle}
+            textActiveStyle={buttonActiveLabelStyle}
+            isActive={activeTabKey === key}
             onPress={onButtonPress}
             key={key}
             label={title}

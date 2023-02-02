@@ -16,7 +16,7 @@ const BigIconButton = ({
   return (
     <PresetButton
       onPress={onPress}
-      style={style?.button}
+      style={[styles.button, style?.button]}
       preset={preset}
       disabled={disabled}
     >
@@ -39,6 +39,9 @@ const styles = StyleSheet.create({
     marginLeft: 12,
     fontSize: 16,
     lineHeight: 21,
+  },
+  button: {
+    paddingVertical: 14,
   },
 })
 

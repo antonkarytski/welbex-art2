@@ -7,6 +7,7 @@ import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { useScreenLoading } from '../../lib/helpers/native/hook.screenLoad'
 import NavigationFilterButton from '../../navigation/elements/NavigationButton.GalleryFilter'
+import SettingsNavigationButton from '../../navigation/elements/NavigationButton.Settings'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import { links } from '../../navigation/links'
 import { ScreensProps } from '../../navigation/types.screenProps'
@@ -37,6 +38,9 @@ const GalleriesTabsScreen = () => {
             <NavigationFilterButton iconColor={colors.appHeaderIconLight} />
           }
           style={{ line: { backgroundColor: 'transparent' } }}
+          headerRight={
+            <SettingsNavigationButton iconColor={colors.appHeaderIconLight} />
+          }
         />
       </AdaptiveGradient>
       {isLoaded ? (
