@@ -1,6 +1,6 @@
 import React, { ReactElement, useCallback } from 'react'
 import {
-  FlatList,
+  Animated,
   FlatListProps,
   ImageStyle,
   StyleSheet,
@@ -26,6 +26,7 @@ type DrawingsListProps<L extends links> = {
   onEndReach?: () => void
   navigationIndex?: number
   onRefresh?: () => void
+  onScroll?: FlatListProps<any>['onScroll']
 }
 
 function getImageSize() {
@@ -38,6 +39,7 @@ const DrawingsList = <L extends links>({
   onEndReach,
   navigationIndex,
   onRefresh,
+  onScroll,
 }: DrawingsListProps<L>) => {
   const imageSize = getImageSize()
   const styles = useThemedStyle(themedStyles)
@@ -80,11 +82,12 @@ const DrawingsList = <L extends links>({
         <HFlatList
           {...listProps}
           index={navigationIndex}
-          style={styles.listContentContainer}
+          style={styles.hListContentContainer}
         />
       ) : (
-        <FlatList
+        <Animated.FlatList
           {...listProps}
+          onScroll={onScroll}
           contentContainerStyle={styles.listContentContainer}
         />
       )}
@@ -106,6 +109,10 @@ const themedStyles = createThemedStyle((colors) =>
     },
     itemContainer: themedShadow5Style(colors),
     listContentContainer: {
+      paddingBottom: 24,
+      paddingHorizontal: SCREEN_PADDING_HORIZONTAL,
+    },
+    hListContentContainer: {
       paddingVertical: 24,
       paddingHorizontal: SCREEN_PADDING_HORIZONTAL,
     },

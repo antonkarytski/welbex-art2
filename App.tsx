@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
 import { NativeBaseProvider } from 'native-base'
 import React from 'react'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import AppPopUps from './src/features/popUp/AppPopUps'
 import { useCachedResources } from './src/lib/appInit/hook.cachedResources'
@@ -12,14 +13,16 @@ export default function App() {
 
   if (!isLoaded) return null
   return (
-    <NativeBaseProvider>
-      <SafeAreaProvider>
-        <NavigationContainer>
-          <StatusBar style="auto" />
-          <Router />
-          <AppPopUps />
-        </NavigationContainer>
-      </SafeAreaProvider>
-    </NativeBaseProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NativeBaseProvider>
+        <SafeAreaProvider>
+          <NavigationContainer>
+            <StatusBar style="auto" />
+            <Router />
+            <AppPopUps />
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </NativeBaseProvider>
+    </GestureHandlerRootView>
   )
 }
