@@ -1,8 +1,7 @@
 import React from 'react'
 import { Animated, StyleSheet } from 'react-native'
-import Gradient, { GradientColors } from './Gradient'
-
-export type MotionGradientColors = GradientColors & { overlay?: string }
+import Gradient from './Gradient'
+import { MotionGradientColors } from './types'
 
 type MotionGradientProps = {
   colors?: MotionGradientColors

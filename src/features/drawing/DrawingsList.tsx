@@ -1,5 +1,11 @@
 import React, { ReactElement, useCallback } from 'react'
-import { FlatList, ImageStyle, StyleSheet, View } from 'react-native'
+import {
+  FlatList,
+  FlatListProps,
+  ImageStyle,
+  StyleSheet,
+  View,
+} from 'react-native'
 import { HFlatList } from 'react-native-head-tab-view'
 import { SCREEN_WIDTH } from '../../lib/device/dimensions'
 import { useNavigate } from '../../navigation'
@@ -57,32 +63,29 @@ const DrawingsList = <L extends links>({
     [imageSize, styles, goToDrawingDetails]
   )
 
+  const listProps: FlatListProps<Drawing> = {
+    data,
+    renderItem,
+    ListHeaderComponent: ListHeader,
+    columnWrapperStyle: styles.listColumnWrapper,
+    numColumns: 2,
+    keyExtractor: drawingKeyExtractor,
+    onEndReached: onEndReach,
+    onRefresh,
+  }
+
   return (
     <View style={styles.container}>
       {navigationIndex !== undefined ? (
         <HFlatList
+          {...listProps}
           index={navigationIndex}
-          ListHeaderComponent={ListHeader}
-          data={data}
           style={styles.listContentContainer}
-          columnWrapperStyle={styles.listColumnWrapper}
-          numColumns={2}
-          renderItem={renderItem}
-          keyExtractor={drawingKeyExtractor}
-          onEndReached={onEndReach}
-          onRefresh={onRefresh}
         />
       ) : (
         <FlatList
-          ListHeaderComponent={ListHeader}
-          data={data}
+          {...listProps}
           contentContainerStyle={styles.listContentContainer}
-          columnWrapperStyle={styles.listColumnWrapper}
-          numColumns={2}
-          renderItem={renderItem}
-          keyExtractor={drawingKeyExtractor}
-          onEndReached={onEndReach}
-          onRefresh={onRefresh}
         />
       )}
     </View>

@@ -24,30 +24,28 @@ const ProfileScreen = () => {
   })
   // TODO - delete and check if profile null
   const isAuth = useStore($isAuth)
-
   const profileGalleryTabsProps = useProfileDrawingsListTabs()
+
+  if (!isAuth) {
+    return (
+      <View style={styles.common.container}>
+        <GradientScreenHeader title={text.profile} />
+        <ScrollView style={styles.common.unauthorizedContainer}>
+          <OfferToGetAuthorization enableDescriptionText />
+        </ScrollView>
+      </View>
+    )
+  }
 
   return (
     <View style={styles.common.container}>
-      {isAuth ? (
-        <UserDrawingsListTabs
-          tabsProps={profileGalleryTabsProps}
-          style={styles.common.tabs}
-        >
-          <UserScreenHeader item={profile} label={text.myProfile} />
-          <UserCountersBlock
-            item={profile}
-            style={styles.common.countersBlock}
-          />
-        </UserDrawingsListTabs>
-      ) : (
-        <>
-          <GradientScreenHeader title={text.profile} />
-          <ScrollView style={styles.common.unauthorizedContainer}>
-            <OfferToGetAuthorization enableDescriptionText />
-          </ScrollView>
-        </>
-      )}
+      <UserDrawingsListTabs
+        tabsProps={profileGalleryTabsProps}
+        style={styles.common.tabs}
+      >
+        <UserScreenHeader item={profile} label={text.myProfile} />
+        <UserCountersBlock item={profile} style={styles.common.countersBlock} />
+      </UserDrawingsListTabs>
     </View>
   )
 }

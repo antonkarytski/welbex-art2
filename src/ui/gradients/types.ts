@@ -11,3 +11,4 @@ export type GradientsProps = {
   stopOffset?: string
   colors?: GradientColors
 }
+export type MotionGradientColors = GradientColors & { overlay?: string }
