@@ -11,7 +11,7 @@ import {
 import Carousel, { ICarouselInstance } from 'react-native-reanimated-carousel'
 import { Pagination } from 'react-native-snap-carousel'
 import { useStateStore } from 'altek-toolkit'
-import { getSize } from '../../../lib/device/dimensions'
+import { SCREEN_WIDTH, getSize } from '../../../lib/device/dimensions'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
 import { useText } from '../../../translations/hook'
@@ -41,7 +41,7 @@ type OnboardingSliderProps = {
 
 type RenderItemProps = { item: OnboardingSliderItem }
 
-const carouselWidth = getSize({})
+const carouselWidth = SCREEN_WIDTH
 const carouselHeight = carouselWidth * 1.45
 
 const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
@@ -83,24 +83,29 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
         vertical={false}
         ref={carouselRef}
       />
-      <Pagination
-        dotsLength={onboardingSliderData.length}
-        activeDotIndex={activeSlideIndex}
-        containerStyle={[
-          styles.paginationContainer,
-          style?.paginationContainer,
-        ]}
-        dotStyle={[styles.paginationDot, style?.paginationDot]}
-        inactiveDotStyle={[style?.paginationDot, style?.paginationDotInactive]}
-        inactiveDotOpacity={1}
-        inactiveDotScale={1}
-      />
-      <PresetButton
-        label={t.next}
-        onPress={onGoNext}
-        preset={style?.button}
-        style={styles.toBottom}
-      />
+      <View style={{ paddingHorizontal: 20 }}>
+        <Pagination
+          dotsLength={onboardingSliderData.length}
+          activeDotIndex={activeSlideIndex}
+          containerStyle={[
+            styles.paginationContainer,
+            style?.paginationContainer,
+          ]}
+          dotStyle={[styles.paginationDot, style?.paginationDot]}
+          inactiveDotStyle={[
+            style?.paginationDot,
+            style?.paginationDotInactive,
+          ]}
+          inactiveDotOpacity={1}
+          inactiveDotScale={1}
+        />
+        <PresetButton
+          label={t.next}
+          onPress={onGoNext}
+          preset={style?.button}
+          style={styles.toBottom}
+        />
+      </View>
     </View>
   )
 }
