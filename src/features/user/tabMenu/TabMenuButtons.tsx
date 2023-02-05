@@ -1,13 +1,14 @@
 import React from 'react'
-import { StyleProp, StyleSheet, TextStyle, View } from 'react-native'
+import { StyleProp, StyleSheet, TextStyle, View, ViewStyle } from 'react-native'
 import TabMenuButton from './TabMenuButton'
 
-type TabMenuButtonsProps = {
+export type TabMenuButtonsProps = {
   routes: { key: string; title: string }[]
   onButtonPress: (key: string) => void
   buttonLabelStyle?: StyleProp<TextStyle>
   buttonActiveLabelStyle?: StyleProp<TextStyle>
   activeTabKey?: string
+  style?: StyleProp<ViewStyle>
 }
 
 const TabMenuButtons = ({
@@ -16,9 +17,10 @@ const TabMenuButtons = ({
   buttonLabelStyle,
   buttonActiveLabelStyle,
   activeTabKey,
+  style,
 }: TabMenuButtonsProps) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       {routes.map(({ key, title }) => {
         return (
           <TabMenuButton

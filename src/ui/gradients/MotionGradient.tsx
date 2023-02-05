@@ -1,7 +1,9 @@
-import React from 'react'
-import { Animated, StyleSheet } from 'react-native'
+import React, { useEffect } from 'react'
+import { Animated, StyleProp, StyleSheet, ViewStyle } from 'react-native'
 import Gradient from './Gradient'
 import { MotionGradientColors } from './types'
+
+import AnimatedProps = Animated.AnimatedProps
 
 type MotionGradientProps = {
   colors?: MotionGradientColors
@@ -22,10 +24,10 @@ const MotionGradient = ({
     extrapolateRight: 'clamp',
   })
 
-  const overlayAnimatedStyles = {
+  const overlayAnimatedStyles: AnimatedProps<ViewStyle> = {
     transform: [{ translateY }],
-    backgroundColor: colors?.overlay,
   }
+  if (colors?.overlay) overlayAnimatedStyles.backgroundColor = colors.overlay
   const gradientStyles = { height: maxHeight }
 
   return (
