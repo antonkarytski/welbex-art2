@@ -59,9 +59,11 @@ const themedStyles = createThemedStyle((colors) =>
     },
     name: {
       fontSize: 20,
+      color: colors.text,
     },
     subText: {
       marginTop: 8,
+      color: colors.text,
     },
     editProfileButton: {
       position: 'absolute',

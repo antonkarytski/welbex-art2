@@ -22,16 +22,19 @@ const UserCountersBlock = ({ item, style }: UserCountersBlockProps) => {
         style={styles.card}
         value={item.postsCount}
         title={text.posts}
+        textStyle={styles.cardText}
       />
       <ValueCard
         style={styles.card}
         value={item.following_count}
         title={text.following}
+        textStyle={styles.cardText}
       />
       <ValueCard
         style={[styles.card, styles.lastCard]}
         value={item.followers_count}
         title={text.followers}
+        textStyle={styles.cardText}
       />
     </View>
   )
@@ -53,6 +56,9 @@ const themedStyles = createThemedStyle((colors) =>
       marginRight: 18,
     },
     lastCard: { marginRight: 0 },
+    cardText: {
+      color: colors.text,
+    },
   })
 )
 

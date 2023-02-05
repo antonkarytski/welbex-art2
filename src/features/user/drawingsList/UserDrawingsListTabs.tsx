@@ -58,6 +58,7 @@ const UserDrawingsListTabs = React.memo(
         <CollapsibleHeaderTabView
           renderScrollHeader={() => (
             <View
+              renderToHardwareTextureAndroid
               style={[styles.scrollHeaderWrapper, scrollHeaderWrapperStyle]}
             >
               {children}
@@ -68,6 +69,10 @@ const UserDrawingsListTabs = React.memo(
           renderScene={scenes}
           onIndexChange={setIndex}
           initialLayout={{ width: SCREEN_WIDTH }}
+          pagerStyle={styles.pagerStyle}
+          animationEnabled
+          renderToHardwareTextureAndroid
+          scrollEnabled
         />
       </>
     )
@@ -85,9 +90,16 @@ const styles = StyleSheet.create({
   scrollHeaderWrapper: {
     marginBottom: -STATUSBAR_HEIGHT,
     paddingBottom: 20,
+    backgroundColor: defaultColors.screenBackground,
+
+    flexGrow: 1,
   },
   tabs: {
     backgroundColor: defaultColors.screenBackground,
+  },
+  pagerStyle: {
+    backgroundColor: '#fff',
+    flexGrow: 1,
   },
 })
 
