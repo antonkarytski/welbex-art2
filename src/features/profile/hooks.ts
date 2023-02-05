@@ -1,9 +1,10 @@
 import { useStore } from 'effector-react'
 import {
   TabsDescriptor,
+  UseDrawingsTabsSettings,
   commonDrawingsListTabs,
   useDrawingsTabs,
-} from '../user/drawingsList/hooks.drawingTabs'
+} from '../user/drawingsList2/hooks.drawingTabs'
 import { UserDrawingListType } from '../user/types'
 import { $userProfile } from './model'
 
@@ -12,7 +13,7 @@ const currentUserDrawingsTabs: TabsDescriptor = {
   ...commonDrawingsListTabs,
 }
 
-export function useProfileDrawingsListTabs() {
+export function useProfileDrawingsListTabs(settings?: UseDrawingsTabsSettings) {
   const profile = useStore($userProfile)
-  return useDrawingsTabs(currentUserDrawingsTabs, profile)
+  return useDrawingsTabs(currentUserDrawingsTabs, profile, settings)
 }

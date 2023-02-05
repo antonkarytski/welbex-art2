@@ -8,27 +8,28 @@ import React, {
 } from 'react'
 import {
   Animated,
+  FlatList,
   ScrollView,
+  StyleProp,
   StyleSheet,
   View,
   ViewProps,
+  ViewStyle,
   useWindowDimensions,
 } from 'react-native'
 import { SceneMap, TabView } from 'react-native-tab-view'
 import OfferToGetAuthorization from '../../features/auth/OfferToGetAuthorization'
 import { $isAuth } from '../../features/auth/model'
+import ProfileDrawingsListTabs from '../../features/profile/ProfileDrawingsListTabs'
 import { useProfileDrawingsListTabs } from '../../features/profile/hooks'
 import { $userProfile } from '../../features/profile/model'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import UserAvatar from '../../features/user/UserAvatar'
 import UserCountersBlock from '../../features/user/UserCountersBlock'
-import UserScreenHeader from '../../features/user/UserScreenHeader'
-import UserDrawingsList from '../../features/user/drawingsList/UserDrawingsList'
 import TabMenuButtons, {
   TabMenuButtonsProps,
 } from '../../features/user/tabMenu/TabMenuButtons'
-import UserDrawingsTabMenu from '../../features/user/tabMenu/UserDrawingsTabMenu'
 import { UserDrawingListType } from '../../features/user/types'
 import { SCREEN_HEIGHT } from '../../lib/device/dimensions'
 import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
@@ -36,8 +37,10 @@ import SettingsNavigationButton from '../../navigation/elements/NavigationButton
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import { coloredScreenHeaderThemedStyles } from '../../styles/screen'
 import { useText } from '../../translations/hook'
-import Gradient from '../../ui/gradients/Gradient'
+import AdaptiveGradient from '../../ui/gradients/AdaptiveGradient'
 import MotionGradient from '../../ui/gradients/MotionGradient'
+
+import AnimatedProps = Animated.AnimatedProps
 
 type StickyTabsController = {
   setState: (state: boolean) => void
@@ -47,35 +50,6 @@ type StickyTabsProps = {
   routes: TabMenuButtonsProps['routes']
   top: number
 }
-
-const FirstRoute = () => {
-  const profile = useStore($userProfile)
-  return (
-    <UserDrawingsList
-      // onScroll={Animated.event(
-      //   [{ nativeEvent: { contentOffset: { y: offset } } }],
-      //   { useNativeDriver: true }
-      // )}
-      style={{
-        flex: 1,
-        height: '100%',
-        width: '100%',
-      }}
-      ListHeader={<></>}
-      type={UserDrawingListType.OWN}
-      item={profile}
-    />
-  )
-}
-
-const SecondRoute = () => (
-  <View style={{ flex: 1, backgroundColor: '#673ab7' }} />
-)
-
-const renderScene = SceneMap({
-  first: FirstRoute,
-  second: SecondRoute,
-})
 
 const StickyTabs = forwardRef<StickyTabsController, StickyTabsProps>(
   ({ routes, top }, ref) => {
@@ -108,35 +82,36 @@ const StickyTabs = forwardRef<StickyTabsController, StickyTabsProps>(
 
 type ProfileHeaderProps = {
   onLayout?: ViewProps['onLayout']
+  style?: AnimatedProps<ViewStyle>
 }
 
-const ProfileHeader = ({ onLayout }: ProfileHeaderProps) => {
+const ProfileHeader = ({ onLayout, style }: ProfileHeaderProps) => {
   const { styles, colors } = useThemedStyleList({
     header: coloredScreenHeaderThemedStyles,
     common: themedStyles,
   })
   const profile = useStore($userProfile)
   return (
-    <View onLayout={onLayout}>
+    <Animated.View
+      style={[{ position: 'absolute', zIndex: 0 }, style]}
+      onLayout={onLayout}
+    >
       <UserAvatar style={styles.common.avatar} item={profile} />
       <UserCountersBlock item={profile} style={styles.common.countersBlock} />
-    </View>
+    </Animated.View>
   )
 }
 
 const ProfileScreen = () => {
   const text = useText()
-  const profile = useStore($userProfile)
   const { styles, colors } = useThemedStyleList({
     header: coloredScreenHeaderThemedStyles,
     common: themedStyles,
   })
   // TODO - delete and check if profile null
   const isAuth = useStore($isAuth)
-  const profileGalleryTabsProps = useProfileDrawingsListTabs()
   const offset = useRef(new Animated.Value(0)).current
   const stickyRef = useRef<StickyTabsController | null>(null)
-  const offset2 = useRef(new Animated.Value(0)).current
 
   const [headerHeight, setHeaderHeight] = useState(0)
   const [contentHeight, setContentHeight] = useState(0)
@@ -147,14 +122,62 @@ const ProfileScreen = () => {
     })
     return () => offset.removeListener(id)
   }, [offset, contentHeight])
+  const currentTab = useRef<UserDrawingListType | null>(null)
+  const listRefs = useRef<
+    Partial<Record<UserDrawingListType, FlatList | null>>
+  >({})
+  const listOffset = useRef<Partial<Record<UserDrawingListType, number>>>({})
+  useEffect(() => {
+    offset.addListener(({ value }) => {
+      if (!currentTab.current) return
+      const tab = currentTab.current
+      listOffset.current[tab] = value
+    })
 
-  const layout = useWindowDimensions()
+    return () => {
+      offset.removeAllListeners()
+    }
+  }, [offset])
 
-  const [index, setIndex] = React.useState(0)
-  const [routes] = React.useState([
-    { key: 'first', title: 'First' },
-    { key: 'second', title: 'Second' },
-  ])
+  const syncScrollOffset = () => {
+    const current = currentTab.current
+    Object.entries(listRefs.current).forEach(([key, item]) => {
+      //@ts-ignore
+      const value = offset._value
+      const tab = key as UserDrawingListType
+      if (tab === current || !item) return
+      if (value < contentHeight && value >= 0) {
+        item.scrollToOffset({
+          offset: value,
+          animated: false,
+        })
+        listOffset.current[tab] = value
+        return
+      }
+      if (value >= contentHeight) {
+        const tabOffset = listOffset.current[tab]
+        if (tabOffset === undefined || tabOffset < contentHeight) {
+          item.scrollToOffset({
+            offset: contentHeight,
+            animated: false,
+          })
+          listOffset.current[tab] = contentHeight
+        }
+      }
+    })
+  }
+
+  const y = offset.interpolate({
+    inputRange: [0, contentHeight],
+    outputRange: [0, -contentHeight],
+    extrapolateRight: 'clamp',
+  })
+
+  const tabY = offset.interpolate({
+    inputRange: [0, contentHeight],
+    outputRange: [contentHeight, 0],
+    extrapolateRight: 'clamp',
+  })
 
   if (!isAuth) {
     return (
@@ -174,50 +197,39 @@ const ProfileScreen = () => {
         minHeight={headerHeight}
         maxHeight={headerHeight + 80}
       />
-      <ScreenHeader
-        onLayout={({ nativeEvent }) => {
-          if (!headerHeight) setHeaderHeight(nativeEvent.layout.height)
-        }}
-        title={text.profile}
-        headerRight={
-          <SettingsNavigationButton iconColor={colors.appHeaderIconLight} />
-        }
-      />
-      <StickyTabs
-        ref={stickyRef}
-        top={headerHeight}
-        routes={profileGalleryTabsProps.routes}
-      />
       <ProfileHeader
+        style={{ top: headerHeight, transform: [{ translateY: y }] }}
         onLayout={({ nativeEvent }) => {
           if (!contentHeight) setContentHeight(nativeEvent.layout.height)
         }}
       />
-      <TabMenuButtons
-        style={{
-          backgroundColor: 'white',
-          marginBottom: 24,
+      <AdaptiveGradient>
+        <ScreenHeader
+          onLayout={({ nativeEvent }) => {
+            if (!headerHeight) setHeaderHeight(nativeEvent.layout.height)
+          }}
+          title={text.profile}
+          headerRight={
+            <SettingsNavigationButton iconColor={colors.appHeaderIconLight} />
+          }
+        />
+      </AdaptiveGradient>
+      <ProfileDrawingsListTabs
+        listSettings={{
+          onScroll: Animated.event(
+            [{ nativeEvent: { contentOffset: { y: offset } } }],
+            { useNativeDriver: true }
+          ),
+          contentStyle: { paddingTop: contentHeight + 24 },
+          listRef: (key, ref) => {
+            listRefs.current[key] = ref
+          },
+          onScrollEnd: syncScrollOffset,
         }}
-        routes={profileGalleryTabsProps.routes}
-        onButtonPress={() => {}}
-      />
-
-      <TabView
-        renderTabBar={() => {
-          return (
-            <View
-              style={{
-                width: '100%',
-                height: 500,
-                backgroundColor: 'red',
-              }}
-            />
-          )
+        tabsStyle={{ transform: [{ translateY: tabY }] }}
+        onRouteChange={({ key }) => {
+          currentTab.current = key
         }}
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        initialLayout={{ width: layout.width }}
       />
     </View>
   )
