@@ -41,7 +41,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: SCREEN_PADDING_HORIZONTAL,
     flexGrow: 1,
   },
-  innerContainer: { height: '100%' },
+  innerContainer: {
+    flexGrow: 1,
+  },
 })
 
 export default ScreenContainer

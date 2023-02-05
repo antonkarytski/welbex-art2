@@ -25,13 +25,10 @@ export default function Verification() {
         style={styles.titleDescription}
         weight={400}
       />
-      <KeyboardAvoidingView
-        behavior={IS_IOS ? 'padding' : 'height'}
-        style={styles.flexGrown}
-      >
+      <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
         <CodeVerification />
-        <ResendCode />
       </KeyboardAvoidingView>
+      <ResendCode />
     </AuthScreenContainer>
   )
 }

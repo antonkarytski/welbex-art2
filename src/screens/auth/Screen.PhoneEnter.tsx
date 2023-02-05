@@ -29,16 +29,13 @@ const PhoneEnterScreen = () => {
         style={styles.common.titleDescription}
         weight={400}
       />
-      <KeyboardAvoidingView
-        behavior={IS_IOS ? 'padding' : 'height'}
-        style={styles.common.flexGrown}
-      >
+      <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
         <PhoneEnter />
-        <SendPhoneButton
-          buttonPreset={styles.button}
-          phoneInputModel={phoneInputModel}
-        />
       </KeyboardAvoidingView>
+      <SendPhoneButton
+        buttonPreset={styles.button}
+        phoneInputModel={phoneInputModel}
+      />
     </AuthScreenContainer>
   )
 }

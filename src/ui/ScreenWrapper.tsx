@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
+import { WINDOW_HEIGHT } from '../lib/device/dimensions'
 
 interface ScreenWrapperProps {
   children: ReactNode
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
   wrapper: {
     paddingBottom: 45,
     backgroundColor: '#ffffff',
-    height: '100%',
+    height: WINDOW_HEIGHT,
   },
 })
 

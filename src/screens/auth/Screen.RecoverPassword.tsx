@@ -43,18 +43,15 @@ export default function PasswordRecover() {
         style={styles.common.titleDescription}
         weight={400}
       />
-      <KeyboardAvoidingView
-        behavior={IS_IOS ? 'padding' : 'height'}
-        style={styles.common.flexGrown}
-      >
+      <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
         <RecoverPasswordForm />
-        <PresetButton
-          label={t.resetPasswordButton}
-          onPress={onResetPassword}
-          preset={styles.button}
-          style={styles.common.bottomButton}
-        />
       </KeyboardAvoidingView>
+      <PresetButton
+        label={t.resetPasswordButton}
+        onPress={onResetPassword}
+        preset={styles.button}
+        style={styles.common.bottomButton}
+      />
     </AuthScreenContainer>
   )
 }

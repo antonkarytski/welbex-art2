@@ -10,7 +10,7 @@ import { useThemedStyleList } from '../../features/themed/hooks'
 import UserCountersBlock from '../../features/user/UserCountersBlock'
 import UserScreenHeader from '../../features/user/UserScreenHeader'
 import UserDrawingsListTabs from '../../features/user/drawingsList/UserDrawingsListTabs'
-import { SCREEN_HEIGHT } from '../../lib/device/dimensions'
+import { WINDOW_HEIGHT } from '../../lib/device/dimensions'
 import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
 import { coloredScreenHeaderThemedStyles } from '../../styles/screen'
 import { useText } from '../../translations/hook'
@@ -65,7 +65,7 @@ const themedStyles = createThemedStyle((colors) =>
     },
     unauthorizedContainer: {
       paddingHorizontal: 20,
-      padding: SCREEN_HEIGHT / 4.8,
+      padding: WINDOW_HEIGHT / 4.8,
     },
     screen: {
       backgroundColor: colors.screenBackground,

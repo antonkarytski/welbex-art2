@@ -43,10 +43,7 @@ const CountrySelectionScreen = () => {
   return (
     <AuthScreenContainer>
       <H2 label={t.chooseCountry} style={styles.common.title} />
-      <KeyboardAvoidingView
-        behavior={IS_IOS ? 'padding' : 'height'}
-        style={styles.common.flexGrown}
-      >
+      <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
         <ListSelect
           data={COUNTRIES_LIST}
           idExtractor={countryIdExtractor}
@@ -54,14 +51,14 @@ const CountrySelectionScreen = () => {
           model={profileCountryModel}
           renderItem={renderCountryRow}
         />
-        <PresetButton
-          label={t.continue}
-          onPress={onContinue}
-          preset={styles.button}
-          style={styles.common.bottomButton}
-          disabled={!country}
-        />
       </KeyboardAvoidingView>
+      <PresetButton
+        label={t.continue}
+        onPress={onContinue}
+        preset={styles.button}
+        style={styles.common.bottomButton}
+        disabled={!country}
+      />
     </AuthScreenContainer>
   )
 }
