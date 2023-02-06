@@ -31,5 +31,8 @@ export const themedCommonStyles = createThemedStyle((colors) =>
     flexGrown: {
       flexGrow: 1,
     },
+    noBottomPadding: {
+      paddingBottom: 0,
+    },
   })
 )

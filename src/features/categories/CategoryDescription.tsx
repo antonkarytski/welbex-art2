@@ -27,6 +27,7 @@ const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     container: {
       marginBottom: 8,
+      marginTop: 24,
     },
     header: {
       marginTop: 0,

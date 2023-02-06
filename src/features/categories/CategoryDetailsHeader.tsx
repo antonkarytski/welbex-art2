@@ -15,20 +15,34 @@ type CategoryDetailsHeaderProps = {
 
 const CategoryDetailsHeader = ({ item }: CategoryDetailsHeaderProps) => {
   const text = useText()
-  const { styles } = useThemedStyleList({
+  const { styles, colors } = useThemedStyleList({
     common: themedStyles,
     header: headerThemedStyles,
   })
 
   return (
-    <ImageBackground source={item.image}>
-      <ScreenHeader style={styles.header} title={text.category} />
-      <View style={styles.common.content}>
-        <H1 style={styles.common.title} label={item.label} />
-        <Span style={styles.common.term} label={item.term} />
-      </View>
-    </ImageBackground>
+    <ScreenHeader
+      backArrowColor={colors.whiteText}
+      backAvailable
+      style={styles.header}
+      title={text.category}
+    />
   )
+
+  // return (
+  //   <ImageBackground source={item.image}>
+  //     <ScreenHeader
+  //       backArrowColor={colors.whiteText}
+  //       backAvailable
+  //       style={styles.header}
+  //       title={text.category}
+  //     />
+  //     <View style={styles.common.content}>
+  //       <H1 style={styles.common.title} label={item.label} />
+  //       <Span style={styles.common.term} label={item.term} />
+  //     </View>
+  //   </ImageBackground>
+  // )
 }
 
 const headerThemedStyles = createThemedStyle<ScreenHeaderStyles>((colors) =>

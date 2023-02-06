@@ -12,7 +12,7 @@ export type TabMenuStyles = TabMenuButtonStyles & {
   activeLine?: StyleProp<ViewStyle>
 }
 
-type TabMenuProps = SceneRendererProps & {
+export type TabMenuProps = SceneRendererProps & {
   routes: TabRoute[]
   activeTab?: TabRoute['key'] | number
   style?: TabMenuStyles

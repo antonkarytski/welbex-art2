@@ -11,6 +11,7 @@ import SettingsNavigationButton from '../../navigation/elements/NavigationButton
 import { links } from '../../navigation/links'
 import { ScreensProps } from '../../navigation/types.screenProps'
 import { themedPrimaryGradient } from '../../styles/gradients'
+import { tabMenuThemedStyles } from '../../styles/tabMenu'
 import { useText } from '../../translations/hook'
 import TabMenu from '../../ui/tabMenu/TabMenu'
 import ScreenGallery from './Screen.Gallery'
@@ -20,13 +21,14 @@ const Tab = createMaterialTopTabNavigator<ScreensProps>()
 const GalleriesTabsScreen = () => {
   const text = useText()
   const { styles, colors } = useThemedStyleList({
-    tabs: tabsThemedStyles,
+    tabMenu: tabMenuThemedStyles,
     gradient: themedPrimaryGradient,
+    common: themedStyles,
   })
   const isLoaded = useScreenLoading()
 
   return (
-    <View style={screenStyles.container}>
+    <View style={styles.common.container}>
       <GradientScreenHeader
         title={text.gallery}
         headerLeft={
@@ -40,8 +42,8 @@ const GalleriesTabsScreen = () => {
       />
       {isLoaded ? (
         <Tab.Navigator
-          style={styles.tabs.container}
-          sceneContainerStyle={styles.tabs.sceneContainer}
+          style={styles.common.container}
+          sceneContainerStyle={styles.common.sceneContainer}
           tabBar={(props) => (
             <TabMenu
               routes={Object.values(props.descriptors).map(
@@ -50,7 +52,7 @@ const GalleriesTabsScreen = () => {
                   title: options.title,
                 })
               )}
-              style={styles.tabs}
+              style={styles.tabMenu}
               activeTab={props.state.index}
               {...props}
             />
@@ -76,33 +78,15 @@ const GalleriesTabsScreen = () => {
   )
 }
 
-export default GalleriesTabsScreen
-
-export const tabsThemedStyles = createThemedStyle((colors) =>
+const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     container: {
-      width: 'auto',
+      flex: 1,
     },
     sceneContainer: {
       backgroundColor: colors.screenBackground,
     },
-    label: {
-      color: colors.textLightGrey,
-    },
-    labelActive: {
-      color: colors.text,
-    },
-    line: {
-      backgroundColor: colors.tabsLine,
-    },
-    lineActive: {
-      backgroundColor: colors.tabsSelectedTint,
-    },
   })
 )
 
-const screenStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-})
+export default GalleriesTabsScreen
