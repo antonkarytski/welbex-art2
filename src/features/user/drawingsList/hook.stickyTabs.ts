@@ -12,6 +12,6 @@ export function useStickyTabsStyle(
   })
 
   return useMemo(() => {
-    return { transform: [{ translateY: tabY }] }
+    return { transform: [{ translateY: tabY }], zIndex: 10 }
   }, [tabY])
 }

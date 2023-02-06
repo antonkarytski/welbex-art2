@@ -92,7 +92,6 @@ const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     container: {
       position: 'absolute',
-      zIndex: 0,
     },
     countersBlock: {
       marginTop: 32,
