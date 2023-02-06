@@ -6,6 +6,8 @@ import { useThemedStyle } from '../../themed/hooks'
 import ActiveLineTint from './ActiveLineTint'
 import TabMenuButtons from './TabMenuButtons'
 
+// TODO - delete and use TabMenu from ui
+
 type UserDrawingsTabMenuProps = SceneRendererProps & {
   routes: { key: string; title: string }[]
   activeTabKey?: string
