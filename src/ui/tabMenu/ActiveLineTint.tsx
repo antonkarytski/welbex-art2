@@ -1,13 +1,13 @@
 import React from 'react'
-import { Animated, StyleSheet, View, ViewStyle } from 'react-native'
+import { Animated, StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import { animationInterpolate } from 'altek-toolkit'
 
 type ActiveLineTintProps = {
   position: Animated.AnimatedInterpolation<number>
   width: number
   routesCount: number
-  style?: ViewStyle
-  tintStyle?: ViewStyle
+  style?: StyleProp<ViewStyle>
+  tintStyle?: StyleProp<ViewStyle>
 }
 
 const ActiveLineTint = ({

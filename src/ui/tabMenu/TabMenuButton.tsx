@@ -2,14 +2,14 @@ import React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import { defaultColors } from '../../features/themed/theme'
 import Span from '../Span'
-import { TabMenuButtonStyle } from './types'
+import { TabMenuButtonStyles } from './types'
 
 type TabMenuButtonProps = {
   onPress: (key: string) => void
   id: string
-  label: string
+  label?: string
   isActive: boolean
-  style?: TabMenuButtonStyle
+  style?: TabMenuButtonStyles
 }
 
 const TabMenuButton = React.memo(

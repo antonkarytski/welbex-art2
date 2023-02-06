@@ -53,6 +53,7 @@ const GalleryList = ({ type }: GalleryListProps) => {
       renderItem={renderItem}
       keyExtractor={drawingKeyExtractor}
       onEndReached={getNextPage}
+      showsVerticalScrollIndicator={false}
     />
   )
 }

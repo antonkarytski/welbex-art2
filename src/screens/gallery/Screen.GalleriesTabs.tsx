@@ -1,7 +1,6 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import GalleryTabBar from '../../features/gallery/GalleryTabBar'
 import { GALLERIES } from '../../features/gallery/descriptors'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
@@ -13,6 +12,7 @@ import { links } from '../../navigation/links'
 import { ScreensProps } from '../../navigation/types.screenProps'
 import { themedPrimaryGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
+import TabMenu from '../../ui/tabMenu/TabMenu'
 import ScreenGallery from './Screen.Gallery'
 
 const Tab = createMaterialTopTabNavigator<ScreensProps>()
@@ -43,7 +43,17 @@ const GalleriesTabsScreen = () => {
           style={styles.tabs.container}
           sceneContainerStyle={styles.tabs.sceneContainer}
           tabBar={(props) => (
-            <GalleryTabBar {...props} style={styles.tabs} colors={colors} />
+            <TabMenu
+              routes={Object.values(props.descriptors).map(
+                ({ route, options }) => ({
+                  key: route.key,
+                  title: options.title,
+                })
+              )}
+              style={styles.tabs}
+              activeTab={props.state.index}
+              {...props}
+            />
           )}
           initialRouteName={links.galleryBest}
         >
@@ -70,9 +80,6 @@ export default GalleriesTabsScreen
 
 export const tabsThemedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
-    wrapper: {
-      paddingHorizontal: 20,
-    },
     container: {
       width: 'auto',
     },
@@ -80,13 +87,16 @@ export const tabsThemedStyles = createThemedStyle((colors) =>
       backgroundColor: colors.screenBackground,
     },
     label: {
-      color: colors.textGrey,
+      color: colors.textLightGrey,
     },
     labelActive: {
       color: colors.text,
     },
-    tabBar: {
-      borderBottomColor: colors.tabsLine,
+    line: {
+      backgroundColor: colors.tabsLine,
+    },
+    lineActive: {
+      backgroundColor: colors.tabsSelectedTint,
     },
   })
 )

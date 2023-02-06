@@ -1,36 +1,46 @@
 import React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
+import { SceneRendererProps } from 'react-native-tab-view/lib/typescript/src/types'
 import { defaultColors } from '../../features/themed/theme'
-import { SCREEN_WIDTH } from '../../lib/device/dimensions'
 import ActiveLineTint from './ActiveLineTint'
 import TabMenuButtons from './TabMenuButtons'
-import { TabMenuButtonStyle } from './types'
+import { TabMenuButtonStyles, TabRoute } from './types'
 
-type TabMenuProps = {
-  tabs: { key: string; title: string }[]
-  activeTabKey?: string
-  onTabPress: (key: string) => void
-  style?: TabMenuButtonStyle & {
-    container?: StyleProp<ViewStyle>
-  }
+export type TabMenuStyles = TabMenuButtonStyles & {
+  container?: StyleProp<ViewStyle>
+  line?: StyleProp<ViewStyle>
+  activeLine?: StyleProp<ViewStyle>
 }
 
-const TabMenu = ({ onTabPress, tabs, activeTabKey, style }: TabMenuProps) => {
+type TabMenuProps = SceneRendererProps & {
+  routes: TabRoute[]
+  activeTab?: TabRoute['key'] | number
+  style?: TabMenuStyles
+}
+
+const TabMenu = ({
+  jumpTo,
+  position,
+  layout,
+  routes,
+  activeTab,
+  style,
+}: TabMenuProps) => {
   return (
     <View style={[styles.container, style?.container]}>
       <TabMenuButtons
-        tabs={tabs}
-        onButtonPress={onTabPress}
-        activeTabKey={activeTabKey}
+        tabs={routes}
+        onButtonPress={jumpTo}
+        activeTab={activeTab}
         style={style}
       />
-      {/* <ActiveLineTint
-        style={styles.line}
-        tintStyle={styles.tint}
+      <ActiveLineTint
+        style={[styles.line, style?.line]}
+        tintStyle={[styles.tint, style?.activeLine]}
         position={position}
-        width={SCREEN_WIDTH - 40}
-        routesCount={tabs.length}
-      /> */}
+        width={layout.width - 40}
+        routesCount={routes.length}
+      />
     </View>
   )
 }
