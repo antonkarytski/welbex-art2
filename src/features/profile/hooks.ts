@@ -1,7 +1,7 @@
 import { useStore } from 'effector-react'
 import {
+  TabListSettings,
   TabsDescriptor,
-  UseDrawingsTabsSettings,
   commonDrawingsListTabs,
   useDrawingsTabs,
 } from '../user/drawingsList2/hooks.drawingTabs'
@@ -13,7 +13,7 @@ const currentUserDrawingsTabs: TabsDescriptor = {
   ...commonDrawingsListTabs,
 }
 
-export function useProfileDrawingsListTabs(settings?: UseDrawingsTabsSettings) {
+export function useProfileDrawingsListTabs(settings?: TabListSettings) {
   const profile = useStore($userProfile)
   return useDrawingsTabs(currentUserDrawingsTabs, profile, settings)
 }

@@ -29,7 +29,7 @@ export const childrenDrawingsListTabs: TabsDescriptor = {
   ...commonDrawingsListTabs,
 }
 
-export type UseDrawingsTabsSettings = {
+export type TabListSettings = {
   contentStyle?: StyleProp<ViewStyle>
   onScroll?: FlatListProps<any>['onScroll']
   listRef?: (tabKey: UserDrawingListType, ref: FlatList | null) => void
@@ -39,7 +39,7 @@ export type UseDrawingsTabsSettings = {
 export function useDrawingsTabs(
   tabs: TabsDescriptor,
   item: User,
-  settings: UseDrawingsTabsSettings = {}
+  settings: TabListSettings = {}
 ) {
   const text = useText()
   const scenes = useMemo(

@@ -43,6 +43,7 @@ const MainTabsRouter = React.memo(() => {
               tabBarIcon: Icon,
               title: label(text),
               tabBarButton: customButton,
+              lazy: true,
             }}
             name={link}
             component={Component}

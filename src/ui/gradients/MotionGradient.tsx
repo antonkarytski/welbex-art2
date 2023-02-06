@@ -12,35 +12,32 @@ type MotionGradientProps = {
   maxHeight: number
 }
 
-const MotionGradient = ({
-  colors,
-  offsetValue,
-  minHeight,
-  maxHeight,
-}: MotionGradientProps) => {
-  const translateY = offsetValue.interpolate({
-    inputRange: [0, maxHeight - minHeight],
-    outputRange: [maxHeight, minHeight],
-    extrapolateRight: 'clamp',
-  })
+const MotionGradient = React.memo(
+  ({ colors, offsetValue, minHeight, maxHeight }: MotionGradientProps) => {
+    const translateY = offsetValue.interpolate({
+      inputRange: [0, maxHeight - minHeight],
+      outputRange: [maxHeight, minHeight],
+      extrapolateRight: 'clamp',
+    })
 
-  const overlayAnimatedStyles: AnimatedProps<ViewStyle> = {
-    transform: [{ translateY }],
+    const overlayAnimatedStyles: AnimatedProps<ViewStyle> = {
+      transform: [{ translateY }],
+    }
+    if (colors?.overlay) overlayAnimatedStyles.backgroundColor = colors.overlay
+    const gradientStyles = { height: maxHeight }
+
+    return (
+      <>
+        <Gradient
+          key={maxHeight}
+          style={[styles.gradient, gradientStyles]}
+          colors={colors}
+        />
+        <Animated.View style={[styles.overlay, overlayAnimatedStyles]} />
+      </>
+    )
   }
-  if (colors?.overlay) overlayAnimatedStyles.backgroundColor = colors.overlay
-  const gradientStyles = { height: maxHeight }
-
-  return (
-    <>
-      <Gradient
-        key={maxHeight}
-        style={[styles.gradient, gradientStyles]}
-        colors={colors}
-      />
-      <Animated.View style={[styles.overlay, overlayAnimatedStyles]} />
-    </>
-  )
-}
+)
 
 const styles = StyleSheet.create({
   gradient: {
