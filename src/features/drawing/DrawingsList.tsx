@@ -92,6 +92,7 @@ const DrawingsList = forwardRef(
           keyExtractor={drawingKeyExtractor}
           onEndReached={onEndReach}
           contentContainerStyle={[styles.listContentContainer, contentStyle]}
+          onMomentumScrollEnd={props.onScrollEndDrag}
           {...props}
         />
       </View>

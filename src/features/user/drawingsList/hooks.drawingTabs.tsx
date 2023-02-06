@@ -1,11 +1,5 @@
 import React, { useMemo } from 'react'
-import {
-  Animated,
-  FlatList,
-  FlatListProps,
-  StyleProp,
-  ViewStyle,
-} from 'react-native'
+import { FlatList, FlatListProps, StyleProp, ViewStyle } from 'react-native'
 import { SceneMap } from 'react-native-tab-view'
 import { mapObject } from '../../../lib/helpers/array'
 import { useText } from '../../../translations/hook'
