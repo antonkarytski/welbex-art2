@@ -1,8 +1,8 @@
 import React, { useCallback, useRef } from 'react'
 import { Animated } from 'react-native'
-import UserDrawingsListTabView from '../user/drawingsList2/UserDrawingsListTabView'
-import { useTabsListsSync } from '../user/drawingsList2/hook.listSync'
-import { useStickyTabsStyle } from '../user/drawingsList2/hook.stickyTabs'
+import UserDrawingsListTabView from '../user/drawingsList/UserDrawingsListTabView'
+import { useTabsListsSync } from '../user/drawingsList/hook.listSync'
+import { useStickyTabsStyle } from '../user/drawingsList/hook.stickyTabs'
 import { UserDrawingListType } from '../user/types'
 import { useProfileDrawingsListTabs } from './hooks'
 

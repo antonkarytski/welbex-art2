@@ -18,3 +18,5 @@ export type IfIncludeUndefined<T, IfTrue, IfFalse> = Extract<
 > extends never
   ? IfFalse
   : IfTrue
+export type CompleteTo<T1, T2> = T1 &
+  Partial<Record<Exclude<keyof T2, keyof T1>, never>>

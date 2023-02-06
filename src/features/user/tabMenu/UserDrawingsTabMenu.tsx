@@ -1,5 +1,5 @@
 import React from 'react'
-import { Animated, StyleProp, StyleSheet, ViewStyle } from 'react-native'
+import { Animated, StyleSheet, ViewStyle } from 'react-native'
 import { SceneRendererProps } from 'react-native-tab-view/lib/typescript/src/types'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyle } from '../../themed/hooks'

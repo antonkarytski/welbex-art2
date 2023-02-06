@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Animated, StyleSheet } from 'react-native'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
+import { CompleteTo } from '../../types'
 import AdaptiveGradient from '../../ui/gradients/AdaptiveGradient'
 import MotionGradient from '../../ui/gradients/MotionGradient'
 import { createThemedStyle } from '../themed'
@@ -8,13 +9,14 @@ import { useTheme } from '../themed/hooks'
 import { ColorThemeStructure } from '../themed/theme'
 import UserAvatar from './UserAvatar'
 import UserCountersBlock from './UserCountersBlock'
-import { UserExt } from './types'
+import { User, UserExt } from './types'
 
 export type UserTopBlockProps = {
+  backAvailable?: boolean
   label: string
   offsetValue: Animated.Value | Animated.AnimatedInterpolation<number>
   initialHeight: number
-  item: UserExt
+  item: UserExt | CompleteTo<User, UserExt>
   onHeightChange?: (height: number) => void
   headerRight?: (colors: ColorThemeStructure) => React.ReactNode
 }
@@ -29,6 +31,7 @@ const UserTopBlock = React.memo(
     initialHeight,
     label,
     headerRight,
+    backAvailable,
   }: UserTopBlockProps) => {
     const [headerHeight, setHeaderHeight] = useState(HEADER_INITIAL_HEIGHT)
     const [height, setHeight] = useState(initialHeight)
@@ -64,10 +67,13 @@ const UserTopBlock = React.memo(
           }}
         >
           <UserAvatar style={styles.avatar} item={item} />
-          <UserCountersBlock item={item} style={styles.countersBlock} />
+          {item.followers_count !== undefined && (
+            <UserCountersBlock item={item} style={styles.countersBlock} />
+          )}
         </Animated.View>
         <AdaptiveGradient>
           <ScreenHeader
+            backAvailable={backAvailable}
             title={label}
             onLayout={({ nativeEvent }) => {
               if (headerHeight === HEADER_INITIAL_HEIGHT) {

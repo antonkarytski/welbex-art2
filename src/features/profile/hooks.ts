@@ -4,7 +4,7 @@ import {
   TabsDescriptor,
   commonDrawingsListTabs,
   useDrawingsTabs,
-} from '../user/drawingsList2/hooks.drawingTabs'
+} from '../user/drawingsList/hooks.drawingTabs'
 import { UserDrawingListType } from '../user/types'
 import { $userProfile } from './model'
 

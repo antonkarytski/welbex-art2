@@ -1,8 +1,6 @@
-import React, { ReactElement, useEffect } from 'react'
-import { FlatListProps } from 'react-native'
-import { links } from '../../../navigation/links'
-import DrawingsList, { DrawingsListProps } from '../../drawing/DrawingsList'
-import { Drawing } from '../../drawing/types'
+import React, { forwardRef, useEffect } from 'react'
+import { FlatList, FlatListProps, StyleProp, ViewStyle } from 'react-native'
+import DrawingsList, { DrawingFlatListProps } from '../../drawing/DrawingsList'
 import { User, UserDrawingListType } from '../types'
 import { useDrawingsList } from './hooks'
 
@@ -10,37 +8,23 @@ type SpecificUserDrawingListProps = {
   item: User
 }
 
-type UserDrawingsListProps = Omit<
-  FlatListProps<Drawing>,
-  'renderItem' | 'data'
-> & {
+type UserDrawingsListProps = {
   type: UserDrawingListType
-  navigationIndex?: number
-  ListHeader?: ReactElement
-  onScroll?: FlatListProps<any>['onScroll']
-  StickyHeaderComponent?: FlatListProps<any>['StickyHeaderComponent']
-} & SpecificUserDrawingListProps
+} & DrawingFlatListProps &
+  SpecificUserDrawingListProps
 
-const UserDrawingsList = ({
-  item,
-  type,
-  navigationIndex,
-  ...props
-}: UserDrawingsListProps) => {
-  const [list, getFirst, getNext] = useDrawingsList(item, type)
+const UserDrawingsList = forwardRef<FlatList, UserDrawingsListProps>(
+  ({ item, type, ...props }, ref) => {
+    const [list, getFirst, getNext] = useDrawingsList(item, type)
 
-  useEffect(() => {
-    getFirst()
-  }, [getFirst])
+    useEffect(() => {
+      getFirst()
+    }, [getFirst])
 
-  return (
-    <DrawingsList
-      {...props}
-      onEndReach={getNext}
-      data={list}
-      navigationIndex={navigationIndex}
-    />
-  )
-}
+    return (
+      <DrawingsList ref={ref} onEndReach={getNext} data={list} {...props} />
+    )
+  }
+)
 
 export default UserDrawingsList

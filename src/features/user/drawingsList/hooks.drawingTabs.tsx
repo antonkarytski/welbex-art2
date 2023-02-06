@@ -1,4 +1,11 @@
 import React, { useMemo } from 'react'
+import {
+  Animated,
+  FlatList,
+  FlatListProps,
+  StyleProp,
+  ViewStyle,
+} from 'react-native'
 import { SceneMap } from 'react-native-tab-view'
 import { mapObject } from '../../../lib/helpers/array'
 import { useText } from '../../../translations/hook'
@@ -20,16 +27,38 @@ export const childrenDrawingsListTabs: TabsDescriptor = {
   ...commonDrawingsListTabs,
 }
 
-export function useDrawingsTabs(tabs: TabsDescriptor, item: User) {
+export type TabListSettings = {
+  contentStyle?: StyleProp<ViewStyle>
+  onScroll?: FlatListProps<any>['onScroll']
+  listRef?: (tabKey: UserDrawingListType, ref: FlatList | null) => void
+  onScrollEnd?: () => void
+}
+
+export function useDrawingsTabs(
+  tabs: TabsDescriptor,
+  item: User,
+  settings: TabListSettings = {}
+) {
   const text = useText()
   const scenes = useMemo(
     () =>
       SceneMap(
         mapObject(tabs, (_, key) => {
-          return () => <UserDrawingsList type={key} item={item} />
+          return () => (
+            <UserDrawingsList
+              ref={(ref) => {
+                settings?.listRef?.(key, ref)
+              }}
+              onScroll={settings.onScroll}
+              contentStyle={settings.contentStyle}
+              onScrollEndDrag={settings.onScrollEnd}
+              type={key}
+              item={item}
+            />
+          )
         })
       ),
-    [tabs, item]
+    [tabs, item, settings]
   )
   const routes = useMemo(
     () =>
@@ -42,10 +71,16 @@ export function useDrawingsTabs(tabs: TabsDescriptor, item: User) {
   return { scenes, routes }
 }
 
-export function useCommonDrawingsListTabs(item: User) {
-  return useDrawingsTabs(commonDrawingsListTabs, item)
+export function useCommonDrawingsListTabs(
+  item: User,
+  settings: TabListSettings = {}
+) {
+  return useDrawingsTabs(commonDrawingsListTabs, item, settings)
 }
 
-export function useChildrenDrawingsListTabs(item: User) {
-  return useDrawingsTabs(childrenDrawingsListTabs, item)
+export function useChildrenDrawingsListTabs(
+  item: User,
+  settings: TabListSettings = {}
+) {
+  return useDrawingsTabs(childrenDrawingsListTabs, item, settings)
 }
