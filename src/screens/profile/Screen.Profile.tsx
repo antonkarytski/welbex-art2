@@ -1,79 +1,40 @@
 import { useStore } from 'effector-react'
-import React from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
-import OfferToGetAuthorization from '../../features/auth/OfferToGetAuthorization'
+import React, { useRef, useState } from 'react'
+import { Animated, StyleSheet, View } from 'react-native'
 import { $isAuth } from '../../features/auth/model'
-import { useProfileDrawingsListTabs } from '../../features/profile/hooks'
-import { $userProfile } from '../../features/profile/model'
-import { createThemedStyle } from '../../features/themed'
-import { useThemedStyleList } from '../../features/themed/hooks'
-import UserCountersBlock from '../../features/user/UserCountersBlock'
-import UserScreenHeader from '../../features/user/UserScreenHeader'
-import UserDrawingsListTabs from '../../features/user/drawingsList/UserDrawingsListTabs'
-import { SCREEN_HEIGHT } from '../../lib/device/dimensions'
-import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
-import { coloredScreenHeaderThemedStyles } from '../../styles/screen'
-import { useText } from '../../translations/hook'
+import ProfileDrawingsListTabs from '../../features/profile/ProfileDrawingsListTabs'
+import ProfileTopBlock, {
+  PROFILE_TOP_BLOCK_INITIAL_HEIGHT,
+} from '../../features/profile/ProfileTopBlock'
+import UnauthorizedProfile from '../../features/profile/UnauthorizedProfile'
 
 const ProfileScreen = () => {
-  const text = useText()
-  const profile = useStore($userProfile)
-  const { styles } = useThemedStyleList({
-    header: coloredScreenHeaderThemedStyles,
-    common: themedStyles,
-  })
-  // TODO - delete and check if profile null
+  const [topBlockHeight, setTopBlockHeight] = useState(
+    PROFILE_TOP_BLOCK_INITIAL_HEIGHT
+  )
   const isAuth = useStore($isAuth)
+  const offset = useRef(new Animated.Value(0)).current
 
-  const profileGalleryTabsProps = useProfileDrawingsListTabs()
+  if (!isAuth) return <UnauthorizedProfile />
 
   return (
-    <View style={styles.common.container}>
-      {isAuth ? (
-        <UserDrawingsListTabs
-          tabsProps={profileGalleryTabsProps}
-          style={styles.common.tabs}
-        >
-          <UserScreenHeader item={profile} label={text.myProfile} />
-          <UserCountersBlock
-            item={profile}
-            style={styles.common.countersBlock}
-          />
-        </UserDrawingsListTabs>
-      ) : (
-        <>
-          <GradientScreenHeader title={text.profile} />
-          <ScrollView style={styles.common.unauthorizedContainer}>
-            <OfferToGetAuthorization enableDescriptionText />
-          </ScrollView>
-        </>
-      )}
+    <View style={styles.container}>
+      <ProfileTopBlock
+        onHeightChange={setTopBlockHeight}
+        offsetValue={offset}
+      />
+      <ProfileDrawingsListTabs
+        scrollOffsetValue={offset}
+        topOffset={topBlockHeight}
+      />
     </View>
   )
 }
 
-const themedStyles = createThemedStyle((colors) =>
-  StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    countersBlock: {
-      marginTop: 32,
-    },
-    tabs: {
-      backgroundColor: colors.screenBackground,
-    },
-    unauthorizedContainer: {
-      paddingHorizontal: 20,
-      padding: SCREEN_HEIGHT / 4.8,
-    },
-    screen: {
-      backgroundColor: colors.screenBackground,
-    },
-    screenHeaderLine: {
-      backgroundColor: 'transparent',
-    },
-  })
-)
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+})
 
 export default ProfileScreen

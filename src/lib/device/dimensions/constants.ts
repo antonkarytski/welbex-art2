@@ -1,4 +1,4 @@
-import { Dimensions, NativeModules } from 'react-native'
+import { Dimensions } from 'react-native'
 import { getStatusBarHeight } from 'react-native-status-bar-height'
 
 export const SCREEN_HEIGHT = Dimensions.get('screen').height

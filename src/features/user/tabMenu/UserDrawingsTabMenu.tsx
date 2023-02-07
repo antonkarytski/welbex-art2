@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
+import { Animated, StyleSheet, ViewStyle } from 'react-native'
 import { SceneRendererProps } from 'react-native-tab-view/lib/typescript/src/types'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyle } from '../../themed/hooks'
@@ -9,7 +9,7 @@ import TabMenuButtons from './TabMenuButtons'
 type UserDrawingsTabMenuProps = SceneRendererProps & {
   routes: { key: string; title: string }[]
   activeTabKey?: string
-  style?: StyleProp<ViewStyle>
+  style?: Animated.AnimatedProps<ViewStyle>
 }
 
 const UserDrawingsTabMenu = ({
@@ -22,7 +22,7 @@ const UserDrawingsTabMenu = ({
 }: UserDrawingsTabMenuProps) => {
   const styles = useThemedStyle(themedStyles)
   return (
-    <View style={[styles.container, style]}>
+    <Animated.View style={[styles.container, style]}>
       <TabMenuButtons
         routes={routes}
         onButtonPress={jumpTo}
@@ -37,7 +37,7 @@ const UserDrawingsTabMenu = ({
         width={layout.width - 40}
         routesCount={routes.length}
       />
-    </View>
+    </Animated.View>
   )
 }
 

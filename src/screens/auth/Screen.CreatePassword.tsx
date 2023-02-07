@@ -44,7 +44,6 @@ const CreatePasswordScreen = () => {
   return (
     <AuthScreenContainer enableScrollView>
       <H2 label={t.enterPassword} style={[styles.common.title]} />
-
       <KeyboardAvoidingView
         behavior={IS_IOS ? 'padding' : 'height'}
         style={styles.common.flexGrown}

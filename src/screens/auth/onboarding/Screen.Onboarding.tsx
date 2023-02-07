@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react'
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import OnboardingSlider, {
   OnboardingSliderStyles,
 } from '../../../features/auth/onboardingSlider/OnboardingSlider'
@@ -27,25 +27,30 @@ const OnboardingScreen = () => {
   })
 
   return (
-    <AuthScreenContainer  enableScrollView>
+    <AuthScreenContainer
+      style={{ container: { paddingHorizontal: 0 } }}
+      enableScrollView
+    >
       <OnboardingSlider
         style={
           { ...styles.common, button: styles.button } as OnboardingSliderStyles
         }
       />
 
-      {isLastSlideActive && (
-        <ArrowButton
-          label={t.skipForNow}
-          onPress={() => {
-            navigate(links.mainTabs)
-          }}
-          fontWeight={500}
-          iconColor={colors.textLightGrey}
-          iconSize={20}
-          style={{ label: styles.screen.skipText }}
-        />
-      )}
+      <View style={{ paddingHorizontal: 20 }}>
+        {isLastSlideActive && (
+          <ArrowButton
+            label={t.skipForNow}
+            onPress={() => {
+              navigate(links.mainTabs)
+            }}
+            fontWeight={500}
+            iconColor={colors.textLightGrey}
+            iconSize={20}
+            style={{ label: styles.screen.skipText }}
+          />
+        )}
+      </View>
     </AuthScreenContainer>
   )
 }

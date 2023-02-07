@@ -1,6 +1,5 @@
 import { createThemedPreset } from '../features/themed/createThemedStyles'
-import { GradientColors } from '../ui/gradients/Gradient'
-import { MotionGradientColors } from '../ui/gradients/MotionGradient'
+import { GradientColors, MotionGradientColors } from '../ui/gradients/types'
 
 export const themedPrimaryGradient = createThemedPreset<GradientColors>(
   (colors) => ({

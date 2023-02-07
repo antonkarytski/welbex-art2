@@ -1,8 +1,9 @@
-import React from 'react'
-import { Animated, StyleSheet } from 'react-native'
-import Gradient, { GradientColors } from './Gradient'
+import React, { useEffect } from 'react'
+import { Animated, StyleProp, StyleSheet, ViewStyle } from 'react-native'
+import Gradient from './Gradient'
+import { MotionGradientColors } from './types'
 
-export type MotionGradientColors = GradientColors & { overlay?: string }
+import AnimatedProps = Animated.AnimatedProps
 
 type MotionGradientProps = {
   colors?: MotionGradientColors
@@ -11,35 +12,32 @@ type MotionGradientProps = {
   maxHeight: number
 }
 
-const MotionGradient = ({
-  colors,
-  offsetValue,
-  minHeight,
-  maxHeight,
-}: MotionGradientProps) => {
-  const translateY = offsetValue.interpolate({
-    inputRange: [0, maxHeight - minHeight],
-    outputRange: [maxHeight, minHeight],
-    extrapolateRight: 'clamp',
-  })
+const MotionGradient = React.memo(
+  ({ colors, offsetValue, minHeight, maxHeight }: MotionGradientProps) => {
+    const translateY = offsetValue.interpolate({
+      inputRange: [0, maxHeight - minHeight],
+      outputRange: [maxHeight, minHeight],
+      extrapolateRight: 'clamp',
+    })
 
-  const overlayAnimatedStyles = {
-    transform: [{ translateY }],
-    backgroundColor: colors?.overlay,
+    const overlayAnimatedStyles: AnimatedProps<ViewStyle> = {
+      transform: [{ translateY }],
+    }
+    if (colors?.overlay) overlayAnimatedStyles.backgroundColor = colors.overlay
+    const gradientStyles = { height: maxHeight }
+
+    return (
+      <>
+        <Gradient
+          key={maxHeight}
+          style={[styles.gradient, gradientStyles]}
+          colors={colors}
+        />
+        <Animated.View style={[styles.overlay, overlayAnimatedStyles]} />
+      </>
+    )
   }
-  const gradientStyles = { height: maxHeight }
-
-  return (
-    <>
-      <Gradient
-        key={maxHeight}
-        style={[styles.gradient, gradientStyles]}
-        colors={colors}
-      />
-      <Animated.View style={[styles.overlay, overlayAnimatedStyles]} />
-    </>
-  )
-}
+)
 
 const styles = StyleSheet.create({
   gradient: {

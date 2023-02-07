@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import SettingsNavigationButton from '../../navigation/elements/NavigationButton.Settings'
+import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import ScreenTopBlock from '../../navigation/elements/ScreenTopBlock'
 import { ScreenHeaderStyles } from '../../navigation/elements/styles'
 import { createThemedStyle } from '../themed'
@@ -19,28 +20,36 @@ const UserScreenHeader = React.memo(
     const { styles: headerStyles, colors } = useTheme(headerThemedStyles)
 
     return (
-      <View style={styles.container}>
-        <ScreenTopBlock
-          backAvailable={backAvailable}
-          style={headerStyles}
-          title={label}
-          headerRight={
-            <SettingsNavigationButton iconColor={colors.appHeaderIconLight} />
-          }
-        >
-          <View style={styles.topBlock} />
-        </ScreenTopBlock>
-        <UserAvatar style={styles.avatar} item={item} />
-      </View>
+      <ScreenHeader
+        backAvailable={backAvailable}
+        style={headerStyles}
+        title={label}
+        headerRight={
+          <SettingsNavigationButton iconColor={colors.appHeaderIconLight} />
+        }
+      />
     )
+
+    // return (
+    //   <View style={styles.container}>
+    //     <ScreenTopBlock
+    //       backAvailable={backAvailable}
+    //       style={headerStyles}
+    //       title={label}
+    //       headerRight={
+    //         <SettingsNavigationButton iconColor={colors.appHeaderIconLight} />
+    //       }
+    //     >
+    //       <View style={styles.topBlock} />
+    //     </ScreenTopBlock>
+    //     <UserAvatar style={styles.avatar} item={item} />
+    //   </View>
+    // )
   }
 )
 
 const headerThemedStyles = createThemedStyle<ScreenHeaderStyles>((colors) =>
   StyleSheet.create({
-    container: {
-      backgroundColor: colors.primary1,
-    },
     line: {
       backgroundColor: colors.primary2,
     },

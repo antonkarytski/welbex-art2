@@ -26,7 +26,10 @@ export default function SignUp() {
   }
 
   return (
-    <AuthScreenContainer enableScrollView>
+    <AuthScreenContainer
+      style={{ screenWrapper: styles.common.noBottomPadding }}
+      enableScrollView
+    >
       <LogInForm />
       <AuthServices style={styles.common.bottomButton} />
       <Row>
