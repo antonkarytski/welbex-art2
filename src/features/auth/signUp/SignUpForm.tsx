@@ -19,7 +19,6 @@ const SignUpForm = () => {
     button: buttonPrimaryThemedPreset,
   })
   const navigate = useNavigate()
-
   // const [isAbleToContinue, setIsAbleToContinue] = useState(false)
 
   const onContinueSignUp = () => {
@@ -27,26 +26,28 @@ const SignUpForm = () => {
   }
 
   return (
-    <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
-      <H2 label={t.createNewAccount} style={featureStyles.formTitle} />
+    <>
+      <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : undefined}>
+        <H2 label={t.createNewAccount} style={featureStyles.formTitle} />
 
-      {SIGN_UP_FIRST_PART_KEYS.map((name) => {
-        return (
-          <Field
-            key={name}
-            placeholder={t[name]}
-            formModel={signUpFormModel}
-            name={name}
-            style={styles.field}
-          />
-        )
-      })}
+        {SIGN_UP_FIRST_PART_KEYS.map((name) => {
+          return (
+            <Field
+              key={name}
+              placeholder={t[name]}
+              formModel={signUpFormModel}
+              name={name}
+              style={styles.field}
+            />
+          )
+        })}
+      </KeyboardAvoidingView>
       <Button
         label={t.continue}
         onPress={onContinueSignUp}
         preset={styles.button}
       />
-    </KeyboardAvoidingView>
+    </>
   )
 }
 

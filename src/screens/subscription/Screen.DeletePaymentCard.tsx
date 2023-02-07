@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
 import PaymentCardsList from '../../features/payment/PaymentCardsList'
 import { cardToDeleteModel } from '../../features/payment/model'
@@ -30,10 +30,12 @@ const DeletePaymentCardScreen = () => {
         title={text.deleteCard}
       />
       <ScreenContainer style={screenStyles.container}>
-        <PaymentCardsList
-          selectedCard={selectedCard}
-          onSelect={setSelectedCard}
-        />
+        <ScrollView style={screenStyles.cardsListWrapper}>
+          <PaymentCardsList
+            selectedCard={selectedCard}
+            onSelect={setSelectedCard}
+          />
+        </ScrollView>
         <PresetButton
           label={text.deleteCard}
           onPress={DeletePaymentCardPopUp.showSync}
@@ -52,6 +54,9 @@ const screenStyles = StyleSheet.create({
   },
   button: {
     marginTop: 'auto',
+  },
+  cardsListWrapper: {
+    marginBottom: 20,
   },
 })
 

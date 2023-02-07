@@ -28,7 +28,7 @@ const PhoneInput = ({
   const inputRef = useRef<TextInput>(null)
 
   const handleFocus: TextInputProps['onFocus'] = (e) => {
-    setIsFocused(false)
+    setIsFocused(true)
     onFocus?.(e)
   }
 

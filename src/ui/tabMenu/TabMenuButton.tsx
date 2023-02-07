@@ -1,30 +1,19 @@
 import React from 'react'
-import {
-  StyleProp,
-  StyleSheet,
-  TextStyle,
-  TouchableOpacity,
-} from 'react-native'
-import Span from '../../../ui/Span'
+import { StyleSheet, TouchableOpacity } from 'react-native'
+import { defaultColors } from '../../features/themed/theme'
+import Span from '../Span'
+import { TabMenuButtonStyles } from './types'
 
 type TabMenuButtonProps = {
   onPress: (key: string) => void
   id: string
-  textStyle?: StyleProp<TextStyle>
-  textActiveStyle?: StyleProp<TextStyle>
-  label: string
+  label?: string
   isActive: boolean
+  style?: TabMenuButtonStyles
 }
 
 const TabMenuButton = React.memo(
-  ({
-    onPress,
-    id,
-    textStyle,
-    label,
-    textActiveStyle,
-    isActive,
-  }: TabMenuButtonProps) => {
+  ({ onPress, id, label, isActive, style }: TabMenuButtonProps) => {
     return (
       <TouchableOpacity
         onPress={() => onPress(id)}
@@ -33,7 +22,7 @@ const TabMenuButton = React.memo(
       >
         <Span
           weight={500}
-          style={[styles.text, textStyle, isActive && textActiveStyle]}
+          style={[styles.label, style?.label, isActive && style?.labelActive]}
           label={label}
         />
       </TouchableOpacity>
@@ -48,8 +37,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 12,
   },
-  text: {
+  label: {
     fontSize: 18,
+    color: defaultColors.textLightGrey,
+  },
+  labelActive: {
+    color: defaultColors.text,
   },
 })
 

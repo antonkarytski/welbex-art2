@@ -1,9 +1,11 @@
 import React from 'react'
 import { FlatList, StyleSheet } from 'react-native'
+import { FONT_MEDIUM } from '../../../styles/fonts'
 import { getSwitcherThemedColors } from '../../../styles/switch'
 import { useText } from '../../../translations/hook'
 import ListItemSeparator from '../../../ui/lists/ListItemSeparator'
-import { useThemeColors } from '../../themed/hooks'
+import { createThemedStyle } from '../../themed'
+import { useTheme } from '../../themed/hooks'
 import NotificationsSettingItem from './NotificationsSettingItem'
 import {
   NOTIFICATIONS_DESCRIPTORS,
@@ -12,7 +14,7 @@ import {
 
 const NotificationsSettingList = React.memo(() => {
   const t = useText()
-  const colors = useThemeColors()
+  const { colors, styles: switcherStyles } = useTheme(themedSwitcherStyles)
   const switcherColors = getSwitcherThemedColors(colors)
 
   const renderItem = ({ item }: { item: NotificationSwitchDescriptor }) => {
@@ -36,8 +38,16 @@ const NotificationsSettingList = React.memo(() => {
   )
 })
 
-const switcherStyles = StyleSheet.create({
-  wrapper: { paddingVertical: 20 },
-})
+const themedSwitcherStyles = createThemedStyle((colors) =>
+  StyleSheet.create({
+    wrapper: { paddingVertical: 20 },
+    label: {
+      color: colors.text,
+      font: FONT_MEDIUM,
+      fontSize: 16,
+      lineHeight: 21,
+    },
+  })
+)
 
 export default NotificationsSettingList

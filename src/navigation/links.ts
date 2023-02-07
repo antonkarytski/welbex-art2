@@ -29,7 +29,6 @@ export enum links {
   profileTab = 'profileTab',
   editProfile = 'editProfile',
   userProfile = 'userProfile',
-  settingsStack = 'settingsStack',
   settings = 'settings',
   faq = 'faq',
   feedback = 'feedback',

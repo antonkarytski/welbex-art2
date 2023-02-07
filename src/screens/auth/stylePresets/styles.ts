@@ -34,5 +34,8 @@ export const themedCommonStyles = createThemedStyle((colors) =>
     noBottomPadding: {
       paddingBottom: 0,
     },
+    noBottomMargin: {
+      marginBottom: 0,
+    },
   })
 )

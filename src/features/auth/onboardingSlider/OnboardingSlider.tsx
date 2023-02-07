@@ -11,7 +11,11 @@ import {
 import Carousel, { ICarouselInstance } from 'react-native-reanimated-carousel'
 import { Pagination } from 'react-native-snap-carousel'
 import { useStateStore } from 'altek-toolkit'
-import { SCREEN_WIDTH, getSize } from '../../../lib/device/dimensions'
+import {
+  SCREEN_WIDTH,
+  WINDOW_HEIGHT,
+  getHeight,
+} from '../../../lib/device/dimensions'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
 import { useText } from '../../../translations/hook'
@@ -41,8 +45,10 @@ type OnboardingSliderProps = {
 
 type RenderItemProps = { item: OnboardingSliderItem }
 
+const carouselHeight = getHeight({
+  percentOfScreenSize: 60,
+})
 const carouselWidth = SCREEN_WIDTH
-const carouselHeight = carouselWidth * 1.45
 
 const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
   const t = useText()
@@ -83,7 +89,7 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
         vertical={false}
         ref={carouselRef}
       />
-      <View style={{ paddingHorizontal: 20 }}>
+      <View style={styles.sliderControlsWrapper}>
         <Pagination
           dotsLength={onboardingSliderData.length}
           activeDotIndex={activeSlideIndex}
@@ -103,7 +109,7 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
           label={t.next}
           onPress={onGoNext}
           preset={style?.button}
-          style={styles.toBottom}
+          style={styles.buttonNext}
         />
       </View>
     </View>
@@ -122,8 +128,12 @@ const styles = StyleSheet.create({
   paginationContainer: {
     marginTop: 'auto',
   },
-  toBottom: {
+  sliderControlsWrapper: {
+    paddingHorizontal: 20,
+  },
+  buttonNext: {
     marginTop: 'auto',
+    paddingVertical: WINDOW_HEIGHT < 630 ? 10 : 16,
   },
 })
 

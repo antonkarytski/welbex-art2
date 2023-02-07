@@ -12,8 +12,8 @@ const ScreenWrapper = ({ children, style }: ScreenWrapperProps) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingBottom: 45,
     backgroundColor: '#ffffff',
+    flexGrow: 1,
     height: '100%',
   },
 })

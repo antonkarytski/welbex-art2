@@ -6,7 +6,7 @@ import React from 'react'
 import { ScrollView, StyleProp, StyleSheet, ViewStyle } from 'react-native'
 import { StateModel, useStateStore, useToggle } from 'altek-toolkit'
 import { defaultColors } from '../../features/themed/theme'
-import { getSize } from '../../lib/device/dimensions'
+import { getWidth } from '../../lib/device/dimensions'
 import { FONT_MEDIUM } from '../../styles/fonts'
 import Span from '../Span'
 import SliderMarker from './SliderMarker'
@@ -19,7 +19,7 @@ type CustomMultiSliderProps = {
   }
 } & MultiSliderProps
 
-const screenWidth = getSize({ paddingSize: 32 })
+const sliderWidth = getWidth({ paddingSize: 32 })
 
 const MultiSlider = ({
   model,
@@ -37,7 +37,7 @@ const MultiSlider = ({
         <BaseMultiSlider
           values={values}
           onValuesChange={setValues}
-          sliderLength={screenWidth}
+          sliderLength={sliderWidth}
           enabledTwo={true}
           isMarkersSeparated={true}
           step={1}

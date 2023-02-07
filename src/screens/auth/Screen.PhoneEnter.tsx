@@ -19,7 +19,7 @@ const PhoneEnterScreen = () => {
   })
 
   return (
-    <AuthScreenContainer>
+    <AuthScreenContainer enableScrollView>
       <H2
         label={t.enterPhoneNumber}
         style={[styles.common.title, styles.common.describedTitle]}
@@ -29,16 +29,15 @@ const PhoneEnterScreen = () => {
         style={styles.common.titleDescription}
         weight={400}
       />
-      <KeyboardAvoidingView
-        behavior={IS_IOS ? 'padding' : 'height'}
-        style={styles.common.flexGrown}
-      >
+
+      <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
         <PhoneEnter />
-        <SendPhoneButton
-          buttonPreset={styles.button}
-          phoneInputModel={phoneInputModel}
-        />
       </KeyboardAvoidingView>
+
+      <SendPhoneButton
+        buttonPreset={styles.button}
+        phoneInputModel={phoneInputModel}
+      />
     </AuthScreenContainer>
   )
 }

@@ -1,7 +1,6 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import GalleryTabBar from '../../features/gallery/GalleryTabBar'
 import { GALLERIES } from '../../features/gallery/descriptors'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
@@ -12,7 +11,9 @@ import SettingsNavigationButton from '../../navigation/elements/NavigationButton
 import { links } from '../../navigation/links'
 import { ScreensProps } from '../../navigation/types.screenProps'
 import { themedPrimaryGradient } from '../../styles/gradients'
+import { tabMenuThemedStyles } from '../../styles/tabMenu'
 import { useText } from '../../translations/hook'
+import TabMenu from '../../ui/tabMenu/TabMenu'
 import ScreenGallery from './Screen.Gallery'
 
 const Tab = createMaterialTopTabNavigator<ScreensProps>()
@@ -20,13 +21,14 @@ const Tab = createMaterialTopTabNavigator<ScreensProps>()
 const GalleriesTabsScreen = () => {
   const text = useText()
   const { styles, colors } = useThemedStyleList({
-    tabs: tabsThemedStyles,
+    tabMenu: tabMenuThemedStyles,
     gradient: themedPrimaryGradient,
+    common: themedStyles,
   })
   const isLoaded = useScreenLoading()
 
   return (
-    <View style={screenStyles.container}>
+    <View style={styles.common.container}>
       <GradientScreenHeader
         title={text.gallery}
         headerLeft={
@@ -40,10 +42,20 @@ const GalleriesTabsScreen = () => {
       />
       {isLoaded ? (
         <Tab.Navigator
-          style={styles.tabs.container}
-          sceneContainerStyle={styles.tabs.sceneContainer}
+          style={styles.common.container}
+          sceneContainerStyle={styles.common.sceneContainer}
           tabBar={(props) => (
-            <GalleryTabBar {...props} style={styles.tabs} colors={colors} />
+            <TabMenu
+              routes={Object.values(props.descriptors).map(
+                ({ route, options }) => ({
+                  key: route.key,
+                  title: options.title,
+                })
+              )}
+              style={styles.tabMenu}
+              activeTab={props.state.index}
+              {...props}
+            />
           )}
           initialRouteName={links.galleryBest}
         >
@@ -66,33 +78,15 @@ const GalleriesTabsScreen = () => {
   )
 }
 
-export default GalleriesTabsScreen
-
-export const tabsThemedStyles = createThemedStyle((colors) =>
+const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
-    wrapper: {
-      paddingHorizontal: 20,
-    },
     container: {
-      width: 'auto',
+      flex: 1,
     },
     sceneContainer: {
       backgroundColor: colors.screenBackground,
     },
-    label: {
-      color: colors.textGrey,
-    },
-    labelActive: {
-      color: colors.text,
-    },
-    tabBar: {
-      borderBottomColor: colors.tabsLine,
-    },
   })
 )
 
-const screenStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-})
+export default GalleriesTabsScreen

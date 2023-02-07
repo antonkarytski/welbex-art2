@@ -42,10 +42,7 @@ const NewPasswordScreen = () => {
         style={styles.common.titleDescription}
         weight={400}
       />
-      <KeyboardAvoidingView
-        behavior={IS_IOS ? 'padding' : 'height'}
-        style={styles.common.flexGrown}
-      >
+      <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
         <PasswordInputs
           passwordPlaceholder={t.password}
           repeatPasswordPlaceholder={t.repeatPassword}

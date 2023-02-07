@@ -10,11 +10,11 @@ const SettingsNavigationButton = ({
   iconColor,
   iconSize = 24,
   style,
-}: SpecificNavigateButtonProps<links.settingsStack>) => {
+}: SpecificNavigateButtonProps<links.settings>) => {
   return (
     <NavigationButton
       Icon={SettingsIcon}
-      navigateTo={links.settingsStack}
+      navigateTo={links.settings}
       iconColor={iconColor}
       iconSize={iconSize}
       style={[styles?.button, style]}

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { StyleSheet } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
@@ -18,7 +19,13 @@ const CodeVerification = () => {
     }
   }, [isCodeValid, navigate])
 
-  return <CelledInput model={codeModel} style={{ cell: cellStyles }} />
+  return (
+    <CelledInput model={codeModel} style={{ cell: cellStyles, ...styles }} />
+  )
 }
+
+const styles = StyleSheet.create({
+  rootStyle: { marginBottom: 30 },
+})
 
 export default CodeVerification

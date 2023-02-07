@@ -48,7 +48,7 @@ export default function PicassoQuoteScreen() {
           navigate(links.onboarding)
         }}
         preset={styles.button}
-        style={styles.common.button}
+        style={[styles.common.button, styles.common.buttonNext]}
       />
     </AuthScreenContainer>
   )

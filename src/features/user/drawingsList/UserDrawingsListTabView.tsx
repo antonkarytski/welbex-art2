@@ -14,7 +14,9 @@ import {
 } from 'react-native'
 import { TabView } from 'react-native-tab-view'
 import { SceneRendererProps } from 'react-native-tab-view/lib/typescript/src/types'
-import UserDrawingsTabMenu from '../tabMenu/UserDrawingsTabMenu'
+import { tabMenuThemedStyles } from '../../../styles/tabMenu'
+import TabMenuAnimated from '../../../ui/tabMenu/TabMenuAnimated'
+import { useThemedStyle } from '../../themed/hooks'
 
 export type Route<K extends string = string> = {
   key: K
@@ -58,14 +60,21 @@ const UserDrawingsListTabView = React.memo(
     ) => {
       const layout = useWindowDimensions()
       const [index, setIndex] = useState(0)
+      const tabMenuStyles = useThemedStyle(tabMenuThemedStyles)
 
       const renderTabBar = useCallback(
         (props: SceneRendererProps) => {
           return (
-            <UserDrawingsTabMenu {...props} routes={routes} style={tabsStyle} />
+            <TabMenuAnimated
+              activeTab={index}
+              routes={routes}
+              style={tabMenuStyles}
+              animatedStyle={tabsStyle}
+              {...props}
+            />
           )
         },
-        [routes, tabsStyle]
+        [routes, tabsStyle, index, tabMenuStyles]
       )
 
       useImperativeHandle(

@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react'
 import React, { useMemo } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import { PlanDescriptor } from '../subscriptionPlans/types'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
@@ -28,30 +28,36 @@ const PaymentMethodList = ({
   }, [paymentCards])
 
   return (
-    <View>
-      {methods.map((method, index) => {
-        return (
-          <PaymentMethodSelectItem
-            key={index}
-            style={(isSelected) => [
-              styles.item,
-              isSelected && styles.selectedItem,
-            ]}
-            checkboxColor={(isSelected) => {
-              return isSelected ? colors.primary1 : colors.text
-            }}
-            isSelected={selectedMethod === method}
-            onPress={({ item, nextState }) => onSelect(nextState ? item : null)}
-            item={method}
-          />
-        )
-      })}
+    <>
+      <ScrollView style={styles.listContainer}>
+        {methods.map((method, index) => {
+          return (
+            <PaymentMethodSelectItem
+              key={index}
+              style={(isSelected) => [
+                styles.item,
+                isSelected && styles.selectedItem,
+                index === methods.length - 1 && styles.lastItem,
+              ]}
+              checkboxColor={(isSelected) => {
+                return isSelected ? colors.primary1 : colors.text
+              }}
+              isSelected={selectedMethod === method}
+              onPress={({ item, nextState }) =>
+                onSelect(nextState ? item : null)
+              }
+              item={method}
+            />
+          )
+        })}
+      </ScrollView>
+
       <AddPaymentCardButton
         currentPayment={currentPayment}
         style={styles.item}
         textColor={colors.primary1}
       />
-    </View>
+    </>
   )
 }
 
@@ -63,6 +69,12 @@ const themedStyles = createThemedStyle((colors) =>
     },
     selectedItem: {
       borderColor: colors.primary1,
+    },
+    lastItem: {
+      marginBottom: 0,
+    },
+    listContainer: {
+      marginBottom: 20,
     },
   })
 )
