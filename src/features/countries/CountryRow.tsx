@@ -6,16 +6,18 @@ import Span from '../../ui/Span'
 import { defaultColors } from '../themed/theme'
 import { Country } from './types'
 
+export type CountryRowStyles = {
+  rowWrapper?: StyleProp<ViewStyle>
+  nameRow?: StyleProp<ViewStyle>
+  flag?: StyleProp<TextStyle>
+  nativeName?: StyleProp<TextStyle>
+  name?: StyleProp<TextStyle>
+}
+
 type CountryRowProps = {
   item: Country
   isSelected?: boolean
-  style?: {
-    rowWrapper?: StyleProp<ViewStyle>
-    nameRow?: StyleProp<ViewStyle>
-    flag?: StyleProp<TextStyle>
-    nativeName?: StyleProp<TextStyle>
-    name?: StyleProp<TextStyle>
-  }
+  style?: CountryRowStyles
 }
 
 const CountryRow = React.memo(
@@ -66,6 +68,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 19,
     fontFamily: FONT_MEDIUM,
+    color: defaultColors.text,
   },
   name__selected: {
     color: defaultColors.textAccent,

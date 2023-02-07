@@ -8,7 +8,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import { getHeight } from '../../../lib/device/dimensions'
+import { WINDOW_HEIGHT, getHeight } from '../../../lib/device/dimensions'
 import { LangStructure } from '../../../translations/types'
 import Span from '../../../ui/Span'
 import { OnboardingSliderItem } from './onboardingSliderData'
@@ -23,7 +23,7 @@ type SliderItemProps = {
   }
 }
 const imageHeight = getHeight({
-  percentOfScreenSize: 47,
+  percentOfScreenSize: WINDOW_HEIGHT < 630 ? 47 : 43,
 })
 
 const imageWidth = imageHeight * 0.93

@@ -88,9 +88,8 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
         width={carouselWidth}
         vertical={false}
         ref={carouselRef}
-        style={{}}
       />
-      <View style={{ paddingHorizontal: 20 }}>
+      <View style={styles.sliderControlsWrapper}>
         <Pagination
           dotsLength={onboardingSliderData.length}
           activeDotIndex={activeSlideIndex}
@@ -128,6 +127,9 @@ const styles = StyleSheet.create({
   },
   paginationContainer: {
     marginTop: 'auto',
+  },
+  sliderControlsWrapper: {
+    paddingHorizontal: 20,
   },
   buttonNext: {
     marginTop: 'auto',

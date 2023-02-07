@@ -41,7 +41,7 @@ const OnboardingScreen = () => {
         }
       />
 
-      <View style={{ paddingHorizontal: 20 }}>
+      <View style={styles.screen.skipButtonWrapper}>
         {isLastSlideActive && (
           <ArrowButton
             label={t.skipForNow}
@@ -68,6 +68,9 @@ const themedStyles = createThemedStyle((colors) =>
       color: colors.textLightGrey,
       fontSize: 16,
       lineHeight: 21,
+    },
+    skipButtonWrapper: {
+      paddingHorizontal: 20,
     },
   })
 )

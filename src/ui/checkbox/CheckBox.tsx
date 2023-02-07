@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import { defaultColors } from '../../features/themed/theme'
 import Span from '../Span'
-import OkIcon from '../icons/Icon.Ok'
+import OkIcon from '../icons/Icon.Ok.CheckBox'
 import { defaultCheckboxPreset } from './styles'
 import { PresetCheckboxStates } from './types'
 
