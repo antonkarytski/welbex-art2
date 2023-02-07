@@ -13,7 +13,6 @@ const ScreenWrapper = ({ children, style }: ScreenWrapperProps) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingBottom: 45,
     backgroundColor: '#ffffff',
     height: WINDOW_HEIGHT,
   },

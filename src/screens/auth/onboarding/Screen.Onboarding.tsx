@@ -7,6 +7,7 @@ import OnboardingSlider, {
 import { $isLastSlideActive } from '../../../features/auth/onboardingSlider/model.onboardingSlider'
 import { createThemedStyle } from '../../../features/themed'
 import { useThemedStyleList } from '../../../features/themed/hooks'
+import { WINDOW_HEIGHT } from '../../../lib/device/dimensions'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
 import { buttonPrimaryThemedPreset } from '../../../styles/buttons'
@@ -28,8 +29,11 @@ const OnboardingScreen = () => {
 
   return (
     <AuthScreenContainer
-      style={{ container: { paddingHorizontal: 0 } }}
       enableScrollView
+      style={{
+        container: { paddingHorizontal: 0 },
+        screenWrapper: { height: WINDOW_HEIGHT },
+      }}
     >
       <OnboardingSlider
         style={

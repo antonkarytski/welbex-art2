@@ -1,17 +1,19 @@
 import { StyleSheet } from 'react-native'
 import { createThemedStyle } from '../../../features/themed'
-import { getSize } from '../../../lib/device/dimensions'
+import { WINDOW_HEIGHT, getHeight } from '../../../lib/device/dimensions'
 
-const imageWidth = getSize({})
-const imageHeight = imageWidth * 1.075
-const imageBottomMargin = getSize({
-  measureName: 'height',
-  percentOfScreenSize: 8.5,
+const imageHeight = getHeight({
+  percentOfScreenSize: 43,
+})
+
+const imageWidth = imageHeight * 0.93
+
+const imageBottomMargin = getHeight({
+  percentOfScreenSize: WINDOW_HEIGHT < 630 ? 4 : 8,
   paddingSize: 0,
 })
 
-const imageCaptionBottomMargin = getSize({
-  measureName: 'height',
+const imageCaptionBottomMargin = getHeight({
   percentOfScreenSize: 3,
   paddingSize: 0,
 })
@@ -42,6 +44,8 @@ export const themedGreetingsStyles = createThemedStyle((colors) =>
       overflow: 'hidden',
       marginTop: 13,
       marginBottom: imageBottomMargin,
+      marginLeft: 'auto',
+      marginRight: 'auto',
     },
     paginationDot: {
       backgroundColor: colors.detailsActive,
@@ -56,6 +60,9 @@ export const themedGreetingsStyles = createThemedStyle((colors) =>
     },
     marginBottom: {
       marginBottom: 24,
+    },
+    buttonNext: {
+      paddingVertical: WINDOW_HEIGHT < 630 ? 10 : 16,
     },
   })
 )

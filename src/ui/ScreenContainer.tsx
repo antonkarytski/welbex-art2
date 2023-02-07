@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: SCREEN_PADDING_HORIZONTAL,
     flexGrow: 1,
+    paddingBottom: 45,
   },
   innerContainer: {
     flexGrow: 1,
