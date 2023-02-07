@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react'
 import React, { useMemo } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { checkboxThemedPreset } from '../../styles/checkbox'
 import CheckBoxCard from '../../ui/checkbox/CheckBoxCard'
 import { createThemedStyle } from '../themed'
@@ -29,12 +29,16 @@ const PaymentCardsList = ({
   }, [paymentCards])
 
   return (
-    <View>
+    <>
       {paymentCardsToRender.map((card, index) => {
         return (
           <CheckBoxCard
             key={card.number?.toString() || index}
-            style={styles.common.checkboxCard}
+            style={[
+              styles.common.checkboxCard,
+              index === paymentCardsToRender.length - 1 &&
+                styles.common.lastCard,
+            ]}
             checkboxPreset={styles.checkbox}
             isSelected={selectedCard === card}
             onPress={(isSelected) => onSelect(isSelected ? card : null)}
@@ -44,7 +48,7 @@ const PaymentCardsList = ({
           </CheckBoxCard>
         )
       })}
-    </View>
+    </>
   )
 }
 
@@ -53,6 +57,9 @@ const themedStyles = createThemedStyle((colors) =>
     checkboxCard: {
       marginBottom: 20,
       borderColor: colors.inputBorder,
+    },
+    lastCard: {
+      marginBottom: 0,
     },
   })
 )
