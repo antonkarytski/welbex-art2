@@ -23,7 +23,12 @@ const ScreenContainer = ({
   backgroundColor,
   enableScrollView,
 }: ScreenContainerProps) => {
-  const containerStyles = [styles.container, { backgroundColor }, style]
+  const containerStyles = [
+    styles.scrollViewContainer,
+    !enableScrollView && styles.container,
+    { backgroundColor },
+    style,
+  ]
 
   return enableScrollView ? (
     <ScrollView contentContainerStyle={containerStyles}>
@@ -38,6 +43,9 @@ const ScreenContainer = ({
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  scrollViewContainer: {
     paddingHorizontal: SCREEN_PADDING_HORIZONTAL,
     flexGrow: 1,
     paddingBottom: 45,

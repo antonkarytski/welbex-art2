@@ -51,7 +51,6 @@ const DeletePaymentCardScreen = () => {
 const screenStyles = StyleSheet.create({
   container: {
     paddingTop: 24,
-    flex: 1,
   },
   button: {
     marginTop: 'auto',
