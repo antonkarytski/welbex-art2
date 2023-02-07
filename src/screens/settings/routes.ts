@@ -6,7 +6,7 @@ import LanguageScreen from './Screen.Language'
 import NotificationsScreen from './Screen.Notifications'
 import SettingsScreen from './Screen.Settings'
 
-const settingsRoutes = [
+export const SETTINGS_ROUTES = [
   {
     name: links.settings,
     component: SettingsScreen,
@@ -32,5 +32,3 @@ const settingsRoutes = [
     component: DeleteAccountScreen,
   },
 ]
-
-export default settingsRoutes

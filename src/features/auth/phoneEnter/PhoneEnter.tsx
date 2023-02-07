@@ -41,6 +41,7 @@ const PhoneEnter = ({ label, isValid, style }: PhoneEnterProps) => {
       onFocus={() => setIsPhoneChecked(false)}
       onBlur={() => setIsPhoneChecked(true)}
       style={{
+        ...styles,
         ...style,
         select: {
           ...style?.select,
@@ -55,6 +56,9 @@ const PhoneEnter = ({ label, isValid, style }: PhoneEnterProps) => {
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    marginBottom: 24,
+  },
   tabLabel: {
     fontSize: 20,
     lineHeight: 26,

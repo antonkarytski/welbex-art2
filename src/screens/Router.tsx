@@ -7,13 +7,13 @@ import { links } from '../navigation/links'
 import ScreenInfoMessage from './Screen.InfoMessage'
 import UserProfileScreen from './Screen.UserProfile'
 import MainTabsRouter from './Tabs.Main'
-import authRoutes from './auth/routes'
+import { AUTH_ROUTES } from './auth/routes'
 import GalleryFilterScreen from './gallery/Screen.GalleryFilter'
 import EditProfileScreen from './profile/Screen.EditProfile'
-import settingsRoutes from './settings/routes'
-import subscriptionRoutes from './subscription/routes'
+import { SETTINGS_ROUTES } from './settings/routes'
+import { SUBSCRIPTION_ROUTES } from './subscription/routes'
 
-const routes = authRoutes.concat(settingsRoutes, subscriptionRoutes)
+const ROUTES = AUTH_ROUTES.concat(SETTINGS_ROUTES, SUBSCRIPTION_ROUTES)
 
 const Router = React.memo(() => {
   const isAuth = useStore($isAuth)
@@ -26,7 +26,7 @@ const Router = React.memo(() => {
 
   return (
     <StackNavigator>
-      {routes.map(({ name, component }) => (
+      {ROUTES.map(({ name, component }) => (
         <Stack.Screen key={name} name={name} component={component} />
       ))}
       <Stack.Screen name={links.mainTabs} component={MainTabsRouter} />

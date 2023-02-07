@@ -5,7 +5,7 @@ import DeletePaymentCardScreen from './Screen.DeletePaymentCard'
 import PaymentMethodsScreen from './Screen.PaymentMethods'
 import SelectSubscriptionPlanScreen from './Screen.SelectSubscriptionPlan'
 
-const subscriptionRoutes = [
+export const SUBSCRIPTION_ROUTES = [
   {
     name: links.addPaymentCard,
     component: AddPaymentCardScreen,
@@ -27,5 +27,3 @@ const subscriptionRoutes = [
     component: SelectSubscriptionPlanScreen,
   },
 ]
-
-export default subscriptionRoutes

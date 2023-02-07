@@ -65,7 +65,6 @@ const FeedbackForm = () => {
 
 const featureStyles = StyleSheet.create({
   formWrapper: {
-    flexGrow: 1,
     marginTop: 24,
   },
   bottomButton: {
@@ -74,6 +73,7 @@ const featureStyles = StyleSheet.create({
   textarea: {
     height: 120,
     paddingVertical: 16,
+    textAlignVertical: 'top',
   },
   field_wrapper: {
     marginBottom: 20,

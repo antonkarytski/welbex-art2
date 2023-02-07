@@ -42,20 +42,18 @@ const UserAgreement = ({ isInvalid }: UserAgreementProps) => {
     >
       <View style={styles.feature.rowWrapper}>
         <Row style={styles.feature.row}>
-          <Span style={styles.feature.textWrapper}>
-            <Span style={styles.feature.text}>{`${t.IAccept} `}</Span>
-            <TouchableOpacity onPress={onOpenUserAgreement} activeOpacity={0.6}>
-              <Span style={[styles.feature.text, styles.feature.links]}>
-                {t.userAgreement}
-              </Span>
-            </TouchableOpacity>
-            <Span style={styles.feature.text}>{` ${t.and} `}</Span>
-            <TouchableOpacity onPress={onOpenPrivacyPolicy} activeOpacity={0.6}>
-              <Span style={[styles.feature.text, styles.feature.links]}>
-                {t.privacyPolicy}
-              </Span>
-            </TouchableOpacity>
-          </Span>
+          <Span style={styles.feature.text}>{`${t.IAccept} `}</Span>
+          <TouchableOpacity onPress={onOpenUserAgreement} activeOpacity={0.6}>
+            <Span style={[styles.feature.text, styles.feature.links]}>
+              {t.userAgreement}
+            </Span>
+          </TouchableOpacity>
+          <Span style={styles.feature.text}>{` ${t.and} `}</Span>
+          <TouchableOpacity onPress={onOpenPrivacyPolicy} activeOpacity={0.6}>
+            <Span style={[styles.feature.text, styles.feature.links]}>
+              {t.privacyPolicy}
+            </Span>
+          </TouchableOpacity>
         </Row>
       </View>
     </CheckBox>
@@ -67,11 +65,11 @@ const themedStyles = createThemedStyle((colors) =>
     container: {
       marginBottom: 12,
     },
-    row: { justifyContent: 'flex-start' },
-    rowWrapper: { marginLeft: 12 },
-    textWrapper: {
-      textAlignVertical: 'center',
+    row: {
+      justifyContent: 'flex-start',
+      flexWrap: 'wrap',
     },
+    rowWrapper: { marginLeft: 12 },
     text: {
       fontSize: 14,
       lineHeight: 21,

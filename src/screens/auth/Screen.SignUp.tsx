@@ -14,13 +14,10 @@ const SignUp = () => {
   })
 
   return (
-    <AuthScreenContainer
-      style={{ screenWrapper: styles.common.noBottomPadding }}
-      enableScrollView
-    >
+    <AuthScreenContainer enableScrollView>
       <SignUpForm />
       <AuthServices style={styles.common.bottomButton} />
-      <OfferToLogIn />
+      <OfferToLogIn style={styles.common.noBottomMargin} />
     </AuthScreenContainer>
   )
 }

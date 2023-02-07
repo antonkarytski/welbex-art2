@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleProp, StyleSheet, ViewStyle } from 'react-native'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { buttonTextThemedStyles } from '../../styles/buttons'
@@ -11,7 +11,11 @@ import TextButton from '../../ui/buttons/Button.Text'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 
-const OfferToLogin = () => {
+type OfferToLoginProps = {
+  style?: StyleProp<ViewStyle>
+}
+
+const OfferToLogin = ({ style }: OfferToLoginProps) => {
   const t = useText()
   const navigate = useNavigate()
   const { styles } = useThemedStyleList({
@@ -20,7 +24,7 @@ const OfferToLogin = () => {
   })
 
   return (
-    <Row style={styles.feature.row}>
+    <Row style={[styles.feature.row, style]}>
       <Span label={t.haveAccountQ} style={[styles.feature.text]} />
       <TextButton
         label={t.logIn}

@@ -10,7 +10,7 @@ import VerificationScreen from './Screen.Verification'
 import OnBoardingScreen from './onboarding/Screen.Onboarding'
 import PicassoQuoteScreen from './onboarding/Screen.PicassoQuote'
 
-const AuthRoutes = [
+export const AUTH_ROUTES = [
   {
     name: links.onboardingPicassoQuote,
     component: PicassoQuoteScreen,
@@ -52,4 +52,3 @@ const AuthRoutes = [
     component: NewPasswordScreen,
   },
 ]
-export default AuthRoutes
