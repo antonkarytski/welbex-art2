@@ -13,7 +13,7 @@ import EditProfileScreen from './profile/Screen.EditProfile'
 import { SETTINGS_ROUTES } from './settings/routes'
 import { SUBSCRIPTION_ROUTES } from './subscription/routes'
 
-const ROUTES = AUTH_ROUTES.concat(SETTINGS_ROUTES, SUBSCRIPTION_ROUTES)
+const ROUTES = [...AUTH_ROUTES, ...SETTINGS_ROUTES, ...SUBSCRIPTION_ROUTES]
 
 const Router = React.memo(() => {
   const isAuth = useStore($isAuth)
@@ -27,6 +27,7 @@ const Router = React.memo(() => {
   return (
     <StackNavigator>
       {ROUTES.map(({ name, component }) => (
+        //@ts-ignore
         <Stack.Screen key={name} name={name} component={component} />
       ))}
       <Stack.Screen name={links.mainTabs} component={MainTabsRouter} />
