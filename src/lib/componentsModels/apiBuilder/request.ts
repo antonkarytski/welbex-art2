@@ -1,22 +1,14 @@
-import { EffectByHandler, createEffect } from 'effector'
+import { createEffect } from 'effector'
 import { attach } from 'effector/effector.cjs'
 import { StateModel, addStorePersist, createStateModel } from 'altek-toolkit'
 import { ApiError } from '../../../api/errors'
-import { getArtWorksByFilter, updateCategory } from './endpoint'
-import { GetterRouter, Mapper, RequestProps } from './types'
-
-type RequestFnProps<Body> = RequestProps<Body> & { token?: string | null }
-type DoRequestProps<Body> = RequestFnProps<Body> & { _secondAttempt?: boolean }
-type RequestModelProps = {
-  tokenModel?: StateModel<string | null>
-  saveTo?: string
-  tokenRefresher: () => Promise<string>
-}
-type RequestFn<Return> = (props: RequestFnProps<any>) => Promise<Return>
-type CreateRequestProps<Return, Props> = {
-  props: GetterRouter<Props>
-  request: RequestFn<Return>
-}
+import {
+  CreateRequestProps,
+  DoRequestProps,
+  RequestFnProps,
+  RequestModelProps,
+  TokenRefresherProps,
+} from './types'
 
 function prepareData<Body>(props: RequestFnProps<Body>) {
   const headers: HeadersInit = {
@@ -35,7 +27,7 @@ async function doRequest<Body>(props: RequestFnProps<Body>) {
   return fetch(props.url, prepareData(props))
 }
 
-export function createRequest<Response, Params>({
+export function createRequestEffect<Response, Params>({
   props: propsGetter,
   request,
 }: CreateRequestProps<Response, Params>) {
@@ -49,12 +41,13 @@ export function createRequest<Response, Params>({
 }
 const TOKEN_SAVE_DEFAULT_KEY = '@token_auto'
 
-class RequestManager {
+export class RequestManager {
   private readonly tokenModel: StateModel<string | null>
   private readonly tokenPersist
   private readonly tokenRefresher
 
-  private readonly getToken
+  public readonly getToken
+  public readonly refreshToken
 
   constructor({
     tokenModel,
@@ -75,6 +68,15 @@ class RequestManager {
       mapParams: (_: void, token) => token,
       effect: createEffect((token: string | null) => token),
     })
+    this.refreshToken = attach({
+      source: this.tokenModel.$state,
+      mapParams: (_: void, token) => ({ currentToken: token }),
+      effect: createEffect(async (props: TokenRefresherProps) => {
+        const token = await this.tokenRefresher(props)
+        this.tokenModel.set(token)
+        return token
+      }),
+    })
   }
 
   public resetToken() {
@@ -83,12 +85,6 @@ class RequestManager {
 
   public async setToken(token: string) {
     this.tokenModel.set(token)
-  }
-
-  public async refreshToken() {
-    const token = await this.tokenRefresher()
-    this.tokenModel.set(token)
-    return token
   }
 
   private retrieveToken(props: RequestFnProps<any>) {
@@ -126,22 +122,5 @@ class RequestManager {
     }
   }
 
-  public readonly createRequestEffect = createRequest
+  public readonly createRequestEffect = createRequestEffect
 }
-
-const requestManager = new RequestManager({
-  tokenRefresher: async () => '',
-})
-
-class Api<L extends Record<string, GetterRouter<Mapper>>> {
-  public readonly endpoints: L
-
-  constructor(list: L) {
-    this.endpoints = list
-  }
-}
-
-const updateCategoryRequest = createRequest({
-  props: updateCategory,
-  request: requestManager.request<{ id: number }>(),
-})

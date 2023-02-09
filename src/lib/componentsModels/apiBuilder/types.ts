@@ -1,3 +1,5 @@
+import { StateModel } from 'altek-toolkit'
+
 export type Method = 'POST' | 'GET' | 'PUT' | 'DELETE' | 'PATCH'
 export type RequestProps<Body = any> = {
   url: string
@@ -30,3 +32,23 @@ export type MethodCreator = <T>(
   endpoint: string,
   fn?: T extends Mapper ? T : never
 ) => GetterRouter<T>
+export type TokenRefresherProps = {
+  currentToken: string | null
+  refreshToken?: string
+}
+export type RequestFnProps<Body> = RequestProps<Body> & {
+  token?: string | null
+}
+export type DoRequestProps<Body> = RequestFnProps<Body> & {
+  _secondAttempt?: boolean
+}
+export type RequestModelProps = {
+  tokenModel?: StateModel<string | null>
+  saveTo?: string
+  tokenRefresher: (props: TokenRefresherProps) => Promise<string>
+}
+type RequestFn<Return> = (props: RequestFnProps<any>) => Promise<Return>
+export type CreateRequestProps<Return, Props> = {
+  props: GetterRouter<Props>
+  request: RequestFn<Return>
+}
