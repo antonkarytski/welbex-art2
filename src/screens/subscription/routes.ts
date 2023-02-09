@@ -1,11 +1,12 @@
 import { links } from '../../navigation/links'
+import { RoutesList } from '../types'
 import AddPaymentCardScreen from './Screen.AddPaymentCard'
 import CurrentSubscriptionScreen from './Screen.CurrentSubscription'
 import DeletePaymentCardScreen from './Screen.DeletePaymentCard'
 import PaymentMethodsScreen from './Screen.PaymentMethods'
 import SelectSubscriptionPlanScreen from './Screen.SelectSubscriptionPlan'
 
-export const SUBSCRIPTION_ROUTES = [
+export const SUBSCRIPTION_ROUTES: RoutesList = [
   {
     name: links.addPaymentCard,
     component: AddPaymentCardScreen,

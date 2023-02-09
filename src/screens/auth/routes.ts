@@ -1,4 +1,5 @@
 import { links } from '../../navigation/links'
+import { RoutesList } from '../types'
 import CountrySelectionScreen from './Screen.CountrySelection'
 import NewPasswordScreen from './Screen.CreateNewPassword'
 import CreatePasswordScreen from './Screen.CreatePassword'
@@ -10,7 +11,7 @@ import VerificationScreen from './Screen.Verification'
 import OnBoardingScreen from './onboarding/Screen.Onboarding'
 import PicassoQuoteScreen from './onboarding/Screen.PicassoQuote'
 
-export const AUTH_ROUTES = [
+export const AUTH_ROUTES: RoutesList = [
   {
     name: links.onboardingPicassoQuote,
     component: PicassoQuoteScreen,
