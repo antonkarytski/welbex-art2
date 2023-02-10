@@ -16,6 +16,11 @@ type GalleryItemProps = {
 
 const GalleryItem = React.memo(
   ({ item, style, onPress, ageTextGenerator }: GalleryItemProps) => {
+    /**
+     * TODO: Если на кнопку "нравится" нажимает не авторизованный пользователь,
+     * то при нажатии должен происходить переход на страницу логина
+     */
+
     return (
       <ImageCard
         onPress={() => onPress?.(item)}

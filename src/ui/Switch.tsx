@@ -9,7 +9,7 @@ import {
 import {
   TypedFormFieldComponentProps,
   useSpecificTypeFormField,
-} from '../lib/componentsModels/model.form'
+} from '../lib/models/model.form'
 import Row from '../ui/Row'
 import Span from '../ui/Span'
 

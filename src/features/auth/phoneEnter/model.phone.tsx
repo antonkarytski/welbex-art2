@@ -1,5 +1,5 @@
 import { sample } from 'effector'
-import { createPhoneInputModel } from '../../../lib/componentsModels/phoneNumber/model.phoneNumber'
+import { createPhoneInputModel } from '../../../lib/models/phoneNumber/model.phoneNumber'
 import { createCountryModel } from '../../countries/model.countriesDropdown'
 import { profileCountryModel } from '../model.profileCountry'
 

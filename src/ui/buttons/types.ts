@@ -30,10 +30,12 @@ export type PresetButtonProps = ButtonProps & {
 
 export type BigIconButtonProps = ButtonProps & {
   iconColor?: string
-  style?: {
-    icon?: StyleProp<ViewStyle>
-    row?: StyleProp<ViewStyle>
-    label?: StyleProp<TextStyle>
-    button?: StyleProp<ViewStyle>
-  }
+  style?: BigIconButtonStyles
+}
+
+export type BigIconButtonStyles = {
+  icon?: StyleProp<ViewStyle>
+  row?: StyleProp<ViewStyle>
+  label?: StyleProp<TextStyle>
+  button?: StyleProp<ViewStyle>
 }

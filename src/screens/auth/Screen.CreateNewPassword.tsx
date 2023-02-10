@@ -2,8 +2,8 @@ import { useStore } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
 import { setIsAuth } from '../../features/auth/model'
+import { newPasswordModel } from '../../features/auth/password/model.passwords'
 import { useThemedStyleList } from '../../features/themed/hooks'
-import { createPasswordFormModel } from '../../lib/componentsModels/passwordsForm/model.passwordsForm'
 import { IS_IOS } from '../../lib/helpers/native/constants'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
@@ -14,8 +14,6 @@ import PresetButton from '../../ui/buttons/PresetButton'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
 
-const passwordsModel = createPasswordFormModel()
-
 const NewPasswordScreen = () => {
   const t = useText()
   const { styles } = useThemedStyleList({
@@ -23,10 +21,10 @@ const NewPasswordScreen = () => {
     button: buttonPrimaryThemedPreset,
   })
 
-  const passwords = useStore(passwordsModel.$store)
+  const passwords = useStore(newPasswordModel.$store)
 
   const onLogin = () => {
-    passwordsModel.validateFx().then((isValid) => {
+    newPasswordModel.validateFx().then((isValid) => {
       if (isValid) setIsAuth(true) // TEST
     })
   }
@@ -46,7 +44,7 @@ const NewPasswordScreen = () => {
         <PasswordInputs
           passwordPlaceholder={t.password}
           repeatPasswordPlaceholder={t.repeatPassword}
-          model={passwordsModel}
+          model={newPasswordModel}
           validLabel={t.checkPasswordMatchSuccess}
           invalidLabel={t.checkPasswordMatchError}
         />

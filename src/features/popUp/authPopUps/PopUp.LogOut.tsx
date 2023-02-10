@@ -1,4 +1,4 @@
-import { logOut } from '../../auth/logOut'
+import { logOut } from '../../auth/logOut/model'
 import { submitPopUpFactory } from '../factories'
 
 const PopUpLogOut = submitPopUpFactory.create({

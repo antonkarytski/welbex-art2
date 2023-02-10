@@ -6,8 +6,9 @@ import UserAgreement, {
   userAgreementModel,
 } from '../../features/auth/UserAgreement'
 import { setIsAuth } from '../../features/auth/model'
+import { passwordModel } from '../../features/auth/password/model.passwords'
+import { signUpRequest } from '../../features/auth/signUp/request'
 import { useThemedStyleList } from '../../features/themed/hooks'
-import { createPasswordFormModel } from '../../lib/componentsModels/passwordsForm/model.passwordsForm'
 import { IS_IOS } from '../../lib/helpers/native/constants'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
@@ -16,8 +17,6 @@ import PasswordInputs from '../../ui/PasswordInputs'
 import PresetButton from '../../ui/buttons/PresetButton'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
-
-const passwordsModel = createPasswordFormModel()
 
 const CreatePasswordScreen = () => {
   const t = useText()
@@ -30,13 +29,15 @@ const CreatePasswordScreen = () => {
     useState<UserAgreementProps['isInvalid']>()
 
   const onCreateAccount = () => {
-    passwordsModel.validateFx().then((isValid) => {
+    passwordModel.validateFx().then((isValid) => {
       if (!isUserAcceptAgreement) {
         setIsUserAgreementInvalid(true)
         return
       }
       if (isValid && isUserAcceptAgreement) {
-        setIsAuth(true)
+        signUpRequest().then(() => {
+          setIsAuth(true)
+        })
       }
     })
   }
@@ -49,7 +50,7 @@ const CreatePasswordScreen = () => {
         <PasswordInputs
           passwordPlaceholder={t.password}
           repeatPasswordPlaceholder={t.repeatPassword}
-          model={passwordsModel}
+          model={passwordModel}
           validLabel={t.checkPasswordMatchSuccess}
           invalidLabel={t.checkPasswordMatchError}
           style={{ formWrapper: screenStyles.passwordFormWrapper }}
