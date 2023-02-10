@@ -11,7 +11,7 @@ import {
 } from 'react-native'
 import { createThemedStyle } from '../../features/themed'
 import { useTheme } from '../../features/themed/hooks'
-import { PopUpModel } from '../../lib/componentsModels/popUp/model'
+import { PopUpModel } from '../../lib/models/popUp/model'
 
 export type PopUpCardProps = {
   model: PopUpModel

@@ -1,6 +1,6 @@
 import { addPersist } from 'altek-toolkit'
-import { createFormModel } from '../../../lib/componentsModels/model.form'
 import { DbFields } from '../../../lib/db/fields'
+import { createFormModel } from '../../../lib/models/model.form'
 import { LangFn } from '../../../translations/types'
 
 export enum NotificationType {

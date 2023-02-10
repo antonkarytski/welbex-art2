@@ -10,7 +10,7 @@ import H2 from '../../../ui/H2'
 import Button from '../../../ui/buttons/PresetButton'
 import Field from '../../../ui/form/Field'
 import { useThemedStyleList } from '../../themed/hooks'
-import { SIGN_UP_FIRST_PART_KEYS, signUpFormModel } from './model.signUp'
+import { SIGN_UP_KEYS, signUpFormModel } from './model'
 
 const SignUpForm = () => {
   const t = useText()
@@ -30,7 +30,7 @@ const SignUpForm = () => {
       <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : undefined}>
         <H2 label={t.createNewAccount} style={featureStyles.formTitle} />
 
-        {SIGN_UP_FIRST_PART_KEYS.map((name) => {
+        {SIGN_UP_KEYS.map((name) => {
           return (
             <Field
               key={name}

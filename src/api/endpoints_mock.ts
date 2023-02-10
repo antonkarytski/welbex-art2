@@ -2,9 +2,9 @@ import {
   createEndpoint,
   createGet,
   createPut,
-} from '../lib/componentsModels/apiBuilder/endpoint'
+} from '../lib/models/apiBuilder/endpoint'
 
-const artWorksEndpoint = createEndpoint('artWorks')
+const artWorksEndpoint = createEndpoint('arts')
 
 const createArtWork = artWorksEndpoint.post<{ post: string; author: string }>()
 
