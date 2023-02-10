@@ -1,30 +1,12 @@
-import {
-  GetterRouter,
-  Mapper,
-  Method,
-  MethodCreator,
-  MethodFn,
-  MethodParamsProps,
-  MethodProps,
-  RequestProps,
-} from './types'
-
-function bodyToParams(body: Record<string, string | number | boolean>) {
-  return Object.entries(body)
-    .map(([key, value]) => `${key}=${value}`)
-    .join('&')
-}
-
-function getUrlEnd(value: string | undefined) {
-  return value ? `${value.startsWith('/') ? '' : '/'}${value}` : ''
-}
+import { bodyToParams, getUrlEnd, removeSlashes } from './helpers'
+import { MapperFn, Method, RequestProps, RequestPropsGetter } from './types'
 
 class Endpoint {
-  private readonly endpoint
+  private readonly _endpoint
   private isProtected = false
 
   public constructor(endpoint: string) {
-    this.endpoint = endpoint.endsWith('/') ? endpoint.slice(0, -1) : endpoint
+    this._endpoint = endpoint.endsWith('/') ? endpoint.slice(0, -1) : endpoint
   }
 
   public protect() {
@@ -35,99 +17,81 @@ class Endpoint {
   private createCommonResponse(method: Method): RequestProps {
     return {
       withToken: this.isProtected,
-      url: this.endpoint,
+      url: this._endpoint,
       method,
     }
   }
 
-  private methodWithBody<T>(method: Method, fn?: MethodFn<T>): GetterRouter<T> {
-    return ((...props: MethodProps<T>) => {
+  private methodWithBody<T>(
+    method: Method,
+    fn?: MapperFn<T>
+  ): RequestPropsGetter<T> {
+    return ((props: T) => {
       const response = this.createCommonResponse(method)
       if (!fn) {
-        return { ...response, body: props[0] }
+        return { ...response, body: props }
       }
-      const { body, url, ...rest } = fn(...props)
+      const { body, url, ...rest } = fn(props)
       const urlEnd = getUrlEnd(url)
-      return { ...response, ...rest, body, url: `${this.endpoint}${urlEnd}` }
-    }) as GetterRouter<T>
+      return { ...response, ...rest, body, url: `${this._endpoint}${urlEnd}` }
+    }) as RequestPropsGetter<T>
   }
 
   private methodWithParams<T>(
     method: Method,
-    fn?: MethodFn<T>
-  ): GetterRouter<T> {
-    return ((...props: MethodParamsProps<T>) => {
+    fn?: MapperFn<T>
+  ): RequestPropsGetter<T> {
+    return ((props: T) => {
       const response = this.createCommonResponse(method)
       if (!fn) {
-        const firstProp = props[0]
-
-        if (!firstProp && firstProp !== 0) return response
-        if (typeof firstProp === 'object') {
-          const params = bodyToParams(props[0])
-          const url = params ? `${this.endpoint}?${params}` : this.endpoint
+        if (props === undefined || props === null) return response
+        if (typeof props === 'object') {
+          const params = bodyToParams(props)
+          const url = params ? `${this._endpoint}?${params}` : this._endpoint
           return { ...response, url }
         }
-        const url = `${this.endpoint}/${firstProp}`
+        const url = `${this._endpoint}/${props}`
         return { ...response, url }
       }
-      const { body, url, ...rest } = fn(...props)
+      const { body, url, ...rest } = fn(props)
       const params = body ? bodyToParams(body) : ''
       const urlEnd = getUrlEnd(url)
       const urlParams = params ? `?${params}` : ''
       return {
         ...response,
         ...rest,
-        url: `${this.endpoint}${urlEnd}${urlParams}`,
+        url: `${this._endpoint}${urlEnd}${urlParams}`,
       }
-    }) as GetterRouter<T>
+    }) as RequestPropsGetter<T>
   }
 
-  public method<T>(method: Method, fn?: MethodFn<T>): GetterRouter<T> {
+  public method<T>(method: Method, fn?: MapperFn<T>): RequestPropsGetter<T> {
     if (method === 'GET') {
       return this.methodWithParams(method, fn)
     }
     return this.methodWithBody(method, fn)
   }
-
-  public post<T>(fn?: T extends Mapper ? T : never): GetterRouter<T> {
+  public post<T>(fn?: MapperFn<T>): RequestPropsGetter<T> {
     return this.method('POST', fn)
   }
-  public get<T>(fn?: T extends Mapper ? T : never): GetterRouter<T> {
+  public get<T>(fn?: MapperFn<T>): RequestPropsGetter<T> {
     return this.method('GET', fn)
   }
-  public put<T>(fn?: T extends Mapper ? T : never): GetterRouter<T> {
+  public put<T>(fn?: MapperFn<T>): RequestPropsGetter<T> {
     return this.method('PUT', fn)
   }
-  public delete<T>(fn?: T extends Mapper ? T : never): GetterRouter<T> {
+  public delete<T>(fn?: MapperFn<T>): RequestPropsGetter<T> {
     return this.method('DELETE', fn)
   }
-  public patch<T>(fn?: T extends Mapper ? T : never): GetterRouter<T> {
+  public patch<T>(fn?: MapperFn<T>): RequestPropsGetter<T> {
     return this.method('PATCH', fn)
+  }
+  public createEndpoint(rawEndpoint: string) {
+    const endpoint = removeSlashes(rawEndpoint)
+    return new Endpoint(`${this._endpoint}/${endpoint}`)
   }
 }
 
 export const createEndpoint = (endpoint: string) => {
   return new Endpoint(endpoint)
-}
-export const createMethod = <T>(
-  endpoint: string,
-  method: Method,
-  fn?: T extends Mapper ? T : never
-) => {
-  return new Endpoint(endpoint).get(fn)
-}
-export const createGet: MethodCreator = (endpoint, fn) => {
-  return new Endpoint(endpoint).get(fn)
-}
-export const createPost: MethodCreator = (endpoint, fn) => {
-  return new Endpoint(endpoint).post(fn)
-}
-export const createPut: MethodCreator = (endpoint, fn) => {
-  return new Endpoint(endpoint).put(fn)
-}
-export const createDelete: MethodCreator = (endpoint, fn) => {
-  return new Endpoint(endpoint).delete(fn)
-}
-export const createPatch: MethodCreator = (endpoint, fn) => {
-  return new Endpoint(endpoint).delete(fn)
 }

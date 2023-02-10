@@ -1,47 +1,49 @@
-import { createEffect } from 'effector'
+import { Effect, createEffect } from 'effector'
 import { attach } from 'effector/effector.cjs'
 import { StateModel, addStorePersist, createStateModel } from 'altek-toolkit'
 import { ApiError } from '../../../api/errors'
+import { createEndpoint } from './endpoint'
+import { doRequest } from './helpers'
 import {
-  CreateRequestProps,
   DoRequestProps,
+  MapperFn,
+  Method,
   RequestFnProps,
   RequestModelProps,
+  RequestPropsGetter,
   TokenRefresherProps,
 } from './types'
 
-function prepareData<Body>(props: RequestFnProps<Body>) {
-  const headers: HeadersInit = {
-    'Content-Type': 'application/json',
-  }
-  if (props.withToken) headers.Authorization = `JWT ${props.token}`
-  const data: RequestInit = { method: props.method, headers }
-  if (props.body) data.body = JSON.stringify(props.body)
-  return data
+const TOKEN_SAVE_DEFAULT_KEY = '@token_auto'
+function createPropsGetter<Params>(props: CreateRequestProps<Params>) {
+  const endpoint = createEndpoint(props.endpoint)
+  if (props.withToken) endpoint.protect()
+  return endpoint.method(props.method, props.fn)
 }
 
-async function doRequest<Body>(props: RequestFnProps<Body>) {
-  if (props.withToken && !props.token) {
-    throw ApiError.noTokenProvided()
-  }
-  return fetch(props.url, prepareData(props))
+type CreateRequestProps<Params> = {
+  endpoint: string
+  method: Method
+  withToken?: boolean
+  fn?: MapperFn<Params>
+}
+
+type CreateRequestEffectProps<Response, Params> = {
+  props: RequestPropsGetter<Params>
+  request: (props: DoRequestProps<Params>) => Promise<Response>
 }
 
 export function createRequestEffect<Response, Params>({
   props: propsGetter,
   request,
-}: CreateRequestProps<Response, Params>) {
-  const effect = createEffect((...params: Parameters<typeof propsGetter>) => {
-    const props = propsGetter(...(params as [any]))
-    return request(props)
-  }) as any as (...params: Parameters<typeof propsGetter>) => Response
-  return () => {
-    return effect
-  }
+}: CreateRequestEffectProps<Response, Params>) {
+  return createEffect((params: Params) => {
+    const requestProps = propsGetter(params as any)
+    return request(requestProps)
+  })
 }
-const TOKEN_SAVE_DEFAULT_KEY = '@token_auto'
 
-export class RequestManager {
+export class ApiManager {
   private readonly tokenModel: StateModel<string | null>
   private readonly tokenPersist
   private readonly tokenRefresher
@@ -116,11 +118,13 @@ export class RequestManager {
     throw await ApiError.fromResponse(response)
   }
 
-  public request<Response>() {
-    return async <Params>(props: DoRequestProps<Params>) => {
-      return this.doRequest<Response, Params>(props)
-    }
+  public createRequest<Response = any, Params = void>(
+    props: CreateRequestProps<Params>
+  ) {
+    const propsGetter = createPropsGetter(props)
+    return createEffect((params: Parameters<typeof propsGetter>[0]) => {
+      const requestProps = propsGetter(params as any)
+      return this.doRequest(requestProps)
+    }) as Effect<Params, Response>
   }
-
-  public readonly createRequestEffect = createRequestEffect
 }
