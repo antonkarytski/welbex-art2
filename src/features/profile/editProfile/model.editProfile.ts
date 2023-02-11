@@ -1,4 +1,4 @@
-import { createFormModel } from '../../../lib/componentsModels/model.form'
+import { createFormModel } from '../../../lib/models/model.form'
 import { LangFn } from '../../../translations/types'
 
 enum EditProfileFormType {

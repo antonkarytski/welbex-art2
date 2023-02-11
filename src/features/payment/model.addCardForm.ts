@@ -1,4 +1,4 @@
-import { createFormModel } from '../../lib/componentsModels/model.form'
+import { createFormModel } from '../../lib/models/model.form'
 
 type AddCardForm = {
   number: string

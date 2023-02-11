@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
 import { StateModel } from 'altek-toolkit'
-import { SearchableListModel } from '../../lib/componentsModels/model.search'
+import { SearchableListModel } from '../../lib/models/model.search'
 import { Fn, FnExt } from '../../types'
 import { DropdownStyles } from '../dropdownTab/types'
 import { InputStyles } from '../input/types'

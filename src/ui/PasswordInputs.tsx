@@ -1,7 +1,7 @@
 import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
-import { PasswordsModel } from '../lib/componentsModels/passwordsForm/types'
+import { PasswordsModel } from '../lib/models/passwordsForm/types'
 import { ErrorNote, SecureField, SuccessNote } from './form'
 import { InputStyles } from './input/types'
 

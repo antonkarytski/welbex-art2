@@ -11,7 +11,7 @@ import TextButton from '../../../ui/buttons/Button.Text'
 import Button from '../../../ui/buttons/PresetButton'
 import Field from '../../../ui/form/Field'
 import { useThemedStyleList } from '../../themed/hooks'
-import { logIn, logInFormModel } from './model.logIn'
+import { logIn, logInFormModel } from './model'
 
 const LogInForm = () => {
   const navigate = useNavigate()

@@ -2,7 +2,7 @@ import React from 'react'
 import {
   TypedFormFieldComponentProps,
   useSpecificTypeFormField,
-} from '../../lib/componentsModels/model.form'
+} from '../../lib/models/model.form'
 import Input from '../input'
 import { InputProps, InputStyles } from '../input/types'
 

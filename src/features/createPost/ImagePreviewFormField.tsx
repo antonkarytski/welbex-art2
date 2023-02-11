@@ -3,7 +3,7 @@ import { Image, ImageStyle, StyleProp } from 'react-native'
 import {
   FormFieldComponentProps,
   useFormField,
-} from '../../lib/componentsModels/model.form'
+} from '../../lib/models/model.form'
 
 type ImagePreviewFormFieldProps<T extends Record<string, string>> = {
   style?: StyleProp<ImageStyle>
