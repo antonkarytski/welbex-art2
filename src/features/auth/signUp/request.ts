@@ -1,20 +1,24 @@
 import { attach, combine, createEffect } from 'effector'
-import { api } from '../../../api/api'
+import moment from 'moment'
+import { api } from '../../../api'
+import { SignUpBody } from '../../../api/types/users'
 import { profileCountryModel } from '../model.profileCountry'
 import { passwordModel } from '../password/model.passwords'
 import { phoneInputModel } from '../phoneEnter'
+import { DATE_FORMAT } from './constants'
 import { signUpFormModel } from './model'
 
-const $signUpParams = combine({
-  user: signUpFormModel.$store,
-  country: profileCountryModel.$state,
-  phone_number: phoneInputModel.purePhoneModel.$state,
-  passwords: passwordModel.$store,
-}).map(({ user, country, phone_number, passwords }) =>
-  api.signUp({
+const $signUpParams = combine(
+  {
+    user: signUpFormModel.$store,
+    country: profileCountryModel.$state,
+    phone_number: phoneInputModel.purePhoneModel.$state,
+    passwords: passwordModel.$store,
+  },
+  ({ user, country, phone_number, passwords }) => ({
     first_name: user.name,
     last_name: user.lastName,
-    DOB: user.birthDate,
+    DOB: moment(user.birthDate, DATE_FORMAT).toISOString(true),
     email: user.email,
     country: country.name,
     password: passwords.password,
@@ -26,6 +30,8 @@ const $signUpParams = combine({
 
 export const signUpRequest = attach({
   source: $signUpParams,
-  mapParams: (_: void, source) => source,
-  effect: createEffect(), // TODO: requestManager.createRequestEffect({})
+  // effect: createEffect((userData: SignUpBody) => api.signUp(userData)),
+  effect: createEffect((userData: SignUpBody) => {
+    console.log('userData', userData)
+  }),
 })

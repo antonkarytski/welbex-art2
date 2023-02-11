@@ -1,3 +1,4 @@
+import { useStore } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
@@ -10,7 +11,7 @@ import H2 from '../../../ui/H2'
 import Button from '../../../ui/buttons/PresetButton'
 import Field from '../../../ui/form/Field'
 import { useThemedStyleList } from '../../themed/hooks'
-import { SIGN_UP_KEYS, signUpFormModel } from './model'
+import { $isFormValid, SIGN_UP_FIELDS, signUpFormModel } from './model'
 
 const SignUpForm = () => {
   const t = useText()
@@ -19,7 +20,7 @@ const SignUpForm = () => {
     button: buttonPrimaryThemedPreset,
   })
   const navigate = useNavigate()
-  // const [isAbleToContinue, setIsAbleToContinue] = useState(false)
+  const isFormValid = useStore($isFormValid)
 
   const onContinueSignUp = () => {
     navigate(links.countrySelection)
@@ -30,7 +31,7 @@ const SignUpForm = () => {
       <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : undefined}>
         <H2 label={t.createNewAccount} style={featureStyles.formTitle} />
 
-        {SIGN_UP_KEYS.map((name) => {
+        {SIGN_UP_FIELDS.map(({ name, type, formatValue }) => {
           return (
             <Field
               key={name}
@@ -38,6 +39,8 @@ const SignUpForm = () => {
               formModel={signUpFormModel}
               name={name}
               style={styles.field}
+              type={type}
+              formatValue={formatValue}
             />
           )
         })}
@@ -46,6 +49,7 @@ const SignUpForm = () => {
         label={t.continue}
         onPress={onContinueSignUp}
         preset={styles.button}
+        disabled={!isFormValid}
       />
     </>
   )

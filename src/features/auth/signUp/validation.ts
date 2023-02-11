@@ -1,11 +1,8 @@
-import { createEffect, createEvent, createStore } from 'effector'
 import * as yup from 'yup'
 
-export const loginFirstScreenSchema = yup.object().shape({
+export const signUpFormSchema = yup.object().shape({
   name: yup.string().required(),
   lastName: yup.string().required(),
-  birthDate: yup.date().required(),
+  birthDate: yup.date().max(new Date()).required(),
   email: yup.string().email().required(),
 })
-
-export const validateFirstStepFx = createEffect()
