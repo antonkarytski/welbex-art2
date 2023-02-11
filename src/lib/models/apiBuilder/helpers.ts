@@ -1,4 +1,4 @@
-import { ApiError } from '../../../api/errors'
+import { ApiError } from './errors'
 import { RequestFnProps } from './types'
 
 export function bodyToParams(body: object) {

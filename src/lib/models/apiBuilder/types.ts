@@ -1,4 +1,4 @@
-import { StateModel } from 'altek-toolkit'
+import { ServerManager, StateModel } from 'altek-toolkit'
 
 export type Method = 'POST' | 'GET' | 'PUT' | 'DELETE' | 'PATCH'
 export type RequestProps<Body = any> = {
@@ -17,7 +17,7 @@ export type GetterWithMap<Fn extends Mapper> = (
   ...params: Parameters<Fn>
 ) => RequestProps<ReturnType<Fn>['body']>
 export type RequestPropsGetter<T> = unknown extends T
-  ? (body?: never) => RequestProps<T>
+  ? (body?: unknown) => RequestProps<T>
   : (body: T) => RequestProps<T>
 export type GetterRouter<T> = T extends Mapper
   ? GetterWithMap<T>
@@ -32,8 +32,35 @@ export type RequestFnProps<Body> = RequestProps<Body> & {
 export type DoRequestProps<Body> = RequestFnProps<Body> & {
   _secondAttempt?: boolean
 }
+export type Tokens = {
+  access: string
+  refresh: string
+}
+export type TokensProps = Tokens & {
+  type?: TokenType
+}
+export type TokenRefresher = (props: TokensProps) => Promise<Tokens>
+
+export type TokenSettings = {
+  accessLifeTime?: number
+  refreshLifeTime?: number
+  dbField?: string
+}
+
 export type RequestModelProps = {
-  tokenModel?: StateModel<string | null>
-  saveTo?: string
-  tokenRefresher: (props: TokenRefresherProps) => Promise<string>
+  server?: ServerManager
+  tokenRefresher: TokenRefresher
+  tokenSettings?: TokenSettings
+}
+export type TokenType = 'Bearer' | 'JWT'
+
+export type CreateRequestProps<Params> = {
+  endpoint: string
+  method: Method
+  withToken?: boolean
+  fn?: MapperFn<Params>
+}
+export type CreateRequestEffectProps<Response, Params> = {
+  props: RequestPropsGetter<Params>
+  request: (props: DoRequestProps<Params>) => Promise<Response>
 }

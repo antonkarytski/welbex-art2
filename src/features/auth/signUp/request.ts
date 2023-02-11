@@ -1,6 +1,6 @@
 import { attach, combine, createEffect, createEvent, restore } from 'effector'
 import { User, api } from '../../../api/endpoints'
-import { requestManager } from '../../../api/requests'
+import { apiManager } from '../../../api/requests'
 import { profileCountryModel } from '../model.profileCountry'
 import { passwordModel } from '../password/model.passwords'
 import { phoneInputModel } from '../phoneEnter/model.phone'

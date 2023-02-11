@@ -20,7 +20,7 @@ const LogoutButton = ({ style }: { style: BigIconButtonStyles }) => {
       label={t.logOut}
       onPress={onLogout}
       style={style}
-      preset={styles}
+      preset={styles.button}
     >
       <OutComingArrowIcon size={24} style={style?.icon} />
     </BigIconButton>

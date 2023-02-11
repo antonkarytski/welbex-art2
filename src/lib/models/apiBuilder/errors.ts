@@ -5,6 +5,11 @@ type ErrorProps = {
 }
 
 export class ApiError extends Error {
+  public static NEED_LOGIN = {
+    status: 401,
+    message: 'Need login',
+  }
+
   static noTokenProvided() {
     return new ApiError({
       status: 0,
@@ -18,6 +23,10 @@ export class ApiError extends Error {
       message: 'Unknown error',
       data: body,
     }
+  }
+
+  static needLogin() {
+    return ApiError.NEED_LOGIN
   }
 
   static async fromResponse(response: Response) {

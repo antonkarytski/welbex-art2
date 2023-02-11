@@ -1,7 +1,7 @@
 import {
   createEndpoint,
   createPost,
-} from '../../lib/models/apiBuilder/endpoint'
+} from '../../lib/models/apiBuilder/Endpoint'
 import { server } from '../server'
 import { LoginProps, RefreshTokenProps, User } from './types'
 
