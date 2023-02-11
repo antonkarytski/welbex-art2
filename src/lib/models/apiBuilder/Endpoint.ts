@@ -1,12 +1,16 @@
 import { ServerManager } from 'altek-toolkit'
 import { bodyToParams, getUrlEnd, removeSlashes } from './helpers'
-import { MapperFn, Method, RequestProps, RequestPropsGetter } from './types'
+import {
+  MapperFn,
+  Method,
+  RequestProps,
+  RequestPropsGetter,
+  RequestRouteSettings,
+} from './types'
 
 export type MethodSettings = {
   endpoint?: string
-  withToken?: boolean
-  method: Method
-}
+} & RequestRouteSettings
 
 type SpecificMethodSettings<T> = Omit<MethodSettings, 'method'> & {
   fn?: MapperFn<T>

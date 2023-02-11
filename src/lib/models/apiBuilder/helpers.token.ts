@@ -1,15 +1,10 @@
+import { TokenStatus } from './types.token'
+
 type GetTokenStatusProps = {
   token: string | null
   startTime: number
   refreshTime: number
   lifeTime: number
-}
-
-export enum TokenStatus {
-  NONE = 0,
-  FRESH = 1,
-  EXPIRED = 2,
-  REFRESH_EXPIRED = 3,
 }
 
 export function getTokenStatus({

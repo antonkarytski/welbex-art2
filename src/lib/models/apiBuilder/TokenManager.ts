@@ -1,8 +1,12 @@
-import { createEffect, createEvent, createStore } from 'effector'
-import { attach } from 'effector/effector.cjs'
+import { createEffect, createEvent, createStore, attach } from 'effector'
 import { addStorePersist, days, minutes } from 'altek-toolkit'
-import { TokenStatus, getTokenStatus } from './helpers.token'
-import { TokenRefresher, TokenSettings, Tokens } from './types'
+import { getTokenStatus } from './helpers.token'
+import {
+  TokenRefresher,
+  TokenSettings,
+  TokenStatus,
+  Tokens,
+} from './types.token'
 
 const TOKEN_SAVE_DEFAULT_KEY = '@token_info'
 type TokenModel = Tokens & {

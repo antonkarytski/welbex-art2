@@ -1,6 +1,6 @@
 import { db } from '../lib/db'
 import { ApiManager } from '../lib/models/apiBuilder/ApiManager'
-import { Tokens } from '../lib/models/apiBuilder/types'
+import { Tokens } from '../lib/models/apiBuilder/types.token'
 
 export const apiManager = new ApiManager({
   tokenRefresher: async ({ access }: Tokens) => '',
