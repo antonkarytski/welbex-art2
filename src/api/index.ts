@@ -8,7 +8,6 @@ export const api = {
   users: usersApi,
   categories: categoriesApi,
   activeCategories: () => `${server.url}/categories/competitions/active/all`,
-  winners: () => `${server.url}/categories/winners`,
 
   post: (id: number) => `${server.url}/arts/${id}`,
   createPost: () => `${server.url}/arts/create`,
