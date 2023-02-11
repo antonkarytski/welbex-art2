@@ -1,4 +1,4 @@
-import { TokenType } from '../../lib/models/apiBuilder/types.token'
+import { TokenType } from '../../../lib/models/apiBuilder/types.token'
 
 enum UserRole {
   COMMON = 0,

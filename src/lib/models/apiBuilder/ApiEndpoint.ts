@@ -14,10 +14,11 @@ type ApiEndpointProps = {
     props: DoRequestProps<Params>
   ) => Promise<Response>
 } & CreateApiEndpointSettings
-type SpecificRequestProps<Params> = Omit<
-  CreateApiEndpointRequest<Params>,
-  'method'
->
+type SpecificRequestProps<Params> =
+  | Omit<CreateApiEndpointRequest<Params>, 'method'>
+  | MapperFn<Params>
+  | string
+  | number
 
 export class ApiEndpoint {
   private readonly _endpoint
@@ -54,35 +55,48 @@ export class ApiEndpoint {
     })
   }
 
+  private prepareRequestProps<Params = void>(
+    method: Method,
+    props?: SpecificRequestProps<Params>
+  ): CreateApiEndpointRequest<Params> {
+    if (!props) return { method }
+    if (typeof props === 'function') return { fn: props, method }
+    if (typeof props === 'string' || typeof props === 'number') {
+      return { endpoint: props, method }
+    }
+    return { ...props, method }
+  }
+
   public method<Response = any, Params = void>(
     method: Method,
-    props: Omit<CreateApiEndpointRequest<Params>, 'method'>
+    props?: SpecificRequestProps<Params>
   ) {
-    return this.request<Response, Params>({ ...props, method })
+    const requestProps = this.prepareRequestProps(method, props)
+    return this.request<Response, Params>(requestProps)
   }
 
   public get<Response = any, Params = void>(
-    props: SpecificRequestProps<Params>
+    props?: SpecificRequestProps<Params>
   ) {
     return this.method<Response, Params>('GET', props)
   }
   public post<Response = any, Params = void>(
-    props: SpecificRequestProps<Params>
+    props?: SpecificRequestProps<Params>
   ) {
     return this.method<Response, Params>('POST', props)
   }
   public put<Response = any, Params = void>(
-    props: SpecificRequestProps<Params>
+    props?: SpecificRequestProps<Params>
   ) {
     return this.method<Response, Params>('PUT', props)
   }
   public delete<Response = any, Params = void>(
-    props: SpecificRequestProps<Params>
+    props?: SpecificRequestProps<Params>
   ) {
     return this.method<Response, Params>('DELETE', props)
   }
   public patch<Response = any, Params = void>(
-    props: SpecificRequestProps<Params>
+    props?: SpecificRequestProps<Params>
   ) {
     return this.method<Response, Params>('PATCH', props)
   }

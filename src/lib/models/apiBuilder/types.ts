@@ -10,8 +10,14 @@ type RequestData<Body = any> = {
   url: string
   body?: Body
 }
+type RequestDataPart<Body = any> = {
+  url: string | number
+  body?: Body
+}
 export type RequestProps<Body = any> = RequestRouteSettings & RequestData<Body>
-export type MapperFn<Body> = (props: Body) => Partial<RequestData<Body>>
+export type MapperFn<Body> = (
+  props: Body
+) => Partial<RequestDataPart> | string | number
 export type RequestPropsGetter<T> = unknown extends T
   ? (body?: unknown) => RequestProps<T>
   : (body: T) => RequestProps<T>
