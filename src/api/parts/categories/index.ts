@@ -10,7 +10,9 @@ import {
 
 const categories = apiManager.endpoint('categories')
 const all = categories.get<CategoriesResponse, PaginatedListProps | void>('all')
-const winners = categories.get<WinnerResponse, PaginatedListProps>('winners')
+const winners = categories.get<WinnerResponse, PaginatedListProps | void>(
+  'winners'
+)
 const specific = categories.get<SpecificCategoryResponse, number>((id) => id)
 const artWorks = categories.get<ArtWorksResponse, CategoryArtWorksProps>(
   ({ id, ...body }) => ({
