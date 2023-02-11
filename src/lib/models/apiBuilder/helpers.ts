@@ -38,3 +38,16 @@ export async function doRequest<Body>(props: RequestFnProps<Body>) {
   }
   return fetch(props.url, prepareData(props))
 }
+
+export async function request<Response, Body = any>(
+  props: RequestFnProps<Body>
+) {
+  const response = await doRequest(props)
+  const contentType = response.headers.get('content-type')
+  const isJsonAvailable = contentType === 'application/json'
+  if (response.ok) {
+    if (!isJsonAvailable) return null as Response
+    return (await response.json()) as Response
+  }
+  throw await ApiError.fromResponse(response)
+}

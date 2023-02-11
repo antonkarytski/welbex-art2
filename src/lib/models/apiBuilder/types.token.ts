@@ -5,7 +5,7 @@ export type Tokens = {
 export type TokensProps = Tokens & {
   type?: TokenType
 }
-export type TokenRefresher = (props: TokensProps) => Promise<Tokens>
+export type TokenRefresher = (props: TokensProps) => Promise<Tokens | null>
 export type TokenSettings = {
   accessLifeTime?: number
   refreshLifeTime?: number

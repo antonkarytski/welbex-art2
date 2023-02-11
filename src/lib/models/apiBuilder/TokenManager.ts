@@ -1,4 +1,4 @@
-import { createEffect, createEvent, createStore, attach } from 'effector'
+import { attach, createEffect, createEvent, createStore } from 'effector'
 import { addStorePersist, days, minutes } from 'altek-toolkit'
 import { getTokenStatus } from './helpers.token'
 import {
@@ -75,6 +75,7 @@ export class TokenManager {
     effect: createEffect(async (props: Tokens | null) => {
       if (!props) return null
       const token = await this.refresher(props)
+      if (!token) return null
       this.set(token)
       return token
     }),

@@ -56,7 +56,7 @@ export class ApiManager {
     throw await ApiError.fromResponse(response)
   }
 
-  public createRequest<Response = any, Params = void>(
+  public request<Response = any, Params = void>(
     props: CreateRequestProps<Params>
   ) {
     const endpoint = new Endpoint(this.server, props.endpoint)
@@ -68,10 +68,7 @@ export class ApiManager {
     })
   }
 
-  public createEndpoint(
-    endpoint: string,
-    settings?: CreateApiEndpointSettings
-  ) {
+  public endpoint(endpoint: string, settings?: CreateApiEndpointSettings) {
     const endpointEntity = new Endpoint(this.server, endpoint)
     if (settings?.withToken) endpointEntity.protect()
     return new ApiEndpoint({

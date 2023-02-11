@@ -1,6 +1,6 @@
 import { createEffect } from 'effector'
 import { Endpoint, MethodSettings } from './Endpoint'
-import { DoRequestProps, MapperFn } from './types'
+import { DoRequestProps, MapperFn, Method } from './types'
 
 type CreateApiEndpointRequest<Params> = {
   fn?: MapperFn<Params>
@@ -14,21 +14,27 @@ type ApiEndpointProps = {
     props: DoRequestProps<Params>
   ) => Promise<Response>
 } & CreateApiEndpointSettings
+type SpecificRequestProps<Params> = Omit<
+  CreateApiEndpointRequest<Params>,
+  'method'
+>
 
 export class ApiEndpoint {
-  private readonly endpoint
+  private readonly _endpoint
   private readonly requestHandler
 
   constructor(props: ApiEndpointProps) {
     this.requestHandler = props.requestHandler
-    this.endpoint = props.endpoint
+    this._endpoint = props.endpoint
   }
 
-  public createEndpoint(
-    endpoint: string,
-    settings?: CreateApiEndpointSettings
-  ) {
-    const newEndpoint = this.endpoint.createEndpoint(endpoint)
+  public protect() {
+    this._endpoint.protect()
+    return this
+  }
+
+  public endpoint(endpoint: string, settings?: CreateApiEndpointSettings) {
+    const newEndpoint = this._endpoint.createEndpoint(endpoint)
     if (settings?.withToken !== undefined) {
       newEndpoint.setProtection(settings.withToken)
     }
@@ -38,13 +44,46 @@ export class ApiEndpoint {
     })
   }
 
-  public createRequest<Response = any, Params = void>(
+  public request<Response = any, Params = void>(
     props: CreateApiEndpointRequest<Params>
   ) {
-    const propsGetter = this.endpoint.method(props, props.fn)
+    const propsGetter = this._endpoint.method(props, props.fn)
     return createEffect((params: Params) => {
       const requestProps = propsGetter(params)
       return this.requestHandler<Response, Params>(requestProps)
     })
+  }
+
+  public method<Response = any, Params = void>(
+    method: Method,
+    props: Omit<CreateApiEndpointRequest<Params>, 'method'>
+  ) {
+    return this.request<Response, Params>({ ...props, method })
+  }
+
+  public get<Response = any, Params = void>(
+    props: SpecificRequestProps<Params>
+  ) {
+    return this.method<Response, Params>('GET', props)
+  }
+  public post<Response = any, Params = void>(
+    props: SpecificRequestProps<Params>
+  ) {
+    return this.method<Response, Params>('POST', props)
+  }
+  public put<Response = any, Params = void>(
+    props: SpecificRequestProps<Params>
+  ) {
+    return this.method<Response, Params>('PUT', props)
+  }
+  public delete<Response = any, Params = void>(
+    props: SpecificRequestProps<Params>
+  ) {
+    return this.method<Response, Params>('DELETE', props)
+  }
+  public patch<Response = any, Params = void>(
+    props: SpecificRequestProps<Params>
+  ) {
+    return this.method<Response, Params>('PATCH', props)
   }
 }

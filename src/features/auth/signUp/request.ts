@@ -1,9 +1,8 @@
-import { attach, combine, createEffect, createEvent, restore } from 'effector'
-import { User, api } from '../../../api/endpoints'
-import { apiManager } from '../../../api/requests'
+import { attach, combine, createEffect } from 'effector'
+import { api } from '../../../api/api'
 import { profileCountryModel } from '../model.profileCountry'
 import { passwordModel } from '../password/model.passwords'
-import { phoneInputModel } from '../phoneEnter/model.phone'
+import { phoneInputModel } from '../phoneEnter'
 import { signUpFormModel } from './model'
 
 const $signUpParams = combine({
@@ -20,6 +19,8 @@ const $signUpParams = combine({
     country: country.name,
     password: passwords.password,
     phone_number,
+    is_manager: false,
+    is_superuser: false,
   })
 )
 
