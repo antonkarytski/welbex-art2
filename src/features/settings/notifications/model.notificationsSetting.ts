@@ -1,4 +1,4 @@
-import { addPersist } from 'altek-toolkit'
+import { addStorePersist } from 'altek-toolkit'
 import { DbFields } from '../../../lib/db/fields'
 import { createFormModel } from '../../../lib/models/model.form'
 import { LangFn } from '../../../translations/types'
@@ -34,9 +34,9 @@ export const notificationsSettingModel = createFormModel(
   notificationsInitialState
 )
 
-addPersist(
-  notificationsSettingModel.$store,
-  DbFields.NOTIFICATIONS_ENABLED
-).onInit(({ result }) => {
+addStorePersist({
+  $store: notificationsSettingModel.$store,
+  saveTo: DbFields.NOTIFICATIONS_ENABLED,
+}).onInit((result) => {
   if (result) notificationsSettingModel.set(result)
 })

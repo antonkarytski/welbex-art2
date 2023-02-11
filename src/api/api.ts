@@ -1,8 +1,34 @@
+import { apiManager } from './apiManager'
 import { server } from './server'
+import { LoginBody, LoginResponse } from './types/auth'
+import { MeResponse, SignUpBody, SignUpResponse, User } from './types/users'
 
-// TODO: delete this file
-export const urls = {
-  login: () => `${server.url}/auth/token`,
+const auth = apiManager.endpoint('auth')
+const login = auth.post<LoginResponse, LoginBody>({
+  endpoint: 'token',
+})
+
+const users = apiManager.endpoint('users').protect()
+const me = users.get<MeResponse>({
+  endpoint: 'me',
+})
+const signUp = users.post<SignUpResponse, SignUpBody>({
+  endpoint: 'create',
+  withToken: false,
+})
+const userProfile = users.get<User, number>({
+  fn: (id) => {
+    return {
+      url: `${id}/profile`,
+    }
+  },
+})
+
+export const api = {
+  login,
+  me,
+  signUp,
+  userProfile,
   refreshToken: () => `${server.url}/auth/refresh-tokens`,
   currentUser: () => `${server.url}/users/me`,
   createUser: () => `${server.url}/users/create`,
