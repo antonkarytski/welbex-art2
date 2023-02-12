@@ -7,8 +7,9 @@ import UserAgreement, {
 } from '../../features/auth/UserAgreement'
 import { setIsAuth } from '../../features/auth/model'
 import { passwordModel } from '../../features/auth/password/model.passwords'
-import { signUpRequest } from '../../features/auth/signUp/request'
+import { signUp } from '../../features/auth/signUp/request'
 import { useThemedStyleList } from '../../features/themed/hooks'
+import { noop } from '../../lib/helpers'
 import { IS_IOS } from '../../lib/helpers/native/constants'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
@@ -29,23 +30,18 @@ const CreatePasswordScreen = () => {
     useState<UserAgreementProps['isInvalid']>()
 
   const onCreateAccount = () => {
+    if (!isUserAcceptAgreement) {
+      return setIsUserAgreementInvalid(true)
+    }
     passwordModel.validateFx().then((isValid) => {
-      if (!isUserAcceptAgreement) {
-        setIsUserAgreementInvalid(true)
-        return
-      }
-      if (isValid && isUserAcceptAgreement) {
-        signUpRequest().then(() => {
-          setIsAuth(true)
-        })
-      }
+      if (!isValid) return
+      signUp().catch(noop)
     })
   }
 
   return (
     <AuthScreenContainer enableScrollView>
-      <H2 label={t.enterPassword} style={[styles.common.title]} />
-
+      <H2 label={t.enterPassword} style={styles.common.title} />
       <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
         <PasswordInputs
           passwordPlaceholder={t.password}
@@ -58,6 +54,7 @@ const CreatePasswordScreen = () => {
         <UserAgreement isInvalid={isUserAgreementInvalid} />
       </KeyboardAvoidingView>
       <PresetButton
+        disabled={!isUserAcceptAgreement}
         label={t.createAccountButton}
         onPress={onCreateAccount}
         preset={styles.button}
