@@ -1,5 +1,5 @@
 import React, { forwardRef, useState } from 'react'
-import { TextInput, View } from 'react-native'
+import { TextInput, TextInputProps, View } from 'react-native'
 import Span from '../Span'
 import { inputStyles, placeholderColor } from './styles'
 import { InputProps } from './types'
@@ -21,11 +21,13 @@ const Input = forwardRef<TextInput, InputProps>(
     ref
   ) => {
     const [isFocused, setIsFocused] = useState(false)
-    const handleFocus = () => {
+    const handleFocus: TextInputProps['onFocus'] = (e) => {
       setIsFocused(true)
+      props.onFocus?.(e)
     }
-    const handleBlur = () => {
+    const handleBlur: TextInputProps['onBlur'] = (e) => {
       setIsFocused(false)
+      props.onBlur?.(e)
     }
 
     const isInvalid = isValid !== undefined && isValid !== null && !isValid

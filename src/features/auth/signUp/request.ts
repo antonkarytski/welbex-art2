@@ -1,12 +1,11 @@
 import { attach, combine, createEffect } from 'effector'
 import moment from 'moment'
 import { api } from '../../../api'
-import { SignUpBody } from '../../../api/types/users'
+import { SignUpBody } from '../../../api/parts/users/types'
 import { profileCountryModel } from '../model.profileCountry'
 import { passwordModel } from '../password/model.passwords'
 import { phoneInputModel } from '../phoneEnter'
-import { DATE_FORMAT } from './constants'
-import { signUpFormModel } from './model'
+import { birthDateModel, signUpFormModel } from './model'
 
 const $signUpParams = combine(
   {
@@ -14,11 +13,12 @@ const $signUpParams = combine(
     country: profileCountryModel.$state,
     phone_number: phoneInputModel.purePhoneModel.$state,
     passwords: passwordModel.$store,
+    birthDate: birthDateModel.$state,
   },
-  ({ user, country, phone_number, passwords }) => ({
+  ({ user, country, phone_number, passwords, birthDate }) => ({
     first_name: user.name,
     last_name: user.lastName,
-    DOB: moment(user.birthDate, DATE_FORMAT).toISOString(true),
+    DOB: birthDate.toISOString(),
     email: user.email,
     country: country.name,
     password: passwords.password,
@@ -30,8 +30,8 @@ const $signUpParams = combine(
 
 export const signUpRequest = attach({
   source: $signUpParams,
-  // effect: createEffect((userData: SignUpBody) => api.signUp(userData)),
   effect: createEffect((userData: SignUpBody) => {
     console.log('userData', userData)
+    return api.users.signUp(userData)
   }),
 })

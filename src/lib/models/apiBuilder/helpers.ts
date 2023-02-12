@@ -7,7 +7,8 @@ export function bodyToParams(body: object) {
     .join('&')
 }
 
-export function getUrlEnd(value: string | undefined) {
+export function getUrlEnd(value: number | string | undefined) {
+  if (typeof value === 'number') return `/${value}`
   return value ? `${value.startsWith('/') ? '' : '/'}${value}` : ''
 }
 
