@@ -21,7 +21,6 @@ const LogInForm = () => {
     button: buttonPrimaryThemedPreset,
   })
 
-  const onLogIn = () => {}
   const onForgotPassword = () => {
     navigate(links.recoverPassword)
   }

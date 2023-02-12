@@ -1,5 +1,5 @@
 import { attach, combine, createEffect } from 'effector'
-import { api } from '../../../api/api'
+import { api } from '../../../api'
 import { profileCountryModel } from '../model.profileCountry'
 import { passwordModel } from '../password/model.passwords'
 import { phoneInputModel } from '../phoneEnter'
@@ -11,7 +11,7 @@ const $signUpParams = combine({
   phone_number: phoneInputModel.purePhoneModel.$state,
   passwords: passwordModel.$store,
 }).map(({ user, country, phone_number, passwords }) =>
-  api.signUp({
+  api.users.signUp({
     first_name: user.name,
     last_name: user.lastName,
     DOB: user.birthDate,

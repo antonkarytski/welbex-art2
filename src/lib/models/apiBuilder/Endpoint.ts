@@ -9,7 +9,7 @@ import {
 } from './types'
 
 export type MethodSettings = {
-  endpoint?: string
+  endpoint?: string | number
 } & RequestRouteSettings
 
 type SpecificMethodSettings<T> = Omit<MethodSettings, 'method'> & {
@@ -78,7 +78,11 @@ export class Endpoint {
     const response = this.createCommonResponse(method)
     return ((props: T) => {
       if (!fn) return { ...response, body: props }
-      const { body, url, ...rest } = fn(props)
+      const result = fn(props)
+      if (typeof result === 'string' || typeof result === 'number') {
+        return { ...response, url: `${this.endpoint}${getUrlEnd(result)}` }
+      }
+      const { body, url, ...rest } = result
       const urlEnd = getUrlEnd(url)
       return { ...response, ...rest, body, url: `${this.endpoint}${urlEnd}` }
     }) as RequestPropsGetter<T>
@@ -100,7 +104,11 @@ export class Endpoint {
         const url = `${this.endpoint}/${props}`
         return { ...response, url }
       }
-      const { body, url, ...rest } = fn(props)
+      const result = fn(props)
+      if (typeof result === 'string' || typeof result === 'number') {
+        return { ...response, url: `${this.endpoint}${getUrlEnd(result)}` }
+      }
+      const { body, url, ...rest } = result
       const params = body ? bodyToParams(body) : ''
       const urlEnd = getUrlEnd(url)
       const urlParams = params ? `?${params}` : ''
