@@ -3,6 +3,7 @@ import React from 'react'
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
 import { useNavigate } from '../../../navigation'
+import { links } from '../../../navigation/links'
 import { buttonPrimaryThemedPreset } from '../../../styles/buttons'
 import { inputThemedStyles } from '../../../styles/inputs'
 import { useText } from '../../../translations/hook'
@@ -23,11 +24,10 @@ const SignUpForm = () => {
   const isFormValid = useStore(signUpFormModel.validation.$state)
 
   const onContinueSignUp = () => {
-    signUpFormModel.validation.cast()
-    //navigate(links.countrySelection)
+    signUpFormModel.validation.cast().then(({ isValid }) => {
+      if (isValid) navigate(links.countrySelection)
+    })
   }
-
-  console.log(isFormValid)
 
   return (
     <>

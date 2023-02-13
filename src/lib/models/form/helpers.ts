@@ -30,7 +30,13 @@ export function mergeValidation<T extends Record<string, any>>(
 ) {
   const list = { ...currentValidation, [field.key]: field.value }
   for (const key in list) {
-    if (list[key] !== valid) return { list, isValid: false }
+    const currentField = list[key]
+    if (currentField === null) {
+      return { list, isValid: null }
+    }
+    if (currentField !== valid) {
+      return { list, isValid: false }
+    }
   }
   return { list, isValid: true }
 }

@@ -18,7 +18,6 @@ const Field = <T extends Record<string, any>, N extends keyof T>({
 }: FieldProps<T, N, string>) => {
   const [value, setValue] = useSpecificTypeFormField<T, string>(formModel, name)
   const validation = useFieldValidation(formModel, name)
-  console.log(name, validation)
 
   return (
     <Input

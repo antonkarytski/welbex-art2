@@ -103,15 +103,12 @@ export function createValidator<T extends Record<string, any>>(
         isValid,
         validation,
       }: ValidateFieldProps<T>): SingleValidationResult => {
-        if (!schema) {
+        if (!yupSchema) {
           return { isValid, result: valid }
         }
-        return schema
+        return yupSchema
           .validateAt(field.key as string, { [field.key]: field.value })
           .then(() => {
-            if (validation[field.key] === valid || isValid) {
-              return { isValid, result: valid }
-            }
             return updateSingleValidation(validation, field.key, valid)
           })
           .catch((e: any) => {
