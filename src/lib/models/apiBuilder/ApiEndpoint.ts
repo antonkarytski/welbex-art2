@@ -75,29 +75,15 @@ export class ApiEndpoint {
     return this.request<Response, Params>(requestProps)
   }
 
-  public get<Response = any, Params = void>(
-    props?: SpecificRequestProps<Params>
-  ) {
-    return this.method<Response, Params>('GET', props)
+  private specificMethodGetter<Response = any, Params = void>(method: Method) {
+    return (props?: SpecificRequestProps<Params>) => {
+      return this.method<Response, Params>(method, props)
+    }
   }
-  public post<Response = any, Params = void>(
-    props?: SpecificRequestProps<Params>
-  ) {
-    return this.method<Response, Params>('POST', props)
-  }
-  public put<Response = any, Params = void>(
-    props?: SpecificRequestProps<Params>
-  ) {
-    return this.method<Response, Params>('PUT', props)
-  }
-  public delete<Response = any, Params = void>(
-    props?: SpecificRequestProps<Params>
-  ) {
-    return this.method<Response, Params>('DELETE', props)
-  }
-  public patch<Response = any, Params = void>(
-    props?: SpecificRequestProps<Params>
-  ) {
-    return this.method<Response, Params>('PATCH', props)
-  }
+
+  public readonly get = this.specificMethodGetter('GET')
+  public readonly post = this.specificMethodGetter('POST')
+  public readonly put = this.specificMethodGetter('PUT')
+  public readonly delete = this.specificMethodGetter('DELETE')
+  public readonly patch = this.specificMethodGetter('PATCH')
 }
