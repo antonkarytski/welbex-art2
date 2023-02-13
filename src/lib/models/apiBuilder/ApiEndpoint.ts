@@ -20,6 +20,18 @@ type SpecificRequestProps<Params> =
   | string
   | number
 
+function prepareRequestProps<Params = void>(
+  method: Method,
+  props?: SpecificRequestProps<Params>
+): CreateApiEndpointRequest<Params> {
+  if (!props) return { method }
+  if (typeof props === 'function') return { fn: props, method }
+  if (typeof props === 'string' || typeof props === 'number') {
+    return { endpoint: props, method }
+  }
+  return { ...props, method }
+}
+
 export class ApiEndpoint {
   private readonly _endpoint
   private readonly requestHandler
@@ -55,23 +67,11 @@ export class ApiEndpoint {
     })
   }
 
-  private prepareRequestProps<Params = void>(
-    method: Method,
-    props?: SpecificRequestProps<Params>
-  ): CreateApiEndpointRequest<Params> {
-    if (!props) return { method }
-    if (typeof props === 'function') return { fn: props, method }
-    if (typeof props === 'string' || typeof props === 'number') {
-      return { endpoint: props, method }
-    }
-    return { ...props, method }
-  }
-
   public method<Response = any, Params = void>(
     method: Method,
     props?: SpecificRequestProps<Params>
   ) {
-    const requestProps = this.prepareRequestProps(method, props)
+    const requestProps = prepareRequestProps(method, props)
     return this.request<Response, Params>(requestProps)
   }
 

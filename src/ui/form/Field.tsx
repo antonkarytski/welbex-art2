@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   TypedFormFieldComponentProps,
+  useFieldValidation,
   useSpecificTypeFormField,
 } from '../../lib/models/model.form'
 import Input from '../input'
@@ -20,6 +21,7 @@ function Field<T extends Record<string, any>, N extends keyof T>({
   ...props
 }: FieldProps<T, N>) {
   const [value, setValue] = useSpecificTypeFormField<T, string>(formModel, name)
+  const isValid = useFieldValidation(formModel, name)
 
   return (
     <Input

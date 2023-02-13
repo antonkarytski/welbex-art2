@@ -1,3 +1,4 @@
+import { ObjectSchema, object, string } from 'yup'
 import { createFormModel } from '../../../lib/models/model.form'
 
 type SignUpForm = {
@@ -7,15 +8,11 @@ type SignUpForm = {
   email: string
 }
 
-export const initialSignUpFormState: SignUpForm = {
-  name: '',
-  lastName: '',
-  birthDate: '',
-  email: '',
-}
-
-export const SIGN_UP_KEYS = Object.keys(
-  initialSignUpFormState
-) as (keyof SignUpForm)[]
+export const initialSignUpFormState: ObjectSchema<SignUpForm> = object({
+  name: string().required(),
+  lastName: string().required(),
+  birthDate: string().required(),
+  email: string().email().required(),
+})
 
 export const signUpFormModel = createFormModel(initialSignUpFormState)
