@@ -1,4 +1,5 @@
 import { AsyncDbManager } from 'altek-toolkit'
+import { logOut } from '../../features/auth/logOut/model'
 import { NotificationsSetting } from '../../features/settings/notifications/model.notificationsSetting'
 import { Languages } from '../../translations/types'
 import { DbFields } from './fields'
@@ -17,3 +18,7 @@ export type DbProps = Record<
   DeterminedDbProps
 
 export const db = new AsyncDbManager<typeof DbFields, DbProps>(DbFields)
+
+logOut.watch(() => {
+  db.clear()
+})

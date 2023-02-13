@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react'
 import { StyleProp, TextStyle, ViewStyle } from 'react-native'
 import { TypedFormFieldComponentProps } from '../../lib/models/model.form'
+import { FnExt } from '../../types'
 import { SpanProps } from '../Span'
 import { InputStyles } from '../input/types'
 
@@ -26,3 +27,5 @@ export type SecureFieldProps<
   style?: InputStyles
   iconSize?: number
 } & TypedFormFieldComponentProps<T, K, string>
+
+export type FormatFieldValue = FnExt<string, string>

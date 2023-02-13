@@ -1,16 +1,20 @@
+import { useStore } from 'effector-react'
+import { View } from 'native-base'
 import React from 'react'
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
+import { useStateStore } from 'altek-toolkit'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
 import { buttonPrimaryThemedPreset } from '../../../styles/buttons'
 import { inputThemedStyles } from '../../../styles/inputs'
 import { useText } from '../../../translations/hook'
+import DateInput from '../../../ui/DateInput'
 import H2 from '../../../ui/H2'
 import Button from '../../../ui/buttons/PresetButton'
 import Field from '../../../ui/form/Field'
 import { useThemedStyleList } from '../../themed/hooks'
-import { signUpFormModel } from './model'
+import { $isFormValid, birthDateModel, signUpFormModel } from './model'
 
 const SignUpForm = () => {
   const t = useText()
@@ -19,7 +23,9 @@ const SignUpForm = () => {
     button: buttonPrimaryThemedPreset,
   })
   const navigate = useNavigate()
-  // const [isAbleToContinue, setIsAbleToContinue] = useState(false)
+  const [birthDate, setBirthDate] = useStateStore(birthDateModel)
+  const isFormValid = useStore($isFormValid)
+
   const onContinueSignUp = () => {
     navigate(links.countrySelection)
   }
@@ -28,22 +34,32 @@ const SignUpForm = () => {
     <>
       <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : undefined}>
         <H2 label={t.createNewAccount} style={featureStyles.formTitle} />
-        {signUpFormModel.mapKeys((name) => {
-          return (
+        {signUpFormModel.mapKeys((name) => (
+          <View key={name}>
             <Field
-              key={name}
               placeholder={t[name]}
               formModel={signUpFormModel}
               name={name}
               style={styles.field}
+              type={name === 'email' ? 'email-address' : 'default'}
             />
-          )
-        })}
+            {name === 'lastName' && (
+              <DateInput
+                placeholder={t.birthDate}
+                date={birthDate}
+                setDate={setBirthDate}
+                maximumDate={new Date()}
+                styles={styles.field}
+              />
+            )}
+          </View>
+        ))}
       </KeyboardAvoidingView>
       <Button
         label={t.continue}
         onPress={onContinueSignUp}
         preset={styles.button}
+        disabled={!isFormValid}
       />
     </>
   )
