@@ -1,5 +1,5 @@
 import { Effect, Store } from 'effector'
-import { FormModel } from '../../../lib/models/model.form'
+import { FormModel } from '../form/model.form'
 
 export type PasswordsForm = {
   password: string

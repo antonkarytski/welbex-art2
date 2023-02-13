@@ -1,5 +1,5 @@
 import * as yup from 'yup'
-import { createFormModel } from '../../../lib/models/model.form'
+import { createFormModel } from '../../../lib/models/form/model.form'
 
 export const signUpFormSchema = yup.object().shape({
   name: yup.string().default('').required(),

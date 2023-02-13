@@ -1,9 +1,7 @@
 import React from 'react'
 import { Image, ImageStyle, StyleProp } from 'react-native'
-import {
-  FormFieldComponentProps,
-  useFormField,
-} from '../../lib/models/model.form'
+import { useFormField } from '../../lib/models/form/hooks'
+import { FormFieldComponentProps } from '../../lib/models/form/model.form'
 
 type ImagePreviewFormFieldProps<T extends Record<string, string>> = {
   style?: StyleProp<ImageStyle>

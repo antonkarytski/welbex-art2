@@ -2,7 +2,7 @@ import React from 'react'
 import {
   useFieldValidation,
   useSpecificTypeFormField,
-} from '../../lib/models/model.form'
+} from '../../lib/models/form/hooks'
 import Input from '../input'
 import { FieldProps } from './_types'
 

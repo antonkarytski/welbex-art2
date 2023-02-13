@@ -75,8 +75,10 @@ export class ApiEndpoint {
     return this.request<Response, Params>(requestProps)
   }
 
-  private specificMethodGetter<Response = any, Params = void>(method: Method) {
-    return (props?: SpecificRequestProps<Params>) => {
+  private specificMethodGetter(method: Method) {
+    return <Response = any, Params = void>(
+      props?: SpecificRequestProps<Params>
+    ) => {
       return this.method<Response, Params>(method, props)
     }
   }

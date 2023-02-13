@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 import { StyleProp, TextStyle, ViewStyle } from 'react-native'
-import { TypedFormFieldComponentProps } from '../../lib/models/model.form'
+import { TypedFormFieldComponentProps } from '../../lib/models/form/model.form'
 import { FnExt } from '../../types'
 import { SpanProps } from '../Span'
 import { InputProps, InputStyles } from '../input/types'

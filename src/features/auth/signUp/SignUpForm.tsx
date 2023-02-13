@@ -24,8 +24,11 @@ const SignUpForm = () => {
   const isFormValid = useStore(signUpFormModel.$isValid)
 
   const onContinueSignUp = () => {
-    navigate(links.countrySelection)
+    signUpFormModel.validation.cast()
+    //navigate(links.countrySelection)
   }
+
+  console.log(isFormValid)
 
   return (
     <>
@@ -35,6 +38,7 @@ const SignUpForm = () => {
           if (name === 'birthDate') {
             return (
               <DateField
+                key={name}
                 placeholder={t.birthDate}
                 formModel={signUpFormModel}
                 name={name}
@@ -44,6 +48,7 @@ const SignUpForm = () => {
           }
           return (
             <Field
+              key={name}
               placeholder={t[name]}
               formModel={signUpFormModel}
               name={name}
@@ -57,7 +62,7 @@ const SignUpForm = () => {
         label={t.continue}
         onPress={onContinueSignUp}
         preset={styles.button}
-        disabled={!isFormValid}
+        disabled={isFormValid === false}
       />
     </>
   )

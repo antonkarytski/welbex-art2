@@ -1,5 +1,5 @@
 import { attach, createEffect, createStore, sample } from 'effector'
-import { createFormModel } from '../../../lib/models/model.form'
+import { createFormModel } from '../form/model.form'
 import { validatePasswords } from './passwordValidation'
 import { PasswordsForm, PasswordsModel } from './types'
 

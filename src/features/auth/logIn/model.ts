@@ -1,6 +1,6 @@
 import { createEvent, sample } from 'effector'
 import { mockCheckLogin } from '../../../_mock/login'
-import { createFormModel } from '../../../lib/models/model.form'
+import { createFormModel } from '../../../lib/models/form/model.form'
 import { setIsAuth } from '../../auth/model'
 
 export type LogInForm = {
