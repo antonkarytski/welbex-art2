@@ -20,6 +20,10 @@ export const inputThemedStyles = createThemedStyle<InputStyles>((colors) =>
       color: colors.inputTitle,
       fontFamily: FONT_MEDIUM,
     },
+    inputInvalid: {
+      borderColor: colors.errorBorder,
+      backgroundColor: colors.errorBackground,
+    },
   })
 )
 

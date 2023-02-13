@@ -6,7 +6,7 @@ export type ValidationState<M extends string = string> = {
 }
 export type ValidationFieldPair<K extends string | number | symbol = string> = {
   key: K
-  value: ValidationState
+  value: ValidationState | null
 }
 export type ValidationList<T extends Record<string, any>> = Record<
   keyof T,

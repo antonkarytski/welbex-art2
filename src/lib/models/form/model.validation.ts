@@ -26,28 +26,29 @@ export function createValidator<T extends Record<string, any>>(
   const initialState: T = schema.__isYupSchema__ ? schema.getDefault() : schema
   const fullValidation = mapObject(initialState, () => valid)
 
-  const setIsValid = createEvent<boolean | null>()
-  const $isValid = restore(setIsValid, true)
+  const setState = createEvent<boolean | null>()
+  const $state = restore(setState, true)
 
   const set = createEvent<ValidationList<T>>()
   const setFieldValidation = createEvent<ValidationFieldPair<keyof T>>()
-
   const $fields = createStore<Record<keyof T, ValidationState | null>>(
     mapObject(initialState, () => null)
-  ).on(setFieldValidation, (store, { key, value }) => {
-    const currentValidation = store[key]
-    if (
-      currentValidation === value ||
-      currentValidation?.message === value.message
-    ) {
-      return
-    }
-    return { ...store, [key]: value }
-  })
+  )
+    .on(setFieldValidation, (store, { key, value }) => {
+      const currentValidation = store[key]
+      if (
+        currentValidation === value ||
+        currentValidation?.message === value?.message
+      ) {
+        return
+      }
+      return { ...store, [key]: value }
+    })
+    .on(set, (_, payload) => payload)
 
   function updateFieldsValidation(result: ListValidationResult<T>) {
     set(result.list)
-    setIsValid(result.isValid)
+    setState(result.isValid)
     return result
   }
 
@@ -59,7 +60,7 @@ export function createValidator<T extends Record<string, any>>(
     const fieldState: ValidationFieldPair<keyof T> = { key, value }
     const nextResult = mergeValidation(current, fieldState)
     setFieldValidation(fieldState)
-    setIsValid(nextResult.isValid)
+    setState(nextResult.isValid)
     return { isValid: nextResult.isValid, result: valid }
   }
 
@@ -71,8 +72,8 @@ export function createValidator<T extends Record<string, any>>(
         const result = validateWoSchema(source, initialState)
         return updateFieldsValidation(result)
       }
-      return schema
-        .validate(source)
+      return yupSchema
+        .validate(source, { abortEarly: false })
         .then(() => {
           return updateFieldsValidation({ list: fullValidation, isValid: true })
         })
@@ -90,7 +91,7 @@ export function createValidator<T extends Record<string, any>>(
     source: {
       values: $values,
       validation: $fields,
-      isValid: $isValid,
+      isValid: $state,
     },
     mapParams: (key: keyof T, { values, ...sources }) => ({
       field: { key, value: values[key] },
@@ -124,5 +125,20 @@ export function createValidator<T extends Record<string, any>>(
     ),
   })
 
-  return { $fields, cast, $isValid, castField }
+  function resetField(key: keyof T) {
+    setFieldValidation({ key, value: null })
+  }
+
+  function reset() {
+    setState(null)
+  }
+
+  return {
+    $fields,
+    cast,
+    $state,
+    castField,
+    reset,
+    resetField,
+  }
 }

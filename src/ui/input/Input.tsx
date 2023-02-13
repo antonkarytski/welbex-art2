@@ -30,7 +30,7 @@ const Input = forwardRef<TextInput, InputProps>(
       props.onBlur?.(e)
     }
 
-    const isInvalid = isValid !== undefined && isValid !== null && !isValid
+    const isInvalid = isValid === false
 
     return (
       <View style={styles?.container}>
@@ -60,14 +60,14 @@ const Input = forwardRef<TextInput, InputProps>(
               style={[
                 inputStyles.input,
                 inputStyles.border,
-                Boolean(InputPseudoBefore) && inputStyles.input__pseudoBefore,
-                Boolean(InputPseudoAfter) && inputStyles.input__pseudoAfter,
+                !!InputPseudoBefore && inputStyles.input__pseudoBefore,
+                !!InputPseudoAfter && inputStyles.input__pseudoAfter,
                 styles?.input,
                 isFocused && [
                   inputStyles.input__focused,
                   styles?.input__focused,
                 ],
-                isInvalid && inputStyles.input__invalid,
+                isInvalid && [inputStyles.input__invalid, styles?.inputInvalid],
                 isValid && inputStyles.input__valid,
                 disabled && inputStyles.input__disabled,
               ]}

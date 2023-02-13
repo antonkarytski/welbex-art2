@@ -3,7 +3,6 @@ import React from 'react'
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
 import { useNavigate } from '../../../navigation'
-import { links } from '../../../navigation/links'
 import { buttonPrimaryThemedPreset } from '../../../styles/buttons'
 import { inputThemedStyles } from '../../../styles/inputs'
 import { useText } from '../../../translations/hook'
@@ -21,7 +20,7 @@ const SignUpForm = () => {
     button: buttonPrimaryThemedPreset,
   })
   const navigate = useNavigate()
-  const isFormValid = useStore(signUpFormModel.$isValid)
+  const isFormValid = useStore(signUpFormModel.validation.$state)
 
   const onContinueSignUp = () => {
     signUpFormModel.validation.cast()
@@ -48,6 +47,7 @@ const SignUpForm = () => {
           }
           return (
             <Field
+              validateOnBlur
               key={name}
               placeholder={t[name]}
               formModel={signUpFormModel}

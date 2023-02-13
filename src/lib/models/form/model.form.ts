@@ -24,9 +24,6 @@ export class FormModel<T extends Record<string, any>> {
   public readonly set = createEvent<T>()
   public readonly $store
 
-  private readonly setIsValid = createEvent<boolean | null>()
-  public readonly $isValid = restore(this.setIsValid, true)
-
   public readonly fields: { [K in keyof T]: K }
   public readonly keysList
   public readonly validation
@@ -43,10 +40,10 @@ export class FormModel<T extends Record<string, any>> {
       }))
       .on(this.set, (_, payload) => payload)
 
-    this.validation = createValidator(initialState, this.$store)
+    this.validation = createValidator(schema, this.$store)
 
     this.$store.watch(() => {
-      this.setIsValid(null)
+      this.validation.reset()
     })
 
     this.keysList = Object.keys(initialState) as (keyof T)[]
