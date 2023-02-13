@@ -4,3 +4,7 @@ import { AllArtWorksProps, AllArtWorksResponse } from './types'
 const arts = apiManager.endpoint('arts')
 
 const all = arts.get<AllArtWorksResponse, AllArtWorksProps>('all')
+
+export const artsApi = {
+  all,
+}

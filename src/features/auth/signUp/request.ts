@@ -1,7 +1,5 @@
-import { attach, combine, createEffect } from 'effector'
-import moment from 'moment'
+import { attach, combine } from 'effector'
 import { api } from '../../../api'
-import { SignUpBody } from '../../../api/parts/users/types'
 import { profileCountryModel } from '../model.profileCountry'
 import { passwordModel } from '../password/model.passwords'
 import { phoneInputModel } from '../phoneEnter'
@@ -30,8 +28,5 @@ const $signUpParams = combine(
 
 export const signUpRequest = attach({
   source: $signUpParams,
-  effect: createEffect((userData: SignUpBody) => {
-    console.log('userData', userData)
-    return api.users.signUp(userData)
-  }),
+  effect: api.users.signUp,
 })

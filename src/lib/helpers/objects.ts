@@ -5,10 +5,10 @@ export const isObject = (value: any) => {
 export const isObjectFullfiled = (
   object: Record<string, string | number | any[] | null | undefined>
 ) => {
-  const emptyValue = Object.values(object).find((value) => {
+  const emptyValues = Object.values(object).filter((value) => {
     if (value === (null || undefined)) return true
     if (typeof value === 'string') return value === ''
     if (Array.isArray(value)) return value.length === 0
   })
-  return !emptyValue
+  return !(emptyValues.length > 0)
 }

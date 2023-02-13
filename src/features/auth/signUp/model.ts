@@ -1,5 +1,4 @@
 import { createEffect, createEvent, restore, sample } from 'effector'
-import { KeyboardTypeOptions } from 'react-native'
 import { createStateModel } from 'altek-toolkit'
 import { isObjectFullfiled } from '../../../lib/helpers/objects'
 import { createFormModel } from '../../../lib/models/model.form'
@@ -17,27 +16,19 @@ export const initialSignUpFormState: SignUpForm = {
   email: '',
 }
 
-export const SIGN_UP_FIELDS: {
-  name: keyof SignUpForm
-  type?: KeyboardTypeOptions
-}[] = [
-  { name: 'name' },
-  { name: 'lastName' },
-  { name: 'email', type: 'email-address' },
-]
-
 export const signUpFormModel = createFormModel(initialSignUpFormState)
 export const birthDateModel = createStateModel(new Date())
 
 export const setIsFormValidFx = createEffect<SignUpForm, boolean>((form) => {
-  return Boolean(signUpFormSchema.validateSync(form))
+  // return signUpFormSchema.isValidSync(form)
+  return true
 })
 export const setIsFormValid = createEvent<boolean>()
 export const $isFormValid = restore(setIsFormValid, false)
 
 sample({
   source: signUpFormModel.$store,
-  filter: (form) => isObjectFullfiled(form),
+  filter: isObjectFullfiled,
   target: setIsFormValidFx,
 })
 
