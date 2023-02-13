@@ -5,7 +5,6 @@ import UserAgreement, {
   UserAgreementProps,
   userAgreementModel,
 } from '../../features/auth/UserAgreement'
-import { setIsAuth } from '../../features/auth/model'
 import { passwordModel } from '../../features/auth/password/model.passwords'
 import { signUp } from '../../features/auth/signUp/request'
 import { useThemedStyleList } from '../../features/themed/hooks'

@@ -6,16 +6,17 @@ import { InputStyles } from './input/types'
 
 type DateInputProps = {
   placeholder?: string
-  setDate: (date: Date) => void
-  styles?: InputStyles
-  style?: StyleProp<ViewStyle>
-} & DatePickerProps
+  onChange: (date: Date) => void
+  style?: InputStyles
+  pickerStyle?: StyleProp<ViewStyle>
+} & Omit<DatePickerProps, 'style'>
 
 const DateInput = ({
   placeholder,
   date,
-  setDate,
-  styles,
+  onChange,
+  style,
+  pickerStyle,
   ...props
 }: DateInputProps) => {
   const [open, setOpen] = useState(false)
@@ -24,7 +25,7 @@ const DateInput = ({
 
   const handleConfirmDate: DateInputProps['onConfirm'] = (newDate) => {
     setOpen(false)
-    setDate(newDate)
+    onChange(newDate)
     setIsDateSelected(true)
     props.onConfirm?.(newDate)
   }
@@ -39,7 +40,7 @@ const DateInput = ({
           setOpen(true)
         }}
         ref={ref}
-        styles={styles}
+        styles={style}
       />
       <DatePicker
         modal
@@ -51,6 +52,7 @@ const DateInput = ({
           setOpen(false)
           props.onCancel?.()
         }}
+        style={pickerStyle}
         {...props}
       />
     </>

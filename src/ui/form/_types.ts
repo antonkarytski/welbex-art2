@@ -3,7 +3,7 @@ import { StyleProp, TextStyle, ViewStyle } from 'react-native'
 import { TypedFormFieldComponentProps } from '../../lib/models/model.form'
 import { FnExt } from '../../types'
 import { SpanProps } from '../Span'
-import { InputStyles } from '../input/types'
+import { InputProps, InputStyles } from '../input/types'
 
 export type NoteProps = PropsWithChildren<{
   label: string
@@ -29,3 +29,10 @@ export type SecureFieldProps<
 } & TypedFormFieldComponentProps<T, K, string>
 
 export type FormatFieldValue = FnExt<string, string>
+
+export type FieldProps<T extends Record<string, any>, N extends keyof T, V> = {
+  label?: string
+  style?: InputStyles
+  formatValue?: FormatFieldValue
+} & TypedFormFieldComponentProps<T, N, V> &
+  Omit<InputProps, 'style'>

@@ -1,28 +1,19 @@
 import React from 'react'
 import {
-  TypedFormFieldComponentProps,
   useFieldValidation,
   useSpecificTypeFormField,
 } from '../../lib/models/model.form'
 import Input from '../input'
-import { InputProps, InputStyles } from '../input/types'
-import { FormatFieldValue } from './_types'
+import { FieldProps } from './_types'
 
-export type FieldProps<T extends Record<string, any>, N extends keyof T> = {
-  label?: string
-  style?: InputStyles
-  formatValue?: FormatFieldValue
-} & TypedFormFieldComponentProps<T, N, string> &
-  Omit<InputProps, 'style'>
-
-function Field<T extends Record<string, any>, N extends keyof T>({
+const Field = <T extends Record<string, any>, N extends keyof T>({
   name,
   formModel,
   label,
   style,
   formatValue,
   ...props
-}: FieldProps<T, N>) {
+}: FieldProps<T, N, string>) => {
   const [value, setValue] = useSpecificTypeFormField<T, string>(formModel, name)
   const isValid = useFieldValidation(formModel, name)
 
