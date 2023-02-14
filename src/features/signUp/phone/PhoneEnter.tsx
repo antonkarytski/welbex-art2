@@ -6,10 +6,7 @@ import { CountrySelectablePhoneInputProps } from '../../../ui/phoneInput/types'
 import { RenderItem } from '../../../ui/selects/types'
 import { COUNTRIES_LIST, Country } from '../../countries'
 import CountryRow from '../../countries/CountryRow'
-import {
-  phoneCountryModel,
-  phoneInputModel,
-} from './model'
+import { phoneCountryModel, phoneInputModel } from './model'
 
 const renderCountryRow: RenderItem<Country> = (item, isSelected) => (
   <CountryRow item={item} isSelected={isSelected} />
@@ -40,7 +37,7 @@ const PhoneEnter = ({ label, isValid, style }: PhoneEnterProps) => {
       renderCountryItem={renderCountryRow}
       countryCodeExtractor={({ alpha2Code }) => alpha2Code}
       countryLabelExtractor={({ emoji }) => emoji}
-      isValid={isValid || (isPhoneChecked ? !!isPhoneValid : undefined)}
+      isValid={isValid || (isPhoneChecked ? isPhoneValid : undefined)}
       onFocus={() => setIsPhoneChecked(false)}
       onBlur={() => setIsPhoneChecked(true)}
       style={{
