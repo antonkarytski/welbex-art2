@@ -1,4 +1,4 @@
 import { createStateModel } from 'altek-toolkit'
 import { DEFAULT_COUNTRY } from '../countries'
 
-export const profileCountryModel = createStateModel(DEFAULT_COUNTRY)
+export const userCountrySignUpModel = createStateModel(DEFAULT_COUNTRY)

@@ -1,14 +1,14 @@
 import { attach } from 'effector'
-import { api } from '../../../api'
-import { profileCountryModel } from '../model.profileCountry'
-import { passwordModel } from '../password/model.passwords'
-import { phoneInputModel } from '../phoneEnter'
-import { signUpFormModel } from './model'
+import { api } from '../../api'
+import { passwordModel } from '../auth/password/model.passwords'
+import { phoneInputModel } from '../auth/phoneEnter'
+import { userCountrySignUpModel } from './model.country'
+import { userDataSignUpFormModel } from './userData/model'
 
 export const signUp = attach({
   source: {
-    user: signUpFormModel.$store,
-    country: profileCountryModel.$state,
+    user: userDataSignUpFormModel.$store,
+    country: userCountrySignUpModel.$state,
     phone_number: phoneInputModel.purePhoneModel.$state,
     passwords: passwordModel.$store,
   },

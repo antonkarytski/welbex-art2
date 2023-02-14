@@ -8,10 +8,10 @@ import H2 from '../../../ui/H2'
 import DateField from '../../../ui/form/DateField'
 import Field from '../../../ui/form/Field'
 import { useThemedStyleList } from '../../themed/hooks'
-import SignUpValidationButton from './SignUpValidationButton'
-import { signUpFormModel } from './model'
+import UserDataValidationButton from './UserDataValidationButton'
+import { userDataSignUpFormModel } from './model'
 
-const SignUpForm = () => {
+const UserDataSignUpForm = () => {
   const t = useText()
   const { styles } = useThemedStyleList({
     field: inputThemedStyles,
@@ -22,13 +22,13 @@ const SignUpForm = () => {
     <>
       <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : undefined}>
         <H2 label={t.createNewAccount} style={featureStyles.formTitle} />
-        {signUpFormModel.mapKeys((name) => {
+        {userDataSignUpFormModel.mapKeys((name) => {
           if (name === 'birthDate') {
             return (
               <DateField
                 key={name}
                 placeholder={t.birthDate}
-                formModel={signUpFormModel}
+                formModel={userDataSignUpFormModel}
                 name={name}
                 style={styles.field}
                 validateOnBlur
@@ -40,7 +40,7 @@ const SignUpForm = () => {
               validateOnBlur
               key={name}
               placeholder={t[name]}
-              formModel={signUpFormModel}
+              formModel={userDataSignUpFormModel}
               name={name}
               style={styles.field}
               type={name === 'email' ? 'email-address' : 'default'}
@@ -48,7 +48,7 @@ const SignUpForm = () => {
           )
         })}
       </KeyboardAvoidingView>
-      <SignUpValidationButton preset={styles.button} />
+      <UserDataValidationButton preset={styles.button} />
     </>
   )
 }
@@ -59,4 +59,4 @@ const featureStyles = StyleSheet.create({
   },
 })
 
-export default SignUpForm
+export default UserDataSignUpForm

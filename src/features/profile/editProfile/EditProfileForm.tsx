@@ -12,12 +12,12 @@ import IconButton from '../../../ui/buttons/IconButton'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import Field from '../../../ui/form/Field'
 import PlusIcon from '../../../ui/icons/Icon.Plus'
-import { profileCountryModel } from '../../auth/model.profileCountry'
 import PhoneEnter from '../../auth/phoneEnter/PhoneEnter'
 import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
 import UploadFromCameraBlock from '../../imagePick/Block.UploadFromCamera'
 import PhotoEditPopUp from '../../popUp/PopUp.PhotoEditActionSelect'
 import SaveChangesPopUp from '../../popUp/PopUp.SaveChanges'
+import { userCountrySignUpModel } from '../../signUp/model.country'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
 import { PROFILE_FORM_DESCRIPTORS, profileFormModel } from './model.editProfile'
@@ -70,7 +70,7 @@ const EditProfileForm = () => {
             select: { dropdownTab: styles.dropdownTab },
           }}
         />
-        <CountriesDropdownSelect model={profileCountryModel} />
+        <CountriesDropdownSelect model={userCountrySignUpModel} />
         <UploadFromCameraBlock
           label={t.uploadChildDocument}
           style={styles.common.uploadDocumentsBlock}

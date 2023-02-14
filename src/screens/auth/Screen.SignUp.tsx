@@ -1,7 +1,7 @@
 import React from 'react'
 import AuthServices from '../../features/auth/AuthServices'
 import OfferToLogIn from '../../features/auth/OfferToLogIn'
-import SignUpForm from '../../features/auth/signUp/SignUpForm'
+import UserDataSignUpForm from '../../features/signUp/userData/UserDataSignUpForm'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { buttonTextThemedStyles } from '../../styles/buttons'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
@@ -15,7 +15,7 @@ const SignUpScreen = () => {
 
   return (
     <AuthScreenContainer enableScrollView>
-      <SignUpForm />
+      <UserDataSignUpForm />
       <AuthServices style={styles.common.bottomButton} />
       <OfferToLogIn style={styles.common.noBottomMargin} />
     </AuthScreenContainer>

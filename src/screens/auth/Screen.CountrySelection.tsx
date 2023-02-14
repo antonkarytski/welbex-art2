@@ -1,11 +1,13 @@
 import { useStore } from 'effector-react'
 import React, { useCallback } from 'react'
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
-import { profileCountryModel } from '../../features/auth/model.profileCountry'
+import {
+  COUNTRIES_LIST,
+  Country,
+  countyNameExtractor,
+} from '../../features/countries'
 import CountryRow from '../../features/countries/CountryRow'
-import { COUNTRIES_LIST } from '../../features/countries/countriesList'
-import { countyNameExtractor } from '../../features/countries/helpers'
-import { Country } from '../../features/countries/types'
+import { userCountrySignUpModel } from '../../features/signUp/model.country'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { IS_IOS } from '../../lib/helpers/native/constants'
@@ -29,7 +31,7 @@ const countryIdExtractor = ({ alpha3Code }: Country) => alpha3Code
 const CountrySelectionScreen = () => {
   const navigate = useNavigate()
   const t = useText()
-  const country = useStore(profileCountryModel.$state)
+  const country = useStore(userCountrySignUpModel.$state)
   const { styles } = useThemedStyleList({
     common: themedCommonStyles,
     button: buttonPrimaryThemedPreset,
@@ -53,7 +55,7 @@ const CountrySelectionScreen = () => {
           data={COUNTRIES_LIST}
           idExtractor={countryIdExtractor}
           searchModel={searchModel}
-          model={profileCountryModel}
+          model={userCountrySignUpModel}
           renderItem={renderCountryRow}
         />
       </KeyboardAvoidingView>

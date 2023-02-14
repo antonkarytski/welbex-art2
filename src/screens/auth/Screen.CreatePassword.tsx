@@ -6,7 +6,7 @@ import UserAgreement, {
   userAgreementModel,
 } from '../../features/auth/UserAgreement'
 import { passwordModel } from '../../features/auth/password/model.passwords'
-import { signUp } from '../../features/auth/signUp/request'
+import { signUp } from '../../features/signUp/request'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { noop } from '../../lib/helpers'
 import { IS_IOS } from '../../lib/helpers/native/constants'
