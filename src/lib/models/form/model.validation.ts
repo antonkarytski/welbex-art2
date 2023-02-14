@@ -38,7 +38,9 @@ export function createValidator<T extends Record<string, any>>(
       const currentValidation = store[key]
       if (
         currentValidation === value ||
-        currentValidation?.message === value?.message
+        (currentValidation &&
+          value &&
+          currentValidation.message === value.message)
       ) {
         return
       }

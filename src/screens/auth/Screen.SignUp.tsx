@@ -7,7 +7,7 @@ import { buttonTextThemedStyles } from '../../styles/buttons'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
 
-const SignUp = () => {
+const SignUpScreen = () => {
   const { styles } = useThemedStyleList({
     common: themedCommonStyles,
     textButton: buttonTextThemedStyles,
@@ -22,4 +22,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default SignUpScreen

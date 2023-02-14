@@ -35,5 +35,4 @@ export type FieldProps<T extends Record<string, any>, N extends keyof T, V> = {
   style?: InputStyles
   formatValue?: FormatFieldValue
   validateOnBlur?: boolean
-} & TypedFormFieldComponentProps<T, N, V> &
-  Omit<InputProps, 'style'>
+} & TypedFormFieldComponentProps<T, N, V>

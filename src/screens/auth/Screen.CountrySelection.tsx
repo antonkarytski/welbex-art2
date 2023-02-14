@@ -37,7 +37,6 @@ const CountrySelectionScreen = () => {
   })
 
   const onContinue = () => {
-    console.log('countryId', country.alpha3Code)
     navigate(links.phoneEnter)
   }
 

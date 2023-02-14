@@ -1,17 +1,14 @@
-import { useStore } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
-import { useNavigate } from '../../../navigation'
-import { links } from '../../../navigation/links'
 import { buttonPrimaryThemedPreset } from '../../../styles/buttons'
 import { inputThemedStyles } from '../../../styles/inputs'
 import { useText } from '../../../translations/hook'
 import H2 from '../../../ui/H2'
-import Button from '../../../ui/buttons/PresetButton'
 import DateField from '../../../ui/form/DateField'
 import Field from '../../../ui/form/Field'
 import { useThemedStyleList } from '../../themed/hooks'
+import SignUpValidationButton from './SignUpValidationButton'
 import { signUpFormModel } from './model'
 
 const SignUpForm = () => {
@@ -20,14 +17,6 @@ const SignUpForm = () => {
     field: inputThemedStyles,
     button: buttonPrimaryThemedPreset,
   })
-  const navigate = useNavigate()
-  const isFormValid = useStore(signUpFormModel.validation.$state)
-
-  const onContinueSignUp = () => {
-    signUpFormModel.validation.cast().then(({ isValid }) => {
-      if (isValid) navigate(links.countrySelection)
-    })
-  }
 
   return (
     <>
@@ -42,6 +31,7 @@ const SignUpForm = () => {
                 formModel={signUpFormModel}
                 name={name}
                 style={styles.field}
+                validateOnBlur
               />
             )
           }
@@ -58,12 +48,7 @@ const SignUpForm = () => {
           )
         })}
       </KeyboardAvoidingView>
-      <Button
-        label={t.continue}
-        onPress={onContinueSignUp}
-        preset={styles.button}
-        disabled={isFormValid === false}
-      />
+      <SignUpValidationButton preset={styles.button} />
     </>
   )
 }

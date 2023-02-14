@@ -31,7 +31,6 @@ const SendPhoneButton = ({
     if (!isPhoneValid) {
       return
     }
-    console.log('phoneNumber', phoneNumber)
     navigate(links.verification)
   }
 

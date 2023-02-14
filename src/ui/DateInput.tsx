@@ -9,7 +9,9 @@ type DateInputProps = {
   onChange: (date: Date) => void
   style?: InputStyles
   pickerStyle?: StyleProp<ViewStyle>
-} & Omit<DatePickerProps, 'style'>
+  isValid?: boolean | null
+  onBlur?: () => void
+} & Omit<DatePickerProps, 'style' | 'onBlur'>
 
 const DateInput = ({
   placeholder,
@@ -17,6 +19,8 @@ const DateInput = ({
   onChange,
   style,
   pickerStyle,
+  isValid,
+  onBlur,
   ...props
 }: DateInputProps) => {
   const [open, setOpen] = useState(false)
@@ -33,6 +37,8 @@ const DateInput = ({
   return (
     <>
       <Input
+        onBlur={onBlur}
+        isValid={isValid}
         placeholder={placeholder}
         value={isDateSelected ? date.toLocaleDateString() : undefined}
         onPressIn={() => {

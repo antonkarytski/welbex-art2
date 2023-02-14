@@ -4,6 +4,7 @@ import { createThemedStyle } from '../../features/themed'
 import { useTheme } from '../../features/themed/hooks'
 import { ColorThemeStructure } from '../../features/themed/theme'
 import { STATUSBAR_HEIGHT } from '../../lib/device/dimensions/constants'
+import { IS_IOS } from '../../lib/helpers/native/constants'
 import Span from '../../ui/Span'
 import NavigationBackButton from './NavigationButton.Back'
 import { ScreenHeaderStyles } from './styles'
@@ -78,7 +79,7 @@ const ScreenHeader = ({
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     container: {
-      paddingTop: STATUSBAR_HEIGHT, // IS_IOS ? 56 : 36
+      paddingTop: IS_IOS ? 56 : STATUSBAR_HEIGHT,
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',

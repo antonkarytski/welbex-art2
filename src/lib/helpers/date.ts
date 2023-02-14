@@ -46,6 +46,10 @@ export function days(value: number) {
   return value * 24 * 60 * 60 * 1000
 }
 
+export function years(value: number) {
+  return value * 365 * 24 * 60 * 60 * 1000
+}
+
 export function lifeTimePassed(timerStartAt: string | number) {
   if (typeof timerStartAt === 'string')
     return Date.now() - Date.parse(timerStartAt)

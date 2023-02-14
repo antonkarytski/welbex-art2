@@ -4,6 +4,7 @@ import {
   useSpecificTypeFormField,
 } from '../../lib/models/form/hooks'
 import Input from '../input'
+import { InputProps } from '../input/types'
 import { FieldProps } from './_types'
 
 const Field = <T extends Record<string, any>, N extends keyof T>({
@@ -15,7 +16,7 @@ const Field = <T extends Record<string, any>, N extends keyof T>({
   validateOnBlur,
   onBlur,
   ...props
-}: FieldProps<T, N, string>) => {
+}: FieldProps<T, N, string> & Omit<InputProps, 'style'>) => {
   const [value, setValue] = useSpecificTypeFormField<T, string>(formModel, name)
   const validation = useFieldValidation(formModel, name)
 
@@ -30,6 +31,7 @@ const Field = <T extends Record<string, any>, N extends keyof T>({
       styles={style}
       onBlur={(e) => {
         if (validateOnBlur) {
+          if (!value) return formModel.validation.resetField(name)
           formModel.validation.castField(name)
         }
         onBlur?.(e)

@@ -16,6 +16,7 @@ const Input = forwardRef<TextInput, InputProps>(
       styles,
       InputPseudoBefore,
       InputPseudoAfter,
+      onBlur,
       ...props
     }: InputProps,
     ref
@@ -24,10 +25,6 @@ const Input = forwardRef<TextInput, InputProps>(
     const handleFocus: TextInputProps['onFocus'] = (e) => {
       setIsFocused(true)
       props.onFocus?.(e)
-    }
-    const handleBlur: TextInputProps['onBlur'] = (e) => {
-      setIsFocused(false)
-      props.onBlur?.(e)
     }
 
     const isInvalid = isValid === false
@@ -55,7 +52,10 @@ const Input = forwardRef<TextInput, InputProps>(
               keyboardType={type}
               onChangeText={onChangeText}
               onFocus={handleFocus}
-              onBlur={handleBlur}
+              onBlur={(e) => {
+                setIsFocused(false)
+                onBlur?.(e)
+              }}
               editable={!disabled}
               style={[
                 inputStyles.input,
@@ -67,8 +67,8 @@ const Input = forwardRef<TextInput, InputProps>(
                   inputStyles.input__focused,
                   styles?.input__focused,
                 ],
-                isInvalid && [inputStyles.input__invalid, styles?.inputInvalid],
-                isValid && inputStyles.input__valid,
+                isInvalid && [inputStyles.input__invalid, styles?.invalid],
+                isValid && [inputStyles.input__valid, styles?.valid],
                 disabled && inputStyles.input__disabled,
               ]}
               placeholderTextColor={placeholderColor}
