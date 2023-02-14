@@ -2,7 +2,7 @@ import { attach } from 'effector'
 import { api } from '../../api'
 import { passwordModel } from '../auth/password/model.passwords'
 import { phoneInputModel } from '../auth/phoneEnter'
-import { userCountrySignUpModel } from './model.country'
+import { userCountrySignUpModel } from './country/model'
 import { userDataSignUpFormModel } from './userData/model'
 
 export const signUp = attach({
