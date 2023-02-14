@@ -2,22 +2,20 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
 import DropdownTab from '../dropdownTab'
+import SearchableSelect from './SearchableSelect'
 import Select from './Select'
 import { DropdownSelectProps } from './types'
 
-function DropdownSelect<Item>({
-  label,
+function DropdownSelect<Item extends Record<string, any>>({
+  searchModel,
   placeholder = 'Выберите значение из списка',
-  data,
-  idExtractor,
+  label,
   labelExtractor,
-  renderItem,
-  model,
-  style,
-  ItemSeparatorComponent = null,
   onOpenDropdown,
+  style,
+  ...props
 }: DropdownSelectProps<Item>) {
-  const [selectedItem] = useStateStore(model)
+  const [selectedItem] = useStateStore(props.model)
 
   return (
     <DropdownTab
@@ -26,20 +24,24 @@ function DropdownSelect<Item>({
       style={style?.dropdownTab}
       onOpenDropdown={onOpenDropdown}
     >
-      <Select
-        data={data}
-        idExtractor={idExtractor}
-        renderItem={renderItem}
-        model={model}
-        style={{
-          item: itemStyles,
-          listWrapper: listStyles.wrapper,
-          ...style?.select,
-        }}
-        ItemSeparatorComponent={ItemSeparatorComponent}
-        showSelectedIcon={false}
-        labelExtractor={labelExtractor}
-      />
+      {searchModel ? (
+        <SearchableSelect
+          searchModel={searchModel}
+          style={{ searchInput: style?.searchInput }}
+          {...props}
+        />
+      ) : (
+        <Select
+          showSelectedIcon={false}
+          labelExtractor={labelExtractor}
+          style={{
+            item: itemStyles,
+            container: listStyles.container,
+            ...style?.select,
+          }}
+          {...props}
+        />
+      )}
     </DropdownTab>
   )
 }
@@ -55,7 +57,7 @@ const itemStyles = StyleSheet.create({
 })
 
 const listStyles = StyleSheet.create({
-  wrapper: {
+  container: {
     paddingHorizontal: 0,
   },
 })

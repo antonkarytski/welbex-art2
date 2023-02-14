@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { StateModel } from 'altek-toolkit'
+import { SearchableListModel } from '../../lib/models/model.search'
 import { FONT_MEDIUM } from '../../styles/fonts'
 import { useText } from '../../translations/hook'
 import DropdownSelect from '../../ui/selects/DropdownSelect'
@@ -12,10 +13,11 @@ import CountryRow from './CountryRow'
 
 type CountriesDropdownSelectProps = {
   model: StateModel<Country>
+  searchModel?: SearchableListModel<Country>
 }
 
 const CountriesDropdownSelect = React.memo(
-  ({ model }: CountriesDropdownSelectProps) => {
+  ({ model, searchModel }: CountriesDropdownSelectProps) => {
     const t = useText()
     const { styles } = useThemedStyleList({
       dropdownTab: dropdownTabThemedStyles,
@@ -41,6 +43,7 @@ const CountriesDropdownSelect = React.memo(
         data={COUNTRIES_LIST}
         idExtractor={({ alpha2Code }) => alpha2Code}
         model={model}
+        searchModel={searchModel}
         renderItem={renderCountryRow}
         labelExtractor={({ name }) => name}
         style={{

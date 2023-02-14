@@ -5,6 +5,7 @@ import { SearchableListModel } from '../../lib/models/model.search'
 import { Fn, FnExt } from '../../types'
 import { DropdownStyles } from '../dropdownTab/types'
 import { InputStyles } from '../input/types'
+import { SearchableListStyles } from '../searchableList/SearchableList'
 
 export type StringExtractor<T> = FnExt<T, string>
 export type RenderItem<T> = (item: T, isSelected?: boolean) => ReactNode
@@ -17,12 +18,12 @@ export type SelectItemStyles = {
   item__selected?: StyleProp<ViewStyle>
 }
 
-export type SelectItemProps<Item> = {
-  item: Item
-  onSelect: (item: Item) => void
-  renderItem?: RenderItem<Item>
-  idExtractor?: StringExtractor<Item>
-  labelExtractor?: StringExtractor<Item>
+export type SelectItemProps<T> = {
+  item: T
+  onSelect: (item: T) => void
+  renderItem?: RenderItem<T>
+  idExtractor?: StringExtractor<T>
+  labelExtractor?: StringExtractor<T>
   showSelectedIcon?: boolean
   style?: SelectItemStyles
   isSelected?: boolean
@@ -30,20 +31,25 @@ export type SelectItemProps<Item> = {
 
 export type SelectStyles = {
   item?: SelectItemStyles
-  listWrapper?: StyleProp<ViewStyle>
+  container?: StyleProp<ViewStyle>
 }
 
-export type SelectProps<Item> = {
+export type SelectProps<T> = {
   label?: string | ReactNode
-  data: Item[]
-  renderItem?: RenderItem<Item>
-  idExtractor: StringExtractor<Item>
-  labelExtractor?: StringExtractor<Item>
+  data: T[]
+  renderItem?: RenderItem<T>
+  idExtractor: StringExtractor<T>
+  labelExtractor?: StringExtractor<T>
   ItemSeparatorComponent?: React.ComponentType<any> | null
   ListFooterComponent?: React.ComponentType<any> | null
-  model: StateModel<Item>
+  model: StateModel<T>
   style?: SelectStyles
   showSelectedIcon?: boolean
+}
+
+export type SearchableSelectProps<T> = SelectProps<T> & {
+  searchModel: SearchableListModel<T>
+  style?: SearchableListStyles & SelectStyles
 }
 
 export type DropdownSelectStyles = {
@@ -51,18 +57,22 @@ export type DropdownSelectStyles = {
   dropdownTab?: DropdownStyles
 }
 
-export type DropdownSelectProps<Item> = SelectProps<Item> & {
+export type DropdownSelectProps<T> = Omit<
+  SearchableSelectProps<T>,
+  'searchModel'
+> & {
+  searchModel?: SearchableListModel<T>
   placeholder?: string
   label?: string | ReactNode
-  style?: DropdownSelectStyles
+  style?: DropdownSelectStyles & {
+    searchInput?: InputStyles
+  }
   onOpenDropdown?: Fn
 }
 
-export type ListSelectProps<Item> = SelectProps<Item> & {
-  searchModel: SearchableListModel<Item>
-  searchable?: boolean
-  style?: SelectStyles & {
-    inputStyles?: InputStyles
-    wrapper?: StyleProp<ViewStyle>
-  }
+export type ListSelectProps<T> = Omit<
+  SearchableSelectProps<T>,
+  'searchModel'
+> & {
+  searchModel?: SearchableListModel<T>
 }

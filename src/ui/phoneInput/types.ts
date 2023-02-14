@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleProp, TextInput, TextInputProps, ViewStyle } from 'react-native'
 import { StateModel } from 'altek-toolkit'
 import { CountryCode } from '../../features/countries'
+import { SearchableListModel } from '../../lib/models/model.search'
 import { PhoneInputModel } from '../../lib/models/phoneNumber/model.phoneNumber'
 import { InputStyles } from '../input/types'
 import {
@@ -27,6 +28,7 @@ export type PhoneInputProps = {
 }
 
 export type CountrySelectablePhoneInputProps<T> = PhoneInputProps & {
+  searchModel: SearchableListModel<T>
   countries: T[]
   renderCountryItem: RenderItem<T>
   countryLabelExtractor: StringExtractor<T>

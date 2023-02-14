@@ -23,6 +23,7 @@ import {
   ageRangeModel,
   categoryModel,
   countryModel,
+  countrySearchModel,
   drawingNameModel,
 } from './model.galleryFilter'
 
@@ -55,7 +56,10 @@ const GalleryFilter = () => {
           labelExtractor={({ label }) => label}
           style={{ dropdownTab: styles.dropdownTab }}
         />
-        <CountriesDropdownSelect model={countryModel} />
+        <CountriesDropdownSelect
+          model={countryModel}
+          searchModel={countrySearchModel}
+        />
         <Input
           label={t.drawingName}
           value={drawingName}
