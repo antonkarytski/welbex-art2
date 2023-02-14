@@ -1,12 +1,12 @@
 import { useStore } from 'effector-react'
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
-import { COUNTRIES_LIST, Country } from '../../../features/countries'
-import CountryRow from '../../../features/countries/CountryRow'
 import CountrySelectablePhoneInput from '../../../ui/phoneInput/CountrySelectablePhoneInput'
 import { CountrySelectablePhoneInputProps } from '../../../ui/phoneInput/types'
 import { RenderItem } from '../../../ui/selects/types'
-import { phoneCountryModel, phoneInputModel } from './model.phone'
+import { COUNTRIES_LIST, Country } from '../../countries'
+import CountryRow from '../../countries/CountryRow'
+import { phoneCountryModel, phoneInputModel } from './model'
 
 const renderCountryRow: RenderItem<Country> = (item, isSelected) => (
   <CountryRow item={item} isSelected={isSelected} />

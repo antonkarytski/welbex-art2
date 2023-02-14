@@ -1,4 +1,4 @@
-import { useStore } from 'effector-react'
+import { useStoreMap } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
 import CountriesList from '../../features/signUp/country/CountriesList'
@@ -17,7 +17,11 @@ import { themedCommonStyles } from './stylePresets/styles'
 const CountrySelectionScreen = () => {
   const navigate = useNavigate()
   const t = useText()
-  const country = useStore(userCountrySignUpModel.$state)
+  const isCountrySelected = useStoreMap({
+    store: userCountrySignUpModel.$state,
+    keys: [],
+    fn: (state) => !!state,
+  })
   const { styles } = useThemedStyleList({
     common: themedCommonStyles,
     button: buttonPrimaryThemedPreset,
@@ -38,7 +42,7 @@ const CountrySelectionScreen = () => {
         onPress={onContinue}
         preset={styles.button}
         style={styles.common.bottomButton}
-        disabled={!country}
+        disabled={!isCountrySelected}
       />
     </AuthScreenContainer>
   )
