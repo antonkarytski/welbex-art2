@@ -10,21 +10,17 @@ import PresetButton from '../../ui/buttons/PresetButton'
 import { PresetButtonStates } from '../../ui/buttons/types'
 
 type SendPhoneButtonProps = {
-  buttonPreset: PresetButtonStates
+  preset: PresetButtonStates
   onPress?: () => void
-  phoneInputModel: PhoneInputModel
+  model: PhoneInputModel
 }
 
-const SendPhoneButton = ({
-  buttonPreset,
-  onPress,
-  phoneInputModel,
-}: SendPhoneButtonProps) => {
+const SendPhoneButton = ({ preset, onPress, model }: SendPhoneButtonProps) => {
   const navigate = useNavigate()
   const t = useText()
 
-  const [phoneNumber] = useStateStore(phoneInputModel.purePhoneModel)
-  const isPhoneValid = useStore(phoneInputModel.$isPhoneValid)
+  const [phoneNumber] = useStateStore(model.purePhoneModel)
+  const isPhoneValid = useStore(model.$isPhoneValid)
 
   const onContinue = () => {
     onPress?.()
@@ -38,7 +34,7 @@ const SendPhoneButton = ({
     <PresetButton
       label={t.send}
       onPress={onContinue}
-      preset={buttonPreset}
+      preset={preset}
       style={styles.button}
       disabled={!isPhoneValid}
     />

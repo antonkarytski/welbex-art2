@@ -34,10 +34,7 @@ const PhoneEnterScreen = () => {
         <PhoneEnter />
       </KeyboardAvoidingView>
 
-      <SendPhoneButton
-        buttonPreset={styles.button}
-        phoneInputModel={phoneInputModel}
-      />
+      <SendPhoneButton preset={styles.button} model={phoneInputModel} />
     </AuthScreenContainer>
   )
 }
