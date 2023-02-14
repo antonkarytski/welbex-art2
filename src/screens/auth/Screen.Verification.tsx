@@ -1,7 +1,7 @@
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
 import CodeVerification from '../../features/auth/codeVerification/CodeVerification'
-import ResendCode from '../../features/auth/resendCode/ResendCode'
+import ResendCodeButton from '../../features/auth/codeVerification/ResendCodeButton'
 import { useThemedStyle } from '../../features/themed/hooks'
 import { IS_IOS } from '../../lib/helpers/native/constants'
 import { useText } from '../../translations/hook'
@@ -28,7 +28,7 @@ export default function Verification() {
       <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
         <CodeVerification />
       </KeyboardAvoidingView>
-      <ResendCode />
+      <ResendCodeButton />
     </AuthScreenContainer>
   )
 }

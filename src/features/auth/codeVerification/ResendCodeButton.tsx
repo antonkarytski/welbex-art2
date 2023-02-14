@@ -11,7 +11,7 @@ import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
 import { isTimerExpiredModel } from './model.resendCode'
 
-const ResendCode = () => {
+const ResendCodeButton = () => {
   const t = useText()
   const { styles } = useThemedStyleList({
     button: buttonLightThemedPreset,
@@ -70,4 +70,4 @@ const themedStyles = createThemedStyle((colors) =>
   })
 )
 
-export default ResendCode
+export default ResendCodeButton

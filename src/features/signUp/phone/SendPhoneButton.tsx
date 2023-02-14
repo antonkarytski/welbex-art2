@@ -2,12 +2,12 @@ import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
-import { PhoneInputModel } from '../../lib/models/phoneNumber/model.phoneNumber'
-import { useNavigate } from '../../navigation'
-import { links } from '../../navigation/links'
-import { useText } from '../../translations/hook'
-import PresetButton from '../../ui/buttons/PresetButton'
-import { PresetButtonStates } from '../../ui/buttons/types'
+import { PhoneInputModel } from '../../../lib/models/phoneNumber/model.phoneNumber'
+import { useNavigate } from '../../../navigation'
+import { links } from '../../../navigation/links'
+import { useText } from '../../../translations/hook'
+import PresetButton from '../../../ui/buttons/PresetButton'
+import { PresetButtonStates } from '../../../ui/buttons/types'
 
 type SendPhoneButtonProps = {
   preset: PresetButtonStates

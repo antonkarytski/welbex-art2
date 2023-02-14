@@ -7,12 +7,10 @@ export const phoneInputModel = createPhoneInputModel()
 export const phoneCountryModel = createCountryModel()
 
 sample({
-  clock: userCountrySignUpModel.set,
-  source: {
-    profileCountry: userCountrySignUpModel.$state,
-    country: phoneInputModel.purePhoneModel.$state,
-  },
-  filter: ({ country }) => !country,
-  fn: ({ profileCountry }) => profileCountry,
-  target: phoneCountryModel.set,
+  clock: userCountrySignUpModel.$state,
+  source: phoneInputModel.purePhoneModel.$state,
+  fn: (phone, country) => ({ phone, country }),
+}).watch(({ phone, country }) => {
+  if (phone) return
+  phoneCountryModel.set(country)
 })

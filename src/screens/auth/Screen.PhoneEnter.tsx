@@ -1,7 +1,7 @@
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
-import SendPhoneButton from '../../features/auth/SendPhoneButton'
 import PhoneEnter, { phoneInputModel } from '../../features/signUp/phone'
+import SendPhoneButton from '../../features/signUp/phone/SendPhoneButton'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { IS_IOS } from '../../lib/helpers/native/constants'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
@@ -29,11 +29,9 @@ const PhoneEnterScreen = () => {
         style={styles.common.titleDescription}
         weight={400}
       />
-
       <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
         <PhoneEnter />
       </KeyboardAvoidingView>
-
       <SendPhoneButton preset={styles.button} model={phoneInputModel} />
     </AuthScreenContainer>
   )
