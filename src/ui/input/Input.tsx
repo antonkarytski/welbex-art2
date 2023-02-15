@@ -16,6 +16,7 @@ const Input = forwardRef<TextInput, InputProps>(
       styles,
       InputPseudoBefore,
       InputPseudoAfter,
+      onBlur,
       ...props
     }: InputProps,
     ref
@@ -25,12 +26,8 @@ const Input = forwardRef<TextInput, InputProps>(
       setIsFocused(true)
       props.onFocus?.(e)
     }
-    const handleBlur: TextInputProps['onBlur'] = (e) => {
-      setIsFocused(false)
-      props.onBlur?.(e)
-    }
 
-    const isInvalid = isValid !== undefined && isValid !== null && !isValid
+    const isInvalid = isValid === false
 
     return (
       <View style={styles?.container}>
@@ -55,20 +52,23 @@ const Input = forwardRef<TextInput, InputProps>(
               keyboardType={type}
               onChangeText={onChangeText}
               onFocus={handleFocus}
-              onBlur={handleBlur}
+              onBlur={(e) => {
+                setIsFocused(false)
+                onBlur?.(e)
+              }}
               editable={!disabled}
               style={[
                 inputStyles.input,
                 inputStyles.border,
-                Boolean(InputPseudoBefore) && inputStyles.input__pseudoBefore,
-                Boolean(InputPseudoAfter) && inputStyles.input__pseudoAfter,
+                !!InputPseudoBefore && inputStyles.input__pseudoBefore,
+                !!InputPseudoAfter && inputStyles.input__pseudoAfter,
                 styles?.input,
                 isFocused && [
                   inputStyles.input__focused,
                   styles?.input__focused,
                 ],
-                isInvalid && inputStyles.input__invalid,
-                isValid && inputStyles.input__valid,
+                isInvalid && [inputStyles.input__invalid, styles?.invalid],
+                isValid && [inputStyles.input__valid, styles?.valid],
                 disabled && inputStyles.input__disabled,
               ]}
               placeholderTextColor={placeholderColor}

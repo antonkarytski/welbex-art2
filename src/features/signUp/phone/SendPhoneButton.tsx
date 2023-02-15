@@ -6,13 +6,13 @@ import { links } from '../../../navigation/links'
 import { useText } from '../../../translations/hook'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import { PresetButtonStates } from '../../../ui/buttons/types'
-import { phoneInputModel } from './model.phone'
+import { phoneInputModel } from './model'
 
 type SendPhoneButtonProps = {
-  buttonPreset: PresetButtonStates
+  preset: PresetButtonStates
 }
 
-const SendPhoneButton = ({ buttonPreset }: SendPhoneButtonProps) => {
+const SendPhoneButton = ({ preset }: SendPhoneButtonProps) => {
   const navigate = useNavigate()
   const t = useText()
 
@@ -29,7 +29,7 @@ const SendPhoneButton = ({ buttonPreset }: SendPhoneButtonProps) => {
     <PresetButton
       label={t.send}
       onPress={onContinue}
-      preset={buttonPreset}
+      preset={preset}
       style={styles.button}
       disabled={!isPhoneValid}
     />

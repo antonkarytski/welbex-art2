@@ -1,9 +1,9 @@
 import { sample } from 'effector'
 import { createSearchableListModel } from '../../../lib/models/model.search'
 import { createPhoneInputModel } from '../../../lib/models/phoneNumber/model.phoneNumber'
-import { countyNameExtractor } from '../../countries/helpers'
+import { countyNameExtractor } from '../../countries'
 import { createCountryModel } from '../../countries/model.countriesDropdown'
-import { profileCountryModel } from '../model.profileCountry'
+import { signUpCountryModel } from '../country/model'
 
 export const phoneInputModel = createPhoneInputModel()
 export const phoneCountryModel = createCountryModel()
@@ -12,12 +12,10 @@ export const searchCountryModel = createSearchableListModel({
 })
 
 sample({
-  clock: profileCountryModel.set,
-  source: {
-    profileCountry: profileCountryModel.$state,
-    country: phoneInputModel.purePhoneModel.$state,
-  },
-  filter: ({ country }) => !country,
-  fn: ({ profileCountry }) => profileCountry,
-  target: phoneCountryModel.set,
+  clock: signUpCountryModel.$state,
+  source: phoneInputModel.purePhoneModel.$state,
+  fn: (phone, country) => ({ phone, country }),
+}).watch(({ phone, country }) => {
+  if (phone) return
+  phoneCountryModel.set(country)
 })

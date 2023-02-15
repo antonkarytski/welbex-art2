@@ -45,8 +45,7 @@ export const createSearchableListModel = <T extends Record<string, any>>(
   const searchFx = createEffect<SearchFxParams<T>, T[]>(async (params) => {
     const { searchString, initialList } = params
     if (searchFn) {
-      const result = await searchFn(searchString)
-      return result
+      return await searchFn(searchString)
     }
     if (initialList) {
       return filterArrayBySearchString(

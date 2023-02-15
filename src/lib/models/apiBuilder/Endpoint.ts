@@ -24,7 +24,7 @@ export class Endpoint {
 
   private get endpoint() {
     if (!this.server) return this._endpoint
-    return this.server.url + this._endpoint
+    return this.server.api + this._endpoint
   }
 
   public constructor(server: ServerManager | null, endpoint: string)
@@ -66,7 +66,7 @@ export class Endpoint {
     const suffix = typeof method === 'string' ? '' : method.endpoint || ''
     return {
       withToken,
-      url: `${this._endpoint}${getUrlEnd(suffix)}`,
+      url: `${this.endpoint}${getUrlEnd(suffix)}`,
       method: methodValue,
     }
   }
@@ -137,21 +137,20 @@ export class Endpoint {
     const { fn, ...rest } = props
     return this.method({ method, ...rest }, fn)
   }
-  public post<T>(fn?: SpecificMethodProps<T>): RequestPropsGetter<T> {
-    return this.methodRoute('POST', fn)
+  private specificMethod(method: Method) {
+    return <T>(props?: SpecificMethodProps<T>): RequestPropsGetter<T> => {
+      if (!props || typeof props === 'function') {
+        return this.method(method, props)
+      }
+      const { fn, ...rest } = props
+      return this.method({ method, ...rest }, fn)
+    }
   }
-  public get<T>(fn?: SpecificMethodProps<T>): RequestPropsGetter<T> {
-    return this.methodRoute('GET', fn)
-  }
-  public put<T>(fn?: SpecificMethodProps<T>): RequestPropsGetter<T> {
-    return this.methodRoute('PUT', fn)
-  }
-  public delete<T>(fn?: SpecificMethodProps<T>): RequestPropsGetter<T> {
-    return this.methodRoute('DELETE', fn)
-  }
-  public patch<T>(fn?: SpecificMethodProps<T>): RequestPropsGetter<T> {
-    return this.methodRoute('PATCH', fn)
-  }
+  public post = this.specificMethod('POST')
+  public get = this.specificMethod('GET')
+  public put = this.specificMethod('PUT')
+  public delete = this.specificMethod('DELETE')
+  public patch = this.specificMethod('PATCH')
   public createEndpoint(rawEndpoint: string) {
     const endpoint = removeSlashes(rawEndpoint)
     const endpointEntity = new Endpoint(

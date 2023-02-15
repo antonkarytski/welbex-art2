@@ -1,4 +1,3 @@
-import { useEvent } from 'effector-react'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, TextInputProps, View } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
@@ -27,11 +26,10 @@ const CountrySelectablePhoneInput = <CountryItem extends Record<string, any>>({
 }: CountrySelectablePhoneInputProps<CountryItem>) => {
   const [isFocused, setIsFocused] = useState(false)
   const [selectedCountry] = useStateStore(selectedCountryModel)
-  const setCountryCode = useEvent(phoneModel.countryCodeModel.set)
 
   useEffect(() => {
-    setCountryCode(countryCodeExtractor(selectedCountry))
-  }, [selectedCountry, countryCodeExtractor, setCountryCode])
+    phoneModel.countryCodeModel.set(countryCodeExtractor(selectedCountry))
+  }, [selectedCountry, countryCodeExtractor, phoneModel])
 
   const handleBlur: TextInputProps['onBlur'] = (e) => {
     setIsFocused(false)

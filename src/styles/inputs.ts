@@ -16,9 +16,17 @@ export const inputThemedStyles = createThemedStyle<InputStyles>((colors) =>
       borderColor: colors.inputFocusedBorder,
       backgroundColor: colors.inputFocusedBackground,
     },
+    valid: {
+      borderColor: colors.primary1,
+      backgroundColor: colors.screenBackground,
+    },
     label: {
       color: colors.inputTitle,
       fontFamily: FONT_MEDIUM,
+    },
+    invalid: {
+      borderColor: colors.errorBorder,
+      backgroundColor: colors.errorBackground,
     },
   })
 )

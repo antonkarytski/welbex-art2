@@ -20,7 +20,7 @@ type CelledInputProps = {
   keyboardType?: KeyboardType
   textContentType?: TextContentType
   style?: {
-    rootStyle?: StyleProp<ViewStyle>
+    root?: StyleProp<ViewStyle>
     cell?: CellStyle
   }
 }
@@ -44,7 +44,7 @@ export default function CelledInput({
         value={value}
         onChangeText={setValue}
         cellCount={cellCount}
-        rootStyle={[styles.codeFieldRoot, style?.rootStyle]}
+        rootStyle={[styles.codeFieldRoot, style?.root]}
         keyboardType={keyboardType}
         textContentType={textContentType}
         renderCell={({ index, symbol, isFocused }) => (

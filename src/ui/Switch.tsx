@@ -6,10 +6,8 @@ import {
   TextStyle,
   ViewStyle,
 } from 'react-native'
-import {
-  TypedFormFieldComponentProps,
-  useSpecificTypeFormField,
-} from '../lib/models/model.form'
+import { useSpecificTypeFormField } from '../lib/models/form/hooks'
+import { TypedFormFieldComponentProps } from '../lib/models/form/model.form'
 import Row from '../ui/Row'
 import Span from '../ui/Span'
 

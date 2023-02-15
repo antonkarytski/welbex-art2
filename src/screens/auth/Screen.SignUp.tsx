@@ -1,13 +1,13 @@
 import React from 'react'
 import AuthServices from '../../features/auth/AuthServices'
 import OfferToLogIn from '../../features/auth/OfferToLogIn'
-import SignUpForm from '../../features/auth/signUp/SignUpForm'
+import UserDataSignUpForm from '../../features/signUp/userData/UserDataSignUpForm'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { buttonTextThemedStyles } from '../../styles/buttons'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
 
-const SignUp = () => {
+const SignUpScreen = () => {
   const { styles } = useThemedStyleList({
     common: themedCommonStyles,
     textButton: buttonTextThemedStyles,
@@ -15,11 +15,11 @@ const SignUp = () => {
 
   return (
     <AuthScreenContainer enableScrollView>
-      <SignUpForm />
+      <UserDataSignUpForm />
       <AuthServices style={styles.common.bottomButton} />
       <OfferToLogIn style={styles.common.noBottomMargin} />
     </AuthScreenContainer>
   )
 }
 
-export default SignUp
+export default SignUpScreen

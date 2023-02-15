@@ -1,14 +1,15 @@
 import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
-import { PasswordsModel } from '../lib/models/passwordsForm/types'
+import { FormModel } from '../lib/models/form/model.form'
+import { PasswordsFormModel } from '../lib/models/passwordsForm/model'
 import { ErrorNote, SecureField, SuccessNote } from './form'
 import { InputStyles } from './input/types'
 
-type PasswordInputsProps = {
+type PasswordInputsProps<M extends PasswordsFormModel> = {
   passwordPlaceholder: string
   repeatPasswordPlaceholder: string
-  model: PasswordsModel
+  model: FormModel<M>
   validLabel?: string
   invalidLabel?: string
   iconColors?: {
@@ -21,7 +22,7 @@ type PasswordInputsProps = {
   }
 }
 
-const PasswordInputs = ({
+const PasswordInputs = <M extends Record<string, any> = {}>({
   passwordPlaceholder,
   repeatPasswordPlaceholder,
   model,
@@ -29,8 +30,8 @@ const PasswordInputs = ({
   invalidLabel = '',
   iconColors,
   style,
-}: PasswordInputsProps) => {
-  const isValid = useStore(model.$isValid)
+}: PasswordInputsProps<PasswordsFormModel & M>) => {
+  const isValid = useStore(model.validation.$state)
 
   return (
     <View style={style?.formWrapper}>
@@ -44,7 +45,7 @@ const PasswordInputs = ({
       <SecureField
         placeholder={repeatPasswordPlaceholder}
         formModel={model}
-        name={model.fields.repeatingPassword}
+        name={model.fields.passwordConfirmation}
         isValid={isValid}
         style={{ ...styles, ...style?.input }}
       />

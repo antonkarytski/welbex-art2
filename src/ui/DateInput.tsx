@@ -6,16 +6,21 @@ import { InputStyles } from './input/types'
 
 type DateInputProps = {
   placeholder?: string
-  setDate: (date: Date) => void
-  styles?: InputStyles
-  style?: StyleProp<ViewStyle>
-} & DatePickerProps
+  onChange: (date: Date) => void
+  style?: InputStyles
+  pickerStyle?: StyleProp<ViewStyle>
+  isValid?: boolean | null
+  onBlur?: () => void
+} & Omit<DatePickerProps, 'style' | 'onBlur'>
 
 const DateInput = ({
   placeholder,
   date,
-  setDate,
-  styles,
+  onChange,
+  style,
+  pickerStyle,
+  isValid,
+  onBlur,
   ...props
 }: DateInputProps) => {
   const [open, setOpen] = useState(false)
@@ -24,7 +29,7 @@ const DateInput = ({
 
   const handleConfirmDate: DateInputProps['onConfirm'] = (newDate) => {
     setOpen(false)
-    setDate(newDate)
+    onChange(newDate)
     setIsDateSelected(true)
     props.onConfirm?.(newDate)
   }
@@ -32,6 +37,8 @@ const DateInput = ({
   return (
     <>
       <Input
+        onBlur={onBlur}
+        isValid={isValid}
         placeholder={placeholder}
         value={isDateSelected ? date.toLocaleDateString() : undefined}
         onPressIn={() => {
@@ -39,7 +46,7 @@ const DateInput = ({
           setOpen(true)
         }}
         ref={ref}
-        styles={styles}
+        styles={style}
       />
       <DatePicker
         modal
@@ -51,6 +58,7 @@ const DateInput = ({
           setOpen(false)
           props.onCancel?.()
         }}
+        style={pickerStyle}
         {...props}
       />
     </>

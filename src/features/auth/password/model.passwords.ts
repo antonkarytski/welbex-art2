@@ -1,4 +1,3 @@
-import { createPasswordFormModel } from '../../../lib/models/passwordsForm/model.passwordsForm'
+import { createPasswordFormModel } from '../../../lib/models/passwordsForm/model'
 
-export const passwordModel = createPasswordFormModel()
 export const newPasswordModel = createPasswordFormModel()

@@ -12,15 +12,13 @@ import IconButton from '../../../ui/buttons/IconButton'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import Field from '../../../ui/form/Field'
 import PlusIcon from '../../../ui/icons/Icon.Plus'
-import {
-  profileCountryModel,
-  profileCountrySearchModel,
-} from '../../auth/model.profileCountry'
-import PhoneEnter from '../../auth/phoneEnter/PhoneEnter'
+import { profileCountrySearchModel } from '../../auth/model.profileCountry'
 import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
 import UploadFromCameraBlock from '../../imagePick/Block.UploadFromCamera'
 import PhotoEditPopUp from '../../popUp/PopUp.PhotoEditActionSelect'
 import SaveChangesPopUp from '../../popUp/PopUp.SaveChanges'
+import { signUpCountryModel } from '../../signUp/country/model'
+import PhoneEnter from '../../signUp/phone/PhoneEnter'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
 import { PROFILE_FORM_DESCRIPTORS, profileFormModel } from './model.editProfile'
@@ -74,7 +72,7 @@ const EditProfileForm = () => {
           }}
         />
         <CountriesDropdownSelect
-          model={profileCountryModel}
+          model={signUpCountryModel}
           searchModel={profileCountrySearchModel}
         />
         <UploadFromCameraBlock

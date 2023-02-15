@@ -3,7 +3,7 @@ import { StyleProp, ViewStyle } from 'react-native'
 import { StateModel } from 'altek-toolkit'
 import { SearchableListModel } from '../../lib/models/model.search'
 import { Fn, FnExt } from '../../types'
-import { DropdownStyles } from '../dropdownTab/types'
+import { DropdownComponentStyles } from '../dropdownTab/types'
 import { InputStyles } from '../input/types'
 import { SearchableListStyles } from '../searchableList/SearchableList'
 
@@ -54,7 +54,7 @@ export type SearchableSelectProps<T> = SelectProps<T> & {
 
 export type DropdownSelectStyles = {
   select?: SelectStyles
-  dropdownTab?: DropdownStyles
+  dropdownTab?: DropdownComponentStyles
 }
 
 export type DropdownSelectProps<T> = Omit<

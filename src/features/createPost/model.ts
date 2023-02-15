@@ -1,4 +1,4 @@
-import { createFormModel } from '../../lib/models/model.form'
+import { createFormModel } from '../../lib/models/form'
 
 export type ImageDescriptionFormFields = {
   childProofImage: string

@@ -1,37 +1,42 @@
 import React from 'react'
 import {
-  TypedFormFieldComponentProps,
   useFieldValidation,
   useSpecificTypeFormField,
-} from '../../lib/models/model.form'
+} from '../../lib/models/form/hooks'
 import Input from '../input'
-import { InputProps, InputStyles } from '../input/types'
-import { FormatFieldValue } from './_types'
+import { InputProps } from '../input/types'
+import { FieldProps } from './_types'
 
-export type FieldProps<T extends Record<string, any>, N extends keyof T> = {
-  label?: string
-  style?: InputStyles
-  formatValue?: FormatFieldValue
-} & TypedFormFieldComponentProps<T, N, string> &
-  Omit<InputProps, 'style'>
-
-function Field<T extends Record<string, any>, N extends keyof T>({
+const Field = <T extends Record<string, any>, N extends keyof T>({
   name,
   formModel,
   label,
   style,
   formatValue,
+  validateOnBlur,
+  onBlur,
   ...props
-}: FieldProps<T, N>) {
+}: FieldProps<T, N, string> & Omit<InputProps, 'style'>) => {
   const [value, setValue] = useSpecificTypeFormField<T, string>(formModel, name)
-  const isValid = useFieldValidation(formModel, name)
+  const validation = useFieldValidation(formModel, name)
 
   return (
     <Input
-      onChangeText={(text) => setValue(formatValue ? formatValue(text) : text)}
+      onChangeText={(text) => {
+        setValue(formatValue ? formatValue(text) : text)
+        formModel.validation.resetField(name)
+      }}
       value={value}
       label={label}
       styles={style}
+      onBlur={(e) => {
+        if (validateOnBlur) {
+          if (!value) return formModel.validation.resetField(name)
+          formModel.validation.castField(name)
+        }
+        onBlur?.(e)
+      }}
+      isValid={validation?.isValid}
       {...props}
     />
   )
