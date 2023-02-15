@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { defaultColors } from '../../features/themed/theme'
-import Span from '../Span'
 import Input from '../input'
 import { PhoneInputProps } from './types'
 
@@ -43,7 +42,7 @@ const PhoneInput = ({
       style={[
         styles.wrapper,
         style?.wrapper,
-        !isValid && isValid !== undefined && styles.wrapper__invalid,
+        isValid === false && styles.wrapper__invalid,
         (focused || (isFocused && focused !== undefined)) &&
           styles.wrapper__focused,
       ]}
@@ -52,9 +51,6 @@ const PhoneInput = ({
         setIsFocused(true)
       }}
     >
-      {!formattedPhone.startsWith('+') && (
-        <Span label={'+'} style={styles.plus} />
-      )}
       <Input
         label={label}
         value={formattedPhone}
@@ -88,15 +84,12 @@ const styles = StyleSheet.create({
   wrapper__invalid: {
     borderColor: defaultColors.errorBorder,
   },
-  plus: {
-    fontSize: 16,
-  },
 })
 
 const inputStyles = StyleSheet.create({
   input: {
     paddingVertical: 14,
-    paddingHorizontal: 5,
+    paddingHorizontal: 2,
     backgroundColor: 'transparent',
     borderColor: 'transparent',
   },

@@ -1,4 +1,7 @@
-import { createStateModel } from 'altek-toolkit'
-import { DEFAULT_COUNTRY } from '../countries'
+import {
+  createCountryModel,
+  createSearchCountryModel,
+} from '../countries/model.countriesDropdown'
 
-export const profileCountryModel = createStateModel(DEFAULT_COUNTRY)
+export const profileCountryModel = createCountryModel()
+export const profileCountrySearchModel = createSearchCountryModel()

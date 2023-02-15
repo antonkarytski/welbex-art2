@@ -12,7 +12,10 @@ import IconButton from '../../../ui/buttons/IconButton'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import Field from '../../../ui/form/Field'
 import PlusIcon from '../../../ui/icons/Icon.Plus'
-import { profileCountryModel } from '../../auth/model.profileCountry'
+import {
+  profileCountryModel,
+  profileCountrySearchModel,
+} from '../../auth/model.profileCountry'
 import PhoneEnter from '../../auth/phoneEnter/PhoneEnter'
 import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
 import UploadFromCameraBlock from '../../imagePick/Block.UploadFromCamera'
@@ -70,7 +73,10 @@ const EditProfileForm = () => {
             select: { dropdownTab: styles.dropdownTab },
           }}
         />
-        <CountriesDropdownSelect model={profileCountryModel} />
+        <CountriesDropdownSelect
+          model={profileCountryModel}
+          searchModel={profileCountrySearchModel}
+        />
         <UploadFromCameraBlock
           label={t.uploadChildDocument}
           style={styles.common.uploadDocumentsBlock}
