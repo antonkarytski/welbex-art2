@@ -75,10 +75,8 @@ export class Endpoint {
     method: Method | MethodSettings,
     fn?: MapperFn<T>
   ): RequestPropsGetter<T> {
-    console.log('METHOD WITH BODY', this.endpoint)
     const response = this.createCommonResponse(method)
     return ((props: T) => {
-      console.log('METHOD WITH BODY CREATOR', this.endpoint, response)
       if (!fn) return { ...response, body: props }
       const result = fn(props)
       if (typeof result === 'string' || typeof result === 'number') {
