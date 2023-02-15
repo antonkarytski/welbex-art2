@@ -4,12 +4,10 @@ import { StyleSheet } from 'react-native'
 import CountrySelectablePhoneInput from '../../../ui/phoneInput/CountrySelectablePhoneInput'
 import { CountrySelectablePhoneInputProps } from '../../../ui/phoneInput/types'
 import { RenderItem } from '../../../ui/selects/types'
+import { searchCountryModel } from '../../auth/phoneEnter/model.phone'
 import { COUNTRIES_LIST, Country } from '../../countries'
 import CountryRow from '../../countries/CountryRow'
 import { phoneCountryModel, phoneInputModel } from './model'
-import {
-  searchCountryModel,
-} from './model.phone'
 
 const renderCountryRow: RenderItem<Country> = (item, isSelected) => (
   <CountryRow item={item} isSelected={isSelected} />
@@ -38,7 +36,6 @@ const PhoneEnter = ({ label, style }: PhoneEnterProps) => {
       phoneModel={phoneInputModel}
       countries={COUNTRIES_LIST}
       renderCountryItem={renderCountryRow}
-      selectedCountryModel={phoneCountryModel}
       countryCodeExtractor={({ alpha2Code }) => alpha2Code}
       countryLabelExtractor={({ emoji }) => emoji}
       isValid={isPhoneChecked ? isPhoneValid : undefined}
