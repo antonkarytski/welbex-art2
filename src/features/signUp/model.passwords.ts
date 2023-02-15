@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 import { createFormModel } from '../../lib/models/form/model.form'
-import { passwordsFormSchema } from '../../lib/models/passwordsForm/model.passwordsForm'
+import { passwordsFormSchema } from '../../lib/models/passwordsForm/model'
 
 const signUpPasswordsFormSchema = passwordsFormSchema.concat(
   yup.object({
