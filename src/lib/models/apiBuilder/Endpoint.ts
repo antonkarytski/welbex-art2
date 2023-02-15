@@ -24,7 +24,7 @@ export class Endpoint {
 
   private get endpoint() {
     if (!this.server) return this._endpoint
-    return this.server.url + this._endpoint
+    return this.server.api + this._endpoint
   }
 
   public constructor(server: ServerManager | null, endpoint: string)
