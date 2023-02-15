@@ -27,7 +27,7 @@ const Span = ({
       style={[styles.common, weights[weight], style]}
       onLayout={onLayout}
     >
-      {label || children}
+      {label ?? children}
     </Text>
   )
 }
