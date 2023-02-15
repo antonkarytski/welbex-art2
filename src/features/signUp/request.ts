@@ -1,7 +1,7 @@
 import { attach } from 'effector'
 import { api } from '../../api'
-import { passwordModel } from '../auth/password/model.passwords'
 import { userCountrySignUpModel } from './country/model'
+import { signUpPasswordsFormModel } from './model.passwords'
 import { phoneInputModel } from './phone'
 import { userDataSignUpFormModel } from './userData/model'
 
@@ -10,7 +10,7 @@ export const signUp = attach({
     user: userDataSignUpFormModel.$store,
     country: userCountrySignUpModel.$state,
     phone_number: phoneInputModel.purePhoneModel.$state,
-    passwords: passwordModel.$store,
+    passwords: signUpPasswordsFormModel.$store,
   },
   mapParams: (_: void, { user, country, phone_number, passwords }) => ({
     first_name: user.name,

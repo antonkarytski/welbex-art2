@@ -1,14 +1,15 @@
 import * as yup from 'yup'
 import { years } from '../../../lib/helpers/date'
 import { createFormModel } from '../../../lib/models/form/model.form'
+import { stringSchema } from '../../../lib/yup'
 
 const INITIAL_DATE = new Date(Date.now() - years(10))
 
 export const userDataSignUpFormSchema = yup.object().shape({
-  name: yup.string().default('').required(),
-  lastName: yup.string().default('').required(),
+  name: stringSchema(),
+  lastName: stringSchema(),
   birthDate: yup.date().default(INITIAL_DATE).max(new Date()).required(),
-  email: yup.string().default('').email().required(),
+  email: stringSchema().email(),
 })
 
 export const userDataSignUpFormModel = createFormModel(userDataSignUpFormSchema)

@@ -66,7 +66,7 @@ export class Endpoint {
     const suffix = typeof method === 'string' ? '' : method.endpoint || ''
     return {
       withToken,
-      url: `${this._endpoint}${getUrlEnd(suffix)}`,
+      url: `${this.endpoint}${getUrlEnd(suffix)}`,
       method: methodValue,
     }
   }
@@ -75,8 +75,10 @@ export class Endpoint {
     method: Method | MethodSettings,
     fn?: MapperFn<T>
   ): RequestPropsGetter<T> {
+    console.log('METHOD WITH BODY', this.endpoint)
     const response = this.createCommonResponse(method)
     return ((props: T) => {
+      console.log('METHOD WITH BODY CREATOR', this.endpoint, response)
       if (!fn) return { ...response, body: props }
       const result = fn(props)
       if (typeof result === 'string' || typeof result === 'number') {
@@ -137,21 +139,20 @@ export class Endpoint {
     const { fn, ...rest } = props
     return this.method({ method, ...rest }, fn)
   }
-  public post<T>(fn?: SpecificMethodProps<T>): RequestPropsGetter<T> {
-    return this.methodRoute('POST', fn)
+  private specificMethod(method: Method) {
+    return <T>(props?: SpecificMethodProps<T>): RequestPropsGetter<T> => {
+      if (!props || typeof props === 'function') {
+        return this.method(method, props)
+      }
+      const { fn, ...rest } = props
+      return this.method({ method, ...rest }, fn)
+    }
   }
-  public get<T>(fn?: SpecificMethodProps<T>): RequestPropsGetter<T> {
-    return this.methodRoute('GET', fn)
-  }
-  public put<T>(fn?: SpecificMethodProps<T>): RequestPropsGetter<T> {
-    return this.methodRoute('PUT', fn)
-  }
-  public delete<T>(fn?: SpecificMethodProps<T>): RequestPropsGetter<T> {
-    return this.methodRoute('DELETE', fn)
-  }
-  public patch<T>(fn?: SpecificMethodProps<T>): RequestPropsGetter<T> {
-    return this.methodRoute('PATCH', fn)
-  }
+  public post = this.specificMethod('POST')
+  public get = this.specificMethod('GET')
+  public put = this.specificMethod('PUT')
+  public delete = this.specificMethod('DELETE')
+  public patch = this.specificMethod('PATCH')
   public createEndpoint(rawEndpoint: string) {
     const endpoint = removeSlashes(rawEndpoint)
     const endpointEntity = new Endpoint(

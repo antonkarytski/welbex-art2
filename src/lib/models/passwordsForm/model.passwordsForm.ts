@@ -1,32 +1,23 @@
-import { attach, createEffect, createStore, sample } from 'effector'
+import * as yup from 'yup'
+import { ObjectSchema } from 'yup'
+import { stringSchema } from '../../yup'
 import { createFormModel } from '../form/model.form'
-import { validatePasswords } from './passwordValidation'
-import { PasswordsForm, PasswordsModel } from './types'
 
-export const initialPasswordsFormState: PasswordsForm = {
-  password: '',
-  repeatingPassword: '',
+export type PasswordsFormModel = {
+  password: string
+  passwordConfirmation: string
 }
 
-export const createPasswordFormModel = (): PasswordsModel => {
-  const passwordsModel = createFormModel(initialPasswordsFormState)
+export const passwordsFormSchema: ObjectSchema<PasswordsFormModel> = yup.object(
+  {
+    password: stringSchema(),
+    passwordConfirmation: stringSchema().oneOf(
+      [yup.ref('password')],
+      'Passwords must match'
+    ),
+  }
+)
 
-  const validateFx = attach({
-    source: passwordsModel.$store,
-    effect: createEffect(validatePasswords),
-  })
-
-  const $isValid = createStore<null | boolean>(null).on(
-    validateFx.done,
-    (_, { result }) => result
-  )
-
-  sample({
-    clock: passwordsModel.$store,
-    source: $isValid,
-  }).watch((isValid) => {
-    if (isValid !== null) validateFx()
-  })
-
-  return { ...passwordsModel, validateFx, $isValid }
+export const createPasswordFormModel = () => {
+  return createFormModel(passwordsFormSchema)
 }

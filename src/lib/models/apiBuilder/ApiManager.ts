@@ -32,6 +32,7 @@ export class ApiManager {
     props: DoRequestProps<Params>
   ): Promise<Response> {
     const token = await this.retrieveToken(props)
+    console.log('RESULT PROPS', { ...props, token })
     const response = await doRequest({ ...props, token })
     const contentType = response.headers.get('content-type')
     const isJsonAvailable = contentType === 'application/json'

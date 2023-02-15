@@ -24,7 +24,7 @@ const NewPasswordScreen = () => {
   const passwords = useStore(newPasswordModel.$store)
 
   const onLogin = () => {
-    newPasswordModel.validateFx().then((isValid) => {
+    newPasswordModel.validation.cast().then((isValid) => {
       if (isValid) setIsAuth(true) // TEST
     })
   }
@@ -54,7 +54,7 @@ const NewPasswordScreen = () => {
         onPress={onLogin}
         preset={styles.button}
         style={styles.common.bottomButton}
-        disabled={!passwords.repeatingPassword || !passwords.password}
+        disabled={!passwords.passwordConfirmation || !passwords.password}
       />
     </AuthScreenContainer>
   )

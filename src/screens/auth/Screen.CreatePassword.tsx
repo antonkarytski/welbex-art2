@@ -1,11 +1,11 @@
+import { useStore } from 'effector-react'
 import React, { useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
-import { useStateStore } from 'altek-toolkit'
 import UserAgreement, {
   UserAgreementProps,
   userAgreementModel,
 } from '../../features/auth/UserAgreement'
-import { passwordModel } from '../../features/auth/password/model.passwords'
+import { signUpPasswordsFormModel } from '../../features/signUp/model.passwords'
 import { signUp } from '../../features/signUp/request'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { noop } from '../../lib/helpers'
@@ -24,7 +24,8 @@ const CreatePasswordScreen = () => {
     common: themedCommonStyles,
     button: buttonPrimaryThemedPreset,
   })
-  const [isUserAcceptAgreement] = useStateStore(userAgreementModel)
+  const isUserAcceptAgreement = useStore(userAgreementModel.$state)
+  const isPasswordsValid = useStore(signUpPasswordsFormModel.validation.$state)
   const [isUserAgreementInvalid, setIsUserAgreementInvalid] =
     useState<UserAgreementProps['isInvalid']>()
 
@@ -32,9 +33,15 @@ const CreatePasswordScreen = () => {
     if (!isUserAcceptAgreement) {
       return setIsUserAgreementInvalid(true)
     }
-    passwordModel.validateFx().then((isValid) => {
+    signUpPasswordsFormModel.validation.cast().then((isValid) => {
       if (!isValid) return
-      signUp().catch(noop)
+      signUp()
+        .then((e) => {
+          console.log(e)
+        })
+        .catch((e) => {
+          console.log(e)
+        })
     })
   }
 
@@ -43,9 +50,9 @@ const CreatePasswordScreen = () => {
       <H2 label={t.enterPassword} style={styles.common.title} />
       <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
         <PasswordInputs
+          model={signUpPasswordsFormModel}
           passwordPlaceholder={t.password}
           repeatPasswordPlaceholder={t.repeatPassword}
-          model={passwordModel}
           validLabel={t.checkPasswordMatchSuccess}
           invalidLabel={t.checkPasswordMatchError}
           style={{ formWrapper: screenStyles.passwordFormWrapper }}
@@ -53,7 +60,7 @@ const CreatePasswordScreen = () => {
         <UserAgreement isInvalid={isUserAgreementInvalid} />
       </KeyboardAvoidingView>
       <PresetButton
-        disabled={!isUserAcceptAgreement}
+        disabled={!isUserAcceptAgreement || isPasswordsValid === false}
         label={t.createAccountButton}
         onPress={onCreateAccount}
         preset={styles.button}
