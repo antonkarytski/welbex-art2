@@ -146,11 +146,11 @@ export class Endpoint {
       return this.method({ method, ...rest }, fn)
     }
   }
-  public post = this.specificMethod('POST')
-  public get = this.specificMethod('GET')
-  public put = this.specificMethod('PUT')
-  public delete = this.specificMethod('DELETE')
-  public patch = this.specificMethod('PATCH')
+  public readonly post = this.specificMethod('POST')
+  public readonly get = this.specificMethod('GET')
+  public readonly put = this.specificMethod('PUT')
+  public readonly delete = this.specificMethod('DELETE')
+  public readonly patch = this.specificMethod('PATCH')
   public createEndpoint(rawEndpoint: string) {
     const endpoint = removeSlashes(rawEndpoint)
     const endpointEntity = new Endpoint(

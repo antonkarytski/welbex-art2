@@ -26,4 +26,4 @@ export const apiManager = new ApiManager({
     accessLifeTime: minutes(30),
     refreshLifeTime: days(30),
   },
-})
+}).debug()

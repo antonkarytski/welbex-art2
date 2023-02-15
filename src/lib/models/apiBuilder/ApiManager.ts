@@ -15,6 +15,7 @@ import {
 export class ApiManager {
   private readonly server: ServerManager | null = null
   private readonly token
+  private _isDebug: boolean = false
 
   constructor({ server, tokenRefresher, tokenSettings }: RequestModelProps) {
     if (server) this.server = server
@@ -28,11 +29,19 @@ export class ApiManager {
     if (!token) throw ApiError.needLogin()
   }
 
+  private async prepareProps(props: RequestFnProps<any>) {
+    const token = await this.retrieveToken(props)
+    const { withToken, token: innerToken, ...rest } = props
+    if (!token) return rest
+    return { ...rest, token }
+  }
+
   private async doRequest<Response, Params>(
     props: DoRequestProps<Params>
   ): Promise<Response> {
-    const token = await this.retrieveToken(props)
-    const response = await doRequest({ ...props, token })
+    const requestProps = await this.prepareProps(props)
+    if (this._isDebug) console.log(requestProps)
+    const response = await doRequest(requestProps)
     const contentType = response.headers.get('content-type')
     const isJsonAvailable = contentType === 'application/json'
     if (response.ok) {
@@ -52,6 +61,7 @@ export class ApiManager {
         _secondAttempt: true,
       })
     }
+    if (this._isDebug) console.log(response)
     if (!isJsonAvailable) throw ApiError.unknown(response)
     throw await ApiError.fromResponse(response)
   }
@@ -75,5 +85,10 @@ export class ApiManager {
       endpoint: endpointEntity,
       requestHandler: this.doRequest.bind(this),
     })
+  }
+
+  public debug(state = true) {
+    this._isDebug = state
+    return this
   }
 }

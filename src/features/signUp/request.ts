@@ -1,4 +1,5 @@
 import { attach } from 'effector'
+import moment from 'moment'
 import { api } from '../../api'
 import { signUpCountryModel } from './country/model'
 import { signUpPasswordsFormModel } from './model.passwords'
@@ -8,18 +9,18 @@ import { signUpUserDataFormModel } from './userData/model'
 export const signUp = attach({
   source: {
     user: signUpUserDataFormModel.$store,
+    phone: phoneInputModel.purePhoneModel.$state,
     country: signUpCountryModel.$state,
-    phone_number: phoneInputModel.purePhoneModel.$state,
     passwords: signUpPasswordsFormModel.$store,
   },
-  mapParams: (_: void, { user, country, phone_number, passwords }) => ({
+  mapParams: (_: void, { user, country, phone, passwords }) => ({
     first_name: user.name,
     last_name: user.lastName,
-    DOB: user.birthDate.toISOString(),
+    DOB: moment(user.birthDate.valueOf()).format('YYYY-MM-DD'),
     email: user.email,
     country: country.name,
     password: passwords.password,
-    phone_number,
+    phone_number: phone,
     is_manager: false,
     is_superuser: false,
   }),
