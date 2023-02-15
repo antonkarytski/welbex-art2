@@ -6,17 +6,26 @@ import { Endpoint } from './Endpoint'
 import { TokenManager } from './TokenManager'
 import { ApiError } from './errors'
 import { prepareRequestData } from './helpers'
-import {
-  CreateRequestProps,
-  DoRequestProps,
-  RequestFnProps,
-  RequestModelProps,
-} from './types'
+import { CreateRequestProps, DoRequestProps, RequestFnProps } from './types'
+import { TokenRefresher, TokenSettings } from './types.token'
+
+export type RequestModelProps = {
+  server?: ServerManager
+  tokenRefresher: TokenRefresher
+  tokenSettings?: TokenSettings
+  requestRepeatFilter?: RequestRepeatFilter
+}
+export type RequestRepeatFilter = <T>(
+  props: DoRequestProps<T>,
+  response: Response,
+  context: ApiManager
+) => Promise<DoRequestProps<T> | undefined | null>
 
 export class ApiManager {
   private readonly debugger = new ApiDebug()
   private readonly server: ServerManager | null = null
   public readonly token
+  private readonly requestRepeatFilter: RequestRepeatFilter | null = null
 
   constructor({ server, tokenRefresher, tokenSettings }: RequestModelProps) {
     if (server) this.server = server
@@ -50,23 +59,9 @@ export class ApiManager {
       if (!isJsonAvailable) return null as Response
       return (await response.json()) as Response
     }
-    if (
-      Number(response.status) === 401 &&
-      props.withToken &&
-      !props._secondAttempt
-    ) {
-      if (isJsonAvailable) {
-        const json = await response.json()
-        if (json.detail === 'Could not validate credentials') {
-          const newToken = await this.token.refresh()
-          if (!newToken) throw ApiError.needLogin()
-          return this.doRequest({
-            ...props,
-            token: newToken.access,
-            _secondAttempt: true,
-          })
-        }
-      }
+    if (this.requestRepeatFilter) {
+      const newProps = await this.requestRepeatFilter(props, response, this)
+      if (newProps) return this.doRequest(newProps)
     }
     if (!isJsonAvailable) throw ApiError.unknown(response)
     throw await ApiError.fromResponse(response)

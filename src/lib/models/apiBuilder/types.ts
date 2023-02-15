@@ -1,5 +1,4 @@
-import { ServerManager } from 'altek-toolkit'
-import { TokenRefresher, TokenSettings, TokenType } from './types.token'
+import { TokenType } from './types.token'
 
 export enum ContentType {
   JSON = 'application/json',
@@ -31,13 +30,7 @@ export type RequestFnProps<Body> = RequestProps<Body> & {
   tokenType?: TokenType
 }
 export type DoRequestProps<Body> = RequestFnProps<Body> & {
-  _secondAttempt?: boolean
-}
-
-export type RequestModelProps = {
-  server?: ServerManager
-  tokenRefresher: TokenRefresher
-  tokenSettings?: TokenSettings
+  attempt?: number
 }
 
 export type CreateRequestProps<Params> = {
