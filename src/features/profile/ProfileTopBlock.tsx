@@ -5,7 +5,7 @@ import SettingsNavigationButton from '../../navigation/elements/NavigationButton
 import { useText } from '../../translations/hook'
 import { ColorThemeStructure } from '../themed/theme'
 import UserTopBlock from '../user/UserTopBlock'
-import { $userProfile } from './model'
+import { $myProfile } from './model'
 
 type ProfileTopBlockProps = {
   offsetValue: Animated.Value | Animated.AnimatedInterpolation<number>
@@ -22,7 +22,7 @@ const ProfileTopBlock = ({
   onHeightChange,
 }: ProfileTopBlockProps) => {
   const text = useText()
-  const profile = useStore($userProfile)
+  const profile = useStore($myProfile)
 
   return (
     <UserTopBlock

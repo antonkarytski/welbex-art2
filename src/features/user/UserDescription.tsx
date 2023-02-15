@@ -1,18 +1,18 @@
-import { bool } from 'yup'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { UserShort } from '../../api/parts/users/types'
 import { createMemoByWeakMap } from '../../lib/helpers/memoization'
 import { EN } from '../../translations/languages'
 import { LangStructure } from '../../translations/types'
 import Span from '../../ui/Span'
+import { userName } from './helpers'
 import { countryFullName, countryFullNameClipped } from './index'
 import { UserDescriptionStyles } from './styles'
-import { User } from './types'
 
 export type AgeTextGenerator = (age: number) => string
 
 type UserDescriptionProps = {
-  item: User
+  item: Omit<UserShort, 'is_followed'>
   style?: UserDescriptionStyles
   ageTextGenerator?: AgeTextGenerator
   hideSeparator?: boolean
@@ -37,7 +37,11 @@ const UserDescription = ({
 
   return (
     <View style={style?.container}>
-      <Span weight={500} style={[styles.name, style?.name]} label={item.name} />
+      <Span
+        weight={500}
+        style={[styles.name, style?.name]}
+        label={userName(item)}
+      />
       <Span
         style={[styles.subText, style?.subText]}
         label={`${ageText} ${hideSeparator ? ' ' : '|'} ${

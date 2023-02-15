@@ -1,33 +1,46 @@
-import { User, UserExt } from '../features/user/types'
+import { UserProfile, UserShort } from '../api/parts/users/types'
 
-export const romanov: User = {
-  id: '001',
+type MockUser = UserShort & {
+  id: number
+}
+export const romanov: MockUser = {
+  id: 1,
   avatar: require('../../assets/images/avatar.png'),
   country: 'RU',
-  name: 'Sergey Romanov',
+  first_name: 'Sergey',
+  last_name: 'Romanov',
+  is_followed: true,
   age: 10,
 }
 
-export const reginaRomanova: User = {
-  id: '002',
+export const reginaRomanova: MockUser = {
+  id: 2,
   avatar: require('../../assets/images/avatar.png'),
-  name: 'Regina Romanova',
+  first_name: 'Regina',
+  last_name: 'Romanova',
+  is_followed: false,
   country: 'RU',
   age: 10,
 }
 
-export const romanovFull: UserExt = {
+export const romanovFull: UserProfile = {
   ...romanov,
-  following_count: 111,
-  followers_count: 222,
-  postsCount: 55,
+  followings: 111,
+  followers: 222,
+  posts: 55,
+  DOB: '2012-01-01',
+  is_child: true,
+  is_followed: false,
 }
 
-export const reginaRomanovaFull: UserExt = {
+export const reginaRomanovaFull: UserProfile = {
   ...reginaRomanova,
-  following_count: 120,
-  followers_count: 100,
-  postsCount: 60,
+  followings: 120,
+  followers: 100,
+  posts: 60,
+  DOB: '2014-01-01',
+  is_child: true,
+  is_followed: true,
 }
 
 export const USERS_FULL = [romanovFull, reginaRomanovaFull]

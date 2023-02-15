@@ -2,6 +2,7 @@ import { attach } from 'effector'
 import moment from 'moment'
 import { api } from '../../api'
 import { apiManager } from '../../api/apiManager'
+import { USER_DOB_FORMAT } from '../../constants'
 import { signUpCountryModel } from './country/model'
 import { signUpPasswordsFormModel } from './model.passwords'
 import { phoneInputModel } from './phone'
@@ -17,7 +18,7 @@ export const signUp = attach({
   mapParams: (_: void, { user, country, phone, passwords }) => ({
     first_name: user.name,
     last_name: user.lastName,
-    DOB: moment(user.birthDate.valueOf()).format('YYYY-MM-DD'),
+    DOB: moment(user.birthDate.valueOf()).format(USER_DOB_FORMAT),
     email: user.email,
     country: country.alpha2Code,
     password: passwords.password,

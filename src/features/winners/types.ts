@@ -1,5 +1,5 @@
 import { ImageSourcePropType } from 'react-native'
-import { User } from '../user/types'
+import { UserShort } from '../../api/parts/users/types'
 
 export type IWinner = {
   id: string
@@ -7,5 +7,5 @@ export type IWinner = {
   category: string
   yearsCategory: string
   imageOffsetY?: number
-  author: User
+  author: UserShort
 }

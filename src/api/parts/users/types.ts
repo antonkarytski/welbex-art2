@@ -1,39 +1,21 @@
-import { CountryCode } from '../../../features/countries'
-import { TokenType } from '../../../lib/models/apiBuilder/types.token'
+import { ImageSourcePropType } from 'react-native'
+import { MyProfileResponse, UserProfileResponse } from './types.api'
+import { ProfileResponse, UserInitialData } from './types.parts'
 
-enum UserRole {
-  COMMON = 1,
+export type User = UserInitialData & {
+  avatar: ImageSourcePropType
 }
 
-export type UserCommonBody = {
-  email: string
-  phone_number: string
-  first_name: string
-  last_name: string
-  is_superuser: boolean
-  country: CountryCode
-  DOB: string
-}
-
-export type User = {
-  role_id: UserRole
+type AppUserProps = {
   id: number
-} & UserCommonBody
-
-export type MeResponse = {
-  avatar: string
-} & User
-
-export type SignUpBody = {
-  is_manager: boolean
-  password: string
-} & UserCommonBody
-
-export type SignUpResponse = {
-  user: User
-  tokens: {
-    access_token: string
-    refresh_token: string
-    token_type: TokenType
-  }
+  age: number
 }
+
+export type UserShort = {
+  is_followed: boolean
+} & Omit<User, 'DOB'> &
+  AppUserProps
+
+export type Profile = ProfileResponse & AppUserProps
+export type MyProfile = MyProfileResponse & AppUserProps
+export type UserProfile = UserProfileResponse & AppUserProps

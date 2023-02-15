@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { Profile, UserShort } from '../../api/parts/users/types'
 import { useText } from '../../translations/hook'
 import Avatar from '../../ui/Avatar'
 import SubscribeButton from '../../ui/buttons/subscribeButton/SubscribeButton'
@@ -11,12 +12,11 @@ import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import UserDescription, { localeAgeTextShort } from './UserDescription'
 import { UserDescriptionStyles } from './styles'
-import { User } from './types'
 
 type UserCardPreviewProps = {
-  item: User
-  onAvatarPress?: (item: User) => void
-  onSubscribePress?: (item: User) => void
+  item: UserShort
+  onAvatarPress?: (item: UserShort) => void
+  onSubscribePress?: (item: UserShort) => void
 }
 
 const UserCardPreview = ({
