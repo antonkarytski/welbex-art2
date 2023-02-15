@@ -5,7 +5,6 @@ import {
   TokenRefresher,
   TokenSettings,
   TokenStatus,
-  TokenType,
   Tokens,
 } from './types.token'
 
@@ -22,10 +21,9 @@ export class TokenManager {
 
   public readonly reset = createEvent()
   public readonly set = createEvent<Tokens>()
-  private readonly $model = createStore<TokenModel | null>(null)
+  public readonly $store = createStore<TokenModel | null>(null)
     .on(this.set, (_, tokens) => ({ ...tokens, startTime: Date.now() }))
     .reset(this.reset)
-  private startTime: number = 0
 
   constructor(
     refresher: TokenRefresher,
@@ -40,7 +38,7 @@ export class TokenManager {
     this.refreshLifeTime = refreshLifeTime
 
     this.persist = addStorePersist({
-      $store: this.$model,
+      $store: this.$store,
       saveTo: dbField,
     })
     this.persist.onInit((result) => {
@@ -50,7 +48,7 @@ export class TokenManager {
   }
 
   public readonly get = attach({
-    source: this.$model,
+    source: this.$store,
     mapParams: (_: void, token) => token,
     effect: createEffect(
       async (token: TokenModel | null): Promise<Tokens | null | undefined> => {
@@ -73,7 +71,7 @@ export class TokenManager {
   })
 
   public readonly refresh = attach({
-    source: this.$model,
+    source: this.$store,
     mapParams: (_: void, source) => source,
     effect: createEffect(async (props: Tokens | null) => {
       if (!props) return null

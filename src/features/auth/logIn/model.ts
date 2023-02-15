@@ -1,7 +1,6 @@
 import { createEvent, sample } from 'effector'
 import { mockCheckLogin } from '../../../_mock/login'
 import { createFormModel } from '../../../lib/models/form'
-import { setIsAuth } from '../model'
 
 export type LogInForm = {
   email: string
@@ -20,6 +19,4 @@ sample({
   source: logInFormModel.$store,
   clock: logIn,
   fn: (source) => source,
-}).watch((userData) => {
-  if (mockCheckLogin(userData)) setIsAuth(true)
-})
+}).watch((userData) => {})

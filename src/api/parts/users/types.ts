@@ -7,7 +7,7 @@ import {
 import { UserInitialData } from './types.parts'
 
 export type User = UserInitialData & {
-  avatar: ImageSourcePropType
+  avatar: ImageSourcePropType | string
 }
 
 type AppUserProps = {

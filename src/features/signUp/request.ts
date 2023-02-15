@@ -3,9 +3,11 @@ import moment from 'moment'
 import { api } from '../../api'
 import { apiManager } from '../../api/apiManager'
 import { USER_DOB_FORMAT } from '../../constants'
+import { setMyProfile } from '../profile/model'
 import { signUpCountryModel } from './country/model'
 import { signUpPasswordsFormModel } from './model.passwords'
 import { phoneInputModel } from './phone'
+import { signUpUserResponseToNewUser } from './userData/helpers'
 import { signUpUserDataFormModel } from './userData/model'
 
 export const signUp = attach({
@@ -34,4 +36,6 @@ signUp.done.watch(({ result }) => {
     access: result.tokens.access_token,
     refresh: result.tokens.refresh_token,
   })
+  const myNewProfile = signUpUserResponseToNewUser(result.user)
+  setMyProfile(myNewProfile)
 })

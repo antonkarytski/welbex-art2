@@ -25,8 +25,10 @@ export type SignUpBody = {
 } & UserInitialData &
   UserSecuredData
 
+export type SingUpResponseUser = UserInitialData & UserPrivateData
+
 export type SignUpResponse = {
-  user: UserInitialData & UserPrivateData
+  user: SingUpResponseUser
   tokens: {
     access_token: string
     refresh_token: string

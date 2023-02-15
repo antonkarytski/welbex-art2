@@ -1,5 +1,11 @@
-import { createEvent, restore } from 'effector'
-import { logOut } from './logOut/model'
+import { combine } from 'effector'
+import { apiManager } from '../../api/apiManager'
+import { $myProfile } from '../profile/model'
 
-export const setIsAuth = createEvent<boolean>()
-export const $isAuth = restore(setIsAuth, false).reset(logOut)
+export const $isAuth = combine(
+  {
+    token: apiManager.token.$store,
+    profile: $myProfile,
+  },
+  ({ token, profile }) => !!token && !!profile
+)
