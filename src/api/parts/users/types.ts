@@ -1,45 +1,33 @@
+import { CountryCode } from '../../../features/countries'
 import { TokenType } from '../../../lib/models/apiBuilder/types.token'
 
 enum UserRole {
-  COMMON = 0,
+  COMMON = 1,
 }
 
-export type MeResponse = {
+export type UserCommonBody = {
   email: string
   phone_number: string
-  is_superuser: boolean
   first_name: string
   last_name: string
-  role_id: UserRole
-  country: string
-  DOB: string
-  id: number
-  avatar: string
-}
-
-export type SignUpBody = {
-  email: string
-  phone_number: string
   is_superuser: boolean
-  is_manager: boolean
-  first_name: string
-  last_name: string
-  country: string
-  password: string
+  country: CountryCode
   DOB: string
 }
 
 export type User = {
-  email: string
-  phone_number: string
-  is_superuser: boolean
-  first_name: string
-  last_name: string
-  role_id: number
-  country: string
-  DOB: string
+  role_id: UserRole
   id: number
-}
+} & UserCommonBody
+
+export type MeResponse = {
+  avatar: string
+} & User
+
+export type SignUpBody = {
+  is_manager: boolean
+  password: string
+} & UserCommonBody
 
 export type SignUpResponse = {
   user: User

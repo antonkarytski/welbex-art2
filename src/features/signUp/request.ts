@@ -1,6 +1,7 @@
 import { attach } from 'effector'
 import moment from 'moment'
 import { api } from '../../api'
+import { apiManager } from '../../api/apiManager'
 import { signUpCountryModel } from './country/model'
 import { signUpPasswordsFormModel } from './model.passwords'
 import { phoneInputModel } from './phone'
@@ -18,11 +19,18 @@ export const signUp = attach({
     last_name: user.lastName,
     DOB: moment(user.birthDate.valueOf()).format('YYYY-MM-DD'),
     email: user.email,
-    country: country.name,
+    country: country.alpha2Code,
     password: passwords.password,
     phone_number: phone,
     is_manager: false,
     is_superuser: false,
   }),
   effect: api.users.signUp,
+})
+
+signUp.done.watch(({ result }) => {
+  apiManager.token.set({
+    access: result.tokens.access_token,
+    refresh: result.tokens.refresh_token,
+  })
 })

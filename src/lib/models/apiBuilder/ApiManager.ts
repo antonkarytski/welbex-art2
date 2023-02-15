@@ -16,7 +16,7 @@ import {
 export class ApiManager {
   private readonly debugger = new ApiDebug()
   private readonly server: ServerManager | null = null
-  private readonly token
+  public readonly token
 
   constructor({ server, tokenRefresher, tokenSettings }: RequestModelProps) {
     if (server) this.server = server
