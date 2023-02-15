@@ -10,7 +10,7 @@ export type User = UserInitialData & {
   avatar: ImageSourcePropType | string
 }
 
-type AppUserProps = {
+export type AppUserProps = {
   id: number
   age: number
 }

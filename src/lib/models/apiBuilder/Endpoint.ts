@@ -60,15 +60,20 @@ export class Endpoint {
   }
 
   private createCommonResponse(method: Method | MethodSettings): RequestProps {
-    const methodValue = typeof method === 'string' ? method : method.method
-    const withToken =
-      typeof method === 'string' ? this.isProtected : method.withToken
-    const suffix = typeof method === 'string' ? '' : method.endpoint || ''
-    return {
-      withToken,
-      url: `${this.endpoint}${getUrlEnd(suffix)}`,
-      method: methodValue,
+    if (typeof method === 'string') {
+      return {
+        withToken: this.isProtected,
+        url: this.endpoint,
+        method,
+      }
     }
+    const result: RequestProps = {
+      method: method.method,
+      withToken: method.withToken ?? this.isProtected,
+      url: `${this.endpoint}${getUrlEnd(method.endpoint || '')}`,
+    }
+    if (method.contentType) result.contentType = method.contentType
+    return result
   }
 
   private methodWithBody<T>(
@@ -130,13 +135,6 @@ export class Endpoint {
     return this.methodWithBody(method, fn)
   }
 
-  private methodRoute<T>(method: Method, props?: SpecificMethodProps<T>) {
-    if (!props || typeof props === 'function') {
-      return this.method(method, props)
-    }
-    const { fn, ...rest } = props
-    return this.method({ method, ...rest }, fn)
-  }
   private specificMethod(method: Method) {
     return <T>(props?: SpecificMethodProps<T>): RequestPropsGetter<T> => {
       if (!props || typeof props === 'function') {

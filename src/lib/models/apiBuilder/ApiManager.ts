@@ -55,13 +55,18 @@ export class ApiManager {
       props.withToken &&
       !props._secondAttempt
     ) {
-      const newToken = await this.token.refresh()
-      if (!newToken) throw ApiError.needLogin()
-      return this.doRequest({
-        ...props,
-        token: newToken.access,
-        _secondAttempt: true,
-      })
+      if (isJsonAvailable) {
+        const json = await response.json()
+        if (json.detail === 'Could not validate credentials') {
+          const newToken = await this.token.refresh()
+          if (!newToken) throw ApiError.needLogin()
+          return this.doRequest({
+            ...props,
+            token: newToken.access,
+            _secondAttempt: true,
+          })
+        }
+      }
     }
     if (!isJsonAvailable) throw ApiError.unknown(response)
     throw await ApiError.fromResponse(response)

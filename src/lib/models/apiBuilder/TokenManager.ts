@@ -19,9 +19,17 @@ export class TokenManager {
   private readonly accessLifeTime
   private readonly refreshLifeTime
 
+  private _onInit: ((tokens: TokenModel | null) => void) | null = null
+
   public readonly reset = createEvent()
   public readonly set = createEvent<Tokens>()
-  public readonly $store = createStore<TokenModel | null>(null)
+  public readonly $store = createStore<TokenModel | null>({
+    access:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJleHAiOjE2NzY0ODY4MDJ9.cxRnKIYQoTAobiRoWozjWf3xpFcFp7gZa-Qli-XQplQ',
+    refresh:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJleHAiOjE2NzkwNzQ0NTN9.ZZZyVWMZZj6RqXw2EGkqDfvrpmu-txuiVil1feHXcD4',
+    startTime: Date.now(),
+  })
     .on(this.set, (_, tokens) => ({ ...tokens, startTime: Date.now() }))
     .reset(this.reset)
 
@@ -42,8 +50,9 @@ export class TokenManager {
       saveTo: dbField,
     })
     this.persist.onInit((result) => {
+      this._onInit?.(result ?? this.$store.getState() ?? null)
       if (!result) return
-      this.set(result)
+      //this.set(result)
     })
   }
 
@@ -73,12 +82,19 @@ export class TokenManager {
   public readonly refresh = attach({
     source: this.$store,
     mapParams: (_: void, source) => source,
-    effect: createEffect(async (props: Tokens | null) => {
-      if (!props) return null
-      const token = await this.refresher(props)
+    effect: createEffect(async (tokens: Tokens | null) => {
+      if (!tokens) return null
+      const token = await this.refresher(tokens)
       if (!token) return null
       this.set(token)
       return token
     }),
   })
+
+  public onInit(fn: (tokens: TokenModel | null) => void) {
+    if (this.persist.isInitiated) {
+      return fn(this.$store.getState() ?? null)
+    }
+    this._onInit = fn
+  }
 }

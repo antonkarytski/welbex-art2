@@ -1,5 +1,5 @@
 import { ApiError } from './errors'
-import { RequestFnProps } from './types'
+import { ContentType, RequestFnProps } from './types'
 
 export function bodyToParams(body: object) {
   return Object.entries(body)
@@ -29,13 +29,21 @@ export function prepareRequestData<Body>({
   token,
   body,
   method,
+  contentType = ContentType.JSON,
 }: RequestFnProps<Body>) {
   const headers: HeadersInit = {
-    'Content-Type': 'application/json',
+    'Content-Type': contentType,
   }
-  if (withToken) headers.Authorization = `${tokenType} ${token}`
+  if (withToken) headers.authorization = `${tokenType} ${token}`
   const data: RequestInit = { method, headers }
-  if (body) data.body = JSON.stringify(body)
+  if (body) {
+    if (contentType === ContentType.JSON) {
+      data.body = JSON.stringify(body)
+    }
+    if (contentType === ContentType.FORM) {
+      data.body = body as any as FormData
+    }
+  }
   return data
 }
 
