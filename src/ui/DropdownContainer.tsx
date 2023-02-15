@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   container: {
+    borderRadius: 8,
     width: 200,
   },
   shadow: {
