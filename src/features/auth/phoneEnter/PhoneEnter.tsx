@@ -18,11 +18,10 @@ const renderCountryRow: RenderItem<Country> = (item, isSelected) => (
 
 type PhoneEnterProps = {
   label?: string
-  isValid?: boolean
   style?: CountrySelectablePhoneInputProps<Country>['style']
 }
 
-const PhoneEnter = ({ label, isValid, style }: PhoneEnterProps) => {
+const PhoneEnter = ({ label, style }: PhoneEnterProps) => {
   const isPhoneValid = useStore(phoneInputModel.$isPhoneValid)
   const [isPhoneChecked, setIsPhoneChecked] = useState(false)
 
@@ -42,7 +41,7 @@ const PhoneEnter = ({ label, isValid, style }: PhoneEnterProps) => {
       selectedCountryModel={phoneCountryModel}
       countryCodeExtractor={({ alpha2Code }) => alpha2Code}
       countryLabelExtractor={({ emoji }) => emoji}
-      isValid={isValid || (isPhoneChecked ? isPhoneValid : undefined)}
+      isValid={isPhoneChecked ? isPhoneValid : undefined}
       onFocus={() => setIsPhoneChecked(false)}
       onBlur={() => setIsPhoneChecked(true)}
       style={{

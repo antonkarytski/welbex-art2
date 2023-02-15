@@ -1,7 +1,7 @@
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
-import SendPhoneButton from '../../features/auth/SendPhoneButton'
-import PhoneEnter, { phoneInputModel } from '../../features/auth/phoneEnter'
+import PhoneEnter from '../../features/auth/phoneEnter'
+import SendPhoneButton from '../../features/auth/phoneEnter/SendPhoneButton'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { IS_IOS } from '../../lib/helpers/native/constants'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
@@ -34,10 +34,7 @@ const PhoneEnterScreen = () => {
         <PhoneEnter />
       </KeyboardAvoidingView>
 
-      <SendPhoneButton
-        buttonPreset={styles.button}
-        phoneInputModel={phoneInputModel}
-      />
+      <SendPhoneButton buttonPreset={styles.button} />
     </AuthScreenContainer>
   )
 }
