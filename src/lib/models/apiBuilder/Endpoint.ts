@@ -1,5 +1,11 @@
 import { ServerManager } from 'altek-toolkit'
-import { bodyToParams, getUrlEnd, removeSlashes } from './helpers'
+import {
+  bodyToParams,
+  convertToFormData,
+  getUrlEnd,
+  isObjectNotFormData,
+  removeSlashes,
+} from './helpers'
 import {
   ContentType,
   MapperFn,
@@ -17,18 +23,6 @@ type SpecificMethodSettings<T> = Omit<MethodSettings, 'method'> & {
   fn?: MapperFn<T>
 }
 type SpecificMethodProps<T> = MapperFn<T> | SpecificMethodSettings<T>
-
-function convertToFormData(list: Record<string, any>) {
-  const formData = new FormData()
-  Object.entries(list).forEach(([key, value]) => {
-    formData.append(key, value)
-  })
-  return formData
-}
-
-function isObjectNotFormData(body: any): body is FormData {
-  return body && typeof body === 'object' && !(body instanceof FormData)
-}
 
 export class Endpoint {
   private readonly server: ServerManager | null = null

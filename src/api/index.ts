@@ -25,12 +25,5 @@ export const api = {
 
 apiManager.token.onInit((token) => {
   if (!token) return
-  usersApi
-    .me()
-    .then((e) => {
-      console.log('DONE', e)
-    })
-    .catch((e) => {
-      console.log('ERROR', JSON.stringify(e))
-    })
+  usersApi.me()
 })

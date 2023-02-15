@@ -23,13 +23,7 @@ export class TokenManager {
 
   public readonly reset = createEvent()
   public readonly set = createEvent<Tokens>()
-  public readonly $store = createStore<TokenModel | null>({
-    access:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJleHAiOjE2NzY0ODY4MDJ9.cxRnKIYQoTAobiRoWozjWf3xpFcFp7gZa-Qli-XQplQ',
-    refresh:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJleHAiOjE2NzkwNzQ0NTN9.ZZZyVWMZZj6RqXw2EGkqDfvrpmu-txuiVil1feHXcD4',
-    startTime: Date.now(),
-  })
+  public readonly $store = createStore<TokenModel | null>(null)
     .on(this.set, (_, tokens) => ({ ...tokens, startTime: Date.now() }))
     .reset(this.reset)
 
@@ -52,7 +46,7 @@ export class TokenManager {
     this.persist.onInit((result) => {
       this._onInit?.(result ?? this.$store.getState() ?? null)
       if (!result) return
-      //this.set(result)
+      this.set(result)
     })
   }
 

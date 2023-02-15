@@ -66,3 +66,15 @@ export async function request<Response, Body = any>(
   }
   throw await ApiError.fromResponse(response)
 }
+
+export function convertToFormData(list: Record<string, any>) {
+  const formData = new FormData()
+  Object.entries(list).forEach(([key, value]) => {
+    formData.append(key, value)
+  })
+  return formData
+}
+
+export function isObjectNotFormData(body: any): body is FormData {
+  return body && typeof body === 'object' && !(body instanceof FormData)
+}
