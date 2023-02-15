@@ -8,17 +8,23 @@ type DropdownContainerProps = {
 
 const DropdownContainer = ({ style, children }: DropdownContainerProps) => {
   return (
-    <View style={[styles.container, styles.shadow, style]}>{children}</View>
+    <View style={[styles.shadow, styles.container, style]}>
+      <View style={[styles.innerContainer]}>{children}</View>
+    </View>
   )
 }
 
 export default DropdownContainer
 
 const styles = StyleSheet.create({
-  container: {
+  innerContainer: {
     borderRadius: 8,
     backgroundColor: '#ffffff',
-    width: 150,
+    overflow: 'hidden',
+  },
+  container: {
+    borderRadius: 8,
+    width: 200,
   },
   shadow: {
     overflow: 'visible',

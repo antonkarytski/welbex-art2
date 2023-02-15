@@ -3,6 +3,10 @@ import { defaultColors } from '../../features/themed/theme'
 import { FONT_MEDIUM } from '../../styles/fonts'
 
 export const selectStyles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 12,
+    backgroundColor: '#fff',
+  },
   item: {
     position: 'relative',
     paddingVertical: 20,
@@ -17,12 +21,6 @@ export const selectStyles = StyleSheet.create({
   item_label__selected: {
     color: defaultColors.textAccent,
   },
-  row_wrapper: {},
-  listWrapper: {
-    paddingHorizontal: 12,
-    backgroundColor: '#fff',
-  },
-  icon_checkMark: {},
   icon_checkMark__wrapper: {
     position: 'absolute',
     zIndex: 3,

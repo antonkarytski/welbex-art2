@@ -11,6 +11,7 @@ const CountrySelectablePhoneInput = <CountryItem extends Record<string, any>>({
   label,
   phoneModel,
   countries,
+  searchModel,
   renderCountryItem,
   selectedCountryModel,
   countryLabelExtractor,
@@ -46,6 +47,7 @@ const CountrySelectablePhoneInput = <CountryItem extends Record<string, any>>({
       )}
       <View style={[styles.innerWrapper, style?.innerWrapper]}>
         <DropdownSelect
+          searchModel={searchModel}
           data={countries}
           renderItem={renderCountryItem}
           model={selectedCountryModel}

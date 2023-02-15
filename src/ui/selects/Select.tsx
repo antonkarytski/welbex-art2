@@ -44,7 +44,7 @@ const Select = <Item,>({
   )
 
   return (
-    <View style={[selectStyles.listWrapper, style?.listWrapper]}>
+    <View style={[selectStyles.container, style?.container]}>
       <FlatList
         data={data}
         renderItem={renderSelect}

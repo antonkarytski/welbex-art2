@@ -21,6 +21,10 @@ import PhoneEnter from '../../signUp/phone/PhoneEnter'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
 import { PROFILE_FORM_DESCRIPTORS, profileFormModel } from './model.editProfile'
+import {
+  profileCountrySearchModel,
+} from '../../auth/model.profileCountry'
+
 
 const EditProfileForm = () => {
   const t = useText()
@@ -70,7 +74,7 @@ const EditProfileForm = () => {
             select: { dropdownTab: styles.dropdownTab },
           }}
         />
-        <CountriesDropdownSelect model={userCountrySignUpModel} />
+        <CountriesDropdownSelect model={userCountrySignUpModel} searchModel={profileCountrySearchModel} />
         <UploadFromCameraBlock
           label={t.uploadChildDocument}
           style={styles.common.uploadDocumentsBlock}

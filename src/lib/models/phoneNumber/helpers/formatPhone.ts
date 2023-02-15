@@ -6,8 +6,37 @@ export function removePlus(result: string) {
 }
 
 export function addPlus(result: string) {
-  if (result?.length > 1 && !result.startsWith('+')) return '+'.concat(result)
+  if (result?.length > 0 && !result.startsWith('+')) return '+'.concat(result)
   return result
+}
+
+export function addCountryCode(
+  rawValue: string,
+  countryCode?: CountryCode | null
+) {
+  if (countryCode) {
+    const phoneNumber = parsePhoneNumber(rawValue || '111', countryCode)
+    const pureRowValue = removePlus(rawValue).trim()
+    if (phoneNumber) {
+      const callingCode = phoneNumber.countryCallingCode
+      const isCountryChanged = phoneNumber.country !== countryCode
+      let newCallingCode = null
+      if (isCountryChanged) {
+        newCallingCode = parsePhoneNumber(
+          '111',
+          countryCode
+        )?.countryCallingCode
+      }
+      if (!pureRowValue.startsWith(callingCode) || isCountryChanged) {
+        const result = newCallingCode
+          ? newCallingCode + pureRowValue.slice(callingCode.length)
+          : callingCode + rawValue
+
+        return addPlus(result)
+      }
+    }
+  }
+  return rawValue
 }
 
 export function formatPhone(
@@ -15,6 +44,7 @@ export function formatPhone(
   countryCode?: CountryCode | null
 ) {
   let result = rawValue
+  result = addCountryCode(rawValue, countryCode)
   if (countryCode) {
     const phoneNumber = parsePhoneNumber(result, countryCode)
     if (phoneNumber) {
@@ -55,6 +85,6 @@ export function formatPhone(
 }
 
 export function purifyPhone(phone: string): string {
-  const validPhone = phone.replace(/[() -]/g, '')
-  return validPhone
+  const purePhone = phone.replace(/[() -]/g, '')
+  return purePhone
 }
