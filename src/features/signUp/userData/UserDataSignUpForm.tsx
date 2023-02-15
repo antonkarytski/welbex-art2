@@ -9,7 +9,7 @@ import DateField from '../../../ui/form/DateField'
 import Field from '../../../ui/form/Field'
 import { useThemedStyleList } from '../../themed/hooks'
 import UserDataValidationButton from './UserDataValidationButton'
-import { userDataSignUpFormModel } from './model'
+import { signUpUserDataFormModel } from './model'
 
 const UserDataSignUpForm = () => {
   const t = useText()
@@ -22,13 +22,13 @@ const UserDataSignUpForm = () => {
     <>
       <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : undefined}>
         <H2 label={t.createNewAccount} style={featureStyles.formTitle} />
-        {userDataSignUpFormModel.mapKeys((name) => {
+        {signUpUserDataFormModel.mapKeys((name) => {
           if (name === 'birthDate') {
             return (
               <DateField
                 key={name}
                 placeholder={t.birthDate}
-                formModel={userDataSignUpFormModel}
+                formModel={signUpUserDataFormModel}
                 name={name}
                 style={styles.field}
                 validateOnBlur
@@ -40,7 +40,7 @@ const UserDataSignUpForm = () => {
               validateOnBlur
               key={name}
               placeholder={t[name]}
-              formModel={userDataSignUpFormModel}
+              formModel={signUpUserDataFormModel}
               name={name}
               style={styles.field}
               type={name === 'email' ? 'email-address' : 'default'}

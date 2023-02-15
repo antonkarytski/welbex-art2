@@ -5,7 +5,7 @@ import { links } from '../../../navigation/links'
 import { useText } from '../../../translations/hook'
 import Button from '../../../ui/buttons/PresetButton'
 import { PresetButtonStates } from '../../../ui/buttons/types'
-import { userDataSignUpFormModel } from './model'
+import { signUpUserDataFormModel } from './model'
 
 type SignUpValidationButtonProps = {
   preset?: PresetButtonStates
@@ -14,10 +14,10 @@ type SignUpValidationButtonProps = {
 const UserDataValidationButton = ({ preset }: SignUpValidationButtonProps) => {
   const t = useText()
   const navigate = useNavigate()
-  const isFormValid = useStore(userDataSignUpFormModel.validation.$state)
+  const isFormValid = useStore(signUpUserDataFormModel.validation.$state)
 
   const onContinueSignUp = () => {
-    userDataSignUpFormModel.validation.cast().then(({ isValid }) => {
+    signUpUserDataFormModel.validation.cast().then(({ isValid }) => {
       if (isValid) navigate(links.countrySelection)
     })
   }

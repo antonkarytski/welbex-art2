@@ -12,19 +12,16 @@ import IconButton from '../../../ui/buttons/IconButton'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import Field from '../../../ui/form/Field'
 import PlusIcon from '../../../ui/icons/Icon.Plus'
+import { profileCountrySearchModel } from '../../auth/model.profileCountry'
 import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
 import UploadFromCameraBlock from '../../imagePick/Block.UploadFromCamera'
 import PhotoEditPopUp from '../../popUp/PopUp.PhotoEditActionSelect'
 import SaveChangesPopUp from '../../popUp/PopUp.SaveChanges'
-import { userCountrySignUpModel } from '../../signUp/country/model'
+import { signUpCountryModel } from '../../signUp/country/model'
 import PhoneEnter from '../../signUp/phone/PhoneEnter'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
 import { PROFILE_FORM_DESCRIPTORS, profileFormModel } from './model.editProfile'
-import {
-  profileCountrySearchModel,
-} from '../../auth/model.profileCountry'
-
 
 const EditProfileForm = () => {
   const t = useText()
@@ -74,7 +71,10 @@ const EditProfileForm = () => {
             select: { dropdownTab: styles.dropdownTab },
           }}
         />
-        <CountriesDropdownSelect model={userCountrySignUpModel} searchModel={profileCountrySearchModel} />
+        <CountriesDropdownSelect
+          model={signUpCountryModel}
+          searchModel={profileCountrySearchModel}
+        />
         <UploadFromCameraBlock
           label={t.uploadChildDocument}
           style={styles.common.uploadDocumentsBlock}

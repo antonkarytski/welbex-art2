@@ -4,10 +4,9 @@ import { StyleSheet } from 'react-native'
 import CountrySelectablePhoneInput from '../../../ui/phoneInput/CountrySelectablePhoneInput'
 import { CountrySelectablePhoneInputProps } from '../../../ui/phoneInput/types'
 import { RenderItem } from '../../../ui/selects/types'
-import { searchCountryModel } from '../../auth/phoneEnter/model.phone'
 import { COUNTRIES_LIST, Country } from '../../countries'
 import CountryRow from '../../countries/CountryRow'
-import { phoneCountryModel, phoneInputModel } from './model'
+import { phoneCountryModel, phoneInputModel, searchCountryModel } from './model'
 
 const renderCountryRow: RenderItem<Country> = (item, isSelected) => (
   <CountryRow item={item} isSelected={isSelected} />

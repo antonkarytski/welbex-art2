@@ -7,16 +7,14 @@ import { COUNTRIES_LIST, Country, countyNameExtractor } from '../../countries'
 import CountryRow from '../../countries/CountryRow'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyle } from '../../themed/hooks'
-import { userCountrySignUpModel } from './model'
-
-type CountriesListProps = {}
+import { signUpCountryModel } from './model'
 
 const searchModel = createSearchableListModel<Country>({
   filterExtractor: countyNameExtractor,
 })
 const countryIdExtractor = ({ alpha3Code }: Country) => alpha3Code
 
-const CountriesList = ({}: CountriesListProps) => {
+const CountriesList = () => {
   const countryRowStyles = useThemedStyle(countryRowThemedStyles)
 
   const renderCountryRow = useCallback(
@@ -29,7 +27,7 @@ const CountriesList = ({}: CountriesListProps) => {
       data={COUNTRIES_LIST}
       idExtractor={countryIdExtractor}
       searchModel={searchModel}
-      model={userCountrySignUpModel}
+      model={signUpCountryModel}
       renderItem={renderCountryRow}
     />
   )

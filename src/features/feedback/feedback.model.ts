@@ -1,4 +1,4 @@
-import { createFormModel } from '../../lib/models/form/model.form'
+import { createFormModel } from '../../lib/models/form'
 
 export const feedbackFormInitialState = {
   email: '',

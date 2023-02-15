@@ -2,7 +2,7 @@ import { useStoreMap } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
 import CountriesList from '../../features/signUp/country/CountriesList'
-import { userCountrySignUpModel } from '../../features/signUp/country/model'
+import { signUpCountryModel } from '../../features/signUp/country/model'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { IS_IOS } from '../../lib/helpers/native/constants'
 import { useNavigate } from '../../navigation'
@@ -18,7 +18,7 @@ const CountrySelectionScreen = () => {
   const navigate = useNavigate()
   const t = useText()
   const isCountrySelected = useStoreMap({
-    store: userCountrySignUpModel.$state,
+    store: signUpCountryModel.$state,
     keys: [],
     fn: (state) => !!state,
   })
