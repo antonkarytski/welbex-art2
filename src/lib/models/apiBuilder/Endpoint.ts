@@ -1,6 +1,7 @@
 import { ServerManager } from 'altek-toolkit'
 import { bodyToParams, getUrlEnd, removeSlashes } from './helpers'
 import {
+  ContentType,
   MapperFn,
   Method,
   RequestProps,
@@ -16,6 +17,18 @@ type SpecificMethodSettings<T> = Omit<MethodSettings, 'method'> & {
   fn?: MapperFn<T>
 }
 type SpecificMethodProps<T> = MapperFn<T> | SpecificMethodSettings<T>
+
+function convertToFormData(list: Record<string, any>) {
+  const formData = new FormData()
+  Object.entries(list).forEach(([key, value]) => {
+    formData.append(key, value)
+  })
+  return formData
+}
+
+function isObjectNotFormData(body: any): body is FormData {
+  return body && typeof body === 'object' && !(body instanceof FormData)
+}
 
 export class Endpoint {
   private readonly server: ServerManager | null = null
@@ -82,14 +95,33 @@ export class Endpoint {
   ): RequestPropsGetter<T> {
     const response = this.createCommonResponse(method)
     return ((props: T) => {
-      if (!fn) return { ...response, body: props }
+      if (!fn) {
+        if (props === undefined || props === null) return { ...response }
+        if (
+          response.contentType === ContentType.FORM &&
+          isObjectNotFormData(props)
+        ) {
+          const formData = convertToFormData(props)
+          return { ...response, body: formData }
+        }
+        return { ...response, body: props }
+      }
       const result = fn(props)
       if (typeof result === 'string' || typeof result === 'number') {
         return { ...response, url: `${this.endpoint}${getUrlEnd(result)}` }
       }
       const { body, url, ...rest } = result
       const urlEnd = getUrlEnd(url)
-      return { ...response, ...rest, body, url: `${this.endpoint}${urlEnd}` }
+      const urlFull = `${this.endpoint}${urlEnd}`
+      if (
+        (response.contentType === ContentType.FORM ||
+          rest.contentType === ContentType.FORM) &&
+        isObjectNotFormData(body)
+      ) {
+        const formData = convertToFormData(body)
+        return { ...response, ...rest, body: formData, url: urlFull }
+      }
+      return { ...response, ...rest, body, url: urlFull }
     }) as RequestPropsGetter<T>
   }
 

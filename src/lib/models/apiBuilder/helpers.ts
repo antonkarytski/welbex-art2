@@ -34,7 +34,7 @@ export function prepareRequestData<Body>({
   const headers: HeadersInit = {
     'Content-Type': contentType,
   }
-  if (withToken) headers.authorization = `${tokenType} ${token}`
+  if (withToken) headers.Authorization = `${tokenType} ${token}`
   const data: RequestInit = { method, headers }
   if (body) {
     if (contentType === ContentType.JSON) {

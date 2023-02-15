@@ -1,5 +1,8 @@
 import { days, minutes } from 'altek-toolkit'
-import { ApiManager } from '../lib/models/apiBuilder/ApiManager'
+import {
+  ApiManager,
+  RequestRepeatFilter,
+} from '../lib/models/apiBuilder/ApiManager'
 import { ApiError } from '../lib/models/apiBuilder/errors'
 import { request } from '../lib/models/apiBuilder/helpers'
 import { TokenRefresher, Tokens } from '../lib/models/apiBuilder/types.token'
@@ -26,28 +29,34 @@ const tokenRefresher: TokenRefresher = async ({ access, refresh }: Tokens) => {
   }
 }
 
+const requestRepeatFilter: RequestRepeatFilter = async (
+  props,
+  response,
+  ctx
+) => {
+  if (Number(response.status) !== 401 || !props.withToken || props.attempt) {
+    return
+  }
+  if (response.headers.get('content-type') !== 'application/json') return
+  const json = await response.json()
+  if (json.data?.detail !== 'Could not validate credentials') {
+    return
+  }
+  const newToken = await ctx.token.refresh()
+  if (!newToken) throw ApiError.needLogin()
+  return {
+    ...props,
+    token: newToken.access,
+    attempt: props.attempt ? props.attempt + 1 : 1,
+  }
+}
+
 export const apiManager = new ApiManager({
-  tokenRefresher,
   server,
   tokenSettings: {
     accessLifeTime: minutes(30),
     refreshLifeTime: days(30),
   },
-  requestRepeatFilter: async (props, response, ctx) => {
-    if (Number(response.status) !== 401 || !props.withToken || props.attempt) {
-      return
-    }
-    if (response.headers.get('content-type') !== 'application/json') return
-    const json = await response.json()
-    if (json.data?.detail !== 'Could not validate credentials') {
-      return
-    }
-    const newToken = await ctx.token.refresh()
-    if (!newToken) throw ApiError.needLogin()
-    return {
-      ...props,
-      token: newToken.access,
-      attempt: props.attempt ? props.attempt + 1 : 1,
-    }
-  },
+  tokenRefresher,
+  requestRepeatFilter,
 }).debug()
