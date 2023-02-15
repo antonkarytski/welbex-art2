@@ -1,6 +1,10 @@
 import { ImageSourcePropType } from 'react-native'
-import { MyProfileResponse, UserProfileResponse } from './types.api'
-import { ProfileResponse, UserInitialData } from './types.parts'
+import {
+  MyProfileResponse,
+  ProfileResponse,
+  UserProfileResponse,
+} from './types.api'
+import { UserInitialData } from './types.parts'
 
 export type User = UserInitialData & {
   avatar: ImageSourcePropType

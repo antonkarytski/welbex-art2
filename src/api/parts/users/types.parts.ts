@@ -1,5 +1,4 @@
 import { CountryCode } from '../../../features/countries'
-import { User } from './types'
 
 export enum UserRole {
   COMMON = 1,
@@ -27,7 +26,6 @@ export type UserInitialData = {
 }
 
 export type UserPrivateData = UserTechCredits & UserSecuredData
-export type ProfileResponse = User & UserCounters
 export type UserSubscription = {
   expiresIn: number
   monthsAmount: number

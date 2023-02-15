@@ -1,12 +1,14 @@
 import { TokenType } from '../../../lib/models/apiBuilder/types.token'
+import { User } from './types'
 import {
-  ProfileResponse,
+  UserCounters,
   UserInitialData,
   UserPrivateData,
   UserSecuredData,
   UserSubscription,
 } from './types.parts'
 
+export type ProfileResponse = User & UserCounters
 export type MyProfileResponse = ProfileResponse &
   UserPrivateData & {
     subscription: UserSubscription | null
