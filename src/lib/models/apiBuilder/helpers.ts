@@ -23,13 +23,19 @@ export function removeSlashes(value: string) {
   return result
 }
 
-function prepareData<Body>(props: RequestFnProps<Body>) {
+export function prepareRequestData<Body>({
+  withToken,
+  tokenType = 'Bearer',
+  token,
+  body,
+  method,
+}: RequestFnProps<Body>) {
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
   }
-  if (props.withToken) headers.Authorization = `JWT ${props.token}`
-  const data: RequestInit = { method: props.method, headers }
-  if (props.body) data.body = JSON.stringify(props.body)
+  if (withToken) headers.Authorization = `${tokenType} ${token}`
+  const data: RequestInit = { method, headers }
+  if (body) data.body = JSON.stringify(body)
   return data
 }
 
@@ -37,7 +43,7 @@ export async function doRequest<Body>(props: RequestFnProps<Body>) {
   if (props.withToken && !props.token) {
     throw ApiError.noTokenProvided()
   }
-  return fetch(props.url, prepareData(props))
+  return fetch(props.url, prepareRequestData(props))
 }
 
 export async function request<Response, Body = any>(

@@ -5,6 +5,7 @@ import {
   TokenRefresher,
   TokenSettings,
   TokenStatus,
+  TokenType,
   Tokens,
 } from './types.token'
 
@@ -51,22 +52,24 @@ export class TokenManager {
   public readonly get = attach({
     source: this.$model,
     mapParams: (_: void, token) => token,
-    effect: createEffect((token: TokenModel | null) => {
-      if (!token) return null
-      const status = getTokenStatus({
-        token: token.access,
-        startTime: token.startTime,
-        lifeTime: this.accessLifeTime,
-        refreshTime: this.refreshLifeTime,
-      })
-      if (status === TokenStatus.FRESH) return token.access
-      if (status === TokenStatus.EXPIRED) return this.refresh()
-      if (status === TokenStatus.REFRESH_EXPIRED) {
-        this.reset()
-        return null
+    effect: createEffect(
+      async (token: TokenModel | null): Promise<Tokens | null | undefined> => {
+        if (!token) return null
+        const status = getTokenStatus({
+          token: token.access,
+          startTime: token.startTime,
+          lifeTime: this.accessLifeTime,
+          refreshTime: this.refreshLifeTime,
+        })
+        if (status === TokenStatus.FRESH) return token
+        if (status === TokenStatus.EXPIRED) return this.refresh()
+        if (status === TokenStatus.REFRESH_EXPIRED) {
+          this.reset()
+          return null
+        }
+        if (status === TokenStatus.NONE) return null
       }
-      if (status === TokenStatus.NONE) return null
-    }),
+    ),
   })
 
   public readonly refresh = attach({

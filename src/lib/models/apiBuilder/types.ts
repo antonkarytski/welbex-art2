@@ -1,5 +1,5 @@
 import { ServerManager } from 'altek-toolkit'
-import { TokenRefresher, TokenSettings } from './types.token'
+import { TokenRefresher, TokenSettings, TokenType } from './types.token'
 
 export type Method = 'POST' | 'GET' | 'PUT' | 'DELETE' | 'PATCH'
 export type RequestRouteSettings = {
@@ -23,6 +23,7 @@ export type RequestPropsGetter<T> = unknown extends T
   : (body: T) => RequestProps<T>
 export type RequestFnProps<Body> = RequestProps<Body> & {
   token?: string | null
+  tokenType?: TokenType
 }
 export type DoRequestProps<Body> = RequestFnProps<Body> & {
   _secondAttempt?: boolean

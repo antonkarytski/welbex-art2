@@ -1,10 +1,11 @@
 import { createEffect } from 'effector'
 import { ServerManager } from 'altek-toolkit'
+import { ApiDebug, DebugSettings } from './ApiDebug'
 import { ApiEndpoint, CreateApiEndpointSettings } from './ApiEndpoint'
 import { Endpoint } from './Endpoint'
 import { TokenManager } from './TokenManager'
 import { ApiError } from './errors'
-import { doRequest } from './helpers'
+import { prepareRequestData } from './helpers'
 import {
   CreateRequestProps,
   DoRequestProps,
@@ -13,9 +14,9 @@ import {
 } from './types'
 
 export class ApiManager {
+  private readonly debugger = new ApiDebug()
   private readonly server: ServerManager | null = null
   private readonly token
-  private _isDebug: boolean = false
 
   constructor({ server, tokenRefresher, tokenSettings }: RequestModelProps) {
     if (server) this.server = server
@@ -27,23 +28,24 @@ export class ApiManager {
     if (props.token) return props.token
     const token = await this.token.get()
     if (!token) throw ApiError.needLogin()
+    return token.access
   }
 
-  private async prepareProps(props: RequestFnProps<any>) {
+  private async prepareData(props: DoRequestProps<any>): Promise<RequestInit> {
     const token = await this.retrieveToken(props)
-    const { withToken, token: innerToken, ...rest } = props
-    if (!token) return rest
-    return { ...rest, token }
+    const requestProps = { ...props, token }
+    this.debugger.props(requestProps)
+    return prepareRequestData(requestProps)
   }
 
   private async doRequest<Response, Params>(
     props: DoRequestProps<Params>
   ): Promise<Response> {
-    const requestProps = await this.prepareProps(props)
-    if (this._isDebug) console.log(requestProps)
-    const response = await doRequest(requestProps)
+    const requestData = await this.prepareData(props)
+    const response = await fetch(props.url, requestData)
     const contentType = response.headers.get('content-type')
     const isJsonAvailable = contentType === 'application/json'
+    this.debugger.response(response)
     if (response.ok) {
       if (!isJsonAvailable) return null as Response
       return (await response.json()) as Response
@@ -61,7 +63,6 @@ export class ApiManager {
         _secondAttempt: true,
       })
     }
-    if (this._isDebug) console.log(response)
     if (!isJsonAvailable) throw ApiError.unknown(response)
     throw await ApiError.fromResponse(response)
   }
@@ -87,8 +88,8 @@ export class ApiManager {
     })
   }
 
-  public debug(state = true) {
-    this._isDebug = state
+  public debug(settings: DebugSettings = {}) {
+    this.debugger.on(settings)
     return this
   }
 }
