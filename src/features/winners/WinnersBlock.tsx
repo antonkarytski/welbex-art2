@@ -5,6 +5,7 @@ import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
+import { userName } from '../user/helpers'
 import CardWinner from './Card.Winner'
 import { winnerCardThemedStyles } from './styles'
 import { IWinner } from './types'
@@ -27,7 +28,7 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
       return (
         <CardWinner
           category={item.category}
-          authorName={item.author.name}
+          authorName={userName(item.author)}
           yearsCategory={item.yearsCategory}
           image={item.image}
           styles={styles.card}

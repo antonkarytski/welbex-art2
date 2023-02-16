@@ -28,12 +28,12 @@ const createRandomMultipagedGallery = (
 }
 
 export const USER_LIKED_GALLERY = createRandomMultipagedGallery(
-  romanovFull.postsCount,
+  romanovFull.posts,
   UserDrawingListType.LIKED
 )
 
 export const USERS_DRAWINGS = {
-  [romanovFull.id]: {
+  '1': {
     [UserDrawingListType.SAVED]: createRandomMultipagedGallery(
       100,
       UserDrawingListType.SAVED
@@ -43,11 +43,11 @@ export const USERS_DRAWINGS = {
       UserDrawingListType.LIKED
     ),
     [UserDrawingListType.OWN]: createRandomMultipagedGallery(
-      romanovFull.postsCount,
+      romanovFull.posts,
       UserDrawingListType.OWN
     ),
   },
-  [reginaRomanovaFull.id]: {
+  '2': {
     [UserDrawingListType.SAVED]: createRandomMultipagedGallery(
       100,
       UserDrawingListType.SAVED
@@ -57,18 +57,18 @@ export const USERS_DRAWINGS = {
       UserDrawingListType.LIKED
     ),
     [UserDrawingListType.OWN]: createRandomMultipagedGallery(
-      reginaRomanovaFull.postsCount,
+      reginaRomanovaFull.posts,
       UserDrawingListType.OWN
     ),
   },
 }
 
 export const getUserDrawings = (
-  id: string,
+  id: number,
   type: UserDrawingListType,
   pageNumber: number
 ) => {
-  const userLists = USERS_DRAWINGS[id]
+  const userLists = USERS_DRAWINGS[id.toString() as keyof typeof USERS_DRAWINGS]
   if (!userLists) return { result: null, next: null }
   const list = userLists[type]
   const page = list[pageNumber]

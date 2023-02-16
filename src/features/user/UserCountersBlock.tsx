@@ -1,14 +1,14 @@
 import React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
+import { UserCounters } from '../../api/parts/users/types.parts'
 import { useText } from '../../translations/hook'
 import ValueCard from '../../ui/cards/ValueCard'
 import { whiteCardThemedStyle } from '../../ui/cards/styles'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
-import { UserExt } from './types'
 
 type UserCountersBlockProps = {
-  item: UserExt
+  item: UserCounters
   style?: StyleProp<ViewStyle>
 }
 
@@ -20,19 +20,19 @@ const UserCountersBlock = ({ item, style }: UserCountersBlockProps) => {
     <View style={[styles.container, style]}>
       <ValueCard
         style={styles.card}
-        value={item.postsCount}
+        value={item.posts}
         title={text.posts}
         textStyle={styles.cardText}
       />
       <ValueCard
         style={styles.card}
-        value={item.following_count}
+        value={item.followings}
         title={text.following}
         textStyle={styles.cardText}
       />
       <ValueCard
         style={[styles.card, styles.lastCard]}
-        value={item.followers_count}
+        value={item.followers}
         title={text.followers}
         textStyle={styles.cardText}
       />

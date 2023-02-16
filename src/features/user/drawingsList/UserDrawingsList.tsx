@@ -1,11 +1,12 @@
 import React, { forwardRef, useEffect } from 'react'
-import { FlatList, FlatListProps, StyleProp, ViewStyle } from 'react-native'
+import { FlatList } from 'react-native'
+import { Profile, UserShort } from '../../../api/parts/users/types'
 import DrawingsList, { DrawingFlatListProps } from '../../drawing/DrawingsList'
-import { User, UserDrawingListType } from '../types'
+import { UserDrawingListType } from '../types'
 import { useDrawingsList } from './hooks'
 
 type SpecificUserDrawingListProps = {
-  item: User
+  item: Profile | UserShort | null
 }
 
 type UserDrawingsListProps = {

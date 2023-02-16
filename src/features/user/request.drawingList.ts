@@ -4,7 +4,7 @@ import { Drawing } from '../drawing/types'
 import { UserDrawingListType } from './types'
 
 type GetUserDrawingsListProps = {
-  userId: string
+  userId: number
   type: UserDrawingListType
   page?: number
 }

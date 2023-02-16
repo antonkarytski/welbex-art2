@@ -1,18 +1,19 @@
-import { apiManager } from '../../apiManager'
-import { MeResponse, SignUpBody, SignUpResponse, User } from './types'
+import { meRequest } from '../../../features/profile/request'
+import { usersEndpoint } from './endpoint'
+import { SignUpBody, SignUpResponse, UserProfileResponse } from './types.api'
 
-const users = apiManager.endpoint('users').protect()
-const me = users.get<MeResponse>('me')
-const signUp = users.post<SignUpResponse, SignUpBody>({
+const signUp = usersEndpoint.post<SignUpResponse, SignUpBody>({
   endpoint: 'create',
   withToken: false,
 })
-const profile = users.get<User, number>((id) => `${id}/profile`)
-const follow = users.put<string, number>((id) => `${id}/follow`)
-const unfollow = users.put<string, number>((id) => `${id}/unfollow`)
+const profile = usersEndpoint.get<UserProfileResponse, number>(
+  (id) => `${id}/profile`
+)
+const follow = usersEndpoint.put<string, number>((id) => `${id}/follow`)
+const unfollow = usersEndpoint.put<string, number>((id) => `${id}/unfollow`)
 
 export const usersApi = {
-  me,
+  me: meRequest,
   signUp,
   profile,
   uploadAvatar: null,

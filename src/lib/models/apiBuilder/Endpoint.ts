@@ -1,6 +1,13 @@
 import { ServerManager } from 'altek-toolkit'
-import { bodyToParams, getUrlEnd, removeSlashes } from './helpers'
 import {
+  bodyToParams,
+  convertToFormData,
+  getUrlEnd,
+  isObjectNotFormData,
+  removeSlashes,
+} from './helpers'
+import {
+  ContentType,
   MapperFn,
   Method,
   RequestProps,
@@ -60,15 +67,20 @@ export class Endpoint {
   }
 
   private createCommonResponse(method: Method | MethodSettings): RequestProps {
-    const methodValue = typeof method === 'string' ? method : method.method
-    const withToken =
-      typeof method === 'string' ? this.isProtected : method.withToken
-    const suffix = typeof method === 'string' ? '' : method.endpoint || ''
-    return {
-      withToken,
-      url: `${this.endpoint}${getUrlEnd(suffix)}`,
-      method: methodValue,
+    if (typeof method === 'string') {
+      return {
+        withToken: this.isProtected,
+        url: this.endpoint,
+        method,
+      }
     }
+    const result: RequestProps = {
+      method: method.method,
+      withToken: method.withToken ?? this.isProtected,
+      url: `${this.endpoint}${getUrlEnd(method.endpoint || '')}`,
+    }
+    if (method.contentType) result.contentType = method.contentType
+    return result
   }
 
   private methodWithBody<T>(
@@ -77,14 +89,33 @@ export class Endpoint {
   ): RequestPropsGetter<T> {
     const response = this.createCommonResponse(method)
     return ((props: T) => {
-      if (!fn) return { ...response, body: props }
+      if (!fn) {
+        if (props === undefined || props === null) return { ...response }
+        if (
+          response.contentType === ContentType.FORM &&
+          isObjectNotFormData(props)
+        ) {
+          const formData = convertToFormData(props)
+          return { ...response, body: formData }
+        }
+        return { ...response, body: props }
+      }
       const result = fn(props)
       if (typeof result === 'string' || typeof result === 'number') {
         return { ...response, url: `${this.endpoint}${getUrlEnd(result)}` }
       }
       const { body, url, ...rest } = result
       const urlEnd = getUrlEnd(url)
-      return { ...response, ...rest, body, url: `${this.endpoint}${urlEnd}` }
+      const urlFull = `${this.endpoint}${urlEnd}`
+      if (
+        (response.contentType === ContentType.FORM ||
+          rest.contentType === ContentType.FORM) &&
+        isObjectNotFormData(body)
+      ) {
+        const formData = convertToFormData(body)
+        return { ...response, ...rest, body: formData, url: urlFull }
+      }
+      return { ...response, ...rest, body, url: urlFull }
     }) as RequestPropsGetter<T>
   }
 
@@ -130,13 +161,6 @@ export class Endpoint {
     return this.methodWithBody(method, fn)
   }
 
-  private methodRoute<T>(method: Method, props?: SpecificMethodProps<T>) {
-    if (!props || typeof props === 'function') {
-      return this.method(method, props)
-    }
-    const { fn, ...rest } = props
-    return this.method({ method, ...rest }, fn)
-  }
   private specificMethod(method: Method) {
     return <T>(props?: SpecificMethodProps<T>): RequestPropsGetter<T> => {
       if (!props || typeof props === 'function') {
@@ -146,11 +170,11 @@ export class Endpoint {
       return this.method({ method, ...rest }, fn)
     }
   }
-  public post = this.specificMethod('POST')
-  public get = this.specificMethod('GET')
-  public put = this.specificMethod('PUT')
-  public delete = this.specificMethod('DELETE')
-  public patch = this.specificMethod('PATCH')
+  public readonly post = this.specificMethod('POST')
+  public readonly get = this.specificMethod('GET')
+  public readonly put = this.specificMethod('PUT')
+  public readonly delete = this.specificMethod('DELETE')
+  public readonly patch = this.specificMethod('PATCH')
   public createEndpoint(rawEndpoint: string) {
     const endpoint = removeSlashes(rawEndpoint)
     const endpointEntity = new Endpoint(

@@ -1,7 +1,6 @@
 import { useStore } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
-import { setIsAuth } from '../../features/auth/model'
 import { newPasswordModel } from '../../features/auth/password/model.passwords'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { IS_IOS } from '../../lib/helpers/native/constants'
@@ -24,9 +23,7 @@ const NewPasswordScreen = () => {
   const passwords = useStore(newPasswordModel.$store)
 
   const onLogin = () => {
-    newPasswordModel.validation.cast().then((isValid) => {
-      if (isValid) setIsAuth(true) // TEST
-    })
+    newPasswordModel.validation.cast()
   }
 
   return (

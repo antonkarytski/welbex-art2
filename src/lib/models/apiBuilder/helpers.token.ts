@@ -14,7 +14,7 @@ export function getTokenStatus({
   refreshTime,
 }: GetTokenStatusProps): TokenStatus {
   if (!token || !startTime) return TokenStatus.NONE
-  const tokenExistTime = Date.now() - lifeTime
+  const tokenExistTime = Date.now() - startTime
   if (tokenExistTime < lifeTime) {
     return TokenStatus.FRESH
   }

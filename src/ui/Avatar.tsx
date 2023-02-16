@@ -13,7 +13,7 @@ import UserIcon from '../ui/icons/Icon.User'
 type AvatarProps = {
   size?: number
   borderSize?: number
-  src?: ImageSourcePropType
+  src?: ImageSourcePropType | string
   style?: StyleProp<ViewStyle>
   onPress?: () => void
 }
@@ -44,7 +44,7 @@ const Avatar = ({
     >
       {src ? (
         <Image
-          source={src}
+          source={typeof src === 'string' ? { uri: src } : src}
           resizeMode={'cover'}
           borderRadius={100}
           style={{
