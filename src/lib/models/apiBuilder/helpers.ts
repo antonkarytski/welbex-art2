@@ -8,8 +8,9 @@ export function bodyToParams(body: object) {
 }
 
 export function getUrlEnd(value: number | string | undefined) {
+  if (!value) return ''
   if (typeof value === 'number') return `/${value}`
-  return value ? `${value.startsWith('/') ? '' : '/'}${value}` : ''
+  return `/${removeSlashes(value)}`
 }
 
 export function removeSlashes(value: string) {

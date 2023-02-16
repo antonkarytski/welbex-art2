@@ -44,9 +44,8 @@ export class TokenManager {
       saveTo: dbField,
     })
     this.persist.onInit((result) => {
+      if (result) this.set(result)
       this._onInit?.(result ?? this.$store.getState() ?? null)
-      if (!result) return
-      this.set(result)
     })
   }
 
@@ -55,6 +54,7 @@ export class TokenManager {
     mapParams: (_: void, token) => token,
     effect: createEffect(
       async (token: TokenModel | null): Promise<Tokens | null | undefined> => {
+        console.log('GET HERE', token)
         if (!token) return null
         const status = getTokenStatus({
           token: token.access,

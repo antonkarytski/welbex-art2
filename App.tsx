@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
 import { NativeBaseProvider } from 'native-base'
 import React from 'react'
+import { StyleSheet } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import './src/api'
@@ -14,7 +15,7 @@ export default function App() {
 
   if (!isLoaded) return null
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={styles.container}>
       <NativeBaseProvider>
         <SafeAreaProvider>
           <NavigationContainer>
@@ -27,3 +28,7 @@ export default function App() {
     </GestureHandlerRootView>
   )
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+})

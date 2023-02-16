@@ -24,6 +24,15 @@ type SpecificMethodSettings<T> = Omit<MethodSettings, 'method'> & {
 }
 type SpecificMethodProps<T> = MapperFn<T> | SpecificMethodSettings<T>
 
+function isPrimitive(value: any): value is string | number | boolean | null {
+  return value !== Object(value)
+}
+
+function checkForFormData<T>(data: T) {
+  if (isObjectNotFormData(data)) return convertToFormData(data)
+  return data
+}
+
 export class Endpoint {
   private readonly server: ServerManager | null = null
   private readonly _endpoint: string = ''
@@ -66,7 +75,9 @@ export class Endpoint {
     return this.setProtection(true)
   }
 
-  private createCommonResponse(method: Method | MethodSettings): RequestProps {
+  private createCommonRequestData(
+    method: Method | MethodSettings
+  ): RequestProps {
     if (typeof method === 'string') {
       return {
         withToken: this.isProtected,
@@ -77,7 +88,7 @@ export class Endpoint {
     const result: RequestProps = {
       method: method.method,
       withToken: method.withToken ?? this.isProtected,
-      url: `${this.endpoint}${getUrlEnd(method.endpoint || '')}`,
+      url: `${this.endpoint}${getUrlEnd(method.endpoint)}`,
     }
     if (method.contentType) result.contentType = method.contentType
     return result
@@ -87,35 +98,31 @@ export class Endpoint {
     method: Method | MethodSettings,
     fn?: MapperFn<T>
   ): RequestPropsGetter<T> {
-    const response = this.createCommonResponse(method)
+    const common = this.createCommonRequestData(method)
     return ((props: T) => {
       if (!fn) {
-        if (props === undefined || props === null) return { ...response }
-        if (
-          response.contentType === ContentType.FORM &&
-          isObjectNotFormData(props)
-        ) {
-          const formData = convertToFormData(props)
-          return { ...response, body: formData }
+        if (props === undefined || props === null) return common
+        if (common.contentType === ContentType.FORM) {
+          return { ...common, body: checkForFormData(props) }
         }
-        return { ...response, body: props }
+        return { ...common, body: props }
       }
       const result = fn(props)
-      if (typeof result === 'string' || typeof result === 'number') {
-        return { ...response, url: `${this.endpoint}${getUrlEnd(result)}` }
+      if (props === undefined || props === null) return common
+      if (isPrimitive(result)) {
+        return { ...common, url: `${common.url}${getUrlEnd(result)}` }
       }
       const { body, url, ...rest } = result
       const urlEnd = getUrlEnd(url)
-      const urlFull = `${this.endpoint}${urlEnd}`
-      if (
-        (response.contentType === ContentType.FORM ||
-          rest.contentType === ContentType.FORM) &&
-        isObjectNotFormData(body)
-      ) {
-        const formData = convertToFormData(body)
-        return { ...response, ...rest, body: formData, url: urlFull }
+      const urlFull = `${common.url}${urlEnd}`
+      const isFormData =
+        rest.contentType === ContentType.FORM ||
+        (!rest.contentType && common.contentType === ContentType.FORM)
+      if (isFormData) {
+        const formData = checkForFormData(body)
+        return { ...common, ...rest, body: formData, url: urlFull }
       }
-      return { ...response, ...rest, body, url: urlFull }
+      return { ...common, ...rest, body, url: urlFull }
     }) as RequestPropsGetter<T>
   }
 
@@ -123,30 +130,30 @@ export class Endpoint {
     method: Method | MethodSettings,
     fn?: MapperFn<T>
   ): RequestPropsGetter<T> {
-    const response = this.createCommonResponse(method)
+    const common = this.createCommonRequestData(method)
     return ((props: T) => {
       if (!fn) {
-        if (props === undefined || props === null) return response
-        if (typeof props === 'object') {
-          const params = bodyToParams(props)
-          const url = params ? `${this.endpoint}?${params}` : this.endpoint
-          return { ...response, url }
+        if (props === undefined || props === null) return common
+        if (isPrimitive(props)) {
+          return { ...common, url: `${common.url}/${props}` }
         }
-        const url = `${this.endpoint}/${props}`
-        return { ...response, url }
+        const params = bodyToParams(props)
+        const url = params ? `${common.url}?${params}` : common.url
+        return { ...common, url }
       }
       const result = fn(props)
-      if (typeof result === 'string' || typeof result === 'number') {
-        return { ...response, url: `${this.endpoint}${getUrlEnd(result)}` }
+      if (result === undefined || result === null) return common
+      if (isPrimitive(result)) {
+        return { ...common, url: `${common.url}${getUrlEnd(result)}` }
       }
       const { body, url, ...rest } = result
       const params = body ? bodyToParams(body) : ''
       const urlEnd = getUrlEnd(url)
       const urlParams = params ? `?${params}` : ''
       return {
-        ...response,
+        ...common,
         ...rest,
-        url: `${this.endpoint}${urlEnd}${urlParams}`,
+        url: `${common.url}${urlEnd}${urlParams}`,
       }
     }) as RequestPropsGetter<T>
   }
@@ -155,7 +162,10 @@ export class Endpoint {
     method: Method | MethodSettings,
     fn?: MapperFn<T>
   ): RequestPropsGetter<T> {
-    if (method === 'GET') {
+    if (
+      method === 'GET' ||
+      (typeof method === 'object' && method.method === 'GET')
+    ) {
       return this.methodWithParams(method, fn)
     }
     return this.methodWithBody(method, fn)
