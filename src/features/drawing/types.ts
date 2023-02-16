@@ -1,10 +1,10 @@
 import { ImageSourcePropType } from 'react-native'
-import { User } from '../user/types'
+import { UserShort } from '../../api/parts/users/types'
 
 export type Drawing = {
   image: ImageSourcePropType
   id: string
-  user: User
+  user: UserShort
   name: string
   likesCount: number
   isLiked: boolean

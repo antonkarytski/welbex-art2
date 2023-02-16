@@ -7,6 +7,7 @@ import H2 from '../../ui/H2'
 import Loader from '../../ui/Loader'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
+import { userName } from '../user/helpers'
 import CardWinner from './Card.Winner'
 import { $isLoading, $nextPage, getWinners } from './request'
 import { winnerCardThemedStyles } from './styles'
@@ -32,7 +33,7 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
       return (
         <CardWinner
           category={item.category}
-          authorName={item.author.name}
+          authorName={userName(item.author)}
           yearsCategory={item.yearsCategory}
           image={item.image}
           styles={styles.card}

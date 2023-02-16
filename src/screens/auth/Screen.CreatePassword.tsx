@@ -35,13 +35,7 @@ const CreatePasswordScreen = () => {
     }
     signUpPasswordsFormModel.validation.cast().then((isValid) => {
       if (!isValid) return
-      signUp()
-        .then((e) => {
-          console.log(e)
-        })
-        .catch((e) => {
-          console.log(e)
-        })
+      signUp().catch(noop)
     })
   }
 

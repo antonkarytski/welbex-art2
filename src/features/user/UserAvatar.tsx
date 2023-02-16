@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
+import { User, UserShort } from '../../api/parts/users/types'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
@@ -9,10 +10,9 @@ import EditIcon from '../../ui/icons/Icon.Edit'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
 import UserDescription, { localeAgeTextFull } from './UserDescription'
-import { User } from './types'
 
 type UserAvatarProps = {
-  item: User
+  item: Omit<UserShort, 'is_followed'>
   style?: StyleProp<ViewStyle>
 }
 

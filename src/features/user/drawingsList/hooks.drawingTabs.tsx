@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react'
 import { FlatList, FlatListProps, StyleProp, ViewStyle } from 'react-native'
 import { SceneMap } from 'react-native-tab-view'
+import { Profile, UserProfile, UserShort } from '../../../api/parts/users/types'
 import { mapObject } from '../../../lib/helpers/array'
 import { useText } from '../../../translations/hook'
 import { LangFn } from '../../../translations/types'
-import { User, UserDrawingListType } from '../types'
+import { UserDrawingListType } from '../types'
 import UserDrawingsList from './UserDrawingsList'
 
 export type TabsDescriptor = Partial<
@@ -30,7 +31,7 @@ export type TabListSettings = {
 
 export function useDrawingsTabs(
   tabs: TabsDescriptor,
-  item: User,
+  item: Profile | UserShort | null,
   settings: TabListSettings = {}
 ) {
   const text = useText()
@@ -66,14 +67,14 @@ export function useDrawingsTabs(
 }
 
 export function useCommonDrawingsListTabs(
-  item: User,
+  item: Profile,
   settings: TabListSettings = {}
 ) {
   return useDrawingsTabs(commonDrawingsListTabs, item, settings)
 }
 
 export function useChildrenDrawingsListTabs(
-  item: User,
+  item: Profile | UserShort,
   settings: TabListSettings = {}
 ) {
   return useDrawingsTabs(childrenDrawingsListTabs, item, settings)

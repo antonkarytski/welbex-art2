@@ -1,11 +1,11 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { ImagePickerResult } from 'expo-image-picker'
+import { UserShort } from '../api/parts/users/types'
 import { CompetitionCategory } from '../features/categories/types'
 import { Drawing } from '../features/drawing/types'
 import { GalleryType } from '../features/gallery/types'
 import { InfoMessageScreenProps } from '../features/infoMessage/types'
 import { PlanDescriptor } from '../features/subscriptionPlans/types'
-import { User } from '../features/user/types'
 import { links } from './links'
 
 type ScreensPropsProto<T extends Partial<Record<links, any>>> = T &
@@ -21,7 +21,7 @@ export type ScreensProps = ScreensPropsProto<{
   [links.createPostAddDescription]: {
     assets: Exclude<ImagePickerResult['assets'], null>
   }
-  [links.userProfile]: { item: User }
+  [links.userProfile]: { item: UserShort }
   [links.infoMessage]: InfoMessageScreenProps
   [links.paymentMethod]?: { currentPayment?: PlanDescriptor }
   [links.addPaymentCard]?: { currentPayment?: PlanDescriptor }

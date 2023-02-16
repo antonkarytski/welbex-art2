@@ -19,12 +19,13 @@ export class TokenManager {
   private readonly accessLifeTime
   private readonly refreshLifeTime
 
+  private _onInit: ((tokens: TokenModel | null) => void) | null = null
+
   public readonly reset = createEvent()
   public readonly set = createEvent<Tokens>()
-  private readonly $model = createStore<TokenModel | null>(null)
+  public readonly $store = createStore<TokenModel | null>(null)
     .on(this.set, (_, tokens) => ({ ...tokens, startTime: Date.now() }))
     .reset(this.reset)
-  private startTime: number = 0
 
   constructor(
     refresher: TokenRefresher,
@@ -39,45 +40,55 @@ export class TokenManager {
     this.refreshLifeTime = refreshLifeTime
 
     this.persist = addStorePersist({
-      $store: this.$model,
+      $store: this.$store,
       saveTo: dbField,
     })
     this.persist.onInit((result) => {
+      this._onInit?.(result ?? this.$store.getState() ?? null)
       if (!result) return
       this.set(result)
     })
   }
 
   public readonly get = attach({
-    source: this.$model,
+    source: this.$store,
     mapParams: (_: void, token) => token,
-    effect: createEffect((token: TokenModel | null) => {
-      if (!token) return null
-      const status = getTokenStatus({
-        token: token.access,
-        startTime: token.startTime,
-        lifeTime: this.accessLifeTime,
-        refreshTime: this.refreshLifeTime,
-      })
-      if (status === TokenStatus.FRESH) return token.access
-      if (status === TokenStatus.EXPIRED) return this.refresh()
-      if (status === TokenStatus.REFRESH_EXPIRED) {
-        this.reset()
-        return null
+    effect: createEffect(
+      async (token: TokenModel | null): Promise<Tokens | null | undefined> => {
+        if (!token) return null
+        const status = getTokenStatus({
+          token: token.access,
+          startTime: token.startTime,
+          lifeTime: this.accessLifeTime,
+          refreshTime: this.refreshLifeTime,
+        })
+        if (status === TokenStatus.FRESH) return token
+        if (status === TokenStatus.EXPIRED) return this.refresh()
+        if (status === TokenStatus.REFRESH_EXPIRED) {
+          this.reset()
+          return null
+        }
+        if (status === TokenStatus.NONE) return null
       }
-      if (status === TokenStatus.NONE) return null
-    }),
+    ),
   })
 
   public readonly refresh = attach({
-    source: this.$model,
+    source: this.$store,
     mapParams: (_: void, source) => source,
-    effect: createEffect(async (props: Tokens | null) => {
-      if (!props) return null
-      const token = await this.refresher(props)
+    effect: createEffect(async (tokens: Tokens | null) => {
+      if (!tokens) return null
+      const token = await this.refresher(tokens)
       if (!token) return null
       this.set(token)
       return token
     }),
   })
+
+  public onInit(fn: (tokens: TokenModel | null) => void) {
+    if (this.persist.isInitiated) {
+      return fn(this.$store.getState() ?? null)
+    }
+    this._onInit = fn
+  }
 }

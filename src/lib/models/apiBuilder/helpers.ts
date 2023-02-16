@@ -1,5 +1,5 @@
 import { ApiError } from './errors'
-import { RequestFnProps } from './types'
+import { ContentType, RequestFnProps } from './types'
 
 export function bodyToParams(body: object) {
   return Object.entries(body)
@@ -23,13 +23,27 @@ export function removeSlashes(value: string) {
   return result
 }
 
-function prepareData<Body>(props: RequestFnProps<Body>) {
+export function prepareRequestData<Body>({
+  withToken,
+  tokenType = 'Bearer',
+  token,
+  body,
+  method,
+  contentType = ContentType.JSON,
+}: RequestFnProps<Body>) {
   const headers: HeadersInit = {
-    'Content-Type': 'application/json',
+    'Content-Type': contentType,
   }
-  if (props.withToken) headers.Authorization = `JWT ${props.token}`
-  const data: RequestInit = { method: props.method, headers }
-  if (props.body) data.body = JSON.stringify(props.body)
+  if (withToken) headers.Authorization = `${tokenType} ${token}`
+  const data: RequestInit = { method, headers }
+  if (body) {
+    if (contentType === ContentType.JSON) {
+      data.body = JSON.stringify(body)
+    }
+    if (contentType === ContentType.FORM) {
+      data.body = body as any as FormData
+    }
+  }
   return data
 }
 
@@ -37,7 +51,7 @@ export async function doRequest<Body>(props: RequestFnProps<Body>) {
   if (props.withToken && !props.token) {
     throw ApiError.noTokenProvided()
   }
-  return fetch(props.url, prepareData(props))
+  return fetch(props.url, prepareRequestData(props))
 }
 
 export async function request<Response, Body = any>(
@@ -51,4 +65,16 @@ export async function request<Response, Body = any>(
     return (await response.json()) as Response
   }
   throw await ApiError.fromResponse(response)
+}
+
+export function convertToFormData(list: Record<string, any>) {
+  const formData = new FormData()
+  Object.entries(list).forEach(([key, value]) => {
+    formData.append(key, value)
+  })
+  return formData
+}
+
+export function isObjectNotFormData(body: any): body is FormData {
+  return body && typeof body === 'object' && !(body instanceof FormData)
 }
