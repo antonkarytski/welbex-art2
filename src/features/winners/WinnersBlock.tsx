@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react'
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { FlatList, StyleSheet, View, ViewProps } from 'react-native'
 import { WINNERS_MOCK } from '../../_mock/winners'
 import { useText } from '../../translations/hook'
@@ -9,7 +9,7 @@ import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import { userName } from '../user/helpers'
 import CardWinner from './Card.Winner'
-import { $isLoading, $nextPage, getWinners } from './request'
+import { $nextPage, $winners, getNextWinners } from './request'
 import { winnerCardThemedStyles } from './styles'
 import { IWinner } from './types'
 
@@ -25,8 +25,8 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
     card: winnerCardThemedStyles,
   })
   const text = useText()
-  const nexPage = useStore($nextPage)
-  const isLoading = useStore($isLoading)
+  const winners = useStore($winners)
+  const nextPage = useStore($nextPage)
 
   const renderWinnerItem = useCallback(
     ({ item }: { item: IWinner }) => {
@@ -47,20 +47,16 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
   return (
     <View onLayout={onLayout} style={styles.common.container}>
       <H2 style={styles.common.title} label={text.winners} />
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <FlatList
-          contentContainerStyle={styles.common.listContent}
-          showsHorizontalScrollIndicator={false}
-          horizontal
-          data={WINNERS_MOCK}
-          renderItem={renderWinnerItem}
-          keyExtractor={keyExtractor}
-          ListFooterComponent={nexPage ? <Loader /> : null}
-          onEndReached={() => getWinners()}
-        />
-      )}
+      <FlatList
+        contentContainerStyle={styles.common.listContent}
+        showsHorizontalScrollIndicator={false}
+        horizontal
+        data={WINNERS_MOCK}
+        renderItem={renderWinnerItem}
+        keyExtractor={keyExtractor}
+        ListFooterComponent={nextPage ? <Loader /> : null}
+        onEndReached={() => getNextWinners()}
+      />
     </View>
   )
 }

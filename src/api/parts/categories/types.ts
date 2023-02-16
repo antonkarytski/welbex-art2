@@ -3,7 +3,7 @@ import { PaginatedListProps, PaginatedListResponse } from '../../types'
 export type CategoryResponse = {
   id: number
   name: string
-  image: string
+  image: string | null
 }
 
 export type SpecificCategoryResponse = CategoryResponse & {

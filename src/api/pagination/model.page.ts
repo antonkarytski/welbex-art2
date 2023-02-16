@@ -1,5 +1,7 @@
 import { createEvent, createStore } from 'effector'
 
+export const PAGE_SIZE = 15
+
 type SetNextPageProps = {
   total: number
   page: number
