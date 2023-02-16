@@ -1,5 +1,6 @@
-import { createEvent, sample } from 'effector'
-import { mockCheckLogin } from '../../../_mock/login'
+import { attach } from 'effector'
+import { api } from '../../../api'
+import { apiManager } from '../../../api/apiManager'
 import { createFormModel } from '../../../lib/models/form'
 
 export type LogInForm = {
@@ -14,9 +15,19 @@ export const initialLogInFormState: LogInForm = {
 
 export const logInFormModel = createFormModel(initialLogInFormState)
 
-export const logIn = createEvent()
-sample({
+export const logIn = attach({
   source: logInFormModel.$store,
-  clock: logIn,
-  fn: (source) => source,
-}).watch((userData) => {})
+  mapParams: (_: void, { email, password }) => ({
+    username: email,
+    password,
+  }),
+  effect: api.auth.login,
+})
+
+logIn.done.watch(({ result }) => {
+  apiManager.token.set({
+    access: result.access_token,
+    refresh: result.refresh_token,
+  })
+  api.users.me()
+})
