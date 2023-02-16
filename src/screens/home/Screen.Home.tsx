@@ -1,9 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Animated, StyleSheet, View } from 'react-native'
 import CategoriesList from '../../features/categories/CategoriesList'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import WinnersBlock from '../../features/winners/WinnersBlock'
+import { getWinners } from '../../features/winners/request'
 import AppHeader from '../../navigation/elements/AppHeader'
 import { themedPrimaryMotionGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
@@ -21,6 +22,10 @@ export default function HomeScreen() {
   const text = useText()
 
   const offset = useRef(new Animated.Value(0)).current
+
+  useEffect(() => {
+    getWinners()
+  }, [])
 
   return (
     <View style={styles.common.container}>

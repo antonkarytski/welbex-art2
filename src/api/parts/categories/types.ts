@@ -19,7 +19,7 @@ export type ArtWorkPreviewResponse = {
   image: string
 }
 
-type WinnerItem = {
+export type WinnerItem = {
   winner: {
     first_name: string
     last_name: string

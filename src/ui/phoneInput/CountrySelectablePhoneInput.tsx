@@ -68,7 +68,16 @@ const CountrySelectablePhoneInput = <CountryItem extends Record<string, any>>({
           phoneModel={phoneModel}
           disabled={disabled}
           placeholder={inputPlaceholder}
-          style={{ wrapper: styles.phoneInputWrapper, input: style?.input }}
+          style={{
+            wrapper: styles.phoneInputWrapper,
+            input: {
+              ...style?.input,
+              container: {
+                ...styles.inputContainer,
+                ...style?.input?.container,
+              },
+            },
+          }}
           isValid={isValid}
           onBlur={handleBlur}
           onFocus={handleFocus}
@@ -93,6 +102,9 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
     flexGrow: 1,
+  },
+  inputContainer: {
+    flex: 1,
   },
   tab__focused: {
     borderColor: defaultColors.detailsActive,
