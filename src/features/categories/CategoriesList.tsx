@@ -5,14 +5,9 @@ import { CategoryResponse } from '../../api/parts/categories/types'
 import Loader from '../../ui/Loader'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
-import { getWinners } from '../winners/request'
+import { winnersRequest } from '../winners/request'
 import CardCategory from './Card.Category'
-import {
-  $categories,
-  $nextPage,
-  getCategories,
-  getNextCategories,
-} from './model/request'
+import { categoriesRequest } from './model/request'
 import { categoryCardThemedStyles } from './styles'
 
 type CategoriesListProps = {
@@ -30,15 +25,19 @@ const CategoriesList = ({
     card: categoryCardThemedStyles,
   })
 
-  const categories = useStore($categories)
-  const nextPage = useStore($nextPage)
+  const categories = useStore(categoriesRequest.$items)
+  const nextPage = useStore(categoriesRequest.$nextPage)
 
   const [isRefreshing, setIsRefreshing] = useState(false)
   const onRefresh = () => {
     setIsRefreshing(true)
-    Promise.all([getWinners, getCategories]).finally(() =>
-      setIsRefreshing(false)
+    Promise.all([winnersRequest.getItems, categoriesRequest.getItems]).finally(
+      () => setIsRefreshing(false)
     )
+  }
+
+  const getNextPageSync = () => {
+    categoriesRequest.getNextItems()
   }
 
   const renderItem = useCallback(
@@ -59,7 +58,7 @@ const CategoriesList = ({
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       ListFooterComponent={nextPage ? <Loader /> : null}
-      onEndReached={() => getNextCategories()}
+      onEndReached={getNextPageSync}
     />
   )
 }

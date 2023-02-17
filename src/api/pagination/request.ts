@@ -1,22 +1,10 @@
-import {
-  Effect,
-  attach,
-  createEffect,
-  createEvent,
-  createStore,
-} from 'effector'
+import { Effect, attach, createEffect, createEvent, restore } from 'effector'
+import { PaginatedListProps, PaginatedListResponse } from '../types'
 import { createNextPageModel } from './model.page'
-
-type ApiListResponse<T> = {
-  items: T[]
-  total: number
-  page: number
-  size: number
-}
 
 type CreatePaginationListModelProps<T> = {
   pageSize: number
-  apiRequest: Effect<any, ApiListResponse<T>, Error> // TODO:
+  apiRequest: Effect<void | PaginatedListProps, PaginatedListResponse<T>, Error>
 }
 
 export const createPaginationListModel = <T>({
@@ -30,7 +18,7 @@ export const createPaginationListModel = <T>({
   const getNextItems = attach({
     source: $nextPage,
     effect: createEffect((nextPage: number | null) => {
-      if (!nextPage) throw new Error('Next page is null')
+      if (!nextPage) return
       return apiRequest({
         page: nextPage,
         size: pageSize,
@@ -39,11 +27,12 @@ export const createPaginationListModel = <T>({
   })
 
   const setItems = createEvent<T[]>()
-  const setNextItems = createEvent<T[]>()
+  const addItems = createEvent<T[]>()
 
-  const $items = createStore<T[]>([])
-    .on(setItems, (_, payload) => payload)
-    .on(setNextItems, (state, payload) => [...state, ...payload])
+  const $items = restore<T[]>(setItems, []).on(addItems, (state, payload) => [
+    ...state,
+    ...payload,
+  ])
 
   getItems.done.watch(({ result }) => {
     setNextPage(result)
@@ -51,11 +40,12 @@ export const createPaginationListModel = <T>({
   })
 
   getNextItems.done.watch(({ result }) => {
+    if (!result) return
     setNextPage(result)
-    setNextItems(result.items)
+    addItems(result.items)
   })
 
-  const $isLoading = getItems.pending || getNextItems.pending
+  const $isLoading = getItems.pending
 
   return {
     $nextPage,

@@ -9,7 +9,7 @@ import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import { userName } from '../user/helpers'
 import CardWinner from './Card.Winner'
-import { $nextPage, $winners, getNextWinners } from './request'
+import { winnersRequest } from './request'
 import { winnerCardThemedStyles } from './styles'
 import { IWinner } from './types'
 
@@ -25,8 +25,11 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
     card: winnerCardThemedStyles,
   })
   const text = useText()
-  const winners = useStore($winners)
-  const nextPage = useStore($nextPage)
+  const winners = useStore(winnersRequest.$items)
+  const nextPage = useStore(winnersRequest.$nextPage)
+  const getNext = () => {
+    winnersRequest.getNextItems()
+  }
 
   const renderWinnerItem = useCallback(
     ({ item }: { item: IWinner }) => {
@@ -55,7 +58,7 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
         renderItem={renderWinnerItem}
         keyExtractor={keyExtractor}
         ListFooterComponent={nextPage ? <Loader /> : null}
-        onEndReached={() => getNextWinners()}
+        onEndReached={getNext}
       />
     </View>
   )

@@ -1,4 +1,3 @@
-import { View } from 'native-base'
 import React, { PropsWithChildren } from 'react'
 import {
   ImageBackground,
@@ -6,6 +5,7 @@ import {
   StyleProp,
   StyleSheet,
   TouchableOpacity,
+  View,
   ViewStyle,
 } from 'react-native'
 
