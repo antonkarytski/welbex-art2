@@ -30,8 +30,8 @@ export default function HomeScreen() {
   // const isWinnersLoading = useStore($isWinnersLoading)
 
   useEffect(() => {
-    winnersRequest.getItems()
-    categoriesRequest.getItems()
+    winnersRequest.get()
+    categoriesRequest.get()
   }, [])
 
   return (

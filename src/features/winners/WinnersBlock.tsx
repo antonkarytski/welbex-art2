@@ -28,7 +28,7 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
   const winners = useStore(winnersRequest.$items)
   const nextPage = useStore(winnersRequest.$nextPage)
   const getNext = () => {
-    winnersRequest.getNextItems()
+    winnersRequest.getNext()
   }
 
   const renderWinnerItem = useCallback(

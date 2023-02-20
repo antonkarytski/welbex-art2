@@ -13,9 +13,9 @@ export const createPaginationListModel = <T>({
 }: CreatePaginationListModelProps<T>) => {
   const { $nextPage, setNextPage } = createNextPageModel()
 
-  const getItems = createEffect(() => apiRequest({ size: pageSize, page: 1 }))
+  const get = createEffect(() => apiRequest({ size: pageSize, page: 1 }))
 
-  const getNextItems = attach({
+  const getNext = attach({
     source: $nextPage,
     effect: createEffect((nextPage: number | null) => {
       if (!nextPage) return
@@ -34,24 +34,24 @@ export const createPaginationListModel = <T>({
     ...payload,
   ])
 
-  getItems.done.watch(({ result }) => {
+  get.done.watch(({ result }) => {
     setNextPage(result)
     setItems(result.items)
   })
 
-  getNextItems.done.watch(({ result }) => {
+  getNext.done.watch(({ result }) => {
     if (!result) return
     setNextPage(result)
     addItems(result.items)
   })
 
-  const $isLoading = getItems.pending
+  const $isLoading = get.pending
 
   return {
     $nextPage,
     setNextPage,
-    getItems,
-    getNextItems,
+    get,
+    getNext,
     $items,
     $isLoading,
   }

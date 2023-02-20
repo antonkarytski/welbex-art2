@@ -31,13 +31,13 @@ const CategoriesList = ({
   const [isRefreshing, setIsRefreshing] = useState(false)
   const onRefresh = () => {
     setIsRefreshing(true)
-    Promise.all([winnersRequest.getItems, categoriesRequest.getItems]).finally(
-      () => setIsRefreshing(false)
+    Promise.all([winnersRequest.get, categoriesRequest.get]).finally(() =>
+      setIsRefreshing(false)
     )
   }
 
   const getNextPageSync = () => {
-    categoriesRequest.getNextItems()
+    categoriesRequest.getNext()
   }
 
   const renderItem = useCallback(
