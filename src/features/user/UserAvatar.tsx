@@ -1,12 +1,14 @@
+import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
-import { User, UserShort } from '../../api/parts/users/types'
+import { UserShort } from '../../api/parts/users/types'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import Avatar from '../../ui/Avatar'
 import IconButton from '../../ui/buttons/IconButton'
 import EditIcon from '../../ui/icons/Icon.Edit'
+import { $myProfile } from '../profile/model'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
 import UserDescription, { localeAgeTextFull } from './UserDescription'
@@ -20,20 +22,21 @@ const UserAvatar = ({ item, style }: UserAvatarProps) => {
   const text = useText()
   const navigate = useNavigate()
   const { styles, colors } = useTheme(themedStyles)
-
-  // TODO !!! onEditProfile - добавить проверку
+  const myProfile = useStore($myProfile)
 
   return (
     <View style={style}>
       <Avatar style={styles.avatar} size={116} src={item.avatar}>
-        <IconButton
-          Icon={EditIcon}
-          onPress={() => {
-            navigate(links.editProfile)
-          }}
-          iconColor={colors.whiteText}
-          style={styles.editProfileButton}
-        />
+        {myProfile?.id === item.id && (
+          <IconButton
+            Icon={EditIcon}
+            onPress={() => {
+              navigate(links.editProfile)
+            }}
+            iconColor={colors.whiteText}
+            style={styles.editProfileButton}
+          />
+        )}
       </Avatar>
       <UserDescription
         style={styles}
