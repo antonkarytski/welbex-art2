@@ -2,11 +2,11 @@ import { Effect, createEffect, createEvent, restore } from 'effector'
 
 type ApiRequest<T> = Effect<any, T, Error>
 
-export const createRequestItemModel = <T>(apiRequest: ApiRequest<T>) => {
+export const createRequestItemModel = <T>(request: ApiRequest<T>) => {
   const setData = createEvent<T>()
-  const $item = restore(setData, null)
+  const $data = restore(setData, null)
 
-  const get = createEffect((id: number | string) => apiRequest(id))
+  const get = createEffect((id: number | string) => request(id))
 
   get.done.watch(({ result }) => {
     setData(result)
@@ -16,7 +16,7 @@ export const createRequestItemModel = <T>(apiRequest: ApiRequest<T>) => {
 
   return {
     get,
-    $item,
+    $data,
     $isLoading,
   }
 }

@@ -4,7 +4,7 @@ import { useThemedStyleList } from '../../features/themed/hooks'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import {
   lightScreenThemedBackground,
-  transparentScreenHeaderThemedStyles,
+  screenHeaderThemedStylesDark,
 } from '../../styles/screen'
 import { useText } from '../../translations/hook'
 import ScreenContainer from '../../ui/ScreenContainer'
@@ -13,7 +13,7 @@ import ScreenWrapper from '../../ui/ScreenWrapper'
 export default function GalleryFilterScreen() {
   const t = useText()
   const { styles, colors } = useThemedStyleList({
-    screenHeader: transparentScreenHeaderThemedStyles,
+    screenHeader: screenHeaderThemedStylesDark,
     screen: lightScreenThemedBackground,
   })
 

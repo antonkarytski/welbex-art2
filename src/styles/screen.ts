@@ -9,7 +9,7 @@ export const lightScreenThemedBackground = createThemedStyle((colors) =>
   })
 )
 
-export const transparentScreenHeaderThemedStyles = createThemedStyle((colors) =>
+export const screenHeaderThemedStylesDark = createThemedStyle((colors) =>
   StyleSheet.create({
     title: {
       color: colors.appHeaderTextDark,
@@ -23,7 +23,7 @@ export const transparentScreenHeaderThemedStyles = createThemedStyle((colors) =>
   })
 )
 
-export const coloredScreenHeaderThemedStyles = createThemedStyle((colors) =>
+export const screenHeaderThemedStylesLight = createThemedStyle((colors) =>
   StyleSheet.create({
     title: {
       color: colors.appHeaderTextLight,
@@ -34,6 +34,20 @@ export const coloredScreenHeaderThemedStyles = createThemedStyle((colors) =>
     },
     container: {
       backgroundColor: colors.screenBackgroundAccent,
+    },
+  })
+)
+
+export const screenHeaderThemedStylesTransparent = createThemedStyle((colors) =>
+  StyleSheet.create({
+    title: {
+      color: colors.whiteText,
+    },
+    line: {
+      backgroundColor: colors.whiteText,
+    },
+    container: {
+      backgroundColor: 'transparent',
     },
   })
 )

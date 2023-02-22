@@ -7,7 +7,7 @@ import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import { winnersRequest } from '../winners/request'
 import CardCategory from './Card.Category'
-import { categoriesRequest } from './model/request'
+import { categoriesRequest } from './request'
 import { categoryCardThemedStyles } from './styles'
 
 type CategoriesListProps = {
@@ -29,6 +29,7 @@ const CategoriesList = ({
   const nextPage = useStore(categoriesRequest.$nextPage)
 
   const [isRefreshing, setIsRefreshing] = useState(false)
+
   const onRefresh = () => {
     setIsRefreshing(true)
     Promise.all([winnersRequest.get, categoriesRequest.get]).finally(() =>

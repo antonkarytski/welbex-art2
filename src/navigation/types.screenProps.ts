@@ -1,6 +1,9 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { ImagePickerResult } from 'expo-image-picker'
-import { CategoryResponse } from '../api/parts/categories/types'
+import {
+  ArtWorkPreviewResponse,
+  CategoryResponse,
+} from '../api/parts/categories/types'
 import { UserShort } from '../api/parts/users/types'
 import { Drawing } from '../features/drawing/types'
 import { GalleryType } from '../features/gallery/types'
@@ -13,7 +16,7 @@ type ScreensPropsProto<T extends Partial<Record<links, any>>> = T &
 
 export type ScreensProps = ScreensPropsProto<{
   [links.categoryDetails]: { item: CategoryResponse }
-  [links.drawingDetails]: { item: Drawing }
+  [links.drawingDetails]: { item: ArtWorkPreviewResponse }
   [links.galleryDrawingDetails]: { item: Drawing }
   [links.galleryBest]: { type: GalleryType.BEST }
   [links.galleryNew]: { type: GalleryType.NEW }

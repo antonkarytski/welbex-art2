@@ -1,28 +1,33 @@
+import { useStore } from 'effector-react'
 import React from 'react'
-import { FlatListProps, ImageBackground, StyleSheet, View } from 'react-native'
+import { FlatListProps } from 'react-native'
+import { SpecificCategoryResponse } from '../../api/parts/categories/types'
 import { useText } from '../../translations/hook'
-import H1 from '../../ui/H1'
 import H2 from '../../ui/H2'
-import Span from '../../ui/Span'
 import DrawingsList from '../drawing/DrawingsList'
-import { createThemedStyle } from '../themed'
-import { useTheme, useThemedStyleList } from '../themed/hooks'
 import CategoryDescription from './CategoryDescription'
-import { useCategoryGallery } from './model/hooks'
-import { CompetitionCategory } from './types'
+import { categoryArtsRequest } from './request'
 
 type CategoryGalleryProps = {
-  item: CompetitionCategory
+  item: SpecificCategoryResponse
   header?: React.ReactNode
   onScroll?: FlatListProps<any>['onScroll']
+  onRefresh?: () => void
+  refreshing?: boolean
 }
 
-const CategoryGallery = ({ item, header, onScroll }: CategoryGalleryProps) => {
+const CategoryGallery = ({
+  item,
+  header,
+  onScroll,
+  ...props
+}: CategoryGalleryProps) => {
   const text = useText()
-  const gallery = useCategoryGallery(item.name)
-  const { styles } = useThemedStyleList({
-    common: themedStyles,
-  })
+  const gallery = useStore(categoryArtsRequest.$items)
+
+  const getNextArts = () => {
+    categoryArtsRequest.getNext({ id: item.id })
+  }
 
   return (
     <>
@@ -38,25 +43,11 @@ const CategoryGallery = ({ item, header, onScroll }: CategoryGalleryProps) => {
           </>
         }
         data={gallery}
+        onEndReached={getNextArts}
+        {...props}
       />
     </>
   )
 }
-
-const themedStyles = createThemedStyle((colors) =>
-  StyleSheet.create({
-    content: {
-      backgroundColor: 'red',
-    },
-    title: {
-      color: colors.whiteText,
-      marginBottom: 12,
-    },
-    term: {
-      color: colors.whiteText,
-      marginBottom: 36,
-    },
-  })
-)
 
 export default CategoryGallery
