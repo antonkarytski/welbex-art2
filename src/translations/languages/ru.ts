@@ -183,4 +183,7 @@ export const RU: LangStructure = {
   subscriptionEndMessage: 'Подписка закончится',
   ok: 'Ок',
   cardSaved: 'Карта сохранена',
+  noCategories: 'Список категорий пуст',
+  noDrawingsInCategory: 'Рисунков пока нет',
+  noWinners: 'Победители еще не определены',
 }

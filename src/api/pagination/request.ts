@@ -56,6 +56,7 @@ export const createPaginationListModel = <T, Q extends RequestProps>({
   })
 
   const $isLoading = get.pending
+  const $isNextLoading = getNext.pending
 
   return {
     $nextPage,
@@ -64,5 +65,6 @@ export const createPaginationListModel = <T, Q extends RequestProps>({
     getNext,
     $items,
     $isLoading,
+    $isNextLoading,
   }
 }

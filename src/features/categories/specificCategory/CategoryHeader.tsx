@@ -1,19 +1,19 @@
 import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleSheet, View, ViewProps } from 'react-native'
-import { getMonthPeriodString } from '../../lib/helpers/date'
-import { languageModel } from '../../translations/model.languages'
-import H1 from '../../ui/H1'
-import Span from '../../ui/Span'
-import { createThemedStyle } from '../themed'
-import { useThemedStyle } from '../themed/hooks'
-import { categoryRequest } from './request'
+import { getMonthPeriodString } from '../../../lib/helpers/date'
+import { languageModel } from '../../../translations/model.languages'
+import H1 from '../../../ui/H1'
+import Span from '../../../ui/Span'
+import { createThemedStyle } from '../../themed'
+import { useThemedStyle } from '../../themed/hooks'
+import { categoryRequest } from '../request'
 
 type CategoryDetailsHeaderProps = {
   onLayout?: ViewProps['onLayout']
 }
 
-const CategoryGalleryHeader = ({ onLayout }: CategoryDetailsHeaderProps) => {
+const CategoryHeader = ({ onLayout }: CategoryDetailsHeaderProps) => {
   const category = useStore(categoryRequest.$data)
   const currentLanguage = useStore(languageModel.$state)
   const styles = useThemedStyle(themedStyles)
@@ -51,4 +51,4 @@ const themedStyles = createThemedStyle((colors) =>
   })
 )
 
-export default CategoryGalleryHeader
+export default CategoryHeader

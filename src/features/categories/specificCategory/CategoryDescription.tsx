@@ -1,11 +1,11 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { SpecificCategoryResponse } from '../../api/parts/categories/types'
-import { useText } from '../../translations/hook'
-import H3 from '../../ui/H3'
-import Span from '../../ui/Span'
-import { createThemedStyle } from '../themed'
-import { useThemedStyle } from '../themed/hooks'
+import { SpecificCategoryResponse } from '../../../api/parts/categories/types'
+import { useText } from '../../../translations/hook'
+import H3 from '../../../ui/H3'
+import Span from '../../../ui/Span'
+import { createThemedStyle } from '../../themed'
+import { useThemedStyle } from '../../themed/hooks'
 
 type CategoryDescriptionProps = {
   item: SpecificCategoryResponse

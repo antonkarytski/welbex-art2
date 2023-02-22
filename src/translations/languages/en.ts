@@ -178,4 +178,7 @@ export const EN = {
   fullName: 'Full name',
   subscriptionEndMessage: 'Your subscription will end on',
   ok: 'Ok',
+  noCategories: 'List of categories is empty',
+  noDrawingsInCategory: 'No drawings yet',
+  noWinners: 'Winners not determined',
 }

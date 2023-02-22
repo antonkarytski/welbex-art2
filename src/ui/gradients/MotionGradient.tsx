@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Animated, StyleProp, StyleSheet, ViewStyle } from 'react-native'
+import React from 'react'
+import { Animated, StyleSheet, ViewStyle } from 'react-native'
 import Gradient from './Gradient'
 import { MotionGradientColors } from './types'
 

@@ -32,6 +32,7 @@ export type DrawingFlatListProps = {
   ListHeader?: ReactElement
   onScrollEndDrag?: () => void
   refreshing?: FlatListProps<any>['refreshing']
+  ListFooterComponent?: FlatListProps<any>['ListFooterComponent']
 }
 
 export type DrawingsListProps<L extends links> = {
