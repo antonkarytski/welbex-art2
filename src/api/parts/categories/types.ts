@@ -8,6 +8,10 @@ export type CategoryResponse = {
 
 export type SpecificCategoryResponse = CategoryResponse & {
   description: string
+  competition: {
+    date_start: string
+    date_end: string
+  }
 }
 
 export type CategoryArtWorksProps = PaginatedListProps & {

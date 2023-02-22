@@ -2,27 +2,37 @@ import { Effect, attach, createEffect, createEvent, restore } from 'effector'
 import { PaginatedListProps, PaginatedListResponse } from '../types'
 import { createNextPageModel } from './model.page'
 
-type CreatePaginationListModelProps<T> = {
-  pageSize: number
-  apiRequest: Effect<void | PaginatedListProps, PaginatedListResponse<T>, Error>
+type RequestProps = void | (PaginatedListProps & Record<string, any>)
+
+type GetNextProps<Q extends RequestProps> = {
+  props: Q
+  nextPage: number | null
 }
 
-export const createPaginationListModel = <T>({
+type CreatePaginationListModelProps<T, Q> = {
+  pageSize: number
+  request: Effect<Q, PaginatedListResponse<T>, Error>
+}
+
+export const createPaginationListModel = <T, Q extends RequestProps>({
   pageSize,
-  apiRequest,
-}: CreatePaginationListModelProps<T>) => {
+  request,
+}: CreatePaginationListModelProps<T, Q>) => {
   const { $nextPage, setNextPage } = createNextPageModel()
 
-  const get = createEffect(() => apiRequest({ size: pageSize, page: 1 }))
+  const get = createEffect((props: Q) =>
+    request({ page: 1, size: pageSize, ...props })
+  )
 
   const getNext = attach({
     source: $nextPage,
-    effect: createEffect((nextPage: number | null) => {
-      if (!nextPage) return
-      return apiRequest({
-        page: nextPage,
-        size: pageSize,
-      })
+    mapParams: (props: Q, nextPage) => ({
+      nextPage,
+      props,
+    }),
+    effect: createEffect(({ props, nextPage }: GetNextProps<Q>) => {
+      if (!nextPage) throw new Error('No more pages')
+      return request({ page: nextPage, size: pageSize, ...props })
     }),
   })
 

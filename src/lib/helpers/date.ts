@@ -69,3 +69,21 @@ export function isTimeLeft(
 ): boolean {
   return lifeTimeLeft(lifeTime, timerStartAt) > 0
 }
+
+export function getMonthPeriodString(
+  dateStart: string,
+  dateEnd: string,
+  language: string = 'en',
+  format: string = 'YYYY-MM-DD'
+) {
+  const monthsNames = moment().locale(language).localeData().months()
+  const startDate = moment(dateStart, format)
+  const endDate = moment(dateEnd, format)
+  const startDay = startDate.date()
+  const startMonth = monthsNames[startDate.month()]
+  const endDay = endDate.date()
+  const endMonth = monthsNames[endDate.month()]
+  const startDateString =
+    startMonth === endMonth ? startDay : `${startDay} ${startMonth}`
+  return `${startDateString} - ${endDay} ${endMonth}`
+}
