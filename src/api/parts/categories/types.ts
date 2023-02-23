@@ -20,7 +20,7 @@ export type CategoryArtWorksProps = PaginatedListProps & {
 
 export type ArtWorkPreviewResponse = {
   id: number
-  image: string
+  image_thumbnail: string
 }
 
 export type WinnerItem = {

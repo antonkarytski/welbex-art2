@@ -21,7 +21,7 @@ const DrawingItem = React.memo(
     return (
       <TouchableOpacity onPress={() => onPress?.(item)} style={containerStyle}>
         <Image
-          source={{ uri: item.image }}
+          source={{ uri: item.image_thumbnail }}
           style={[style, { width: size, height: size }]}
         />
       </TouchableOpacity>

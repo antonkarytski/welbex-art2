@@ -8,11 +8,11 @@ export type AllArtWorksProps = {
   max_age?: number
 } & PaginatedListProps
 
-type ArtWork = {
+export type ArtWork = {
   id: number
   title: string
   competition_id: number
-  image: string
+  image_thumbnail: string
   author: {
     is_followed: boolean
     id: number
