@@ -1,4 +1,5 @@
 import { PaginatedListProps, PaginatedListResponse } from '../../types'
+import { UserShort } from '../users/types'
 
 export type AllArtWorksProps = {
   category_id?: number
@@ -13,15 +14,7 @@ export type ArtWork = {
   title: string
   competition_id: number
   image_thumbnail: string
-  author: {
-    is_followed: boolean
-    id: number
-    first_name: string
-    last_name: string
-    country: string
-    avatar: string
-    age: number
-  }
+  author: UserShort
   likes: number
   is_liked: boolean
 }

@@ -1,14 +1,14 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { ArtWork } from '../../api/parts/arts/types'
 import Span from '../../ui/Span'
 import FavouriteButton from '../../ui/buttons/FavouriteButton'
 import LikeButton from '../../ui/buttons/LikeButton'
 import ShareButton from '../../ui/buttons/ShareButton'
 import { useColors } from '../themed'
-import { Drawing } from './types'
 
 type DrawingInteractivePanelProps = {
-  item: Drawing
+  item: ArtWork
 }
 
 const DrawingInteractivePanel = ({ item }: DrawingInteractivePanelProps) => {
@@ -18,7 +18,7 @@ const DrawingInteractivePanel = ({ item }: DrawingInteractivePanelProps) => {
     <View>
       <View style={styles.container}>
         <LikeButton
-          likesCount={item.likesCount}
+          likesCount={item.likes}
           style={[styles.button, styles.likeButton]}
         />
         <View style={styles.interactionBlock}>
@@ -32,7 +32,7 @@ const DrawingInteractivePanel = ({ item }: DrawingInteractivePanelProps) => {
           />
         </View>
       </View>
-      <Span style={styles.title} weight={600} label={item.name} />
+      <Span style={styles.title} weight={600} label={item.title} />
     </View>
   )
 }

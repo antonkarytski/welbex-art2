@@ -6,6 +6,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
+import { SpecificCategoryResponse } from '../../api/parts/categories/types'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
@@ -19,11 +20,13 @@ import { shadowCardThemedStyle, uploadBlockCommonStyles } from './styles'
 
 type UploadFromCameraRollBlockProps = {
   style?: StyleProp<ViewStyle>
+  category?: SpecificCategoryResponse
 }
 const availableFormatsString = AVAILABLE_FORMATS.join(', ')
 
 const UploadFromCameraRollBlock = ({
   style,
+  category,
 }: UploadFromCameraRollBlockProps) => {
   const text = useText()
   const navigate = useNavigate()
@@ -35,7 +38,7 @@ const UploadFromCameraRollBlock = ({
         pickFromCameraRoll()
           .then((assets) => {
             if (!assets) return
-            navigate(links.createPostAddDescription, { assets })
+            navigate(links.createPostAddDescription, { assets, category })
           })
           .catch(() => {})
       }}

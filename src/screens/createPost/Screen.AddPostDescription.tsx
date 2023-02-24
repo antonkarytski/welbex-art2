@@ -28,6 +28,7 @@ export default function AddPostDescriptionScreen({
   route,
 }: ScreenComponentProps<links.createPostAddDescription>) {
   const assets = route.params.assets
+  const category = route.params.category // TODO: if selected set it to dropdown select
   const text = useText()
   const { styles } = useThemedStyleList({
     common: themedStyles,

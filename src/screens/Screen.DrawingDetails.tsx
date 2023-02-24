@@ -1,6 +1,8 @@
-import React from 'react'
+import { useStore } from 'effector-react'
+import React, { useEffect } from 'react'
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
 import DrawingInteractionPanel from '../features/drawing/DrawingInteractivePanel'
+import { artWorkRequest } from '../features/drawing/request'
 import AutoHeightImage from '../features/images/AutoHeightImage'
 import { createThemedStyle } from '../features/themed'
 import { useThemedStyleList } from '../features/themed/hooks'
@@ -12,6 +14,7 @@ import { links } from '../navigation/links'
 import { ScreenComponentProps } from '../navigation/types.screenProps'
 import { themedShadow5Style } from '../styles/shadows'
 import { useText } from '../translations/hook'
+import Loader from '../ui/Loader'
 import PresetButton from '../ui/buttons/PresetButton'
 
 const DrawingDetailsScreen = ({
@@ -20,12 +23,22 @@ const DrawingDetailsScreen = ({
   links.drawingDetails | links.galleryDrawingDetails
 >) => {
   const navigate = useNavigate()
-  const drawing = route.params.item
   const text = useText()
+  const drawingId = route.params.item.id
+  const drawing = useStore(artWorkRequest.$data)
+  const isLoading = useStore(artWorkRequest.$isLoading)
+
   const { styles, colors } = useThemedStyleList({
     common: themedStyles,
     header: transparentThemedHeaderStyles,
   })
+
+  useEffect(() => {
+    artWorkRequest.get(drawingId)
+  }, [drawingId])
+
+  if (isLoading) return <Loader />
+  if (!drawing) return null
 
   return (
     <View style={styles.common.container}>
@@ -44,10 +57,10 @@ const DrawingDetailsScreen = ({
           onSubscribePress={() => {
             navigate(links.subscriptionCurrent)
           }}
-          item={drawing.user}
+          item={drawing.author}
         />
         <AutoHeightImage
-          image={drawing.image}
+          image={{ uri: drawing.image_thumbnail }}
           widthGenerator={() => {
             const screen = Dimensions.get('screen')
             return screen.width - 40

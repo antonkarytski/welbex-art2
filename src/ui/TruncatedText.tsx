@@ -39,7 +39,7 @@ const TruncatedText = ({
   const onTextLayout: TextProps['onTextLayout'] = ({ nativeEvent }) => {
     if (!linesCount) setLinesCount(nativeEvent.lines.length)
   }
-  console.log('numberOfLines, linesCount', numberOfLines, linesCount)
+
   return (
     <View style={style?.container}>
       <Span
