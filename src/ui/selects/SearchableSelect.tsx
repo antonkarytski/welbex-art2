@@ -7,12 +7,13 @@ const SearchableSelect = <DataItem extends Record<string, any>>({
   searchModel,
   data,
   style,
+  preset,
   ...props
 }: SearchableSelectProps<DataItem>) => {
   return (
     <SearchableList model={searchModel} data={data} style={style}>
       {(filteredData) => (
-        <Select data={filteredData} style={style} {...props} />
+        <Select data={filteredData} style={style} preset={preset} {...props} />
       )}
     </SearchableList>
   )

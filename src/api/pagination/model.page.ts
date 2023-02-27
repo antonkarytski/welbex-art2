@@ -6,14 +6,15 @@ type SetNextPageProps = {
   size: number
 }
 
+export const getNextPage = ({ total, page, size }: SetNextPageProps) => {
+  if (total > page * size) return page + 1
+  return null
+}
+
 export const createNextPageModel = () => {
   const setNextPage = createEvent<SetNextPageProps>()
-  const $nextPage = createStore<null | number>(1).on(
-    setNextPage,
-    (_, { total, page, size }) => {
-      if (total > page * size) return page + 1
-      return null
-    }
+  const $nextPage = createStore<null | number>(1).on(setNextPage, (_, props) =>
+    getNextPage(props)
   )
 
   return {

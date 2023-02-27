@@ -1,5 +1,6 @@
+import { useStore } from 'effector-react'
 import { api } from '../../api'
-import { createRequestItemModel } from '../../api/model.request'
+import { createRequestModel } from '../../api/model.request'
 import { ARTS_PAGE_SIZE, createPaginationListModel } from '../../api/pagination'
 import { SpecificCategoryResponse } from '../../api/parts/categories/types'
 
@@ -10,7 +11,7 @@ export const categoriesRequest = createPaginationListModel({
   request: api.categories.all,
 })
 
-export const categoryRequest = createRequestItemModel<SpecificCategoryResponse>(
+export const categoryRequest = createRequestModel<SpecificCategoryResponse>(
   api.categories.specific
 )
 

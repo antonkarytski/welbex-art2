@@ -8,6 +8,7 @@ import Span from '../Span'
 import ArrowIcon from '../icons/Icon.ArrowToggle'
 import { useDropdownLayout } from './hooks'
 import { styles } from './styles'
+import { defaultDropdownTabPreset, useDropdownTabPreset } from './styles.preset'
 import { DropdownTabProps } from './types'
 
 function DropdownTab({
@@ -19,6 +20,7 @@ function DropdownTab({
   overlayBackgroundColor,
   iconColors,
   onOpenDropdown,
+  preset,
 }: DropdownTabProps) {
   const dropdownButtonRef = useRef<TouchableOpacity>(null)
   const {
@@ -30,6 +32,8 @@ function DropdownTab({
     dropdownStyle: style?.dropdownContainer,
     indentFromTab,
   })
+
+  const activeStyles = useDropdownTabPreset({ isOpened, preset })
 
   const handleOpenDropdown = () => {
     dropdownButtonRef.current?.measure((fx, fy, w, h, px, py) => {
@@ -46,7 +50,12 @@ function DropdownTab({
     <View style={[styles.wrapper, style?.wrapper]}>
       {label && (
         <Span
-          style={[styles.label, style?.label, isOpened && style?.activeLabel]}
+          style={[
+            styles.label,
+            style?.label,
+            isOpened && style?.activeLabel,
+            activeStyles.label,
+          ]}
           weight={500}
         >
           {label}
@@ -59,7 +68,8 @@ function DropdownTab({
         style={[
           styles.tab,
           style?.tab,
-          isOpened && [styles.activeTab, style?.activeTab],
+          isOpened && [styles.tab__opened, style?.tab__opened],
+          activeStyles?.tab,
         ]}
       >
         <Row style={[styles.tabInnerWrapper, style?.tabInnerWrapper]}>
@@ -67,7 +77,8 @@ function DropdownTab({
             style={[
               styles.tabLabel,
               style?.tabLabel,
-              isOpened && style?.activeTabLabel,
+              isOpened && style?.tabLabel__opened,
+              activeStyles?.tabLabel,
             ]}
           >
             {tabLabel}
@@ -76,7 +87,7 @@ function DropdownTab({
             size={10}
             style={[style?.tabIcon, isOpened && styles.toggleIcon__opened]}
             color={
-              isOpened
+              activeStyles.iconColor || isOpened
                 ? iconColors?.opened || defaultColors.detailsActive
                 : iconColors?.default
             }

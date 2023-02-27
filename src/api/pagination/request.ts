@@ -1,6 +1,6 @@
 import { Effect, attach, createEffect, createEvent, restore } from 'effector'
 import { PaginatedListProps, PaginatedListResponse } from '../types'
-import { createNextPageModel } from './model.page'
+import { createNextPageModel, getNextPage } from './model.page'
 
 type RequestProps = void | (PaginatedListProps & Record<string, any>)
 
@@ -9,9 +9,15 @@ type GetNextProps<Q extends RequestProps> = {
   nextPage: number | null
 }
 
-type CreatePaginationListModelProps<T, Q> = {
+type Request<T, Q extends RequestProps> = Effect<
+  Q,
+  PaginatedListResponse<T>,
+  Error
+>
+
+type CreatePaginationListModelProps<T, Q extends RequestProps> = {
   pageSize: number
-  request: Effect<Q, PaginatedListResponse<T>, Error>
+  request: Request<T, Q>
 }
 
 export const createPaginationListModel = <T, Q extends RequestProps>({
@@ -66,5 +72,37 @@ export const createPaginationListModel = <T, Q extends RequestProps>({
     $items,
     $isLoading,
     $isNextLoading,
+  }
+}
+
+export const createRequestAllModel = <T, Q extends RequestProps>(
+  request: Request<T, Q>
+) => {
+  const setItems = createEvent<T[]>()
+  const addItems = createEvent<T[]>()
+
+  const $items = restore<T[]>(setItems, []).on(addItems, (state, payload) => [
+    ...state,
+    ...payload,
+  ])
+
+  const get = createEffect((props: Q) => request(props))
+
+  get.done.watch(({ params, result }) => {
+    const { items } = result
+    const nextPage = getNextPage(result)
+    result.page === 1 ? setItems(items) : addItems(items)
+
+    if (nextPage) {
+      get({ ...params, page: nextPage })
+    }
+  })
+
+  const $isLoading = get.pending
+
+  return {
+    get,
+    $items,
+    $isLoading,
   }
 }

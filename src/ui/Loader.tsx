@@ -5,7 +5,7 @@ const Loader = () => {
   return (
     <Span
       label={'Loading...'}
-      style={{ fontSize: 18, textAlign: 'center', textAlignVertical: 'center' }}
+      style={{ fontSize: 16, textAlign: 'center', textAlignVertical: 'center' }}
     />
   )
 }

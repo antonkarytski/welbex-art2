@@ -38,7 +38,7 @@ export type WinnerItem = {
   }
   art: {
     id: number
-    image: string
+    image_thumbnail: string
   }
 }
 

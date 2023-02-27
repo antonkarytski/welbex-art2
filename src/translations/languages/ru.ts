@@ -17,6 +17,7 @@ export const RU: LangStructure = {
   yes: 'Да',
   no: 'Нет',
   or: 'или',
+  selectValueFromList: 'Выберите значение из списка',
   secondsAbbreviated: 'сек',
   from: 'от',
   to: 'к',

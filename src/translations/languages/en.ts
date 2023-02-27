@@ -18,6 +18,7 @@ export const EN = {
   to: 'to',
   no: 'No',
   or: 'or',
+  selectValueFromList: 'Select a value from the list',
   secondsAbbreviated: 's',
   atAge: 'at',
   get: 'Get',

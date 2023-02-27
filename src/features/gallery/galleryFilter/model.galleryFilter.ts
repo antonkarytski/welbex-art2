@@ -1,11 +1,11 @@
 import { createStateModel } from 'altek-toolkit'
-import { MOCK_CATEGORIES } from '../../../_mock/categories'
+import { CategoryResponse } from '../../../api/parts/categories/types'
 import {
   createCountryModel,
   createSearchCountryModel,
 } from '../../countries/model.countriesDropdown'
 
-export const categoryModel = createStateModel(MOCK_CATEGORIES[0])
+export const categoryModel = createStateModel<null | CategoryResponse>(null)
 export const countryModel = createCountryModel()
 export const countrySearchModel = createSearchCountryModel()
 

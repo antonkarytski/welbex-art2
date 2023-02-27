@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import { StyleProp, TextStyle, ViewStyle } from 'react-native'
 import { Fn } from '../../types'
+import { PresetDropdownTabStates } from './styles.preset'
 
 export type ElementMeasureProps = {
   w: number
@@ -25,6 +26,7 @@ export type DropdownTabProps = {
     opened: string
     default: string
   }
+  preset?: PresetDropdownTabStates
 }
 
 export type DropdownStyles = {
@@ -32,9 +34,9 @@ export type DropdownStyles = {
   activeLabel?: TextStyle
   dropdownContainer?: ViewStyle
   tab?: ViewStyle
-  activeTab?: ViewStyle
+  tab__opened?: ViewStyle
   tabLabel?: TextStyle
-  activeTabLabel?: TextStyle
+  tabLabel__opened?: TextStyle
   tabIcon?: ViewStyle
   tabInnerWrapper?: ViewStyle
   wrapper?: ViewStyle
