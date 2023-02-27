@@ -14,7 +14,7 @@ import { COUNTRIES_LIST, Country } from './'
 import CountryRow from './CountryRow'
 
 type CountriesDropdownSelectProps = {
-  model: StateModel<Country>
+  model: StateModel<Country | null>
   searchModel?: SearchableListModel<Country>
 }
 

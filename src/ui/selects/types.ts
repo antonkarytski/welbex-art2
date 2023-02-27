@@ -29,7 +29,7 @@ export type SelectProps<T> = {
   style?: SelectStyles
   showSelectedIcon?: boolean
   preset?: PresetSelectItemStates
-  onEndReached: FlatListProps<T>['onEndReached']
+  onEndReached?: FlatListProps<T>['onEndReached']
 }
 
 export type SearchableSelectProps<T> = SelectProps<T> & {

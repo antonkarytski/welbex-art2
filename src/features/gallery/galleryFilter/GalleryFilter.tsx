@@ -1,7 +1,9 @@
+import { useStore } from 'effector-react'
 import { KeyboardAvoidingView } from 'native-base'
-import React, { useState } from 'react'
+import React from 'react'
 import { StyleSheet } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
+import { CATEGORIES_AGE_RANGE } from '../../../constants/categories'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
 import {
   buttonLightThemedPreset,
@@ -22,7 +24,11 @@ import {
   countryModel,
   countrySearchModel,
   drawingNameModel,
+  resetGalleryFilter,
 } from './model.galleryFilter'
+import { countOfFilteredArtsRequest } from './request'
+
+// TODO: ! change selects to multiSelects !
 
 const GalleryFilter = () => {
   const t = useText()
@@ -33,10 +39,9 @@ const GalleryFilter = () => {
   })
 
   const [drawingName, setDrawingName] = useStateStore(drawingNameModel)
-  const [resultsCount, setResultsCount] = useState(105) // TODO: заменить при использовании бэкенд
+  const filterResult = useStore(countOfFilteredArtsRequest.$data)
 
   const onShowResults = () => {}
-  const onReset = () => {}
 
   return (
     <>
@@ -58,21 +63,21 @@ const GalleryFilter = () => {
         <MultiSlider
           label={t.age}
           model={ageRangeModel}
-          min={2}
-          max={15}
+          min={CATEGORIES_AGE_RANGE[0]}
+          max={CATEGORIES_AGE_RANGE[1]}
           step={1}
         />
       </KeyboardAvoidingView>
 
       <PresetButton
-        label={`${t.show} ${resultsCount} ${t.filterResults}`}
+        label={`${t.show} ${filterResult?.total ?? ''} ${t.filterResults}`}
         onPress={onShowResults}
         preset={styles.buttonPrimary}
         style={commonStyles.resultsButton}
       />
       <DeleteButton
         label={t.reset}
-        onPress={onReset}
+        onPress={resetGalleryFilter}
         preset={styles.buttonLight}
         iconColor={colors.text}
       />
