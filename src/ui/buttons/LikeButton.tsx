@@ -13,12 +13,22 @@ type LikeButtonProps = {
   likesCount: number
   color?: string
   style?: StyleProp<ViewStyle>
+  active?: boolean
+  activeColor?: string
 }
 
-const LikeButton = ({ likesCount, onPress, color, style }: LikeButtonProps) => {
+const LikeButton = ({
+  likesCount,
+  onPress,
+  color,
+  style,
+  active,
+  activeColor = 'red',
+}: LikeButtonProps) => {
+  const iconColor = active ? activeColor : color
   return (
     <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
-      <HeartIcon color={color} />
+      <HeartIcon color={iconColor} fill={active ? iconColor : 'none'} />
       <Span style={[styles.counter, { color }]} label={likesCount} />
     </TouchableOpacity>
   )

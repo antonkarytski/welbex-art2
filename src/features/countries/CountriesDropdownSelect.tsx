@@ -2,9 +2,8 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { StateModel } from 'altek-toolkit'
 import { SearchableListModel } from '../../lib/models/model.search'
-import { dropdownTabThemedPreset } from '../../styles/dropdownTab'
 import { FONT_MEDIUM } from '../../styles/fonts'
-import { selectItemThemedPreset } from '../../styles/selects'
+import { useDropdownSelectPreset } from '../../styles/selects'
 import { useText } from '../../translations/hook'
 import DropdownSelect from '../../ui/selects/DropdownSelect'
 import { RenderItem } from '../../ui/selects/selectItem/types'
@@ -22,10 +21,10 @@ const CountriesDropdownSelect = React.memo(
   ({ model, searchModel }: CountriesDropdownSelectProps) => {
     const t = useText()
     const { styles } = useThemedStyleList({
-      dropdownTab: dropdownTabThemedPreset,
-      selectItem: selectItemThemedPreset,
       countryItem: countryRowThemedStyles,
     })
+
+    const selectPreset = useDropdownSelectPreset()
 
     const renderCountryRow: RenderItem<Country> = (item, isSelected) => (
       <CountryRow
@@ -51,7 +50,7 @@ const CountriesDropdownSelect = React.memo(
         style={{
           dropdownTab: dropdownTabStyles,
         }}
-        preset={styles}
+        preset={selectPreset}
       />
     )
   }

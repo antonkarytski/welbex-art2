@@ -1,7 +1,14 @@
 import { attach, createEffect, createEvent, createStore } from 'effector'
 import { mockGetGallery } from '../../_mock/gelleries'
+import { api } from '../../api'
+import { createPaginationListModel } from '../../api/pagination'
 import { addGalleryPage, setGallery } from './model'
 import { GalleriesList, GallerySetter, GalleryType } from './types'
+
+export const galleryRequest = createPaginationListModel({
+  pageSize: 10,
+  request: api.arts.all, // TODO: change to specific type when API will be ready
+})
 
 type GetGalleryProps = {
   type: GalleryType

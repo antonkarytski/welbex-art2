@@ -19,6 +19,7 @@ export type ArtWork = {
   author: UserShort
   likes: number
   is_liked: boolean
+  is_saved: boolean
 }
 
 export type AllArtWorksResponse = PaginatedListResponse<ArtWork>

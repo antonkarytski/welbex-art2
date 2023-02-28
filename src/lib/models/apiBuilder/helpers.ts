@@ -7,10 +7,15 @@ export function bodyToParams(body: object) {
     .join('&')
 }
 
-export function getUrlEnd(value: number | string | undefined) {
-  if (!value) return ''
-  if (typeof value === 'number') return `/${value}`
-  return `/${removeSlashes(value)}`
+export function getUrlEnd(
+  value: number | string | undefined,
+  entityId?: number | string
+) {
+  let result: string = ''
+  if (typeof value === 'string') result = `/${removeSlashes(value)}`
+  if (typeof value === 'number') result = `/${value}`
+  if (entityId) result += `/${entityId}`
+  return result
 }
 
 export function removeSlashes(value: string) {

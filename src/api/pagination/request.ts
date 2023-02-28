@@ -1,26 +1,18 @@
-import { Effect, attach, createEffect, createEvent, restore } from 'effector'
-import { PaginatedListProps, PaginatedListResponse } from '../types'
+import { attach, createEffect, createEvent, restore } from 'effector'
 import { createNextPageModel, getNextPage } from './model.page'
+import {
+  CreatePaginationListModelProps,
+  GetNextProps,
+  Item,
+  ItemId,
+  Request,
+  RequestProps,
+} from './types'
 
-type RequestProps = void | (PaginatedListProps & Record<string, any>)
-
-type GetNextProps<Q extends RequestProps> = {
-  props: Q
-  nextPage: number | null
-}
-
-type Request<T, Q extends RequestProps> = Effect<
-  Q,
-  PaginatedListResponse<T>,
-  Error
->
-
-type CreatePaginationListModelProps<T, Q extends RequestProps> = {
-  pageSize: number
-  request: Request<T, Q>
-}
-
-export const createPaginationListModel = <T, Q extends RequestProps>({
+export const createPaginationListModel = <
+  T extends Item,
+  Q extends RequestProps
+>({
   pageSize,
   request,
 }: CreatePaginationListModelProps<T, Q>) => {
@@ -44,11 +36,17 @@ export const createPaginationListModel = <T, Q extends RequestProps>({
 
   const setItems = createEvent<T[]>()
   const addItems = createEvent<T[]>()
+  const updateItem = createEvent<ItemId & Partial<T>>()
 
-  const $items = restore<T[]>(setItems, []).on(addItems, (state, payload) => [
-    ...state,
-    ...payload,
-  ])
+  const $items = restore<T[]>(setItems, [])
+    .on(addItems, (state, payload) => [...state, ...payload])
+    .on(updateItem, (state, payload) =>
+      state.map((item) =>
+        item.id.toString() === payload.id.toString()
+          ? { ...item, ...payload }
+          : item
+      )
+    )
 
   get.done.watch(({ result }) => {
     setNextPage(result)

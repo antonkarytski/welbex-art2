@@ -13,7 +13,7 @@ const CountrySelectablePhoneInput = <CountryItem extends Record<string, any>>({
   countries,
   searchModel,
   renderCountryItem,
-  selectedCountryModel,
+  countryModel,
   countryLabelExtractor,
   countryCodeExtractor,
   style,
@@ -23,12 +23,14 @@ const CountrySelectablePhoneInput = <CountryItem extends Record<string, any>>({
   isValid,
   onBlur,
   onFocus,
+  preset,
 }: CountrySelectablePhoneInputProps<CountryItem>) => {
   const [isFocused, setIsFocused] = useState(false)
-  const [selectedCountry] = useStateStore(selectedCountryModel)
+  const [selectedCountry] = useStateStore(countryModel)
 
   useEffect(() => {
-    phoneModel.countryCodeModel.set(countryCodeExtractor(selectedCountry))
+    if (selectedCountry)
+      phoneModel.countryCodeModel.set(countryCodeExtractor(selectedCountry))
   }, [selectedCountry, countryCodeExtractor, phoneModel])
 
   const handleBlur: TextInputProps['onBlur'] = (e) => {
@@ -50,7 +52,7 @@ const CountrySelectablePhoneInput = <CountryItem extends Record<string, any>>({
           searchModel={searchModel}
           data={countries}
           renderItem={renderCountryItem}
-          model={selectedCountryModel}
+          model={countryModel}
           labelExtractor={countryLabelExtractor}
           idExtractor={countryCodeExtractor}
           placeholder={selectPlaceholder}
@@ -63,6 +65,7 @@ const CountrySelectablePhoneInput = <CountryItem extends Record<string, any>>({
             },
             select: style?.select?.select,
           }}
+          preset={preset}
         />
         <PhoneInput
           phoneModel={phoneModel}
