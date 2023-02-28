@@ -2,7 +2,7 @@ import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
 import DrawingInteractionPanel from '../features/drawing/DrawingInteractivePanel'
-import { artWorkRequest } from '../features/drawing/request'
+import { specificArtWorkModel } from '../features/drawing/request'
 import AutoHeightImage from '../features/images/AutoHeightImage'
 import { createThemedStyle } from '../features/themed'
 import { useThemedStyleList } from '../features/themed/hooks'
@@ -25,8 +25,8 @@ const DrawingDetailsScreen = ({
   const navigate = useNavigate()
   const text = useText()
   const drawingId = route.params.item.id
-  const drawing = useStore(artWorkRequest.$data)
-  const isLoading = useStore(artWorkRequest.$isLoading)
+  const drawing = useStore(specificArtWorkModel.$data)
+  const isLoading = useStore(specificArtWorkModel.$isLoading)
 
   const { styles, colors } = useThemedStyleList({
     common: themedStyles,
@@ -34,7 +34,7 @@ const DrawingDetailsScreen = ({
   })
 
   useEffect(() => {
-    artWorkRequest.get(drawingId)
+    specificArtWorkModel.get(drawingId)
   }, [drawingId])
 
   if (isLoading) return <Loader />

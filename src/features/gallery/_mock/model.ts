@@ -1,10 +1,10 @@
 import { createEvent, createStore } from 'effector'
-import { ArtWork } from '../../api/parts/arts/types'
-import { GalleriesList, GallerySetter } from './types'
+import { Drawing } from '../../drawing/types'
+import { GalleriesList, GallerySetter } from '../types'
 
-type GalleriesDrawingsList = GalleriesList<ArtWork[]>
+type GalleriesDrawingsList = GalleriesList<Drawing[]>
 type SetGalleryProps = GallerySetter<{
-  drawings: ArtWork[]
+  drawings: Drawing[]
 }>
 
 export const setGallery = createEvent<SetGalleryProps>()

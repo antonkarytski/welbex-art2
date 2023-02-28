@@ -8,7 +8,7 @@ import Loader from '../../ui/Loader'
 import Span from '../../ui/Span'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
-import { winnersRequest } from '../winners/request'
+import { winnersListModel } from '../winners/request'
 import CardCategory from './Card.Category'
 import { categoriesListModel } from './request'
 import { categoryCardThemedStyles } from './styles'
@@ -38,7 +38,7 @@ const CategoriesList = ({
 
   const onRefresh = () => {
     setIsRefreshing(true)
-    Promise.all([winnersRequest.get, categoriesListModel.get]).finally(() =>
+    Promise.all([winnersListModel.get, categoriesListModel.get]).finally(() =>
       setIsRefreshing(false)
     )
   }

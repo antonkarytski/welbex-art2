@@ -6,7 +6,9 @@ import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { $isAuth } from '../auth/model'
 
-export const artWorkRequest = createRequestModel(api.arts.specific)
+export const specificArtWorkModel = createRequestModel(
+  api.arts.specificProtected
+)
 
 export const likeDrawing = api.arts.likePost
 export const dislikeDrawing = api.arts.dislikePost
@@ -22,12 +24,12 @@ export const useLikeDrawingRequest = (drawing: ArtWork) => {
     if (!isAuth) return navigate(links.login)
     if (drawing.is_liked) {
       dislikeDrawing(drawing.id).then(() =>
-        artWorkRequest.update({ is_liked: false })
+        specificArtWorkModel.update({ is_liked: false })
       )
       return
     }
     likeDrawing(drawing.id).then(() =>
-      artWorkRequest.update({ is_liked: true })
+      specificArtWorkModel.update({ is_liked: true })
     )
   }
 

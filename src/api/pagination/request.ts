@@ -4,49 +4,42 @@ import {
   CreatePaginationListModelProps,
   GetNextProps,
   Item,
-  ItemId,
   Request,
   RequestProps,
 } from './types'
 
 export const createPaginationListModel = <
-  T extends Item,
-  Q extends RequestProps
+  R extends Item,
+  P extends RequestProps
 >({
   pageSize,
   request,
-}: CreatePaginationListModelProps<T, Q>) => {
+}: CreatePaginationListModelProps<R, P>) => {
   const { $nextPage, setNextPage } = createNextPageModel()
 
-  const get = createEffect((props: Q) =>
+  const get = createEffect((props: P) =>
     request({ page: 1, size: pageSize, ...props })
   )
 
   const getNext = attach({
     source: $nextPage,
-    mapParams: (props: Q, nextPage) => ({
+    mapParams: (props: P, nextPage) => ({
       nextPage,
       props,
     }),
-    effect: createEffect(({ props, nextPage }: GetNextProps<Q>) => {
+    effect: createEffect(({ props, nextPage }: GetNextProps<P>) => {
       if (!nextPage) return
       return request({ page: nextPage, size: pageSize, ...props })
     }),
   })
 
-  const setItems = createEvent<T[]>()
-  const addItems = createEvent<T[]>()
-  const updateItem = createEvent<ItemId & Partial<T>>()
+  const setItems = createEvent<R[]>()
+  const addItems = createEvent<R[]>()
 
-  const $items = restore<T[]>(setItems, [])
-    .on(addItems, (state, payload) => [...state, ...payload])
-    .on(updateItem, (state, payload) =>
-      state.map((item) =>
-        item.id.toString() === payload.id.toString()
-          ? { ...item, ...payload }
-          : item
-      )
-    )
+  const $items = restore<R[]>(setItems, []).on(addItems, (state, payload) => [
+    ...state,
+    ...payload,
+  ])
 
   get.done.watch(({ result }) => {
     setNextPage(result)
@@ -73,18 +66,18 @@ export const createPaginationListModel = <
   }
 }
 
-export const createRequestAllModel = <T, Q extends RequestProps>(
-  request: Request<T, Q>
+export const createRequestAllModel = <R, P extends RequestProps>(
+  request: Request<R, P>
 ) => {
-  const setItems = createEvent<T[]>()
-  const addItems = createEvent<T[]>()
+  const setItems = createEvent<R[]>()
+  const addItems = createEvent<R[]>()
 
-  const $items = restore<T[]>(setItems, []).on(addItems, (state, payload) => [
+  const $items = restore<R[]>(setItems, []).on(addItems, (state, payload) => [
     ...state,
     ...payload,
   ])
 
-  const get = createEffect((props: Q) => request(props))
+  const get = createEffect((props: P) => request(props))
 
   get.done.watch(({ params, result }) => {
     const { items } = result

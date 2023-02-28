@@ -45,7 +45,7 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
         />
       )
     },
-    [styles]
+    [styles, text]
   )
 
   return (

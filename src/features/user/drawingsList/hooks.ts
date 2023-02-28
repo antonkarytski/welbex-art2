@@ -14,25 +14,22 @@ export function useDrawingsList(
 
   const getFirstPage = useCallback(() => {
     if (!item) return
-    setList(getUserDrawings(1, type, 0).result || [])
-    // getUserDrawingsList({ userId: item.id, page: 0, type }).then(
-    //   ({ result, next }) => {
-    //     nextPage.current = next
-    //     setList(result ?? [])
-    //   }
-    // )
+    getUserDrawingsList({ userId: item.id, page: 0, type }).then(
+      ({ result, next }) => {
+        nextPage.current = next
+        setList(result ?? [])
+      }
+    )
   }, [item, type])
 
   const getNextPage = useCallback(() => {
     if (!item || nextPage.current === null) return
-    setList(getUserDrawings(1, type, nextPage.current).result || [])
-
-    // getUserDrawingsList({ userId: item.id, page: nextPage.current, type }).then(
-    //   ({ result, next }) => {
-    //     nextPage.current = next
-    //     if (result) setList((currentList) => [...currentList, ...result])
-    //   }
-    // )
+    getUserDrawingsList({ userId: item.id, page: nextPage.current, type }).then(
+      ({ result, next }) => {
+        nextPage.current = next
+        if (result) setList((currentList) => [...currentList, ...result])
+      }
+    )
   }, [type, item])
 
   return [list, getFirstPage, getNextPage] as [

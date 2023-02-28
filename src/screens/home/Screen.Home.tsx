@@ -6,7 +6,7 @@ import { categoriesListModel } from '../../features/categories/request'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import WinnersBlock from '../../features/winners/WinnersBlock'
-import { winnersRequest } from '../../features/winners/request'
+import { winnersListModel } from '../../features/winners/request'
 import AppHeader from '../../navigation/elements/AppHeader'
 import { themedPrimaryMotionGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
@@ -30,7 +30,7 @@ export default function HomeScreen() {
   // const isWinnersLoading = useStore($isWinnersLoading)
 
   useEffect(() => {
-    winnersRequest.get()
+    winnersListModel.get()
     categoriesListModel.get()
   }, [])
 
