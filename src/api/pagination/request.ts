@@ -3,15 +3,11 @@ import { createNextPageModel, getNextPage } from './model.page'
 import {
   CreatePaginationListModelProps,
   GetNextProps,
-  Item,
   Request,
   RequestProps,
 } from './types'
 
-export const createPaginationListModel = <
-  R extends Item,
-  P extends RequestProps
->({
+export const createPaginationListModel = <R, P>({
   pageSize,
   request,
 }: CreatePaginationListModelProps<R, P>) => {
