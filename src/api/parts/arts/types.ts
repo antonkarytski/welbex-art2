@@ -1,3 +1,4 @@
+import { ImageFile } from '../../../lib/files/types'
 import { PaginatedListProps, PaginatedListResponse } from '../../types'
 import { UserShort } from '../users/types'
 
@@ -24,4 +25,25 @@ export type ArtWork = {
 export type AllArtWorksResponse = PaginatedListResponse<ArtWork>
 export type CountOfFilteredArtsResponse = {
   total: number
+}
+
+export type ArtWorkCreateResponse = {
+  id: number
+  title: string
+  image_thumbnail: string
+  author: {
+    id: number
+    first_name: string
+    last_name: string
+    country: string
+    avatar: string
+    age: number
+  }
+}
+
+export type ArtWorkCreateProps = {
+  image: ImageFile
+  childDocument: ImageFile
+  title: string
+  categoryId: number
 }

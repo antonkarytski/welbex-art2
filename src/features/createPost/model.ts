@@ -1,18 +1,19 @@
+import { ImageFile } from '../../lib/files/types'
 import { createFormModel } from '../../lib/models/form'
 
 export type ImageDescriptionFormFields = {
-  childProofImage: string
+  childProofImage: ImageFile | null
+  imageFile: ImageFile | null
   title: string
   category: string
   age: string
-  imageUri: string
 }
 
 const initialImageDescriptionFormFields: ImageDescriptionFormFields = {
+  childProofImage: null,
+  imageFile: null,
   age: '',
-  imageUri: '',
   title: '',
-  childProofImage: '',
   category: '',
 }
 

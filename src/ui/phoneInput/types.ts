@@ -5,11 +5,8 @@ import { CountryCode } from '../../features/countries'
 import { SearchableListModel } from '../../lib/models/model.search'
 import { PhoneInputModel } from '../../lib/models/phoneNumber/model.phoneNumber'
 import { InputStyles } from '../input/types'
-import {
-  DropdownSelectStyles,
-  RenderItem,
-  StringExtractor,
-} from '../selects/types'
+import { RenderItem } from '../selects/selectItem/types'
+import { DropdownSelectStyles, StringExtractor } from '../selects/types'
 
 export type PhoneInputProps = {
   phoneModel: PhoneInputModel

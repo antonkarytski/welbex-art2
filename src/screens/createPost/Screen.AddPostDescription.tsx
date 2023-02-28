@@ -20,8 +20,9 @@ import Field from '../../ui/form/Field'
 const selectedCategoryModel = createStateModel<null | CategoryResponse>(null)
 
 selectedCategoryModel.$state.watch((value) => {
-  if (value)
+  if (value) {
     createPostFormModel.setField({ value: value.name, key: 'category' })
+  }
 })
 
 export default function AddPostDescriptionScreen({
@@ -40,11 +41,23 @@ export default function AddPostDescriptionScreen({
   }, [category])
 
   useEffect(() => {
+    const asset = assets[0]
+    if (!asset) return
     createPostFormModel.setField({
-      value: assets[0].uri,
-      key: 'imageUri',
+      value: {
+        name: asset.fileName || '',
+        size: asset.fileSize || 0,
+        uri: asset.uri,
+      },
+      key: createPostFormModel.fields.imageFile,
     })
   }, [assets])
+
+  //{
+  //         uri: asset.uri,
+  //         size: assets.size,
+  //         name: asset.fileName,
+  //       }
 
   return (
     <View style={styles.common.container}>
@@ -59,7 +72,7 @@ export default function AddPostDescriptionScreen({
         contentContainerStyle={styles.common.scrollContent}
       >
         <ImagePreviewFormField
-          name={'imageUri'}
+          name={createPostFormModel.fields.imageFile}
           formModel={createPostFormModel}
           style={styles.common.image as ImageStyle}
         />

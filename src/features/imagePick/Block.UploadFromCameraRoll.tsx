@@ -37,6 +37,7 @@ const UploadFromCameraRollBlock = ({
       onPress={async () => {
         pickFromCameraRoll()
           .then((assets) => {
+            console.log(assets)
             if (!assets) return
             navigate(links.createPostAddDescription, { assets, category })
           })

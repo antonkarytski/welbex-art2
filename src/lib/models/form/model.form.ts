@@ -1,4 +1,4 @@
-import { createEvent, createStore, restore } from 'effector'
+import { createEvent, createStore } from 'effector'
 import { ObjectSchema } from 'yup'
 import { mapObject } from '../../helpers/array'
 import { createValidator } from './model.validation'
@@ -20,7 +20,10 @@ export type TypedFormFieldComponentProps<
 }
 
 export class FormModel<T extends Record<string, any>> {
-  public readonly setField = createEvent<FieldPair<T, keyof T>>()
+  private readonly _setField = createEvent<FieldPair<T, keyof T>>()
+  public setField<K extends keyof T>(props: FieldPair<T, K>) {
+    this._setField(props)
+  }
   public readonly set = createEvent<T>()
   public readonly $store
 
@@ -34,7 +37,7 @@ export class FormModel<T extends Record<string, any>> {
       ? schema.getDefault()
       : schema
     this.$store = createStore<T>(initialState)
-      .on(this.setField, (store, { key, value }) => ({
+      .on(this._setField, (store, { key, value }) => ({
         ...store,
         [key]: value,
       }))

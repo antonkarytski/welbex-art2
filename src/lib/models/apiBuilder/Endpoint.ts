@@ -3,6 +3,7 @@ import {
   bodyToParams,
   convertToFormData,
   getUrlEnd,
+  isContentTypeFormData,
   isObjectNotFormData,
   removeSlashes,
 } from './helpers'
@@ -102,7 +103,7 @@ export class Endpoint {
     return ((props: T) => {
       if (!fn) {
         if (props === undefined || props === null) return common
-        if (common.contentType === ContentType.FORM) {
+        if (isContentTypeFormData(common.contentType)) {
           return { ...common, body: checkForFormData(props) }
         }
         return { ...common, body: props }
@@ -116,8 +117,8 @@ export class Endpoint {
       const urlEnd = getUrlEnd(url)
       const urlFull = `${common.url}${urlEnd}`
       const isFormData =
-        rest.contentType === ContentType.FORM ||
-        (!rest.contentType && common.contentType === ContentType.FORM)
+        isContentTypeFormData(rest.contentType) ||
+        (!rest.contentType && isContentTypeFormData(common.contentType))
       if (isFormData) {
         const formData = checkForFormData(body)
         return { ...common, ...rest, body: formData, url: urlFull }

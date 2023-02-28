@@ -12,14 +12,5 @@ export const api = {
 }
 
 apiManager.token.onInit((token) => {
-  console.log('ON INIT', token)
-  if (!token) return
-  usersApi
-    .me()
-    .then((e) => {
-      console.log(e)
-    })
-    .catch((e) => {
-      console.log(e)
-    })
+  if (token) return usersApi.me()
 })
