@@ -147,9 +147,9 @@ export class Endpoint {
       if (isPrimitive(result)) {
         return { ...common, url: `${common.url}${getUrlEnd(result)}` }
       }
-      const { body, url, ...rest } = result
+      const { body, url, entityId, ...rest } = result
       const params = body ? bodyToParams(body) : ''
-      const urlEnd = getUrlEnd(url)
+      const urlEnd = getUrlEnd(url, entityId)
       const urlParams = params ? `?${params}` : ''
       return {
         ...common,

@@ -6,6 +6,7 @@ import FavouriteButton from '../../ui/buttons/FavouriteButton'
 import LikeButton from '../../ui/buttons/LikeButton'
 import ShareButton from '../../ui/buttons/ShareButton'
 import { useColors } from '../themed'
+import { useLikeDrawingRequest } from './request'
 
 type DrawingInteractivePanelProps = {
   item: ArtWork
@@ -13,6 +14,7 @@ type DrawingInteractivePanelProps = {
 
 const DrawingInteractivePanel = ({ item }: DrawingInteractivePanelProps) => {
   const colors = useColors()
+  const onLikePost = useLikeDrawingRequest(item)
 
   return (
     <View>
@@ -20,6 +22,10 @@ const DrawingInteractivePanel = ({ item }: DrawingInteractivePanelProps) => {
         <LikeButton
           likesCount={item.likes}
           style={[styles.button, styles.likeButton]}
+          onPress={onLikePost}
+          color={colors.icon}
+          active={item.is_liked}
+          activeColor={colors.likesIcon}
         />
         <View style={styles.interactionBlock}>
           <ShareButton
@@ -29,6 +35,8 @@ const DrawingInteractivePanel = ({ item }: DrawingInteractivePanelProps) => {
           <FavouriteButton
             color={colors.icon}
             style={[styles.button, styles.favouriteButton]}
+            active={item.is_saved}
+            //
           />
         </View>
       </View>

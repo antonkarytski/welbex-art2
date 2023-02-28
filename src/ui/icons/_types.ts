@@ -5,3 +5,7 @@ export type IconProps = {
   color?: string
   style?: StyleProp<ViewStyle>
 }
+
+export type FilledIconProps = IconProps & {
+  fill?: string
+}

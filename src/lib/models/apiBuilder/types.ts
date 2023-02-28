@@ -20,7 +20,12 @@ export type RequestProps<Body = any> = RequestRouteSettings & RequestData<Body>
 export type MapperFn<Body> = (
   props: Body
 ) =>
-  | Partial<Omit<RequestData, 'url'> & { url: string | number }>
+  | Partial<
+      Omit<RequestData, 'url'> & {
+        url: string | number
+        entityId?: number | string
+      }
+    >
   | string
   | number
 export type RequestPropsGetter<T> = unknown extends T

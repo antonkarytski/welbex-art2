@@ -1,16 +1,17 @@
+import { useStore } from 'effector-react'
 import React, { useCallback } from 'react'
 import { FlatList, StyleSheet } from 'react-native'
+import { ArtWork } from '../../api/parts/arts/types'
 import { noop } from '../../lib/helpers'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import { drawingKeyExtractor } from '../drawing/helpers'
-import { Drawing } from '../drawing/types'
 import { useThemedStyleList } from '../themed/hooks'
 import { localeAgeTextShort } from '../user/UserDescription'
 import GalleryItem from './GalleryItem'
 import { useGallery } from './hooks'
-import { getGalleryNextPageRequest } from './request'
+import { galleryRequest } from './request'
 import { galleryItemThemedStyles } from './styles'
 import { GalleryType } from './types'
 
@@ -27,7 +28,7 @@ const GalleryList = ({ type }: GalleryListProps) => {
   const text = useText()
 
   const renderItem = useCallback(
-    ({ item }: { item: Drawing }) => {
+    ({ item }: { item: ArtWork }) => {
       return (
         <GalleryItem
           onPress={(drawing) =>
@@ -42,9 +43,7 @@ const GalleryList = ({ type }: GalleryListProps) => {
     [styles, navigate, text]
   )
 
-  const getNextPage = useCallback(() => {
-    getGalleryNextPageRequest({ type }).catch(noop)
-  }, [type])
+  const getNextPage = () => galleryRequest.getNext()
 
   return (
     <FlatList

@@ -1,21 +1,23 @@
 import React from 'react'
 import { View } from 'react-native'
+import { ArtWork } from '../../api/parts/arts/types'
 import LikeButton from '../../ui/buttons/LikeButton'
 import ShareButton from '../../ui/buttons/ShareButton'
 import ImageCard from '../../ui/cards/ImageCard'
-import { Drawing } from '../drawing/types'
+import { useColors } from '../themed'
 import UserDescription, { AgeTextGenerator } from '../user/UserDescription'
 import { GalleryItemStyles } from './styles'
 
 type GalleryItemProps = {
-  item: Drawing
+  item: ArtWork
   style: GalleryItemStyles
-  onPress?: (item: Drawing) => void
+  onPress?: (item: ArtWork) => void
   ageTextGenerator?: AgeTextGenerator
 }
 
 const GalleryItem = React.memo(
   ({ item, style, onPress, ageTextGenerator }: GalleryItemProps) => {
+    const colors = useColors()
     /**
      * TODO: Если на кнопку "нравится" нажимает не авторизованный пользователь,
      * то при нажатии должен происходить переход на страницу логина
@@ -26,7 +28,7 @@ const GalleryItem = React.memo(
         onPress={() => onPress?.(item)}
         style={style.container}
         imageHeight={240}
-        image={item.image}
+        image={{ uri: item.image_thumbnail }}
       >
         <View style={style.card}>
           <UserDescription
@@ -35,11 +37,17 @@ const GalleryItem = React.memo(
               subText: style.subText,
               name: style.name,
             }}
-            item={item.user}
+            item={item.author}
             ageTextGenerator={ageTextGenerator}
             shortenCountryName
           />
-          <LikeButton style={style.likeButton} likesCount={item.likesCount} />
+          <LikeButton
+            style={style.likeButton}
+            likesCount={item.likes}
+            color={colors.icon}
+            active={item.is_liked}
+            activeColor={colors.likesIcon}
+          />
           <ShareButton style={style.shareButton} />
         </View>
       </ImageCard>

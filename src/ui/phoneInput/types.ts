@@ -6,7 +6,11 @@ import { SearchableListModel } from '../../lib/models/model.search'
 import { PhoneInputModel } from '../../lib/models/phoneNumber/model.phoneNumber'
 import { InputStyles } from '../input/types'
 import { RenderItem } from '../selects/selectItem/types'
-import { DropdownSelectStyles, StringExtractor } from '../selects/types'
+import {
+  DropdownSelectPreset,
+  DropdownSelectStyles,
+  StringExtractor,
+} from '../selects/types'
 
 export type PhoneInputProps = {
   phoneModel: PhoneInputModel
@@ -29,7 +33,7 @@ export type CountrySelectablePhoneInputProps<T> = PhoneInputProps & {
   countries: T[]
   renderCountryItem: RenderItem<T>
   countryLabelExtractor: StringExtractor<T>
-  selectedCountryModel: StateModel<T>
+  countryModel: StateModel<T | null>
   countryCodeExtractor: (props: T) => CountryCode
   inputPlaceholder?: string
   selectPlaceholder?: string
@@ -39,4 +43,5 @@ export type CountrySelectablePhoneInputProps<T> = PhoneInputProps & {
     select?: DropdownSelectStyles
     input?: InputStyles
   }
+  preset?: DropdownSelectPreset
 }

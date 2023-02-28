@@ -6,12 +6,18 @@ type FavouriteButtonProps = {
   onPress?: () => void
   style?: StyleProp<ViewStyle>
   color?: string
+  active?: boolean
 }
 
-const FavouriteButton = ({ onPress, style, color }: FavouriteButtonProps) => {
+const FavouriteButton = ({
+  onPress,
+  style,
+  color,
+  active,
+}: FavouriteButtonProps) => {
   return (
     <TouchableOpacity style={style} onPress={onPress}>
-      <FavouriteIcon color={color} />
+      <FavouriteIcon color={color} fill={active ? color : 'none'} />
     </TouchableOpacity>
   )
 }
