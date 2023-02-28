@@ -1,20 +1,18 @@
-import { Effect, createEffect, createEvent, createStore } from 'effector'
+import { Effect, attach, createEffect, createEvent, restore } from 'effector'
 
-type ApiRequest<T> = Effect<any, T, Error>
+export const createRequestModel = <P, R>(request: Effect<P, R>) => {
+  const setData = createEvent<R>()
+  const update = createEffect<Partial<R>, R>()
+  const $data = restore(setData, null).on(update.doneData, (state, payload) =>
+    state
+      ? {
+          ...state,
+          ...payload,
+        }
+      : payload
+  )
 
-type RequestProps = void | Record<string, any> | number
-
-export const createRequestModel = <T>(request: ApiRequest<T>) => {
-  const setData = createEvent<T>()
-  const update = createEvent<Partial<T>>()
-  const $data = createStore<Partial<T> | null>(null)
-    .on(setData, (_, payload) => payload)
-    .on(update, (state, payload) => ({
-      ...state,
-      ...payload,
-    }))
-
-  const get = createEffect((props: RequestProps) => request(props))
+  const get = attach({ effect: request })
 
   get.done.watch(({ result }) => {
     setData(result)

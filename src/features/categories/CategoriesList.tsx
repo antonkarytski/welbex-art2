@@ -10,7 +10,7 @@ import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import { winnersRequest } from '../winners/request'
 import CardCategory from './Card.Category'
-import { categoriesRequest } from './request'
+import { categoriesListModel } from './request'
 import { categoryCardThemedStyles } from './styles'
 
 type CategoriesListProps = {
@@ -29,22 +29,22 @@ const CategoriesList = ({
     card: categoryCardThemedStyles,
   })
 
-  const categories = useStore(categoriesRequest.$items)
-  const isLoading = useStore(categoriesRequest.$isLoading)
+  const categories = useStore(categoriesListModel.$items)
+  const isLoading = useStore(categoriesListModel.$isLoading) // TODO: add loader
 
-  const nextPage = useStore(categoriesRequest.$nextPage)
+  const nextPage = useStore(categoriesListModel.$nextPage)
 
   const [isRefreshing, setIsRefreshing] = useState(false)
 
   const onRefresh = () => {
     setIsRefreshing(true)
-    Promise.all([winnersRequest.get, categoriesRequest.get]).finally(() =>
+    Promise.all([winnersRequest.get, categoriesListModel.get]).finally(() =>
       setIsRefreshing(false)
     )
   }
 
   const getNextPageSync = () => {
-    categoriesRequest.getNext()
+    categoriesListModel.getNext()
   }
 
   const renderItem = useCallback(
@@ -53,12 +53,8 @@ const CategoriesList = ({
     },
     [styles]
   )
-  return !categories.length && !isLoading ? (
-    <>
-      {ListHeaderComponent && <ListHeaderComponent />}
-      <Span label={t.noCategories} style={styles.common.noItemsNote} />
-    </>
-  ) : (
+
+  return (
     <Animated.FlatList
       style={styles.common.container}
       onRefresh={onRefresh}
@@ -71,6 +67,12 @@ const CategoriesList = ({
       keyExtractor={keyExtractor}
       ListFooterComponent={nextPage ? <Loader /> : null}
       onEndReached={getNextPageSync}
+      ListEmptyComponent={
+        <>
+          {ListHeaderComponent && <ListHeaderComponent />}
+          <Span label={t.noCategories} style={styles.common.noItemsNote} />
+        </>
+      }
     />
   )
 }

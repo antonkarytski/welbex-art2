@@ -2,8 +2,8 @@ import { useStore } from 'effector-react'
 import React, { useEffect, useRef, useState } from 'react'
 import { Animated, StyleSheet, View } from 'react-native'
 import {
-  categoryArtsRequest,
-  categoryRequest,
+  categoryArtsModel,
+  categoryDetailsModel,
 } from '../../features/categories/request'
 import CategoryGallery from '../../features/categories/specificCategory/CategoryGallery'
 import CategoryHeader from '../../features/categories/specificCategory/CategoryHeader'
@@ -19,9 +19,9 @@ const CategoryDetailsScreen = ({
   route,
 }: ScreenComponentProps<links.categoryDetails>) => {
   const categoryId = route.params.item.id
-  const category = useStore(categoryRequest.$data)
-  const isLoadingCategory = useStore(categoryRequest.$isLoading)
-  const isLoadingArts = useStore(categoryArtsRequest.$isLoading)
+  const category = useStore(categoryDetailsModel.$data)
+  const isLoadingCategory = useStore(categoryDetailsModel.$isLoading)
+  const isLoadingArts = useStore(categoryArtsModel.$isLoading)
 
   const { styles } = useThemedStyleList({
     common: themedStyles,
@@ -44,16 +44,16 @@ const CategoryDetailsScreen = ({
   })
 
   useEffect(() => {
-    categoryRequest.get(categoryId)
-    categoryArtsRequest.get({ id: categoryId })
+    categoryDetailsModel.get(categoryId)
+    categoryArtsModel.get({ id: categoryId })
   }, [categoryId])
 
   const [isRefreshing, setIsRefreshing] = useState(false)
 
   const onRefresh = async () => {
     setIsRefreshing(true)
-    await categoryRequest.get(categoryId)
-    await categoryArtsRequest.get({ id: categoryId })
+    await categoryDetailsModel.get(categoryId)
+    await categoryArtsModel.get({ id: categoryId })
     setIsRefreshing(false)
   }
 

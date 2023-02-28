@@ -11,7 +11,7 @@ import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import { ageCategory, userName } from '../user/helpers'
 import CardWinner from './Card.Winner'
-import { winnersRequest } from './request'
+import { winnersListModel } from './request'
 import { winnerCardThemedStyles } from './styles'
 
 const keyExtractor = ({ art }: WinnerItem) => art.id.toString()
@@ -26,10 +26,10 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
     card: winnerCardThemedStyles,
   })
   const text = useText()
-  const winners = useStore(winnersRequest.$items)
-  const nextPage = useStore(winnersRequest.$nextPage)
+  const winners = useStore(winnersListModel.$items)
+  const nextPage = useStore(winnersListModel.$nextPage)
   const getNext = () => {
-    winnersRequest.getNext()
+    winnersListModel.getNext()
   }
 
   const renderWinnerItem = useCallback(
@@ -51,20 +51,19 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
   return (
     <View onLayout={onLayout} style={styles.common.container}>
       <H2 style={styles.common.title} label={text.winners} />
-      {winners.length ? (
-        <FlatList
-          contentContainerStyle={styles.common.listContent}
-          showsHorizontalScrollIndicator={false}
-          horizontal
-          data={winners}
-          renderItem={renderWinnerItem}
-          keyExtractor={keyExtractor}
-          ListFooterComponent={nextPage ? <Loader /> : null}
-          onEndReached={getNext}
-        />
-      ) : (
-        <Span label={text.noWinners} style={styles.common.noWinnersText} />
-      )}
+      <FlatList
+        contentContainerStyle={styles.common.listContent}
+        showsHorizontalScrollIndicator={false}
+        horizontal
+        data={winners}
+        renderItem={renderWinnerItem}
+        keyExtractor={keyExtractor}
+        ListFooterComponent={nextPage ? <Loader /> : null}
+        onEndReached={getNext}
+        ListEmptyComponent={
+          <Span label={text.noWinners} style={styles.common.noWinnersText} />
+        }
+      />
     </View>
   )
 }

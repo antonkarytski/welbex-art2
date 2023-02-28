@@ -33,7 +33,7 @@ export const defaultDropdownTabPreset: PresetDropdownTabStates = {
 }
 
 type UseDropdownTabPresetProps = {
-  preset?: PresetDropdownTabStates
+  preset: PresetDropdownTabStates
   isOpened?: boolean
 }
 
@@ -41,16 +41,16 @@ export const useDropdownTabPreset = ({
   preset,
   isOpened,
 }: UseDropdownTabPresetProps) => {
-  const [presetState, setPresetState] = useState(preset?.common)
+  const [presetState, setPresetState] = useState(preset.common)
 
   const activeStyles = useMemo(
     () =>
       StyleSheet.create({
-        label: { color: presetState?.label },
-        tabLabel: { color: presetState?.tabLabel },
+        label: { color: presetState.label },
+        tabLabel: { color: presetState.tabLabel },
         tab: {
-          borderColor: presetState?.tabBorder,
-          backgroundColor: presetState?.tabBackground,
+          borderColor: presetState.tabBorder,
+          backgroundColor: presetState.tabBackground,
         },
       }),
     [presetState]
@@ -62,5 +62,5 @@ export const useDropdownTabPreset = ({
     setPresetState(preset?.common)
   }, [isOpened, preset])
 
-  return { ...activeStyles, iconColor: presetState?.icon }
+  return { ...activeStyles, iconColor: presetState.icon }
 }

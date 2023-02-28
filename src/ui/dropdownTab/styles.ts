@@ -25,10 +25,6 @@ export const styles = StyleSheet.create<DropdownStyles>({
     borderColor: defaultColors.detailsInactive,
     backgroundColor: defaultColors.formFieldBackground,
   },
-  tab__opened: {
-    borderColor: defaultColors.detailsActive,
-    backgroundColor: '#ffffff',
-  },
   tabLabel: {
     marginRight: 10,
     fontSize: 16,

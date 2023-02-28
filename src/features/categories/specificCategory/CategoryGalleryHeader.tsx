@@ -15,10 +15,8 @@ const CategoryGalleryHeader = ({ header, item }: CategoryGalleryProps) => {
   return (
     <>
       {header}
-      <>
-        <CategoryDescription item={item} />
-        <H2 label={text.participantsDrawings} />
-      </>
+      <CategoryDescription item={item} />
+      <H2 label={text.participantsDrawings} />
     </>
   )
 }

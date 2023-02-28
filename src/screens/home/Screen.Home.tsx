@@ -2,7 +2,7 @@ import { useStore } from 'effector-react'
 import React, { useEffect, useRef, useState } from 'react'
 import { Animated, StyleSheet, View } from 'react-native'
 import CategoriesList from '../../features/categories/CategoriesList'
-import { categoriesRequest } from '../../features/categories/request'
+import { categoriesListModel } from '../../features/categories/request'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import WinnersBlock from '../../features/winners/WinnersBlock'
@@ -31,7 +31,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     winnersRequest.get()
-    categoriesRequest.get()
+    categoriesListModel.get()
   }, [])
 
   return (

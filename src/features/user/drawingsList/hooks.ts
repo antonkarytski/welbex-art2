@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from 'react'
+import { getUserDrawings } from '../../../_mock/usersDrawings'
 import { Profile, UserShort } from '../../../api/parts/users/types'
 import { Drawing } from '../../drawing/types'
 import { getUserDrawingsList } from '../request.drawingList'
@@ -13,22 +14,25 @@ export function useDrawingsList(
 
   const getFirstPage = useCallback(() => {
     if (!item) return
-    getUserDrawingsList({ userId: item.id, page: 0, type }).then(
-      ({ result, next }) => {
-        nextPage.current = next
-        setList(result ?? [])
-      }
-    )
+    setList(getUserDrawings(1, type, 0).result || [])
+    // getUserDrawingsList({ userId: item.id, page: 0, type }).then(
+    //   ({ result, next }) => {
+    //     nextPage.current = next
+    //     setList(result ?? [])
+    //   }
+    // )
   }, [item, type])
 
   const getNextPage = useCallback(() => {
     if (!item || nextPage.current === null) return
-    getUserDrawingsList({ userId: item.id, page: nextPage.current, type }).then(
-      ({ result, next }) => {
-        nextPage.current = next
-        if (result) setList((currentList) => [...currentList, ...result])
-      }
-    )
+    setList(getUserDrawings(1, type, nextPage.current).result || [])
+
+    // getUserDrawingsList({ userId: item.id, page: nextPage.current, type }).then(
+    //   ({ result, next }) => {
+    //     nextPage.current = next
+    //     if (result) setList((currentList) => [...currentList, ...result])
+    //   }
+    // )
   }, [type, item])
 
   return [list, getFirstPage, getNextPage] as [

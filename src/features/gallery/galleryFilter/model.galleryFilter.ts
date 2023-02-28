@@ -6,6 +6,7 @@ import {
   createCountryModel,
   createSearchCountryModel,
 } from '../../countries/model.countriesDropdown'
+import { countOfFilteredArtsModel } from './request'
 
 export const categoryModel = createStateModel<null | CategoryResponse>(null)
 export const countryModel = createCountryModel()
@@ -39,3 +40,7 @@ export const $galleryFilterForm = combine(
     }
   }
 )
+
+$galleryFilterForm.watch((data) => {
+  countOfFilteredArtsModel.get(data)
+})

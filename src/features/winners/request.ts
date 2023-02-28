@@ -3,7 +3,7 @@ import { createPaginationListModel } from '../../api/pagination/request'
 
 export const WINNERS_PAGE_SIZE = 5
 
-export const winnersRequest = createPaginationListModel({
+export const winnersListModel = createPaginationListModel({
   pageSize: WINNERS_PAGE_SIZE,
   request: api.categories.winners,
 })

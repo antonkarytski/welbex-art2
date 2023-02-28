@@ -29,7 +29,7 @@ export const createPaginationListModel = <
       props,
     }),
     effect: createEffect(({ props, nextPage }: GetNextProps<Q>) => {
-      if (!nextPage) throw new Error('No more pages')
+      if (!nextPage) return
       return request({ page: nextPage, size: pageSize, ...props })
     }),
   })
