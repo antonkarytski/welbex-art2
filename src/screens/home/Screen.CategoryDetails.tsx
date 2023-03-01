@@ -75,14 +75,10 @@ const CategoryDetailsScreen = ({
           },
         ]}
       >
-        {category.image ? (
-          <ImageGradient
-            imageHeight={height}
-            source={{ uri: category.image }}
-          />
-        ) : (
-          <View style={[styles.common.imageSkeleton, { height }]} />
-        )}
+        <ImageGradient
+          imageHeight={height}
+          source={category.image ? { uri: category.image } : null}
+        />
       </Animated.View>
       <Animated.View style={[styles.common.overlay, overlayAnimatedStyles]} />
       <CategoryScreenHeader
@@ -124,11 +120,6 @@ const themedStyles = createThemedStyle((colors) =>
     headerImageContainer: {
       position: 'absolute',
       width: '100%',
-    },
-    imageSkeleton: {
-      width: '100%',
-      zIndex: -1,
-      backgroundColor: colors.lightAccentDetails,
     },
   })
 )

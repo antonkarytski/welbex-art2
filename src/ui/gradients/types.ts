@@ -17,5 +17,5 @@ export type ImageGradientProps = Omit<GradientsProps, 'stopOffset'> & {
   startOffset?: string
   endOffset?: string
   imageHeight: number
-  source: ImageProps['source']
+  source: ImageProps['source'] | null
 }
