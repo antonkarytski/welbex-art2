@@ -11,8 +11,8 @@ import AppHeader from '../../navigation/elements/AppHeader'
 import { themedPrimaryMotionGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
-import Loader from '../../ui/Loader'
 import MotionGradient from '../../ui/gradients/MotionGradient'
+import Loader from '../../ui/loaders/Loader'
 
 export default function HomeScreen() {
   const [headerHeight, setHeaderHeight] = useState(0)

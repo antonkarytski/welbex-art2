@@ -1,5 +1,5 @@
 // TODO
-import Span from './Span'
+import Span from '../Span'
 
 const Loader = () => {
   return (

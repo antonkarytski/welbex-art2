@@ -12,8 +12,8 @@ import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { links } from '../../navigation/links'
 import { ScreenComponentProps } from '../../navigation/types.screenProps'
-import Loader from '../../ui/Loader'
 import ImageGradient from '../../ui/gradients/ImageGradient'
+import CategoryScreenSkeleton from '../../ui/loaders/Skeleton.CategoryScreen'
 
 const CategoryDetailsScreen = ({
   route,
@@ -61,8 +61,10 @@ const CategoryDetailsScreen = ({
     transform: [{ translateY }],
   }
 
-  if ((isLoadingCategory || isLoadingArts) && !isRefreshing) return <Loader />
-  if (!category) return <CategoryScreenHeader />
+  if ((isLoadingCategory || isLoadingArts) && !isRefreshing) {
+    return <CategoryScreenSkeleton />
+  }
+  if (!category) return <CategoryScreenHeader transparent={false} />
 
   return (
     <View style={styles.common.container}>
@@ -113,7 +115,7 @@ const themedStyles = createThemedStyle((colors) =>
     container: { flex: 1 },
     overlay: {
       position: 'absolute',
-      backgroundColor: 'white',
+      backgroundColor: colors.screenBackground,
       width: '100%',
       height: 1000,
     },

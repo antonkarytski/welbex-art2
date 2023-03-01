@@ -18,8 +18,8 @@ import { ScreenComponentProps } from '../navigation/types.screenProps'
 import { SCREEN_CONTENT_WIDTH } from '../styles/constants'
 import { themedShadow5Style } from '../styles/shadows'
 import { useText } from '../translations/hook'
-import Loader from '../ui/Loader'
 import PresetButton from '../ui/buttons/PresetButton'
+import Loader from '../ui/loaders/Loader'
 
 const DrawingDetailsScreen = ({
   route,

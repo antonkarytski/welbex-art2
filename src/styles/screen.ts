@@ -17,9 +17,6 @@ export const screenHeaderThemedStylesDark = createThemedStyle((colors) =>
     line: {
       backgroundColor: colors.appHeaderBorderDark,
     },
-    container: {
-      backgroundColor: colors.screenBackground,
-    },
   })
 )
 
