@@ -1,20 +1,34 @@
+import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { ArtWork } from '../../api/parts/arts/types'
+import { useNavigate } from '../../navigation'
+import { links } from '../../navigation/links'
 import Span from '../../ui/Span'
 import FavouriteButton from '../../ui/buttons/FavouriteButton'
 import LikeButton from '../../ui/buttons/LikeButton'
 import ShareButton from '../../ui/buttons/ShareButton'
+import { $isAuth } from '../auth/model'
 import { useColors } from '../themed'
-import { useLikeDrawingRequest } from './request'
+import { toggleLike } from './request'
 
 type DrawingInteractivePanelProps = {
   item: ArtWork
+  onLikeChange?: (isLiked: boolean) => void
 }
 
-const DrawingInteractivePanel = ({ item }: DrawingInteractivePanelProps) => {
+const DrawingInteractivePanel = ({
+  item,
+  onLikeChange,
+}: DrawingInteractivePanelProps) => {
   const colors = useColors()
-  const onLikePost = useLikeDrawingRequest(item)
+
+  const navigate = useNavigate()
+  const isAuth = useStore($isAuth)
+  const onLikeDrawing = () => {
+    if (!isAuth) return navigate(links.login)
+    toggleLike(item).then(() => onLikeChange?.(!item.is_liked))
+  }
 
   return (
     <View>
@@ -22,7 +36,7 @@ const DrawingInteractivePanel = ({ item }: DrawingInteractivePanelProps) => {
         <LikeButton
           likesCount={item.likes}
           style={[styles.button, styles.likeButton]}
-          onPress={onLikePost}
+          onPress={onLikeDrawing}
           color={colors.icon}
           active={item.is_liked}
           activeColor={colors.likesIcon}

@@ -1,6 +1,7 @@
 import { attach } from 'effector'
 import { $isAuth } from '../../../features/auth/model'
-import { getMime } from '../../../lib/files/mimeType'
+import { formDataFromList } from '../../../lib/files/formData'
+import { imageToFile } from '../../../lib/files/image'
 import { ContentType } from '../../../lib/models/apiBuilder/types'
 import { apiManager } from '../../apiManager'
 import {
@@ -51,20 +52,14 @@ const countOfFiltered = arts.get<
 const create = arts.post<ArtWorkCreateResponse, ArtWorkCreateProps>({
   endpoint: 'create',
   contentType: ContentType.FORM_DATA,
-  fn: (props) => {
-    const formData = new FormData()
-    formData.append('image', {
-      ...props.image,
-      type: getMime(props.image.uri),
-    } as any as Blob)
-    formData.append('child_identity_document', {
-      ...props.childDocument,
-      type: getMime(props.childDocument.uri),
-    } as any as Blob)
-    formData.append('title', props.title)
-    formData.append('category_id', props.categoryId.toString())
+  fn: ({ image, childDocument, title, categoryId }) => {
     return {
-      body: formData,
+      body: formDataFromList({
+        image,
+        title,
+        child_identity_document: childDocument,
+        category_id: categoryId,
+      }),
     }
   },
 })
@@ -79,4 +74,5 @@ export const artsApi = {
   unsavePost,
   downloadThumbnailDrawing,
   downloadFullsizeDrawing,
+  create,
 }

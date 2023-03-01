@@ -21,7 +21,7 @@ const selectedCategoryModel = createStateModel<null | CategoryResponse>(null)
 
 selectedCategoryModel.$state.watch((value) => {
   if (value) {
-    createPostFormModel.setField({ value: value.name, key: 'category' })
+    createPostFormModel.setField({ value: value.id, key: 'category' })
   }
 })
 
@@ -52,12 +52,6 @@ export default function AddPostDescriptionScreen({
       key: createPostFormModel.fields.imageFile,
     })
   }, [assets])
-
-  //{
-  //         uri: asset.uri,
-  //         size: assets.size,
-  //         name: asset.fileName,
-  //       }
 
   return (
     <View style={styles.common.container}>
@@ -97,7 +91,12 @@ export default function AddPostDescriptionScreen({
         />
         <PresetButton
           style={styles.common.button}
-          onPress={() => {}}
+          onPress={() => {
+            createPostFormModel.validation.cast().then(({ isValid }) => {
+              if (isValid) {
+              }
+            })
+          }}
           label={text.submit}
         />
       </ScrollView>

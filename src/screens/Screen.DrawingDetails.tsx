@@ -1,12 +1,13 @@
-import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
+import { api } from '../api'
 import DrawingInteractionPanel from '../features/drawing/DrawingInteractivePanel'
-import { artWorkRequest } from '../features/drawing/request'
 import AutoHeightImage from '../features/images/AutoHeightImage'
 import { createThemedStyle } from '../features/themed'
 import { useThemedStyleList } from '../features/themed/hooks'
 import UserCardPreview from '../features/user/UserCardPreview'
+import { noop } from '../lib/helpers'
+import { useRequest } from '../lib/models/apiBuilder/hooks'
 import { useNavigate } from '../navigation'
 import AppHeader from '../navigation/elements/AppHeader'
 import { transparentThemedHeaderStyles } from '../navigation/elements/styles'
@@ -25,8 +26,7 @@ const DrawingDetailsScreen = ({
   const navigate = useNavigate()
   const text = useText()
   const drawingId = route.params.item.id
-  const drawing = useStore(artWorkRequest.$data)
-  const isLoading = useStore(artWorkRequest.$isLoading)
+  const drawing = useRequest(api.arts.specific)
 
   const { styles, colors } = useThemedStyleList({
     common: themedStyles,
@@ -34,11 +34,8 @@ const DrawingDetailsScreen = ({
   })
 
   useEffect(() => {
-    artWorkRequest.get(drawingId)
+    api.arts.specific(drawingId).catch(noop)
   }, [drawingId])
-
-  if (isLoading) return <Loader />
-  if (!drawing) return null
 
   return (
     <View style={styles.common.container}>
@@ -48,31 +45,36 @@ const DrawingDetailsScreen = ({
         settingsAvailable
         iconsColor={colors.appHeaderIconDark}
       />
-
-      <ScrollView bounces={false} style={styles.common.contentContainer}>
-        <UserCardPreview
-          onAvatarPress={(item) => {
-            navigate(links.userProfile, { item })
-          }}
-          onSubscribePress={() => {
-            navigate(links.subscriptionCurrent)
-          }}
-          item={drawing.author}
-        />
-        <AutoHeightImage
-          image={{ uri: drawing.image_thumbnail }}
-          widthGenerator={() => {
-            const screen = Dimensions.get('screen')
-            return screen.width - 40
-          }}
-        />
-        <DrawingInteractionPanel item={drawing} />
-        <PresetButton
-          style={styles.common.downloadButton}
-          label={text.download}
-          onPress={() => {}}
-        />
-      </ScrollView>
+      {drawing.data && (
+        <ScrollView bounces={false} style={styles.common.contentContainer}>
+          <UserCardPreview
+            onAvatarPress={(item) => {
+              navigate(links.userProfile, { item })
+            }}
+            onSubscribePress={() => {
+              navigate(links.subscriptionCurrent)
+            }}
+            item={drawing.data.author}
+          />
+          <AutoHeightImage
+            image={{ uri: drawing.data.image_thumbnail }}
+            widthGenerator={() => {
+              const screen = Dimensions.get('screen')
+              return screen.width - 40
+            }}
+          />
+          <DrawingInteractionPanel
+            onLikeChange={(isLiked) => drawing.update({ is_liked: isLiked })}
+            item={drawing.data}
+          />
+          <PresetButton
+            style={styles.common.downloadButton}
+            label={text.download}
+            onPress={() => {}}
+          />
+        </ScrollView>
+      )}
+      {!drawing.data && drawing.isLoading && <Loader />}
     </View>
   )
 }
