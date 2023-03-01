@@ -1,50 +1,16 @@
-import { HStack, Skeleton } from 'native-base'
+import { Skeleton } from 'native-base'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { SCREEN_WIDTH, getHeight } from '../../lib/device/dimensions'
-import {
-  SCREEN_CONTENT_WIDTH,
-  SCREEN_PADDING_HORIZONTAL,
-} from '../../styles/constants'
-
-type CategorySkeletonProps = {
-  colors?: {
-    startColor: string
-    endColor: string
-  }
-}
+import { getHeight } from '../../lib/device/dimensions'
+import DrawingsRowSkeleton from './Skeleton.DrawingRow'
+import { ColorsProp } from './types'
 
 const defaultColors = {
   startColor: 'gray.200',
   endColor: 'gray.100',
 }
 
-const DrawingsRowSkeleton = ({ colors }: CategorySkeletonProps) => {
-  const drawingWidth = (SCREEN_WIDTH - SCREEN_PADDING_HORIZONTAL * 3) / 2
-  const drawingProps = {
-    style: {
-      width: drawingWidth,
-      height: drawingWidth,
-    },
-    rounded: 'xl',
-    ...colors,
-  }
-
-  return (
-    <HStack
-      width={SCREEN_CONTENT_WIDTH}
-      justifyContent={'space-between'}
-      style={styles.item}
-    >
-      <Skeleton {...drawingProps} />
-      <Skeleton {...drawingProps} />
-    </HStack>
-  )
-}
-
-const CategoryScreenSkeleton = ({
-  colors = defaultColors,
-}: CategorySkeletonProps) => {
+const CategoryScreenSkeleton = ({ colors = defaultColors }: ColorsProp) => {
   return (
     <View style={styles.container}>
       <Skeleton {...colors} style={[styles.item, styles.header]} />
@@ -61,7 +27,7 @@ const CategoryScreenSkeleton = ({
           {...colors}
           style={[styles.item, styles.button]}
         />
-        <DrawingsRowSkeleton colors={colors} />
+        <DrawingsRowSkeleton colors={colors} style={styles.item} />
         <DrawingsRowSkeleton colors={colors} />
       </View>
     </View>
