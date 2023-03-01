@@ -1,7 +1,7 @@
 import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { ArtWork } from '../../api/parts/arts/types'
+import { ArtWork, ArtWorkGeneral } from '../../api/parts/arts/types'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import Span from '../../ui/Span'
@@ -13,8 +13,12 @@ import { useColors } from '../themed'
 import { toggleLike } from './request'
 
 type DrawingInteractivePanelProps = {
-  item: ArtWork
+  item: ArtWorkGeneral
   onLikeChange?: (isLiked: boolean) => void
+}
+
+function isAuthorizedArtWork(item: ArtWorkGeneral | ArtWork): item is ArtWork {
+  return (item as ArtWork).is_liked !== undefined
 }
 
 const DrawingInteractivePanel = ({
@@ -50,7 +54,6 @@ const DrawingInteractivePanel = ({
             color={colors.icon}
             style={[styles.button, styles.favouriteButton]}
             active={item.is_saved}
-            //
           />
         </View>
       </View>

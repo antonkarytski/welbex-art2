@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
-import { api } from '../api'
 import DrawingInteractionPanel from '../features/drawing/DrawingInteractivePanel'
+import { getArtWorkRequest } from '../features/drawing/request'
 import AutoHeightImage from '../features/images/AutoHeightImage'
 import { createThemedStyle } from '../features/themed'
 import { useThemedStyleList } from '../features/themed/hooks'
@@ -26,7 +26,7 @@ const DrawingDetailsScreen = ({
   const navigate = useNavigate()
   const text = useText()
   const drawingId = route.params.item.id
-  const drawing = useRequest(api.arts.specific)
+  const drawing = useRequest(getArtWorkRequest)
 
   const { styles, colors } = useThemedStyleList({
     common: themedStyles,
@@ -34,7 +34,7 @@ const DrawingDetailsScreen = ({
   })
 
   useEffect(() => {
-    api.arts.specific(drawingId).catch(noop)
+    getArtWorkRequest(drawingId).catch(noop)
   }, [drawingId])
 
   return (
@@ -64,7 +64,16 @@ const DrawingDetailsScreen = ({
             }}
           />
           <DrawingInteractionPanel
-            onLikeChange={(isLiked) => drawing.update({ is_liked: isLiked })}
+            onLikeChange={(isLiked) =>
+              drawing.set((current) => {
+                if (!current) return null
+                return {
+                  ...current,
+                  is_liked: isLiked,
+                  likes: isLiked ? current.likes + 1 : current.likes - 1,
+                }
+              })
+            }
             item={drawing.data}
           />
           <PresetButton

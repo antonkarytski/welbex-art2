@@ -62,7 +62,7 @@ export class FormModel<T extends Record<string, any>, R = any> {
 
     this.submit = attach({
       source: this.$store,
-      mapParams: (_, payload) => payload,
+      mapParams: (_: void, store) => store,
       effect: createEffect<T, any extends R ? undefined : R>(async (props) => {
         if (this.isValidateOnSubmit) {
           const result = await this.validation.cast()

@@ -14,7 +14,7 @@ type ApiEndpointProps = {
     props: DoRequestProps<Params>
   ) => Promise<Response>
 } & CreateApiEndpointSettings
-type SpecificRequestProps<Params> =
+export type SpecificRequestProps<Params> =
   | Omit<CreateApiEndpointRequest<Params>, 'method'>
   | MapperFn<Params>
   | string
@@ -43,6 +43,11 @@ export class ApiEndpoint {
 
   public protect() {
     this._endpoint.protect()
+    return this
+  }
+
+  public unprotect() {
+    this._endpoint.unprotect()
     return this
   }
 
