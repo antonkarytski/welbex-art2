@@ -1,4 +1,6 @@
 import { apiManager } from '../../apiManager'
+import { formDataFromList } from '../../../lib/files/formData'
+import { ContentType } from '../../../lib/models/apiBuilder/types'
 import {
   AllArtWorksProps,
   AllArtWorksResponse,
@@ -6,6 +8,8 @@ import {
   ArtWorkWhileUnauthourized,
   ArtWorksFilterProps,
   CountOfFilteredArtsResponse,
+  ArtWorkCreateProps,
+  ArtWorkCreateResponse,
 } from './types'
 
 const arts = apiManager.endpoint('arts').protect()
@@ -52,6 +56,21 @@ const countOfFiltered = arts.get<
   ArtWorksFilterProps
 >('total')
 
+const create = arts.post<ArtWorkCreateResponse, ArtWorkCreateProps>({
+  endpoint: 'create',
+  contentType: ContentType.FORM_DATA,
+  fn: ({ image, childDocument, title, categoryId }) => {
+    return {
+      body: formDataFromList({
+        image,
+        title,
+        child_identity_document: childDocument,
+        category_id: categoryId,
+      }),
+    }
+  },
+})
+
 export const artsApi = {
   all,
   best,
@@ -66,4 +85,5 @@ export const artsApi = {
   unsavePost,
   downloadThumbnailDrawing,
   downloadFullsizeDrawing,
+  create,
 }

@@ -46,7 +46,7 @@ export function prepareRequestData<Body>({
     if (contentType === ContentType.JSON) {
       data.body = JSON.stringify(body)
     }
-    if (contentType === ContentType.FORM) {
+    if (isContentTypeFormData(contentType)) {
       data.body = body as any as FormData
     }
   }
@@ -83,4 +83,8 @@ export function convertToFormData(list: Record<string, any>) {
 
 export function isObjectNotFormData(body: any): body is FormData {
   return body && typeof body === 'object' && !(body instanceof FormData)
+}
+
+export function isContentTypeFormData(type?: string) {
+  return type === ContentType.FORM_DATA || type === ContentType.FORM_ENCODED
 }
