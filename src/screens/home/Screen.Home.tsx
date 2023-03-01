@@ -2,11 +2,11 @@ import { useStore } from 'effector-react'
 import React, { useEffect, useRef, useState } from 'react'
 import { Animated, StyleSheet, View } from 'react-native'
 import CategoriesList from '../../features/categories/CategoriesList'
-import { categoriesRequest } from '../../features/categories/request'
+import { categoriesListModel } from '../../features/categories/request'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import WinnersBlock from '../../features/winners/WinnersBlock'
-import { winnersRequest } from '../../features/winners/request'
+import { winnersListModel } from '../../features/winners/request'
 import AppHeader from '../../navigation/elements/AppHeader'
 import { themedPrimaryMotionGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
@@ -30,8 +30,8 @@ export default function HomeScreen() {
   // const isWinnersLoading = useStore($isWinnersLoading)
 
   useEffect(() => {
-    winnersRequest.get()
-    categoriesRequest.get()
+    winnersListModel.get()
+    categoriesListModel.get()
   }, [])
 
   return (

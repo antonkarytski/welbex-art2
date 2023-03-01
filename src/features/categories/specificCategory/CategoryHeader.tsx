@@ -7,14 +7,14 @@ import H1 from '../../../ui/H1'
 import Span from '../../../ui/Span'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyle } from '../../themed/hooks'
-import { categoryRequest } from '../request'
+import { categoryDetailsModel } from '../request'
 
 type CategoryDetailsHeaderProps = {
   onLayout?: ViewProps['onLayout']
 }
 
 const CategoryHeader = ({ onLayout }: CategoryDetailsHeaderProps) => {
-  const category = useStore(categoryRequest.$data)
+  const category = useStore(categoryDetailsModel.$data)
   const currentLanguage = useStore(languageModel.$state)
   const styles = useThemedStyle(themedStyles)
 

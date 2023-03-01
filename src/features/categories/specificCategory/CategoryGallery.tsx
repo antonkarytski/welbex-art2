@@ -10,7 +10,7 @@ import Span from '../../../ui/Span'
 import DrawingsList from '../../drawing/DrawingsList'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyle } from '../../themed/hooks'
-import { categoryArtsRequest } from '../request'
+import { categoryArtsModel } from '../request'
 import CategoryGalleryHeader from './CategoryGalleryHeader'
 
 type CategoryGalleryProps = {
@@ -29,11 +29,11 @@ const CategoryGallery = ({
 }: CategoryGalleryProps) => {
   const text = useText()
   const styles = useThemedStyle(themedStyles)
-  const drawings = useStore(categoryArtsRequest.$items)
-  const isNextLoading = useStore(categoryArtsRequest.$isNextLoading)
+  const drawings = useStore(categoryArtsModel.$items)
+  const isNextLoading = useStore(categoryArtsModel.$isNextLoading)
 
   const getNextArts = () => {
-    categoryArtsRequest.getNext({ id: item.id })
+    categoryArtsModel.getNext({ id: item.id })
   }
 
   if (!drawings.length) {

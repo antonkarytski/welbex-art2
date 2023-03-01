@@ -22,21 +22,14 @@ export type DropdownTabProps = {
   style?: DropdownComponentStyles
   overlayBackgroundColor?: string
   onOpenDropdown?: Fn
-  iconColors?: {
-    opened: string
-    default: string
-  }
   preset?: PresetDropdownTabStates
 }
 
 export type DropdownStyles = {
   label?: TextStyle
-  activeLabel?: TextStyle
   dropdownContainer?: ViewStyle
   tab?: ViewStyle
-  tab__opened?: ViewStyle
   tabLabel?: TextStyle
-  tabLabel__opened?: TextStyle
   tabIcon?: ViewStyle
   tabInnerWrapper?: ViewStyle
   wrapper?: ViewStyle

@@ -12,13 +12,16 @@ export type ArtWorksFilterProps = {
 
 export type AllArtWorksProps = ArtWorksFilterProps & PaginatedListProps
 
-export type ArtWork = {
+export type ArtWorkWhileUnauthourized = {
   id: number
   title: string
   competition_id: number
   image_thumbnail: string
   author: UserShort
   likes: number
+}
+
+export type ArtWork = ArtWorkWhileUnauthourized & {
   is_liked: boolean
   is_saved: boolean
 }

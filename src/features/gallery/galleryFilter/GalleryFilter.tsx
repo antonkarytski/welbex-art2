@@ -26,7 +26,7 @@ import {
   drawingNameModel,
   resetGalleryFilter,
 } from './model.galleryFilter'
-import { countOfFilteredArtsRequest } from './request'
+import { countOfFilteredArtsModel } from './request'
 
 // TODO: ! change selects to multiSelects !
 
@@ -39,7 +39,7 @@ const GalleryFilter = () => {
   })
 
   const [drawingName, setDrawingName] = useStateStore(drawingNameModel)
-  const filterResult = useStore(countOfFilteredArtsRequest.$data)
+  const filterResult = useStore(countOfFilteredArtsModel.$data)
 
   const onShowResults = () => {}
 

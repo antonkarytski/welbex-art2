@@ -25,6 +25,12 @@ function DropdownSelect<Item extends Record<string, any>>({
     ...style?.select,
   }
 
+  const commonProps = {
+    showSelectedIcon: false,
+    preset: preset?.selectItem,
+    ItemSeparatorComponent: ItemSeparatorComponent || null,
+  }
+
   return (
     <DropdownTab
       label={label}
@@ -37,18 +43,14 @@ function DropdownSelect<Item extends Record<string, any>>({
         <SearchableSelect
           searchModel={searchModel}
           style={{ searchInput: style?.searchInput, ...selectStyles }}
-          preset={preset?.selectItem}
-          ItemSeparatorComponent={ItemSeparatorComponent || null}
-          showSelectedIcon={false}
+          {...commonProps}
           {...props}
         />
       ) : (
         <Select
-          showSelectedIcon={false}
           labelExtractor={labelExtractor}
           style={selectStyles}
-          preset={preset?.selectItem}
-          ItemSeparatorComponent={ItemSeparatorComponent || null}
+          {...commonProps}
           {...props}
         />
       )}

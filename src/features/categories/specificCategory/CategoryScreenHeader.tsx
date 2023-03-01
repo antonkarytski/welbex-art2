@@ -5,7 +5,7 @@ import ScreenHeader from '../../../navigation/elements/ScreenHeader'
 import { screenHeaderThemedStylesTransparent } from '../../../styles/screen'
 import { useText } from '../../../translations/hook'
 import { useTheme } from '../../themed/hooks'
-import { categoryRequest } from '../request'
+import { categoryDetailsModel } from '../request'
 
 type CategoryScreenHeaderProps = {
   onLayout?: ViewProps['onLayout']
@@ -19,7 +19,7 @@ const CategoryScreenHeader = ({
   contentHeight,
 }: CategoryScreenHeaderProps) => {
   const text = useText()
-  const category = useStore(categoryRequest.$data)
+  const category = useStore(categoryDetailsModel.$data)
   const [headerTitle, setHeaderTitle] = useState(text.category)
 
   const { styles, colors } = useTheme(screenHeaderThemedStylesTransparent)

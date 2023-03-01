@@ -13,7 +13,7 @@ const all = categories.get<CategoriesResponse, PaginatedListProps | void>('all')
 const winners = categories.get<WinnerResponse, PaginatedListProps | void>(
   'winners'
 )
-const specific = categories.get<SpecificCategoryResponse, number>((id) => id)
+const specific = categories.get<SpecificCategoryResponse, number>()
 const artWorks = categories.get<ArtWorksResponse, CategoryArtWorksProps>(
   ({ id, ...body }) => ({
     url: `${id}/arts/all`,

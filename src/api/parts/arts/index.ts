@@ -1,37 +1,44 @@
-import { attach } from 'effector'
-import { $isAuth } from '../../../features/auth/model'
-import { formDataFromList } from '../../../lib/files/formData'
-import { imageToFile } from '../../../lib/files/image'
-import { ContentType } from '../../../lib/models/apiBuilder/types'
 import { apiManager } from '../../apiManager'
+import { formDataFromList } from '../../../lib/files/formData'
+import { ContentType } from '../../../lib/models/apiBuilder/types'
 import {
   AllArtWorksProps,
   AllArtWorksResponse,
   ArtWork,
-  ArtWorkCreateProps,
-  ArtWorkCreateResponse,
+  ArtWorkWhileUnauthourized,
   ArtWorksFilterProps,
   CountOfFilteredArtsResponse,
+  ArtWorkCreateProps,
+  ArtWorkCreateResponse,
 } from './types'
 
 const arts = apiManager.endpoint('arts').protect()
+
 const all = arts.get<AllArtWorksResponse, AllArtWorksProps | void>({
   endpoint: 'all',
   withToken: false,
 })
 
-const getSpecificArt = arts.get<ArtWork, { id: number; isAuth: boolean }>(
-  ({ id, isAuth }) => ({
-    entityId: id,
-    withToken: isAuth ? true : false,
-  })
+const best = arts.get<AllArtWorksResponse, AllArtWorksProps | void>({
+  endpoint: 'all/best',
+  withToken: false,
+})
+
+const newArts = arts.get<AllArtWorksResponse, AllArtWorksProps | void>({
+  endpoint: 'all/new',
+  withToken: false,
+})
+
+const following = arts.get<AllArtWorksResponse, AllArtWorksProps | void>(
+  'all/following'
 )
 
-const specific = attach({
-  source: $isAuth,
-  mapParams: (id: number, isAuth: boolean) => ({ id, isAuth }),
-  effect: getSpecificArt,
-})
+const specific = arts.get<ArtWorkWhileUnauthourized, number>((id) => ({
+  entityId: id,
+  withToken: false,
+}))
+
+const specificProtected = arts.get<ArtWork, number>()
 
 const likePost = arts.put<ArtWork, any>((id) => `${id}/like`)
 const dislikePost = arts.put<ArtWork, number>((id) => `${id}/remove-like`)
@@ -66,7 +73,11 @@ const create = arts.post<ArtWorkCreateResponse, ArtWorkCreateProps>({
 
 export const artsApi = {
   all,
+  best,
+  following,
+  newArts,
   specific,
+  specificProtected,
   countOfFiltered,
   likePost,
   dislikePost,

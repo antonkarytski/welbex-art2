@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 import { Modal, TouchableOpacity, View } from 'react-native'
-import { defaultColors } from '../../features/themed/theme'
 import DropdownContainer from '../DropdownContainer'
 import Overlay from '../Overlay'
 import Row from '../Row'
@@ -18,9 +17,8 @@ function DropdownTab({
   indentFromTab = 4,
   style,
   overlayBackgroundColor,
-  iconColors,
   onOpenDropdown,
-  preset,
+  preset = defaultDropdownTabPreset,
 }: DropdownTabProps) {
   const dropdownButtonRef = useRef<TouchableOpacity>(null)
   const {
@@ -50,12 +48,7 @@ function DropdownTab({
     <View style={[styles.wrapper, style?.wrapper]}>
       {label && (
         <Span
-          style={[
-            styles.label,
-            style?.label,
-            isOpened && style?.activeLabel,
-            activeStyles.label,
-          ]}
+          style={[styles.label, style?.label, activeStyles.label]}
           weight={500}
         >
           {label}
@@ -65,32 +58,18 @@ function DropdownTab({
         ref={dropdownButtonRef}
         activeOpacity={0.6}
         onPress={handleOpenDropdown}
-        style={[
-          styles.tab,
-          style?.tab,
-          isOpened && [styles.tab__opened, style?.tab__opened],
-          activeStyles?.tab,
-        ]}
+        style={[styles.tab, activeStyles.tab, style?.tab]}
       >
         <Row style={[styles.tabInnerWrapper, style?.tabInnerWrapper]}>
           <Span
-            style={[
-              styles.tabLabel,
-              style?.tabLabel,
-              isOpened && style?.tabLabel__opened,
-              activeStyles?.tabLabel,
-            ]}
+            style={[styles.tabLabel, activeStyles.tabLabel, style?.tabLabel]}
           >
             {tabLabel}
           </Span>
           <ArrowIcon
             size={10}
             style={[style?.tabIcon, isOpened && styles.toggleIcon__opened]}
-            color={
-              activeStyles.iconColor || isOpened
-                ? iconColors?.opened || defaultColors.detailsActive
-                : iconColors?.default
-            }
+            color={activeStyles.iconColor}
           />
         </Row>
       </TouchableOpacity>

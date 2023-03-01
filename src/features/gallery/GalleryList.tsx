@@ -1,8 +1,6 @@
-import { useStore } from 'effector-react'
 import React, { useCallback } from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import { ArtWork } from '../../api/parts/arts/types'
-import { noop } from '../../lib/helpers'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
