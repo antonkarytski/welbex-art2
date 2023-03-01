@@ -1,19 +1,24 @@
-import { createEffect } from 'effector'
+import { Effect, Event, createEffect } from 'effector'
+import { createXhr } from '../../request/xhr'
 import { Endpoint, MethodSettings } from './Endpoint'
 import { DoRequestProps, MapperFn, Method } from './types'
 
 type CreateApiEndpointRequest<Params> = {
   fn?: MapperFn<Params>
 } & MethodSettings
+
 export type CreateApiEndpointSettings = {
   withToken?: boolean
 }
+
 type ApiEndpointProps = {
   endpoint: Endpoint
   requestHandler: <Response, Params>(
-    props: DoRequestProps<Params>
+    props: DoRequestProps<Params>,
+    driver?: typeof fetch
   ) => Promise<Response>
 } & CreateApiEndpointSettings
+
 export type SpecificRequestProps<Params> =
   | Omit<CreateApiEndpointRequest<Params>, 'method'>
   | MapperFn<Params>
@@ -66,10 +71,24 @@ export class ApiEndpoint {
     props: CreateApiEndpointRequest<Params>
   ) {
     const propsGetter = this._endpoint.method(props, props.fn)
-    return createEffect((params: Params) => {
+    const effect = createEffect((params: Params) => {
       const requestProps = propsGetter(params)
       return this.requestHandler<Response, Params>(requestProps)
-    })
+    }) as Effect<Params, Response> & ExtEffectMethods<Params, Response>
+
+    effect.withProgress = () => {
+      const effectWithProgress = effect as Effect<Params, Response> &
+        EffectProgressSettings &
+        ExtEffectMethods<Params, Response>
+      const xhr = createXhr()
+      effectWithProgress.use((params: Params) => {
+        const requestProps = propsGetter(params)
+        return this.requestHandler<Response, Params>(requestProps, xhr.request)
+      })
+      effectWithProgress.progress = xhr.progress
+      return effectWithProgress
+    }
+    return effect
   }
 
   public method<Response = any, Params = void>(
@@ -93,4 +112,12 @@ export class ApiEndpoint {
   public readonly put = this.specificMethodGetter('PUT')
   public readonly delete = this.specificMethodGetter('DELETE')
   public readonly patch = this.specificMethodGetter('PATCH')
+}
+
+type EffectProgressSettings = {
+  progress: Event<ProgressEvent>
+}
+
+type ExtEffectMethods<Params, Response> = {
+  withProgress: () => Effect<Params, Response> & EffectProgressSettings
 }

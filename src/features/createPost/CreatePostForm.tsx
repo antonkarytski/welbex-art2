@@ -1,9 +1,9 @@
 import { ImagePickerAsset } from 'expo-image-picker'
 import React, { useEffect } from 'react'
 import { ImageStyle, ScrollView, StyleSheet } from 'react-native'
-import { createStateModel } from 'altek-toolkit'
 import { CategoryResponse } from '../../api/parts/categories/types'
 import { noop } from '../../lib/helpers'
+import { useNavigate } from '../../navigation'
 import { themedPrimaryGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
 import H3 from '../../ui/H3'
@@ -24,6 +24,7 @@ type CreatePostFormProps = {
 
 const CreatePostForm = ({ category, initialAssets }: CreatePostFormProps) => {
   const text = useText()
+  const navigate = useNavigate()
   const { styles } = useThemedStyleList({
     common: themedStyles,
     gradient: themedPrimaryGradient,

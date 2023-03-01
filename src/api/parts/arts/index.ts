@@ -21,10 +21,7 @@ const following = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>(
   'following'
 )
 
-const specific = arts.get<ArtWorkGeneral, number>((id) => ({
-  url: id,
-  withToken: false,
-}))
+const specific = arts.get<ArtWorkGeneral, number>({ withToken: false })
 const specificProtected = arts.get<ArtWork, number>()
 
 const likePost = arts.put<ArtWork, number>((id) => `${id}/like`)
@@ -43,21 +40,22 @@ const countOfFiltered = arts.get<
   ArtWorksFilterProps
 >('total')
 
-const create = arts.post<ArtWorkCreateResponse, ArtWorkCreateProps>({
-  endpoint: 'create',
-  contentType: ContentType.FORM_DATA,
-  fn: ({ image, childDocument, title, categoryId }) => {
-    console.log(image, childDocument, title, categoryId)
-    return {
-      body: formDataFromList({
-        image,
-        title,
-        child_identity_document: childDocument,
-        category_id: categoryId,
-      }),
-    }
-  },
-})
+const create = arts
+  .post<ArtWorkCreateResponse, ArtWorkCreateProps>({
+    endpoint: 'create',
+    contentType: ContentType.FORM_DATA,
+    fn: ({ image, childDocument, title, categoryId }) => {
+      return {
+        body: formDataFromList({
+          image,
+          title,
+          child_identity_document: childDocument,
+          category_id: categoryId,
+        }),
+      }
+    },
+  })
+  .withProgress()
 
 export const artsApi = {
   all,

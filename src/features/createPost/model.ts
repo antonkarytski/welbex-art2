@@ -49,6 +49,10 @@ createPostFormModel.submit.done.watch(({ result }) => {
 createPostFormModel.submit.fail.watch((e) => {
   console.log(JSON.stringify(e.error))
 })
+artsApi.create.progress.watch((e) => {
+  console.log('PROGRESS')
+  console.log(e)
+})
 
 $myProfile.watch((profile) => {
   if (!profile) return
