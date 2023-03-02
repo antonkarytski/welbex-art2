@@ -13,6 +13,7 @@ import CategoriesSelect from '../categories/CategoriesSelect'
 import BlockUploadFromCamera from '../imagePick/Block.UploadFromCamera'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
+import ChildDocumentUploadingBlock from './ChildDocumentUploadingBlock'
 import ImagePreviewFormField from './ImagePreviewFormField'
 import { createPostFormModel } from './model'
 import { selectedCategoryModel } from './model.categorySelect'
@@ -45,14 +46,6 @@ const CreatePostForm = ({ category, initialAssets }: CreatePostFormProps) => {
       },
       key: createPostFormModel.fields.image,
     })
-    createPostFormModel.setField({
-      value: {
-        name: asset.fileName || '',
-        size: asset.fileSize || 0,
-        uri: asset.uri,
-      },
-      key: createPostFormModel.fields.childDocument,
-    })
   }, [initialAssets])
 
   return (
@@ -81,10 +74,7 @@ const CreatePostForm = ({ category, initialAssets }: CreatePostFormProps) => {
         formModel={createPostFormModel}
         postfix={` ${text.yearsOldAbbreviated}`}
       />
-      <BlockUploadFromCamera
-        style={styles.common.cameraBlock}
-        label={text.uploadChildDocument}
-      />
+      <ChildDocumentUploadingBlock style={styles.common.cameraBlock} />
       <PresetButton
         style={styles.common.button}
         onPress={() => {

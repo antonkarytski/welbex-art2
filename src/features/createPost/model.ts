@@ -9,7 +9,7 @@ import { $myProfile } from '../profile/model'
 import { getAgeCategory } from './helpers'
 
 export type ImageDescriptionFormFields = {
-  childDocument: ImageFile
+  isChildDocumentLoaded: boolean
   image: ImageFile
   title: string
   categoryId: number | null
@@ -26,7 +26,7 @@ const schema: ObjectSchema<ImageDescriptionFormFields> = yup.object().shape({
   age: stringSchema(),
   title: stringSchema(),
   categoryId: yup.number().default(0),
-  childDocument: imageFileShape.default(null),
+  isChildDocumentLoaded: yup.boolean().default(false),
   image: imageFileShape.default(null),
 })
 export const createPostFormModel = createFormModel(schema).setSubmitSettings({
@@ -35,7 +35,6 @@ export const createPostFormModel = createFormModel(schema).setSubmitSettings({
     if (data.categoryId === null) return
     return artsApi.create({
       image: data.image,
-      childDocument: data.childDocument,
       title: data.title,
       categoryId: data.categoryId,
     })
@@ -56,8 +55,8 @@ artsApi.create.progress.watch((e) => {
 
 $myProfile.watch((profile) => {
   if (!profile) return
-  createPostFormModel.setField({
-    key: createPostFormModel.fields.age,
-    value: getAgeCategory(profile.age).join(' - '),
+  createPostFormModel.setSomeFields({
+    age: getAgeCategory(profile.age).join(' - '),
+    isChildDocumentLoaded: true,
   })
 })

@@ -50,7 +50,6 @@ export type ArtWorkCreateResponse = {
 
 export type ArtWorkCreateProps = {
   image: ImageFile
-  childDocument: ImageFile
   title: string
   categoryId: number
 }

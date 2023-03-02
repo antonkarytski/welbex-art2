@@ -33,10 +33,12 @@ type SubmitSettings<P, R> = {
 
 export class FormModel<T extends Record<string, any>, R = any> {
   private readonly schema
+  public readonly reset = createEvent()
   public readonly setFieldEvent = createEvent<FieldPair<T, keyof T>>()
   public setField<K extends keyof T>(props: FieldPair<T, K>) {
     this.setFieldEvent(props)
   }
+  public readonly setSomeFields = createEvent<Partial<T>>()
   public readonly set = createEvent<T>()
   public readonly $store
   public readonly fields: { [K in keyof T]: K }
@@ -58,7 +60,9 @@ export class FormModel<T extends Record<string, any>, R = any> {
         ...store,
         [key]: value,
       }))
+      .on(this.setSomeFields, (store, fields) => ({ ...store, ...fields }))
       .on(this.set, (_, payload) => payload)
+      .reset(this.reset)
 
     this.submit = attach({
       source: this.$store,
