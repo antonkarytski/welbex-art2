@@ -13,5 +13,5 @@ export const categoryDetailsModel = createRequestModel(api.categories.specific)
 
 export const categoryArtsModel = createPaginationListModel({
   pageSize: ARTS_PAGE_SIZE,
-  request: api.categories.artWorks,
+  request: api.arts.all,
 })

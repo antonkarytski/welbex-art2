@@ -45,7 +45,7 @@ const CategoryDetailsScreen = ({
 
   useEffect(() => {
     categoryDetailsModel.get(categoryId)
-    categoryArtsModel.get({ id: categoryId })
+    categoryArtsModel.get({ category_id: categoryId, active_competition: true })
   }, [categoryId])
 
   const [isRefreshing, setIsRefreshing] = useState(false)
@@ -53,14 +53,16 @@ const CategoryDetailsScreen = ({
   const onRefresh = async () => {
     setIsRefreshing(true)
     await categoryDetailsModel.get(categoryId)
-    await categoryArtsModel.get({ id: categoryId })
+    await categoryArtsModel.get({
+      category_id: categoryId,
+      active_competition: true,
+    })
     setIsRefreshing(false)
   }
 
   const overlayAnimatedStyles = {
     transform: [{ translateY }],
   }
-
   if ((isLoadingCategory || isLoadingArts) && !isRefreshing) {
     return <CategoryScreenSkeleton />
   }

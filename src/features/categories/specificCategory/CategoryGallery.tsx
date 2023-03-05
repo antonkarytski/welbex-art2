@@ -33,7 +33,10 @@ const CategoryGallery = ({
   const isNextLoading = useStore(categoryArtsModel.$isNextLoading)
 
   const getNextArts = () => {
-    categoryArtsModel.getNext({ id: item.id })
+    categoryArtsModel.getNext({
+      category_id: item.id,
+      active_competition: true,
+    })
   }
 
   if (!drawings.length) {

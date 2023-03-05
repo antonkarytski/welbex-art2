@@ -4,6 +4,7 @@ import { UserShort } from '../users/types'
 
 export type ArtWorksFilterProps = {
   category_id?: number
+  active_competition?: boolean
   title?: string
   country?: string
   min_age?: number
