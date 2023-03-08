@@ -4,6 +4,7 @@ import { Animated, StyleSheet, View } from 'react-native'
 import {
   categoryArtsModel,
   categoryDetailsModel,
+  getCategoryData,
 } from '../../features/categories/request'
 import CategoryGallery from '../../features/categories/specificCategory/CategoryGallery'
 import CategoryHeader from '../../features/categories/specificCategory/CategoryHeader'
@@ -44,20 +45,14 @@ const CategoryDetailsScreen = ({
   })
 
   useEffect(() => {
-    categoryDetailsModel.get(categoryId)
-    categoryArtsModel.get({ category_id: categoryId, active_competition: true })
+    getCategoryData(categoryId)
   }, [categoryId])
 
   const [isRefreshing, setIsRefreshing] = useState(false)
 
   const onRefresh = async () => {
     setIsRefreshing(true)
-    await categoryDetailsModel.get(categoryId)
-    await categoryArtsModel.get({
-      category_id: categoryId,
-      active_competition: true,
-    })
-    setIsRefreshing(false)
+    getCategoryData(categoryId).finally(() => setIsRefreshing(false))
   }
 
   const overlayAnimatedStyles = {
