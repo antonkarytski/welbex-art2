@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import DrawingInteractionPanel from '../features/drawing/DrawingInteractivePanel'
 import { getArtWorkRequest } from '../features/drawing/request'
 import AutoHeightImage from '../features/images/AutoHeightImage'
@@ -13,10 +13,11 @@ import AppHeader from '../navigation/elements/AppHeader'
 import { transparentThemedHeaderStyles } from '../navigation/elements/styles'
 import { links } from '../navigation/links'
 import { ScreenComponentProps } from '../navigation/types.screenProps'
+import { SCREEN_CONTENT_WIDTH } from '../styles/constants'
 import { themedShadow5Style } from '../styles/shadows'
 import { useText } from '../translations/hook'
-import Loader from '../ui/Loader'
 import PresetButton from '../ui/buttons/PresetButton'
+import Loader from '../ui/loaders/Loader'
 
 const DrawingDetailsScreen = ({
   route,
@@ -58,22 +59,13 @@ const DrawingDetailsScreen = ({
           />
           <AutoHeightImage
             image={{ uri: drawing.data.image_thumbnail }}
-            widthGenerator={() => {
-              const screen = Dimensions.get('screen')
-              return screen.width - 40
-            }}
+            widthGenerator={() => SCREEN_CONTENT_WIDTH}
           />
           <DrawingInteractionPanel
-            onLikeChange={(isLiked) =>
-              drawing.set((current) => {
-                if (!current) return null
-                return {
-                  ...current,
-                  is_liked: isLiked,
-                  likes: isLiked ? current.likes + 1 : current.likes - 1,
-                }
-              })
+            onLikeChange={(isLiked, likes) =>
+              drawing.update({ is_liked: isLiked, likes })
             }
+            onSaveChange={(isSaved) => drawing.update({ is_saved: isSaved })}
             item={drawing.data}
           />
           <PresetButton

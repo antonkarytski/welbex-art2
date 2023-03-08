@@ -5,8 +5,8 @@ import { FlatListProps, StyleSheet } from 'react-native'
 import { SpecificCategoryResponse } from '../../../api/parts/categories/types'
 import { SCREEN_PADDING_HORIZONTAL } from '../../../styles/constants'
 import { useText } from '../../../translations/hook'
-import Loader from '../../../ui/Loader'
 import Span from '../../../ui/Span'
+import Loader from '../../../ui/loaders/Loader'
 import DrawingsList from '../../drawing/DrawingsList'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyle } from '../../themed/hooks'
@@ -33,7 +33,10 @@ const CategoryGallery = ({
   const isNextLoading = useStore(categoryArtsModel.$isNextLoading)
 
   const getNextArts = () => {
-    categoryArtsModel.getNext({ id: item.id })
+    categoryArtsModel.getNext({
+      category_id: item.id,
+      active_competition: true,
+    })
   }
 
   if (!drawings.length) {

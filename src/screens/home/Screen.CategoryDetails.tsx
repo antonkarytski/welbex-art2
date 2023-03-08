@@ -12,8 +12,8 @@ import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { links } from '../../navigation/links'
 import { ScreenComponentProps } from '../../navigation/types.screenProps'
-import Loader from '../../ui/Loader'
 import ImageGradient from '../../ui/gradients/ImageGradient'
+import CategoryScreenSkeleton from '../../ui/loaders/Skeleton.CategoryScreen'
 
 const CategoryDetailsScreen = ({
   route,
@@ -45,7 +45,7 @@ const CategoryDetailsScreen = ({
 
   useEffect(() => {
     categoryDetailsModel.get(categoryId)
-    categoryArtsModel.get({ id: categoryId })
+    categoryArtsModel.get({ category_id: categoryId, active_competition: true })
   }, [categoryId])
 
   const [isRefreshing, setIsRefreshing] = useState(false)
@@ -53,16 +53,20 @@ const CategoryDetailsScreen = ({
   const onRefresh = async () => {
     setIsRefreshing(true)
     await categoryDetailsModel.get(categoryId)
-    await categoryArtsModel.get({ id: categoryId })
+    await categoryArtsModel.get({
+      category_id: categoryId,
+      active_competition: true,
+    })
     setIsRefreshing(false)
   }
 
   const overlayAnimatedStyles = {
     transform: [{ translateY }],
   }
-
-  if ((isLoadingCategory || isLoadingArts) && !isRefreshing) return <Loader />
-  if (!category) return <CategoryScreenHeader />
+  if ((isLoadingCategory || isLoadingArts) && !isRefreshing) {
+    return <CategoryScreenSkeleton />
+  }
+  if (!category) return <CategoryScreenHeader transparent={false} />
 
   return (
     <View style={styles.common.container}>
@@ -75,14 +79,10 @@ const CategoryDetailsScreen = ({
           },
         ]}
       >
-        {category.image ? (
-          <ImageGradient
-            imageHeight={height}
-            source={{ uri: category.image }}
-          />
-        ) : (
-          <View style={[styles.common.imageSkeleton, { height }]} />
-        )}
+        <ImageGradient
+          imageHeight={height}
+          source={category.image ? { uri: category.image } : null}
+        />
       </Animated.View>
       <Animated.View style={[styles.common.overlay, overlayAnimatedStyles]} />
       <CategoryScreenHeader
@@ -117,18 +117,13 @@ const themedStyles = createThemedStyle((colors) =>
     container: { flex: 1 },
     overlay: {
       position: 'absolute',
-      backgroundColor: 'white',
+      backgroundColor: colors.screenBackground,
       width: '100%',
       height: 1000,
     },
     headerImageContainer: {
       position: 'absolute',
       width: '100%',
-    },
-    imageSkeleton: {
-      width: '100%',
-      zIndex: -1,
-      backgroundColor: colors.lightAccentDetails,
     },
   })
 )

@@ -8,6 +8,10 @@ export const toggleLike = (drawing: ArtWorkGeneral) => {
   return request(drawing.id)
 }
 
+export const toggleSave = (drawing: ArtWorkGeneral) => {
+  const request = drawing.is_saved ? api.arts.unsavePost : api.arts.savePost
+  return request(drawing.id)
+}
 type GetArtWorkEffectProps = {
   isAuth: boolean
   id: number

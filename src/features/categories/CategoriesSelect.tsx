@@ -7,7 +7,7 @@ import { createPaginationListModel } from '../../api/pagination'
 import { CategoryResponse } from '../../api/parts/categories/types'
 import { useDropdownSelectPreset } from '../../styles/selects'
 import { useText } from '../../translations/hook'
-import Loader from '../../ui/Loader'
+import Loader from '../../ui/loaders/Loader'
 import DropdownSelect from '../../ui/selects/DropdownSelect'
 import { DropdownSelectStyles } from '../../ui/selects/types'
 

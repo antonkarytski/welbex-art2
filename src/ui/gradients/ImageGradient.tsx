@@ -1,7 +1,27 @@
 import React, { PropsWithChildren, useState } from 'react'
 import { Image, StyleSheet, View } from 'react-native'
 import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg'
+import { defaultColors } from '../../features/themed/theme'
 import { ImageGradientProps } from './types'
+
+type ComponentImageProps = {
+  source: ImageGradientProps['source']
+  imageHeight: ImageGradientProps['imageHeight']
+}
+
+const ComponentImage = ({ source, imageHeight }: ComponentImageProps) => {
+  return source ? (
+    <Image
+      resizeMode={'cover'}
+      style={[styles.image, { height: imageHeight }]}
+      source={source}
+    />
+  ) : (
+    <View
+      style={[styles.image, styles.imageSkeleton, { height: imageHeight }]}
+    />
+  )
+}
 
 const ImageAdaptiveGradient = ({
   imageHeight,
@@ -14,16 +34,17 @@ const ImageAdaptiveGradient = ({
 }: PropsWithChildren<ImageGradientProps>) => {
   const [height, setHeight] = useState(0)
 
+  const imageProps = {
+    source,
+    imageHeight,
+  }
+
   if (!height || height < imageHeight) {
     return (
       <View
         onLayout={({ nativeEvent }) => setHeight(nativeEvent.layout.height)}
       >
-        <Image
-          resizeMode={'cover'}
-          style={[styles.image, { height: imageHeight }]}
-          source={source}
-        />
+        <ComponentImage {...imageProps} />
       </View>
     )
   }
@@ -53,11 +74,7 @@ const ImageAdaptiveGradient = ({
           opacity={0.15}
         />
       </Svg>
-      <Image
-        resizeMode={'cover'}
-        style={[styles.image, { height: imageHeight }]}
-        source={source}
-      />
+      <ComponentImage {...imageProps} />
     </View>
   )
 }
@@ -71,6 +88,9 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     zIndex: -1,
+  },
+  imageSkeleton: {
+    backgroundColor: defaultColors.lightAccentDetails,
   },
 })
 
