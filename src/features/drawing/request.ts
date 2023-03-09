@@ -21,8 +21,8 @@ export const getArtWorkRequest = attach({
   source: $isAuth,
   mapParams: (id: number, isAuth) => ({ id, isAuth }),
   effect: createEffect(({ id, isAuth }: GetArtWorkEffectProps) => {
-    if (isAuth) return api.arts.specific(id)
-    return api.arts.specificProtected(id)
+    if (isAuth) return api.arts.specificProtected(id)
+    return api.arts.specific(id)
   }),
 })
 
