@@ -1,6 +1,7 @@
 import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
+import { IdentityDocumentStatus } from '../../api/parts/users/types.api'
 import { noop } from '../../lib/helpers'
 import { useFormField } from '../../lib/models/form'
 import { useText } from '../../translations/hook'
@@ -50,7 +51,7 @@ const ChildDocumentUploadingBlock = ({
         })
           .then(() => {
             updateProfile({
-              identity_determined: true,
+              identity_determined_status_id: IdentityDocumentStatus.PENDING,
             })
             setIsDocumentLoaded(true)
           })
