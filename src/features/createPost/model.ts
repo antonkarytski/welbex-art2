@@ -27,6 +27,7 @@ const schema: ObjectSchema<ImageDescriptionFormFields> = yup.object().shape({
   isChildDocumentLoaded: yup.boolean().default(false),
   image: imageFileShape.default(null),
 })
+
 export const createPostFormModel = createFormModel(schema).setSubmitSettings({
   validate: true,
   request: createEffect((data: ImageDescriptionFormFields) => {
@@ -40,13 +41,8 @@ export const createPostFormModel = createFormModel(schema).setSubmitSettings({
 })
 
 createPostFormModel.submit.done.watch(({ result }) => {
-  console.log(result)
   if (!result) return
 })
 createPostFormModel.submit.fail.watch((e) => {
   console.log(JSON.stringify(e.error))
-})
-api.arts.create.progress.watch((e) => {
-  console.log('PROGRESS')
-  console.log(e)
 })

@@ -8,7 +8,7 @@ import { DropdownSelectProps } from './types'
 
 function DropdownSelect<Item extends Record<string, any>>({
   searchModel,
-  placeholder = 'Выберите значение из списка',
+  placeholder = 'Select value from list',
   label,
   labelExtractor,
   onOpenDropdown,

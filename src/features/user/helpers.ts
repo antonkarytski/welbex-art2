@@ -37,6 +37,7 @@ export function signUpUserResponseToNewUser(
     followers: 0,
     followings: 0,
     age: userAge(user),
+    identity_determined: false,
   }
 }
 

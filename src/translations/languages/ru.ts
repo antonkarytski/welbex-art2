@@ -1,6 +1,7 @@
 import { LangStructure } from '../types'
 
 export const RU: LangStructure = {
+  childDocumentUploaded: 'Документ ребенка загружен',
   documentUploading: 'Загрузка документа',
   appName: 'Art²',
   appFullName: 'ART SQRD',

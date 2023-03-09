@@ -25,16 +25,19 @@ export type SelectProps<T> = {
   labelExtractor?: StringExtractor<T>
   ItemSeparatorComponent?: React.ComponentType<any> | null
   ListFooterComponent?: React.ComponentType<any> | null
-  model: StateModel<T | null>
+  model: StateModel<T>
   style?: SelectStyles
   showSelectedIcon?: boolean
   preset?: PresetSelectItemStates
   onEndReached?: FlatListProps<T>['onEndReached']
 }
 
-export type SearchableSelectProps<T> = SelectProps<T> & {
-  searchModel: SearchableListModel<T>
+type SearchableSelectSettings<T> = SelectProps<T> & {
   style?: SearchableListStyles & SelectStyles
+}
+
+export type SearchableSelectProps<T> = SearchableSelectSettings<T> & {
+  searchModel: SearchableListModel<T>
 }
 
 export type DropdownSelectStyles = {
@@ -47,11 +50,11 @@ export type DropdownSelectPreset = {
   dropdownTab?: PresetDropdownTabStates
 }
 
-export type DropdownSelectProps<T> = Omit<
-  SearchableSelectProps<T>,
-  'searchModel'
-> & {
+export type ListSelectProps<T> = SearchableSelectSettings<T> & {
   searchModel?: SearchableListModel<T>
+}
+
+export type DropdownSelectProps<T> = ListSelectProps<T> & {
   placeholder?: string
   label?: string | ReactNode
   style?: DropdownSelectStyles & {
@@ -59,11 +62,4 @@ export type DropdownSelectProps<T> = Omit<
   }
   onOpenDropdown?: Fn
   preset?: DropdownSelectPreset
-}
-
-export type ListSelectProps<T> = Omit<
-  SearchableSelectProps<T>,
-  'searchModel'
-> & {
-  searchModel?: SearchableListModel<T>
 }

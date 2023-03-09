@@ -1,15 +1,14 @@
 import React from 'react'
 import { ImageStyle, ScrollView, StyleSheet } from 'react-native'
-import { noop } from '../../lib/helpers'
 import { themedPrimaryGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
 import H3 from '../../ui/H3'
-import PresetButton from '../../ui/buttons/PresetButton'
 import Field from '../../ui/form/Field'
 import CategoriesSelect from '../categories/CategoriesSelect'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import ChildDocumentUploadingBlock from './ChildDocumentUploadingBlock'
+import CreatePostFromSubmitButton from './CreatePostFromSubmitButton'
 import ImagePreviewFormField from './ImagePreviewFormField'
 import {
   CreatePostFormInitialProps,
@@ -54,16 +53,7 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
         postfix={` ${text.yearsOldAbbreviated}`}
       />
       <ChildDocumentUploadingBlock style={styles.common.cameraBlock} />
-      <PresetButton
-        style={styles.common.button}
-        onPress={() => {
-          createPostFormModel
-            .submit()
-            .then(() => {})
-            .catch(noop)
-        }}
-        label={text.submit}
-      />
+      <CreatePostFromSubmitButton style={styles.common.button} />
     </ScrollView>
   )
 }

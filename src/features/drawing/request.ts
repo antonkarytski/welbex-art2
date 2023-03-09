@@ -25,3 +25,7 @@ export const getArtWorkRequest = attach({
     return api.arts.specificProtected(id)
   }),
 })
+
+getArtWorkRequest.fail.watch((e) => {
+  console.log(e)
+})

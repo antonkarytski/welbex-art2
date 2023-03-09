@@ -5,6 +5,7 @@ import { noop } from '../../lib/helpers'
 import { useFormField } from '../../lib/models/form'
 import { useText } from '../../translations/hook'
 import BlockUploadFromCamera from '../imagePick/Block.UploadFromCamera'
+import { updateProfile } from '../profile/model'
 import DocumentStatusMessageBlock from './DocumentStatusMessageBlock'
 import { createPostFormModel } from './model'
 import {
@@ -46,7 +47,14 @@ const ChildDocumentUploadingBlock = ({
           name: asset.fileName || '',
           size: asset.fileSize || 0,
           uri: asset.uri,
-        }).catch(noop)
+        })
+          .then(() => {
+            updateProfile({
+              identity_determined: true,
+            })
+            setIsDocumentLoaded(true)
+          })
+          .catch(noop)
       }}
       style={style}
       label={text.uploadChildDocument}

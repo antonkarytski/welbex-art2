@@ -26,12 +26,7 @@ export function useCreatePostFormInitialValues({
             isChildDocumentLoaded: profile?.identity_determined,
             age: getAgeCategory(profile.age).join(' - '),
           },
-    updateFilter: (update, current) => {
-      return (
-        update?.isChildDocumentLoaded !== current?.isChildDocumentLoaded ||
-        update?.age !== current?.age
-      )
-    },
+    updateFilter: (update, current) => !!update && !current,
   })
 
   useEffect(() => {

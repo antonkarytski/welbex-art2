@@ -3,6 +3,7 @@ import moment from 'moment'
 import { api } from '../../api'
 import { apiManager } from '../../api/apiManager'
 import { USER_DOB_FORMAT } from '../../constants'
+import { DEFAULT_COUNTRY } from '../countries'
 import { setMyProfile } from '../profile/model'
 import { signUpUserResponseToNewUser } from '../user/helpers'
 import { signUpCountryModel } from './country/model'
@@ -22,7 +23,7 @@ export const signUp = attach({
     last_name: user.lastName,
     DOB: moment(user.birthDate.valueOf()).format(USER_DOB_FORMAT),
     email: user.email,
-    country: country.alpha2Code,
+    country: country?.alpha2Code ?? DEFAULT_COUNTRY.alpha2Code,
     password: passwords.password,
     phone_number: phone,
     is_manager: false,
