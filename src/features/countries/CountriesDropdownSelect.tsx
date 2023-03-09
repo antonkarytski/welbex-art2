@@ -14,7 +14,7 @@ import CountryRow from './CountryRow'
 
 type CountriesDropdownSelectProps = {
   model: StateModel<Country | null>
-  searchModel?: SearchableListModel<Country>
+  searchModel: SearchableListModel<Country>
 }
 
 const CountriesDropdownSelect = React.memo(

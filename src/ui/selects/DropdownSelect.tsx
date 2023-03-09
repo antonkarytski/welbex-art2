@@ -1,12 +1,12 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { useStateStore } from 'altek-toolkit'
+import { StateModel, useStateStore } from "altek-toolkit";
 import DropdownTab from '../dropdownTab'
 import SearchableSelect from './SearchableSelect'
 import Select from './Select'
 import { DropdownSelectProps } from './types'
 
-function DropdownSelect<Item extends Record<string, any>>({
+function DropdownSelect<Item>({
   searchModel,
   placeholder = 'Select value from list',
   label,
@@ -15,9 +15,10 @@ function DropdownSelect<Item extends Record<string, any>>({
   style,
   preset,
   ItemSeparatorComponent,
+  model,
   ...props
 }: DropdownSelectProps<Item>) {
-  const [selectedItem] = useStateStore(props.model)
+  const [selectedItem] = useStateStore(model)
 
   const selectStyles = {
     item: itemStyles,
@@ -43,6 +44,7 @@ function DropdownSelect<Item extends Record<string, any>>({
         <SearchableSelect
           searchModel={searchModel}
           style={{ searchInput: style?.searchInput, ...selectStyles }}
+          model={model}
           {...commonProps}
           {...props}
         />
@@ -50,6 +52,7 @@ function DropdownSelect<Item extends Record<string, any>>({
         <Select
           labelExtractor={labelExtractor}
           style={selectStyles}
+          model={model as StateModel<Item>}
           {...commonProps}
           {...props}
         />

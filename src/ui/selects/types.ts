@@ -32,12 +32,8 @@ export type SelectProps<T> = {
   onEndReached?: FlatListProps<T>['onEndReached']
 }
 
-type SearchableSelectSettings<T> = SelectProps<T> & {
+type SearchableSelectSettings<T> = Omit<SelectProps<T>, 'model'> & {
   style?: SearchableListStyles & SelectStyles
-}
-
-export type SearchableSelectProps<T> = SearchableSelectSettings<T> & {
-  searchModel: SearchableListModel<T>
 }
 
 export type DropdownSelectStyles = {
@@ -50,8 +46,14 @@ export type DropdownSelectPreset = {
   dropdownTab?: PresetDropdownTabStates
 }
 
+export type SearchableSelectProps<T> = SearchableSelectSettings<T> & {
+  searchModel: SearchableListModel<T>
+  model: StateModel<T | null>
+}
+
 export type ListSelectProps<T> = SearchableSelectSettings<T> & {
   searchModel?: SearchableListModel<T>
+  model: StateModel<T | null>
 }
 
 export type DropdownSelectProps<T> = ListSelectProps<T> & {
