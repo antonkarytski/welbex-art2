@@ -1,12 +1,10 @@
 import { createEffect } from 'effector'
 import * as yup from 'yup'
 import { ObjectSchema } from 'yup'
-import { artsApi } from '../../api/parts/arts'
+import { api } from '../../api'
 import { ImageFile } from '../../lib/files/types'
 import { createFormModel } from '../../lib/models/form'
 import { stringSchema } from '../../lib/yup'
-import { $myProfile } from '../profile/model'
-import { getAgeCategory } from './helpers'
 
 export type ImageDescriptionFormFields = {
   isChildDocumentLoaded: boolean
@@ -33,7 +31,7 @@ export const createPostFormModel = createFormModel(schema).setSubmitSettings({
   validate: true,
   request: createEffect((data: ImageDescriptionFormFields) => {
     if (data.categoryId === null) return
-    return artsApi.create({
+    return api.arts.create({
       image: data.image,
       title: data.title,
       categoryId: data.categoryId,
@@ -48,15 +46,7 @@ createPostFormModel.submit.done.watch(({ result }) => {
 createPostFormModel.submit.fail.watch((e) => {
   console.log(JSON.stringify(e.error))
 })
-artsApi.create.progress.watch((e) => {
+api.arts.create.progress.watch((e) => {
   console.log('PROGRESS')
   console.log(e)
-})
-
-$myProfile.watch((profile) => {
-  if (!profile) return
-  createPostFormModel.setSomeFields({
-    age: getAgeCategory(profile.age).join(' - '),
-    isChildDocumentLoaded: true,
-  })
 })

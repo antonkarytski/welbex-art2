@@ -76,18 +76,29 @@ export class ApiEndpoint {
       return this.requestHandler<Response, Params>(requestProps)
     }) as Effect<Params, Response> & ExtEffectMethods<Params, Response>
 
+    const copy = () => {
+      const xhr = createXhr()
+      const effectCopy = createEffect((params: Params) => {
+        const requestProps = propsGetter(params)
+        return this.requestHandler<Response, Params>(requestProps, xhr.request)
+      }) as EffectWithProgress<Params, Response>
+      effectCopy.progress = xhr.progress
+      effectCopy.copy = copy
+      return effectCopy
+    }
+
     effect.withProgress = () => {
-      const effectWithProgress = effect as Effect<Params, Response> &
-        EffectProgressSettings &
-        ExtEffectMethods<Params, Response>
+      const effectWithProgress = effect as EffectWithProgress<Params, Response>
       const xhr = createXhr()
       effectWithProgress.use((params: Params) => {
         const requestProps = propsGetter(params)
         return this.requestHandler<Response, Params>(requestProps, xhr.request)
       })
       effectWithProgress.progress = xhr.progress
+      effectWithProgress.copy = copy
       return effectWithProgress
     }
+
     return effect
   }
 
@@ -114,10 +125,18 @@ export class ApiEndpoint {
   public readonly patch = this.specificMethodGetter('PATCH')
 }
 
-type EffectProgressSettings = {
+type EffectProgressSettings<Params, Response> = {
   progress: Event<ProgressEvent>
+  copy: () => Effect<Params, Response> &
+    EffectProgressSettings<Params, Response> &
+    ExtEffectMethods<Params, Response>
 }
 
 type ExtEffectMethods<Params, Response> = {
-  withProgress: () => Effect<Params, Response> & EffectProgressSettings
+  withProgress: () => Effect<Params, Response> &
+    EffectProgressSettings<Params, Response>
 }
+
+type EffectWithProgress<Params, Response> = Effect<Params, Response> &
+  EffectProgressSettings<Params, Response> &
+  ExtEffectMethods<Params, Response>

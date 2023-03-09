@@ -1,52 +1,31 @@
-import { ImagePickerAsset } from 'expo-image-picker'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { ImageStyle, ScrollView, StyleSheet } from 'react-native'
-import { CategoryResponse } from '../../api/parts/categories/types'
 import { noop } from '../../lib/helpers'
-import { useNavigate } from '../../navigation'
 import { themedPrimaryGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
 import H3 from '../../ui/H3'
 import PresetButton from '../../ui/buttons/PresetButton'
 import Field from '../../ui/form/Field'
 import CategoriesSelect from '../categories/CategoriesSelect'
-import BlockUploadFromCamera from '../imagePick/Block.UploadFromCamera'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import ChildDocumentUploadingBlock from './ChildDocumentUploadingBlock'
 import ImagePreviewFormField from './ImagePreviewFormField'
+import {
+  CreatePostFormInitialProps,
+  useCreatePostFormInitialValues,
+} from './hook'
 import { createPostFormModel } from './model'
 import { selectedCategoryModel } from './model.categorySelect'
 
-type CreatePostFormProps = {
-  category?: CategoryResponse
-  initialAssets?: ImagePickerAsset[]
-}
-
-const CreatePostForm = ({ category, initialAssets }: CreatePostFormProps) => {
+const CreatePostForm = (props: CreatePostFormInitialProps) => {
   const text = useText()
-  const navigate = useNavigate()
   const { styles } = useThemedStyleList({
     common: themedStyles,
     gradient: themedPrimaryGradient,
   })
 
-  useEffect(() => {
-    if (category) selectedCategoryModel.set(category)
-  }, [category])
-
-  useEffect(() => {
-    const asset = initialAssets?.[0]
-    if (!asset) return
-    createPostFormModel.setField({
-      value: {
-        name: asset.fileName || '',
-        size: asset.fileSize || 0,
-        uri: asset.uri,
-      },
-      key: createPostFormModel.fields.image,
-    })
-  }, [initialAssets])
+  useCreatePostFormInitialValues(props)
 
   return (
     <ScrollView

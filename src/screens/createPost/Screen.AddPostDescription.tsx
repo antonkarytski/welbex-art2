@@ -24,7 +24,7 @@ export default function AddPostDescriptionScreen({
         title={text.description}
       />
       <CreatePostForm
-        initialAssets={route.params.assets}
+        assets={route.params.assets}
         category={route.params.category}
       />
     </View>

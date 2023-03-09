@@ -102,6 +102,7 @@ export const EN = {
   category: 'Category',
   uploadChildDocument: 'Upload a child identity proof document',
   childDocumentUploaded: "Child's identity document uploaded",
+  documentUploading: 'Uploading a document',
   createPostAgeError: 'Your age doesn’t match any available category',
   winners: 'Winners',
   participantsDrawings: 'Participants’ drawings',

@@ -12,6 +12,7 @@ export type ProfileResponse = User & UserCounters
 export type MyProfileResponse = ProfileResponse &
   UserPrivateData & {
     subscription: UserSubscription | null
+    identity_determined: boolean
   }
 
 export type UserProfileResponse = ProfileResponse & {

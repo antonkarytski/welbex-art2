@@ -2,6 +2,7 @@ import { attach } from 'effector'
 import { api } from '../../../api'
 import { apiManager } from '../../../api/apiManager'
 import { createFormModel } from '../../../lib/models/form'
+import { meRequest } from '../../profile/request'
 
 export type LogInForm = {
   email: string
@@ -29,5 +30,5 @@ logIn.done.watch(({ result }) => {
     access: result.access_token,
     refresh: result.refresh_token,
   })
-  api.users.me()
+  meRequest()
 })

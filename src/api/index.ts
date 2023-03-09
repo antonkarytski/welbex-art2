@@ -1,4 +1,3 @@
-import { apiManager } from './apiManager'
 import { artsApi } from './parts/arts'
 import { authApi } from './parts/auth'
 import { categoriesApi } from './parts/categories'
@@ -10,7 +9,3 @@ export const api = {
   categories: categoriesApi,
   arts: artsApi,
 }
-
-apiManager.token.onInit((token) => {
-  if (token) return usersApi.me()
-})

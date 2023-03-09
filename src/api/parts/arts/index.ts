@@ -44,12 +44,11 @@ const create = arts
   .post<ArtWorkCreateResponse, ArtWorkCreateProps>({
     endpoint: 'create',
     contentType: ContentType.FORM_DATA,
-    fn: ({ image, childDocument, title, categoryId }) => {
+    fn: ({ image, title, categoryId }) => {
       return {
         body: formDataFromList({
           image,
           title,
-          child_identity_document: childDocument,
           category_id: categoryId,
         }),
       }
