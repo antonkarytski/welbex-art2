@@ -15,3 +15,13 @@ export const categoryArtsModel = createPaginationListModel({
   pageSize: ARTS_PAGE_SIZE,
   request: api.arts.all,
 })
+
+export const getCategoryData = (categoryId: number) => {
+  return Promise.all([
+    categoryDetailsModel.get(categoryId),
+    categoryArtsModel.get({
+      category_id: categoryId,
+      active_competition: true,
+    }),
+  ])
+}
