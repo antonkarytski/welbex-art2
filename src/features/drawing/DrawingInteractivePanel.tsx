@@ -1,25 +1,52 @@
+import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { ArtWork } from '../../api/parts/arts/types'
+import { useNavigate } from '../../navigation'
+import { links } from '../../navigation/links'
 import Span from '../../ui/Span'
 import FavouriteButton from '../../ui/buttons/FavouriteButton'
 import LikeButton from '../../ui/buttons/LikeButton'
 import ShareButton from '../../ui/buttons/ShareButton'
+import { $isAuth } from '../auth/model'
 import { useColors } from '../themed'
-import { Drawing } from './types'
+import { toggleLike, toggleSave } from './request'
 
 type DrawingInteractivePanelProps = {
-  item: Drawing
+  item: ArtWork
+  onLikeChange?: (isLiked: boolean, likes: number) => void
+  onSaveChange?: (isSaved: boolean) => void
 }
 
-const DrawingInteractivePanel = ({ item }: DrawingInteractivePanelProps) => {
+const DrawingInteractivePanel = ({
+  item,
+  onLikeChange,
+  onSaveChange,
+}: DrawingInteractivePanelProps) => {
   const colors = useColors()
+
+  const navigate = useNavigate()
+  const isAuth = useStore($isAuth)
+  const onLikeDrawing = () => {
+    if (!isAuth) return navigate(links.login)
+    const likesCount = item.is_liked ? item.likes - 1 : item.likes + 1
+    toggleLike(item).then(() => onLikeChange?.(!item.is_liked, likesCount))
+  }
+  const onSaveDrawing = () => {
+    if (!isAuth) return navigate(links.login)
+    toggleSave(item).then(() => onSaveChange?.(!item.is_saved))
+  }
 
   return (
     <View>
       <View style={styles.container}>
         <LikeButton
-          likesCount={item.likesCount}
+          likesCount={item.likes}
           style={[styles.button, styles.likeButton]}
+          onPress={onLikeDrawing}
+          color={colors.icon}
+          active={item.is_liked}
+          activeColor={colors.likesIcon}
         />
         <View style={styles.interactionBlock}>
           <ShareButton
@@ -29,10 +56,12 @@ const DrawingInteractivePanel = ({ item }: DrawingInteractivePanelProps) => {
           <FavouriteButton
             color={colors.icon}
             style={[styles.button, styles.favouriteButton]}
+            active={item.is_saved}
+            onPress={onSaveDrawing}
           />
         </View>
       </View>
-      <Span style={styles.title} weight={600} label={item.name} />
+      <Span style={styles.title} weight={600} label={item.title} />
     </View>
   )
 }

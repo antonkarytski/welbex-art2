@@ -1,20 +1,42 @@
+import { ImageFile } from '../../../lib/files/types'
 import { PaginatedListProps, PaginatedListResponse } from '../../types'
+import { UserShort } from '../users/types'
 
-export type AllArtWorksProps = {
+export type ArtWorksFilterProps = {
   category_id?: number
+  active_competition?: boolean
   title?: string
   country?: string
   min_age?: number
   max_age?: number
-} & PaginatedListProps
+}
 
-type ArtWork = {
+export type AllArtWorksProps = ArtWorksFilterProps & PaginatedListProps
+
+export type ArtWorkWhileUnauthourized = {
   id: number
   title: string
   competition_id: number
-  image: string
+  image_thumbnail: string
+  author: UserShort
+  likes: number
+}
+
+export type ArtWork = ArtWorkWhileUnauthourized & {
+  is_liked: boolean
+  is_saved: boolean
+}
+
+export type AllArtWorksResponse = PaginatedListResponse<ArtWork>
+export type CountOfFilteredArtsResponse = {
+  total: number
+}
+
+export type ArtWorkCreateResponse = {
+  id: number
+  title: string
+  image_thumbnail: string
   author: {
-    is_followed: boolean
     id: number
     first_name: string
     last_name: string
@@ -22,8 +44,11 @@ type ArtWork = {
     avatar: string
     age: number
   }
-  likes: number
-  is_liked: boolean
 }
 
-export type AllArtWorksResponse = PaginatedListResponse<ArtWork>
+export type ArtWorkCreateProps = {
+  image: ImageFile
+  childDocument: ImageFile
+  title: string
+  categoryId: number
+}

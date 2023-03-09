@@ -5,6 +5,7 @@ import {
   StyleProp,
   StyleSheet,
   TouchableOpacity,
+  View,
   ViewStyle,
 } from 'react-native'
 
@@ -21,7 +22,7 @@ type ImageOptions =
     }
 
 export type ImageCardProps = {
-  image: ImageSourcePropType
+  image: ImageSourcePropType | null
   style?: StyleProp<ViewStyle>
   onPress?: () => void
 } & ImageOptions
@@ -60,15 +61,25 @@ const ImageCard = ({
       onPress={onPress}
       style={[styles.container, style]}
     >
-      <ImageBackground
-        style={[
-          styles.imageBackground,
-          !!imageOptions.imageHeight && { height: imageOptions.imageHeight },
-        ]}
-        source={image}
-        resizeMode={'cover'}
-        imageStyle={[styles.image, getImageSize(imageOptions)]}
-      />
+      {image ? (
+        <ImageBackground
+          style={[
+            styles.imageBackground,
+            !!imageOptions.imageHeight && { height: imageOptions.imageHeight },
+          ]}
+          source={image}
+          resizeMode={'cover'}
+          imageStyle={[styles.image, getImageSize(imageOptions)]}
+        />
+      ) : (
+        <View
+          style={[
+            styles.imageBackground,
+            getImageSize(imageOptions),
+            styles.noImageBackground,
+          ]}
+        />
+      )}
 
       {children}
     </TouchableOpacity>
@@ -87,6 +98,9 @@ const styles = StyleSheet.create({
   },
   image: {
     resizeMode: 'cover',
+  },
+  noImageBackground: {
+    backgroundColor: '#D5DDDC',
   },
 })
 

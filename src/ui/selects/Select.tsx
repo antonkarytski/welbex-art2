@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { FlatList, ListRenderItem, View } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
 import ListItemSeparator from '../lists/ListItemSeparator'
-import SelectItem from './SelectItem'
+import SelectItem from './selectItem/SelectItem'
 import { selectStyles } from './styles'
 import { SelectProps } from './types'
 
@@ -16,10 +16,13 @@ const Select = <Item,>({
   showSelectedIcon,
   ListFooterComponent,
   labelExtractor,
+  preset,
+  onEndReached,
 }: SelectProps<Item>) => {
   const [selectedItem, setSelectedItem] = useStateStore(model)
 
-  const selectedId = idExtractor(selectedItem)
+  const selectedId = selectedItem ? idExtractor(selectedItem) : null
+
   const renderSelect: ListRenderItem<Item> = useCallback(
     ({ item }) => (
       <SelectItem
@@ -30,6 +33,7 @@ const Select = <Item,>({
         isSelected={selectedId === idExtractor(item)}
         showSelectedIcon={showSelectedIcon}
         labelExtractor={labelExtractor}
+        preset={preset}
       />
     ),
     [
@@ -40,6 +44,7 @@ const Select = <Item,>({
       idExtractor,
       selectedId,
       labelExtractor,
+      preset,
     ]
   )
 
@@ -53,6 +58,7 @@ const Select = <Item,>({
           ItemSeparatorComponent === null ? undefined : ListItemSeparator
         }
         ListFooterComponent={ListFooterComponent}
+        onEndReached={onEndReached}
       />
     </View>
   )

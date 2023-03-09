@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 import { Modal, TouchableOpacity, View } from 'react-native'
-import { defaultColors } from '../../features/themed/theme'
 import DropdownContainer from '../DropdownContainer'
 import Overlay from '../Overlay'
 import Row from '../Row'
@@ -8,6 +7,7 @@ import Span from '../Span'
 import ArrowIcon from '../icons/Icon.ArrowToggle'
 import { useDropdownLayout } from './hooks'
 import { styles } from './styles'
+import { defaultDropdownTabPreset, useDropdownTabPreset } from './styles.preset'
 import { DropdownTabProps } from './types'
 
 function DropdownTab({
@@ -17,8 +17,8 @@ function DropdownTab({
   indentFromTab = 4,
   style,
   overlayBackgroundColor,
-  iconColors,
   onOpenDropdown,
+  preset = defaultDropdownTabPreset,
 }: DropdownTabProps) {
   const dropdownButtonRef = useRef<TouchableOpacity>(null)
   const {
@@ -30,6 +30,8 @@ function DropdownTab({
     dropdownStyle: style?.dropdownContainer,
     indentFromTab,
   })
+
+  const activeStyles = useDropdownTabPreset({ isOpened, preset })
 
   const handleOpenDropdown = () => {
     dropdownButtonRef.current?.measure((fx, fy, w, h, px, py) => {
@@ -46,7 +48,7 @@ function DropdownTab({
     <View style={[styles.wrapper, style?.wrapper]}>
       {label && (
         <Span
-          style={[styles.label, style?.label, isOpened && style?.activeLabel]}
+          style={[styles.label, style?.label, activeStyles.label]}
           weight={500}
         >
           {label}
@@ -56,30 +58,18 @@ function DropdownTab({
         ref={dropdownButtonRef}
         activeOpacity={0.6}
         onPress={handleOpenDropdown}
-        style={[
-          styles.tab,
-          style?.tab,
-          isOpened && [styles.activeTab, style?.activeTab],
-        ]}
+        style={[styles.tab, activeStyles.tab, style?.tab]}
       >
         <Row style={[styles.tabInnerWrapper, style?.tabInnerWrapper]}>
           <Span
-            style={[
-              styles.tabLabel,
-              style?.tabLabel,
-              isOpened && style?.activeTabLabel,
-            ]}
+            style={[styles.tabLabel, activeStyles.tabLabel, style?.tabLabel]}
           >
             {tabLabel}
           </Span>
           <ArrowIcon
             size={10}
             style={[style?.tabIcon, isOpened && styles.toggleIcon__opened]}
-            color={
-              isOpened
-                ? iconColors?.opened || defaultColors.detailsActive
-                : iconColors?.default
-            }
+            color={activeStyles.iconColor}
           />
         </Row>
       </TouchableOpacity>

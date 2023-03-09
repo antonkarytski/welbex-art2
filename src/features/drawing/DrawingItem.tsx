@@ -6,14 +6,14 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native'
-import { Drawing } from './types'
+import { ArtWorkPreviewResponse } from '../../api/parts/categories/types'
 
 type DrawingProps = {
   size: number
-  item: Drawing
+  item: ArtWorkPreviewResponse
   style?: StyleProp<ImageStyle>
   containerStyle?: StyleProp<ViewStyle>
-  onPress?: (item: Drawing) => void
+  onPress?: (item: ArtWorkPreviewResponse) => void
 }
 
 const DrawingItem = React.memo(
@@ -21,7 +21,7 @@ const DrawingItem = React.memo(
     return (
       <TouchableOpacity onPress={() => onPress?.(item)} style={containerStyle}>
         <Image
-          source={item.image}
+          source={{ uri: item.image_thumbnail }}
           style={[style, { width: size, height: size }]}
         />
       </TouchableOpacity>

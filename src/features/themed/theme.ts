@@ -36,6 +36,7 @@ const LIGHT = {
   line: '#F2F4F4',
   darkLine: '#D5DDDC',
   icon: '#616868',
+  likesIcon: RED.DETAILS,
   tabsLine: '#DDDDDD',
   tabsSelectedTint: '#242424',
   profileTabLine: '#E1E1E1',
@@ -105,13 +106,18 @@ const LIGHT = {
   inputFocusedBorder: GREEN_BLUE.PRIMARY,
   inputDisabledText: GREY.TEXT_LIGHT,
   inputDisabledBackground: GREY.BACKGROUND_DISABLED, //'#F2F4F4'
+  /** Checkbox */
   checkboxIcon: COMMON.WHITE,
   checkboxBackground: COMMON.WHITE,
   checkboxBackgroundActive: GREEN_BLUE.PRIMARY,
   checkboxBorder: BLACK.TEXT,
+  /** Switch */
   switchThumbBackground: COMMON.WHITE,
   switchTrackBackground: GREY.DETAILS,
   switchTrackBackgroundActive: GREEN_BLUE.PRIMARY,
+  /** Select */
+  selectItemBackground: COMMON.WHITE,
+  selectCkeckedItemBackground: GREY.BACKGROUND_EXTRA_LIGHT,
 }
 
 const DARK: Record<keyof ColorThemeStructure, string> = {
@@ -136,6 +142,7 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   line: '#F2F4F4',
   darkLine: '#D5DDDC',
   icon: '#616868',
+  likesIcon: RED.DETAILS,
   tabsLine: '#DDDDDD',
   tabsSelectedTint: '#242424',
   profileTabLine: '#E1E1E1',
@@ -212,6 +219,9 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   switchThumbBackground: COMMON.WHITE,
   switchTrackBackground: GREY.DETAILS,
   switchTrackBackgroundActive: GREEN_BLUE.PRIMARY,
+  /** Select */
+  selectItemBackground: COMMON.WHITE,
+  selectCkeckedItemBackground: GREY.BACKGROUND_EXTRA_LIGHT,
 }
 
 export const COLOR_THEMES: Record<ColorThemes, ColorThemeStructure> = {

@@ -10,7 +10,7 @@ import { COLOR_THEMES } from '../../features/themed/theme'
 import { Fn } from '../../types'
 import Span from '../Span'
 
-type ButtonStyle = {
+export type TextButtonStyle = {
   button?: StyleProp<ViewStyle>
   buttonDisabled?: StyleProp<ViewStyle>
   label?: StyleProp<TextStyle>
@@ -21,7 +21,7 @@ export type ButtonProps = {
   onPress: Fn
   label?: string
   disabled?: boolean
-  style?: ButtonStyle
+  style?: TextButtonStyle
 }
 
 export default function TextButton({

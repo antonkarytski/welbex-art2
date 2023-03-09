@@ -1,5 +1,6 @@
 import { createEffect } from 'effector'
 import { getUserDrawings } from '../../_mock/usersDrawings'
+import { ArtWork } from '../../api/parts/arts/types'
 import { Drawing } from '../drawing/types'
 import { UserDrawingListType } from './types'
 

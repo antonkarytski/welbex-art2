@@ -6,6 +6,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
+import { SpecificCategoryResponse } from '../../api/parts/categories/types'
 import Span from '../../ui/Span'
 import CameraIcon from '../../ui/icons/Icon.Camera'
 import { createThemedStyle } from '../themed'
@@ -15,14 +16,15 @@ import { uploadBlockCommonStyles, uploadImageCardThemedStyle } from './styles'
 type UploadFromCameraBlockProps = {
   label: string
   style?: StyleProp<ViewStyle>
+  category?: SpecificCategoryResponse
 }
 
 const UploadFromCameraBlock = ({
   label,
   style,
+  category,
 }: UploadFromCameraBlockProps) => {
   const { styles, colors } = useTheme(themedStyles)
-
   return (
     <TouchableOpacity style={[styles.container, style]}>
       <View style={[uploadBlockCommonStyles.button, styles.button]}>

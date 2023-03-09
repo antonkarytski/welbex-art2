@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { ImageStyle, ScrollView, StyleSheet, View } from 'react-native'
 import { createStateModel } from 'altek-toolkit'
-import { MOCK_CATEGORIES } from '../../_mock/categories'
+import { CategoryResponse } from '../../api/parts/categories/types'
+import CategoriesSelect from '../../features/categories/CategoriesSelect'
 import ImagePreviewFormField from '../../features/createPost/ImagePreviewFormField'
 import { createPostFormModel } from '../../features/createPost/model'
 import BlockUploadFromCamera from '../../features/imagePick/Block.UploadFromCamera'
@@ -14,31 +15,41 @@ import { themedPrimaryGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
 import H3 from '../../ui/H3'
 import PresetButton from '../../ui/buttons/PresetButton'
-import { DropdownStyles } from '../../ui/dropdownTab/types'
 import Field from '../../ui/form/Field'
-import DropdownSelect from '../../ui/selects/DropdownSelect'
 
-const selectedCategoryModel = createStateModel(MOCK_CATEGORIES[0])
+const selectedCategoryModel = createStateModel<null | CategoryResponse>(null)
 
 selectedCategoryModel.$state.watch((value) => {
-  createPostFormModel.setField({ value: value.name, key: 'category' })
+  if (value) {
+    createPostFormModel.setField({ value: value.id, key: 'category' })
+  }
 })
 
 export default function AddPostDescriptionScreen({
   route,
 }: ScreenComponentProps<links.createPostAddDescription>) {
   const assets = route.params.assets
+  const category = route.params.category
   const text = useText()
   const { styles } = useThemedStyleList({
     common: themedStyles,
-    select: themedSelectStyles,
     gradient: themedPrimaryGradient,
   })
 
   useEffect(() => {
+    if (category) selectedCategoryModel.set(category)
+  }, [category])
+
+  useEffect(() => {
+    const asset = assets[0]
+    if (!asset) return
     createPostFormModel.setField({
-      value: assets[0].uri,
-      key: 'imageUri',
+      value: {
+        name: asset.fileName || '',
+        size: asset.fileSize || 0,
+        uri: asset.uri,
+      },
+      key: createPostFormModel.fields.imageFile,
     })
   }, [assets])
 
@@ -55,7 +66,7 @@ export default function AddPostDescriptionScreen({
         contentContainerStyle={styles.common.scrollContent}
       >
         <ImagePreviewFormField
-          name={'imageUri'}
+          name={createPostFormModel.fields.imageFile}
           formModel={createPostFormModel}
           style={styles.common.image as ImageStyle}
         />
@@ -65,15 +76,9 @@ export default function AddPostDescriptionScreen({
           label={text.title}
           name={'title'}
           formModel={createPostFormModel}
+          styles={fieldStyles}
         />
-        <DropdownSelect
-          label={text.category}
-          model={selectedCategoryModel}
-          data={MOCK_CATEGORIES}
-          labelExtractor={(val) => val.label}
-          idExtractor={({ name }) => name}
-          style={{ dropdownTab: styles.select }}
-        />
+        <CategoriesSelect model={selectedCategoryModel} />
         <Field
           disabled
           label={text.age}
@@ -86,7 +91,12 @@ export default function AddPostDescriptionScreen({
         />
         <PresetButton
           style={styles.common.button}
-          onPress={() => {}}
+          onPress={() => {
+            createPostFormModel.validation.cast().then(({ isValid }) => {
+              if (isValid) {
+              }
+            })
+          }}
           label={text.submit}
         />
       </ScrollView>
@@ -121,21 +131,8 @@ const themedStyles = createThemedStyle((colors) =>
   })
 )
 
-const themedSelectStyles = createThemedStyle<DropdownStyles>((colors) =>
-  StyleSheet.create({
-    label: {
-      marginTop: 20,
-      marginBottom: 8,
-      color: colors.textGrey,
-    },
-    tab: {
-      marginBottom: 20,
-      backgroundColor: colors.buttonLightBackgroundPressed,
-      borderColor: colors.darkLine,
-    },
-    activeTab: {
-      backgroundColor: colors.screenBackground,
-      borderColor: colors.primary1,
-    },
-  })
-)
+const fieldStyles = StyleSheet.create({
+  container: {
+    marginBottom: 20,
+  },
+})

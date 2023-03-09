@@ -1,15 +1,15 @@
 import React from 'react'
 import Svg, { Path } from 'react-native-svg'
-import { IconProps } from './_types'
+import { FilledIconProps } from './_types'
 
 const HeartIcon = React.memo(
-  ({ size = 21, color = '#303535', style }: IconProps) => {
+  ({ size = 21, color = '#303535', style, fill = 'none' }: FilledIconProps) => {
     return (
       <Svg
         width={size}
         height={size * (7 / 8)}
         viewBox="0 0 24 21"
-        fill="none"
+        fill={fill}
         style={style}
       >
         <Path

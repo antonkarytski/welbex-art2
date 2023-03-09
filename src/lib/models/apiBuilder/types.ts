@@ -2,7 +2,8 @@ import { TokenType } from './types.token'
 
 export enum ContentType {
   JSON = 'application/json',
-  FORM = 'application/x-www-form-urlencoded',
+  FORM_ENCODED = 'application/x-www-form-urlencoded',
+  FORM_DATA = 'multipart/form-data',
 }
 export type Method = 'POST' | 'GET' | 'PUT' | 'DELETE' | 'PATCH'
 export type RequestRouteSettings = {
@@ -19,7 +20,12 @@ export type RequestProps<Body = any> = RequestRouteSettings & RequestData<Body>
 export type MapperFn<Body> = (
   props: Body
 ) =>
-  | Partial<Omit<RequestData, 'url'> & { url: string | number }>
+  | Partial<
+      Omit<RequestData, 'url'> & {
+        url: string | number
+        entityId?: number | string
+      }
+    >
   | string
   | number
 export type RequestPropsGetter<T> = unknown extends T

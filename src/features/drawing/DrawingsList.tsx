@@ -12,6 +12,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native'
+import { ArtWorkPreviewResponse } from '../../api/parts/categories/types'
 import { SCREEN_WIDTH } from '../../lib/device/dimensions'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
@@ -22,20 +23,23 @@ import { createThemedStyle } from '../themed'
 import { useThemedStyle } from '../themed/hooks'
 import DrawingItem from './DrawingItem'
 import { drawingKeyExtractor } from './helpers'
-import { Drawing } from './types'
 
 export type DrawingFlatListProps = {
   onScroll?: FlatListProps<any>['onScroll']
   contentStyle?: FlatListProps<any>['contentContainerStyle']
-  onEndReach?: () => void
+  onEndReached?: () => void
   onRefresh?: () => void
   ListHeader?: ReactElement
   onScrollEndDrag?: () => void
+  refreshing?: FlatListProps<any>['refreshing']
+  ListFooterComponent?: FlatListProps<any>['ListFooterComponent']
 }
 
 export type DrawingsListProps<L extends links> = {
-  data: Drawing[]
-  detailsLink?: ScreensProps[L] extends { item: Drawing } ? L : never
+  data: ArtWorkPreviewResponse[]
+  detailsLink?: ScreensProps[L] extends { item: ArtWorkPreviewResponse }
+    ? L
+    : never
 } & DrawingFlatListProps
 
 function getImageSize() {
@@ -44,26 +48,21 @@ function getImageSize() {
 
 const DrawingsList = forwardRef(
   <L extends links>(
-    {
-      data,
-      ListHeader,
-      onEndReach,
-      contentStyle,
-      ...props
-    }: DrawingsListProps<L>,
-    ref: ForwardedRef<FlatList<Drawing>>
+    { data, ListHeader, contentStyle, ...props }: DrawingsListProps<L>,
+    ref: ForwardedRef<FlatList<ArtWorkPreviewResponse>>
   ) => {
     const imageSize = getImageSize()
     const styles = useThemedStyle(themedStyles)
     const navigate = useNavigate()
 
     const goToDrawingDetails = useCallback(
-      (item: Drawing) => navigate(links.drawingDetails, { item }),
+      (item: ArtWorkPreviewResponse) =>
+        navigate(links.drawingDetails, { item }),
       [navigate]
     )
 
     const renderItem = useCallback(
-      ({ item }: { item: Drawing }) => {
+      ({ item }: { item: ArtWorkPreviewResponse }) => {
         return (
           <DrawingItem
             containerStyle={styles.itemContainer}
@@ -88,7 +87,6 @@ const DrawingsList = forwardRef(
           columnWrapperStyle={styles.listColumnWrapper}
           numColumns={2}
           keyExtractor={drawingKeyExtractor}
-          onEndReached={onEndReach}
           contentContainerStyle={[styles.listContentContainer, contentStyle]}
           onMomentumScrollEnd={props.onScrollEndDrag}
           {...props}

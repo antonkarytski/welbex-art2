@@ -1,9 +1,7 @@
 import { apiManager } from '../../apiManager'
 import { PaginatedListProps } from '../../types'
 import {
-  ArtWorksResponse,
   CategoriesResponse,
-  CategoryArtWorksProps,
   SpecificCategoryResponse,
   WinnerResponse,
 } from './types'
@@ -13,17 +11,10 @@ const all = categories.get<CategoriesResponse, PaginatedListProps | void>('all')
 const winners = categories.get<WinnerResponse, PaginatedListProps | void>(
   'winners'
 )
-const specific = categories.get<SpecificCategoryResponse, number>((id) => id)
-const artWorks = categories.get<ArtWorksResponse, CategoryArtWorksProps>(
-  ({ id, ...body }) => ({
-    url: `${id}/arts/all`,
-    body,
-  })
-)
+const specific = categories.get<SpecificCategoryResponse, number>()
 
 export const categoriesApi = {
   all,
   specific,
-  artWorks,
   winners,
 }

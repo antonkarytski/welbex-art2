@@ -4,6 +4,7 @@ import {
   StyleProp,
   StyleSheet,
   Text,
+  TextProps,
   TextStyle,
 } from 'react-native'
 
@@ -12,6 +13,8 @@ export type SpanProps = {
   style?: StyleProp<TextStyle>
   weight?: 400 | 500 | 600 | 700
   onLayout?: (event: LayoutChangeEvent) => void
+  numberOfLines?: number
+  onTextLayout?: TextProps['onTextLayout']
 }
 
 const Span = ({
@@ -20,12 +23,16 @@ const Span = ({
   style,
   weight = 400,
   onLayout,
+  onTextLayout,
+  numberOfLines,
 }: PropsWithChildren<SpanProps>) => {
   return (
     <Text
       allowFontScaling={false}
       style={[styles.common, weights[weight], style]}
       onLayout={onLayout}
+      onTextLayout={onTextLayout}
+      numberOfLines={numberOfLines}
     >
       {label ?? children}
     </Text>

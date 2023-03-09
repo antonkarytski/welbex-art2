@@ -5,7 +5,7 @@ import { LoginBody, LoginResponse } from './types'
 const authEndpoint = apiManager.endpoint('auth')
 
 const login = authEndpoint.post<LoginResponse, LoginBody>({
-  contentType: ContentType.FORM,
+  contentType: ContentType.FORM_ENCODED,
   endpoint: 'token',
 })
 

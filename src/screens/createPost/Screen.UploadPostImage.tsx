@@ -5,11 +5,16 @@ import UploadFromCameraRollBlock from '../../features/imagePick/Block.UploadFrom
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
+import { links } from '../../navigation/links'
+import { ScreenComponentProps } from '../../navigation/types.screenProps'
 import { themedPrimaryGradient } from '../../styles/gradients'
 import { themedShadow5Style } from '../../styles/shadows'
 import { useText } from '../../translations/hook'
 
-export default function UploadPostImageScreen() {
+export default function UploadPostImageScreen({
+  route,
+}: ScreenComponentProps<links.createPostUploadImage>) {
+  const category = route.params?.category
   const text = useText()
   const { styles, colors } = useThemedStyleList({
     common: themedStyle,
@@ -23,10 +28,14 @@ export default function UploadPostImageScreen() {
         gradient={{ colors: styles.gradient }}
       />
       <View style={styles.common.contentContainer}>
-        <UploadFromCameraRollBlock style={styles.common.cameraRollBlock} />
+        <UploadFromCameraRollBlock
+          style={styles.common.cameraRollBlock}
+          category={category}
+        />
         <UploadFromCameraBlock
           style={styles.common.uploadFromCameraBlock}
           label={text.scanWork}
+          category={category}
         />
       </View>
     </View>

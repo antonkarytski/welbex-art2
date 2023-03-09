@@ -8,6 +8,9 @@ export const DEFAULT_DROPDOWN_HEIGHT = 200
 export const styles = StyleSheet.create<DropdownStyles>({
   label: {
     marginBottom: 8,
+    fontSize: 14,
+    lineHeight: 20,
+    fontFamily: FONT_MEDIUM,
   },
   wrapper: {
     flexGrow: 1,
@@ -21,10 +24,6 @@ export const styles = StyleSheet.create<DropdownStyles>({
     borderRadius: 8,
     borderColor: defaultColors.detailsInactive,
     backgroundColor: defaultColors.formFieldBackground,
-  },
-  activeTab: {
-    borderColor: defaultColors.detailsActive,
-    backgroundColor: '#ffffff',
   },
   tabLabel: {
     marginRight: 10,

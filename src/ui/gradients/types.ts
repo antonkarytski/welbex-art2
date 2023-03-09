@@ -1,4 +1,4 @@
-import { StyleProp, ViewStyle } from 'react-native'
+import { ImageProps, StyleProp, ViewStyle } from 'react-native'
 
 export type GradientColors = {
   start?: string
@@ -12,3 +12,10 @@ export type GradientsProps = {
   colors?: GradientColors
 }
 export type MotionGradientColors = GradientColors & { overlay?: string }
+
+export type ImageGradientProps = Omit<GradientsProps, 'stopOffset'> & {
+  startOffset?: string
+  endOffset?: string
+  imageHeight: number
+  source: ImageProps['source'] | null
+}

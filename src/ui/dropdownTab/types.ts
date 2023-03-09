@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import { StyleProp, TextStyle, ViewStyle } from 'react-native'
 import { Fn } from '../../types'
+import { PresetDropdownTabStates } from './styles.preset'
 
 export type ElementMeasureProps = {
   w: number
@@ -21,20 +22,14 @@ export type DropdownTabProps = {
   style?: DropdownComponentStyles
   overlayBackgroundColor?: string
   onOpenDropdown?: Fn
-  iconColors?: {
-    opened: string
-    default: string
-  }
+  preset?: PresetDropdownTabStates
 }
 
 export type DropdownStyles = {
   label?: TextStyle
-  activeLabel?: TextStyle
   dropdownContainer?: ViewStyle
   tab?: ViewStyle
-  activeTab?: ViewStyle
   tabLabel?: TextStyle
-  activeTabLabel?: TextStyle
   tabIcon?: ViewStyle
   tabInnerWrapper?: ViewStyle
   wrapper?: ViewStyle

@@ -11,6 +11,7 @@ export const BLACK = {
 export const RED = {
   TEXT: '#F66161',
   BORDER: '#E75958',
+  DETAILS: '#EE4F4F',
   BACKGROUND: 'rgba(231, 89, 88, 0.03)',
 } as const
 

@@ -3,11 +3,15 @@ import { PaginatedListProps, PaginatedListResponse } from '../../types'
 export type CategoryResponse = {
   id: number
   name: string
-  image: string
+  image: string | null
 }
 
 export type SpecificCategoryResponse = CategoryResponse & {
   description: string
+  competition: {
+    date_start: string
+    date_end: string
+  }
 }
 
 export type CategoryArtWorksProps = PaginatedListProps & {
@@ -16,10 +20,10 @@ export type CategoryArtWorksProps = PaginatedListProps & {
 
 export type ArtWorkPreviewResponse = {
   id: number
-  image: string
+  image_thumbnail: string
 }
 
-type WinnerItem = {
+export type WinnerItem = {
   winner: {
     first_name: string
     last_name: string
@@ -34,7 +38,7 @@ type WinnerItem = {
   }
   art: {
     id: number
-    image: string
+    image_thumbnail: string
   }
 }
 

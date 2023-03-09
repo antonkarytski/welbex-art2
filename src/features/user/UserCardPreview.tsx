@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Profile, UserShort } from '../../api/parts/users/types'
+import { UserShort } from '../../api/parts/users/types'
 import { useText } from '../../translations/hook'
 import Avatar from '../../ui/Avatar'
 import SubscribeButton from '../../ui/buttons/subscribeButton/SubscribeButton'

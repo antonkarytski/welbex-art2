@@ -13,32 +13,44 @@ function DropdownSelect<Item extends Record<string, any>>({
   labelExtractor,
   onOpenDropdown,
   style,
+  preset,
+  ItemSeparatorComponent,
   ...props
 }: DropdownSelectProps<Item>) {
   const [selectedItem] = useStateStore(props.model)
 
+  const selectStyles = {
+    item: itemStyles,
+    container: listStyles.container,
+    ...style?.select,
+  }
+
+  const commonProps = {
+    showSelectedIcon: false,
+    preset: preset?.selectItem,
+    ItemSeparatorComponent: ItemSeparatorComponent || null,
+  }
+
   return (
     <DropdownTab
       label={label}
-      tabLabel={labelExtractor?.(selectedItem) ?? placeholder}
+      tabLabel={(selectedItem && labelExtractor?.(selectedItem)) ?? placeholder}
       style={style?.dropdownTab}
+      preset={preset?.dropdownTab}
       onOpenDropdown={onOpenDropdown}
     >
       {searchModel ? (
         <SearchableSelect
           searchModel={searchModel}
-          style={{ searchInput: style?.searchInput }}
+          style={{ searchInput: style?.searchInput, ...selectStyles }}
+          {...commonProps}
           {...props}
         />
       ) : (
         <Select
-          showSelectedIcon={false}
           labelExtractor={labelExtractor}
-          style={{
-            item: itemStyles,
-            container: listStyles.container,
-            ...style?.select,
-          }}
+          style={selectStyles}
+          {...commonProps}
           {...props}
         />
       )}

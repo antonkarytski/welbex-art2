@@ -1,16 +1,20 @@
+import { useStore } from 'effector-react'
 import React, { useCallback } from 'react'
 import { FlatList, StyleSheet, View, ViewProps } from 'react-native'
-import { WINNERS_MOCK } from '../../_mock/winners'
+import { WinnerItem } from '../../api/parts/categories/types'
+import { SCREEN_PADDING_HORIZONTAL } from '../../styles/constants'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
+import Span from '../../ui/Span'
+import Loader from '../../ui/loaders/Loader'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
-import { userName } from '../user/helpers'
+import { ageCategory, userName } from '../user/helpers'
 import CardWinner from './Card.Winner'
+import { winnersListModel } from './request'
 import { winnerCardThemedStyles } from './styles'
-import { IWinner } from './types'
 
-const keyExtractor = ({ id }: IWinner) => id
+const keyExtractor = ({ art }: WinnerItem) => art.id.toString()
 
 type WinnersBlockProps = {
   onLayout?: ViewProps['onLayout']
@@ -22,21 +26,26 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
     card: winnerCardThemedStyles,
   })
   const text = useText()
+  const winners = useStore(winnersListModel.$items)
+  const nextPage = useStore(winnersListModel.$nextPage)
+  const getNext = () => {
+    winnersListModel.getNext()
+  }
 
   const renderWinnerItem = useCallback(
-    ({ item }: { item: IWinner }) => {
+    ({ item }: { item: WinnerItem }) => {
       return (
         <CardWinner
-          category={item.category}
-          authorName={userName(item.author)}
-          yearsCategory={item.yearsCategory}
-          image={item.image}
+          category={item.category.name}
+          authorName={userName(item.winner)}
+          yearsCategory={ageCategory(item, text)}
+          image={{ uri: item.art.image_thumbnail }}
           styles={styles.card}
           offsetY={100}
         />
       )
     },
-    [styles]
+    [styles, text]
   )
 
   return (
@@ -46,9 +55,14 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
         contentContainerStyle={styles.common.listContent}
         showsHorizontalScrollIndicator={false}
         horizontal
-        data={WINNERS_MOCK}
+        data={winners}
         renderItem={renderWinnerItem}
         keyExtractor={keyExtractor}
+        ListFooterComponent={nextPage ? <Loader /> : null}
+        onEndReached={getNext}
+        ListEmptyComponent={
+          <Span label={text.noWinners} style={styles.common.noWinnersText} />
+        }
       />
     </View>
   )
@@ -66,6 +80,12 @@ const themedStyles = createThemedStyle((colors) =>
     title: {
       color: colors.navigationLabelSelected,
       paddingLeft: 20,
+    },
+    noWinnersText: {
+      height: 150,
+      color: colors.text,
+      fontSize: 18,
+      paddingHorizontal: SCREEN_PADDING_HORIZONTAL,
     },
   })
 )

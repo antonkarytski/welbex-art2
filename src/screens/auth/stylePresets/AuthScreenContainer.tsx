@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
 import { useThemedStyleList } from '../../../features/themed/hooks'
 import AppHeader from '../../../navigation/elements/AppHeader'
-import { transparentScreenHeaderThemedStyles } from '../../../styles/screen'
+import { screenHeaderThemedStylesDark } from '../../../styles/screen'
 import ScreenContainer from '../../../ui/ScreenContainer'
 import ScreenWrapper from '../../../ui/ScreenWrapper'
 import { themedCommonStyles } from './styles'
@@ -24,7 +24,7 @@ const AuthScreenContainer = ({
   enableScrollView,
 }: AuthScreenContainerProps) => {
   const { styles, colors } = useThemedStyleList({
-    screenHeader: transparentScreenHeaderThemedStyles,
+    screenHeader: screenHeaderThemedStylesDark,
     common: themedCommonStyles,
   })
 

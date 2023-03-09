@@ -1,14 +1,18 @@
-import React, { useRef, useState } from 'react'
+import { useStore } from 'effector-react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Animated, StyleSheet, View } from 'react-native'
 import CategoriesList from '../../features/categories/CategoriesList'
+import { categoriesListModel } from '../../features/categories/request'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import WinnersBlock from '../../features/winners/WinnersBlock'
+import { winnersListModel } from '../../features/winners/request'
 import AppHeader from '../../navigation/elements/AppHeader'
 import { themedPrimaryMotionGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import MotionGradient from '../../ui/gradients/MotionGradient'
+import Loader from '../../ui/loaders/Loader'
 
 export default function HomeScreen() {
   const [headerHeight, setHeaderHeight] = useState(0)
@@ -21,6 +25,14 @@ export default function HomeScreen() {
   const text = useText()
 
   const offset = useRef(new Animated.Value(0)).current
+
+  // const isCategoriesLoading = useStore($isCategoriesLoading)
+  // const isWinnersLoading = useStore($isWinnersLoading)
+
+  useEffect(() => {
+    winnersListModel.get()
+    categoriesListModel.get()
+  }, [])
 
   return (
     <View style={styles.common.container}>
@@ -38,6 +50,9 @@ export default function HomeScreen() {
         iconsColor={colors.appHeaderIconLight}
         settingsAvailable={true}
       />
+      {/* {isCategoriesLoading || isWinnersLoading ? (
+        <Loader /> // TODO: change to "Layout loader"
+      ) : ( */}
       <CategoriesList
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: offset } } }],
@@ -57,6 +72,7 @@ export default function HomeScreen() {
           )
         }}
       />
+      {/* )} */}
     </View>
   )
 }

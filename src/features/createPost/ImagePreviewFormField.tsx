@@ -1,19 +1,27 @@
 import React from 'react'
 import { Image, ImageStyle, StyleProp } from 'react-native'
-import { FormFieldComponentProps, useFormField } from '../../lib/models/form'
+import { ImageFile } from '../../lib/files/types'
+import { useSpecificTypeFormField } from '../../lib/models/form'
+import { TypedFormFieldComponentProps } from '../../lib/models/form/model.form'
 
-type ImagePreviewFormFieldProps<T extends Record<string, string>> = {
+type ImagePreviewFormFieldProps<
+  T extends Record<string, any>,
+  K extends keyof T
+> = {
   style?: StyleProp<ImageStyle>
-} & FormFieldComponentProps<T>
+} & TypedFormFieldComponentProps<T, K, ImageFile | null>
 
-const ImagePreviewFormField = <T extends Record<string, string>>({
+const ImagePreviewFormField = <
+  T extends Record<string, any>,
+  K extends keyof T
+>({
   name,
   formModel,
   style,
-}: ImagePreviewFormFieldProps<T>) => {
-  const [value] = useFormField(formModel, name)
+}: ImagePreviewFormFieldProps<T, K>) => {
+  const [value] = useSpecificTypeFormField<T, ImageFile | null>(formModel, name)
 
-  return <Image source={{ uri: value || undefined }} style={style} />
+  return <Image source={{ uri: value?.uri || undefined }} style={style} />
 }
 
 export default ImagePreviewFormField

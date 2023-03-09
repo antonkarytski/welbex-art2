@@ -1,9 +1,10 @@
 import { useStore } from 'effector-react'
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
+import { useDropdownSelectPreset } from '../../../styles/selects'
 import CountrySelectablePhoneInput from '../../../ui/phoneInput/CountrySelectablePhoneInput'
 import { CountrySelectablePhoneInputProps } from '../../../ui/phoneInput/types'
-import { RenderItem } from '../../../ui/selects/types'
+import { RenderItem } from '../../../ui/selects/selectItem/types'
 import { COUNTRIES_LIST, Country } from '../../countries'
 import CountryRow from '../../countries/CountryRow'
 import { phoneCountryModel, phoneInputModel, searchCountryModel } from './model'
@@ -20,7 +21,7 @@ type PhoneEnterProps = {
 const PhoneEnter = ({ label, style }: PhoneEnterProps) => {
   const isPhoneValid = useStore(phoneInputModel.$isPhoneValid)
   const [isPhoneChecked, setIsPhoneChecked] = useState(false)
-
+  const selectStylesPreset = useDropdownSelectPreset()
   const dropdownTabStyle = style?.select?.dropdownTab
   const dropdownTabLabelStyle = {
     ...styles.tabLabel,
@@ -31,7 +32,7 @@ const PhoneEnter = ({ label, style }: PhoneEnterProps) => {
     <CountrySelectablePhoneInput
       searchModel={searchCountryModel}
       label={label}
-      selectedCountryModel={phoneCountryModel}
+      countryModel={phoneCountryModel}
       phoneModel={phoneInputModel}
       countries={COUNTRIES_LIST}
       renderCountryItem={renderCountryRow}
@@ -51,6 +52,7 @@ const PhoneEnter = ({ label, style }: PhoneEnterProps) => {
           },
         },
       }}
+      preset={selectStylesPreset}
     />
   )
 }

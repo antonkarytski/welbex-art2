@@ -1,33 +1,32 @@
+import { useStore } from 'effector-react'
 import React, { useEffect, useRef, useState } from 'react'
+import { Animated, StyleSheet, View } from 'react-native'
 import {
-  Animated,
-  Image,
-  ImageBackground,
-  StyleSheet,
-  View,
-} from 'react-native'
-import CategoryDetailsHeader from '../../features/categories/CategoryDetailsHeader'
-import CategoryGallery from '../../features/categories/CategoryGallery'
+  categoryArtsModel,
+  categoryDetailsModel,
+  getCategoryData,
+} from '../../features/categories/request'
+import CategoryGallery from '../../features/categories/specificCategory/CategoryGallery'
+import CategoryHeader from '../../features/categories/specificCategory/CategoryHeader'
+import CategoryScreenHeader from '../../features/categories/specificCategory/CategoryScreenHeader'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
-import ScreenHeader from '../../navigation/elements/ScreenHeader'
-import { ScreenHeaderStyles } from '../../navigation/elements/styles'
 import { links } from '../../navigation/links'
 import { ScreenComponentProps } from '../../navigation/types.screenProps'
-import { useText } from '../../translations/hook'
-import H1 from '../../ui/H1'
-import Span from '../../ui/Span'
+import ImageGradient from '../../ui/gradients/ImageGradient'
+import CategoryScreenSkeleton from '../../ui/loaders/Skeleton.CategoryScreen'
 
 const CategoryDetailsScreen = ({
   route,
 }: ScreenComponentProps<links.categoryDetails>) => {
-  const category = route.params.item
-  const text = useText()
-  const { styles, colors } = useThemedStyleList({
-    header: headerThemedStyles,
+  const categoryId = route.params.item.id
+  const category = useStore(categoryDetailsModel.$data)
+  const isLoadingCategory = useStore(categoryDetailsModel.$isLoading)
+  const isLoadingArts = useStore(categoryArtsModel.$isLoading)
+
+  const { styles } = useThemedStyleList({
     common: themedStyles,
   })
-  const [headerTitle, setHeaderTitle] = useState(text.category)
   const [minHeight, setMinHeight] = useState(0)
   const [contentHeight, setContentHeight] = useState(0)
   const offset = useRef(new Animated.Value(0)).current
@@ -46,36 +45,47 @@ const CategoryDetailsScreen = ({
   })
 
   useEffect(() => {
-    const id = offset.addListener(({ value }) => {
-      if (value > contentHeight) return setHeaderTitle(category.label)
-      setHeaderTitle(text.category)
-    })
-    return () => offset.removeListener(id)
-  }, [contentHeight, offset])
+    getCategoryData(categoryId)
+  }, [categoryId])
+
+  const [isRefreshing, setIsRefreshing] = useState(false)
+
+  const onRefresh = async () => {
+    setIsRefreshing(true)
+    getCategoryData(categoryId).finally(() => setIsRefreshing(false))
+  }
+
   const overlayAnimatedStyles = {
     transform: [{ translateY }],
   }
+  if ((isLoadingCategory || isLoadingArts) && !isRefreshing) {
+    return <CategoryScreenSkeleton />
+  }
+  if (!category) return <CategoryScreenHeader transparent={false} />
+
   return (
     <View style={styles.common.container}>
-      <Animated.Image
-        resizeMode={'cover'}
-        style={{
-          position: 'absolute',
-          width: '100%',
-          height,
-          transform: [{ translateY: imageTranslateY }],
-        }}
-        source={category.image}
-      />
+      <Animated.View
+        style={[
+          styles.common.headerImageContainer,
+          {
+            height,
+            transform: [{ translateY: imageTranslateY }],
+          },
+        ]}
+      >
+        <ImageGradient
+          imageHeight={height}
+          source={category.image ? { uri: category.image } : null}
+        />
+      </Animated.View>
       <Animated.View style={[styles.common.overlay, overlayAnimatedStyles]} />
-      <ScreenHeader
+      <CategoryScreenHeader
+        offset={offset}
+        contentHeight={contentHeight}
         onLayout={({ nativeEvent }) => {
           if (!minHeight) setMinHeight(nativeEvent.layout.height)
         }}
-        backArrowColor={colors.whiteText}
-        backAvailable
-        style={styles.header}
-        title={headerTitle}
       />
       <CategoryGallery
         onScroll={Animated.event(
@@ -83,17 +93,15 @@ const CategoryDetailsScreen = ({
           { useNativeDriver: true }
         )}
         header={
-          <View
+          <CategoryHeader
             onLayout={({ nativeEvent }) => {
               if (!contentHeight) setContentHeight(nativeEvent.layout.height)
             }}
-            style={styles.common.content}
-          >
-            <H1 style={styles.common.title} label={category.label} />
-            <Span style={styles.common.term} label={category.term} />
-          </View>
+          />
         }
         item={category}
+        onRefresh={onRefresh}
+        refreshing={isRefreshing}
       />
     </View>
   )
@@ -102,30 +110,15 @@ const CategoryDetailsScreen = ({
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     container: { flex: 1 },
-    content: {
-      paddingHorizontal: 20,
-    },
-    title: {
-      color: colors.whiteText,
-      marginBottom: 12,
-    },
-    term: {
-      color: colors.whiteText,
-      marginBottom: 36,
-    },
     overlay: {
       position: 'absolute',
-      backgroundColor: 'white',
+      backgroundColor: colors.screenBackground,
       width: '100%',
       height: 1000,
     },
-  })
-)
-
-const headerThemedStyles = createThemedStyle<ScreenHeaderStyles>((colors) =>
-  StyleSheet.create({
-    line: {
-      backgroundColor: colors.line,
+    headerImageContainer: {
+      position: 'absolute',
+      width: '100%',
     },
   })
 )

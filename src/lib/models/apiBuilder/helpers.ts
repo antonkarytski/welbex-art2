@@ -7,10 +7,15 @@ export function bodyToParams(body: object) {
     .join('&')
 }
 
-export function getUrlEnd(value: number | string | undefined) {
-  if (!value) return ''
-  if (typeof value === 'number') return `/${value}`
-  return `/${removeSlashes(value)}`
+export function getUrlEnd(
+  value: number | string | undefined,
+  entityId?: number | string
+) {
+  let result: string = ''
+  if (typeof value === 'string') result = `/${removeSlashes(value)}`
+  if (typeof value === 'number') result = `/${value}`
+  if (entityId) result += `/${entityId}`
+  return result
 }
 
 export function removeSlashes(value: string) {
@@ -41,7 +46,7 @@ export function prepareRequestData<Body>({
     if (contentType === ContentType.JSON) {
       data.body = JSON.stringify(body)
     }
-    if (contentType === ContentType.FORM) {
+    if (isContentTypeFormData(contentType)) {
       data.body = body as any as FormData
     }
   }
@@ -78,4 +83,8 @@ export function convertToFormData(list: Record<string, any>) {
 
 export function isObjectNotFormData(body: any): body is FormData {
   return body && typeof body === 'object' && !(body instanceof FormData)
+}
+
+export function isContentTypeFormData(type?: string) {
+  return type === ContentType.FORM_DATA || type === ContentType.FORM_ENCODED
 }

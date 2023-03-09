@@ -10,6 +10,7 @@ import H2 from '../../../ui/H2'
 import TextButton from '../../../ui/buttons/Button.Text'
 import Button from '../../../ui/buttons/PresetButton'
 import Field from '../../../ui/form/Field'
+import SecureField from '../../../ui/form/SecureField'
 import { useThemedStyleList } from '../../themed/hooks'
 import { logIn, logInFormModel } from './model'
 
@@ -34,7 +35,7 @@ const LogInForm = () => {
         name={'email'}
         style={styles.field}
       />
-      <Field
+      <SecureField
         placeholder={t.password}
         formModel={logInFormModel}
         name={'password'}
