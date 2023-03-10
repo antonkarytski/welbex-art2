@@ -11,8 +11,6 @@ export const $myProfile = restore(setMyProfile, null)
   })
   .reset(logOut)
 
-$myProfile.watch((profile) => console.log('profile', profile))
-
 export const $userEmail = $myProfile.map((profile) => profile?.email ?? null)
 export const $currentSubscription = $myProfile.map(
   (profile) => profile?.subscription ?? null

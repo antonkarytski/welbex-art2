@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { Animated, StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import { COMMON } from '../../styles/colors'
+import { useAnimatedProgress } from './hooks'
 
 type ProgressBarProps = {
   color?: string
@@ -18,30 +19,11 @@ const ProgressBar = ({
   value = 0,
 }: ProgressBarProps) => {
   const [fullWidth, setFullWidth] = useState(0)
-  const animatedValue = useRef(
-    typeof value === 'number' ? new Animated.Value(value) : value
-  ).current
-
-  const progress = animatedValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [-fullWidth, 0],
-  })
-
-  useEffect(() => {
-    if (typeof value === 'number') {
-      Animated.timing(animatedValue, {
-        toValue: value,
-        duration: 300,
-        useNativeDriver: true,
-      }).start()
-    }
-  }, [animatedValue, value])
+  const progress = useAnimatedProgress(value, fullWidth)
 
   return (
     <View
-      onLayout={({ nativeEvent }) => {
-        setFullWidth(nativeEvent.layout.width)
-      }}
+      onLayout={({ nativeEvent }) => setFullWidth(nativeEvent.layout.width)}
       style={[styles.container, { backgroundColor: color }, style]}
     >
       <Animated.View
