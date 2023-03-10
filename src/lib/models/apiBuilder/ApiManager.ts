@@ -62,7 +62,9 @@ export class ApiManager {
     const isJsonAvailable = contentType === ContentType.JSON
     this.debugger.response(response)
     if (response.ok) {
-      if (!isJsonAvailable) return null as R
+      if (!isJsonAvailable) {
+        return null as R
+      }
       return (await response.json()) as R
     }
     if (this.requestRepeatFilter) {

@@ -13,7 +13,7 @@ type EffectResult<E extends Effect<any, any>> = E extends Effect<any, infer R>
   ? R
   : never
 
-type IUseRequest<E extends Effect<any, any>, DT> = {
+export type IUseRequest<E extends Effect<any, any>, DT> = {
   data: DT
   isLoading: boolean
   error: Error | null

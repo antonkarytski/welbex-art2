@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react'
 import { Profile, UserShort } from '../../../api/parts/users/types'
-import { Drawing } from '../../drawing/types'
+import { Drawing } from '../../artWork/types'
 import { getUserDrawingsList } from '../request.drawingList'
 import { UserDrawingListType } from '../types'
 

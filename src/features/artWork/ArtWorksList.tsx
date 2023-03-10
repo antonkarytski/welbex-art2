@@ -21,10 +21,10 @@ import { SCREEN_PADDING_HORIZONTAL } from '../../styles/constants'
 import { themedShadow5Style } from '../../styles/shadows'
 import { createThemedStyle } from '../themed'
 import { useThemedStyle } from '../themed/hooks'
-import DrawingItem from './DrawingItem'
+import ArtWorkItem from './ArtWorkItem'
 import { drawingKeyExtractor } from './helpers'
 
-export type DrawingFlatListProps = {
+export type ArtWorksFlatListProps = {
   onScroll?: FlatListProps<any>['onScroll']
   contentStyle?: FlatListProps<any>['contentContainerStyle']
   onEndReached?: () => void
@@ -35,20 +35,20 @@ export type DrawingFlatListProps = {
   ListFooterComponent?: FlatListProps<any>['ListFooterComponent']
 }
 
-export type DrawingsListProps<L extends links> = {
+export type ArtWorksListProps<L extends links> = {
   data: ArtWorkPreviewResponse[]
   detailsLink?: ScreensProps[L] extends { item: ArtWorkPreviewResponse }
     ? L
     : never
-} & DrawingFlatListProps
+} & ArtWorksFlatListProps
 
 function getImageSize() {
   return (SCREEN_WIDTH - SCREEN_PADDING_HORIZONTAL * 3) / 2
 }
 
-const DrawingsList = forwardRef(
+const ArtWorksList = forwardRef(
   <L extends links>(
-    { data, ListHeader, contentStyle, ...props }: DrawingsListProps<L>,
+    { data, ListHeader, contentStyle, ...props }: ArtWorksListProps<L>,
     ref: ForwardedRef<FlatList<ArtWorkPreviewResponse>>
   ) => {
     const imageSize = getImageSize()
@@ -64,7 +64,7 @@ const DrawingsList = forwardRef(
     const renderItem = useCallback(
       ({ item }: { item: ArtWorkPreviewResponse }) => {
         return (
-          <DrawingItem
+          <ArtWorkItem
             containerStyle={styles.itemContainer}
             style={styles.item as ImageStyle}
             size={imageSize}
@@ -120,4 +120,4 @@ const themedStyles = createThemedStyle((colors) =>
   })
 )
 
-export default DrawingsList
+export default ArtWorksList

@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
+import { api } from '../../api'
 import { buttonLightThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import LineSeparator from '../../ui/LineSeparator'
@@ -22,7 +23,11 @@ const AuthWithServices = ({
     feature: themedStyles,
     button: buttonLightThemedPreset,
   })
-  const onContinueWithGoogle = () => {}
+  const onContinueWithGoogle = () => {
+    api.auth.googleAuth().then((e) => {
+      console.log(e)
+    })
+  }
   const onContinueWithApple = () => {}
 
   return (

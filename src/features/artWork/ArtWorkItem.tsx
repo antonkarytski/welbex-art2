@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import { ArtWorkPreviewResponse } from '../../api/parts/categories/types'
 
-type DrawingProps = {
+type ArtWorkItemProps = {
   size: number
   item: ArtWorkPreviewResponse
   style?: StyleProp<ImageStyle>
@@ -16,8 +16,8 @@ type DrawingProps = {
   onPress?: (item: ArtWorkPreviewResponse) => void
 }
 
-const DrawingItem = React.memo(
-  ({ size, style, containerStyle, onPress, item }: DrawingProps) => {
+const ArtWorkItem = React.memo(
+  ({ size, style, containerStyle, onPress, item }: ArtWorkItemProps) => {
     return (
       <TouchableOpacity onPress={() => onPress?.(item)} style={containerStyle}>
         <Image
@@ -29,4 +29,4 @@ const DrawingItem = React.memo(
   }
 )
 
-export default DrawingItem
+export default ArtWorkItem

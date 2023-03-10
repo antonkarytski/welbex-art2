@@ -12,7 +12,7 @@ import { $isAuth } from '../auth/model'
 import { useColors } from '../themed'
 import { toggleLike, toggleSave } from './request'
 
-type DrawingInteractivePanelProps = {
+type ArtWorkInteractivePanelProps = {
   item: ArtWorkGeneral
   onLikeChange?: (isLiked: boolean, likes: number) => void
   onSaveChange?: (isSaved: boolean) => void
@@ -22,11 +22,11 @@ function isAuthorizedArtWork(item: ArtWorkGeneral | ArtWork): item is ArtWork {
   return (item as ArtWork).is_liked !== undefined
 }
 
-const DrawingInteractivePanel = ({
+const ArtWorkInteractivePanel = ({
   item,
   onLikeChange,
   onSaveChange,
-}: DrawingInteractivePanelProps) => {
+}: ArtWorkInteractivePanelProps) => {
   const colors = useColors()
 
   const navigate = useNavigate()
@@ -100,4 +100,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default DrawingInteractivePanel
+export default ArtWorkInteractivePanel

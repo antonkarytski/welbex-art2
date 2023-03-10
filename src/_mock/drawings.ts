@@ -1,4 +1,4 @@
-import { Drawing } from '../features/drawing/types'
+import { Drawing } from '../features/artWork/types'
 import { getRandomBetween } from './_random'
 import { romanov } from './users'
 

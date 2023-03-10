@@ -8,7 +8,6 @@ import {
   removeSlashes,
 } from './helpers'
 import {
-  ContentType,
   MapperFn,
   Method,
   RequestProps,

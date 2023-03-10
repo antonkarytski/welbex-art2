@@ -1,5 +1,5 @@
 import { createEvent, createStore } from 'effector'
-import { Drawing } from '../../drawing/types'
+import { Drawing } from '../../artWork/types'
 import { GalleriesList, GallerySetter } from '../types'
 
 type GalleriesDrawingsList = GalleriesList<Drawing[]>

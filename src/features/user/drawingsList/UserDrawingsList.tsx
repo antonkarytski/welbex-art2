@@ -1,7 +1,7 @@
 import React, { forwardRef, useEffect } from 'react'
 import { FlatList } from 'react-native'
 import { Profile, UserShort } from '../../../api/parts/users/types'
-import DrawingsList, { DrawingFlatListProps } from '../../drawing/DrawingsList'
+import ArtWorksList, { ArtWorksFlatListProps } from '../../artWork/ArtWorksList'
 import { UserDrawingListType } from '../types'
 import { useDrawingsList } from './hooks'
 
@@ -11,7 +11,7 @@ type SpecificUserDrawingListProps = {
 
 type UserDrawingsListProps = {
   type: UserDrawingListType
-} & DrawingFlatListProps &
+} & ArtWorksFlatListProps &
   SpecificUserDrawingListProps
 
 const UserDrawingsList = forwardRef<FlatList, UserDrawingsListProps>(
@@ -23,7 +23,7 @@ const UserDrawingsList = forwardRef<FlatList, UserDrawingsListProps>(
     }, [getFirst])
 
     return (
-      <DrawingsList ref={ref} onEndReach={getNext} data={list} {...props} />
+      <ArtWorksList ref={ref} onEndReach={getNext} data={list} {...props} />
     )
   }
 )
