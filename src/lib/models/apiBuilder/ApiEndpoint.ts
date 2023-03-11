@@ -5,6 +5,7 @@ import { DoRequestProps, MapperFn, Method } from './types'
 
 type CreateApiEndpointRequest<Params> = {
   fn?: MapperFn<Params>
+  rawResponse?: boolean
 } & MethodSettings
 
 export type CreateApiEndpointSettings = {
@@ -67,36 +68,54 @@ export class ApiEndpoint {
     })
   }
 
-  public request<Response = any, Params = void>(
-    props: CreateApiEndpointRequest<Params>
-  ) {
+  public request<R = any, P = void>(props: CreateApiEndpointRequest<P>) {
     const propsGetter = this._endpoint.method(props, props.fn)
-    const effect = createEffect((params: Params) => {
+    const effect = createEffect((params: P) => {
       const requestProps = propsGetter(params)
-      return this.requestHandler<Response, Params>(requestProps)
-    }) as Effect<Params, Response> & ExtEffectMethods<Params, Response>
+      return this.requestHandler<R, P>(requestProps)
+    }) as Effect<P, R> & ExtEffectMethods<P, R>
 
     const copy = () => {
       const xhr = createXhr()
-      const effectCopy = createEffect((params: Params) => {
+      const effectCopy = createEffect((params: P) => {
         const requestProps = propsGetter(params)
-        return this.requestHandler<Response, Params>(requestProps, xhr.request)
-      }) as EffectWithProgress<Params, Response>
+        return this.requestHandler<R, P>(requestProps, xhr.request)
+      }) as EffectWithProgress<P, R>
       effectCopy.progress = xhr.progress
       effectCopy.copy = copy
       return effectCopy
     }
 
     effect.withProgress = () => {
-      const effectWithProgress = effect as EffectWithProgress<Params, Response>
+      const effectWithProgress = effect as EffectWithProgress<P, R>
       const xhr = createXhr()
-      effectWithProgress.use((params: Params) => {
+      effectWithProgress.use((params: P) => {
         const requestProps = propsGetter(params)
-        return this.requestHandler<Response, Params>(requestProps, xhr.request)
+        return this.requestHandler<R, P>(requestProps, xhr.request)
       })
       effectWithProgress.progress = xhr.progress
       effectWithProgress.copy = copy
       return effectWithProgress
+    }
+
+    effect.raw = <T>(mapper?: (response: Response) => T) => {
+      const propsGetterWithRaw = this._endpoint.method(
+        { ...props, rawResponse: true },
+        props.fn
+      )
+      if (mapper) {
+        const effectRaw = effect as unknown as Effect<P, T>
+        return effectRaw.use((params: P) => {
+          const requestProps = propsGetterWithRaw(params)
+          const result = this.requestHandler<Response, P>(requestProps)
+          return result.then(mapper)
+        })
+      }
+      const effectRaw = effect as unknown as Effect<P, Response>
+      return effectRaw.use((params: P) => {
+        const requestProps = propsGetterWithRaw(params)
+        return this.requestHandler<Response, P>(requestProps)
+      })
     }
 
     return effect
@@ -111,10 +130,8 @@ export class ApiEndpoint {
   }
 
   private specificMethodGetter(method: Method) {
-    return <Response = any, Params = void>(
-      props?: SpecificRequestProps<Params>
-    ) => {
-      return this.method<Response, Params>(method, props)
+    return <R = any, Params = void>(props?: SpecificRequestProps<Params>) => {
+      return this.method<R, Params>(method, props)
     }
   }
 
@@ -132,9 +149,14 @@ type EffectProgressSettings<Params, Response> = {
     ExtEffectMethods<Params, Response>
 }
 
-type ExtEffectMethods<Params, Response> = {
-  withProgress: () => Effect<Params, Response> &
-    EffectProgressSettings<Params, Response>
+type RawCreator<Params> = {
+  <T>(mapper: (response: Response) => T): Effect<Params, T>
+  (): Effect<Params, Response>
+}
+
+type ExtEffectMethods<Params, R> = {
+  withProgress: () => Effect<Params, R> & EffectProgressSettings<Params, R>
+  raw: RawCreator<Params>
 }
 
 type EffectWithProgress<Params, Response> = Effect<Params, Response> &

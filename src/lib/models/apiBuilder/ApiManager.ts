@@ -61,6 +61,7 @@ export class ApiManager {
     const contentType = response.headers.get('content-type')
     const isJsonAvailable = contentType === ContentType.JSON
     this.debugger.response(response)
+    if (props.rawResponse) return response as R
     if (response.ok) {
       if (!isJsonAvailable) {
         return null as R
