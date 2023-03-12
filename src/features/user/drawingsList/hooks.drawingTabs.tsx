@@ -1,16 +1,19 @@
 import React, { useMemo } from 'react'
 import { FlatList, FlatListProps, StyleProp, ViewStyle } from 'react-native'
 import { SceneMap } from 'react-native-tab-view'
-import { Profile, UserProfile, UserShort } from '../../../api/parts/users/types'
 import { mapObject } from '../../../lib/helpers/array'
 import { useText } from '../../../translations/hook'
 import { LangFn } from '../../../translations/types'
-import { UserDrawingListType } from '../types'
+import { UserDrawingListType, UserItem } from '../types'
 import UserDrawingsList from './UserDrawingsList'
+import { UserArtsListHeightModel, UserArtsListsRequestModel } from './types'
 
-export type TabsDescriptor = Partial<
-  Record<UserDrawingListType, { label: LangFn }>
->
+type TabProps = { label: LangFn }
+
+export type TabsDescriptor = Omit<
+  Record<UserDrawingListType, TabProps>,
+  UserDrawingListType.OWN
+> & { [UserDrawingListType.OWN]?: TabProps }
 
 export const commonDrawingsListTabs: TabsDescriptor = {
   [UserDrawingListType.LIKED]: { label: (text) => text.liked },
@@ -22,6 +25,11 @@ export const childrenDrawingsListTabs: TabsDescriptor = {
   ...commonDrawingsListTabs,
 }
 
+export const profileDrawingsListTabs: TabsDescriptor = {
+  [UserDrawingListType.OWN]: { label: (text) => text.gallery },
+  ...commonDrawingsListTabs,
+}
+
 export type TabListSettings = {
   contentStyle?: StyleProp<ViewStyle>
   onScroll?: FlatListProps<any>['onScroll']
@@ -29,11 +37,19 @@ export type TabListSettings = {
   onScrollEnd?: () => void
 }
 
-export function useDrawingsTabs(
-  tabs: TabsDescriptor,
-  item: Profile | UserShort | null,
-  settings: TabListSettings = {}
-) {
+type UseDrawingsTabs = {
+  tabs: TabsDescriptor
+  item: UserItem | null
+  artsListsRequestModel: UserArtsListsRequestModel['model']
+  artsListsHeightModel: UserArtsListHeightModel
+  settings?: TabListSettings
+}
+
+export function useDrawingsTabs({
+  tabs,
+  settings = {},
+  ...props
+}: UseDrawingsTabs) {
   const text = useText()
   const scenes = useMemo(
     () =>
@@ -48,12 +64,12 @@ export function useDrawingsTabs(
               contentStyle={settings.contentStyle}
               onScrollEndDrag={settings.onScrollEnd}
               type={key}
-              item={item}
+              {...props}
             />
           )
         })
       ),
-    [tabs, item, settings]
+    [tabs, settings, props]
   )
   const routes = useMemo(
     () =>
@@ -62,20 +78,5 @@ export function useDrawingsTabs(
       }),
     [tabs, text]
   )
-
   return { scenes, routes }
-}
-
-export function useCommonDrawingsListTabs(
-  item: Profile,
-  settings: TabListSettings = {}
-) {
-  return useDrawingsTabs(commonDrawingsListTabs, item, settings)
-}
-
-export function useChildrenDrawingsListTabs(
-  item: Profile | UserShort,
-  settings: TabListSettings = {}
-) {
-  return useDrawingsTabs(childrenDrawingsListTabs, item, settings)
 }

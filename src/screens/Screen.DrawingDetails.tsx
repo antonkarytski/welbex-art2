@@ -5,6 +5,7 @@ import { api } from '../api'
 import { $isAuth } from '../features/auth/model'
 import DrawingInteractionPanel from '../features/drawing/DrawingInteractivePanel'
 import AutoHeightImage from '../features/images/AutoHeightImage'
+import { $myProfile } from '../features/profile/model'
 import { createThemedStyle } from '../features/themed'
 import { useThemedStyleList } from '../features/themed/hooks'
 import UserCardPreview from '../features/user/UserCardPreview'
@@ -33,6 +34,7 @@ const DrawingDetailsScreen = ({
   const drawing = useRequest(
     isAuth ? api.arts.specificProtected : api.arts.specific
   )
+  const myProfile = useStore($myProfile)
 
   const { styles, colors } = useThemedStyleList({
     common: themedStyles,
@@ -57,6 +59,9 @@ const DrawingDetailsScreen = ({
         <ScrollView bounces={false} style={styles.common.contentContainer}>
           <UserCardPreview
             onAvatarPress={(item) => {
+              if (item.id === myProfile?.id) {
+                return navigate(links.profileTab)
+              }
               navigate(links.userProfile, { item })
             }}
             onSubscribePress={() => {

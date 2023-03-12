@@ -1,40 +1,26 @@
-import { useCallback, useRef, useState } from 'react'
-import { getUserDrawings } from '../../../_mock/usersDrawings'
-import { Profile, UserShort } from '../../../api/parts/users/types'
-import { Drawing } from '../../drawing/types'
-import { getUserDrawingsList } from '../request.drawingList'
-import { UserDrawingListType } from '../types'
+import { useStore } from 'effector-react'
+import { useCallback } from 'react'
+import { UserDrawingListType, UserItem } from '../types'
+import { UserArtsListsRequestModel } from './types'
 
 export function useDrawingsList(
-  item: Profile | UserShort | null,
-  type: UserDrawingListType
+  item: UserItem | null,
+  type: UserDrawingListType,
+  model: UserArtsListsRequestModel['model']
 ) {
-  const [list, setList] = useState<Drawing[]>([])
-  const nextPage = useRef<number | null>(0)
+  const list = useStore(model[type].$items)
+  const isLoading = useStore(model[type].$isLoading)
+  const isNextLoading = useStore(model[type].$isNextLoading)
 
-  const getFirstPage = useCallback(() => {
+  const getFirst = useCallback(() => {
     if (!item) return
-    getUserDrawingsList({ userId: item.id, page: 0, type }).then(
-      ({ result, next }) => {
-        nextPage.current = next
-        setList(result ?? [])
-      }
-    )
-  }, [item, type])
+    model[type].get({ userId: item.id })
+  }, [item, type, model])
 
-  const getNextPage = useCallback(() => {
-    if (!item || nextPage.current === null) return
-    getUserDrawingsList({ userId: item.id, page: nextPage.current, type }).then(
-      ({ result, next }) => {
-        nextPage.current = next
-        if (result) setList((currentList) => [...currentList, ...result])
-      }
-    )
-  }, [type, item])
+  const getNext = useCallback(() => {
+    if (!item) return
+    model[type].getNext({ userId: item.id })
+  }, [type, item, model])
 
-  return [list, getFirstPage, getNextPage] as [
-    Drawing[],
-    () => void,
-    () => void
-  ]
+  return { list, getFirst, getNext, isLoading, isNextLoading }
 }

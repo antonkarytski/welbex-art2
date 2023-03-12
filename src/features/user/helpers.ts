@@ -10,9 +10,15 @@ import { USER_DOB_FORMAT } from '../../constants'
 import { LangStructure } from '../../translations/types'
 
 export function userName(
-  user: Pick<UserInitialData, 'first_name' | 'last_name'>
+  user: Pick<UserInitialData, 'first_name' | 'last_name'>,
+  truncated: boolean = false,
+  availableLettersCount: number = 17
 ) {
-  return `${user.first_name} ${user.last_name}`
+  let result = `${user.first_name} ${user.last_name}`
+  if (truncated && result.length > availableLettersCount + 1) {
+    result = result.slice(0, availableLettersCount) + '...'
+  }
+  return result
 }
 
 export function ageCategory(item: WinnerItem, text: LangStructure) {

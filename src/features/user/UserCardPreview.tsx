@@ -42,6 +42,7 @@ const UserCardPreview = ({
         style={styles.description}
         item={item}
         shortenCountryName
+        shortenUserName
       />
       <SubscribeButton
         theme={getSubscribeButtonPreset({

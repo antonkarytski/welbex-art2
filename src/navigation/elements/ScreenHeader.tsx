@@ -3,7 +3,10 @@ import { StyleSheet, View, ViewProps } from 'react-native'
 import { createThemedStyle } from '../../features/themed'
 import { useTheme } from '../../features/themed/hooks'
 import { ColorThemeStructure } from '../../features/themed/theme'
-import { STATUSBAR_HEIGHT } from '../../lib/device/dimensions/constants'
+import {
+  STATUSBAR_HEIGHT,
+  WINDOW_WIDTH,
+} from '../../lib/device/dimensions/constants'
 import { IS_IOS } from '../../lib/helpers/native/constants'
 import Span from '../../ui/Span'
 import NavigationBackButton from './NavigationButton.Back'
@@ -66,6 +69,9 @@ const ScreenHeader = ({
               label={title}
               weight={600}
               style={[styles.title, style?.title]}
+              onLayout={(e) => {
+                console.log('*******************', e.nativeEvent.layout.width)
+              }}
             />
           )}
         </View>
@@ -76,6 +82,8 @@ const ScreenHeader = ({
   )
 }
 
+const SIDE_BLOCK_WIDTH = 60
+console.log(WINDOW_WIDTH - SIDE_BLOCK_WIDTH * 2)
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     container: {
@@ -85,14 +93,16 @@ const themedStyles = createThemedStyle((colors) =>
       alignItems: 'center',
     },
     sideBlock: {
-      width: 100,
+      width: SIDE_BLOCK_WIDTH,
     },
     titleContainer: {
       paddingVertical: 18,
+      maxWidth: WINDOW_WIDTH - SIDE_BLOCK_WIDTH * 2,
     },
     title: {
       color: colors.navigationLabelSelected,
       fontSize: 18,
+      width: '100%',
     },
     line: {
       marginHorizontal: 20,

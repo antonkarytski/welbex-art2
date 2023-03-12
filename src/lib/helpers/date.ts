@@ -87,3 +87,7 @@ export function getMonthPeriodString(
     startMonth === endMonth ? startDay : `${startDay} ${startMonth}`
   return `${startDateString} - ${endDay} ${endMonth}`
 }
+
+export const getAgeFromBirthday = (birthdate: string) => {
+  return moment().diff(birthdate, 'years')
+}

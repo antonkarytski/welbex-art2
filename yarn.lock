@@ -5220,6 +5220,11 @@ deprecated-react-native-prop-types@^4.0.0:
     invariant "*"
     prop-types "*"
 
+dequal@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/dequal/-/dequal-1.0.0.tgz#41c6065e70de738541c82cdbedea5292277a017e"
+  integrity sha512-/Nd1EQbQbI9UbSHrMiKZjFLrXSnU328iQdZKPQf78XQI6C+gutkFUeoHpG5J08Ioa6HeRbRNFpSIclh1xyG0mw==
+
 destroy@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.2.0.tgz#4803735509ad8be552934c67df614f94e66fa015"
@@ -10597,6 +10602,13 @@ react-native-codegen@^0.70.6:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
+react-native-collapsible-tab-view@^4.5.2:
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/react-native-collapsible-tab-view/-/react-native-collapsible-tab-view-4.5.2.tgz#e5fd7b81d76f3ee98cc0a0ea54439674591e9055"
+  integrity sha512-QXj4bMqfD+erREZNS51mqyPxJ8Xid4Kef/vqu1PqExNCAo30WjSKOpeNVHmXt4vcs/6ln+qFzLby4cbJ5AkoBw==
+  dependencies:
+    use-deep-compare "^1.1.0"
+
 react-native-confirmation-code-field@^7.3.1:
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/react-native-confirmation-code-field/-/react-native-confirmation-code-field-7.3.1.tgz#e705ee5b73d7749cac29da287379fa8690904fe6"
@@ -10630,10 +10642,10 @@ react-native-head-tab-view@^4.0.0-rc.13:
   resolved "https://registry.yarnpkg.com/react-native-head-tab-view/-/react-native-head-tab-view-4.0.0-rc.13.tgz#bf33216b897d0ffd0b7422d752b186df35f94304"
   integrity sha512-wal0cOy63BI/vjsxFRruqBm5B8QaDlOa4MX2CnuetMMbGR4522q0mtIya3EE0nO7GShwKk9TD1JvBvvpZa71AQ==
 
-react-native-pager-view@^6.1.2:
-  version "6.1.2"
-  resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-6.1.2.tgz#3522079b9a9d6634ca5e8d153bc0b4d660254552"
-  integrity sha512-qs2KSFc+7N7B+UZ6SG2sTvCkppagm5fVyRclv1KFKc7lDtrhXLzN59tXJw575LDP/dRJoXsNwqUAhZJdws6ABQ==
+react-native-pager-view@^6.1.4:
+  version "6.1.4"
+  resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-6.1.4.tgz#3a63ebd1b72f81991157ea552bb9c887e529bc8c"
+  integrity sha512-fmTwgGwPxGCBusKAq7gHzm+s1Yp0qh5rKPoQszaCuxrb+76KgK4Qe82jJNPUp2xTZOKSw+FbJU2QahF8ncTl+w==
 
 react-native-reanimated-carousel@^3.3.0:
   version "3.3.0"
@@ -10698,9 +10710,9 @@ react-native-tab-view-collapsible-header@^2.0.1:
   integrity sha512-yvRya4/DC0DmrdLRKNmdPObSIh5X03Ogm4iYNpa56SSwvdxIhSvewe2IlG4q8rEeCXszQln84uWYSYIiyYuUaQ==
 
 react-native-tab-view@^3.3.4:
-  version "3.3.4"
-  resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-3.3.4.tgz#856d4527f3bbf05e2649302ec80abe9f2f004666"
-  integrity sha512-rceAYWpHa6knA7tsTnnjlcOxlCErR4F+yXQPpNm125IvYFyv09YRhE5uMU2IzyPIQ1CJvADCHurF3KySzVI+4Q==
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-3.5.1.tgz#2ad454afc0e186b43ea8b89053f39180d480d48b"
+  integrity sha512-qdrS5t+AEhfuKQyuCXkwHu4IVppkuTvzWWlkSZKrPaSkjjIa32xrsGxt1UW9YDdro2w4AMw5hKn1hFmg/5mvzA==
   dependencies:
     use-latest-callback "^0.1.5"
 
@@ -12646,6 +12658,13 @@ url-parse@^1.5.3, url-parse@^1.5.9:
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
+
+use-deep-compare@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/use-deep-compare/-/use-deep-compare-1.1.0.tgz#85580dde751f68400bf6ef7e043c7f986595cef8"
+  integrity sha512-6yY3zmKNCJ1jjIivfZMZMReZjr8e6iC6Uqtp701jvWJ6ejC/usXD+JjmslZDPJQgX8P4B1Oi5XSLHkOLeYSJsA==
+  dependencies:
+    dequal "1.0.0"
 
 use-latest-callback@^0.1.5:
   version "0.1.5"

@@ -1,5 +1,11 @@
 import React from 'react'
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
+import {
+  LayoutChangeEvent,
+  StyleProp,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from 'react-native'
 import { SceneRendererProps } from 'react-native-tab-view/lib/typescript/src/types'
 import { defaultColors } from '../../features/themed/theme'
 import ActiveLineTint from './ActiveLineTint'
@@ -14,8 +20,9 @@ export type TabMenuStyles = TabMenuButtonStyles & {
 
 export type TabMenuProps = SceneRendererProps & {
   routes: TabRoute[]
-  activeTab?: TabRoute['key'] | number
+  activeTab?: TabRoute['key'] | number | null
   style?: TabMenuStyles
+  onLayout?: (e: LayoutChangeEvent) => void
 }
 
 const TabMenu = ({
@@ -24,10 +31,11 @@ const TabMenu = ({
   layout,
   routes,
   activeTab,
+  onLayout,
   style,
 }: TabMenuProps) => {
   return (
-    <View style={[styles.container, style?.container]}>
+    <View style={[styles.container, style?.container]} onLayout={onLayout}>
       <TabMenuButtons
         tabs={routes}
         onButtonPress={jumpTo}

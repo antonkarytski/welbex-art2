@@ -1,15 +1,17 @@
-import { apiManager } from '../../apiManager'
 import { formDataFromList } from '../../../lib/files/formData'
 import { ContentType } from '../../../lib/models/apiBuilder/types'
+import { apiManager } from '../../apiManager'
 import {
   AllArtWorksProps,
   AllArtWorksResponse,
   ArtWork,
-  ArtWorkWhileUnauthourized,
-  ArtWorksFilterProps,
-  CountOfFilteredArtsResponse,
   ArtWorkCreateProps,
   ArtWorkCreateResponse,
+  ArtWorkWhileUnauthorized,
+  ArtWorksFilterProps,
+  ArtsListPreviewResponse,
+  ArtsListProps,
+  CountOfFilteredArtsResponse,
 } from './types'
 
 const arts = apiManager.endpoint('arts').protect()
@@ -33,7 +35,7 @@ const following = arts.get<AllArtWorksResponse, AllArtWorksProps | void>(
   'all/following'
 )
 
-const specific = arts.get<ArtWorkWhileUnauthourized, number>((id) => ({
+const specific = arts.get<ArtWorkWhileUnauthorized, number>((id) => ({
   entityId: id,
   withToken: false,
 }))
@@ -71,6 +73,19 @@ const create = arts.post<ArtWorkCreateResponse, ArtWorkCreateProps>({
   },
 })
 
+const userArts = arts.endpoint('user')
+
+const userAllArts = userArts.get<ArtsListPreviewResponse, ArtsListProps>(
+  ({ userId, ...rest }) => ({ entityId: `${userId}/all`, body: rest })
+)
+
+const userLikedArts = userArts.get<ArtsListPreviewResponse, ArtsListProps>(
+  ({ userId, ...rest }) => ({ entityId: `${userId}/liked`, body: rest })
+)
+const userSavedArts = userArts.get<ArtsListPreviewResponse, ArtsListProps>(
+  ({ userId, ...rest }) => ({ entityId: `${userId}/saved`, body: rest })
+)
+
 export const artsApi = {
   all,
   best,
@@ -86,4 +101,7 @@ export const artsApi = {
   downloadThumbnailDrawing,
   downloadFullsizeDrawing,
   create,
+  userAllArts,
+  userLikedArts,
+  userSavedArts,
 }

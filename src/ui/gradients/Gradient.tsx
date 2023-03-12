@@ -18,6 +18,7 @@ const Gradient = ({
   colors,
   gradientTransform,
   stopOffset,
+  startOffset,
 }: PropsWithChildren<GradientsProps>) => {
   return (
     <View style={[styles.container, style]}>
@@ -27,7 +28,10 @@ const Gradient = ({
             id="grad"
             gradientTransform={gradientTransform || 'rotate(90)'}
           >
-            <Stop offset="0%" stopColor={colors?.start ?? '#46959B'} />
+            <Stop
+              offset={startOffset || '0%'}
+              stopColor={colors?.start ?? '#46959B'}
+            />
             <Stop
               offset={stopOffset || '100%'}
               stopColor={colors?.end ?? '#94C9CD'}

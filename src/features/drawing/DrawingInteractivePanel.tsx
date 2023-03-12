@@ -1,7 +1,7 @@
 import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { ArtWork } from '../../api/parts/arts/types'
+import { ArtWork, ArtWorkWhileUnauthorized } from '../../api/parts/arts/types'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import Span from '../../ui/Span'
@@ -24,9 +24,9 @@ const DrawingInteractivePanel = ({
   onSaveChange,
 }: DrawingInteractivePanelProps) => {
   const colors = useColors()
-
   const navigate = useNavigate()
   const isAuth = useStore($isAuth)
+
   const onLikeDrawing = () => {
     if (!isAuth) return navigate(links.login)
     const likesCount = item.is_liked ? item.likes - 1 : item.likes + 1

@@ -1,8 +1,9 @@
 import { attach, createEffect, createEvent, restore } from 'effector'
 import { createNextPageModel, getNextPage } from './model.page'
 import {
-  CreatePaginationListModelProps,
   GetNextProps,
+  PaginationListModelProps as ModelProps,
+  PaginationListModelResponse as ModelResponse,
   Request,
   RequestProps,
 } from './types'
@@ -10,8 +11,8 @@ import {
 export const createPaginationListModel = <R, P>({
   pageSize,
   request,
-}: CreatePaginationListModelProps<R, P>) => {
-  const { $nextPage, setNextPage } = createNextPageModel()
+}: ModelProps<R, P>): ModelResponse<R, P> => {
+  const { $nextPage, setNextPage, reset: resetPage } = createNextPageModel()
 
   const get = createEffect((props: P) =>
     request({ page: 1, size: pageSize, ...props })
@@ -24,7 +25,7 @@ export const createPaginationListModel = <R, P>({
       props,
     }),
     effect: createEffect(({ props, nextPage }: GetNextProps<P>) => {
-      if (!nextPage) return
+      if (!nextPage) return null
       return request({ page: nextPage, size: pageSize, ...props })
     }),
   })
@@ -39,7 +40,7 @@ export const createPaginationListModel = <R, P>({
 
   get.done.watch(({ result }) => {
     setNextPage(result)
-    setItems(result.items)
+    setItems(result?.items || [])
   })
 
   getNext.done.watch(({ result }) => {
@@ -51,6 +52,11 @@ export const createPaginationListModel = <R, P>({
   const $isLoading = get.pending
   const $isNextLoading = getNext.pending
 
+  const reset = () => {
+    resetPage()
+    setItems([])
+  }
+
   return {
     $nextPage,
     setNextPage,
@@ -59,6 +65,8 @@ export const createPaginationListModel = <R, P>({
     $items,
     $isLoading,
     $isNextLoading,
+    setItems,
+    reset,
   }
 }
 

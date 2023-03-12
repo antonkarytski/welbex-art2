@@ -13,7 +13,7 @@ export type ArtWorksFilterProps = {
 
 export type AllArtWorksProps = ArtWorksFilterProps & PaginatedListProps
 
-export type ArtWorkWhileUnauthourized = {
+export type ArtWorkWhileUnauthorized = {
   id: number
   title: string
   competition_id: number
@@ -22,7 +22,7 @@ export type ArtWorkWhileUnauthourized = {
   likes: number
 }
 
-export type ArtWork = ArtWorkWhileUnauthourized & {
+export type ArtWork = ArtWorkWhileUnauthorized & {
   is_liked: boolean
   is_saved: boolean
 }
@@ -52,3 +52,12 @@ export type ArtWorkCreateProps = {
   title: string
   categoryId: number
 }
+
+export type ArtPreview = {
+  id: number
+  image_thumbnail: string
+}
+
+export type ArtsListPreviewResponse = PaginatedListResponse<ArtPreview>
+
+export type ArtsListProps = PaginatedListProps & { userId: number }
