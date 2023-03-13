@@ -60,19 +60,16 @@ const ImageAdaptiveGradient = ({
             <Stop
               offset={startOffset ?? '0%'}
               stopColor={colors?.start ?? '#000000'}
+              stopOpacity={0.45}
             />
             <Stop
               offset={endOffset ?? '100%'}
-              stopColor={colors?.end ?? '#D5DDDC'}
+              stopColor={colors?.end ?? '#000000'}
+              stopOpacity={0.225}
             />
           </LinearGradient>
         </Defs>
-        <Rect
-          width={'100%'}
-          height={'100%'}
-          fill={'url(#grad)'}
-          opacity={0.15}
-        />
+        <Rect width={'100%'} height={'100%'} fill={'url(#grad)'} />
       </Svg>
       <ComponentImage {...imageProps} />
     </View>

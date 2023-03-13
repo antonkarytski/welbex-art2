@@ -13,15 +13,19 @@ type GalleryItemProps = {
   style: GalleryItemStyles
   onPress?: (item: ArtWork) => void
   ageTextGenerator?: AgeTextGenerator
+  onLikeDrawing: (item: ArtWork) => void
 }
 
 const GalleryItem = React.memo(
-  ({ item, style, onPress, ageTextGenerator }: GalleryItemProps) => {
+  ({
+    item,
+    style,
+    onPress,
+    ageTextGenerator,
+    onLikeDrawing,
+  }: GalleryItemProps) => {
     const colors = useColors()
-    /**
-     * TODO: Если на кнопку "нравится" нажимает не авторизованный пользователь,
-     * то при нажатии должен происходить переход на страницу логина
-     */
+    const onLike = () => onLikeDrawing(item)
 
     return (
       <ImageCard
@@ -48,6 +52,7 @@ const GalleryItem = React.memo(
             color={colors.icon}
             active={item.is_liked}
             activeColor={colors.likesIcon}
+            onPress={onLike}
           />
           <ShareButton style={style.shareButton} />
         </View>

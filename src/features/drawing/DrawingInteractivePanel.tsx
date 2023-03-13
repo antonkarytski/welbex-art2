@@ -36,6 +36,7 @@ const DrawingInteractivePanel = ({
     const likesCount = item.is_liked ? item.likes - 1 : item.likes + 1
     toggleLike(item).then(() => onLikeChange?.(!item.is_liked, likesCount))
   }
+
   const onSaveDrawing = () => {
     if (!isAuth) return navigate(links.login)
     toggleSave(item).then(() => onSaveChange?.(!item.is_saved))

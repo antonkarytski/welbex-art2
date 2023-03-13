@@ -49,7 +49,6 @@ const CategoryGallery = ({
         ListFooterComponent={isNextLoading ? <Loader /> : null}
         ListEmptyComponent={
           <View style={styles.noDrawingsContainer}>
-            <CategoryGalleryHeader header={header} item={item} />
             <Span
               label={text.noDrawingsInCategory}
               style={styles.noDrawingsLabel}

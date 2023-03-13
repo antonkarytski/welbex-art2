@@ -1,7 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { UserShort } from '../../api/parts/users/types'
-import { UserProfileResponse } from '../../api/parts/users/types.api'
 import { useText } from '../../translations/hook'
 import Avatar from '../../ui/Avatar'
 import { createThemedStyle } from '../themed'

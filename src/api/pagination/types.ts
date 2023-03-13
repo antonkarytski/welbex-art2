@@ -19,6 +19,7 @@ export type Request<R, P> = Effect<P, PaginatedListResponse<R>, Error>
 export type PaginationListModelProps<R, P> = {
   pageSize: number
   request: Request<R, P>
+  idExtractor?: (item: R) => string | number
 }
 
 export type PaginationListModelResponse<R, P> = {
@@ -31,6 +32,7 @@ export type PaginationListModelResponse<R, P> = {
   $isNextLoading: Store<boolean>
   setItems: Event<R[]>
   reset: () => void
+  updateItem: Effect<R, R[], Error>
 }
 
 export type CreatePaginationListModel<R, P> = (

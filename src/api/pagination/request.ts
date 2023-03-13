@@ -11,6 +11,7 @@ import {
 export const createPaginationListModel = <R, P>({
   pageSize,
   request,
+  idExtractor,
 }: ModelProps<R, P>): ModelResponse<R, P> => {
   const { $nextPage, setNextPage, reset: resetPage } = createNextPageModel()
 
@@ -32,11 +33,23 @@ export const createPaginationListModel = <R, P>({
 
   const setItems = createEvent<R[]>()
   const addItems = createEvent<R[]>()
+  const updateItemFx = createEffect(
+    ({ item, items }: { item: R; items: R[] }) => {
+      return items.map((i) =>
+        idExtractor?.(item) === idExtractor?.(i) ? item : i
+      )
+    }
+  )
 
-  const $items = restore<R[]>(setItems, []).on(addItems, (state, payload) => [
-    ...state,
-    ...payload,
-  ])
+  const $items = restore<R[]>(setItems, [])
+    .on(addItems, (state, payload) => [...state, ...payload])
+    .on(updateItemFx.doneData, (_, payload) => payload)
+
+  const updateItem = attach({
+    source: $items,
+    mapParams: (item: R, items) => ({ item, items }),
+    effect: updateItemFx,
+  })
 
   get.done.watch(({ result }) => {
     setNextPage(result)
@@ -67,6 +80,7 @@ export const createPaginationListModel = <R, P>({
     $isNextLoading,
     setItems,
     reset,
+    updateItem,
   }
 }
 

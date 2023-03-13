@@ -16,11 +16,20 @@ import {
 
 const arts = apiManager.endpoint('arts').protect()
 const allArts = arts.endpoint('all').unprotect()
+
 const all = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>()
-const best = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('best')
-const newArts = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('new')
-const following = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>(
-  'following'
+
+// TODO: временно, нужны правки на бэке
+// const best = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('best')
+// const newArts = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('new')
+
+const best = arts.get<AllArtWorksResponse, AllArtWorksProps | void>('all/best')
+const newArts = arts.get<AllArtWorksResponse, AllArtWorksProps | void>(
+  'all/new'
+)
+
+const following = arts.get<AllArtWorksResponse, AllArtWorksProps | void>(
+  'all/following'
 )
 
 const specific = arts.get<ArtWorkGeneral, number>((id) => ({
