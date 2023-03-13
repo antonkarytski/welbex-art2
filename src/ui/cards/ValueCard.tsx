@@ -6,14 +6,26 @@ type ValueCardProps = {
   value: string | number
   title: string
   style?: StyleProp<ViewStyle>
-  textStyle?: StyleProp<TextStyle>
+  textStyle?: {
+    value?: StyleProp<TextStyle>
+    label?: StyleProp<TextStyle>
+  }
 }
 
 const ValueCard = ({ style, textStyle, value, title }: ValueCardProps) => {
   return (
     <View style={[styles.container, style]}>
-      <Span label={value} weight={600} style={[styles.value, textStyle]} />
-      <Span label={title} style={[textStyle]} />
+      <Span
+        label={value}
+        weight={600}
+        style={[styles.value, textStyle?.value]}
+      />
+      <Span
+        label={title}
+        style={textStyle?.label}
+        adjustsFontSizeToFit
+        numberOfLines={1}
+      />
     </View>
   )
 }

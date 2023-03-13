@@ -30,6 +30,8 @@ const TabMenuButton = React.memo(
           ]}
           label={label}
           adjustsFontSizeToFit
+          numberOfLines={1}
+          minimumFontScale={0.8}
         />
       </TouchableOpacity>
     )
@@ -42,6 +44,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 12,
+    paddingHorizontal: 12,
   },
   label: {
     fontSize: 18,
