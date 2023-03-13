@@ -2,11 +2,7 @@ import React from 'react'
 import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg'
 import { IconProps } from './_types'
 
-export default function LoaderIcon({
-  size = 16,
-  color = '#303535',
-  style,
-}: IconProps) {
+const LoaderIcon = ({ size = 16, color = '#303535', style }: IconProps) => {
   return (
     <Svg
       width={size}
@@ -81,3 +77,5 @@ export default function LoaderIcon({
     </Svg>
   )
 }
+
+export default LoaderIcon

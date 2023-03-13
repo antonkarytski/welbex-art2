@@ -1,9 +1,11 @@
 import { Effect } from 'effector'
+import { useStore } from 'effector-react'
 import {
   Dispatch,
   SetStateAction,
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from 'react'
 
@@ -31,14 +33,13 @@ export function useRequest<E extends Effect<any, any>>(
   request: E,
   initialState?: EffectResult<E>
 ) {
-  const [isLoading, setIsLoading] = useState(false)
+  const isLoading = useStore(request.pending)
   const [error, setError] = useState<Error | null>(null)
   const [data, setData] = useState(initialState ?? null)
 
   useEffect(() => {
     const unwatchStart = request.watch(() => {
       setError(null)
-      setIsLoading(true)
     })
     const unwatchDone = request.done.watch((response) => {
       setData(response.result)
@@ -46,15 +47,11 @@ export function useRequest<E extends Effect<any, any>>(
     const unwatchError = request.fail.watch((response) => {
       setError(response.error)
     })
-    const unwatchFinally = request.finally.watch(() => {
-      setIsLoading(false)
-    })
 
     return () => {
       unwatchStart()
       unwatchDone()
       unwatchError()
-      unwatchFinally()
     }
   }, [request])
 

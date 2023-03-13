@@ -1,4 +1,4 @@
-import { PaginatedListProps, PaginatedListResponse } from '../../types'
+import { PaginatedListResponse } from '../../types'
 
 export type CategoryResponse = {
   id: number
@@ -12,10 +12,6 @@ export type SpecificCategoryResponse = CategoryResponse & {
     date_start: string
     date_end: string
   }
-}
-
-export type CategoryArtWorksProps = PaginatedListProps & {
-  id: number
 }
 
 export type ArtWorkPreviewResponse = {

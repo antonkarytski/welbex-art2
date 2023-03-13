@@ -6,7 +6,12 @@ import { Endpoint } from './Endpoint'
 import { TokenManager } from './TokenManager'
 import { ApiError } from './errors'
 import { prepareRequestData } from './helpers'
-import { CreateRequestProps, DoRequestProps, RequestFnProps } from './types'
+import {
+  ContentType,
+  CreateRequestProps,
+  DoRequestProps,
+  RequestFnProps,
+} from './types'
 import { TokenRefresher, TokenSettings } from './types.token'
 
 export type RequestModelProps = {
@@ -47,21 +52,22 @@ export class ApiManager {
     return prepareRequestData(requestProps)
   }
 
-  private async doRequest<Response, Params>(
-    props: DoRequestProps<Params>
-  ): Promise<Response> {
+  private async doRequest<R, Params>(
+    props: DoRequestProps<Params>,
+    driver = fetch
+  ): Promise<R> {
     const requestData = await this.prepareData(props)
-    const response = await fetch(props.url, requestData)
+    const response = await driver(props.url, requestData)
     const contentType = response.headers.get('content-type')
-    const isJsonAvailable = contentType === 'application/json'
+    const isJsonAvailable = contentType === ContentType.JSON
     this.debugger.response(response)
     if (response.ok) {
-      if (!isJsonAvailable) return null as Response
-      return (await response.json()) as Response
+      if (!isJsonAvailable) return null as R
+      return (await response.json()) as R
     }
     if (this.requestRepeatFilter) {
       const newProps = await this.requestRepeatFilter(props, response, this)
-      if (newProps) return this.doRequest(newProps)
+      if (newProps) return this.doRequest(newProps, driver)
     }
     if (!isJsonAvailable) throw ApiError.unknown(response)
     throw await ApiError.fromResponse(response)

@@ -1,4 +1,6 @@
 import { createStateModel } from 'altek-toolkit'
-import { DEFAULT_COUNTRY } from '../../countries'
+import { Country, DEFAULT_COUNTRY } from '../../countries'
 
-export const signUpCountryModel = createStateModel(DEFAULT_COUNTRY)
+export const signUpCountryModel = createStateModel<Country | null>(
+  DEFAULT_COUNTRY
+)

@@ -1,20 +1,25 @@
-import { createEffect } from 'effector'
+import { Effect, Event, createEffect } from 'effector'
+import { createXhr } from '../../request/xhr'
 import { Endpoint, MethodSettings } from './Endpoint'
 import { DoRequestProps, MapperFn, Method } from './types'
 
 type CreateApiEndpointRequest<Params> = {
   fn?: MapperFn<Params>
 } & MethodSettings
+
 export type CreateApiEndpointSettings = {
   withToken?: boolean
 }
+
 type ApiEndpointProps = {
   endpoint: Endpoint
   requestHandler: <Response, Params>(
-    props: DoRequestProps<Params>
+    props: DoRequestProps<Params>,
+    driver?: typeof fetch
   ) => Promise<Response>
 } & CreateApiEndpointSettings
-type SpecificRequestProps<Params> =
+
+export type SpecificRequestProps<Params> =
   | Omit<CreateApiEndpointRequest<Params>, 'method'>
   | MapperFn<Params>
   | string
@@ -46,6 +51,11 @@ export class ApiEndpoint {
     return this
   }
 
+  public unprotect() {
+    this._endpoint.unprotect()
+    return this
+  }
+
   public endpoint(endpoint: string, settings?: CreateApiEndpointSettings) {
     const newEndpoint = this._endpoint.createEndpoint(endpoint)
     if (settings?.withToken !== undefined) {
@@ -61,10 +71,35 @@ export class ApiEndpoint {
     props: CreateApiEndpointRequest<Params>
   ) {
     const propsGetter = this._endpoint.method(props, props.fn)
-    return createEffect((params: Params) => {
+    const effect = createEffect((params: Params) => {
       const requestProps = propsGetter(params)
       return this.requestHandler<Response, Params>(requestProps)
-    })
+    }) as Effect<Params, Response> & ExtEffectMethods<Params, Response>
+
+    const copy = () => {
+      const xhr = createXhr()
+      const effectCopy = createEffect((params: Params) => {
+        const requestProps = propsGetter(params)
+        return this.requestHandler<Response, Params>(requestProps, xhr.request)
+      }) as EffectWithProgress<Params, Response>
+      effectCopy.progress = xhr.progress
+      effectCopy.copy = copy
+      return effectCopy
+    }
+
+    effect.withProgress = () => {
+      const effectWithProgress = effect as EffectWithProgress<Params, Response>
+      const xhr = createXhr()
+      effectWithProgress.use((params: Params) => {
+        const requestProps = propsGetter(params)
+        return this.requestHandler<Response, Params>(requestProps, xhr.request)
+      })
+      effectWithProgress.progress = xhr.progress
+      effectWithProgress.copy = copy
+      return effectWithProgress
+    }
+
+    return effect
   }
 
   public method<Response = any, Params = void>(
@@ -89,3 +124,19 @@ export class ApiEndpoint {
   public readonly delete = this.specificMethodGetter('DELETE')
   public readonly patch = this.specificMethodGetter('PATCH')
 }
+
+type EffectProgressSettings<Params, Response> = {
+  progress: Event<ProgressEvent>
+  copy: () => Effect<Params, Response> &
+    EffectProgressSettings<Params, Response> &
+    ExtEffectMethods<Params, Response>
+}
+
+type ExtEffectMethods<Params, Response> = {
+  withProgress: () => Effect<Params, Response> &
+    EffectProgressSettings<Params, Response>
+}
+
+type EffectWithProgress<Params, Response> = Effect<Params, Response> &
+  EffectProgressSettings<Params, Response> &
+  ExtEffectMethods<Params, Response>

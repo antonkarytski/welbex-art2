@@ -1,3 +1,4 @@
+import { ImagePickerAsset } from 'expo-image-picker'
 import React from 'react'
 import {
   StyleProp,
@@ -6,9 +7,6 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import { SpecificCategoryResponse } from '../../api/parts/categories/types'
-import { useNavigate } from '../../navigation'
-import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import Span from '../../ui/Span'
 import PlusIcon from '../../ui/icons/Icon.PlusThin'
@@ -20,26 +18,25 @@ import { shadowCardThemedStyle, uploadBlockCommonStyles } from './styles'
 
 type UploadFromCameraRollBlockProps = {
   style?: StyleProp<ViewStyle>
-  category?: SpecificCategoryResponse
+  onPick?: (assets: ImagePickerAsset[]) => void
 }
 const availableFormatsString = AVAILABLE_FORMATS.join(', ')
 
 const UploadFromCameraRollBlock = ({
   style,
-  category,
+  onPick,
 }: UploadFromCameraRollBlockProps) => {
   const text = useText()
-  const navigate = useNavigate()
   const { styles, colors } = useTheme(themedStyles)
 
   return (
     <TouchableOpacity
-      onPress={async () => {
+      onPress={() => {
         pickFromCameraRoll()
           .then((assets) => {
-            console.log(assets)
-            if (!assets) return
-            navigate(links.createPostAddDescription, { assets, category })
+            if (assets) {
+              onPick?.(assets)
+            }
           })
           .catch(() => {})
       }}

@@ -1,9 +1,8 @@
 import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
-import { api } from '../api'
-import { $isAuth } from '../features/auth/model'
 import DrawingInteractionPanel from '../features/drawing/DrawingInteractivePanel'
+import { getArtWorkRequest } from '../features/drawing/request'
 import AutoHeightImage from '../features/images/AutoHeightImage'
 import { $myProfile } from '../features/profile/model'
 import { createThemedStyle } from '../features/themed'
@@ -29,12 +28,9 @@ const DrawingDetailsScreen = ({
 >) => {
   const navigate = useNavigate()
   const text = useText()
-  const isAuth = useStore($isAuth)
   const drawingId = route.params.item.id
-  const drawing = useRequest(
-    isAuth ? api.arts.specificProtected : api.arts.specific
-  )
   const myProfile = useStore($myProfile)
+  const drawing = useRequest(getArtWorkRequest)
 
   const { styles, colors } = useThemedStyleList({
     common: themedStyles,
@@ -42,10 +38,8 @@ const DrawingDetailsScreen = ({
   })
 
   useEffect(() => {
-    isAuth
-      ? api.arts.specificProtected(drawingId).catch(noop)
-      : api.arts.specific(drawingId).catch(noop)
-  }, [drawingId, isAuth])
+    getArtWorkRequest(drawingId).catch(noop)
+  }, [drawingId])
 
   const onFollowAuthor = (isFollowed: boolean) => {
     drawing.update({

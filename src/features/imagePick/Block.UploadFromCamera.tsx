@@ -1,3 +1,4 @@
+import { ImagePickerAsset } from 'expo-image-picker'
 import React from 'react'
 import {
   StyleProp,
@@ -6,27 +7,36 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import { SpecificCategoryResponse } from '../../api/parts/categories/types'
 import Span from '../../ui/Span'
 import CameraIcon from '../../ui/icons/Icon.Camera'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
+import { pickFromCameraRoll } from './pickFiles'
 import { uploadBlockCommonStyles, uploadImageCardThemedStyle } from './styles'
 
 type UploadFromCameraBlockProps = {
   label: string
   style?: StyleProp<ViewStyle>
-  category?: SpecificCategoryResponse
+  onPick?: (assets: ImagePickerAsset[]) => void
 }
 
 const UploadFromCameraBlock = ({
   label,
   style,
-  category,
+  onPick,
 }: UploadFromCameraBlockProps) => {
   const { styles, colors } = useTheme(themedStyles)
   return (
-    <TouchableOpacity style={[styles.container, style]}>
+    <TouchableOpacity
+      onPress={() => {
+        pickFromCameraRoll()
+          .then((assets) => {
+            if (assets) onPick?.(assets)
+          })
+          .catch(() => {})
+      }}
+      style={[styles.container, style]}
+    >
       <View style={[uploadBlockCommonStyles.button, styles.button]}>
         <CameraIcon color={colors.text} />
       </View>
