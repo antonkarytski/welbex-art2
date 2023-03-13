@@ -39,18 +39,6 @@ const CategoryGallery = ({
     })
   }
 
-  if (!drawings.length) {
-    return (
-      <View style={styles.noDrawingsContainer}>
-        <CategoryGalleryHeader header={header} item={item} />
-        <Span
-          label={text.noDrawingsInCategory}
-          style={styles.noDrawingsLabel}
-        />
-      </View>
-    )
-  }
-
   return (
     <>
       <ArtWorksList
@@ -59,6 +47,14 @@ const CategoryGallery = ({
         data={drawings}
         onEndReached={getNextArts}
         ListFooterComponent={isNextLoading ? <Loader /> : null}
+        ListEmptyComponent={
+          <View style={styles.noDrawingsContainer}>
+            <Span
+              label={text.noDrawingsInCategory}
+              style={styles.noDrawingsLabel}
+            />
+          </View>
+        }
         {...props}
       />
     </>

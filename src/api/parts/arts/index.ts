@@ -9,6 +9,8 @@ import {
   ArtWorkCreateResponse,
   ArtWorkGeneral,
   ArtWorksFilterProps,
+  ArtsListPreviewResponse,
+  ArtsListProps,
   CountOfFilteredArtsResponse,
 } from './types'
 
@@ -16,12 +18,26 @@ const arts = apiManager.endpoint('arts').protect()
 const allArts = arts.endpoint('all').unprotect()
 
 const all = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>()
-const best = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('best')
-const newArts = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('new')
-const following = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>(
-  'following'
+
+// TODO: временно, нужны правки на бэке
+// const best = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('best')
+// const newArts = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('new')
+
+const best = arts.get<AllArtWorksResponse, AllArtWorksProps | void>('all/best')
+const newArts = arts.get<AllArtWorksResponse, AllArtWorksProps | void>(
+  'all/new'
 )
-const specific = arts.get<ArtWorkGeneral, number>({ withToken: false })
+
+const following = arts.get<AllArtWorksResponse, AllArtWorksProps | void>(
+  'all/following'
+)
+
+const specific = arts.get<ArtWorkGeneral, number>((id) => ({
+  entityId: id,
+  withToken: false,
+}))
+
+// const specific = arts.get<ArtWorkGeneral, number>({ withToken: false })
 const specificProtected = arts.get<ArtWork, number>()
 const likePost = arts.put<ArtWork, number>((id) => `${id}/like`)
 const dislikePost = arts.put<ArtWork, number>((id) => `${id}/remove-like`)
@@ -51,6 +67,19 @@ const create = arts
   })
   .withProgress()
 
+const userArts = arts.endpoint('user')
+
+const userAllArts = userArts.get<ArtsListPreviewResponse, ArtsListProps>(
+  ({ userId, ...rest }) => ({ entityId: `${userId}/all`, body: rest })
+)
+
+const userLikedArts = userArts.get<ArtsListPreviewResponse, ArtsListProps>(
+  ({ userId, ...rest }) => ({ entityId: `${userId}/liked`, body: rest })
+)
+const userSavedArts = userArts.get<ArtsListPreviewResponse, ArtsListProps>(
+  ({ userId, ...rest }) => ({ entityId: `${userId}/saved`, body: rest })
+)
+
 export const artsApi = {
   all,
   best,
@@ -66,4 +95,7 @@ export const artsApi = {
   downloadThumbnailDrawing,
   downloadFullSizeDrawing,
   create,
+  userAllArts,
+  userLikedArts,
+  userSavedArts,
 }

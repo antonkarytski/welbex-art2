@@ -1,7 +1,7 @@
-import { createEffect } from 'effector'
-import { USERS_FULL } from '../../_mock/users'
-import { UserShort } from '../../api/parts/users/types'
+import { api } from '../../api'
+import { UserProfileResponse } from '../../api/parts/users/types.api'
 
-export const getUserExt = createEffect((user: UserShort) => {
-  return USERS_FULL.find(({ id }) => user.id)
-})
+export const toggleFollow = (user: UserProfileResponse & { id: number }) => {
+  const request = user.is_followed ? api.users.unfollow : api.users.follow
+  return request(user.id)
+}

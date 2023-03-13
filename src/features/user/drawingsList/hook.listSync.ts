@@ -63,16 +63,15 @@ export function useTabsListsSync({
 
   return useMemo<TabListSettings>(
     () => ({
-      onScroll: Animated.event(
-        [{ nativeEvent: { contentOffset: { y: scrollOffsetValue } } }],
-        { useNativeDriver: true }
-      ),
-      contentStyle: { paddingTop: topOffset + 24 },
+      // onScroll: Animated.event(
+      //   [{ nativeEvent: { contentOffset: { y: scrollOffsetValue } } }],
+      //   { useNativeDriver: true }
+      // ),
       listRef: (key, ref) => {
         listRefs.current[key] = ref
       },
-      onScrollEnd: syncScrollOffset,
+      // onScrollEnd: syncScrollOffset,
     }),
-    [topOffset, scrollOffsetValue, syncScrollOffset]
+    [syncScrollOffset]
   )
 }

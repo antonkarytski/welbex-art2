@@ -1,38 +1,24 @@
 import React, { PropsWithChildren } from 'react'
-import {
-  LayoutChangeEvent,
-  StyleProp,
-  StyleSheet,
-  Text,
-  TextProps,
-  TextStyle,
-} from 'react-native'
+import { StyleProp, StyleSheet, Text, TextProps, TextStyle } from 'react-native'
 
 export type SpanProps = {
   label?: string | number
   style?: StyleProp<TextStyle>
   weight?: 400 | 500 | 600 | 700
-  onLayout?: (event: LayoutChangeEvent) => void
-  numberOfLines?: number
-  onTextLayout?: TextProps['onTextLayout']
-}
+} & Omit<TextProps, 'style'>
 
 const Span = ({
   children,
   label,
   style,
   weight = 400,
-  onLayout,
-  onTextLayout,
-  numberOfLines,
+  ...props
 }: PropsWithChildren<SpanProps>) => {
   return (
     <Text
       allowFontScaling={false}
       style={[styles.common, weights[weight], style]}
-      onLayout={onLayout}
-      onTextLayout={onTextLayout}
-      numberOfLines={numberOfLines}
+      {...props}
     >
       {label ?? children}
     </Text>

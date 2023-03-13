@@ -54,3 +54,12 @@ export type ArtWorkCreateProps = {
   title: string
   categoryId: number
 }
+
+export type ArtPreview = {
+  id: number
+  image_thumbnail: string
+}
+
+export type ArtsListPreviewResponse = PaginatedListResponse<ArtPreview>
+
+export type ArtsListProps = PaginatedListProps & { userId: number }

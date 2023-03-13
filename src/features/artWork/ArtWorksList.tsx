@@ -9,8 +9,10 @@ import {
   FlatList,
   FlatListProps,
   ImageStyle,
+  StyleProp,
   StyleSheet,
   View,
+  ViewStyle,
 } from 'react-native'
 import { ArtWorkPreviewResponse } from '../../api/parts/categories/types'
 import { SCREEN_WIDTH } from '../../lib/device/dimensions'
@@ -27,13 +29,21 @@ import { drawingKeyExtractor } from './helpers'
 export type ArtWorksFlatListProps = {
   onScroll?: FlatListProps<any>['onScroll']
   contentStyle?: FlatListProps<any>['contentContainerStyle']
+  containerStyle?: StyleProp<ViewStyle>
   onEndReached?: () => void
   onRefresh?: () => void
   ListHeader?: ReactElement
-  onScrollEndDrag?: () => void
+  onScrollEndDrag?: FlatListProps<any>['onMomentumScrollEnd']
   refreshing?: FlatListProps<any>['refreshing']
   ListFooterComponent?: FlatListProps<any>['ListFooterComponent']
+  onLayout?: FlatListProps<any>['onLayout']
+  listKey?: FlatListProps<any>['listKey']
+  ListEmptyComponent?: FlatListProps<any>['ListEmptyComponent']
+  getItemLayout?: FlatListProps<any>['getItemLayout']
 }
+
+export const DRAWING_ITEM_MARGIN = 20
+export const DRAWINGS_COLUMNS_COUNT = 2
 
 export type ArtWorksListProps<L extends links> = {
   data: ArtWorkPreviewResponse[]
@@ -43,12 +53,21 @@ export type ArtWorksListProps<L extends links> = {
 } & ArtWorksFlatListProps
 
 function getImageSize() {
-  return (SCREEN_WIDTH - SCREEN_PADDING_HORIZONTAL * 3) / 2
+  return (
+    (SCREEN_WIDTH - (SCREEN_PADDING_HORIZONTAL * 2 + DRAWING_ITEM_MARGIN)) / 2
+  )
 }
 
 const ArtWorksList = forwardRef(
   <L extends links>(
-    { data, ListHeader, contentStyle, ...props }: ArtWorksListProps<L>,
+    {
+      data,
+      ListHeader,
+      contentStyle,
+      listKey,
+      containerStyle,
+      ...props
+    }: DrawingsListProps<L>,
     ref: ForwardedRef<FlatList<ArtWorkPreviewResponse>>
   ) => {
     const imageSize = getImageSize()
@@ -77,7 +96,7 @@ const ArtWorksList = forwardRef(
     )
 
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, containerStyle]}>
         <Animated.FlatList
           showsVerticalScrollIndicator={false}
           ref={ref}
@@ -85,8 +104,9 @@ const ArtWorksList = forwardRef(
           renderItem={renderItem}
           ListHeaderComponent={ListHeader}
           columnWrapperStyle={styles.listColumnWrapper}
-          numColumns={2}
+          numColumns={DRAWINGS_COLUMNS_COUNT}
           keyExtractor={drawingKeyExtractor}
+          listKey={listKey}
           contentContainerStyle={[styles.listContentContainer, contentStyle]}
           onMomentumScrollEnd={props.onScrollEndDrag}
           {...props}
@@ -110,10 +130,6 @@ const themedStyles = createThemedStyle((colors) =>
     },
     itemContainer: themedShadow5Style(colors),
     listContentContainer: {
-      paddingVertical: 24,
-      paddingHorizontal: SCREEN_PADDING_HORIZONTAL,
-    },
-    hListContentContainer: {
       paddingVertical: 24,
       paddingHorizontal: SCREEN_PADDING_HORIZONTAL,
     },

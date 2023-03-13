@@ -2,9 +2,9 @@ import { links } from '../../navigation/links'
 import { LangFn } from '../../translations/types'
 
 export enum GalleryType {
-  BEST = 1,
-  FOLLOWING,
-  NEW,
+  BEST = 'best',
+  FOLLOWING = 'following',
+  NEW = 'new',
 }
 
 export type GalleryLink =

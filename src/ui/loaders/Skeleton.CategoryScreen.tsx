@@ -3,14 +3,12 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { getHeight } from '../../lib/device/dimensions'
 import DrawingsRowSkeleton from './Skeleton.DrawingRow'
+import { defaultSkeletonColors } from './colors'
 import { ColorsProp } from './types'
 
-const defaultColors = {
-  startColor: 'gray.200',
-  endColor: 'gray.100',
-}
-
-const CategoryScreenSkeleton = ({ colors = defaultColors }: ColorsProp) => {
+const CategoryScreenSkeleton = ({
+  colors = defaultSkeletonColors,
+}: ColorsProp) => {
   return (
     <View style={styles.container}>
       <Skeleton {...colors} style={[styles.item, styles.header]} />

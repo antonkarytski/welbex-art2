@@ -9,8 +9,10 @@ export type GradientsProps = {
   style?: StyleProp<ViewStyle>
   gradientTransform?: string
   stopOffset?: string
+  startOffset?: string
   colors?: GradientColors
 }
+
 export type MotionGradientColors = GradientColors & { overlay?: string }
 
 export type ImageGradientProps = Omit<GradientsProps, 'stopOffset'> & {
