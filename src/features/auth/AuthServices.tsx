@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
+import { Linking, StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import { api } from '../../api'
 import { buttonLightThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
@@ -23,9 +23,9 @@ const AuthWithServices = ({
     feature: themedStyles,
     button: buttonLightThemedPreset,
   })
-  const onContinueWithGoogle = () => {
-    api.auth.googleAuth().then((e) => {
-      console.log(e)
+  const authWithGoogle = () => {
+    api.auth.googleAuth().then((url) => {
+      Linking.openURL(url)
     })
   }
   const onContinueWithApple = () => {}
@@ -42,7 +42,7 @@ const AuthWithServices = ({
       )}
       <GoogleButton
         label={t.continueWithGoogle}
-        onPress={onContinueWithGoogle}
+        onPress={authWithGoogle}
         style={{ button: styles.feature.button }}
         preset={styles.button}
       />
