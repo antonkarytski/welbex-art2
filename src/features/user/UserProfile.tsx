@@ -71,7 +71,7 @@ const UserProfile = ({
 
   const gradientOffset = new Animated.Value(0)
 
-  const { list, getFirst, getNext, isNextLoading, isRefreshing, isLoading } =
+  const { list, getFirst, getNext, isNextLoading, isRefreshing, refresh } =
     useDrawingsList(user, activeTabKey, artsListsRequestModel.model)
 
   useEffect(() => {
@@ -84,8 +84,8 @@ const UserProfile = ({
 
   const handleRefresh = useCallback(() => {
     onRefreshUser()
-    getFirst({ refreshing: true })
-  }, [getFirst, onRefreshUser, user])
+    refresh()
+  }, [onRefreshUser, refresh])
 
   const handleEndReached = useCallback(() => {
     if (!list.length || isNextLoading) return
