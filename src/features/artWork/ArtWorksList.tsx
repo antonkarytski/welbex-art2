@@ -67,7 +67,7 @@ const ArtWorksList = forwardRef(
       listKey,
       containerStyle,
       ...props
-    }: DrawingsListProps<L>,
+    }: ArtWorksListProps<L>,
     ref: ForwardedRef<FlatList<ArtWorkPreviewResponse>>
   ) => {
     const imageSize = getImageSize()

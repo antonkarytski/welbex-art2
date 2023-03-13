@@ -10,6 +10,7 @@ import {
   createUserArtsTabMenuNavigationModel,
 } from '../features/user/drawingsList/model.layout'
 import { createUserArtsListsRequestModel } from '../features/user/drawingsList/request'
+import { profileResponseToUserProfile } from '../features/user/helpers'
 import { useRequest } from '../lib/models/apiBuilder/hooks'
 import { links } from '../navigation/links'
 import { ScreenComponentProps } from '../navigation/types.screenProps'
@@ -25,7 +26,7 @@ const UserProfileScreen = ({
   const item = route.params.item
   const userRequest = useRequest(api.users.profile)
   const user = userRequest.data
-  const fullUser = user && { ...user, id: item.id }
+  const profile = user ? profileResponseToUserProfile(user, item.id) : null
   const [isRefreshing, setIsRefreshing] = useState(false)
 
   useEffect(() => {
@@ -46,15 +47,15 @@ const UserProfileScreen = ({
   }
 
   if (userRequest.isLoading && !isRefreshing) return <UserScreenSkeleton />
-  if (!fullUser) return null
+  if (!profile) return null
 
   return (
     <UserProfile
-      user={fullUser}
+      user={profile}
       updateUser={userRequest.update}
       onRefreshUser={onRefreshUser}
       tabs={
-        fullUser.is_child ? childrenDrawingsListTabs : commonDrawingsListTabs
+        profile.is_child ? childrenDrawingsListTabs : commonDrawingsListTabs
       }
       artsTabMenuNavigationModel={tabMenuNavigationModel}
       artsListsRequestModel={artsListsRequestModel}

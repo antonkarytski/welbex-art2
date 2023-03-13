@@ -5,7 +5,6 @@ import {
   SetStateAction,
   useCallback,
   useEffect,
-  useRef,
   useState,
 } from 'react'
 
@@ -18,7 +17,11 @@ export type IUseRequest<E extends Effect<any, any>, DT> = {
   isLoading: boolean
   error: Error | null
   request: E
-  update: (data: DT extends object ? Partial<DT> : DT) => void
+  update: (
+    data: DT extends object
+      ? Partial<DT> | ((value: DT) => Partial<DT>)
+      : ((value: DT) => DT) | DT
+  ) => void
   set: Dispatch<SetStateAction<NonNullable<EffectResult<E>> | null>>
 }
 

@@ -1,10 +1,11 @@
 import moment from 'moment'
 import { WinnerItem } from '../../api/parts/categories/types'
-import { MyProfile } from '../../api/parts/users/types'
+import { MyProfile, UserProfile } from '../../api/parts/users/types'
 import {
   IdentityDocumentStatus,
   MyProfileResponse,
   SingUpResponseUser,
+  UserProfileResponse,
 } from '../../api/parts/users/types.api'
 import { UserInitialData } from '../../api/parts/users/types.parts'
 import { USER_DOB_FORMAT } from '../../constants'
@@ -52,6 +53,17 @@ export function prepareMyProfile(item: MyProfileResponse): MyProfile {
   return {
     ...item,
     age: userAge(item),
+  }
+}
+
+export function profileResponseToUserProfile(
+  profile: UserProfileResponse,
+  id: number
+): UserProfile {
+  return {
+    ...profile,
+    id,
+    age: userAge(profile),
   }
 }
 

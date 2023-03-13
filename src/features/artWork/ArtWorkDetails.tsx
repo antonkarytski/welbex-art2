@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
 import { api } from '../../api'
-import { artsApi } from '../../api/parts/arts'
 import { noop } from '../../lib/helpers'
 import { useRequest } from '../../lib/models/apiBuilder/hooks'
 import { useNavigate } from '../../navigation'
@@ -38,7 +37,7 @@ const ArtWorkDetails = React.memo(({ drawingId }: ArtWorkDetailsProps) => {
     <ScrollView bounces={false} style={styles.container}>
       <UserCardPreview
         onAvatarPress={(item) => navigate(links.userProfile, { item })}
-        onSubscribePress={() => navigate(links.subscriptionCurrent)}
+        onFollowPress={() => navigate(links.subscriptionCurrent)}
         item={drawing.data.author}
       />
       <AutoHeightImage

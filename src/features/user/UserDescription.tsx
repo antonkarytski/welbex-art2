@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { UserShort } from '../../api/parts/users/types'
 import { getAgeFromBirthday } from '../../lib/helpers/date'
 import { createMemoByWeakMap } from '../../lib/helpers/memoization'
 import { EN } from '../../translations/languages'
@@ -8,12 +9,11 @@ import Span from '../../ui/Span'
 import { userName } from './helpers'
 import { countryFullName, countryFullNameClipped } from './index'
 import { UserDescriptionStyles } from './styles'
-import { UserItem } from './types'
 
 export type AgeTextGenerator = (age: number) => string
 
 type UserDescriptionProps = {
-  item: UserItem
+  item: UserShort
   style?: UserDescriptionStyles
   ageTextGenerator?: AgeTextGenerator
   hideSeparator?: boolean
@@ -44,7 +44,7 @@ const UserDescription = ({
       <Span
         weight={500}
         style={[styles.name, style?.name]}
-        label={userName(item, shortenUserName ? true : false)}
+        label={userName(item, !!shortenUserName)}
       />
       <Span
         style={[styles.subText, style?.subText]}

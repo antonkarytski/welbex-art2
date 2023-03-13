@@ -19,6 +19,7 @@ export const signUp = attach({
     passwords: signUpPasswordsFormModel.$store,
   },
   mapParams: (_: void, { user, country, phone, passwords }) => ({
+    is_child: moment(user.birthDate.valueOf()).years() < 14,
     first_name: user.name,
     last_name: user.lastName,
     DOB: moment(user.birthDate.valueOf()).format(USER_DOB_FORMAT),

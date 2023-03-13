@@ -4,7 +4,7 @@ import TabStackNavigator from '../../navigation/elements/TabStackNavigator'
 import { createTabScreenDescription } from '../../navigation/helpers'
 import { links } from '../../navigation/links'
 import GalleryIcon from '../../ui/icons/Icon.Image'
-import DrawingDetailsScreen from '../Screen.ArtWorkDetails'
+import ArtWorkDetailsScreen from '../Screen.ArtWorkDetails'
 import GalleriesTabsScreen from './Screen.GalleriesTabs'
 
 const GalleryTabScreen = () => {
@@ -13,7 +13,7 @@ const GalleryTabScreen = () => {
       <Stack.Screen name={links.galleryMain} component={GalleriesTabsScreen} />
       <Stack.Screen
         name={links.galleryDrawingDetails}
-        component={DrawingDetailsScreen}
+        component={ArtWorkDetailsScreen}
       />
     </TabStackNavigator>
   )
