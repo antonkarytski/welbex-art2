@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { api } from '../api'
 import UserProfile from '../features/user/UserProfile'
 import {
@@ -26,6 +26,7 @@ const UserProfileScreen = ({
   const userRequest = useRequest(api.users.profile)
   const user = userRequest.data
   const fullUser = user && { ...user, id: item.id }
+  const [isRefreshing, setIsRefreshing] = useState(false)
 
   useEffect(() => {
     userRequest.request(item.id)
@@ -37,9 +38,14 @@ const UserProfileScreen = ({
     artsListsHeightModel.reset()
   }, [item.id])
 
-  const onRefreshUser = () => userRequest.request(item.id)
+  const onRefreshUser = () => {
+    setIsRefreshing(true)
+    userRequest.request(item.id).finally(() => {
+      setIsRefreshing(false)
+    })
+  }
 
-  if (userRequest.isLoading) return <UserScreenSkeleton />
+  if (userRequest.isLoading && !isRefreshing) return <UserScreenSkeleton />
   if (!fullUser) return null
 
   return (

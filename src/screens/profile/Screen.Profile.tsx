@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react'
-import React from 'react'
+import React, { useState } from 'react'
 import { $isAuth } from '../../features/auth/model'
 import UnauthorizedProfile from '../../features/profile/UnauthorizedProfile'
 import { $myProfile } from '../../features/profile/model'
@@ -24,10 +24,17 @@ const ProfileScreen = () => {
   const isAuth = useStore($isAuth)
   const myProfile = useStore($myProfile)
   const isLoading = useStore(meRequest.pending)
-  const onRefreshProfile = () => meRequest()
+  const [isRefreshing, setIsRefreshing] = useState(false)
+
+  const onRefreshProfile = () => {
+    setIsRefreshing(true)
+    meRequest().finally(() => {
+      setIsRefreshing(false)
+    })
+  }
 
   if (!isAuth) return <UnauthorizedProfile />
-  if (isLoading) return <UserScreenSkeleton />
+  if (isLoading && !isRefreshing) return <UserScreenSkeleton />
   if (!myProfile) return null
 
   return (

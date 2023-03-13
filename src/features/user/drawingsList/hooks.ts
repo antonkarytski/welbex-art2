@@ -4,7 +4,6 @@ import { UserDrawingListType, UserItem } from '../types'
 import { UserArtsListsRequestModel } from './types'
 
 type GetProps = { onFinally?: () => void }
-type GetFirstProps = GetProps & { refreshing?: boolean }
 
 export function useDrawingsList(
   item: UserItem | null,
@@ -17,20 +16,22 @@ export function useDrawingsList(
   const [isRefreshing, setIsRefreshing] = useState(false)
 
   const getFirst = useCallback(
-    (props?: GetFirstProps) => {
+    (props?: GetProps) => {
       if (!item) return
-      if (props?.refreshing) {
-        setIsRefreshing(true)
-      }
       model[type].get({ userId: item.id }).finally(() => {
-        if (props?.refreshing) {
-          setIsRefreshing(false)
-        }
         props?.onFinally?.()
       })
     },
     [item, type, model]
   )
+
+  const refresh = useCallback(() => {
+    if (!item) return
+    setIsRefreshing(true)
+    model[type].get({ userId: item.id }).finally(() => {
+      setIsRefreshing(false)
+    })
+  }, [item, type, model])
 
   const getNext = useCallback(
     (props?: GetProps) => {
@@ -42,5 +43,13 @@ export function useDrawingsList(
     [type, item, model]
   )
 
-  return { list, getFirst, getNext, isLoading, isNextLoading, isRefreshing }
+  return {
+    list,
+    getFirst,
+    getNext,
+    isLoading,
+    isNextLoading,
+    refresh,
+    isRefreshing,
+  }
 }
