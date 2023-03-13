@@ -8,10 +8,18 @@ import {
   UserSubscription,
 } from './types.parts'
 
+export enum IdentityDocumentStatus {
+  UNDETERMINED = 1,
+  PENDING,
+  DETERMINED,
+  REJECTED,
+}
+
 export type ProfileResponse = User & UserCounters
 export type MyProfileResponse = ProfileResponse &
   UserPrivateData & {
     subscription: UserSubscription | null
+    identity_determined_status_id: IdentityDocumentStatus
   }
 
 export type UserProfileResponse = ProfileResponse & {

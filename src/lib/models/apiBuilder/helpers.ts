@@ -3,6 +3,7 @@ import { ContentType, RequestFnProps } from './types'
 
 export function bodyToParams(body: object) {
   return Object.entries(body)
+    .filter(([, value]) => value !== undefined)
     .map(([key, value]) => `${key}=${value}`)
     .join('&')
 }

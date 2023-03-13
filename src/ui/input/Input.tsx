@@ -1,8 +1,15 @@
 import React, { forwardRef, useState } from 'react'
-import { TextInput, TextInputProps, View } from 'react-native'
+import { TextInput, View } from 'react-native'
 import Span from '../Span'
 import { inputStyles, placeholderColor } from './styles'
 import { InputProps } from './types'
+
+function removeFromEnd(value: string, valueToRemove: string) {
+  if (value.endsWith(valueToRemove)) {
+    return value.slice(0, value.length - valueToRemove.length)
+  }
+  return value
+}
 
 const Input = forwardRef<TextInput, InputProps>(
   (
@@ -17,17 +24,17 @@ const Input = forwardRef<TextInput, InputProps>(
       InputPseudoBefore,
       InputPseudoAfter,
       onBlur,
+      postfix,
+      onFocus,
+      value,
       ...props
     }: InputProps,
     ref
   ) => {
     const [isFocused, setIsFocused] = useState(false)
-    const handleFocus: TextInputProps['onFocus'] = (e) => {
-      setIsFocused(true)
-      props.onFocus?.(e)
-    }
-
     const isInvalid = isValid === false
+
+    const fullValue = postfix && value && !isFocused ? value + postfix : value
 
     return (
       <View style={styles?.container}>
@@ -50,8 +57,18 @@ const Input = forwardRef<TextInput, InputProps>(
             <TextInput
               ref={ref}
               keyboardType={type}
-              onChangeText={onChangeText}
-              onFocus={handleFocus}
+              onChangeText={
+                !postfix || isFocused
+                  ? onChangeText
+                  : (text) => {
+                      const newValue = removeFromEnd(text, postfix)
+                      onChangeText?.(newValue)
+                    }
+              }
+              onFocus={(e) => {
+                setIsFocused(true)
+                onFocus?.(e)
+              }}
               onBlur={(e) => {
                 setIsFocused(false)
                 onBlur?.(e)
@@ -72,6 +89,7 @@ const Input = forwardRef<TextInput, InputProps>(
                 disabled && inputStyles.input__disabled,
               ]}
               placeholderTextColor={placeholderColor}
+              value={fullValue}
               {...props}
             />
             {InputPseudoAfter && (

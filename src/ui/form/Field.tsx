@@ -2,7 +2,7 @@ import React from 'react'
 import {
   useFieldValidation,
   useSpecificTypeFormField,
-} from '../../lib/models/form/hooks'
+} from '../../lib/models/form'
 import Input from '../input'
 import { InputProps } from '../input/types'
 import { FieldProps } from './_types'
@@ -10,9 +10,7 @@ import { FieldProps } from './_types'
 const Field = <T extends Record<string, any>, N extends keyof T>({
   name,
   formModel,
-  label,
   style,
-  formatValue,
   validateOnBlur,
   onBlur,
   ...props
@@ -23,11 +21,10 @@ const Field = <T extends Record<string, any>, N extends keyof T>({
   return (
     <Input
       onChangeText={(text) => {
-        setValue(formatValue ? formatValue(text) : text)
+        setValue(text)
         formModel.validation.resetField(name)
       }}
       value={value}
-      label={label}
       styles={style}
       onBlur={(e) => {
         if (validateOnBlur) {

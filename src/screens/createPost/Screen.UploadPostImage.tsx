@@ -4,6 +4,7 @@ import UploadFromCameraBlock from '../../features/imagePick/Block.UploadFromCame
 import UploadFromCameraRollBlock from '../../features/imagePick/Block.UploadFromCameraRoll'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
+import { useNavigate } from '../../navigation'
 import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
 import { links } from '../../navigation/links'
 import { ScreenComponentProps } from '../../navigation/types.screenProps'
@@ -16,7 +17,8 @@ export default function UploadPostImageScreen({
 }: ScreenComponentProps<links.createPostUploadImage>) {
   const category = route.params?.category
   const text = useText()
-  const { styles, colors } = useThemedStyleList({
+  const navigate = useNavigate()
+  const { styles } = useThemedStyleList({
     common: themedStyle,
     gradient: themedPrimaryGradient,
   })
@@ -30,12 +32,16 @@ export default function UploadPostImageScreen({
       <View style={styles.common.contentContainer}>
         <UploadFromCameraRollBlock
           style={styles.common.cameraRollBlock}
-          category={category}
+          onPick={(assets) => {
+            navigate(links.createPostAddDescription, { assets, category })
+          }}
         />
         <UploadFromCameraBlock
           style={styles.common.uploadFromCameraBlock}
           label={text.scanWork}
-          category={category}
+          onPick={(assets) => {
+            navigate(links.createPostAddDescription, { assets, category })
+          }}
         />
       </View>
     </View>

@@ -33,6 +33,6 @@ export type FormatFieldValue = FnExt<string, string>
 export type FieldProps<T extends Record<string, any>, N extends keyof T, V> = {
   label?: string
   style?: InputStyles
-  formatValue?: FormatFieldValue
+  postfix?: string
   validateOnBlur?: boolean
 } & TypedFormFieldComponentProps<T, N, V>

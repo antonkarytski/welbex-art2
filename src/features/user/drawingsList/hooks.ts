@@ -1,5 +1,4 @@
 import { useCallback, useRef, useState } from 'react'
-import { getUserDrawings } from '../../../_mock/usersDrawings'
 import { Profile, UserShort } from '../../../api/parts/users/types'
 import { Drawing } from '../../drawing/types'
 import { getUserDrawingsList } from '../request.drawingList'
@@ -10,6 +9,7 @@ export function useDrawingsList(
   type: UserDrawingListType
 ) {
   const [list, setList] = useState<Drawing[]>([])
+  console.log(list)
   const nextPage = useRef<number | null>(0)
 
   const getFirstPage = useCallback(() => {

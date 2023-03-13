@@ -1,7 +1,7 @@
 import { attach, createEffect, createEvent, createStore } from 'effector'
 import { mockGetGallery } from '../../../_mock/gelleries'
+import { GalleriesList, GallerySetter, GalleryType } from '../types'
 import { addGalleryPage, setGallery } from './model'
-import { GalleriesList, GallerySetter, GalleryType } from './types'
 
 type GetGalleryProps = {
   type: GalleryType

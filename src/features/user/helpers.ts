@@ -2,6 +2,7 @@ import moment from 'moment'
 import { WinnerItem } from '../../api/parts/categories/types'
 import { MyProfile } from '../../api/parts/users/types'
 import {
+  IdentityDocumentStatus,
   MyProfileResponse,
   SingUpResponseUser,
 } from '../../api/parts/users/types.api'
@@ -37,6 +38,7 @@ export function signUpUserResponseToNewUser(
     followers: 0,
     followings: 0,
     age: userAge(user),
+    identity_determined_status_id: IdentityDocumentStatus.UNDETERMINED,
   }
 }
 
