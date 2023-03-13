@@ -32,6 +32,7 @@ import {
 
 type UserProfileProps = {
   user: Profile | (UserProfileResponse & { id: number })
+  updateUser: (data: Partial<UserProfileResponse>) => void
   tabs: TabsDescriptor
   artsListsRequestModel: UserArtsListsRequestModel
   artsTabMenuNavigationModel: UserArtsTabMenuNavigationModel
@@ -42,6 +43,7 @@ const data = [1]
 
 const UserProfile = ({
   user,
+  updateUser,
   tabs,
   artsListsRequestModel,
   artsListsHeightModel,
@@ -132,7 +134,9 @@ const UserProfile = ({
         onRefresh={handleRefreshArts}
         refreshing={isRefreshing}
         nestedScrollEnabled
-        ListHeaderComponent={<UserTopBlock item={user} />}
+        ListHeaderComponent={
+          <UserTopBlock item={user} updateItem={updateUser} />
+        }
         ListFooterComponent={
           <UserDrawingsListsTabs
             user={user}

@@ -19,8 +19,6 @@ export type UserProfileResponse = ProfileResponse & {
   is_child: boolean
 }
 export type SignUpBody = {
-  is_superuser: boolean
-  is_manager: boolean
   password: string
 } & UserInitialData &
   UserSecuredData

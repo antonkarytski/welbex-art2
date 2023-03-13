@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { api } from '../api'
-import { CATEGORIES_MAX_AGE } from '../constants/categories'
 import UserProfile from '../features/user/UserProfile'
 import {
   childrenDrawingsListTabs,
@@ -11,7 +10,6 @@ import {
   createUserArtsTabMenuNavigationModel,
 } from '../features/user/drawingsList/model.layout'
 import { createUserArtsListsRequestModel } from '../features/user/drawingsList/request'
-import { getAgeFromBirthday } from '../lib/helpers/date'
 import { useRequest } from '../lib/models/apiBuilder/hooks'
 import { links } from '../navigation/links'
 import { ScreenComponentProps } from '../navigation/types.screenProps'
@@ -45,10 +43,9 @@ const UserProfileScreen = ({
   return (
     <UserProfile
       user={fullUser}
+      updateUser={userRequest.update}
       tabs={
-        getAgeFromBirthday(fullUser.DOB) > CATEGORIES_MAX_AGE
-          ? commonDrawingsListTabs
-          : childrenDrawingsListTabs
+        fullUser.is_child ? childrenDrawingsListTabs : commonDrawingsListTabs
       }
       artsTabMenuNavigationModel={tabMenuNavigationModel}
       artsListsRequestModel={artsListsRequestModel}

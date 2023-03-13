@@ -1,28 +1,25 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { UserShort } from '../../api/parts/users/types'
+import { UserProfileResponse } from '../../api/parts/users/types.api'
 import { useText } from '../../translations/hook'
 import Avatar from '../../ui/Avatar'
-import SubscribeButton from '../../ui/buttons/subscribeButton/SubscribeButton'
-import {
-  SubscribeButtonState,
-  getSubscribeButtonPreset,
-} from '../../ui/buttons/subscribeButton/styles'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
+import FollowButton, { FollowButtonProps } from './Button.Follow'
 import UserDescription, { localeAgeTextShort } from './UserDescription'
 import { UserDescriptionStyles } from './styles'
 
 type UserCardPreviewProps = {
   item: UserShort
   onAvatarPress?: (item: UserShort) => void
-  onSubscribePress?: (item: UserShort) => void
+  onFollowPress?: FollowButtonProps['onPress']
 }
 
 const UserCardPreview = ({
   item,
   onAvatarPress,
-  onSubscribePress,
+  onFollowPress,
 }: UserCardPreviewProps) => {
   const text = useText()
   const { styles, theme } = useThemedStyleList({
@@ -44,14 +41,10 @@ const UserCardPreview = ({
         shortenCountryName
         shortenUserName
       />
-      <SubscribeButton
-        theme={getSubscribeButtonPreset({
-          theme,
-          text,
-          state: SubscribeButtonState.POSITIVE,
-        })}
-        style={styles.common.button}
-        onPress={() => onSubscribePress?.(item)}
+      <FollowButton
+        item={item}
+        onPress={onFollowPress}
+        style={followButtonStyles}
       />
     </View>
   )
@@ -78,12 +71,20 @@ const themedStyles = createThemedStyle((colors) =>
       borderColor: colors.primary1,
       marginRight: 16,
     },
-    button: {
-      marginLeft: 'auto',
-      paddingVertical: 8,
-      paddingHorizontal: 24,
-    },
   })
 )
+
+const followButtonStyles = StyleSheet.create({
+  label: {
+    fontSize: 14,
+  },
+  button: {
+    paddingVertical: 8,
+    paddingHorizontal: 24,
+  },
+  container: {
+    marginLeft: 'auto',
+  },
+})
 
 export default UserCardPreview

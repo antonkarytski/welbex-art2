@@ -1,11 +1,17 @@
 import { useStore } from 'effector-react'
 import React, { forwardRef, useCallback, useEffect } from 'react'
-import { FlatList, LayoutChangeEvent, LogBox, StyleSheet } from 'react-native'
+import {
+  FlatList,
+  LayoutChangeEvent,
+  LogBox,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  StyleSheet,
+} from 'react-native'
 import {
   SCREEN_CONTENT_WIDTH,
   SCREEN_PADDING_HORIZONTAL,
 } from '../../../styles/constants'
-import Span from '../../../ui/Span'
 import DrawingsList, {
   DRAWINGS_COLUMNS_COUNT,
   DRAWING_ITEM_MARGIN,
@@ -14,6 +20,7 @@ import DrawingsList, {
 import { createThemedStyle } from '../../themed'
 import { useThemedStyle } from '../../themed/hooks'
 import { UserDrawingListType, UserItem } from '../types'
+import UserDrawingsEmptyComponent from './UserDrawingsEmptyComponent'
 import { useDrawingsList } from './hooks'
 import { UserArtsListHeightModel, UserArtsListsRequestModel } from './types'
 
@@ -46,7 +53,11 @@ const UserDrawingsList = React.memo(
       ref
     ) => {
       const styles = useThemedStyle(themedStyles)
-      const { list } = useDrawingsList(item, type, artsListsRequestModel)
+      const { list, isLoading } = useDrawingsList(
+        item,
+        type,
+        artsListsRequestModel
+      )
 
       const handleLayout = useCallback(
         (e: LayoutChangeEvent) => {
@@ -65,14 +76,14 @@ const UserDrawingsList = React.memo(
         [onLayout, type, artsListsHeightModel, list]
       )
 
-      const handleScrollEndDrag = useCallback(
-        (e) => {
-          artsListsHeightModel.updateListOffset({
-            [type]: e.nativeEvent.contentOffset.y,
-          })
-        },
-        [onLayout, type, artsListsHeightModel]
-      )
+      // const handleScrollEndDrag = useCallback(
+      //   (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      //     artsListsHeightModel.updateListOffset({
+      //       [type]: e.nativeEvent.contentOffset.y,
+      //     })
+      //   },
+      //   [onLayout, type, artsListsHeightModel]
+      // )
 
       return (
         <DrawingsList
@@ -82,8 +93,8 @@ const UserDrawingsList = React.memo(
           onLayout={handleLayout}
           listKey={type}
           containerStyle={styles.container}
-          onScrollEndDrag={handleScrollEndDrag}
-          ListEmptyComponent={<Span label={'No drawings yet'} />}
+          // onScrollEndDrag={handleScrollEndDrag}
+          ListEmptyComponent={isLoading ? null : UserDrawingsEmptyComponent}
           {...props}
         />
       )

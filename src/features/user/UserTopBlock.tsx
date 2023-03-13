@@ -1,7 +1,9 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { SCREEN_PADDING_HORIZONTAL } from '../../styles/constants'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
+import FollowButton from './Button.Follow'
 import UserAvatar from './UserAvatar'
 import UserCountersBlock from './UserCountersBlock'
 import { AVATAR_BACKGROUND_GRADIENT_HEIGHT } from './constants'
@@ -9,13 +11,16 @@ import { UserItem } from './types'
 
 export type UserTopBlockProps = {
   item: UserItem | null
+  updateItem?: (data: Partial<UserItem>) => void
 }
 
-const UserTopBlock = React.memo(({ item }: UserTopBlockProps) => {
+const UserTopBlock = React.memo(({ item, updateItem }: UserTopBlockProps) => {
   const { styles } = useTheme(themedStyles)
-
   if (!item) return null
 
+  const onFollowUser = (isFollowed: boolean) => {
+    updateItem?.({ is_followed: isFollowed })
+  }
   return (
     <>
       <View style={styles.userBlockBackgroundTransparent} />
@@ -25,6 +30,11 @@ const UserTopBlock = React.memo(({ item }: UserTopBlockProps) => {
         {item.followers !== undefined && (
           <UserCountersBlock item={item} style={styles.countersBlock} />
         )}
+        <FollowButton
+          item={item}
+          onPress={onFollowUser}
+          style={followButtonStyles}
+        />
       </View>
     </>
   )
@@ -55,5 +65,11 @@ const themedStyles = createThemedStyle((colors) =>
     },
   })
 )
+
+const followButtonStyles = StyleSheet.create({
+  container: {
+    marginHorizontal: SCREEN_PADDING_HORIZONTAL,
+  },
+})
 
 export default UserTopBlock

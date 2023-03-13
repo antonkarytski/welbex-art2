@@ -33,7 +33,7 @@ export type DrawingFlatListProps = {
   onEndReached?: () => void
   onRefresh?: () => void
   ListHeader?: ReactElement
-  onScrollEndDrag?: () => void
+  onScrollEndDrag?: FlatListProps<any>['onMomentumScrollEnd']
   refreshing?: FlatListProps<any>['refreshing']
   ListFooterComponent?: FlatListProps<any>['ListFooterComponent']
   onLayout?: FlatListProps<any>['onLayout']
@@ -109,9 +109,6 @@ const DrawingsList = forwardRef(
           listKey={listKey}
           contentContainerStyle={[styles.listContentContainer, contentStyle]}
           onMomentumScrollEnd={props.onScrollEndDrag}
-          // onMomentumScrollEnd={(e) => {
-          //   console.log(e.nativeEvent.contentOffset.y)
-          // }}
           {...props}
         />
       </View>

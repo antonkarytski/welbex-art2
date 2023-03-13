@@ -47,6 +47,12 @@ const DrawingDetailsScreen = ({
       : api.arts.specific(drawingId).catch(noop)
   }, [drawingId, isAuth])
 
+  const onFollowAuthor = (isFollowed: boolean) => {
+    drawing.update({
+      author: { ...drawing.data?.author, is_followed: isFollowed },
+    })
+  }
+
   return (
     <View style={styles.common.container}>
       <AppHeader
@@ -64,9 +70,7 @@ const DrawingDetailsScreen = ({
               }
               navigate(links.userProfile, { item })
             }}
-            onSubscribePress={() => {
-              navigate(links.subscriptionCurrent)
-            }}
+            onFollowPress={onFollowAuthor}
             item={drawing.data.author}
           />
           <AutoHeightImage

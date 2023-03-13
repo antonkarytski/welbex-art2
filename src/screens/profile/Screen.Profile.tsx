@@ -1,6 +1,5 @@
 import { useStore } from 'effector-react'
 import React from 'react'
-import { CATEGORIES_MAX_AGE } from '../../constants/categories'
 import { $isAuth } from '../../features/auth/model'
 import UnauthorizedProfile from '../../features/profile/UnauthorizedProfile'
 import { $myProfile } from '../../features/profile/model'
@@ -15,7 +14,6 @@ import {
   createUserArtsTabMenuNavigationModel,
 } from '../../features/user/drawingsList/model.layout'
 import { createUserArtsListsRequestModel } from '../../features/user/drawingsList/request'
-import { getAgeFromBirthday } from '../../lib/helpers/date'
 import UserScreenSkeleton from '../../ui/loaders/Skeleton.UserScreen'
 
 const profileTabMenuNavigationModel = createUserArtsTabMenuNavigationModel()
@@ -35,9 +33,7 @@ const ProfileScreen = () => {
     <UserProfile
       user={myProfile}
       tabs={
-        getAgeFromBirthday(myProfile.DOB) > CATEGORIES_MAX_AGE
-          ? commonDrawingsListTabs
-          : profileDrawingsListTabs
+        myProfile.is_child ? profileDrawingsListTabs : commonDrawingsListTabs
       }
       artsTabMenuNavigationModel={profileTabMenuNavigationModel}
       artsListsRequestModel={profileArtsListRequestModel}
