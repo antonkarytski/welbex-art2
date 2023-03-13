@@ -18,7 +18,7 @@ export const logInFormModel = createFormModel(initialLogInFormState)
 export const logIn = attach({
   source: logInFormModel.$store,
   mapParams: (_: void, { email, password }) => ({
-    username: email,
+    username: email.toLowerCase(),
     password,
   }),
   effect: api.auth.login,
