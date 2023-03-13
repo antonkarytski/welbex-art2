@@ -10,10 +10,18 @@ type MotionGradientProps = {
   offsetValue: Animated.Value | Animated.AnimatedInterpolation<number>
   minHeight: number
   maxHeight: number
+  stopOffset?: string
+  startOffset?: string
 }
 
 const MotionGradient = React.memo(
-  ({ colors, offsetValue, minHeight, maxHeight }: MotionGradientProps) => {
+  ({
+    colors,
+    offsetValue,
+    minHeight,
+    maxHeight,
+    ...props
+  }: MotionGradientProps) => {
     const translateY = offsetValue.interpolate({
       inputRange: [0, maxHeight - minHeight],
       outputRange: [maxHeight, minHeight],
@@ -32,6 +40,7 @@ const MotionGradient = React.memo(
           key={maxHeight}
           style={[styles.gradient, gradientStyles]}
           colors={colors}
+          {...props}
         />
         <Animated.View style={[styles.overlay, overlayAnimatedStyles]} />
       </>

@@ -1,40 +1,54 @@
 import { useStore } from 'effector-react'
-import React, { useRef, useState } from 'react'
-import { Animated, StyleSheet, View } from 'react-native'
+import React, { useState } from 'react'
 import { $isAuth } from '../../features/auth/model'
-import ProfileDrawingsListTabs from '../../features/profile/ProfileDrawingsListTabs'
-import ProfileTopBlock, {
-  PROFILE_TOP_BLOCK_INITIAL_HEIGHT,
-} from '../../features/profile/ProfileTopBlock'
 import UnauthorizedProfile from '../../features/profile/UnauthorizedProfile'
+import { $myProfile } from '../../features/profile/model'
+import { meRequest } from '../../features/profile/request'
+import UserProfile from '../../features/user/UserProfile'
+import {
+  commonDrawingsListTabs,
+  profileDrawingsListTabs,
+} from '../../features/user/drawingsList/hooks.drawingTabs'
+import {
+  createUserArtsListHeightModel,
+  createUserArtsTabMenuNavigationModel,
+} from '../../features/user/drawingsList/model.layout'
+import { createUserArtsListsRequestModel } from '../../features/user/drawingsList/request'
+import UserScreenSkeleton from '../../ui/loaders/Skeleton.UserScreen'
+
+const profileTabMenuNavigationModel = createUserArtsTabMenuNavigationModel()
+const profileArtsListRequestModel = createUserArtsListsRequestModel()
+const profileArtsListsHeightModel = createUserArtsListHeightModel()
 
 const ProfileScreen = () => {
-  const [topBlockHeight, setTopBlockHeight] = useState(
-    PROFILE_TOP_BLOCK_INITIAL_HEIGHT
-  )
   const isAuth = useStore($isAuth)
-  const offset = useRef(new Animated.Value(0)).current
+  const myProfile = useStore($myProfile)
+  const isLoading = useStore(meRequest.pending)
+  const [isRefreshing, setIsRefreshing] = useState(false)
+
+  const onRefreshProfile = () => {
+    setIsRefreshing(true)
+    meRequest().finally(() => {
+      setIsRefreshing(false)
+    })
+  }
 
   if (!isAuth) return <UnauthorizedProfile />
+  if (isLoading && !isRefreshing) return <UserScreenSkeleton />
+  if (!myProfile) return null
 
   return (
-    <View style={styles.container}>
-      <ProfileTopBlock
-        onHeightChange={setTopBlockHeight}
-        offsetValue={offset}
-      />
-      <ProfileDrawingsListTabs
-        scrollOffsetValue={offset}
-        topOffset={topBlockHeight}
-      />
-    </View>
+    <UserProfile
+      user={myProfile}
+      tabs={
+        myProfile.is_child ? profileDrawingsListTabs : commonDrawingsListTabs
+      }
+      onRefreshUser={onRefreshProfile}
+      artsTabMenuNavigationModel={profileTabMenuNavigationModel}
+      artsListsRequestModel={profileArtsListRequestModel}
+      artsListsHeightModel={profileArtsListsHeightModel}
+    />
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-})
 
 export default ProfileScreen

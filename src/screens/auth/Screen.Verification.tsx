@@ -15,7 +15,7 @@ export default function Verification() {
   const styles = useThemedStyle(themedCommonStyles)
 
   return (
-    <AuthScreenContainer>
+    <AuthScreenContainer enableScrollView>
       <H2
         label={t.enterAuthCode}
         style={[styles.title, styles.describedTitle]}

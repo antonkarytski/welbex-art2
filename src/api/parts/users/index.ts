@@ -16,9 +16,10 @@ const signUp = usersEndpoint.post<SignUpResponse, SignUpBody>({
   endpoint: 'create',
   withToken: false,
 })
-const profile = usersEndpoint.get<UserProfileResponse, number>(
-  (id) => `${id}/profile`
-)
+const profile = usersEndpoint.get<UserProfileResponse, number>((id) => ({
+  entityId: `${id}/profile`,
+  withToken: false,
+}))
 const follow = usersEndpoint.put<string, number>((id) => `${id}/follow`)
 const unfollow = usersEndpoint.put<string, number>((id) => `${id}/unfollow`)
 

@@ -28,9 +28,9 @@ const DrawingInteractivePanel = ({
   onSaveChange,
 }: DrawingInteractivePanelProps) => {
   const colors = useColors()
-
   const navigate = useNavigate()
   const isAuth = useStore($isAuth)
+
   const onLikeDrawing = () => {
     if (!isAuth) return navigate(links.login)
     const likesCount = item.is_liked ? item.likes - 1 : item.likes + 1

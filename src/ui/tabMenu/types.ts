@@ -8,3 +8,9 @@ export type TabMenuButtonStyles = {
   button?: StyleProp<ViewStyle>
   buttonActive?: StyleProp<ViewStyle>
 }
+
+export type TabMenuStyles = TabMenuButtonStyles & {
+  container?: StyleProp<ViewStyle>
+  line?: StyleProp<ViewStyle>
+  activeLine?: StyleProp<ViewStyle>
+}

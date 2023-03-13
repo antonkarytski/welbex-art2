@@ -1,35 +1,32 @@
+import { useStore } from 'effector-react'
 import React, {
   ForwardedRef,
   forwardRef,
   useCallback,
   useEffect,
   useImperativeHandle,
+  useRef,
   useState,
 } from 'react'
 import {
   Animated,
   StyleProp,
+  View,
   ViewStyle,
   useWindowDimensions,
 } from 'react-native'
 import { TabView } from 'react-native-tab-view'
 import { SceneRendererProps } from 'react-native-tab-view/lib/typescript/src/types'
-import { tabMenuThemedStyles } from '../../../styles/tabMenu'
-import TabMenuAnimated from '../../../ui/tabMenu/TabMenuAnimated'
-import { useThemedStyle } from '../../themed/hooks'
-
-export type Route<K extends string = string> = {
-  key: K
-  icon?: string
-  title?: string
-  accessible?: boolean
-  accessibilityLabel?: string
-  testID?: string
-}
+import { UserDrawingListType } from '../types'
+import {
+  Route,
+  TabMenuNavigationProps,
+  UserArtsListHeightModel,
+  UserArtsTabMenuNavigationModel,
+} from './types'
 
 export type CommonTabsProps<T extends Route> = {
   style?: StyleProp<ViewStyle>
-  tabsStyle?: Animated.AnimatedProps<ViewStyle>
   onRouteChange?: (route: T) => void
 }
 
@@ -40,6 +37,9 @@ type UserDrawingsListTabViewProps<T extends Route> = {
     }
   ) => React.ReactNode
   routes: (T & { title: string })[]
+  tabMenuHeight: number
+  tabMenuNavigationModel: UserArtsTabMenuNavigationModel
+  listsHeightModel: UserArtsListHeightModel
 } & CommonTabsProps<T>
 
 type DrawingListTabsViewController<T extends Route> = {
@@ -53,29 +53,28 @@ const UserDrawingsListTabView = React.memo(
         style,
         scenes,
         routes,
-        tabsStyle,
         onRouteChange,
+        tabMenuHeight,
+        tabMenuNavigationModel,
+        listsHeightModel,
       }: UserDrawingsListTabViewProps<T>,
       ref: ForwardedRef<DrawingListTabsViewController<T>>
     ) => {
       const layout = useWindowDimensions()
       const [index, setIndex] = useState(0)
-      const tabMenuStyles = useThemedStyle(tabMenuThemedStyles)
+      const drawingsListsHeight = useStore(listsHeightModel.$listsHeight)
+      const currentKey = useStore(listsHeightModel.$activeListTabKey)
+      const tabBarNavigationProps = useRef<TabMenuNavigationProps | null>(null)
 
-      const renderTabBar = useCallback(
-        (props: SceneRendererProps) => {
-          return (
-            <TabMenuAnimated
-              activeTab={index}
-              routes={routes}
-              style={tabMenuStyles}
-              animatedStyle={tabsStyle}
-              {...props}
-            />
-          )
-        },
-        [routes, tabsStyle, index, tabMenuStyles]
-      )
+      useEffect(() => {
+        if (!tabBarNavigationProps.current) return
+        tabMenuNavigationModel.set(tabBarNavigationProps.current)
+      }, [tabBarNavigationProps.current, tabMenuNavigationModel])
+
+      const renderTabBar = useCallback((props: TabMenuNavigationProps) => {
+        tabBarNavigationProps.current = props
+        return <View />
+      }, [])
 
       useImperativeHandle(
         ref,
@@ -89,17 +88,26 @@ const UserDrawingsListTabView = React.memo(
 
       useEffect(() => {
         onRouteChange?.(routes[index])
-      }, [onRouteChange, index, routes])
+        listsHeightModel.setActiveListTabKey(
+          routes[index].key as UserDrawingListType
+        )
+      }, [onRouteChange, index, routes, listsHeightModel])
 
       return (
-        <TabView
-          style={style}
-          renderTabBar={renderTabBar}
-          navigationState={{ index, routes }}
-          renderScene={scenes}
-          onIndexChange={setIndex}
-          initialLayout={{ width: layout.width }}
-        />
+        <Animated.View
+          style={{
+            height: drawingsListsHeight[currentKey] + tabMenuHeight + 68,
+          }}
+        >
+          <TabView
+            style={style}
+            renderTabBar={renderTabBar}
+            navigationState={{ index, routes }}
+            renderScene={scenes}
+            onIndexChange={setIndex}
+            initialLayout={{ width: layout.width }}
+          />
+        </Animated.View>
       )
     }
   )

@@ -5,25 +5,33 @@ import Span from '../Span'
 import { TabMenuButtonStyles } from './types'
 
 type TabMenuButtonProps = {
-  onPress: (key: string) => void
+  onPress: (key: string, index: number) => void
   id: string
   label?: string
   isActive: boolean
   style?: TabMenuButtonStyles
+  index: number
 }
 
 const TabMenuButton = React.memo(
-  ({ onPress, id, label, isActive, style }: TabMenuButtonProps) => {
+  ({ onPress, id, label, isActive, style, index }: TabMenuButtonProps) => {
     return (
       <TouchableOpacity
-        onPress={() => onPress(id)}
+        onPress={() => onPress(id, index)}
         style={styles.button}
         activeOpacity={0.6}
       >
         <Span
           weight={500}
-          style={[styles.label, style?.label, isActive && style?.labelActive]}
+          style={[
+            styles.label,
+            style?.label,
+            isActive && [styles?.labelActive, style?.labelActive],
+          ]}
           label={label}
+          adjustsFontSizeToFit
+          numberOfLines={1}
+          minimumFontScale={0.8}
         />
       </TouchableOpacity>
     )
@@ -36,6 +44,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 12,
+    paddingHorizontal: 12,
   },
   label: {
     fontSize: 18,

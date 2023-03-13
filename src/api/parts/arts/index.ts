@@ -9,6 +9,8 @@ import {
   ArtWorkCreateResponse,
   ArtWorkGeneral,
   ArtWorksFilterProps,
+  ArtsListPreviewResponse,
+  ArtsListProps,
   CountOfFilteredArtsResponse,
 } from './types'
 
@@ -21,7 +23,12 @@ const following = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>(
   'following'
 )
 
-const specific = arts.get<ArtWorkGeneral, number>({ withToken: false })
+const specific = arts.get<ArtWorkGeneral, number>((id) => ({
+  entityId: id,
+  withToken: false,
+}))
+
+// const specific = arts.get<ArtWorkGeneral, number>({ withToken: false })
 const specificProtected = arts.get<ArtWork, number>()
 
 const likePost = arts.put<ArtWork, number>((id) => `${id}/like`)
@@ -56,6 +63,19 @@ const create = arts
   })
   .withProgress()
 
+const userArts = arts.endpoint('user')
+
+const userAllArts = userArts.get<ArtsListPreviewResponse, ArtsListProps>(
+  ({ userId, ...rest }) => ({ entityId: `${userId}/all`, body: rest })
+)
+
+const userLikedArts = userArts.get<ArtsListPreviewResponse, ArtsListProps>(
+  ({ userId, ...rest }) => ({ entityId: `${userId}/liked`, body: rest })
+)
+const userSavedArts = userArts.get<ArtsListPreviewResponse, ArtsListProps>(
+  ({ userId, ...rest }) => ({ entityId: `${userId}/saved`, body: rest })
+)
+
 export const artsApi = {
   all,
   best,
@@ -71,4 +91,7 @@ export const artsApi = {
   downloadThumbnailDrawing,
   downloadFullsizeDrawing,
   create,
+  userAllArts,
+  userLikedArts,
+  userSavedArts,
 }

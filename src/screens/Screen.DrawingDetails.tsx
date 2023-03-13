@@ -1,8 +1,10 @@
+import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import DrawingInteractionPanel from '../features/drawing/DrawingInteractivePanel'
 import { getArtWorkRequest } from '../features/drawing/request'
 import AutoHeightImage from '../features/images/AutoHeightImage'
+import { $myProfile } from '../features/profile/model'
 import { createThemedStyle } from '../features/themed'
 import { useThemedStyleList } from '../features/themed/hooks'
 import UserCardPreview from '../features/user/UserCardPreview'
@@ -27,6 +29,7 @@ const DrawingDetailsScreen = ({
   const navigate = useNavigate()
   const text = useText()
   const drawingId = route.params.item.id
+  const myProfile = useStore($myProfile)
   const drawing = useRequest(getArtWorkRequest)
 
   const { styles, colors } = useThemedStyleList({
@@ -37,6 +40,12 @@ const DrawingDetailsScreen = ({
   useEffect(() => {
     getArtWorkRequest(drawingId).catch(noop)
   }, [drawingId])
+
+  const onFollowAuthor = (isFollowed: boolean) => {
+    drawing.update({
+      author: { ...drawing.data?.author, is_followed: isFollowed },
+    })
+  }
 
   return (
     <View style={styles.common.container}>
@@ -50,11 +59,12 @@ const DrawingDetailsScreen = ({
         <ScrollView bounces={false} style={styles.common.contentContainer}>
           <UserCardPreview
             onAvatarPress={(item) => {
+              if (item.id === myProfile?.id) {
+                return navigate(links.profileTab)
+              }
               navigate(links.userProfile, { item })
             }}
-            onSubscribePress={() => {
-              navigate(links.subscriptionCurrent)
-            }}
+            onFollowPress={onFollowAuthor}
             item={drawing.data.author}
           />
           <AutoHeightImage

@@ -40,6 +40,7 @@ const GalleryItem = React.memo(
             item={item.author}
             ageTextGenerator={ageTextGenerator}
             shortenCountryName
+            shortenUserName
           />
           <LikeButton
             style={style.likeButton}

@@ -1,13 +1,12 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { FnExt } from '../../types'
 import TabMenuButton from './TabMenuButton'
 import { TabMenuButtonStyles, TabRoute } from './types'
 
 type TabMenuButtonsProps = {
   tabs: TabRoute[]
-  onButtonPress: FnExt<TabRoute['key']>
-  activeTab?: TabRoute['key'] | number
+  onButtonPress: (key: TabRoute['key'], index: number) => void
+  activeTab?: TabRoute['key'] | number | null
   style?: TabMenuButtonStyles
 }
 
@@ -30,6 +29,7 @@ const TabMenuButtons = ({
             key={key}
             label={title}
             id={key}
+            index={index}
           />
         )
       })}

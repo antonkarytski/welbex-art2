@@ -50,7 +50,7 @@ const CategoryDetailsScreen = ({
 
   const [isRefreshing, setIsRefreshing] = useState(false)
 
-  const onRefresh = async () => {
+  const onRefresh = () => {
     setIsRefreshing(true)
     getCategoryData(categoryId).finally(() => setIsRefreshing(false))
   }
