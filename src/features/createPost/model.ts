@@ -1,16 +1,16 @@
 import { createEffect } from 'effector'
 import * as yup from 'yup'
 import { ObjectSchema } from 'yup'
-import { artsApi } from '../../api/parts/arts'
+import { api } from '../../api'
 import { ImageFile } from '../../lib/files/types'
 import { createFormModel } from '../../lib/models/form'
 import { stringSchema } from '../../lib/yup'
 
 export type ImageDescriptionFormFields = {
-  childProofImage: ImageFile | null
-  imageFile: ImageFile | null
+  isChildDocumentLoaded: boolean
+  image: ImageFile
   title: string
-  category: number | null
+  categoryId: number | null
   age: string
 }
 
@@ -23,23 +23,26 @@ const imageFileShape = yup.object().shape({
 const schema: ObjectSchema<ImageDescriptionFormFields> = yup.object().shape({
   age: stringSchema(),
   title: stringSchema(),
-  category: yup.number().default(0),
-  childProofImage: imageFileShape.default(null),
-  imageFile: imageFileShape.default(null),
+  categoryId: yup.number().default(0),
+  isChildDocumentLoaded: yup.boolean().default(false),
+  image: imageFileShape.default(null),
 })
+
 export const createPostFormModel = createFormModel(schema).setSubmitSettings({
   validate: true,
   request: createEffect((data: ImageDescriptionFormFields) => {
-    if (!data.imageFile || data.category === null) return
-    return artsApi.create({
-      image: data.imageFile,
-      childDocument: data.imageFile,
+    if (data.categoryId === null) return
+    return api.arts.create({
+      image: data.image,
       title: data.title,
-      categoryId: data.category,
+      categoryId: data.categoryId,
     })
   }),
 })
 
 createPostFormModel.submit.done.watch(({ result }) => {
   if (!result) return
+})
+createPostFormModel.submit.fail.watch((e) => {
+  console.log(JSON.stringify(e.error))
 })

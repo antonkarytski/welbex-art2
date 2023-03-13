@@ -1,8 +1,7 @@
-import React from 'react';
-import { GestureResponderEvent, TouchableOpacity } from 'react-native';
+import React from 'react'
+import { GestureResponderEvent, TouchableOpacity } from 'react-native'
 import { FnExt } from '../../types'
-import CrossIcon from '../icons/Icon.Cross';
-
+import CrossIcon from '../icons/Icon.Cross'
 
 type CrossButtonProps = {
   onPress: FnExt<GestureResponderEvent, void>

@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react'
-import React, { useCallback, useState } from 'react'
+import React, { ReactElement, useCallback, useState } from 'react'
 import { Animated, FlatListProps, StyleSheet } from 'react-native'
 import { CategoryResponse } from '../../api/parts/categories/types'
 import { SCREEN_PADDING_HORIZONTAL } from '../../styles/constants'
@@ -14,7 +14,7 @@ import { categoriesListModel } from './request'
 import { categoryCardThemedStyles } from './styles'
 
 type CategoriesListProps = {
-  ListHeaderComponent?: FlatListProps<any>['ListHeaderComponent']
+  ListHeaderComponent?: () => ReactElement
   onScroll?: Animated.AnimatedProps<FlatListProps<any>>['onScroll']
 }
 const keyExtractor = ({ name }: CategoryResponse) => name

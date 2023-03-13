@@ -20,7 +20,7 @@ type SearchableListProps<T> = {
   style?: SearchableListStyles
 }
 
-function SearchableList<DataItem extends Record<string, any>>({
+function SearchableList<DataItem>({
   children,
   data,
   style,

@@ -7,7 +7,7 @@ import {
   ArtWork,
   ArtWorkCreateProps,
   ArtWorkCreateResponse,
-  ArtWorkWhileUnauthorized,
+  ArtWorkGeneral,
   ArtWorksFilterProps,
   ArtsListPreviewResponse,
   ArtsListProps,
@@ -15,34 +15,23 @@ import {
 } from './types'
 
 const arts = apiManager.endpoint('arts').protect()
-
-const all = arts.get<AllArtWorksResponse, AllArtWorksProps | void>({
-  endpoint: 'all',
-  withToken: false,
-})
-
-const best = arts.get<AllArtWorksResponse, AllArtWorksProps | void>({
-  endpoint: 'all/best',
-  withToken: false,
-})
-
-const newArts = arts.get<AllArtWorksResponse, AllArtWorksProps | void>({
-  endpoint: 'all/new',
-  withToken: false,
-})
-
-const following = arts.get<AllArtWorksResponse, AllArtWorksProps | void>(
-  'all/following'
+const allArts = arts.endpoint('all').unprotect()
+const all = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>()
+const best = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('best')
+const newArts = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('new')
+const following = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>(
+  'following'
 )
 
-const specific = arts.get<ArtWorkWhileUnauthorized, number>((id) => ({
+const specific = arts.get<ArtWorkGeneral, number>((id) => ({
   entityId: id,
   withToken: false,
 }))
 
+// const specific = arts.get<ArtWorkGeneral, number>({ withToken: false })
 const specificProtected = arts.get<ArtWork, number>()
 
-const likePost = arts.put<ArtWork, any>((id) => `${id}/like`)
+const likePost = arts.put<ArtWork, number>((id) => `${id}/like`)
 const dislikePost = arts.put<ArtWork, number>((id) => `${id}/remove-like`)
 const savePost = arts.put<ArtWork, number>((id) => `${id}/save`)
 const unsavePost = arts.put<ArtWork, number>((id) => `${id}/unsave`)
@@ -58,20 +47,21 @@ const countOfFiltered = arts.get<
   ArtWorksFilterProps
 >('total')
 
-const create = arts.post<ArtWorkCreateResponse, ArtWorkCreateProps>({
-  endpoint: 'create',
-  contentType: ContentType.FORM_DATA,
-  fn: ({ image, childDocument, title, categoryId }) => {
-    return {
-      body: formDataFromList({
-        image,
-        title,
-        child_identity_document: childDocument,
-        category_id: categoryId,
-      }),
-    }
-  },
-})
+const create = arts
+  .post<ArtWorkCreateResponse, ArtWorkCreateProps>({
+    endpoint: 'create',
+    contentType: ContentType.FORM_DATA,
+    fn: ({ image, title, categoryId }) => {
+      return {
+        body: formDataFromList({
+          image,
+          title,
+          category_id: categoryId,
+        }),
+      }
+    },
+  })
+  .withProgress()
 
 const userArts = arts.endpoint('user')
 

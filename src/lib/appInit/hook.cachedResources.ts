@@ -1,7 +1,10 @@
 import { Ionicons } from '@expo/vector-icons'
 import { loadAsync } from 'expo-font'
 import { useEffect, useState } from 'react'
+import { apiManager } from '../../api/apiManager'
+import { meRequest } from '../../features/profile/request'
 import * as FONTS from '../../styles/fonts'
+import { noop } from '../helpers'
 
 async function loadResourcesAndData() {
   const Inter400 = require('../../../assets/fonts/Inter/Inter-Regular.ttf')
@@ -23,6 +26,10 @@ export function useCachedResources() {
 
   useEffect(() => {
     loadResourcesAndData().finally(() => setLoadingComplete(true))
+    apiManager.token.onInit((token) => {
+      console.log('INIT', token)
+      if (token) meRequest().catch(noop)
+    })
   }, [])
 
   return isLoadingComplete

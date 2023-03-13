@@ -28,4 +28,5 @@ export type InputProps = {
   styles?: InputStyles
   InputPseudoBefore?: ReactNode
   InputPseudoAfter?: ReactNode
+  postfix?: string
 } & Omit<TextInputProps, 'onChange'>
