@@ -37,6 +37,8 @@ const UserProfileScreen = ({
     artsListsHeightModel.reset()
   }, [item.id])
 
+  const onRefreshUser = () => userRequest.request(item.id)
+
   if (userRequest.isLoading) return <UserScreenSkeleton />
   if (!fullUser) return null
 
@@ -44,6 +46,7 @@ const UserProfileScreen = ({
     <UserProfile
       user={fullUser}
       updateUser={userRequest.update}
+      onRefreshUser={onRefreshUser}
       tabs={
         fullUser.is_child ? childrenDrawingsListTabs : commonDrawingsListTabs
       }

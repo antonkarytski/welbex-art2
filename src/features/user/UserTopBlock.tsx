@@ -7,6 +7,7 @@ import FollowButton from './Button.Follow'
 import UserAvatar from './UserAvatar'
 import UserCountersBlock from './UserCountersBlock'
 import { AVATAR_BACKGROUND_GRADIENT_HEIGHT } from './constants'
+import { countFollowers } from './helpers'
 import { UserItem } from './types'
 
 export type UserTopBlockProps = {
@@ -19,8 +20,10 @@ const UserTopBlock = React.memo(({ item, updateItem }: UserTopBlockProps) => {
   if (!item) return null
 
   const onFollowUser = (isFollowed: boolean) => {
-    updateItem?.({ is_followed: isFollowed })
+    const followersCount = countFollowers(isFollowed, item.followers)
+    updateItem?.({ is_followed: isFollowed, followers: followersCount })
   }
+
   return (
     <>
       <View style={styles.userBlockBackgroundTransparent} />

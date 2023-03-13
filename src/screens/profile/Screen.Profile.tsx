@@ -24,6 +24,7 @@ const ProfileScreen = () => {
   const isAuth = useStore($isAuth)
   const myProfile = useStore($myProfile)
   const isLoading = useStore(meRequest.pending)
+  const onRefreshProfile = () => meRequest()
 
   if (!isAuth) return <UnauthorizedProfile />
   if (isLoading) return <UserScreenSkeleton />
@@ -35,6 +36,7 @@ const ProfileScreen = () => {
       tabs={
         myProfile.is_child ? profileDrawingsListTabs : commonDrawingsListTabs
       }
+      onRefreshUser={onRefreshProfile}
       artsTabMenuNavigationModel={profileTabMenuNavigationModel}
       artsListsRequestModel={profileArtsListRequestModel}
       artsListsHeightModel={profileArtsListsHeightModel}

@@ -69,9 +69,6 @@ const ScreenHeader = ({
               label={title}
               weight={600}
               style={[styles.title, style?.title]}
-              onLayout={(e) => {
-                console.log('*******************', e.nativeEvent.layout.width)
-              }}
             />
           )}
         </View>
@@ -83,7 +80,7 @@ const ScreenHeader = ({
 }
 
 const SIDE_BLOCK_WIDTH = 60
-console.log(WINDOW_WIDTH - SIDE_BLOCK_WIDTH * 2)
+
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     container: {

@@ -12,6 +12,7 @@ import {
   SCREEN_CONTENT_WIDTH,
   SCREEN_PADDING_HORIZONTAL,
 } from '../../../styles/constants'
+import DrawingsListSkeleton from '../../../ui/loaders/Skeleton.DrawingsList'
 import DrawingsList, {
   DRAWINGS_COLUMNS_COUNT,
   DRAWING_ITEM_MARGIN,
@@ -39,6 +40,9 @@ type UserDrawingsListProps = {
 } & DrawingFlatListProps &
   SpecificUserDrawingListProps
 
+const DRAWING_ITEM_HEIGHT =
+  SCREEN_CONTENT_WIDTH / DRAWINGS_COLUMNS_COUNT + DRAWING_ITEM_MARGIN / 2
+
 const UserDrawingsList = React.memo(
   forwardRef<FlatList, UserDrawingsListProps>(
     (
@@ -59,43 +63,59 @@ const UserDrawingsList = React.memo(
         artsListsRequestModel
       )
 
+      const currentListType = useStore(artsListsHeightModel.$activeListTabKey)
+
       const handleLayout = useCallback(
         (e: LayoutChangeEvent) => {
-          const itemHeight =
-            SCREEN_CONTENT_WIDTH / DRAWINGS_COLUMNS_COUNT +
-            DRAWING_ITEM_MARGIN / 2
+          if (isLoading) return
 
-          const rowsCount = Math.ceil(list.length / DRAWINGS_COLUMNS_COUNT)
+          const rowsCount = list.length
+            ? Math.ceil(list.length / DRAWINGS_COLUMNS_COUNT)
+            : 0
 
           artsListsHeightModel.updateListsHeight({
-            [type]: list.length && rowsCount * itemHeight + 20,
+            [type]: rowsCount * DRAWING_ITEM_HEIGHT + 20,
           })
-
           onLayout?.(e)
         },
-        [onLayout, type, artsListsHeightModel, list]
+        [onLayout, type, artsListsHeightModel, list, isLoading]
       )
 
       // const handleScrollEndDrag = useCallback(
       //   (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      //     const yOffset = e.nativeEvent.contentOffset.y
       //     artsListsHeightModel.updateListOffset({
-      //       [type]: e.nativeEvent.contentOffset.y,
+      //       [type]: yOffset,
       //     })
       //   },
-      //   [onLayout, type, artsListsHeightModel]
+      //   [type, artsListsHeightModel]
       // )
+
+      const getItemLayout = useCallback(
+        (data: any, index: number) => ({
+          length: DRAWING_ITEM_HEIGHT,
+          offset: DRAWING_ITEM_HEIGHT * index,
+          index,
+        }),
+        []
+      )
 
       return (
         <DrawingsList
           ref={ref}
-          // onEndReached={getNext} // NOT AVAILABLE ON ANDROID
+          // onEndReached={onEndReached} //* NOT AVAILABLE ON ANDROID *
           data={list}
           onLayout={handleLayout}
           listKey={type}
           containerStyle={styles.container}
-          // onScrollEndDrag={handleScrollEndDrag}
-          ListEmptyComponent={isLoading ? null : UserDrawingsEmptyComponent}
+          getItemLayout={getItemLayout}
+          ListEmptyComponent={
+            currentListType === type && !isLoading
+              ? UserDrawingsEmptyComponent
+              : DrawingsListSkeleton
+          }
           {...props}
+          // onScrollEndDrag={handleScrollEndDrag}
         />
       )
     }

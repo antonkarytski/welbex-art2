@@ -7,14 +7,10 @@ import {
   SCREEN_PADDING_HORIZONTAL,
 } from '../../styles/constants'
 import DrawingsRowSkeleton from './Skeleton.DrawingRow'
+import { defaultSkeletonColors } from './colors'
 import { ColorsProp } from './types'
 
-const defaultColors = {
-  startColor: 'gray.200',
-  endColor: 'gray.100',
-}
-
-const UserScreenSkeleton = ({ colors = defaultColors }: ColorsProp) => {
+const UserScreenSkeleton = ({ colors = defaultSkeletonColors }: ColorsProp) => {
   const countersBlockProps = {
     rounded: 'xl',
     style: styles.counterBlock,

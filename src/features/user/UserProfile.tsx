@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import {
   Animated,
   FlatList,
@@ -32,7 +32,8 @@ import {
 
 type UserProfileProps = {
   user: Profile | (UserProfileResponse & { id: number })
-  updateUser: (data: Partial<UserProfileResponse>) => void
+  updateUser?: (data: Partial<UserProfileResponse>) => void
+  onRefreshUser: () => void
   tabs: TabsDescriptor
   artsListsRequestModel: UserArtsListsRequestModel
   artsTabMenuNavigationModel: UserArtsTabMenuNavigationModel
@@ -44,6 +45,7 @@ const data = [1]
 const UserProfile = ({
   user,
   updateUser,
+  onRefreshUser,
   tabs,
   artsListsRequestModel,
   artsListsHeightModel,
@@ -52,7 +54,6 @@ const UserProfile = ({
   const tabMenuStyles = useThemedStyle(tabMenuThemedStyles)
   const [headerHeight, setHeaderHeight] = useState(HEADER_INITIAL_HEIGHT)
   const [tabMenuHeight, setTabMenuHeight] = useState(60)
-  const [isRefreshing, setIsRefreshing] = useState(false)
   const tabMenuProps = useStore(artsTabMenuNavigationModel.$store)
   const {
     routes,
@@ -70,11 +71,8 @@ const UserProfile = ({
 
   const gradientOffset = new Animated.Value(0)
 
-  const { list, getFirst, getNext, isLoading, isNextLoading } = useDrawingsList(
-    user,
-    activeTabKey,
-    artsListsRequestModel.model
-  )
+  const { list, getFirst, getNext, isNextLoading, isRefreshing } =
+    useDrawingsList(user, activeTabKey, artsListsRequestModel.model)
 
   useEffect(() => {
     getFirst()
@@ -84,18 +82,15 @@ const UserProfile = ({
     setTabMenuHeight(e.nativeEvent.layout.height)
   }, [])
 
-  const handleRefreshArts = useCallback(() => {
-    if (!user || !activeTabKey) return
-    setIsRefreshing(true)
-    artsListsRequestModel.model[activeTabKey]
-      .get({ userId: user.id })
-      .finally(() => setIsRefreshing(false))
-  }, [user, activeTabKey, artsListsRequestModel])
+  const handleRefresh = useCallback(() => {
+    onRefreshUser()
+    getFirst({ refreshing: true })
+  }, [getFirst, onRefreshUser, user])
 
   const handleEndReached = useCallback(() => {
-    if (!list.length || isLoading) return
+    if (!list.length) return
     getNext()
-  }, [list, getNext, isLoading])
+  }, [getNext, list])
 
   const renderItem = useCallback(
     () =>
@@ -131,7 +126,7 @@ const UserProfile = ({
         data={data}
         stickyHeaderIndices={[1]}
         renderItem={renderItem}
-        onRefresh={handleRefreshArts}
+        onRefresh={handleRefresh}
         refreshing={isRefreshing}
         nestedScrollEnabled
         ListHeaderComponent={

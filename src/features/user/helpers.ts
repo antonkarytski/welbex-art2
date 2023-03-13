@@ -52,3 +52,8 @@ export function prepareMyProfile(item: MyProfileResponse): MyProfile {
     age: userAge(item),
   }
 }
+
+export function countFollowers(isFollowed: boolean, followers: number) {
+  const minusFollower = followers === 0 ? 0 : followers - 1
+  return isFollowed ? (followers += 1) : minusFollower
+}

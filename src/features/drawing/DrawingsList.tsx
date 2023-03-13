@@ -39,6 +39,7 @@ export type DrawingFlatListProps = {
   onLayout?: FlatListProps<any>['onLayout']
   listKey?: FlatListProps<any>['listKey']
   ListEmptyComponent?: FlatListProps<any>['ListEmptyComponent']
+  getItemLayout?: FlatListProps<any>['getItemLayout']
 }
 
 export const DRAWING_ITEM_MARGIN = 20

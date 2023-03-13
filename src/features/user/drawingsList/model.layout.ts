@@ -15,10 +15,11 @@ import {
 } from './types'
 
 export const createUserArtsListHeightModel = (): UserArtsListHeightModel => {
+  /* Height for skeleton (TODO: refactor) */
   const initialListsHeight = {
-    [UserDrawingListType.OWN]: 0,
-    [UserDrawingListType.LIKED]: 0,
-    [UserDrawingListType.SAVED]: 0,
+    [UserDrawingListType.OWN]: 400,
+    [UserDrawingListType.LIKED]: 400,
+    [UserDrawingListType.SAVED]: 400,
   }
 
   const initialOffsetsValues = {
