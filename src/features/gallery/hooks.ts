@@ -6,9 +6,19 @@ import { GalleryType } from './types'
 export function useGallery(type: GalleryType) {
   const list = useStore(galleryListsModel[type].$items)
   const [isRefreshing, setIsrefreshing] = useState(false)
+  const isLoading = useStore(galleryListsModel[type].$isLoading)
+  const isNextLoading = useStore(galleryListsModel[type].$isNextLoading)
   const get = galleryListsModel[type].get
   const getNext = galleryListsModel[type].getNext
   const updateItem = galleryListsModel[type].updateItem
+
+  useEffect(() => {
+    if (!list.length) galleryListsModel[type].get()
+  }, [list, type])
+
+  const getFirst = useCallback(() => {
+    galleryListsModel[type].get()
+  }, [type])
 
   const refresh = useCallback(() => {
     setIsrefreshing(true)
@@ -17,14 +27,8 @@ export function useGallery(type: GalleryType) {
     })
   }, [get])
 
-  useEffect(() => {
-    if (!list.length) galleryListsModel[type].get()
-  }, [list, type])
-
-  const isLoading = useStore(galleryListsModel[type].$isLoading)
-  const isNextLoading = useStore(galleryListsModel[type].$isNextLoading)
-
   return {
+    getFirst,
     list,
     isLoading,
     isNextLoading,

@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react'
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import { ArtWork } from '../../api/parts/arts/types'
 import { useNavigate } from '../../navigation'
@@ -34,6 +34,7 @@ const GalleryList = ({ type }: GalleryListProps) => {
     refresh,
     isRefreshing,
   } = useGallery(type)
+
   const { styles } = useThemedStyleList({
     item: galleryItemThemedStyles,
   })
