@@ -22,4 +22,4 @@ export type UserShort = {
 
 export type Profile = ProfileResponse & AppUserProps
 export type MyProfile = MyProfileResponse & AppUserProps
-export type UserProfile = UserProfileResponse & AppUserProps
+export type IUserProfile = UserProfileResponse & AppUserProps

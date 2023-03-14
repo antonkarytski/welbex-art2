@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { WinnerItem } from '../../api/parts/categories/types'
-import { MyProfile, UserProfile } from '../../api/parts/users/types'
+import { IUserProfile, MyProfile } from '../../api/parts/users/types'
 import {
   IdentityDocumentStatus,
   MyProfileResponse,
@@ -59,7 +59,7 @@ export function prepareMyProfile(item: MyProfileResponse): MyProfile {
 export function profileResponseToUserProfile(
   profile: UserProfileResponse,
   id: number
-): UserProfile {
+): IUserProfile {
   return {
     ...profile,
     id,

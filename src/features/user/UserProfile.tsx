@@ -7,7 +7,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native'
-import { MyProfile, UserProfile } from '../../api/parts/users/types';
+import { IUserProfile, MyProfile } from '../../api/parts/users/types'
 import { UserProfileResponse } from '../../api/parts/users/types.api'
 import UserHeader from '../../features/user/UserHeader'
 import { tabMenuThemedStyles } from '../../styles/tabMenu'
@@ -31,7 +31,7 @@ import {
 import { UserDrawingListType } from './types'
 
 type UserProfileProps = {
-  user: UserProfile | MyProfile & {is_followed?: never }
+  user: IUserProfile | (MyProfile & { is_followed?: never })
   updateUser?: (data: Partial<UserProfileResponse>) => void
   onRefreshUser: () => void
   tabs: TabsDescriptor

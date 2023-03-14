@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { MyProfile, UserProfile } from '../../api/parts/users/types'
+import { IUserProfile, MyProfile } from '../../api/parts/users/types'
 import { SCREEN_PADDING_HORIZONTAL } from '../../styles/constants'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
@@ -12,7 +12,7 @@ import { countFollowers } from './helpers'
 import { UserItem } from './types'
 
 export type UserTopBlockProps = {
-  item: UserProfile | (MyProfile & { is_followed?: never })
+  item: IUserProfile | (MyProfile & { is_followed?: never })
   updateItem?: (data: Partial<UserItem>) => void
 }
 
