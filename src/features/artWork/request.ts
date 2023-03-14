@@ -27,5 +27,5 @@ export const getArtWorkRequest = attach({
 })
 
 getArtWorkRequest.fail.watch((e) => {
-  console.log(e)
+  console.log(JSON.stringify(e))
 })

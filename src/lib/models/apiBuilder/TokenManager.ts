@@ -54,7 +54,6 @@ export class TokenManager {
     mapParams: (_: void, token) => token,
     effect: createEffect(
       async (token: TokenModel | null): Promise<Tokens | null | undefined> => {
-        console.log('GET HERE', token)
         if (!token) return null
         const status = getTokenStatus({
           token: token.access,

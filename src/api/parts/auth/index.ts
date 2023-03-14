@@ -9,7 +9,8 @@ const login = auth.post<LoginResponse, LoginBody>({
 })
 
 const google = auth.endpoint('google')
-const googleAuth = google.get('oauth2').raw((response) => response.url)
+const googleAuth = google.get('oauth2')
+const googleAuthUrl = googleAuth.url()
 
 const googleAuthCallback = google.get('oauth2callback')
 
@@ -17,4 +18,5 @@ export const authApi = {
   login,
   googleAuth,
   googleAuthCallback,
+  googleAuthUrl,
 }

@@ -1,5 +1,5 @@
 import { api } from '../../api'
-import { createPaginationListModel } from '../../api/pagination/request'
+import { createPaginationListModel } from '../../api/pagination'
 
 export const WINNERS_PAGE_SIZE = 5
 

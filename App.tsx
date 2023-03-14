@@ -8,10 +8,12 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import './src/api'
 import AppPopUps from './src/features/popUp/AppPopUps'
 import { useCachedResources } from './src/lib/appInit/hook.cachedResources'
+import { useLinkingSetUp } from './src/lib/linking/hook'
 import Router from './src/screens/Router'
 
 export default function App() {
   const isLoaded = useCachedResources()
+  useLinkingSetUp()
 
   if (!isLoaded) return null
   return (

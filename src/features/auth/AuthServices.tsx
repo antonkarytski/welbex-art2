@@ -24,9 +24,7 @@ const AuthWithServices = ({
     button: buttonLightThemedPreset,
   })
   const authWithGoogle = () => {
-    api.auth.googleAuth().then((url) => {
-      Linking.openURL(url)
-    })
+    Linking.openURL(api.auth.googleAuthUrl).then((e) => {})
   }
   const onContinueWithApple = () => {}
 

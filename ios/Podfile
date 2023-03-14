@@ -34,6 +34,7 @@ target 'art2' do
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
 
   target 'art2Tests' do
     inherit! :complete
