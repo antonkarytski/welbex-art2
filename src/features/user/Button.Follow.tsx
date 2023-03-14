@@ -1,7 +1,7 @@
 import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleProp, StyleSheet, TextStyle, View, ViewStyle } from 'react-native'
-import { UserProfileResponse } from '../../api/parts/users/types.api'
+import { UserShort } from '../../api/parts/users/types'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import {
@@ -22,7 +22,7 @@ export type FollowButtonStyles = {
 }
 
 export type FollowButtonProps = {
-  item: UserProfileResponse & { id: number }
+  item: UserShort
   onPress?: (isFollowed: boolean) => void
   style?: FollowButtonStyles
 }

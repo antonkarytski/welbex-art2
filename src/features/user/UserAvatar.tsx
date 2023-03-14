@@ -1,6 +1,7 @@
 import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
+import { UserShort } from '../../api/parts/users/types'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
@@ -11,10 +12,9 @@ import { $myProfile } from '../profile/model'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
 import UserDescription, { localeAgeTextFull } from './UserDescription'
-import { UserItem } from './types'
 
 type UserAvatarProps = {
-  item: UserItem
+  item: UserShort
   style?: StyleProp<ViewStyle>
 }
 

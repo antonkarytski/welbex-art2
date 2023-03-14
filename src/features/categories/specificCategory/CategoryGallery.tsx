@@ -7,7 +7,7 @@ import { SCREEN_PADDING_HORIZONTAL } from '../../../styles/constants'
 import { useText } from '../../../translations/hook'
 import Span from '../../../ui/Span'
 import Loader from '../../../ui/loaders/Loader'
-import DrawingsList from '../../drawing/DrawingsList'
+import ArtWorksList from '../../artWork/ArtWorksList'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyle } from '../../themed/hooks'
 import { categoryArtsModel } from '../request'
@@ -41,7 +41,7 @@ const CategoryGallery = ({
 
   return (
     <>
-      <DrawingsList
+      <ArtWorksList
         onScroll={onScroll}
         ListHeader={<CategoryGalleryHeader header={header} item={item} />}
         data={drawings}

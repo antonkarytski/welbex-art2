@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react'
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import { ArtWork } from '../../api/parts/arts/types'
 import { useNavigate } from '../../navigation'
@@ -7,9 +7,9 @@ import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import Span from '../../ui/Span'
 import Loader from '../../ui/loaders/Loader'
+import { drawingKeyExtractor } from '../artWork/helpers'
+import { toggleLike } from '../artWork/request'
 import { $isAuth } from '../auth/model'
-import { drawingKeyExtractor } from '../drawing/helpers'
-import { toggleLike } from '../drawing/request'
 import { useThemedStyleList } from '../themed/hooks'
 import { localeAgeTextShort } from '../user/UserDescription'
 import GalleryItem from './GalleryItem'
@@ -47,7 +47,7 @@ const GalleryList = ({ type }: GalleryListProps) => {
         updateItem({ ...item, is_liked: !item.is_liked, likes: likesCount })
       )
     },
-    [isAuth, toggleLike, navigate]
+    [isAuth, navigate, updateItem]
   )
 
   const renderItem = useCallback(

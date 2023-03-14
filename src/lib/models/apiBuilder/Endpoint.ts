@@ -8,7 +8,6 @@ import {
   removeSlashes,
 } from './helpers'
 import {
-  ContentType,
   MapperFn,
   Method,
   RequestProps,
@@ -84,12 +83,14 @@ export class Endpoint {
         withToken: this.isProtected,
         url: this.endpoint,
         method,
+        rawResponse: false,
       }
     }
     const result: RequestProps = {
       method: method.method,
       withToken: method.withToken ?? this.isProtected,
       url: `${this.endpoint}${getUrlEnd(method.endpoint)}`,
+      rawResponse: method.rawResponse ?? false,
     }
     if (method.contentType) result.contentType = method.contentType
     return result

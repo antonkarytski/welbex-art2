@@ -4,7 +4,7 @@ import TabStackNavigator from '../../navigation/elements/TabStackNavigator'
 import { createTabScreenDescription } from '../../navigation/helpers'
 import { links } from '../../navigation/links'
 import HomeIcon from '../../ui/icons/Icon.Home'
-import DrawingDetailsScreen from '../Screen.DrawingDetails'
+import ArtWorkDetailsScreen from '../Screen.ArtWorkDetails'
 import CategoryDetailsScreen from './Screen.CategoryDetails'
 import HomeScreen from './Screen.Home'
 
@@ -18,7 +18,7 @@ function HomeTabScreen() {
       />
       <Stack.Screen
         name={links.drawingDetails}
-        component={DrawingDetailsScreen}
+        component={ArtWorkDetailsScreen}
       />
     </TabStackNavigator>
   )

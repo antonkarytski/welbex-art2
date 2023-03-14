@@ -16,10 +16,10 @@ export type AppUserProps = {
 }
 
 export type UserShort = {
-  is_followed: boolean
-} & Omit<User, 'DOB'> &
+  is_followed?: boolean
+} & User &
   AppUserProps
 
 export type Profile = ProfileResponse & AppUserProps
 export type MyProfile = MyProfileResponse & AppUserProps
-export type UserProfile = UserProfileResponse & AppUserProps
+export type IUserProfile = UserProfileResponse & AppUserProps

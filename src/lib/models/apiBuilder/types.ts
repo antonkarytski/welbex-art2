@@ -10,6 +10,7 @@ export type RequestRouteSettings = {
   method: Method
   withToken?: boolean
   contentType?: ContentType
+  rawResponse?: boolean
 }
 type RequestData<Body = any> = {
   contentType?: ContentType
@@ -17,9 +18,7 @@ type RequestData<Body = any> = {
   body?: Body
 }
 export type RequestProps<Body = any> = RequestRouteSettings & RequestData<Body>
-export type MapperFn<Body> = (
-  props: Body
-) =>
+export type MapperFn<Body> = (props: Body) =>
   | Partial<
       Omit<RequestData, 'url'> & {
         url: string | number

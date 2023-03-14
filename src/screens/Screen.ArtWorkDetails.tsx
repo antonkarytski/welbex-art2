@@ -1,8 +1,8 @@
 import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
-import DrawingInteractionPanel from '../features/drawing/DrawingInteractivePanel'
-import { getArtWorkRequest } from '../features/drawing/request'
+import ArtWorkInteractivePanel from '../features/artWork/ArtWorkInteractivePanel'
+import { getArtWorkRequest } from '../features/artWork/request'
 import AutoHeightImage from '../features/images/AutoHeightImage'
 import { $myProfile } from '../features/profile/model'
 import { createThemedStyle } from '../features/themed'
@@ -21,7 +21,7 @@ import { useText } from '../translations/hook'
 import PresetButton from '../ui/buttons/PresetButton'
 import Loader from '../ui/loaders/Loader'
 
-const DrawingDetailsScreen = ({
+const ArtWorkDetailsScreen = ({
   route,
 }: ScreenComponentProps<
   links.drawingDetails | links.galleryDrawingDetails
@@ -42,8 +42,12 @@ const DrawingDetailsScreen = ({
   }, [drawingId])
 
   const onFollowAuthor = (isFollowed: boolean) => {
-    drawing.update({
-      author: { ...drawing.data?.author, is_followed: isFollowed },
+    drawing.set((current) => {
+      if (!current) return current
+      return {
+        ...current,
+        author: { ...current.author, is_followed: isFollowed },
+      }
     })
   }
 
@@ -71,7 +75,7 @@ const DrawingDetailsScreen = ({
             image={{ uri: drawing.data.image_thumbnail }}
             widthGenerator={() => SCREEN_CONTENT_WIDTH}
           />
-          <DrawingInteractionPanel
+          <ArtWorkInteractivePanel
             onLikeChange={(isLiked, likes) =>
               drawing.update({ is_liked: isLiked, likes })
             }
@@ -104,4 +108,4 @@ const themedStyles = createThemedStyle((colors) =>
   })
 )
 
-export default DrawingDetailsScreen
+export default ArtWorkDetailsScreen

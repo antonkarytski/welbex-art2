@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { IUserProfile, MyProfile } from '../../api/parts/users/types'
 import { SCREEN_PADDING_HORIZONTAL } from '../../styles/constants'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
@@ -11,18 +12,14 @@ import { countFollowers } from './helpers'
 import { UserItem } from './types'
 
 export type UserTopBlockProps = {
-  item: UserItem | null
+  item: IUserProfile | (MyProfile & { is_followed?: never })
   updateItem?: (data: Partial<UserItem>) => void
 }
 
 const UserTopBlock = React.memo(({ item, updateItem }: UserTopBlockProps) => {
   const { styles } = useTheme(themedStyles)
-  if (!item) return null
 
-  const onFollowUser = (isFollowed: boolean) => {
-    const followersCount = countFollowers(isFollowed, item.followers)
-    updateItem?.({ is_followed: isFollowed, followers: followersCount })
-  }
+  if (!item) return null
 
   return (
     <>
@@ -33,11 +30,19 @@ const UserTopBlock = React.memo(({ item, updateItem }: UserTopBlockProps) => {
         {item.followers !== undefined && (
           <UserCountersBlock item={item} style={styles.countersBlock} />
         )}
-        <FollowButton
-          item={item}
-          onPress={onFollowUser}
-          style={followButtonStyles}
-        />
+        {item.is_followed !== undefined && (
+          <FollowButton
+            item={item}
+            onPress={(isFollowed) => {
+              const followersCount = countFollowers(isFollowed, item.followers)
+              updateItem?.({
+                is_followed: isFollowed,
+                followers: followersCount,
+              })
+            }}
+            style={followButtonStyles}
+          />
+        )}
       </View>
     </>
   )

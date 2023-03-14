@@ -1,4 +1,3 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useStore } from 'effector-react'
 import React, { useLayoutEffect } from 'react'
 import { StyleSheet, View } from 'react-native'

@@ -1,23 +1,16 @@
 import { useStore } from 'effector-react'
-import React, { forwardRef, useCallback, useEffect } from 'react'
-import {
-  FlatList,
-  LayoutChangeEvent,
-  LogBox,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  StyleSheet,
-} from 'react-native'
+import React, { forwardRef, useCallback } from 'react'
+import { FlatList, LayoutChangeEvent, LogBox, StyleSheet } from 'react-native'
 import {
   SCREEN_CONTENT_WIDTH,
   SCREEN_PADDING_HORIZONTAL,
 } from '../../../styles/constants'
 import DrawingsListSkeleton from '../../../ui/loaders/Skeleton.DrawingsList'
 import DrawingsList, {
+  ArtWorksFlatListProps,
   DRAWINGS_COLUMNS_COUNT,
   DRAWING_ITEM_MARGIN,
-  DrawingFlatListProps,
-} from '../../drawing/DrawingsList'
+} from '../../artWork/ArtWorksList'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyle } from '../../themed/hooks'
 import { UserDrawingListType, UserItem } from '../types'
@@ -37,7 +30,7 @@ type UserDrawingsListProps = {
   type: UserDrawingListType
   artsListsRequestModel: UserArtsListsRequestModel['model']
   artsListsHeightModel: UserArtsListHeightModel
-} & DrawingFlatListProps &
+} & ArtWorksFlatListProps &
   SpecificUserDrawingListProps
 
 const DRAWING_ITEM_HEIGHT =
