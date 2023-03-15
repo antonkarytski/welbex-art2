@@ -118,6 +118,8 @@ export class ApiEndpoint {
       })
     }
 
+    effect.url = (params: P) => propsGetter(params).url
+
     return effect
   }
 
@@ -157,6 +159,7 @@ type RawCreator<Params> = {
 type ExtEffectMethods<Params, R> = {
   withProgress: () => Effect<Params, R> & EffectProgressSettings<Params, R>
   raw: RawCreator<Params>
+  url: (params: Params) => string
 }
 
 type EffectWithProgress<Params, Response> = Effect<Params, Response> &

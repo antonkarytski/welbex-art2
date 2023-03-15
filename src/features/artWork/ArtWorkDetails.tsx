@@ -1,5 +1,7 @@
+import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
+import fs from 'react-native-fs'
 import { api } from '../../api'
 import { noop } from '../../lib/helpers'
 import { useRequest } from '../../lib/models/apiBuilder/hooks'
@@ -10,6 +12,7 @@ import { useText } from '../../translations/hook'
 import PresetButton from '../../ui/buttons/PresetButton'
 import Loader from '../../ui/loaders/Loader'
 import AutoHeightImage from '../images/AutoHeightImage'
+import { $myProfile } from '../profile/model'
 import UserCardPreview from '../user/UserCardPreview'
 import ArtWorkInteractionPanel from './ArtWorkInteractivePanel'
 import { getArtWorkRequest } from './request'
@@ -22,6 +25,7 @@ const ArtWorkDetails = React.memo(({ drawingId }: ArtWorkDetailsProps) => {
   const navigate = useNavigate()
   const text = useText()
   const drawing = useRequest(getArtWorkRequest)
+  const myProfile = useStore($myProfile)
 
   useEffect(() => {
     getArtWorkRequest(drawingId).catch(noop)
@@ -33,11 +37,26 @@ const ArtWorkDetails = React.memo(({ drawingId }: ArtWorkDetailsProps) => {
 
   if (!drawing.data) return null
 
+  const onFollowAuthor = (isFollowed: boolean) => {
+    drawing.set((current) => {
+      if (!current) return current
+      return {
+        ...current,
+        author: { ...current.author, is_followed: isFollowed },
+      }
+    })
+  }
+
   return (
     <ScrollView bounces={false} style={styles.container}>
       <UserCardPreview
-        onAvatarPress={(item) => navigate(links.userProfile, { item })}
-        onFollowPress={() => navigate(links.subscriptionCurrent)}
+        onAvatarPress={(item) => {
+          if (item.id === myProfile?.id) {
+            return navigate(links.profileTab)
+          }
+          navigate(links.userProfile, { item })
+        }}
+        onFollowPress={onFollowAuthor}
         item={drawing.data.author}
       />
       <AutoHeightImage
@@ -55,9 +74,18 @@ const ArtWorkDetails = React.memo(({ drawingId }: ArtWorkDetailsProps) => {
         style={styles.downloadButton}
         label={text.download}
         onPress={() => {
-          api.arts.downloadThumbnailDrawing(drawing.data!.id).then((res) => {
-            console.log(res)
+          if (!drawing.data) return
+          console.log('pres')
+          fs.downloadFile({
+            fromUrl: drawing.data.image_thumbnail,
+            toFile: `${fs.DocumentDirectoryPath}/ddd.png`,
           })
+            .promise.then((r) => {
+              console.log(r)
+            })
+            .catch((e) => {
+              console.log(e)
+            })
         }}
       />
     </ScrollView>
