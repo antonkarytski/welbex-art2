@@ -23,6 +23,7 @@ const CodeVerification = () => {
     if (isOnQuickAuth) {
       saveSignUpPhoneToCompleteData()
       completeQuickAuth().catch(noop)
+      navigate(links.home)
       return
     }
     navigate(links.createPassword)

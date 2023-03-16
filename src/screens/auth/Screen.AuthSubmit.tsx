@@ -69,7 +69,6 @@ const AuthSubmitScreen = ({
         style={styles.field}
         validateOnBlur
       />
-      )
       <PresetButton
         label={t.send}
         onPress={async () => {
