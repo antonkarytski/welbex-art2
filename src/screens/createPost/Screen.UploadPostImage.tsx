@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import UploadFromCameraBlock from '../../features/imagePick/Block.UploadFromCamera'
+import PhotoSelectBlock from '../../features/imagePick/Block.PhotoSelect'
 import UploadFromCameraRollBlock from '../../features/imagePick/Block.UploadFromCameraRoll'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
@@ -36,7 +36,7 @@ export default function UploadPostImageScreen({
             navigate(links.createPostAddDescription, { assets, category })
           }}
         />
-        <UploadFromCameraBlock
+        <PhotoSelectBlock
           style={styles.common.uploadFromCameraBlock}
           label={text.scanWork}
           onPick={(assets) => {

@@ -14,7 +14,7 @@ import Field from '../../../ui/form/Field'
 import PlusIcon from '../../../ui/icons/Icon.Plus'
 import { profileCountrySearchModel } from '../../auth/model.profileCountry'
 import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
-import UploadFromCameraBlock from '../../imagePick/Block.UploadFromCamera'
+import PhotoSelectBlock from '../../imagePick/Block.PhotoSelect'
 import PhotoEditPopUp from '../../popUp/PopUp.PhotoEditActionSelect'
 import SaveChangesPopUp from '../../popUp/PopUp.SaveChanges'
 import { signUpCountryModel } from '../../signUp/country/model'
@@ -75,7 +75,7 @@ const EditProfileForm = () => {
           model={signUpCountryModel}
           searchModel={profileCountrySearchModel}
         />
-        <UploadFromCameraBlock
+        <PhotoSelectBlock
           label={t.uploadChildDocument}
           style={styles.common.uploadDocumentsBlock}
         />

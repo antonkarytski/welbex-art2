@@ -1,3 +1,4 @@
+import { ImagePickerAsset } from 'expo-image-picker'
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { PopUpFactory } from '../../lib/models/popUp/factory'
@@ -9,20 +10,23 @@ import DeleteIcon from '../../ui/icons/Icon.Delete'
 import ImageIcon from '../../ui/icons/Icon.Image'
 import ListItemSeparator from '../../ui/lists/ListItemSeparator'
 import PopUpCard from '../../ui/popUp/PopUpCard'
+import { pickFromCameraRoll } from '../imagePick/pickFiles'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 
 type PopUpPhotoEditActionSelectProps = {
   hideRemoveButton?: boolean
+  onPick?: (assets: ImagePickerAsset[]) => void
 }
 
 const model = PopUpFactory.createModel<PopUpPhotoEditActionSelectProps>()
 
 const PopUpPhotoEditActionSelect = PopUpFactory.appendModel(
-  ({}: PopUpPhotoEditActionSelectProps) => {
+  (props: PopUpPhotoEditActionSelectProps) => {
     const text = useText()
     const popUp = usePopUpModel(model)
-    const props = popUp.props
+    const { hideRemoveButton = props.hideRemoveButton, onPick = props.onPick } =
+      popUp.props || {}
 
     const { styles, colors } = useThemedStyleList({
       row: touchableRowThemedStyles,
@@ -34,7 +38,14 @@ const PopUpPhotoEditActionSelect = PopUpFactory.appendModel(
         <TouchableRow
           label={text.selectFromGallery}
           Icon={ImageIcon}
-          onPress={() => {}}
+          onPress={() => {
+            model.hideSync()
+            pickFromCameraRoll()
+              .then((assets) => {
+                if (assets) onPick?.(assets)
+              })
+              .catch(() => {})
+          }}
           iconColor={colors.text}
           style={styles.row}
         />
@@ -42,17 +53,21 @@ const PopUpPhotoEditActionSelect = PopUpFactory.appendModel(
         <TouchableRow
           label={text.takePhoto}
           Icon={CameraIcon}
-          onPress={() => {}}
+          onPress={() => {
+            model.hideSync()
+          }}
           iconColor={colors.text}
           style={styles.row}
         />
-        {!props?.hideRemoveButton && (
+        {!hideRemoveButton && (
           <>
             <ListItemSeparator />
             <TouchableRow
               label={text.deleteCurrentPhoto}
               Icon={DeleteIcon}
-              onPress={() => {}}
+              onPress={() => {
+                model.hideSync()
+              }}
               iconColor={colors.errorText}
               style={{ ...styles.row, label: styles.common.deleteLabel }}
             />
