@@ -33,6 +33,12 @@ export type ScreensProps = ScreensPropsProto<{
   [links.createPostUploadImage]?: {
     category?: SpecificCategoryResponse
   }
+  [links.authSubmit]: {
+    access_token: string
+    refresh_token: string
+    has_phone_number: boolean
+    has_date_of_birth: boolean
+  }
 }>
 
 export type ScreenComponentProps<L extends links> = NativeStackScreenProps<

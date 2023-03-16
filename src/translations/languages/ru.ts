@@ -191,4 +191,5 @@ export const RU: LangStructure = {
   noCategories: 'Список категорий пуст',
   noDrawingsInCategory: 'Рисунков пока нет',
   noWinners: 'Победители еще не определены',
+  completeRegistration: 'Завершение регистрации',
 }

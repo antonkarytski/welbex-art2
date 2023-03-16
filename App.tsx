@@ -8,7 +8,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import './src/api'
 import AppPopUps from './src/features/popUp/AppPopUps'
 import { useCachedResources } from './src/lib/appInit/hook.cachedResources'
-import { useLinkingSetUp } from './src/lib/linking/hook'
+import { useLinkingSetUp } from './src/navigation/linking/hook'
+import { linkingConfig } from './src/navigation/linking/linkingRouter'
 import Router from './src/screens/Router'
 
 export default function App() {
@@ -20,7 +21,7 @@ export default function App() {
     <GestureHandlerRootView style={styles.container}>
       <NativeBaseProvider>
         <SafeAreaProvider>
-          <NavigationContainer>
+          <NavigationContainer linking={linkingConfig}>
             <StatusBar style="auto" />
             <Router />
             <AppPopUps />

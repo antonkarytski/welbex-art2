@@ -45,6 +45,7 @@ export const EN = {
   logOutConfirmationQ: 'Do you really want to log out of your account?',
   chooseCountry: 'Choose a country',
   enterPhoneNumber: 'Enter phone number',
+  completeRegistration: 'Complete registration',
   enterPhoneDescription: 'Enter your phone number to receive your login code',
   enterAuthCode: 'Enter authentication code',
   enterAuthCodeDescription:

@@ -6,6 +6,7 @@ export enum links {
   countrySelection = 'countrySelection',
   phoneEnter = 'phoneEnter',
   verification = 'verification',
+  authSubmit = 'authSubmit',
   login = 'login',
   createPassword = 'createPassword',
   recoverPassword = 'recoverPassword',

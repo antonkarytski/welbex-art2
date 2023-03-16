@@ -27,7 +27,6 @@ export function useCachedResources() {
   useEffect(() => {
     loadResourcesAndData().finally(() => setLoadingComplete(true))
     apiManager.token.onInit((token) => {
-      console.log('INIT', token)
       if (token) meRequest().catch(noop)
     })
   }, [])
