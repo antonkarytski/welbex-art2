@@ -2,6 +2,7 @@ import { useStore } from 'effector-react'
 import React, { useCallback } from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import { ArtWork } from '../../api/parts/arts/types'
+import { noop } from '../../lib/helpers'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
@@ -67,9 +68,9 @@ const GalleryList = ({ type }: GalleryListProps) => {
     [styles, navigate, text, onLikeDrawing]
   )
 
-  const getNextPage = () => {
-    getNext()
-  }
+  const getNextPageSync = useCallback(() => {
+    getNext().catch(noop)
+  }, [getNext])
 
   return (
     <FlatList
@@ -77,7 +78,7 @@ const GalleryList = ({ type }: GalleryListProps) => {
       contentContainerStyle={componentStyles.contentContainer}
       renderItem={renderItem}
       keyExtractor={drawingKeyExtractor}
-      onEndReached={getNextPage}
+      onEndReached={getNextPageSync}
       onRefresh={refresh}
       refreshing={isRefreshing}
       showsVerticalScrollIndicator={false}

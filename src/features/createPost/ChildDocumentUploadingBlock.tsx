@@ -6,6 +6,7 @@ import { noop } from '../../lib/helpers'
 import { useFormField } from '../../lib/models/form'
 import { useText } from '../../translations/hook'
 import BlockUploadFromCamera from '../imagePick/Block.UploadFromCamera'
+import PopUpPhotoEditActionSelect from '../popUp/PopUp.PhotoEditActionSelect'
 import { updateProfile } from '../profile/model'
 import DocumentStatusMessageBlock from './DocumentStatusMessageBlock'
 import { createPostFormModel } from './model'
@@ -43,19 +44,24 @@ const ChildDocumentUploadingBlock = ({
   return (
     <BlockUploadFromCamera
       onPick={(assets) => {
-        const asset = assets[0]
-        uploadChildDocument({
-          name: asset.fileName || '',
-          size: asset.fileSize || 0,
-          uri: asset.uri,
+        PopUpPhotoEditActionSelect.showSync({
+          props: {
+            hideRemoveButton: true,
+          },
         })
-          .then(() => {
-            updateProfile({
-              identity_determined_status_id: IdentityDocumentStatus.PENDING,
-            })
-            setIsDocumentLoaded(true)
-          })
-          .catch(noop)
+        // const asset = assets[0]
+        // uploadChildDocument({
+        //   name: asset.fileName || '',
+        //   size: asset.fileSize || 0,
+        //   uri: asset.uri,
+        // })
+        //   .then(() => {
+        //     updateProfile({
+        //       identity_determined_status_id: IdentityDocumentStatus.PENDING,
+        //     })
+        //     setIsDocumentLoaded(true)
+        //   })
+        //   .catch(noop)
       }}
       style={style}
       label={text.uploadChildDocument}

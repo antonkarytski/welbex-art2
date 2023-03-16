@@ -12,14 +12,17 @@ import PopUpCard from '../../ui/popUp/PopUpCard'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 
-type PopUpPhotoEditActionSelectProps = {}
+type PopUpPhotoEditActionSelectProps = {
+  hideRemoveButton?: boolean
+}
 
-const model = PopUpFactory.createModel()
+const model = PopUpFactory.createModel<PopUpPhotoEditActionSelectProps>()
 
 const PopUpPhotoEditActionSelect = PopUpFactory.appendModel(
   ({}: PopUpPhotoEditActionSelectProps) => {
     const text = useText()
     const popUp = usePopUpModel(model)
+    const props = popUp.props
 
     const { styles, colors } = useThemedStyleList({
       row: touchableRowThemedStyles,
@@ -43,14 +46,18 @@ const PopUpPhotoEditActionSelect = PopUpFactory.appendModel(
           iconColor={colors.text}
           style={styles.row}
         />
-        <ListItemSeparator />
-        <TouchableRow
-          label={text.deleteCurrentPhoto}
-          Icon={DeleteIcon}
-          onPress={() => {}}
-          iconColor={colors.errorText}
-          style={{ ...styles.row, label: styles.common.deleteLabel }}
-        />
+        {!props?.hideRemoveButton && (
+          <>
+            <ListItemSeparator />
+            <TouchableRow
+              label={text.deleteCurrentPhoto}
+              Icon={DeleteIcon}
+              onPress={() => {}}
+              iconColor={colors.errorText}
+              style={{ ...styles.row, label: styles.common.deleteLabel }}
+            />
+          </>
+        )}
       </PopUpCard>
     )
   },

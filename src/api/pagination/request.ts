@@ -26,6 +26,7 @@ export const createPaginationListModel = <R, P>({
       props,
     }),
     effect: createEffect(({ props, nextPage }: GetNextProps<P>) => {
+      console.log('NEEEXT')
       if (!nextPage) return null
       return request({ page: nextPage, size: pageSize, ...props })
     }),

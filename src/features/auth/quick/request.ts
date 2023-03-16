@@ -21,9 +21,9 @@ export const completeQuickAuth = attach({
   },
   mapParams: (_: void, store) => store,
   effect: createEffect(async ({ tokens, data }: CompleteAuthFxProps) => {
-    if (!tokens || !data) return
+    if (!tokens) return
     apiManager.token.set(tokens)
-    await api.users.editMe(data)
+    if (data) await api.users.editMe(data)
     await meRequest()
     resetQuickAuthData()
   }),

@@ -5,7 +5,7 @@ import { GalleryType } from './types'
 
 export function useGallery(type: GalleryType) {
   const list = useStore(galleryListsModel[type].$items)
-  const [isRefreshing, setIsrefreshing] = useState(false)
+  const [isRefreshing, setIsRefreshing] = useState(false)
   const isLoading = useStore(galleryListsModel[type].$isLoading)
   const isNextLoading = useStore(galleryListsModel[type].$isNextLoading)
   const get = galleryListsModel[type].get
@@ -21,9 +21,9 @@ export function useGallery(type: GalleryType) {
   }, [type])
 
   const refresh = useCallback(() => {
-    setIsrefreshing(true)
+    setIsRefreshing(true)
     get().finally(() => {
-      setIsrefreshing(false)
+      setIsRefreshing(false)
     })
   }, [get])
 

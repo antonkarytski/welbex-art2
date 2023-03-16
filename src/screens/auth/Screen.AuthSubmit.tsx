@@ -9,7 +9,6 @@ import {
 import { completeQuickAuth } from '../../features/auth/quick/request'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { noop } from '../../lib/helpers'
-import { Tokens } from '../../lib/models/apiBuilder/types.token'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { ScreenComponentProps } from '../../navigation/types.screenProps'
@@ -38,17 +37,14 @@ const AuthSubmitScreen = ({
   })
 
   const nextStep = useCallback(() => {
-    const tokens: Tokens = { access: access_token, refresh: refresh_token }
-    if (!has_phone_number) {
-      setQuickAuthToken(tokens)
-      return navigate(links.phoneEnter)
-    }
+    if (!has_phone_number) return navigate(links.phoneEnter)
     completeQuickAuth().catch(noop)
-  }, [access_token, refresh_token, has_phone_number, navigate])
+  }, [has_phone_number, navigate])
 
   useEffect(() => {
+    setQuickAuthToken({ access: access_token, refresh: refresh_token })
     if (has_date_of_birth) nextStep()
-  }, [has_date_of_birth, nextStep])
+  }, [refresh_token, access_token, has_date_of_birth, nextStep])
 
   if (has_phone_number || has_date_of_birth) {
     return (
