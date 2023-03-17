@@ -7,6 +7,7 @@ import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import Span from '../../ui/Span'
 import Loader from '../../ui/loaders/Loader'
+import WinnersListSkeleton from '../../ui/loaders/Skeleton.Winners'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import { ageCategory, userName } from '../user/helpers'
@@ -27,7 +28,9 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
   })
   const text = useText()
   const winners = useStore(winnersListModel.$items)
-  const nextPage = useStore(winnersListModel.$nextPage)
+  const isNextLoading = useStore(winnersListModel.$isNextLoading)
+  const isLoading = useStore(winnersListModel.$isLoading)
+
   const getNext = () => {
     winnersListModel.getNext()
   }
@@ -48,6 +51,8 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
     [styles, text]
   )
 
+  if (isLoading) return <WinnersListSkeleton />
+
   return (
     <View onLayout={onLayout} style={styles.common.container}>
       <H2 style={styles.common.title} label={text.winners} />
@@ -58,7 +63,7 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
         data={winners}
         renderItem={renderWinnerItem}
         keyExtractor={keyExtractor}
-        ListFooterComponent={nextPage ? <Loader /> : null}
+        ListFooterComponent={isNextLoading ? <Loader /> : null}
         onEndReached={getNext}
         ListEmptyComponent={
           <Span label={text.noWinners} style={styles.common.noWinnersText} />

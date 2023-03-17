@@ -30,20 +30,12 @@ import { DRAWINGS_COLUMNS_COUNT, DRAWING_ITEM_MARGIN } from './constants'
 import { drawingKeyExtractor } from './helpers'
 
 export type ArtWorksFlatListProps = {
-  onScroll?: FlatListProps<any>['onScroll']
   contentStyle?: FlatListProps<any>['contentContainerStyle']
   containerStyle?: StyleProp<ViewStyle>
   onEndReached?: () => void
   onRefresh?: () => void
   ListHeader?: ReactElement
-  onScrollEndDrag?: FlatListProps<any>['onMomentumScrollEnd']
-  refreshing?: FlatListProps<any>['refreshing']
-  ListFooterComponent?: FlatListProps<any>['ListFooterComponent']
-  onLayout?: FlatListProps<any>['onLayout']
-  listKey?: FlatListProps<any>['listKey']
-  ListEmptyComponent?: FlatListProps<any>['ListEmptyComponent']
-  getItemLayout?: FlatListProps<any>['getItemLayout']
-}
+} & Omit<FlatListProps<any>, 'renderItem'>
 
 export type ArtWorksListProps<L extends links> = {
   data: ArtWorkPreviewResponse[]

@@ -11,6 +11,7 @@ const DrawingsListSkeleton = ({
   return (
     <View style={styles.container}>
       <DrawingsRowSkeleton colors={colors} style={styles.item} />
+      <DrawingsRowSkeleton colors={colors} style={styles.item} />
       <DrawingsRowSkeleton colors={colors} />
     </View>
   )
