@@ -7,7 +7,6 @@ import {
   STATUSBAR_HEIGHT,
   WINDOW_WIDTH,
 } from '../../lib/device/dimensions/constants'
-import { IS_IOS } from '../../lib/helpers/native/constants'
 import Span from '../../ui/Span'
 import NavigationBackButton from './NavigationButton.Back'
 import { ScreenHeaderStyles } from './styles'
@@ -84,7 +83,7 @@ const SIDE_BLOCK_WIDTH = 60
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     container: {
-      paddingTop: IS_IOS ? 56 : STATUSBAR_HEIGHT,
+      paddingTop: STATUSBAR_HEIGHT + 8,
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
