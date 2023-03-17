@@ -1,16 +1,13 @@
 import { useStore } from 'effector-react'
 import React, { forwardRef, useCallback } from 'react'
 import { FlatList, LayoutChangeEvent, LogBox, StyleSheet } from 'react-native'
-import {
-  SCREEN_CONTENT_WIDTH,
-  SCREEN_PADDING_HORIZONTAL,
-} from '../../../styles/constants'
+import { SCREEN_PADDING_HORIZONTAL } from '../../../styles/constants'
 import DrawingsListSkeleton from '../../../ui/loaders/Skeleton.DrawingsList'
-import DrawingsList, {
-  ArtWorksFlatListProps,
+import DrawingsList, { ArtWorksFlatListProps } from '../../artWork/ArtWorksList'
+import {
   DRAWINGS_COLUMNS_COUNT,
-  DRAWING_ITEM_MARGIN,
-} from '../../artWork/ArtWorksList'
+  DRAWING_ITEM_HEIGHT,
+} from '../../artWork/constants'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyle } from '../../themed/hooks'
 import { UserDrawingListType, UserItem } from '../types'
@@ -32,9 +29,6 @@ type UserDrawingsListProps = {
   artsListsHeightModel: UserArtsListHeightModel
 } & ArtWorksFlatListProps &
   SpecificUserDrawingListProps
-
-const DRAWING_ITEM_HEIGHT =
-  SCREEN_CONTENT_WIDTH / DRAWINGS_COLUMNS_COUNT + DRAWING_ITEM_MARGIN / 2
 
 const UserDrawingsList = React.memo(
   forwardRef<FlatList, UserDrawingsListProps>(

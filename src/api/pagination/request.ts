@@ -12,11 +12,12 @@ export const createPaginationListModel = <R, P>({
   pageSize,
   request,
   idExtractor,
+  staticProps,
 }: ModelProps<R, P>): ModelResponse<R, P> => {
   const { $nextPage, setNextPage, reset: resetPage } = createNextPageModel()
 
   const get = createEffect((props: P) =>
-    request({ page: 1, size: pageSize, ...props })
+    request({ page: 1, size: pageSize, ...staticProps, ...props })
   )
 
   const getNext = attach({
@@ -27,7 +28,12 @@ export const createPaginationListModel = <R, P>({
     }),
     effect: createEffect(({ props, nextPage }: GetNextProps<P>) => {
       if (!nextPage) return null
-      return request({ page: nextPage, size: pageSize, ...props })
+      return request({
+        page: nextPage,
+        size: pageSize,
+        ...staticProps,
+        ...props,
+      })
     }),
   })
 

@@ -5,6 +5,7 @@ import {
   createStore,
   restore,
 } from 'effector'
+import { DRAWING_ITEM_HEIGHT } from '../../artWork/constants'
 import { UserDrawingListType } from '../types'
 import {
   Route,
@@ -14,12 +15,16 @@ import {
   UserDrawingsListHeight,
 } from './types'
 
+const USER_ARTS_SKELETON_ROWS_COUNT = 2
+
+export const USER_ARTS_SKELETON_HEIGHT =
+  DRAWING_ITEM_HEIGHT * USER_ARTS_SKELETON_ROWS_COUNT
+
 export const createUserArtsListHeightModel = (): UserArtsListHeightModel => {
-  /* Height for skeleton (TODO: refactor) */
   const initialListsHeight = {
-    [UserDrawingListType.OWN]: 400,
-    [UserDrawingListType.LIKED]: 400,
-    [UserDrawingListType.SAVED]: 400,
+    [UserDrawingListType.OWN]: USER_ARTS_SKELETON_HEIGHT,
+    [UserDrawingListType.LIKED]: USER_ARTS_SKELETON_HEIGHT,
+    [UserDrawingListType.SAVED]: USER_ARTS_SKELETON_HEIGHT,
   }
 
   const initialOffsetsValues = {

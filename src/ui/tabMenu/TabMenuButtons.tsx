@@ -18,7 +18,7 @@ const TabMenuButtons = ({
 }: TabMenuButtonsProps) => {
   return (
     <View style={styles.container}>
-      {tabs.map(({ key, title }, index) => {
+      {tabs.map(({ key, title, Icon }, index) => {
         return (
           <TabMenuButton
             style={style}
@@ -28,6 +28,7 @@ const TabMenuButtons = ({
             onPress={onButtonPress}
             key={key}
             label={title}
+            Icon={Icon}
             id={key}
             index={index}
           />

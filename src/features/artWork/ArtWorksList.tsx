@@ -15,15 +15,18 @@ import {
   ViewStyle,
 } from 'react-native'
 import { ArtWorkPreviewResponse } from '../../api/parts/categories/types'
-import { SCREEN_WIDTH } from '../../lib/device/dimensions'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { ScreensProps } from '../../navigation/types.screenProps'
-import { SCREEN_PADDING_HORIZONTAL } from '../../styles/constants'
+import {
+  SCREEN_CONTENT_WIDTH,
+  SCREEN_PADDING_HORIZONTAL,
+} from '../../styles/constants'
 import { themedShadow5Style } from '../../styles/shadows'
 import { createThemedStyle } from '../themed'
 import { useThemedStyle } from '../themed/hooks'
 import ArtWorkItem from './ArtWorkItem'
+import { DRAWINGS_COLUMNS_COUNT, DRAWING_ITEM_MARGIN } from './constants'
 import { drawingKeyExtractor } from './helpers'
 
 export type ArtWorksFlatListProps = {
@@ -42,9 +45,6 @@ export type ArtWorksFlatListProps = {
   getItemLayout?: FlatListProps<any>['getItemLayout']
 }
 
-export const DRAWING_ITEM_MARGIN = 20
-export const DRAWINGS_COLUMNS_COUNT = 2
-
 export type ArtWorksListProps<L extends links> = {
   data: ArtWorkPreviewResponse[]
   detailsLink?: ScreensProps[L] extends { item: ArtWorkPreviewResponse }
@@ -53,9 +53,7 @@ export type ArtWorksListProps<L extends links> = {
 } & ArtWorksFlatListProps
 
 function getImageSize() {
-  return (
-    (SCREEN_WIDTH - (SCREEN_PADDING_HORIZONTAL * 2 + DRAWING_ITEM_MARGIN)) / 2
-  )
+  return (SCREEN_CONTENT_WIDTH - DRAWING_ITEM_MARGIN) / 2
 }
 
 const ArtWorksList = forwardRef(

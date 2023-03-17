@@ -15,7 +15,7 @@ export type PresetButtonStates = {
 }
 
 export type ButtonProps = {
-  onPress: Fn
+  onPress?: Fn
   label?: string
   disabled?: boolean
   preset?: PresetButtonStates
@@ -24,7 +24,7 @@ export type ButtonProps = {
 
 export type PresetButtonProps = ButtonProps & {
   labelStyle?: StyleProp<TextStyle>
-  children?: NodeFn<Preset> | ReactNode
+  children?: NodeFn<Preset> | ReactNode | string
   style?: StyleProp<ViewStyle>
 }
 

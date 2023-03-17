@@ -1,3 +1,4 @@
+import { useStore } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
@@ -11,16 +12,19 @@ import TextButton from '../../../ui/buttons/Button.Text'
 import Button from '../../../ui/buttons/PresetButton'
 import Field from '../../../ui/form/Field'
 import SecureField from '../../../ui/form/SecureField'
+import Loader from '../../../ui/loaders/Loader'
 import { useThemedStyleList } from '../../themed/hooks'
 import { logIn, logInFormModel } from './model'
 
 const LogInForm = () => {
   const navigate = useNavigate()
   const t = useText()
-  const { styles } = useThemedStyleList({
+  const { styles, colors } = useThemedStyleList({
     field: inputThemedStyles,
     button: buttonPrimaryThemedPreset,
   })
+
+  const isLoading = useStore(logIn.pending)
 
   const onForgotPassword = () => {
     navigate(links.recoverPassword)
@@ -46,7 +50,13 @@ const LogInForm = () => {
         onPress={onForgotPassword}
         style={{ button: featureStyles.forgotPasswordButton }}
       />
-      <Button label={t.logInButton} onPress={logIn} preset={styles.button} />
+      <Button onPress={isLoading ? undefined : logIn} preset={styles.button}>
+        {isLoading ? (
+          <Loader color={colors.whiteText} size={21} />
+        ) : (
+          t.logInButton
+        )}
+      </Button>
     </KeyboardAvoidingView>
   )
 }

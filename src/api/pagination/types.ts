@@ -20,6 +20,7 @@ export type PaginationListModelProps<R, P> = {
   pageSize: number
   request: Request<R, P>
   idExtractor?: (item: R) => string | number
+  staticProps?: P
 }
 
 export type PaginationListModelResponse<R, P> = {
