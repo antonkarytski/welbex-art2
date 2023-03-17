@@ -3,7 +3,7 @@ import Svg, { Path } from 'react-native-svg'
 import { FilledIconProps } from './_types'
 
 const FavouriteIcon = React.memo(
-  ({ size = 20, color = '#303535', style, fill }: FilledIconProps) => {
+  ({ size = 20, color = '#303535', style, fill = 'none' }: FilledIconProps) => {
     return (
       <Svg
         width={size * 0.8}
