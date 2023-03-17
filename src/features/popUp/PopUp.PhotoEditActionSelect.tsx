@@ -3,6 +3,8 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { PopUpFactory } from '../../lib/models/popUp/factory'
 import { usePopUpModel } from '../../lib/models/popUp/hooks'
+import { useCameraNavigate, useNavigate } from '../../navigation'
+import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import TouchableRow from '../../ui/TouchableRow'
 import CameraIcon from '../../ui/icons/Icon.Camera'
@@ -24,6 +26,7 @@ const model = PopUpFactory.createModel<PopUpPhotoEditActionSelectProps>()
 const PopUpPhotoEditActionSelect = PopUpFactory.appendModel(
   (props: PopUpPhotoEditActionSelectProps) => {
     const text = useText()
+    const goToCamera = useCameraNavigate()
     const popUp = usePopUpModel(model)
     const { hideRemoveButton = props.hideRemoveButton, onPick = props.onPick } =
       popUp.props || {}
@@ -55,6 +58,7 @@ const PopUpPhotoEditActionSelect = PopUpFactory.appendModel(
           Icon={CameraIcon}
           onPress={() => {
             model.hideSync()
+            goToCamera()
           }}
           iconColor={colors.text}
           style={styles.row}

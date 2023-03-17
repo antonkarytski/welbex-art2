@@ -1,4 +1,5 @@
 export enum links {
+  camera = 'camera',
   authRouter = 'authRouter',
   onboardingPicassoQuote = 'onboardingPicassoQuote',
   onboarding = 'onboarding',

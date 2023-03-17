@@ -1,6 +1,8 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import PhotoSelectBlock from '../../features/imagePick/Block.PhotoSelect'
+import PhotoSelectBlock, {
+  CAMERA_SOURCE_PRESET,
+} from '../../features/imagePick/Block.PhotoSelect'
 import UploadFromCameraRollBlock from '../../features/imagePick/Block.UploadFromCameraRoll'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
@@ -42,6 +44,7 @@ export default function UploadPostImageScreen({
           onPick={(assets) => {
             navigate(links.createPostAddDescription, { assets, category })
           }}
+          sources={CAMERA_SOURCE_PRESET}
         />
       </View>
     </View>

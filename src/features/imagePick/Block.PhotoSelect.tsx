@@ -7,6 +7,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
+import { useCameraNavigate } from '../../navigation'
 import Span from '../../ui/Span'
 import CameraIcon from '../../ui/icons/Icon.Camera'
 import PopUpPhotoEditActionSelect from '../popUp/PopUp.PhotoEditActionSelect'
@@ -19,6 +20,8 @@ export enum PhotoSelectSources {
   CAMERA = 1,
   GALLERY = 2,
 }
+
+export const CAMERA_SOURCE_PRESET = [PhotoSelectSources.CAMERA]
 
 type UploadFromCameraBlockProps = {
   label: string
@@ -33,17 +36,23 @@ const PhotoSelectBlock = ({
   onPick,
   sources = [PhotoSelectSources.CAMERA, PhotoSelectSources.GALLERY],
 }: UploadFromCameraBlockProps) => {
+  const goToCamera = useCameraNavigate()
   const { styles, colors } = useTheme(themedStyles)
   return (
     <TouchableOpacity
       onPress={() => {
-        if (sources?.length > 1) {
+        if (sources.length === 0) return
+        if (sources.length > 1) {
           return PopUpPhotoEditActionSelect.showSync({
             props: {
               hideRemoveButton: true,
               onPick,
             },
           })
+        }
+        const source = sources[0]
+        if (source === PhotoSelectSources.CAMERA) {
+          return goToCamera()
         }
         pickFromCameraRoll()
           .then((assets) => {
