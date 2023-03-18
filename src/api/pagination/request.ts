@@ -44,9 +44,9 @@ export const createPaginationListModel = <R, P>({
   const setItems = createEvent<R[]>()
   const addItems = createEvent<R[]>()
   const updateItemFx = createEffect(
-    ({ item, items }: { item: R; items: R[] }) => {
+    ({ item, items }: { item: Partial<R>; items: R[] }) => {
       return items.map((i) =>
-        idExtractor?.(item) === idExtractor?.(i) ? item : i
+        idExtractor?.(item) === idExtractor?.(i) ? { ...i, ...item } : i
       )
     }
   )

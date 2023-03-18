@@ -3,22 +3,24 @@ import { ARTS_PAGE_SIZE, createPaginationListModel } from '../../api/pagination'
 import { ArtWork } from '../../api/parts/arts/types'
 import { GalleryType } from './types'
 
+const artWorkIdExtractor = (item: Partial<ArtWork>) => item.id
+
 const galleryBestModel = createPaginationListModel({
   request: api.arts.best,
   pageSize: ARTS_PAGE_SIZE,
-  idExtractor: (item: ArtWork) => item.id,
+  idExtractor: artWorkIdExtractor,
 })
 
 const galleryFollowingModel = createPaginationListModel({
   request: api.arts.following,
   pageSize: ARTS_PAGE_SIZE,
-  idExtractor: (item: ArtWork) => item.id,
+  idExtractor: artWorkIdExtractor,
 })
 
 const galleryNewModel = createPaginationListModel({
   request: api.arts.newArts,
   pageSize: ARTS_PAGE_SIZE,
-  idExtractor: (item: ArtWork) => item.id,
+  idExtractor: artWorkIdExtractor,
 })
 
 export const galleryListsModel = {

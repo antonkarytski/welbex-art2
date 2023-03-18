@@ -15,7 +15,7 @@ import {
   UserDrawingsListHeight,
 } from './types'
 
-const USER_ARTS_SKELETON_ROWS_COUNT = 2
+const USER_ARTS_SKELETON_ROWS_COUNT = 3
 
 export const USER_ARTS_SKELETON_HEIGHT =
   DRAWING_ITEM_HEIGHT * USER_ARTS_SKELETON_ROWS_COUNT

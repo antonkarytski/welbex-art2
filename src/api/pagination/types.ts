@@ -19,7 +19,7 @@ export type Request<R, P> = Effect<P, PaginatedListResponse<R>, Error>
 export type PaginationListModelProps<R, P> = {
   pageSize: number
   request: Request<R, P>
-  idExtractor?: (item: R) => string | number
+  idExtractor?: (item: Partial<R>) => string | number | undefined
   staticProps?: P
 }
 
