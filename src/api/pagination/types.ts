@@ -34,6 +34,8 @@ export type PaginationListModelResponse<R, P> = {
   setItems: Event<R[]>
   reset: () => void
   updateItem: Effect<R, R[], Error>
+  refresh: Request<R, P>
+  $isRefreshing: Store<boolean>
 }
 
 export type CreatePaginationListModel<R, P> = (

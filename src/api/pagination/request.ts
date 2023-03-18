@@ -37,6 +37,10 @@ export const createPaginationListModel = <R, P>({
     }),
   })
 
+  const refresh = createEffect((props: P) =>
+    request({ page: 1, size: pageSize, ...staticProps, ...props })
+  )
+
   const setItems = createEvent<R[]>()
   const addItems = createEvent<R[]>()
   const updateItemFx = createEffect(
@@ -68,8 +72,14 @@ export const createPaginationListModel = <R, P>({
     addItems(result.items)
   })
 
+  refresh.done.watch(({ result }) => {
+    setNextPage(result)
+    setItems(result?.items || [])
+  })
+
   const $isLoading = get.pending
   const $isNextLoading = getNext.pending
+  const $isRefreshing = refresh.pending
 
   const reset = () => {
     resetPage()
@@ -87,6 +97,8 @@ export const createPaginationListModel = <R, P>({
     setItems,
     reset,
     updateItem,
+    refresh,
+    $isRefreshing,
   }
 }
 
