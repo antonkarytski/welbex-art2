@@ -7,9 +7,9 @@ export function useGallery(type: GalleryType) {
   const list = useStore(galleryListsModel[type].$items)
   const isLoading = useStore(galleryListsModel[type].$isLoading)
   const isNextLoading = useStore(galleryListsModel[type].$isNextLoading)
-  const get = () => galleryListsModel[type].get()
+  const getSync = () => galleryListsModel[type].get()
 
-  const getNext = isNextLoading
+  const getNextSync = isNextLoading
     ? undefined
     : () => galleryListsModel[type].getNext()
 
@@ -18,15 +18,15 @@ export function useGallery(type: GalleryType) {
   const isRefreshing = useStore(galleryListsModel[type].$isRefreshing)
 
   useEffect(() => {
-    get()
+    getSync()
   }, [])
 
   return {
     list,
     isLoading,
     isNextLoading,
-    get,
-    getNext,
+    getSync,
+    getNextSync,
     updateItem,
     refresh,
     isRefreshing,

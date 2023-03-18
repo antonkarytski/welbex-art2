@@ -27,7 +27,7 @@ type UserDrawingsListProps = {
   type: UserDrawingListType
   artsListsRequestModel: UserArtsListsRequestModel['model']
   artsListsHeightModel: UserArtsListHeightModel
-} & ArtWorksFlatListProps &
+} & Omit<ArtWorksFlatListProps, 'data'> &
   SpecificUserDrawingListProps
 
 const UserDrawingsList = React.memo(

@@ -30,7 +30,7 @@ const GalleryList = ({ type }: GalleryListProps) => {
     list,
     isLoading,
     isNextLoading,
-    getNext,
+    getNextSync,
     updateItem,
     refresh,
     isRefreshing,
@@ -76,7 +76,7 @@ const GalleryList = ({ type }: GalleryListProps) => {
       contentContainerStyle={componentStyles.contentContainer}
       renderItem={renderItem}
       keyExtractor={drawingKeyExtractor}
-      onEndReached={getNext}
+      onEndReached={getNextSync}
       onRefresh={refresh}
       refreshing={isRefreshing}
       showsVerticalScrollIndicator={false}
