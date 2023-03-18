@@ -7,9 +7,9 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
+import { noop } from '../../lib/helpers'
 import Span from '../../ui/Span'
 import CameraIcon from '../../ui/icons/Icon.Camera'
-import { cameraPhotoToPickerAsset } from '../camera/helpers'
 import { singlePhotoTask, useCameraNavigate } from '../camera/hooks'
 import PopUpPhotoEditActionSelect from '../popUp/PopUp.PhotoEditActionSelect'
 import { createThemedStyle } from '../themed'
@@ -46,21 +46,20 @@ const PhotoSelectBlock = ({
         if (sources.length === 0) return
         if (sources.length > 1) {
           return PopUpPhotoEditActionSelect.showSync({
-            props: {
-              hideRemoveButton: true,
-              onPick,
-            },
+            props: { hideRemoveButton: true, onPick },
           })
         }
         const source = sources[0]
         if (source === PhotoSelectSources.CAMERA) {
           return goToCamera()
         }
-        pickFromCameraRoll()
-          .then((assets) => {
-            if (assets) onPick?.(assets)
-          })
-          .catch(() => {})
+        if (source === PhotoSelectSources.GALLERY) {
+          pickFromCameraRoll()
+            .then((assets) => {
+              if (assets) onPick?.(assets)
+            })
+            .catch(noop)
+        }
       }}
       style={[styles.container, style]}
     >

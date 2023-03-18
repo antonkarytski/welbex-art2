@@ -29,7 +29,10 @@ const CreatePostFromSubmitButton = ({
       onPress={() => {
         createPostFormModel
           .submit()
-          .then(() => navigate(links.home))
+          .then(() => {
+            navigate(links.home)
+            createPostFormModel.reset()
+          })
           .catch(noop)
       }}
       label={text.submit}
