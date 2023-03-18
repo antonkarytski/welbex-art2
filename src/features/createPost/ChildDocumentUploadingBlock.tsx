@@ -5,10 +5,7 @@ import { IdentityDocumentStatus } from '../../api/parts/users/types.api'
 import { noop } from '../../lib/helpers'
 import { useFormField } from '../../lib/models/form'
 import { useText } from '../../translations/hook'
-import BlockUploadFromCamera, {
-  CAMERA_SOURCE_PRESET,
-} from '../imagePick/Block.PhotoSelect'
-import PopUpPhotoEditActionSelect from '../popUp/PopUp.PhotoEditActionSelect'
+import PhotoSelectBlock from '../imagePick/Block.PhotoSelect'
 import { updateProfile } from '../profile/model'
 import DocumentStatusMessageBlock from './DocumentStatusMessageBlock'
 import { createPostFormModel } from './model'
@@ -44,7 +41,7 @@ const ChildDocumentUploadingBlock = ({
   }
 
   return (
-    <BlockUploadFromCamera
+    <PhotoSelectBlock
       onPick={(assets) => {
         const asset = assets[0]
         uploadChildDocument({

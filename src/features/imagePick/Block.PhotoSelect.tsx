@@ -7,9 +7,10 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import { useCameraNavigate } from '../../navigation'
 import Span from '../../ui/Span'
 import CameraIcon from '../../ui/icons/Icon.Camera'
+import { cameraPhotoToPickerAsset } from '../camera/helpers'
+import { singlePhotoTask, useCameraNavigate } from '../camera/hooks'
 import PopUpPhotoEditActionSelect from '../popUp/PopUp.PhotoEditActionSelect'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
@@ -36,8 +37,9 @@ const PhotoSelectBlock = ({
   onPick,
   sources = [PhotoSelectSources.CAMERA, PhotoSelectSources.GALLERY],
 }: UploadFromCameraBlockProps) => {
-  const goToCamera = useCameraNavigate()
+  const goToCamera = useCameraNavigate(singlePhotoTask({ onPick }))
   const { styles, colors } = useTheme(themedStyles)
+
   return (
     <TouchableOpacity
       onPress={() => {

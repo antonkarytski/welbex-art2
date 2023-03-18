@@ -3,8 +3,6 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { PopUpFactory } from '../../lib/models/popUp/factory'
 import { usePopUpModel } from '../../lib/models/popUp/hooks'
-import { useCameraNavigate, useNavigate } from '../../navigation'
-import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import TouchableRow from '../../ui/TouchableRow'
 import CameraIcon from '../../ui/icons/Icon.Camera'
@@ -12,6 +10,7 @@ import DeleteIcon from '../../ui/icons/Icon.Delete'
 import ImageIcon from '../../ui/icons/Icon.Image'
 import ListItemSeparator from '../../ui/lists/ListItemSeparator'
 import PopUpCard from '../../ui/popUp/PopUpCard'
+import { singlePhotoTask, useCameraNavigate } from '../camera/hooks'
 import { pickFromCameraRoll } from '../imagePick/pickFiles'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
@@ -19,17 +18,21 @@ import { useThemedStyleList } from '../themed/hooks'
 type PopUpPhotoEditActionSelectProps = {
   hideRemoveButton?: boolean
   onPick?: (assets: ImagePickerAsset[]) => void
+  backOnPick?: boolean
 }
 
 const model = PopUpFactory.createModel<PopUpPhotoEditActionSelectProps>()
 
 const PopUpPhotoEditActionSelect = PopUpFactory.appendModel(
   (props: PopUpPhotoEditActionSelectProps) => {
-    const text = useText()
-    const goToCamera = useCameraNavigate()
     const popUp = usePopUpModel(model)
-    const { hideRemoveButton = props.hideRemoveButton, onPick = props.onPick } =
-      popUp.props || {}
+    const { hideRemoveButton, ...cameraProps } = {
+      ...popUp.props,
+      ...props,
+    }
+
+    const text = useText()
+    const goToCamera = useCameraNavigate(singlePhotoTask(cameraProps))
 
     const { styles, colors } = useThemedStyleList({
       row: touchableRowThemedStyles,
@@ -45,7 +48,7 @@ const PopUpPhotoEditActionSelect = PopUpFactory.appendModel(
             model.hideSync()
             pickFromCameraRoll()
               .then((assets) => {
-                if (assets) onPick?.(assets)
+                if (assets) cameraProps.onPick?.(assets)
               })
               .catch(() => {})
           }}
