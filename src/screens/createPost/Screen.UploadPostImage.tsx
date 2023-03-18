@@ -1,3 +1,4 @@
+import { ImagePickerAsset } from 'expo-image-picker'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import PhotoSelectBlock, {
@@ -25,6 +26,10 @@ export default function UploadPostImageScreen({
     gradient: themedPrimaryGradient,
   })
 
+  const onImagePick = (assets: ImagePickerAsset[]) => {
+    navigate(links.createPostAddDescription, { assets, category })
+  }
+
   return (
     <View>
       <GradientScreenHeader
@@ -34,16 +39,12 @@ export default function UploadPostImageScreen({
       <View style={styles.common.contentContainer}>
         <UploadFromCameraRollBlock
           style={styles.common.cameraRollBlock}
-          onPick={(assets) => {
-            navigate(links.createPostAddDescription, { assets, category })
-          }}
+          onPick={onImagePick}
         />
         <PhotoSelectBlock
           style={styles.common.uploadFromCameraBlock}
           label={text.scanWork}
-          onPick={(assets) => {
-            navigate(links.createPostAddDescription, { assets, category })
-          }}
+          onPick={onImagePick}
           sources={CAMERA_SOURCE_PRESET}
         />
       </View>

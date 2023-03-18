@@ -41,7 +41,7 @@ const CameraScreen = () => {
         isActive
       />
       <NavigationBackButton style={styles.backButton} />
-      <CameraButton onPress={onPressPhoto} />
+      <CameraButton onPress={onPressPhoto} style={styles.photoButton} />
     </>
   )
 }
@@ -54,6 +54,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 50,
     left: 25,
+  },
+  photoButton: {
+    position: 'absolute',
+    bottom: 50,
+    left: '50%',
+    transform: [{ translateX: -30 }],
   },
 })
 

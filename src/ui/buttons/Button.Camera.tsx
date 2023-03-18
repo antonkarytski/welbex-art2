@@ -24,10 +24,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 3,
     borderColor: 'white',
-    position: 'absolute',
-    bottom: 50,
-    left: '50%',
-    transform: [{ translateX: -30 }],
   },
 })
 
