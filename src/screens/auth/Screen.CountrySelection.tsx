@@ -1,6 +1,7 @@
 import { useStoreMap } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
+import { useQuickAuthNextStep } from '../../features/auth/quick/hooks'
 import CountriesList from '../../features/signUp/country/CountriesList'
 import { signUpCountryModel } from '../../features/signUp/country/model'
 import { useThemedStyleList } from '../../features/themed/hooks'
@@ -17,6 +18,7 @@ import { themedCommonStyles } from './stylePresets/styles'
 const CountrySelectionScreen = () => {
   const navigate = useNavigate()
   const t = useText()
+  const quickAuth = useQuickAuthNextStep(links.countrySelection)
   const isCountrySelected = useStoreMap({
     store: signUpCountryModel.$state,
     keys: [],
@@ -28,6 +30,7 @@ const CountrySelectionScreen = () => {
   })
 
   const onContinue = () => {
+    if (quickAuth.isActive) return quickAuth.nextStep()
     navigate(links.phoneEnter)
   }
 

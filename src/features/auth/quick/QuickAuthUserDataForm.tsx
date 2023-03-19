@@ -1,15 +1,16 @@
 import { useStore } from 'effector-react'
 import React from 'react'
-import { links } from '../../../navigation/links'
 import UserDataSignUpForm from '../../signUp/userData/UserDataSignUpForm'
 import { validateAbsentUserData } from './helpers'
 import { getApiKeyByFormName } from './helpers.converter'
-import { useQuickAuthNextStep } from './hooks'
 import { $quickAuthAbsentFields } from './model'
 
-const QuickAuthUserDataForm = () => {
+type QuickAuthUserDataFormProps = {
+  nextStep: () => void
+}
+
+const QuickAuthUserDataForm = ({ nextStep }: QuickAuthUserDataFormProps) => {
   const quickAuthFilter = useStore($quickAuthAbsentFields)
-  const nextStep = useQuickAuthNextStep(links.authSubmit)
 
   if (!quickAuthFilter) return null
 
