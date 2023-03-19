@@ -10,8 +10,7 @@ export const linkingConfig: LinkingOptions<ScreensProps> = {
       [links.authSubmit]: {
         path: 'auth/',
         parse: {
-          has_phone_number: (value) => !value.startsWith('False'),
-          has_date_of_birth: (value) => !value.startsWith('False'),
+          absent_fields: (value) => (value ? JSON.parse(value) : []),
         },
       },
     },

@@ -26,9 +26,7 @@ export type UserInitialData = {
   is_child: boolean
 }
 
-export type ProfileEditProps = Partial<
-  UserInitialData & { phone_number: string }
->
+export type ProfileEditProps = Partial<UserInitialData & UserSecuredData>
 
 export type UserPrivateData = UserTechCredits & UserSecuredData
 export type UserSubscription = {

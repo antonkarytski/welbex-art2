@@ -1,52 +1,46 @@
-import { useStore } from 'effector-react'
-import React, { useCallback, useEffect } from 'react'
-import { StyleSheet } from 'react-native'
-import {
-  quickAuthFormModel,
-  saveFormToCompleteData,
-  setQuickAuthToken,
-} from '../../features/auth/quick/model'
+import React, { useEffect, useMemo } from 'react'
+import QuickAuthUserDataForm from '../../features/auth/quick/QuickAuthUserDataForm'
+import { checkIsFieldAbsent } from '../../features/auth/quick/helpers'
+import { setQuickAuthData } from '../../features/auth/quick/model'
 import { completeQuickAuth } from '../../features/auth/quick/request'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { noop } from '../../lib/helpers'
-import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { ScreenComponentProps } from '../../navigation/types.screenProps'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { inputThemedStyles } from '../../styles/inputs'
-import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import Span from '../../ui/Span'
-import PresetButton from '../../ui/buttons/PresetButton'
-import DateField from '../../ui/form/DateField'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
 
 const AuthSubmitScreen = ({
   route,
 }: ScreenComponentProps<links.authSubmit>) => {
-  const { has_date_of_birth, access_token, has_phone_number, refresh_token } =
-    route.params
-  const t = useText()
-  const navigate = useNavigate()
-  const isValid = useStore(quickAuthFormModel.validation.$state)
+  const { access_token, refresh_token, absent_fields } = route.params
   const { styles } = useThemedStyleList({
     common: themedCommonStyles,
     buttonPreset: buttonPrimaryThemedPreset,
     field: inputThemedStyles,
   })
 
-  const nextStep = useCallback(() => {
-    if (!has_phone_number) return navigate(links.phoneEnter)
-    completeQuickAuth().catch(noop)
-  }, [has_phone_number, navigate])
+  const isUserDataAbsent = useMemo(() => {
+    return checkIsFieldAbsent(absent_fields)
+  }, [absent_fields])
 
   useEffect(() => {
-    setQuickAuthToken({ access: access_token, refresh: refresh_token })
-    if (has_date_of_birth) nextStep()
-  }, [refresh_token, access_token, has_date_of_birth, nextStep])
+    setQuickAuthData({
+      tokens: { access: access_token, refresh: refresh_token },
+      absentFields: absent_fields,
+    })
+    if (!absent_fields.length) {
+      completeQuickAuth().catch(noop)
+      return
+    }
+    if (isUserDataAbsent) return
+  }, [refresh_token, access_token, absent_fields, isUserDataAbsent])
 
-  if (has_phone_number || has_date_of_birth) {
+  if (!isUserDataAbsent) {
     return (
       <AuthScreenContainer>
         <H2 label={'Loading'} style={styles.common.title} />
@@ -57,41 +51,9 @@ const AuthSubmitScreen = ({
 
   return (
     <AuthScreenContainer>
-      <H2 label={t.completeRegistration} style={styles.common.title} />
-      <DateField
-        placeholder={t.birthDate}
-        formModel={quickAuthFormModel}
-        name={quickAuthFormModel.fields.birthDate}
-        style={styles.field}
-        validateOnBlur
-      />
-      <PresetButton
-        label={t.send}
-        onPress={async () => {
-          try {
-            if (!has_date_of_birth) {
-              const result = await quickAuthFormModel.validation.cast()
-              if (!result.list.birthDate) return
-              saveFormToCompleteData({ DOB: true })
-            }
-            nextStep()
-          } catch {}
-        }}
-        preset={styles.buttonPreset}
-        style={commonStyles.button}
-        disabled={has_date_of_birth && isValid === false}
-      />
+      <QuickAuthUserDataForm />
     </AuthScreenContainer>
   )
 }
-
-const commonStyles = StyleSheet.create({
-  button: {
-    marginTop: 20,
-  },
-  title: {
-    marginBottom: 40,
-  },
-})
 
 export default AuthSubmitScreen

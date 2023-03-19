@@ -1,12 +1,16 @@
-import { createEvent, createStore, restore, sample } from 'effector'
-import moment from 'moment'
+import { createEvent, createStore } from 'effector'
 import * as yup from 'yup'
 import { ProfileEditProps } from '../../../api/parts/users/types.parts'
-import { USER_DOB_FORMAT } from '../../../constants'
 import { Tokens } from '../../../lib/models/apiBuilder/types.token'
 import { createFormModel } from '../../../lib/models/form'
 import { INITIAL_DATE } from '../../signUp/constants'
-import { phoneInputModel } from '../../signUp/phone'
+import { convertAbsentFieldsListFilter } from './helpers'
+import { ProfileDataFilter } from './types'
+
+type SetQuickAuthDataPayload = {
+  tokens: Tokens
+  absentFields?: (keyof ProfileEditProps)[]
+}
 
 export const resetQuickAuthData = createEvent()
 export const quickAuthFormSchema = yup.object().shape({
@@ -15,39 +19,20 @@ export const quickAuthFormSchema = yup.object().shape({
 export const quickAuthFormModel = createFormModel(quickAuthFormSchema)
 quickAuthFormModel.reset(resetQuickAuthData)
 
-export const setQuickAuthToken = createEvent<Tokens>()
-export const $quickAuthToken = restore(setQuickAuthToken, null).reset(
-  resetQuickAuthData
-)
-export const $isOnQuickAuth = $quickAuthToken.map(Boolean)
+export const setQuickAuthData = createEvent<SetQuickAuthDataPayload>()
 
-export const addToQuickAuthCompleteData = createEvent<ProfileEditProps>()
-export const $quickAuthCompleteData = createStore<ProfileEditProps | null>(null)
-  .on(addToQuickAuthCompleteData, (state, payload) => {
-    if (!state) return payload
-    return { ...state, ...payload }
+export const $quickAuthToken = createStore<Tokens | null>(null)
+  .on(setQuickAuthData, (_, payload) => payload.tokens)
+  .reset(resetQuickAuthData)
+
+export const $quickAuthAbsentFields = createStore<ProfileDataFilter | null>(
+  null
+)
+  .on(setQuickAuthData, (_, { absentFields }) => {
+    if (!absentFields || absentFields.length === 0) return null
+    return convertAbsentFieldsListFilter(absentFields)
   })
   .reset(resetQuickAuthData)
 
-export const saveFormToCompleteData =
-  createEvent<Partial<Record<keyof ProfileEditProps, boolean>>>()
+export const $isOnQuickAuth = $quickAuthToken.map(Boolean)
 export const saveSignUpPhoneToCompleteData = createEvent()
-sample({
-  source: quickAuthFormModel.$store,
-  clock: saveFormToCompleteData,
-  fn: (form, filter) => {
-    const list: ProfileEditProps = {}
-    if (filter.DOB) {
-      list.DOB = moment(form.birthDate.valueOf()).format(USER_DOB_FORMAT)
-    }
-    return list
-  },
-  target: addToQuickAuthCompleteData,
-})
-
-sample({
-  source: phoneInputModel.purePhoneModel.$state,
-  clock: saveSignUpPhoneToCompleteData,
-  fn: (phone) => ({ phone_number: phone }),
-  target: addToQuickAuthCompleteData,
-})
