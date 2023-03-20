@@ -1,30 +1,21 @@
+import * as yup from 'yup'
 import { createFormModel } from '../../../lib/models/form'
-import { LangFn } from '../../../translations/types'
+import { stringSchema } from '../../../lib/yup'
+import { createPhoneEnterModel } from '../../phoneEnter/model'
+import { $myProfile } from '../model'
 
-enum EditProfileFormType {
-  NAME = 'name',
-  LASTNAME = 'lastName',
-  BIRTHDATE = 'birthDate',
-}
+export const profilePhoneModel = createPhoneEnterModel()
+export const $profilePhoneNumber =
+  profilePhoneModel.phoneInputModel.purePhoneModel.$state
 
-type ProfileForm = Record<EditProfileFormType, string>
+const editProfileFormSchema = yup.object().shape({
+  name: stringSchema().required(),
+  lastName: stringSchema().required(),
+  birthDate: yup.date().max(new Date()).required().default(new Date()),
+})
 
-export const initialProfileFormState: ProfileForm = {
-  name: '',
-  lastName: '',
-  birthDate: '',
-}
+export const editProfileFormModel = createFormModel(editProfileFormSchema)
 
-type ProfileFormDescriptor = {
-  name: EditProfileFormType
-  label: LangFn
-}
-
-export const PROFILE_FORM_DESCRIPTORS: ProfileFormDescriptor[] = Object.values(
-  EditProfileFormType
-).map((name) => ({
-  name,
-  label: (text) => text[name],
-}))
-
-export const profileFormModel = createFormModel(initialProfileFormState)
+$myProfile.watch((state) => {
+  if (!state) return
+})

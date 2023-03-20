@@ -19,14 +19,8 @@ const allArts = arts.endpoint('all').unprotect()
 
 const all = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>()
 
-// TODO: временно, нужны правки на бэке
-// const best = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('best')
-// const newArts = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('new')
-
-const best = arts.get<AllArtWorksResponse, AllArtWorksProps | void>('all/best')
-const newArts = arts.get<AllArtWorksResponse, AllArtWorksProps | void>(
-  'all/new'
-)
+const best = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('best')
+const newArts = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('new')
 
 const following = arts.get<AllArtWorksResponse, AllArtWorksProps | void>(
   'all/following'
@@ -62,7 +56,7 @@ const create = arts
   })
   .withProgress()
 
-const userArts = arts.endpoint('user')
+const userArts = arts.endpoint('user').unprotect()
 const userAllArts = userArts.get<ArtsListPreviewResponse, ArtsListProps>(
   ({ userId, ...rest }) => ({ entityId: `${userId}/all`, body: rest })
 )

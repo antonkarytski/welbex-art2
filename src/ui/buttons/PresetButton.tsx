@@ -66,11 +66,11 @@ export default function PresetButton({
           ? children
           : null}
 
-        {(label ?? (children && typeof children === 'string')) && (
+        {label && (
           <Span
             weight={500}
             style={[buttonStyles.label, activeStyles.label, labelStyle]}
-            label={typeof children === 'string' ? children : label}
+            label={label}
           />
         )}
       </>

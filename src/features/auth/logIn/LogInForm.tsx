@@ -50,12 +50,12 @@ const LogInForm = () => {
         onPress={onForgotPassword}
         style={{ button: featureStyles.forgotPasswordButton }}
       />
-      <Button onPress={isLoading ? undefined : logIn} preset={styles.button}>
-        {isLoading ? (
-          <Loader color={colors.whiteText} size={21} />
-        ) : (
-          t.logInButton
-        )}
+      <Button
+        label={isLoading ? undefined : t.logInButton}
+        onPress={isLoading ? undefined : logIn}
+        preset={styles.button}
+      >
+        {isLoading ? <Loader color={colors.whiteText} size={21} /> : undefined}
       </Button>
     </KeyboardAvoidingView>
   )

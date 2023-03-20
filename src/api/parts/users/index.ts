@@ -3,6 +3,8 @@ import { ImageFile } from '../../../lib/files/types'
 import { ContentType } from '../../../lib/models/apiBuilder/types'
 import { apiManager } from '../../apiManager'
 import {
+  EditProfileBody,
+  EditProfileResponse,
   MyProfileResponse,
   SignUpBody,
   SignUpResponse,
@@ -17,7 +19,7 @@ const signUp = usersEndpoint.post<SignUpResponse, SignUpBody>({
   withToken: false,
 })
 const profile = usersEndpoint.get<UserProfileResponse, number>((id) => ({
-  entityId: `${id}/profile`,
+  url: `${id}/profile`,
   withToken: false,
 }))
 const profileProtected = usersEndpoint.get<UserProfileResponse, number>(
@@ -39,6 +41,10 @@ const uploadChildDocument = meEndpoint
   })
   .withProgress()
 
+const updateMyProfile = meEndpoint.patch<EditProfileResponse, EditProfileBody>(
+  '/profile/edit'
+)
+
 export const usersApi = {
   me,
   signUp,
@@ -47,4 +53,5 @@ export const usersApi = {
   follow,
   unfollow,
   uploadChildDocument,
+  updateMyProfile,
 }

@@ -18,6 +18,7 @@ export type UserSecuredData = {
   email: string
   phone_number: string
 }
+
 export type UserInitialData = {
   first_name: string
   last_name: string

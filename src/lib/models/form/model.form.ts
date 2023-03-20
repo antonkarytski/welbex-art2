@@ -4,7 +4,6 @@ import {
   createEffect,
   createEvent,
   createStore,
-  sample,
 } from 'effector'
 import { ObjectSchema } from 'yup'
 import { mapObject } from '../../helpers/array'
