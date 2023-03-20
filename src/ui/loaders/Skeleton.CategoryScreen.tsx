@@ -2,6 +2,7 @@ import { Skeleton } from 'native-base'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { getHeight } from '../../lib/device/dimensions'
+import { SCREEN_PADDING_HORIZONTAL } from '../../styles/constants'
 import DrawingsRowSkeleton from './Skeleton.DrawingRow'
 import { defaultSkeletonColors } from './colors'
 import { ColorsProp } from './types'
@@ -36,12 +37,13 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     zIndex: -1,
+    width: '100%',
   },
   innerContainer: {
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: SCREEN_PADDING_HORIZONTAL,
   },
   item: {
     marginBottom: 20,

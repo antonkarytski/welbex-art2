@@ -2,11 +2,11 @@ import { useEvent, useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
-import { defaultColors } from '../../features/themed/theme'
-import { SearchableListModel } from '../../lib/models/model.search'
-import { NodeFn } from '../../types'
-import { InputStyles } from '../input/types'
+import { defaultColors } from '../features/themed/theme'
+import { SearchableListModel } from '../lib/models/model.search'
+import { NodeFn } from '../types'
 import SearchInput from './SearchInput'
+import { InputStyles } from './input/types'
 
 export type SearchableListStyles = {
   container?: StyleProp<ViewStyle>

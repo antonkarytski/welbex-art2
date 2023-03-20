@@ -33,6 +33,7 @@ const GalleryItem = React.memo(
         style={style.container}
         imageHeight={240}
         image={{ uri: item.image_thumbnail }}
+        label={''} // TODO: add label info
       >
         <View style={style.card}>
           <UserDescription

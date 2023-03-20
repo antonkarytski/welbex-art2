@@ -19,7 +19,8 @@ export type Request<R, P> = Effect<P, PaginatedListResponse<R>, Error>
 export type PaginationListModelProps<R, P> = {
   pageSize: number
   request: Request<R, P>
-  idExtractor?: (item: R) => string | number
+  idExtractor?: (item: Partial<R>) => string | number | undefined
+  staticProps?: P
 }
 
 export type PaginationListModelResponse<R, P> = {
@@ -33,6 +34,8 @@ export type PaginationListModelResponse<R, P> = {
   setItems: Event<R[]>
   reset: () => void
   updateItem: Effect<R, R[], Error>
+  refresh: Request<R, P>
+  $isRefreshing: Store<boolean>
 }
 
 export type CreatePaginationListModel<R, P> = (

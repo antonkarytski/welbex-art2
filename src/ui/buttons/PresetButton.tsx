@@ -55,19 +55,25 @@ export default function PresetButton({
         disabled && disabledStyle,
       ]}
     >
-      {children ? (
-        typeof children === 'function' ? (
-          children(presetState)
-        ) : (
-          children
-        )
-      ) : (
-        <Span
-          weight={500}
-          style={[buttonStyles.label, activeStyles.label, labelStyle]}
-          label={label}
-        />
-      )}
+      <>
+        {children && typeof children === 'function'
+          ? children(presetState)
+          : null}
+
+        {children &&
+        typeof children !== 'string' &&
+        typeof children !== 'function'
+          ? children
+          : null}
+
+        {label && (
+          <Span
+            weight={500}
+            style={[buttonStyles.label, activeStyles.label, labelStyle]}
+            label={label}
+          />
+        )}
+      </>
     </TouchableHighlight>
   )
 }

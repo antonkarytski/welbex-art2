@@ -36,7 +36,9 @@ type UserDrawingsListTabViewProps<T extends Route> = {
       route: T
     }
   ) => React.ReactNode
-  routes: (T & { title: string })[]
+  routes: (T & {
+    Icon: (isActive: boolean) => React.ReactElement
+  })[]
   tabMenuHeight: number
   tabMenuNavigationModel: UserArtsTabMenuNavigationModel
   listsHeightModel: UserArtsListHeightModel

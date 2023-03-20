@@ -12,11 +12,12 @@ export const createPaginationListModel = <R, P>({
   pageSize,
   request,
   idExtractor,
+  staticProps,
 }: ModelProps<R, P>): ModelResponse<R, P> => {
   const { $nextPage, setNextPage, reset: resetPage } = createNextPageModel()
 
   const get = createEffect((props: P) =>
-    request({ page: 1, size: pageSize, ...props })
+    request({ page: 1, size: pageSize, ...staticProps, ...props })
   )
 
   const getNext = attach({
@@ -27,16 +28,25 @@ export const createPaginationListModel = <R, P>({
     }),
     effect: createEffect(({ props, nextPage }: GetNextProps<P>) => {
       if (!nextPage) return null
-      return request({ page: nextPage, size: pageSize, ...props })
+      return request({
+        page: nextPage,
+        size: pageSize,
+        ...staticProps,
+        ...props,
+      })
     }),
   })
+
+  const refresh = createEffect((props: P) =>
+    request({ page: 1, size: pageSize, ...staticProps, ...props })
+  )
 
   const setItems = createEvent<R[]>()
   const addItems = createEvent<R[]>()
   const updateItemFx = createEffect(
-    ({ item, items }: { item: R; items: R[] }) => {
+    ({ item, items }: { item: Partial<R>; items: R[] }) => {
       return items.map((i) =>
-        idExtractor?.(item) === idExtractor?.(i) ? item : i
+        idExtractor?.(item) === idExtractor?.(i) ? { ...i, ...item } : i
       )
     }
   )
@@ -62,8 +72,14 @@ export const createPaginationListModel = <R, P>({
     addItems(result.items)
   })
 
+  refresh.done.watch(({ result }) => {
+    setNextPage(result)
+    setItems(result?.items || [])
+  })
+
   const $isLoading = get.pending
   const $isNextLoading = getNext.pending
+  const $isRefreshing = refresh.pending
 
   const reset = () => {
     resetPage()
@@ -81,6 +97,8 @@ export const createPaginationListModel = <R, P>({
     setItems,
     reset,
     updateItem,
+    refresh,
+    $isRefreshing,
   }
 }
 

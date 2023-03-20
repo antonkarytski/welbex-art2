@@ -8,8 +8,8 @@ import Row from '../../../ui/Row'
 import Span from '../../../ui/Span'
 import CalendarIcon from '../../../ui/icons/Icon.Calendar'
 import { createThemedStyle } from '../../themed'
-import { useTheme, useThemedStyle } from '../../themed/hooks'
-import { categoryDetailsModel } from '../request'
+import { useTheme } from '../../themed/hooks'
+import { categoryDetailsModel } from './model'
 
 type CategoryDetailsHeaderProps = {
   onLayout?: ViewProps['onLayout']
@@ -26,6 +26,7 @@ const CategoryHeader = ({ onLayout }: CategoryDetailsHeaderProps) => {
     <View onLayout={onLayout} style={styles.content}>
       <H1 style={styles.title} label={category.name} />
       <Row style={styles.dateRow}>
+        <CalendarIcon color={colors.whiteText} style={styles.calendarIcon} />
         <Span
           style={styles.term}
           label={getMonthPeriodString(
@@ -44,17 +45,20 @@ const themedStyles = createThemedStyle((colors) =>
     content: {},
     title: {
       color: colors.whiteText,
-      marginTop: 10,
+      marginTop: 32,
       marginBottom: 16,
     },
     term: {
       fontSize: 16,
       color: colors.whiteText,
-      marginBottom: 36,
     },
     dateRow: {
       justifyContent: 'flex-start',
       alignItems: 'center',
+      paddingBottom: 35,
+    },
+    calendarIcon: {
+      marginRight: 15,
     },
   })
 )

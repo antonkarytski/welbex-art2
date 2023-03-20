@@ -1,6 +1,11 @@
+import React from 'react'
 import { StyleProp, TextStyle, ViewStyle } from 'react-native'
 
-export type TabRoute = { key: string; title?: string }
+export type TabRoute = {
+  key: string
+  title?: string
+  Icon?: () => React.ReactElement
+}
 
 export type TabMenuButtonStyles = {
   label?: StyleProp<TextStyle>

@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native'
 import { GALLERIES } from '../../features/gallery/descriptors'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
+import { ColorThemeStructure } from '../../features/themed/theme'
 import { useScreenLoading } from '../../lib/helpers/native/hook.screenLoad'
 import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
 import NavigationFilterButton from '../../navigation/elements/NavigationButton.GalleryFilter'
@@ -18,6 +19,14 @@ import ScreenGallery from './Screen.Gallery'
 
 const Tab = createMaterialTopTabNavigator<ScreensProps>()
 
+const screenHeaderLeft = (colors: ColorThemeStructure) => (
+  <NavigationFilterButton iconColor={colors.appHeaderIconLight} />
+)
+
+const screenHeaderRight = (colors: ColorThemeStructure) => (
+  <SettingsNavigationButton iconColor={colors.appHeaderIconLight} />
+)
+
 const GalleriesTabsScreen = () => {
   const text = useText()
   const { styles, colors } = useThemedStyleList({
@@ -31,29 +40,23 @@ const GalleriesTabsScreen = () => {
     <View style={styles.common.container}>
       <GradientScreenHeader
         title={text.gallery}
-        headerLeft={
-          <NavigationFilterButton iconColor={colors.appHeaderIconLight} />
-        }
-        style={{ line: { backgroundColor: 'transparent' } }}
-        headerRight={
-          <SettingsNavigationButton iconColor={colors.appHeaderIconLight} />
-        }
+        headerLeft={screenHeaderLeft(colors)}
+        style={{ line: styles.common.headerLine }}
+        headerRight={screenHeaderRight(colors)}
         gradient={{ colors: styles.gradient }}
       />
       {isLoaded ? (
         <Tab.Navigator
           style={styles.common.container}
           sceneContainerStyle={styles.common.sceneContainer}
-          tabBar={(props) => (
+          tabBar={({ descriptors, state, ...props }) => (
             <TabMenu
-              routes={Object.values(props.descriptors).map(
-                ({ route, options }) => ({
-                  key: route.key,
-                  title: options.title,
-                })
-              )}
+              routes={Object.values(descriptors).map(({ route, options }) => ({
+                key: route.key,
+                title: options.title,
+              }))}
               style={styles.tabMenu}
-              activeTab={props.state.index}
+              activeTab={state.index}
               {...props}
             />
           )}
@@ -85,6 +88,9 @@ const themedStyles = createThemedStyle((colors) =>
     },
     sceneContainer: {
       backgroundColor: colors.screenBackground,
+    },
+    headerLine: {
+      backgroundColor: 'transparent',
     },
   })
 )

@@ -1,4 +1,4 @@
-import { attach, createEffect, createEvent, restore } from 'effector'
+import { createEvent, restore } from 'effector'
 import { MyProfile } from '../../api/parts/users/types'
 import { logOut } from '../auth/logOut/model'
 

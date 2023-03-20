@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import { UserCounters } from '../../api/parts/users/types.parts'
+import { WINDOW_WIDTH } from '../../lib/device/dimensions'
 import { SCREEN_CONTENT_WIDTH } from '../../styles/constants'
 import { useText } from '../../translations/hook'
 import ValueCard from '../../ui/cards/ValueCard'
@@ -62,7 +63,7 @@ const themedStyles = createThemedStyle((colors) =>
       minWidth: 95,
       width: CARD_WIDTH,
       paddingVertical: 12,
-      paddingHorizontal: 12,
+      paddingHorizontal: WINDOW_WIDTH >= 375 ? 6 : 12,
       marginRight: CARDS_HORIZONTAL_MARGIN,
       borderRadius: 12,
     },
@@ -70,9 +71,11 @@ const themedStyles = createThemedStyle((colors) =>
     cardText: {
       color: colors.text,
       textAlign: 'center',
+      fontSize: 16,
     },
     cardLabel: {
-      fontSize: 14,
+      fontSize: WINDOW_WIDTH >= 375 ? 12 : 14,
+      color: colors.textGrey,
     },
   })
 )

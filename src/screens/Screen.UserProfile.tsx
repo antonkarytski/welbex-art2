@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { api } from '../api'
 import UserProfile from '../features/user/UserProfile'
 import {
   childrenDrawingsListTabs,
@@ -11,6 +10,7 @@ import {
 } from '../features/user/drawingsList/model.layout'
 import { createUserArtsListsRequestModel } from '../features/user/drawingsList/request'
 import { profileResponseToUserProfile } from '../features/user/helpers'
+import { getUserRequest } from '../features/user/request'
 import { useRequest } from '../lib/models/apiBuilder/hooks'
 import { links } from '../navigation/links'
 import { ScreenComponentProps } from '../navigation/types.screenProps'
@@ -24,7 +24,7 @@ const UserProfileScreen = ({
   route,
 }: ScreenComponentProps<links.userProfile>) => {
   const item = route.params.item
-  const userRequest = useRequest(api.users.profile)
+  const userRequest = useRequest(getUserRequest)
   const user = userRequest.data
   const profile = user ? profileResponseToUserProfile(user, item.id) : null
   const [isRefreshing, setIsRefreshing] = useState(false)

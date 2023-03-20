@@ -3,8 +3,6 @@ import { useCallback, useState } from 'react'
 import { UserDrawingListType, UserItem } from '../types'
 import { UserArtsListsRequestModel } from './types'
 
-type GetProps = { onFinally?: () => void }
-
 export function useDrawingsList(
   item: UserItem | null,
   type: UserDrawingListType,
@@ -15,15 +13,10 @@ export function useDrawingsList(
   const isNextLoading = useStore(model[type].$isNextLoading)
   const [isRefreshing, setIsRefreshing] = useState(false)
 
-  const getFirst = useCallback(
-    (props?: GetProps) => {
-      if (!item) return
-      model[type].get({ userId: item.id }).finally(() => {
-        props?.onFinally?.()
-      })
-    },
-    [item, type, model]
-  )
+  const getFirst = useCallback(() => {
+    if (!item) return
+    model[type].get({ userId: item.id })
+  }, [item, type, model])
 
   const refresh = useCallback(() => {
     if (!item) return
@@ -33,15 +26,10 @@ export function useDrawingsList(
     })
   }, [item, type, model])
 
-  const getNext = useCallback(
-    (props?: GetProps) => {
-      if (!item) return
-      model[type].getNext({ userId: item.id }).finally(() => {
-        props?.onFinally?.()
-      })
-    },
-    [type, item, model]
-  )
+  const getNext = useCallback(() => {
+    if (!item) return
+    model[type].getNext({ userId: item.id })
+  }, [type, item, model])
 
   return {
     list,
