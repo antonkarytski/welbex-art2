@@ -44,7 +44,7 @@ const TabMenuButton = React.memo(
             minimumFontScale={0.8}
           />
         )}
-        {Icon?.(isActive)}
+        {Icon ? Icon(isActive) : null}
       </TouchableOpacity>
     )
   }
