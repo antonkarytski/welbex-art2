@@ -17,7 +17,7 @@ const signUp = usersEndpoint.post<SignUpResponse, SignUpBody>({
   withToken: false,
 })
 const profile = usersEndpoint.get<UserProfileResponse, number>((id) => ({
-  entityId: `${id}/profile`,
+  url: `${id}/profile`,
   withToken: false,
 }))
 const profileProtected = usersEndpoint.get<UserProfileResponse, number>(
