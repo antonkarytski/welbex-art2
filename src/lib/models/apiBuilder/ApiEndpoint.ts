@@ -1,7 +1,7 @@
 import { Effect, Event, createEffect } from 'effector'
 import { createXhr } from '../../request/xhr'
 import { Endpoint, MethodSettings } from './Endpoint'
-import { DoRequestProps, MapperFn, Method } from './types'
+import { DoRequestProps, MapperFn, Method, RequestProps } from './types'
 
 type CreateApiEndpointRequest<Params> = {
   fn?: MapperFn<Params>
@@ -118,6 +118,7 @@ export class ApiEndpoint {
       })
     }
 
+    effect.requestProps = (params: P) => propsGetter(params)
     effect.url = (params: P) => propsGetter(params).url
     effect.protect = () => this.request({ ...props, withToken: true })
     effect.unprotect = () => this.request({ ...props, withToken: false })
@@ -162,6 +163,7 @@ type ExtEffectMethods<Params, R> = {
   withProgress: () => Effect<Params, R> & EffectProgressSettings<Params, R>
   raw: RawCreator<Params>
   url: (params: Params) => string
+  requestProps: (params: Params) => RequestProps<Params>
   unprotect: () => Effect<Params, R> & ExtEffectMethods<Params, R>
   protect: () => Effect<Params, R> & ExtEffectMethods<Params, R>
 }
