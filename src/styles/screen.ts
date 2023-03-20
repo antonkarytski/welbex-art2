@@ -24,7 +24,6 @@ export const screenHeaderThemedStylesLight = createThemedStyle((colors) =>
   StyleSheet.create({
     title: {
       color: colors.appHeaderTextLight,
-      fontSize: 18,
     },
     line: {
       backgroundColor: colors.appHeaderBorderLight,

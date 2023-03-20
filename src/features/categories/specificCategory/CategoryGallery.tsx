@@ -1,68 +1,65 @@
 import { useStore } from 'effector-react'
 import { View } from 'native-base'
 import React from 'react'
-import { FlatListProps, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { SpecificCategoryResponse } from '../../../api/parts/categories/types'
 import { SCREEN_PADDING_HORIZONTAL } from '../../../styles/constants'
 import { useText } from '../../../translations/hook'
 import Span from '../../../ui/Span'
 import Loader from '../../../ui/loaders/Loader'
-import ArtWorksList from '../../artWork/ArtWorksList'
+import DrawingsListSkeleton from '../../../ui/loaders/Skeleton.DrawingsList'
+import ArtWorksList, { ArtWorksFlatListProps } from '../../artWork/ArtWorksList'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyle } from '../../themed/hooks'
-import { categoryArtsModel } from '../request'
 import CategoryGalleryHeader from './CategoryGalleryHeader'
+import { categoryArtsModel } from './model'
+import { getNextCategoryArts } from './request'
 
 type CategoryGalleryProps = {
   item: SpecificCategoryResponse
   header?: React.ReactNode
-  onScroll?: FlatListProps<any>['onScroll']
-  onRefresh?: () => void
-  refreshing?: boolean
-}
+} & Omit<ArtWorksFlatListProps, 'data'>
 
-const CategoryGallery = ({
-  item,
-  header,
-  onScroll,
-  ...props
-}: CategoryGalleryProps) => {
+const CategoryGallery = ({ item, header, ...props }: CategoryGalleryProps) => {
   const text = useText()
   const styles = useThemedStyle(themedStyles)
   const drawings = useStore(categoryArtsModel.$items)
   const isNextLoading = useStore(categoryArtsModel.$isNextLoading)
+  const isLoading = useStore(categoryArtsModel.$isLoading)
 
   const getNextArts = () => {
-    categoryArtsModel.getNext({
-      category_id: item.id,
-      active_competition: true,
-    })
+    getNextCategoryArts(item.id)
   }
 
   return (
-    <>
-      <ArtWorksList
-        onScroll={onScroll}
-        ListHeader={<CategoryGalleryHeader header={header} item={item} />}
-        data={drawings}
-        onEndReached={getNextArts}
-        ListFooterComponent={isNextLoading ? <Loader /> : null}
-        ListEmptyComponent={
-          <View style={styles.noDrawingsContainer}>
+    <ArtWorksList
+      ListHeader={<CategoryGalleryHeader header={header} item={item} />}
+      data={isLoading ? [] : drawings}
+      onEndReached={getNextArts}
+      ListFooterComponent={isNextLoading ? <Loader /> : null}
+      ListEmptyComponent={
+        <View style={styles.helperContainer}>
+          {isLoading ? (
+            <DrawingsListSkeleton />
+          ) : (
             <Span
               label={text.noDrawingsInCategory}
               style={styles.noDrawingsLabel}
             />
-          </View>
-        }
-        {...props}
-      />
-    </>
+          )}
+        </View>
+      }
+      contentStyle={styles.listContentStyle}
+      {...props}
+    />
   )
 }
 
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
+    listContentStyle: {
+      paddingTop: 0,
+    },
     noDrawingsLabel: {
       color: colors.textGrey,
       fontSize: 18,
@@ -71,7 +68,7 @@ const themedStyles = createThemedStyle((colors) =>
       marginVertical: 20,
       height: 400,
     },
-    noDrawingsContainer: {
+    helperContainer: {
       paddingHorizontal: SCREEN_PADDING_HORIZONTAL,
     },
   })

@@ -2,10 +2,10 @@ import { useStore } from 'effector-react'
 import React, { useEffect, useRef, useState } from 'react'
 import { Animated, StyleSheet, View } from 'react-native'
 import {
-  categoryArtsModel,
   categoryDetailsModel,
   getCategoryData,
-} from '../../features/categories/request'
+  setCategoryId,
+} from '../../features/categories/specificCategory'
 import CategoryGallery from '../../features/categories/specificCategory/CategoryGallery'
 import CategoryHeader from '../../features/categories/specificCategory/CategoryHeader'
 import CategoryScreenHeader from '../../features/categories/specificCategory/CategoryScreenHeader'
@@ -22,30 +22,31 @@ const CategoryDetailsScreen = ({
   const categoryId = route.params.item.id
   const category = useStore(categoryDetailsModel.$data)
   const isLoadingCategory = useStore(categoryDetailsModel.$isLoading)
-  const isLoadingArts = useStore(categoryArtsModel.$isLoading)
 
   const { styles } = useThemedStyleList({
     common: themedStyles,
   })
-  const [minHeight, setMinHeight] = useState(0)
+  const [screenHeaderHeight, setScreenHeaderHeight] = useState(0)
   const [contentHeight, setContentHeight] = useState(0)
   const offset = useRef(new Animated.Value(0)).current
 
-  //Rework scroll
-  const height = minHeight + contentHeight
+  const height = screenHeaderHeight + contentHeight
+
   const translateY = offset.interpolate({
     inputRange: [0, contentHeight],
-    outputRange: [contentHeight + minHeight, minHeight],
+    outputRange: [height, screenHeaderHeight],
     extrapolateRight: 'clamp',
   })
+
   const imageTranslateY = offset.interpolate({
     inputRange: [0, contentHeight * 2],
-    outputRange: [0, -minHeight / 2],
+    outputRange: [0, -screenHeaderHeight / 2],
     extrapolate: 'clamp',
   })
 
   useEffect(() => {
     getCategoryData(categoryId)
+    setCategoryId(categoryId)
   }, [categoryId])
 
   const [isRefreshing, setIsRefreshing] = useState(false)
@@ -58,9 +59,11 @@ const CategoryDetailsScreen = ({
   const overlayAnimatedStyles = {
     transform: [{ translateY }],
   }
-  if ((isLoadingCategory || isLoadingArts) && !isRefreshing) {
+
+  if (isLoadingCategory && !isRefreshing) {
     return <CategoryScreenSkeleton />
   }
+
   if (!category) return <CategoryScreenHeader transparent={false} />
 
   return (
@@ -84,7 +87,8 @@ const CategoryDetailsScreen = ({
         offset={offset}
         contentHeight={contentHeight}
         onLayout={({ nativeEvent }) => {
-          if (!minHeight) setMinHeight(nativeEvent.layout.height)
+          if (!screenHeaderHeight)
+            setScreenHeaderHeight(nativeEvent.layout.height)
         }}
       />
       <CategoryGallery

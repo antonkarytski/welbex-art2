@@ -8,7 +8,7 @@ import {
 } from '../../../styles/screen'
 import { useText } from '../../../translations/hook'
 import { useTheme } from '../../themed/hooks'
-import { categoryDetailsModel } from '../request'
+import { categoryDetailsModel } from './model'
 
 type CategoryScreenHeaderProps = {
   onLayout?: ViewProps['onLayout']

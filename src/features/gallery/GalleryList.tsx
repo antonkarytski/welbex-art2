@@ -8,6 +8,7 @@ import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import Span from '../../ui/Span'
 import Loader from '../../ui/loaders/Loader'
+import GallerySkeleton from '../../ui/loaders/Skeleton.Gallery'
 import { drawingKeyExtractor } from '../artWork/helpers'
 import { toggleLike } from '../artWork/request'
 import { $isAuth } from '../auth/model'
@@ -30,7 +31,7 @@ const GalleryList = ({ type }: GalleryListProps) => {
     list,
     isLoading,
     isNextLoading,
-    getNext,
+    getNextSync,
     updateItem,
     refresh,
     isRefreshing,
@@ -68,9 +69,7 @@ const GalleryList = ({ type }: GalleryListProps) => {
     [styles, navigate, text, onLikeDrawing]
   )
 
-  const getNextPageSync = useCallback(() => {
-    getNext().catch(noop)
-  }, [getNext])
+  if (isLoading) return <GallerySkeleton />
 
   return (
     <FlatList
@@ -78,24 +77,19 @@ const GalleryList = ({ type }: GalleryListProps) => {
       contentContainerStyle={componentStyles.contentContainer}
       renderItem={renderItem}
       keyExtractor={drawingKeyExtractor}
-      onEndReached={getNextPageSync}
+      onEndReached={getNextSync}
       onRefresh={refresh}
       refreshing={isRefreshing}
       showsVerticalScrollIndicator={false}
       ListEmptyComponent={
         // TODO: Component when design will ready
-        isLoading ? (
-          <Loader />
-        ) : (
-          <Span
-            label={
-              !isAuth && type === GalleryType.FOLLOWING
-                ? 'You need to login to view this gallery'
-                : 'No drawings yet'
-            }
-          />
-        )
-        // TODO ---------
+        <Span
+          label={
+            !isAuth && type === GalleryType.FOLLOWING
+              ? 'You need to login to view this gallery'
+              : 'No drawings yet'
+          }
+        />
       }
       ListFooterComponent={isNextLoading ? <Loader /> : null}
     />

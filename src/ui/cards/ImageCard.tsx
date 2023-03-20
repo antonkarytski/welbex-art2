@@ -4,10 +4,14 @@ import {
   ImageSourcePropType,
   StyleProp,
   StyleSheet,
+  TextStyle,
   TouchableOpacity,
   View,
   ViewStyle,
 } from 'react-native'
+import { defaultColors } from '../../features/themed/theme'
+import { FONT_SEMI_BOLD } from '../../styles/fonts'
+import Span from '../Span'
 
 type ImageOptions =
   | {
@@ -25,6 +29,11 @@ export type ImageCardProps = {
   image: ImageSourcePropType | null
   style?: StyleProp<ViewStyle>
   onPress?: () => void
+  label?: string
+  labelStyles?: {
+    text: StyleProp<TextStyle>
+    container: StyleProp<ViewStyle>
+  }
 } & ImageOptions
 
 function getImageSize(options: ImageOptions | undefined) {
@@ -53,6 +62,8 @@ const ImageCard = ({
   style,
   children,
   onPress,
+  label,
+  labelStyles,
   ...imageOptions
 }: PropsWithChildren<ImageCardProps>) => {
   return (
@@ -62,15 +73,27 @@ const ImageCard = ({
       style={[styles.container, style]}
     >
       {image ? (
-        <ImageBackground
-          style={[
-            styles.imageBackground,
-            !!imageOptions.imageHeight && { height: imageOptions.imageHeight },
-          ]}
-          source={image}
-          resizeMode={'cover'}
-          imageStyle={[styles.image, getImageSize(imageOptions)]}
-        />
+        <>
+          {label && (
+            <View style={[styles.label, labelStyles?.container]}>
+              <Span
+                label={label}
+                style={[styles.labelText, labelStyles?.text]}
+              />
+            </View>
+          )}
+          <ImageBackground
+            style={[
+              styles.imageBackground,
+              !!imageOptions.imageHeight && {
+                height: imageOptions.imageHeight,
+              },
+            ]}
+            source={image}
+            resizeMode={'cover'}
+            imageStyle={[styles.image, getImageSize(imageOptions)]}
+          />
+        </>
       ) : (
         <View
           style={[
@@ -101,6 +124,22 @@ const styles = StyleSheet.create({
   },
   noImageBackground: {
     backgroundColor: '#D5DDDC',
+  },
+  label: {
+    backgroundColor: defaultColors.detailsActive,
+    position: 'absolute',
+    zIndex: 2,
+    right: 20,
+    top: 20,
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+  },
+  labelText: {
+    color: defaultColors.whiteText,
+    fontSize: 14,
+    fontFamily: FONT_SEMI_BOLD,
+    lineHeight: 17,
   },
 })
 

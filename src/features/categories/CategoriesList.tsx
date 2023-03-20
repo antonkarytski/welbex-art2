@@ -6,11 +6,12 @@ import { SCREEN_PADDING_HORIZONTAL } from '../../styles/constants'
 import { useText } from '../../translations/hook'
 import Span from '../../ui/Span'
 import Loader from '../../ui/loaders/Loader'
+import CategoriesListSkeleton from '../../ui/loaders/Skeleton.CategoriesList'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import { winnersListModel } from '../winners/request'
 import CardCategory from './Card.Category'
-import { categoriesListModel } from './request'
+import { categoriesListModel } from './model'
 import { categoryCardThemedStyles } from './styles'
 
 type CategoriesListProps = {
@@ -30,9 +31,8 @@ const CategoriesList = ({
   })
 
   const categories = useStore(categoriesListModel.$items)
-  const isLoading = useStore(categoriesListModel.$isLoading) // TODO: add loader
-
-  const nextPage = useStore(categoriesListModel.$nextPage)
+  const isLoading = useStore(categoriesListModel.$isLoading)
+  const isNextLoading = useStore(categoriesListModel.$isNextLoading)
 
   const [isRefreshing, setIsRefreshing] = useState(false)
 
@@ -65,13 +65,14 @@ const CategoriesList = ({
       data={categories}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
-      ListFooterComponent={nextPage ? <Loader /> : null}
-      onEndReached={getNextPageSync}
+      ListFooterComponent={isNextLoading ? <Loader /> : null}
+      onEndReached={isNextLoading ? undefined : getNextPageSync}
       ListEmptyComponent={
-        <>
-          {ListHeaderComponent && <ListHeaderComponent />}
+        isLoading ? (
+          <CategoriesListSkeleton />
+        ) : (
           <Span label={t.noCategories} style={styles.common.noItemsNote} />
-        </>
+        )
       }
     />
   )

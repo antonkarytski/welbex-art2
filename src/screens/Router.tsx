@@ -22,7 +22,7 @@ const Router = React.memo(() => {
 
   useEffect(() => {
     if (isAuth) return navigate(links.mainTabs)
-    navigate(links.onboarding)
+    navigate(links.onboardingPicassoQuote)
   }, [isAuth, navigate])
 
   return (

@@ -2,31 +2,53 @@ import React, { useMemo } from 'react'
 import { FlatList, FlatListProps, StyleProp, ViewStyle } from 'react-native'
 import { SceneMap } from 'react-native-tab-view'
 import { mapObject } from '../../../lib/helpers/array'
-import { useText } from '../../../translations/hook'
 import { LangFn } from '../../../translations/types'
+import FavouriteIcon from '../../../ui/icons/Icon.Favourite'
+import LikeIcon from '../../../ui/icons/Icon.Heart'
+import ImageIcon from '../../../ui/icons/Icon.Image'
+import { useThemeColors } from '../../themed/hooks'
 import { UserDrawingListType, UserItem } from '../types'
 import UserDrawingsList from './UserDrawingsList'
 import { UserArtsListHeightModel, UserArtsListsRequestModel } from './types'
 
-type TabProps = { label: LangFn }
+type TabProps = {
+  label: LangFn
+  Icon: React.ComponentType<any>
+}
+
+type OwnTabDescriptor = { [UserDrawingListType.OWN]?: TabProps }
 
 export type TabsDescriptor = Omit<
   Record<UserDrawingListType, TabProps>,
   UserDrawingListType.OWN
-> & { [UserDrawingListType.OWN]?: TabProps }
+> &
+  OwnTabDescriptor
+
+const ownDrawingsListTab: OwnTabDescriptor = {
+  [UserDrawingListType.OWN]: {
+    label: (text) => text.gallery,
+    Icon: ImageIcon,
+  },
+}
 
 export const commonDrawingsListTabs: TabsDescriptor = {
-  [UserDrawingListType.LIKED]: { label: (text) => text.liked },
-  [UserDrawingListType.SAVED]: { label: (text) => text.saved },
+  [UserDrawingListType.LIKED]: {
+    label: (text) => text.liked,
+    Icon: LikeIcon,
+  },
+  [UserDrawingListType.SAVED]: {
+    label: (text) => text.saved,
+    Icon: FavouriteIcon,
+  },
 }
 
 export const childrenDrawingsListTabs: TabsDescriptor = {
-  [UserDrawingListType.OWN]: { label: (text) => text.gallery },
+  ...ownDrawingsListTab,
   ...commonDrawingsListTabs,
 }
 
 export const profileDrawingsListTabs: TabsDescriptor = {
-  [UserDrawingListType.OWN]: { label: (text) => text.gallery },
+  ...ownDrawingsListTab,
   ...commonDrawingsListTabs,
 }
 
@@ -50,7 +72,7 @@ export function useDrawingsTabs({
   settings = {},
   ...props
 }: UseDrawingsTabs) {
-  const text = useText()
+  const colors = useThemeColors()
   const scenes = useMemo(
     () =>
       SceneMap(
@@ -73,10 +95,15 @@ export function useDrawingsTabs({
   )
   const routes = useMemo(
     () =>
-      Object.entries(tabs).map(([key, { label }]) => {
-        return { key: key as UserDrawingListType, title: label(text) }
+      Object.entries(tabs).map(([key, { Icon }]) => {
+        return {
+          key: key as UserDrawingListType,
+          Icon: (isActive: boolean) => (
+            <Icon color={isActive ? colors.text : colors.textLightGrey} />
+          ),
+        }
       }),
-    [tabs, text]
+    [tabs, colors]
   )
   return { scenes, routes }
 }
