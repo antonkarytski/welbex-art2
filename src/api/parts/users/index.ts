@@ -13,14 +13,13 @@ import { ProfileEditProps } from './types.parts'
 export const usersEndpoint = apiManager.endpoint('users').protect()
 export const meEndpoint = usersEndpoint.endpoint('me')
 
-const signUp = usersEndpoint.post<SignUpResponse, SignUpBody>({
-  endpoint: 'create',
-  withToken: false,
-})
-const profile = usersEndpoint.get<UserProfileResponse, number>((id) => ({
-  entityId: `${id}/profile`,
-  withToken: false,
-}))
+const signUp = usersEndpoint
+  .post<SignUpResponse, SignUpBody>('create')
+  .unprotect()
+const profile = usersEndpoint
+  .get<UserProfileResponse, number>((id) => `${id}/profile`)
+  .unprotect()
+
 const follow = usersEndpoint.put<string, number>((id) => `${id}/follow`)
 const unfollow = usersEndpoint.put<string, number>((id) => `${id}/unfollow`)
 

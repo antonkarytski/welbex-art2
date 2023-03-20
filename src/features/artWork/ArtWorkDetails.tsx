@@ -1,7 +1,9 @@
+import { createEvent, sample } from 'effector'
 import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
 import fs from 'react-native-fs'
+import { MyProfile } from '../../api/parts/users/types'
 import { noop } from '../../lib/helpers'
 import { useRequest } from '../../lib/models/apiBuilder/hooks'
 import { useNavigate } from '../../navigation'
@@ -97,3 +99,10 @@ const styles = StyleSheet.create({
 })
 
 export default ArtWorkDetails
+
+const clock = createEvent<number>()
+sample({
+  source: $myProfile,
+  clock,
+  filter: (profile): profile is MyProfile => !!profile,
+}).watch((d) => {})
