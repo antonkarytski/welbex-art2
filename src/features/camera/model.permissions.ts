@@ -7,13 +7,15 @@ export const $isCameraPermissionGranted = $cameraPermission.map(
   (status) => status === 'authorized'
 )
 
-export const getCameraPermission = attach({
-  source: $cameraPermission,
-  effect: createEffect(async (status: CameraPermissionStatus) => {
-    if (status === 'authorized') return true
-    const result = await Camera.requestCameraPermission()
-    setCameraPermission(result)
-    return result === 'authorized'
+const requestCameraPermission = createEffect(Camera.requestCameraPermission)
+requestCameraPermission.done.watch(({ result }) => {
+  setCameraPermission(result)
+})
+
+export const getIsCameraPermissionGranted = attach({
+  source: $isCameraPermissionGranted,
+  effect: createEffect(async (isGranted: boolean) => {
+    return isGranted || (await requestCameraPermission()) === 'authorized'
   }),
 })
 
