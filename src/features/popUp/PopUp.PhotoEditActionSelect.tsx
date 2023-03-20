@@ -1,3 +1,4 @@
+import { ImagePickerAsset } from 'expo-image-picker'
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { PopUpFactory } from '../../lib/models/popUp/factory'
@@ -9,17 +10,29 @@ import DeleteIcon from '../../ui/icons/Icon.Delete'
 import ImageIcon from '../../ui/icons/Icon.Image'
 import ListItemSeparator from '../../ui/lists/ListItemSeparator'
 import PopUpCard from '../../ui/popUp/PopUpCard'
+import { singlePhotoTask, useCameraNavigate } from '../camera/hooks'
+import { pickFromCameraRoll } from '../imagePick/pickFiles'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 
-type PopUpPhotoEditActionSelectProps = {}
+type PopUpPhotoEditActionSelectProps = {
+  hideRemoveButton?: boolean
+  onPick?: (assets: ImagePickerAsset[]) => void
+  backOnPick?: boolean
+}
 
-const model = PopUpFactory.createModel()
+const model = PopUpFactory.createModel<PopUpPhotoEditActionSelectProps>()
 
 const PopUpPhotoEditActionSelect = PopUpFactory.appendModel(
-  ({}: PopUpPhotoEditActionSelectProps) => {
-    const text = useText()
+  (props: PopUpPhotoEditActionSelectProps) => {
     const popUp = usePopUpModel(model)
+    const { hideRemoveButton, ...cameraProps } = {
+      ...popUp.props,
+      ...props,
+    }
+
+    const text = useText()
+    const goToCamera = useCameraNavigate(singlePhotoTask(cameraProps))
 
     const { styles, colors } = useThemedStyleList({
       row: touchableRowThemedStyles,
@@ -31,7 +44,14 @@ const PopUpPhotoEditActionSelect = PopUpFactory.appendModel(
         <TouchableRow
           label={text.selectFromGallery}
           Icon={ImageIcon}
-          onPress={() => {}}
+          onPress={() => {
+            model.hideSync()
+            pickFromCameraRoll()
+              .then((assets) => {
+                if (assets) cameraProps.onPick?.(assets)
+              })
+              .catch(() => {})
+          }}
           iconColor={colors.text}
           style={styles.row}
         />
@@ -39,18 +59,27 @@ const PopUpPhotoEditActionSelect = PopUpFactory.appendModel(
         <TouchableRow
           label={text.takePhoto}
           Icon={CameraIcon}
-          onPress={() => {}}
+          onPress={() => {
+            model.hideSync()
+            goToCamera()
+          }}
           iconColor={colors.text}
           style={styles.row}
         />
-        <ListItemSeparator />
-        <TouchableRow
-          label={text.deleteCurrentPhoto}
-          Icon={DeleteIcon}
-          onPress={() => {}}
-          iconColor={colors.errorText}
-          style={{ ...styles.row, label: styles.common.deleteLabel }}
-        />
+        {!hideRemoveButton && (
+          <>
+            <ListItemSeparator />
+            <TouchableRow
+              label={text.deleteCurrentPhoto}
+              Icon={DeleteIcon}
+              onPress={() => {
+                model.hideSync()
+              }}
+              iconColor={colors.errorText}
+              style={{ ...styles.row, label: styles.common.deleteLabel }}
+            />
+          </>
+        )}
       </PopUpCard>
     )
   },

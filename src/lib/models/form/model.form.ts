@@ -1,10 +1,10 @@
 import {
   Effect,
+  Event,
   attach,
   createEffect,
   createEvent,
   createStore,
-  sample,
 } from 'effector'
 import { ObjectSchema } from 'yup'
 import { mapObject } from '../../helpers/array'
@@ -33,7 +33,7 @@ type SubmitSettings<P, R> = {
 
 export class FormModel<T extends Record<string, any>, R = any> {
   private readonly schema
-  public readonly reset = createEvent()
+  public readonly reset = createEvent<Event<any> | void>()
   public readonly setFieldEvent = createEvent<FieldPair<T, keyof T>>()
   public setField<K extends keyof T>(props: FieldPair<T, K>) {
     this.setFieldEvent(props)
@@ -62,7 +62,9 @@ export class FormModel<T extends Record<string, any>, R = any> {
       }))
       .on(this.setSomeFields, (store, fields) => ({ ...store, ...fields }))
       .on(this.set, (_, payload) => payload)
-      .reset(this.reset)
+      .on(this.reset, (_, payload) => {
+        if (!payload) return initialState
+      })
 
     this.submit = attach({
       source: this.$store,

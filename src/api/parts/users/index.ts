@@ -8,27 +8,29 @@ import {
   SignUpResponse,
   UserProfileResponse,
 } from './types.api'
+import { ProfileEditProps } from './types.parts'
 
 export const usersEndpoint = apiManager.endpoint('users').protect()
 export const meEndpoint = usersEndpoint.endpoint('me')
 
-const signUp = usersEndpoint.post<SignUpResponse, SignUpBody>({
-  endpoint: 'create',
-  withToken: false,
-})
-const profile = usersEndpoint.get<UserProfileResponse, number>((id) => ({
-  url: `${id}/profile`,
-  withToken: false,
-}))
+const signUp = usersEndpoint
+  .post<SignUpResponse, SignUpBody>('create')
+  .unprotect()
+
 const profileProtected = usersEndpoint.get<UserProfileResponse, number>(
   (id) => `${id}/profile`
 )
+const profile = profileProtected.unprotect()
+
 const follow = usersEndpoint.put<string, number>((id) => `${id}/follow`)
 const unfollow = usersEndpoint.put<string, number>((id) => `${id}/unfollow`)
 
 //dont use this request directly, use meRequest from profile/request.ts
 //since meRequest change profile store
 const me = meEndpoint.get<MyProfileResponse>()
+const editMe = meEndpoint.patch<ProfileEditProps, ProfileEditProps>(
+  'profile/edit'
+)
 const uploadChildDocument = meEndpoint
   .put<string, ImageFile>({
     endpoint: 'upload-child-identity-document',
@@ -41,6 +43,7 @@ const uploadChildDocument = meEndpoint
 
 export const usersApi = {
   me,
+  editMe,
   signUp,
   profile,
   profileProtected,

@@ -5,6 +5,7 @@ import SendPhoneButton from '../../features/signUp/phone/SendPhoneButton'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { IS_IOS } from '../../lib/helpers/native/constants'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
+import { inputThemedStyles } from '../../styles/inputs'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import Span from '../../ui/Span'
@@ -16,6 +17,7 @@ const PhoneEnterScreen = () => {
   const { styles } = useThemedStyleList({
     common: themedCommonStyles,
     button: buttonPrimaryThemedPreset,
+    field: inputThemedStyles,
   })
 
   return (

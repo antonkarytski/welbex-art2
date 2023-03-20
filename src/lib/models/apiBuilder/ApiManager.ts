@@ -27,9 +27,9 @@ export type RequestRepeatFilter = <T>(
 ) => Promise<DoRequestProps<T> | undefined | null>
 
 export class ApiManager {
-  private readonly debugger = new ApiDebug()
-  private readonly server: ServerManager | null = null
   public readonly token
+  public readonly debugger = new ApiDebug()
+  private readonly server: ServerManager | null = null
   private readonly requestRepeatFilter: RequestRepeatFilter | null = null
 
   constructor({ server, tokenRefresher, tokenSettings }: RequestModelProps) {

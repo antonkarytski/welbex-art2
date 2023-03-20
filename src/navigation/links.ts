@@ -1,4 +1,5 @@
 export enum links {
+  camera = 'camera',
   authRouter = 'authRouter',
   onboardingPicassoQuote = 'onboardingPicassoQuote',
   onboarding = 'onboarding',
@@ -6,6 +7,7 @@ export enum links {
   countrySelection = 'countrySelection',
   phoneEnter = 'phoneEnter',
   verification = 'verification',
+  authSubmit = 'authSubmit',
   login = 'login',
   createPassword = 'createPassword',
   recoverPassword = 'recoverPassword',

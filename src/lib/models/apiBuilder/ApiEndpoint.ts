@@ -1,7 +1,7 @@
 import { Effect, Event, createEffect } from 'effector'
 import { createXhr } from '../../request/xhr'
 import { Endpoint, MethodSettings } from './Endpoint'
-import { DoRequestProps, MapperFn, Method } from './types'
+import { DoRequestProps, MapperFn, Method, RequestProps } from './types'
 
 type CreateApiEndpointRequest<Params> = {
   fn?: MapperFn<Params>
@@ -75,14 +75,14 @@ export class ApiEndpoint {
       return this.requestHandler<R, P>(requestProps)
     }) as Effect<P, R> & ExtEffectMethods<P, R>
 
-    const copy = () => {
+    const copyWithProgress = () => {
       const xhr = createXhr()
       const effectCopy = createEffect((params: P) => {
         const requestProps = propsGetter(params)
         return this.requestHandler<R, P>(requestProps, xhr.request)
       }) as EffectWithProgress<P, R>
       effectCopy.progress = xhr.progress
-      effectCopy.copy = copy
+      effectCopy.copy = copyWithProgress
       return effectCopy
     }
 
@@ -94,7 +94,7 @@ export class ApiEndpoint {
         return this.requestHandler<R, P>(requestProps, xhr.request)
       })
       effectWithProgress.progress = xhr.progress
-      effectWithProgress.copy = copy
+      effectWithProgress.copy = copyWithProgress
       return effectWithProgress
     }
 
@@ -118,7 +118,10 @@ export class ApiEndpoint {
       })
     }
 
+    effect.requestProps = (params: P) => propsGetter(params)
     effect.url = (params: P) => propsGetter(params).url
+    effect.protect = () => this.request({ ...props, withToken: true })
+    effect.unprotect = () => this.request({ ...props, withToken: false })
 
     return effect
   }
@@ -160,6 +163,9 @@ type ExtEffectMethods<Params, R> = {
   withProgress: () => Effect<Params, R> & EffectProgressSettings<Params, R>
   raw: RawCreator<Params>
   url: (params: Params) => string
+  requestProps: (params: Params) => RequestProps<Params>
+  unprotect: () => Effect<Params, R> & ExtEffectMethods<Params, R>
+  protect: () => Effect<Params, R> & ExtEffectMethods<Params, R>
 }
 
 type EffectWithProgress<Params, Response> = Effect<Params, Response> &
