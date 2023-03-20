@@ -13,8 +13,8 @@ export function useQuickAuthNextStep(currentStep: links) {
 
   const nextStep = useCallback(() => {
     const end = () => {
+      navigate(links.mainTabs)
       completeQuickAuth().catch(noop)
-      navigate(links.home)
     }
 
     if (!quickAuthFilter) return end()

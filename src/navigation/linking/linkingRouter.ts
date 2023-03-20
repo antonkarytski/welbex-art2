@@ -10,7 +10,17 @@ export const linkingConfig: LinkingOptions<ScreensProps> = {
       [links.authSubmit]: {
         path: 'auth/',
         parse: {
-          absent_fields: (value) => (value ? JSON.parse(value) : []),
+          absent_fields: (value) => {
+            if (!value) return []
+            if (value.endsWith('#')) {
+              value = value.slice(0, -1)
+            }
+            value = value.replace(/'/g, '"')
+            console.log(value)
+            return JSON.parse(value).filter(
+              (field: string) => field !== 'is_superuser'
+            )
+          },
         },
       },
     },

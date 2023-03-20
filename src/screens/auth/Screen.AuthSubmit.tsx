@@ -7,7 +7,6 @@ import { useThemedStyleList } from '../../features/themed/hooks'
 import { links } from '../../navigation/links'
 import { ScreenComponentProps } from '../../navigation/types.screenProps'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
-import { inputThemedStyles } from '../../styles/inputs'
 import H2 from '../../ui/H2'
 import Span from '../../ui/Span'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
@@ -17,11 +16,10 @@ const AuthSubmitScreen = ({
   route,
 }: ScreenComponentProps<links.authSubmit>) => {
   const { access_token, refresh_token, absent_fields } = route.params
-  const { nextStep } = useQuickAuthNextStep(links.authSubmit)
+  const { nextStep, isActive } = useQuickAuthNextStep(links.authSubmit)
   const { styles } = useThemedStyleList({
     common: themedCommonStyles,
     buttonPreset: buttonPrimaryThemedPreset,
-    field: inputThemedStyles,
   })
 
   const isUserDataAbsent = useMemo(() => {
@@ -33,8 +31,11 @@ const AuthSubmitScreen = ({
       tokens: { access: access_token, refresh: refresh_token },
       absentFields: absent_fields,
     })
-    if (!isUserDataAbsent) nextStep()
-  }, [refresh_token, access_token, absent_fields, isUserDataAbsent, nextStep])
+  }, [refresh_token, access_token, absent_fields])
+
+  useEffect(() => {
+    if (!isUserDataAbsent && isActive) nextStep()
+  }, [isUserDataAbsent, isActive, nextStep])
 
   if (!isUserDataAbsent) {
     return (
