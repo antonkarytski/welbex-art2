@@ -16,7 +16,6 @@ export const linkingConfig: LinkingOptions<ScreensProps> = {
               value = value.slice(0, -1)
             }
             value = value.replace(/'/g, '"')
-            console.log(value)
             return JSON.parse(value).filter(
               (field: string) => field !== 'is_superuser'
             )

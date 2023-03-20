@@ -74,18 +74,12 @@ const ArtWorkDetails = React.memo(({ drawingId }: ArtWorkDetailsProps) => {
         label={text.download}
         onPress={() => {
           if (!drawing.data) return
-          console.log('pres')
           fs.downloadFile({
             fromUrl: drawing.data.image_thumbnail,
             toFile: `${fs.DocumentDirectoryPath}/ddd.jpg`,
           })
-            .promise.then((r) => {
-              console.log(`${fs.DocumentDirectoryPath}/ddd.jpg`)
-              console.log(r)
-            })
-            .catch((e) => {
-              console.log(e)
-            })
+            .promise.then((r) => {})
+            .catch((e) => {})
         }}
       />
     </ScrollView>
