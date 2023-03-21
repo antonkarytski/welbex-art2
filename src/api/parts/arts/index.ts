@@ -18,15 +18,14 @@ const arts = apiManager.endpoint('arts').protect()
 const allArts = arts.endpoint('all').unprotect()
 
 const all = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>()
-
 const best = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('best')
 const newArts = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('new')
-const following = arts.get<AllArtWorksResponse, AllArtWorksProps | void>(
-  'all/following'
+const following = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>(
+  'following'
 )
 
-const specific = arts.get<ArtWorkGeneral, number>({ withToken: false })
 const specificProtected = arts.get<ArtWork, number>()
+const specific = arts.get<ArtWorkGeneral, number>({ withToken: false })
 const likePost = arts.put<ArtWork, number>((id) => `${id}/like`)
 const dislikePost = arts.put<ArtWork, number>((id) => `${id}/remove-like`)
 const savePost = arts.put<ArtWork, number>((id) => `${id}/save`)
@@ -45,25 +44,21 @@ const create = arts
   .post<ArtWorkCreateResponse, ArtWorkCreateProps>({
     endpoint: 'create',
     contentType: ContentType.FORM_DATA,
-    fn: ({ image, title, categoryId }) => ({
-      body: formDataFromList({
-        image,
-        title,
-        category_id: categoryId,
-      }),
+    fn: ({ categoryId, ...rest }) => ({
+      body: formDataFromList({ ...rest, category_id: categoryId }),
     }),
   })
   .withProgress()
 
 const userArts = arts.endpoint('user').unprotect()
 const userAllArts = userArts.get<ArtsListPreviewResponse, ArtsListProps>(
-  ({ userId, ...rest }) => ({ entityId: `${userId}/all`, body: rest })
+  ({ userId, ...rest }) => ({ url: `${userId}/all`, body: rest })
 )
 const userLikedArts = userArts.get<ArtsListPreviewResponse, ArtsListProps>(
-  ({ userId, ...rest }) => ({ entityId: `${userId}/liked`, body: rest })
+  ({ userId, ...rest }) => ({ url: `${userId}/liked`, body: rest })
 )
 const userSavedArts = userArts.get<ArtsListPreviewResponse, ArtsListProps>(
-  ({ userId, ...rest }) => ({ entityId: `${userId}/saved`, body: rest })
+  ({ userId, ...rest }) => ({ url: `${userId}/saved`, body: rest })
 )
 
 export const artsApi = {

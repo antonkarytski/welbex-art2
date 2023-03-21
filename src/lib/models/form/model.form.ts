@@ -26,9 +26,10 @@ export type TypedFormFieldComponentProps<
   formModel: FormModel<T>
 }
 
-type SubmitSettings<P, R> = {
+type SubmitSettings<P, R, MP = P> = {
   validate?: boolean
-  request?: Effect<P, R>
+  map?: (props: P) => MP
+  request?: Effect<MP, R>
 }
 
 export class FormModel<T extends Record<string, any>, R = any> {
