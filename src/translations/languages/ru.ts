@@ -123,6 +123,7 @@ export const RU: LangStructure = {
   selectFromGallery: 'Выбрать из галереи',
   takePhoto: 'Сфотографировать',
   deleteCurrentPhoto: 'Удалить текущее фото',
+  deleteAvatarQ: 'Удалить фото профиля?',
   saveChangesQ: 'Сохранить изменения?',
   settings: 'Настройки',
   faq: 'Вопросы и ответы',

@@ -24,7 +24,6 @@ export type UserInitialData = {
   last_name: string
   country: CountryCode
   DOB: string
-  is_child: boolean
 }
 
 export type ProfileEditProps = Partial<UserInitialData & UserSecuredData>

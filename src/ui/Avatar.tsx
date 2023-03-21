@@ -13,7 +13,7 @@ import UserIcon from '../ui/icons/Icon.User'
 type AvatarProps = {
   size?: number
   borderSize?: number
-  src?: ImageSourcePropType | string
+  src?: ImageSourcePropType | string | null
   style?: StyleProp<ViewStyle>
   onPress?: () => void
 }
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     borderRadius: 100,
     borderColor: '#84BDBE',
+    backgroundColor: '#F2F4F4',
   },
   defaultImage: {
     width: '100%',

@@ -28,6 +28,10 @@ export const inputThemedStyles = createThemedStyle<InputStyles>((colors) =>
       borderColor: colors.errorBorder,
       backgroundColor: colors.errorBackground,
     },
+    disabled: {
+      color: colors.inputDisabledText,
+      backgroundColor: colors.inputDisabledBackground,
+    },
   })
 )
 

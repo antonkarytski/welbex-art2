@@ -1,4 +1,3 @@
-import { ImageSourcePropType } from 'react-native'
 import { TokenType } from '../../../lib/models/apiBuilder/types.token'
 import { User } from './types'
 import {
@@ -41,11 +40,4 @@ export type SignUpResponse = {
     refresh_token: string
     token_type: TokenType
   }
-}
-
-export type EditProfileBody = Omit<UserInitialData, 'is_child'> &
-  Omit<UserSecuredData, 'email'>
-
-export type EditProfileResponse = EditProfileBody & {
-  avatar: ImageSourcePropType | string
 }

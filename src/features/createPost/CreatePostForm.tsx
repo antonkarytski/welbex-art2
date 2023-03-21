@@ -1,6 +1,7 @@
 import React from 'react'
 import { ImageStyle, ScrollView, StyleSheet } from 'react-native'
 import { themedPrimaryGradient } from '../../styles/gradients'
+import { inputThemedStyles } from '../../styles/inputs'
 import { useText } from '../../translations/hook'
 import H3 from '../../ui/H3'
 import Field from '../../ui/form/Field'
@@ -22,6 +23,7 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
   const { styles } = useThemedStyleList({
     common: themedStyles,
     gradient: themedPrimaryGradient,
+    field: inputThemedStyles,
   })
 
   useCreatePostFormInitialValues(props)
@@ -51,6 +53,7 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
         name={createPostFormModel.fields.age}
         formModel={createPostFormModel}
         postfix={` ${text.yearsOldAbbreviated}`}
+        styles={styles.field}
       />
       <ChildDocumentUploadingBlock style={styles.common.cameraBlock} />
       <CreatePostFromSubmitButton style={styles.common.button} />

@@ -15,6 +15,7 @@ type DateInputProps = {
   isValid?: boolean | null
   onBlur?: () => void
   label?: string
+  defaultDate?: Date
 } & Omit<DatePickerProps, 'style' | 'onBlur'>
 
 const DateInput = ({
@@ -26,6 +27,7 @@ const DateInput = ({
   isValid,
   onBlur,
   label,
+  defaultDate,
   ...props
 }: DateInputProps) => {
   const [open, setOpen] = useState(false)
@@ -46,7 +48,11 @@ const DateInput = ({
         onBlur={onBlur}
         isValid={isValid}
         placeholder={placeholder}
-        value={isDateSelected ? date.toLocaleDateString() : undefined}
+        value={
+          defaultDate?.toLocaleDateString() || isDateSelected
+            ? date.toLocaleDateString()
+            : undefined
+        }
         onPressIn={() => {
           ref.current?.focus()
           setOpen(true)
@@ -58,7 +64,7 @@ const DateInput = ({
         modal
         mode={props?.mode || 'date'}
         open={open}
-        date={date}
+        date={date ?? defaultDate}
         onConfirm={handleConfirmDate}
         onCancel={() => {
           setOpen(false)

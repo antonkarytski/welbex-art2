@@ -3,8 +3,6 @@ import { ImageFile } from '../../../lib/files/types'
 import { ContentType } from '../../../lib/models/apiBuilder/types'
 import { apiManager } from '../../apiManager'
 import {
-  EditProfileBody,
-  EditProfileResponse,
   MyProfileResponse,
   SignUpBody,
   SignUpResponse,
@@ -33,6 +31,15 @@ const me = meEndpoint.get<MyProfileResponse>()
 const editMe = meEndpoint.patch<ProfileEditProps, ProfileEditProps>(
   'profile/edit'
 )
+const deleteAvatar = meEndpoint.delete('profile/delete-avatar')
+const uploadAvatar = meEndpoint.put<string, ImageFile>({
+  endpoint: 'profile/upload-avatar',
+  contentType: ContentType.FORM_DATA,
+  fn: (file) => ({
+    body: formDataFromList({ avatar: file }),
+  }),
+})
+
 const uploadChildDocument = meEndpoint
   .put<string, ImageFile>({
     endpoint: 'upload-child-identity-document',
@@ -43,10 +50,6 @@ const uploadChildDocument = meEndpoint
   })
   .withProgress()
 
-const updateMyProfile = meEndpoint.patch<EditProfileResponse, EditProfileBody>(
-  '/profile/edit'
-)
-
 export const usersApi = {
   me,
   editMe,
@@ -56,5 +59,6 @@ export const usersApi = {
   follow,
   unfollow,
   uploadChildDocument,
-  updateMyProfile,
+  deleteAvatar,
+  uploadAvatar,
 }

@@ -7,7 +7,7 @@ export function useGallery(type: GalleryType) {
   const list = useStore(galleryListsModel[type].$items)
   const isLoading = useStore(galleryListsModel[type].$isLoading)
   const isNextLoading = useStore(galleryListsModel[type].$isNextLoading)
-  const getSync = () => galleryListsModel[type].get()
+  const getSync = galleryListsModel[type].get
 
   const getNextSync = isNextLoading
     ? undefined
@@ -19,7 +19,7 @@ export function useGallery(type: GalleryType) {
 
   useEffect(() => {
     getSync()
-  }, [])
+  }, [getSync])
 
   return {
     list,
