@@ -8,15 +8,16 @@ const login = auth.post<LoginResponse, LoginBody>({
   endpoint: 'token',
 })
 
-const google = auth.endpoint('google')
-const googleAuth = google.get('oauth2')
+const googleAuth = auth.get('google/oauth2')
 const googleAuthUrl = googleAuth.url()
 
-const googleAuthCallback = google.get('oauth2callback')
+const appleAuth = auth.get('apple/oauth2')
+const appleAuthUrl = appleAuth.url()
 
 export const authApi = {
   login,
   googleAuth,
-  googleAuthCallback,
   googleAuthUrl,
+  appleAuth,
+  appleAuthUrl,
 }

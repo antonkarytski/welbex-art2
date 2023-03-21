@@ -4,6 +4,7 @@ import { $isAuth } from '../features/auth/model'
 import { useNavigate } from '../navigation'
 import StackNavigator, { Stack } from '../navigation/elements/StackNavigator'
 import { links } from '../navigation/links'
+import CameraScreen from './Screen.Camera'
 import ScreenInfoMessage from './Screen.InfoMessage'
 import UserProfileScreen from './Screen.UserProfile'
 import MainTabsRouter from './Tabs.Main'
@@ -32,6 +33,7 @@ const Router = React.memo(() => {
       ))}
       <Stack.Screen name={links.mainTabs} component={MainTabsRouter} />
       <Stack.Screen name={links.editProfile} component={EditProfileScreen} />
+      <Stack.Screen name={links.camera} component={CameraScreen} />
       <Stack.Screen name={links.userProfile} component={UserProfileScreen} />
       <Stack.Screen
         name={links.galleryFilter}

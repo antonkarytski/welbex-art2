@@ -29,7 +29,7 @@ export function createValidator<T extends Record<string, any>>(
   const setState = createEvent<boolean | null>()
   const $state = restore(setState, true)
 
-  const set = createEvent<ValidationList<T>>()
+  const setFields = createEvent<ValidationList<T>>()
   const setFieldValidation = createEvent<ValidationFieldPair<keyof T>>()
   const $fields = createStore<Record<keyof T, ValidationState | null>>(
     mapObject(initialState, () => null)
@@ -46,10 +46,10 @@ export function createValidator<T extends Record<string, any>>(
       }
       return { ...store, [key]: value }
     })
-    .on(set, (_, payload) => payload)
+    .on(setFields, (_, payload) => payload)
 
   function updateFieldsValidation(result: ListValidationResult<T>) {
-    set(result.list)
+    setFields(result.list)
     setState(result.isValid)
     return result
   }

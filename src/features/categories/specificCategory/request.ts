@@ -69,8 +69,9 @@ const searchCategoryArtsFx = createEffect(
 )
 
 sample({
-  clock: debounceSearch, // TODO: Fix TS
+  clock: debounceSearch,
   source: { searchString: $categoryArtsSearchString, categoryId: $categoryId },
-  filter: ({ categoryId }) => categoryId !== null,
+  filter: (props): props is { categoryId: number; searchString: string } =>
+    props.categoryId !== null,
   target: searchCategoryArtsFx,
 })

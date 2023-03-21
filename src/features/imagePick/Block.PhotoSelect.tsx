@@ -7,33 +7,59 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
+import { noop } from '../../lib/helpers'
 import Span from '../../ui/Span'
 import CameraIcon from '../../ui/icons/Icon.Camera'
+import { singlePhotoTask, useCameraNavigate } from '../camera/hooks'
+import PopUpPhotoEditActionSelect from '../popUp/PopUp.PhotoEditActionSelect'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
 import { pickFromCameraRoll } from './pickFiles'
 import { uploadBlockCommonStyles, uploadImageCardThemedStyle } from './styles'
 
+export enum PhotoSelectSources {
+  CAMERA = 1,
+  GALLERY = 2,
+}
+
+export const CAMERA_SOURCE_PRESET = [PhotoSelectSources.CAMERA]
+
 type UploadFromCameraBlockProps = {
   label: string
   style?: StyleProp<ViewStyle>
   onPick?: (assets: ImagePickerAsset[]) => void
+  sources?: PhotoSelectSources[]
 }
 
-const UploadFromCameraBlock = ({
+const PhotoSelectBlock = ({
   label,
   style,
   onPick,
+  sources = [PhotoSelectSources.CAMERA, PhotoSelectSources.GALLERY],
 }: UploadFromCameraBlockProps) => {
+  const goToCamera = useCameraNavigate(singlePhotoTask({ onPick }))
   const { styles, colors } = useTheme(themedStyles)
+
   return (
     <TouchableOpacity
       onPress={() => {
-        pickFromCameraRoll()
-          .then((assets) => {
-            if (assets) onPick?.(assets)
+        if (sources.length === 0) return
+        if (sources.length > 1) {
+          return PopUpPhotoEditActionSelect.showSync({
+            props: { hideRemoveButton: true, onPick },
           })
-          .catch(() => {})
+        }
+        const source = sources[0]
+        if (source === PhotoSelectSources.CAMERA) {
+          return goToCamera()
+        }
+        if (source === PhotoSelectSources.GALLERY) {
+          pickFromCameraRoll()
+            .then((assets) => {
+              if (assets) onPick?.(assets)
+            })
+            .catch(noop)
+        }
       }}
       style={[styles.container, style]}
     >
@@ -68,4 +94,4 @@ const themedStyles = createThemedStyle((colors) =>
   })
 )
 
-export default UploadFromCameraBlock
+export default PhotoSelectBlock

@@ -5,14 +5,14 @@ import ArrowIcon from '../../ui/icons/Icon.Arrow'
 
 type NavigationBackButtonProps = {
   style?: ViewStyle
-  iconColor: string
+  iconColor?: string
   iconSize?: number
   onPress?: () => void
 }
 
 const NavigationBackButton = ({
   style,
-  iconColor,
+  iconColor = 'white',
   iconSize,
   onPress,
 }: NavigationBackButtonProps) => {

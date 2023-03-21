@@ -1,8 +1,9 @@
+import { createEvent, sample } from 'effector'
 import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
 import fs from 'react-native-fs'
-import { api } from '../../api'
+import { MyProfile } from '../../api/parts/users/types'
 import { noop } from '../../lib/helpers'
 import { useRequest } from '../../lib/models/apiBuilder/hooks'
 import { useNavigate } from '../../navigation'
@@ -75,17 +76,12 @@ const ArtWorkDetails = React.memo(({ drawingId }: ArtWorkDetailsProps) => {
         label={text.download}
         onPress={() => {
           if (!drawing.data) return
-          console.log('pres')
           fs.downloadFile({
             fromUrl: drawing.data.image_thumbnail,
-            toFile: `${fs.DocumentDirectoryPath}/ddd.png`,
+            toFile: `${fs.DocumentDirectoryPath}/ddd.jpg`,
           })
-            .promise.then((r) => {
-              console.log(r)
-            })
-            .catch((e) => {
-              console.log(e)
-            })
+            .promise.then((r) => {})
+            .catch((e) => {})
         }}
       />
     </ScrollView>
@@ -103,3 +99,10 @@ const styles = StyleSheet.create({
 })
 
 export default ArtWorkDetails
+
+const clock = createEvent<number>()
+sample({
+  source: $myProfile,
+  clock,
+  filter: (profile): profile is MyProfile => !!profile,
+}).watch((d) => {})

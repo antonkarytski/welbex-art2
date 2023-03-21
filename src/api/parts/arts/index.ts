@@ -21,7 +21,6 @@ const all = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>()
 
 const best = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('best')
 const newArts = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('new')
-
 const following = arts.get<AllArtWorksResponse, AllArtWorksProps | void>(
   'all/following'
 )

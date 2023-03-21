@@ -7,6 +7,7 @@ import {
   SpecificCategoryResponse,
 } from '../api/parts/categories/types'
 import { UserShort } from '../api/parts/users/types'
+import { ProfileEditProps } from '../api/parts/users/types.parts'
 import { GalleryType } from '../features/gallery/types'
 import { InfoMessageScreenProps } from '../features/infoMessage/types'
 import { PlanDescriptor } from '../features/subscriptionPlans/types'
@@ -32,6 +33,11 @@ export type ScreensProps = ScreensPropsProto<{
   [links.addPaymentCard]?: { currentPayment?: PlanDescriptor }
   [links.createPostUploadImage]?: {
     category?: SpecificCategoryResponse
+  }
+  [links.authSubmit]: {
+    access_token: string
+    refresh_token: string
+    absent_fields: (keyof ProfileEditProps)[]
   }
 }>
 

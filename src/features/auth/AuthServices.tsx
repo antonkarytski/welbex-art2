@@ -1,6 +1,7 @@
 import React from 'react'
 import { Linking, StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import { api } from '../../api'
+import { noop } from '../../lib/helpers'
 import { buttonLightThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import LineSeparator from '../../ui/LineSeparator'
@@ -24,9 +25,11 @@ const AuthWithServices = ({
     button: buttonLightThemedPreset,
   })
   const authWithGoogle = () => {
-    Linking.openURL(api.auth.googleAuthUrl).then((e) => {})
+    Linking.openURL(api.auth.googleAuthUrl).catch(noop)
   }
-  const onContinueWithApple = () => {}
+  const authWithApple = () => {
+    Linking.openURL(api.auth.appleAuthUrl).catch(noop)
+  }
 
   return (
     <View style={[style]}>
@@ -45,7 +48,7 @@ const AuthWithServices = ({
         preset={styles.button}
       />
       <AppleButton
-        onPress={onContinueWithApple}
+        onPress={authWithApple}
         label={t.continueWithApple}
         preset={styles.button}
       />
