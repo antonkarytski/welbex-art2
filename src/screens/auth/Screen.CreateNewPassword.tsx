@@ -1,9 +1,14 @@
 import { useStore } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
-import { newPasswordModel } from '../../features/auth/password/model.passwords'
+import {
+  newPasswordModel,
+  sendNewPassword,
+} from '../../features/auth/password/model.passwords'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { IS_IOS } from '../../lib/helpers/native/constants'
+import { links } from '../../navigation/links'
+import { ScreenComponentProps } from '../../navigation/types.screenProps'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
@@ -13,7 +18,9 @@ import PresetButton from '../../ui/buttons/PresetButton'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
 
-const NewPasswordScreen = () => {
+const NewPasswordScreen = (
+  props: ScreenComponentProps<links.createNewPassword>
+) => {
   const t = useText()
   const { styles } = useThemedStyleList({
     common: themedCommonStyles,
@@ -22,8 +29,11 @@ const NewPasswordScreen = () => {
 
   const passwords = useStore(newPasswordModel.$store)
 
-  const onLogin = () => {
-    newPasswordModel.validation.cast()
+  const onLogin = async () => {
+    try {
+      await newPasswordModel.validation.cast()
+      await sendNewPassword(props.route.params.token)
+    } catch {}
   }
 
   return (

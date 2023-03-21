@@ -1,10 +1,20 @@
 import { attach } from 'effector'
 import { api } from '../../api'
 import { apiManager } from '../../api/apiManager'
+import { SignUpResponse } from '../../api/parts/users/types.api'
 import { setMyProfile } from '../profile/model'
 import { signUpUserResponseToNewUser } from '../user/helpers'
 import { convertSignUpFormToSignUpBody } from './helpers'
 import { $signUpFormData } from './model'
+
+export const loginAfterSignUp = ({ result }: { result: SignUpResponse }) => {
+  apiManager.token.set({
+    access: result.tokens.access_token,
+    refresh: result.tokens.refresh_token,
+  })
+  const myNewProfile = signUpUserResponseToNewUser(result.user)
+  setMyProfile(myNewProfile)
+}
 
 export const signUp = attach({
   source: $signUpFormData,
@@ -16,11 +26,4 @@ export const signUp = attach({
   effect: api.users.signUp,
 })
 
-signUp.done.watch(({ result }) => {
-  apiManager.token.set({
-    access: result.tokens.access_token,
-    refresh: result.tokens.refresh_token,
-  })
-  const myNewProfile = signUpUserResponseToNewUser(result.user)
-  setMyProfile(myNewProfile)
-})
+signUp.done.watch(loginAfterSignUp)

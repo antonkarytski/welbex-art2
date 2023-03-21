@@ -22,6 +22,9 @@ export const linkingConfig: LinkingOptions<ScreensProps> = {
           },
         },
       },
+      [links.createNewPassword]: {
+        path: 'reset-password',
+      },
     },
   },
 }

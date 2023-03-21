@@ -1,7 +1,7 @@
 import * as yup from 'yup'
 import { ObjectSchema } from 'yup'
 import { stringSchema } from '../../yup'
-import { createFormModel } from '../form/model.form'
+import { createFormModel } from '../form'
 
 export type PasswordsFormModel = {
   password: string
