@@ -1,7 +1,7 @@
 import { attach } from 'effector'
 import { api } from '../../../api'
 import { createPasswordFormModel } from '../../../lib/models/passwordsForm/model'
-import { loginAfterSignUp } from '../../signUp/request'
+import { handleLogin } from '../logIn/model'
 
 export const newPasswordModel = createPasswordFormModel()
 export const sendNewPassword = attach({
@@ -13,4 +13,4 @@ export const sendNewPassword = attach({
   effect: api.resetPassword.reset,
 })
 
-sendNewPassword.done.watch(loginAfterSignUp)
+sendNewPassword.done.watch(handleLogin)

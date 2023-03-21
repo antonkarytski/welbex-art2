@@ -1,5 +1,5 @@
 import { apiManager } from '../../apiManager'
-import { SignUpResponse } from '../users/types.api'
+import { LoginResponse } from '../auth/types'
 
 type ResetPasswordProps = {
   token: string
@@ -11,11 +11,8 @@ const sendResetLink = endpoint.get<void, string>((email) => ({
   url: 'send-reset-link',
   body: { email: email.toLowerCase() },
 }))
-const reset = endpoint.patch<SignUpResponse, ResetPasswordProps>(
-  ({ token, password }) => ({
-    url: `reset-password/${token}`,
-    body: { password },
-  })
+const reset = endpoint.patch<LoginResponse, ResetPasswordProps>(
+  ({ token, password }) => ({ url: `?token=${token}`, body: { password } })
 )
 
 export const resetPasswordApi = {
