@@ -20,12 +20,12 @@ const allArts = arts.endpoint('all').unprotect()
 const all = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>()
 const best = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('best')
 const newArts = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('new')
-const following = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>(
-  'following'
-)
+const following = allArts
+  .get<AllArtWorksResponse, AllArtWorksProps | void>('following')
+  .protect()
 
 const specificProtected = arts.get<ArtWork, number>()
-const specific = arts.get<ArtWorkGeneral, number>({ withToken: false })
+const specific = arts.get<ArtWorkGeneral, number>()
 const likePost = arts.put<ArtWork, number>((id) => `${id}/like`)
 const dislikePost = arts.put<ArtWork, number>((id) => `${id}/remove-like`)
 const savePost = arts.put<ArtWork, number>((id) => `${id}/save`)
