@@ -1,9 +1,10 @@
-import { useStore } from 'effector-react'
+import { useStore, useStoreMap } from 'effector-react'
 import React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import { FormModel } from '../lib/models/form/model.form'
 import { PasswordsFormModel } from '../lib/models/passwordsForm/model'
-import { ErrorNote, SecureField, SuccessNote } from './form'
+import { SecureField } from './form'
+import ValidationNote, { ValidationNoteIconColors } from './form/ValidationNote'
 import { InputStyles } from './input/types'
 
 type PasswordInputsProps<M extends PasswordsFormModel> = {
@@ -12,10 +13,7 @@ type PasswordInputsProps<M extends PasswordsFormModel> = {
   model: FormModel<M>
   validLabel?: string
   invalidLabel?: string
-  iconColors?: {
-    success?: string
-    error?: string
-  }
+  iconColors?: ValidationNoteIconColors
   style?: {
     formWrapper?: StyleProp<ViewStyle>
     input?: InputStyles
@@ -32,8 +30,11 @@ const PasswordInputs = <M extends Record<string, any> = {}>({
   style,
 }: PasswordInputsProps<PasswordsFormModel & M>) => {
   const isValid = useStore(model.validation.$state)
-  const passwords = useStore(model.$store)
-  const isPasswordEmpty = !passwords.password && !passwords.passwordConfirmation
+  const isPasswordsEmpty = useStoreMap({
+    store: model.$store,
+    keys: [],
+    fn: (passwords) => !passwords.password && !passwords.passwordConfirmation,
+  })
 
   return (
     <View style={style?.formWrapper}>
@@ -51,11 +52,13 @@ const PasswordInputs = <M extends Record<string, any> = {}>({
         isValid={isValid}
         style={{ ...styles, ...style?.input }}
       />
-      {isValid === false && !isPasswordEmpty && (
-        <ErrorNote label={invalidLabel} iconColor={iconColors?.error} />
-      )}
-      {isValid === true && !isPasswordEmpty && (
-        <SuccessNote label={validLabel} iconColor={iconColors?.success} />
+      {!isPasswordsEmpty && (
+        <ValidationNote
+          isValid={isValid}
+          validLabel={validLabel}
+          invalidLabel={invalidLabel}
+          iconColors={iconColors}
+        />
       )}
     </View>
   )

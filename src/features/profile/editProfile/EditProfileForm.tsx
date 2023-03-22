@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
 import {
@@ -13,7 +13,6 @@ import DateField from '../../../ui/form/DateField'
 import Field from '../../../ui/form/Field'
 import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
 import ChildDocumentUploadingBlock from '../../createPost/ChildDocumentUploadingBlock'
-import PhoneEnter from '../../phoneEnter/PhoneEnter'
 import SaveChangesPopUp from '../../popUp/profilePopUps/PopUp.SaveChanges'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
@@ -21,7 +20,7 @@ import EditAvatarBlock from './EditAvatarBlock'
 import {
   editProfileCountryModel,
   editProfileFormModel,
-  editProfilePhoneModel,
+  setEditProfileFormData,
 } from './model'
 
 const EditProfileForm = () => {
@@ -32,6 +31,10 @@ const EditProfileForm = () => {
     field: inputThemedStyles,
     common: themedStyles,
   })
+
+  useEffect(() => {
+    setEditProfileFormData()
+  }, [])
 
   const onSaveChanges = () => {
     SaveChangesPopUp.showSync()
@@ -74,14 +77,6 @@ const EditProfileForm = () => {
             />
           )
         })}
-        <PhoneEnter
-          model={editProfilePhoneModel}
-          label={t.phoneNumber}
-          style={{
-            wrapper: styles.common.formItem,
-            input: { label: styles.common.fieldLabel },
-          }}
-        />
         <CountriesDropdownSelect model={editProfileCountryModel} />
         <ChildDocumentUploadingBlock
           style={styles.common.uploadDocumentsBlock}

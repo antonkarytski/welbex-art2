@@ -2,53 +2,51 @@ import moment from 'moment'
 import { MyProfile } from '../../../api/parts/users/types'
 import { ProfileEditProps } from '../../../api/parts/users/types.parts'
 import { USER_DOB_FORMAT } from '../../../constants'
+import { mapObject } from '../../../lib/helpers/array'
 import { dateObjectToString } from '../../../lib/helpers/date'
-import { renameObjectKeys } from '../../../lib/helpers/objects'
-import { EditProfileForm, EditUserForm } from './types'
+import { checkObjectsChanges } from '../../../lib/helpers/objects'
+import { EditProfileForm, EditUserForm, GetProfileChangesProps } from './types'
 
 const birthDateStringToObject = (dateString: string) =>
   new Date(moment(dateString).valueOf())
 
-const BODY_KEYS_TO_FORM_KEYS: Partial<
-  Record<keyof MyProfile, keyof EditUserForm>
-> = {
-  first_name: 'name',
-  last_name: 'lastName',
-  DOB: 'birthDate',
+const PROFILE_BODY_TO_FORM_FIELDS: {
+  [Key in keyof EditUserForm]: (props: MyProfile) => EditUserForm[Key]
+} = {
+  name: ({ first_name }) => first_name,
+  lastName: ({ last_name }) => last_name,
+  birthDate: ({ DOB }) => birthDateStringToObject(DOB),
 }
 
-let FORM_KEYS_TO_BODY_KEYS: Partial<
-  Record<keyof EditUserForm, keyof MyProfile>
-> = {}
-
-Object.entries(BODY_KEYS_TO_FORM_KEYS).forEach(([key, value]) => {
-  FORM_KEYS_TO_BODY_KEYS[value] = key as keyof MyProfile
-})
-
 export const convertProfileBodyToEditForm = (data: MyProfile) => {
-  const renamedFields = renameObjectKeys(data, BODY_KEYS_TO_FORM_KEYS)
+  return mapObject(PROFILE_BODY_TO_FORM_FIELDS, (fn) =>
+    fn(data)
+  ) as EditUserForm
+}
 
-  const result = {
-    ...renamedFields,
-    birthDate: birthDateStringToObject(data.DOB),
-  }
-
-  return result as EditUserForm
+const EDIT_FORM_TO_REQUEST_BODY: {
+  [Key in keyof ProfileEditProps]: (
+    props: EditProfileForm
+  ) => ProfileEditProps[Key]
+} = {
+  first_name: ({ user }) => user.name,
+  last_name: ({ user }) => user.lastName,
+  DOB: ({ user }) => dateObjectToString(user.birthDate, USER_DOB_FORMAT),
+  country: ({ country }) => country?.alpha2Code,
 }
 
 export const convertEditFormToRequestBody = (
   data: EditProfileForm
 ): ProfileEditProps => {
-  const { user } = data
+  return mapObject(EDIT_FORM_TO_REQUEST_BODY, (fn) =>
+    fn?.(data)
+  ) as ProfileEditProps
+}
 
-  const renamedUserFields = renameObjectKeys(user, FORM_KEYS_TO_BODY_KEYS)
-  const result = {
-    ...renamedUserFields,
-    DOB: dateObjectToString(user.birthDate, USER_DOB_FORMAT),
-    phone_number: data.phone,
-    country: data.country?.alpha2Code,
-    avatar: data.avatar,
-  }
-
-  return result as ProfileEditProps
+export const getProfileChanges = (props: GetProfileChangesProps) => {
+  const { profileData, editFormData } = props
+  if (!profileData) return null
+  const editProfileBody = convertEditFormToRequestBody(editFormData)
+  const changedFields = checkObjectsChanges(profileData, editProfileBody)
+  return changedFields
 }

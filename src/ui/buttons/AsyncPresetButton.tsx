@@ -23,11 +23,13 @@ const AsyncPresetButton = ({
   loaderColor,
   loaderStyle,
 }: AsyncPresetButtonProps) => {
-  return isLoading ? (
-    <Button preset={preset} style={style}>
-      <Loader color={loaderColor} size={21} style={loaderStyle} />
-    </Button>
-  ) : (
+  if (isLoading)
+    return (
+      <Button preset={preset} style={style}>
+        <Loader color={loaderColor} size={21} style={loaderStyle} />
+      </Button>
+    )
+  return (
     <Button label={label} onPress={onPress} preset={preset} style={style} />
   )
 }
