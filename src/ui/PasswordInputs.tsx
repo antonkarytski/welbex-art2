@@ -32,6 +32,8 @@ const PasswordInputs = <M extends Record<string, any> = {}>({
   style,
 }: PasswordInputsProps<PasswordsFormModel & M>) => {
   const isValid = useStore(model.validation.$state)
+  const passwords = useStore(model.$store)
+  const isPasswordEmpty = !passwords.password && !passwords.passwordConfirmation
 
   return (
     <View style={style?.formWrapper}>
@@ -49,10 +51,10 @@ const PasswordInputs = <M extends Record<string, any> = {}>({
         isValid={isValid}
         style={{ ...styles, ...style?.input }}
       />
-      {isValid === false && (
+      {isValid === false && !isPasswordEmpty && (
         <ErrorNote label={invalidLabel} iconColor={iconColors?.error} />
       )}
-      {isValid === true && (
+      {isValid === true && !isPasswordEmpty && (
         <SuccessNote label={validLabel} iconColor={iconColors?.success} />
       )}
     </View>

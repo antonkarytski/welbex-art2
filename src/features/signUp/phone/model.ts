@@ -1,21 +1,14 @@
 import { sample } from 'effector'
-import { createSearchableListModel } from '../../../lib/models/model.search'
-import { createPhoneInputModel } from '../../../lib/models/phoneNumber/model.phoneNumber'
-import { countyNameExtractor } from '../../countries'
-import { createCountryModel } from '../../countries/model.countriesDropdown'
+import { createPhoneEnterModel } from '../../phoneEnter/model'
 import { signUpCountryModel } from '../country/model'
 
-export const phoneInputModel = createPhoneInputModel()
-export const phoneCountryModel = createCountryModel()
-export const searchCountryModel = createSearchableListModel({
-  filterExtractor: countyNameExtractor,
-})
+export const signUpPhoneModel = createPhoneEnterModel()
 
 sample({
   clock: signUpCountryModel.$state,
-  source: phoneInputModel.purePhoneModel.$state,
+  source: signUpPhoneModel.$phoneNumber,
   fn: (phone, country) => ({ phone, country }),
 }).watch(({ phone, country }) => {
   if (phone) return
-  phoneCountryModel.set(country)
+  signUpPhoneModel.setCountry(country)
 })

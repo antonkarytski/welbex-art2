@@ -34,7 +34,7 @@ const CategoryDescription = ({ item }: CategoryDescriptionProps) => {
 
   return (
     <View style={styles.common.container}>
-      <H3 style={styles.common.header} label={text.description} />
+      {/* <H3 style={styles.common.header} label={text.description} />
       <TruncatedText
         text={item.description}
         showMoreLabel={text.showMore}
@@ -44,7 +44,7 @@ const CategoryDescription = ({ item }: CategoryDescriptionProps) => {
           ...styles.text,
           button: styles.textButton,
         }}
-      />
+      /> */}
       <PresetButton
         label={text.join}
         onPress={onJoinCategory}
