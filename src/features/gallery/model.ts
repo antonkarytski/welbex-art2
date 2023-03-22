@@ -1,6 +1,7 @@
 import { api } from '../../api'
-import { ARTS_PAGE_SIZE, createPaginationListModel } from '../../api/pagination'
+import { ARTS_PAGE_SIZE } from '../../api/constants'
 import { ArtWork } from '../../api/parts/arts/types'
+import { createPaginationListModel } from '../../lib/models/pagination'
 import { GalleryType } from './types'
 
 const artWorkIdExtractor = (item: Partial<ArtWork>) => item.id

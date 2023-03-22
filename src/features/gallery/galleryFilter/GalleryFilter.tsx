@@ -21,9 +21,8 @@ import { useThemedStyleList } from '../../themed/hooks'
 import {
   ageRangeModel,
   categoryModel,
-  countryModel,
-  countrySearchModel,
   drawingNameModel,
+  galleyFilterCountriesModel,
   resetGalleryFilter,
 } from './model.galleryFilter'
 import { countOfFilteredArtsModel } from './request'
@@ -50,10 +49,7 @@ const GalleryFilter = () => {
         style={commonStyles.fieldsWrapper}
       >
         <CategoriesSelect model={categoryModel} />
-        <CountriesDropdownSelect
-          model={countryModel}
-          searchModel={countrySearchModel}
-        />
+        <CountriesDropdownSelect model={galleyFilterCountriesModel} />
         <Input
           label={t.drawingName}
           value={drawingName}

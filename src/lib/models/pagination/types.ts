@@ -1,5 +1,16 @@
 import { Effect, Event, Store } from 'effector'
-import { PaginatedListProps, PaginatedListResponse } from '../types'
+
+type PaginatedListProps = {
+  page?: number
+  size?: number
+}
+
+type PaginatedListResponse<T> = {
+  items: T[]
+  total: number
+  page: number
+  size: number
+}
 
 export type SetNextPageProps = {
   total: number

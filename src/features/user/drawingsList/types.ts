@@ -1,8 +1,8 @@
 import { Effect, Event, Store } from 'effector'
 import { SceneRendererProps } from 'react-native-tab-view'
 import { Layout } from 'react-native-tab-view/lib/typescript/src/types'
-import { PaginationListModelResponse } from '../../../api/pagination/types'
 import { ArtPreview, ArtsListProps } from '../../../api/parts/arts/types'
+import { PaginationListModelResponse } from '../../../lib/models/pagination/types'
 import { UserDrawingListType } from '../types'
 
 export type UserDrawingsListHeight = {

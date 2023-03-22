@@ -9,13 +9,15 @@ import {
 } from 'react-native'
 import LoaderIcon from '../icons/Icon.Loader'
 
+export type LoaderStyles = {
+  container?: StyleProp<ViewStyle>
+  icon?: StyleProp<ViewStyle>
+}
+
 type LoaderProps = {
   size?: number
   color?: string
-  style?: {
-    container?: StyleProp<ViewStyle>
-    icon?: StyleProp<ViewStyle>
-  }
+  style?: LoaderStyles
 }
 
 const Loader = ({ size = 20, color, style }: LoaderProps) => {

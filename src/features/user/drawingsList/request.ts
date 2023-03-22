@@ -1,8 +1,6 @@
 import { api } from '../../../api'
-import {
-  ARTS_PAGE_SIZE,
-  createPaginationListModel,
-} from '../../../api/pagination'
+import { ARTS_PAGE_SIZE } from '../../../api/constants'
+import { createPaginationListModel } from '../../../lib/models/pagination'
 import { UserDrawingListType } from '../types'
 import { UserArtsListsRequestModel } from './types'
 

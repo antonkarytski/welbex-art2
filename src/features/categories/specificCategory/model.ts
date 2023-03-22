@@ -1,10 +1,8 @@
 import { createEvent, restore } from 'effector'
 import { api } from '../../../api'
+import { ARTS_PAGE_SIZE } from '../../../api/constants'
 import { createRequestModel } from '../../../api/model.request'
-import {
-  ARTS_PAGE_SIZE,
-  createPaginationListModel,
-} from '../../../api/pagination'
+import { createPaginationListModel } from '../../../lib/models/pagination'
 
 export const categoryDetailsModel = createRequestModel(api.categories.specific)
 

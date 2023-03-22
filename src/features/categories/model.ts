@@ -1,5 +1,5 @@
 import { api } from '../../api'
-import { createPaginationListModel } from '../../api/pagination'
+import { createPaginationListModel } from '../../lib/models/pagination'
 
 const CATEGORIES_PAGE_SIZE = 5
 

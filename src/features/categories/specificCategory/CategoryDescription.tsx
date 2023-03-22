@@ -29,7 +29,7 @@ const CategoryDescription = ({ item }: CategoryDescriptionProps) => {
   })
 
   const onJoinCategory = () => {
-    navigate(links.createPostUploadImage, { category: item })
+    navigate(links.createPostTab)
   }
 
   return (
