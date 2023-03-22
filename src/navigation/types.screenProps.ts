@@ -39,6 +39,9 @@ export type ScreensProps = ScreensPropsProto<{
     refresh_token: string
     absent_fields: (keyof ProfileEditProps)[]
   }
+  [links.createNewPassword]: {
+    token: string
+  }
 }>
 
 export type ScreenComponentProps<L extends links> = NativeStackScreenProps<
