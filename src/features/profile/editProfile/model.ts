@@ -1,4 +1,4 @@
-import { attach, combine, createEffect } from 'effector'
+import { Store, attach, combine, createEffect } from 'effector'
 import { ImagePickerAsset } from 'expo-image-picker'
 import * as yup from 'yup'
 import { createStateModel } from 'altek-toolkit'
@@ -9,6 +9,7 @@ import { createSearchableCountriesListModel } from '../../countries/model.countr
 // import { createPhoneEnterModel } from '../../phoneEnter/model'
 import { $myProfile } from '../model'
 import { convertProfileBodyToEditForm } from './helpers'
+import { EditProfileForm } from './types'
 
 export const editProfileCountryModel = createSearchableCountriesListModel()
 // export const editProfilePhoneModel = createPhoneEnterModel()
@@ -52,7 +53,7 @@ export const setAvatar = (assets: ImagePickerAsset[] | null) => {
   avatarModel.set(avatar)
 }
 
-export const $editFormData = combine({
+export const $editFormData: Store<EditProfileForm> = combine({
   user: editProfileFormModel.$store,
   country: editProfileCountryModel.countryModel.$state,
 })

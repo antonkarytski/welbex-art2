@@ -1,4 +1,4 @@
-import { useStore } from 'effector-react'
+import { useStoreMap } from 'effector-react'
 import React from 'react'
 import { ImageStyle, ScrollView, StyleSheet } from 'react-native'
 import { IdentityDocumentStatus } from '../../api/parts/users/types.api'
@@ -28,7 +28,14 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
     gradient: themedPrimaryGradient,
     field: inputThemedStyles,
   })
-  const myProfile = useStore($myProfile)
+
+  const hideChildDocumentIdentity = useStoreMap({
+    store: $myProfile,
+    keys: [],
+    fn: (myProfile) =>
+      myProfile?.identity_determined_status_id ===
+      IdentityDocumentStatus.DETERMINED,
+  })
 
   useCreatePostFormInitialValues(props)
 
@@ -59,8 +66,7 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
         postfix={` ${text.yearsOldAbbreviated}`}
         styles={styles.field}
       />
-      {myProfile?.identity_determined_status_id !==
-        IdentityDocumentStatus.DETERMINED && (
+      {hideChildDocumentIdentity && (
         <ChildDocumentUploadingBlock style={styles.common.cameraBlock} />
       )}
       <CreatePostFromSubmitButton style={styles.common.button} />

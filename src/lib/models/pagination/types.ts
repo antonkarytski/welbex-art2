@@ -39,6 +39,7 @@ export type PaginationListModelResponse<R, P> = {
   $nextPage: Store<number | null>
   setNextPage: Event<SetNextPageProps | null>
   get: Request<R, P>
+  getSync: (props: P) => void
   getNext: Effect<P, PaginatedListResponse<R> | null, Error>
   $isLoading: Store<boolean>
   $isNextLoading: Store<boolean>

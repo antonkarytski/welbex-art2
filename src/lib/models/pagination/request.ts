@@ -1,4 +1,5 @@
 import { attach, createEffect, createEvent, restore } from 'effector'
+import { noop } from '../../helpers'
 import { createNextPageModel, getNextPage } from './model.page'
 import {
   GetNextProps,
@@ -77,6 +78,10 @@ export const createPaginationListModel = <R, P>({
     setItems(result?.items || [])
   })
 
+  const getSync = (props: P) => {
+    get(props).catch(noop)
+  }
+
   const $isLoading = get.pending
   const $isNextLoading = getNext.pending
   const $isRefreshing = refresh.pending
@@ -90,6 +95,7 @@ export const createPaginationListModel = <R, P>({
     $nextPage,
     setNextPage,
     get,
+    getSync,
     getNext,
     $items,
     $isLoading,

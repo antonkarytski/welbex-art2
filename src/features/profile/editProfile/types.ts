@@ -1,8 +1,17 @@
 import { MyProfile } from '../../../api/parts/users/types'
-import { $editFormData, editProfileFormSchema } from './model'
+import { Country } from '../../countries'
 
-export type EditProfileForm = typeof $editFormData.defaultState
-export type EditUserForm = typeof editProfileFormSchema.__outputType
+export type EditUserForm = {
+  name: string
+  lastName: string
+  birthDate: Date
+}
+
+export type EditProfileForm = {
+  user: EditUserForm
+  country: Country | null
+}
+
 export type GetProfileChangesProps = {
   profileData: MyProfile | null
   editFormData: EditProfileForm
