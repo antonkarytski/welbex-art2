@@ -1,6 +1,7 @@
 import { artsApi } from './parts/arts'
 import { authApi } from './parts/auth'
 import { categoriesApi } from './parts/categories'
+import { resetPasswordApi } from './parts/resetPassword'
 import { usersApi } from './parts/users'
 
 export const api = {
@@ -8,4 +9,5 @@ export const api = {
   users: usersApi,
   categories: categoriesApi,
   arts: artsApi,
+  resetPassword: resetPasswordApi,
 }

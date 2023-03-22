@@ -1,6 +1,7 @@
 import { attach } from 'effector'
 import { api } from '../../api'
 import { apiManager } from '../../api/apiManager'
+import { tokenResponseToTokens } from '../auth/logIn/helpers.token'
 import { setMyProfile } from '../profile/model'
 import { signUpUserResponseToNewUser } from '../user/helpers'
 import { convertSignUpFormToSignUpBody } from './helpers'
@@ -17,10 +18,7 @@ export const signUp = attach({
 })
 
 signUp.done.watch(({ result }) => {
-  apiManager.token.set({
-    access: result.tokens.access_token,
-    refresh: result.tokens.refresh_token,
-  })
+  apiManager.token.set(tokenResponseToTokens(result.tokens))
   const myNewProfile = signUpUserResponseToNewUser(result.user)
   setMyProfile(myNewProfile)
 })
