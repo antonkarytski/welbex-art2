@@ -3,6 +3,7 @@ import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
 import fs from 'react-native-fs'
+//import Share from 'react-native-share'
 import { MyProfile } from '../../api/parts/users/types'
 import { noop } from '../../lib/helpers'
 import { useRequest } from '../../lib/models/apiBuilder/hooks'
@@ -76,12 +77,22 @@ const ArtWorkDetails = React.memo(({ drawingId }: ArtWorkDetailsProps) => {
         label={text.download}
         onPress={() => {
           if (!drawing.data) return
-          fs.downloadFile({
-            fromUrl: drawing.data.image_thumbnail,
-            toFile: `${fs.DocumentDirectoryPath}/ddd.jpg`,
-          })
-            .promise.then((r) => {})
-            .catch((e) => {})
+          // Share.open({
+          //   url: drawing.data.image_thumbnail,
+          //   saveToFiles: true,
+          // }).then((e) => {
+          //   console.log(e)
+          // })
+          // fs.downloadFile({
+          //   fromUrl: drawing.data.image_thumbnail,
+          //   toFile: `${fs.DownloadDirectoryPath}/ddd.jpg`,
+          // })
+          //   .promise.then((r) => {
+          //     console.log(fs)
+          //   })
+          //   .catch((e) => {
+          //     console.log(e)
+          //   })
         }}
       />
     </ScrollView>
