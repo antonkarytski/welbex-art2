@@ -1,4 +1,4 @@
-import { attach } from 'effector'
+import { attach, createEvent, restore } from 'effector'
 import * as yup from 'yup'
 import { ObjectSchema } from 'yup'
 import { api } from '../../../api'
@@ -15,7 +15,11 @@ export type LogInForm = {
   password: string
 }
 
+const setIsLoginAccessError = createEvent<boolean>()
+export const $isLoginAccessError = restore(setIsLoginAccessError, false)
+
 export const handleLogin = ({ result }: { result: LoginResponse }) => {
+  setIsLoginAccessError(false)
   apiManager.token.set(tokenResponseToTokens(result))
   meRequest().catch(noop)
 }
@@ -37,3 +41,9 @@ export const logIn = attach({
 })
 
 logIn.done.watch(handleLogin)
+
+api.auth.login.fail.watch(({ error }) => {
+  if (error.status === 401) {
+    setIsLoginAccessError(true)
+  }
+})

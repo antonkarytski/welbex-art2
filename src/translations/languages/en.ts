@@ -41,6 +41,7 @@ export const EN = {
   continueWithGoogle: 'Continue with Google',
   continueWithApple: 'Continue with Apple',
   logIn: 'Log in',
+  incorrectLoginCredentials: 'Incorrect username or password',
   logOut: 'Log out',
   logOutConfirmationQ: 'Do you really want to log out of your account?',
   chooseCountry: 'Choose a country',

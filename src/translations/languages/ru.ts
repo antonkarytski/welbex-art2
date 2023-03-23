@@ -42,6 +42,7 @@ export const RU: LangStructure = {
   continueWithGoogle: 'Войти с Google',
   continueWithApple: 'Войти с Apple',
   logIn: 'Войти',
+  incorrectLoginCredentials: 'Неверный логин или пароль',
   logOut: 'Выйти',
   logOutConfirmationQ: 'Вы действительно хотите выйти из аккаунта?',
   chooseCountry: 'Выберите страну',
