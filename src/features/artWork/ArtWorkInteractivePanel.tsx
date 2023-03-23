@@ -1,21 +1,16 @@
-import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { ArtWork, ArtWorkGeneral } from '../../api/parts/arts/types'
-import { useNavigate } from '../../navigation'
-import { links } from '../../navigation/links'
 import Span from '../../ui/Span'
 import FavouriteButton from '../../ui/buttons/FavouriteButton'
 import LikeButton from '../../ui/buttons/LikeButton'
 import ShareButton from '../../ui/buttons/ShareButton'
-import { $isAuth } from '../auth/model'
 import { useColors } from '../themed'
-import { toggleLike, toggleSave } from './request'
 
 type ArtWorkInteractivePanelProps = {
   item: ArtWorkGeneral
-  onLikeChange?: (isLiked: boolean, likes: number) => void
-  onSaveChange?: (isSaved: boolean) => void
+  onLikeArt: () => void
+  onSaveArt: () => void
 }
 
 function isAuthorizedArtWork(item: ArtWorkGeneral | ArtWork): item is ArtWork {
@@ -24,23 +19,10 @@ function isAuthorizedArtWork(item: ArtWorkGeneral | ArtWork): item is ArtWork {
 
 const ArtWorkInteractivePanel = ({
   item,
-  onLikeChange,
-  onSaveChange,
+  onLikeArt,
+  onSaveArt,
 }: ArtWorkInteractivePanelProps) => {
   const colors = useColors()
-  const navigate = useNavigate()
-  const isAuth = useStore($isAuth)
-
-  const onLikeDrawing = () => {
-    if (!isAuth) return navigate(links.login)
-    const likesCount = item.is_liked ? item.likes - 1 : item.likes + 1
-    toggleLike(item).then(() => onLikeChange?.(!item.is_liked, likesCount))
-  }
-
-  const onSaveDrawing = () => {
-    if (!isAuth) return navigate(links.login)
-    toggleSave(item).then(() => onSaveChange?.(!item.is_saved))
-  }
 
   return (
     <View>
@@ -48,7 +30,7 @@ const ArtWorkInteractivePanel = ({
         <LikeButton
           likesCount={item.likes}
           style={[styles.button, styles.likeButton]}
-          onPress={onLikeDrawing}
+          onPress={onLikeArt}
           color={colors.icon}
           active={item.is_liked}
           activeColor={colors.likesIcon}
@@ -62,7 +44,7 @@ const ArtWorkInteractivePanel = ({
             color={colors.icon}
             style={[styles.button, styles.favouriteButton]}
             active={item.is_saved}
-            onPress={onSaveDrawing}
+            onPress={onSaveArt}
           />
         </View>
       </View>

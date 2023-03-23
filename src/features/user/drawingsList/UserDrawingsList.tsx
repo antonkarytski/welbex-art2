@@ -3,11 +3,13 @@ import React, { forwardRef, useCallback } from 'react'
 import { FlatList, LayoutChangeEvent, LogBox, StyleSheet } from 'react-native'
 import { SCREEN_PADDING_HORIZONTAL } from '../../../styles/constants'
 import DrawingsListSkeleton from '../../../ui/loaders/Skeleton.DrawingsList'
-import DrawingsList, { ArtWorksFlatListProps } from '../../artWork/ArtWorksList'
+import DrawingsList, {
+  ArtWorksFlatListProps,
+} from '../../artWork/artWorksList/ArtWorksList'
 import {
   DRAWINGS_COLUMNS_COUNT,
   DRAWING_ITEM_HEIGHT,
-} from '../../artWork/constants'
+} from '../../artWork/artWorksList/constants'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyle } from '../../themed/hooks'
 import { UserDrawingListType, UserItem } from '../types'

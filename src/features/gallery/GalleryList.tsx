@@ -2,7 +2,6 @@ import { useStore } from 'effector-react'
 import React, { useCallback } from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import { ArtWork } from '../../api/parts/arts/types'
-import { noop } from '../../lib/helpers'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
@@ -10,7 +9,7 @@ import Span from '../../ui/Span'
 import Loader from '../../ui/loaders/Loader'
 import GallerySkeleton from '../../ui/loaders/Skeleton.Gallery'
 import { drawingKeyExtractor } from '../artWork/helpers'
-import { toggleLike } from '../artWork/request'
+import { useArtWorkActions } from '../artWork/hooks'
 import { $isAuth } from '../auth/model'
 import { useThemedStyleList } from '../themed/hooks'
 import { localeAgeTextShort } from '../user/UserDescription'
@@ -41,16 +40,7 @@ const GalleryList = ({ type }: GalleryListProps) => {
     item: galleryItemThemedStyles,
   })
 
-  const onLikeDrawing = useCallback(
-    (item: ArtWork) => {
-      if (!isAuth) return navigate(links.login)
-      const likesCount = item.is_liked ? item.likes - 1 : item.likes + 1
-      toggleLike(item).then(() =>
-        updateItem({ ...item, is_liked: !item.is_liked, likes: likesCount })
-      )
-    },
-    [isAuth, navigate, updateItem]
-  )
+  const { onToggleLike } = useArtWorkActions(null, updateItem)
 
   const renderItem = useCallback(
     ({ item }: { item: ArtWork }) => {
@@ -62,11 +52,11 @@ const GalleryList = ({ type }: GalleryListProps) => {
           ageTextGenerator={localeAgeTextShort(text)}
           style={styles.item}
           item={item}
-          onLikeDrawing={onLikeDrawing}
+          onToggleLike={onToggleLike}
         />
       )
     },
-    [styles, navigate, text, onLikeDrawing]
+    [styles, navigate, text, onToggleLike]
   )
 
   if (isLoading) return <GallerySkeleton />

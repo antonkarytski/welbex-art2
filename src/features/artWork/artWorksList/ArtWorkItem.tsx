@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native'
-import { ArtWorkPreviewResponse } from '../../api/parts/categories/types'
+import { ArtWorkPreviewResponse } from '../../../api/parts/categories/types'
 
 type ArtWorkItemProps = {
   size: number

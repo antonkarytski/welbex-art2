@@ -8,7 +8,9 @@ import { useText } from '../../../translations/hook'
 import Span from '../../../ui/Span'
 import Loader from '../../../ui/loaders/Loader'
 import DrawingsListSkeleton from '../../../ui/loaders/Skeleton.DrawingsList'
-import ArtWorksList, { ArtWorksFlatListProps } from '../../artWork/ArtWorksList'
+import ArtWorksList, {
+  ArtWorksFlatListProps,
+} from '../../artWork/artWorksList/ArtWorksList'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyle } from '../../themed/hooks'
 import CategoryGalleryHeader from './CategoryGalleryHeader'

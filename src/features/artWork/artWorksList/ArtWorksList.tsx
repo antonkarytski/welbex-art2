@@ -14,20 +14,20 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import { ArtWorkPreviewResponse } from '../../api/parts/categories/types'
-import { useNavigate } from '../../navigation'
-import { links } from '../../navigation/links'
-import { ScreensProps } from '../../navigation/types.screenProps'
+import { ArtWorkPreviewResponse } from '../../../api/parts/categories/types'
+import { useNavigate } from '../../../navigation'
+import { links } from '../../../navigation/links'
+import { ScreensProps } from '../../../navigation/types.screenProps'
 import {
   SCREEN_CONTENT_WIDTH,
   SCREEN_PADDING_HORIZONTAL,
-} from '../../styles/constants'
-import { themedShadow5Style } from '../../styles/shadows'
-import { createThemedStyle } from '../themed'
-import { useThemedStyle } from '../themed/hooks'
+} from '../../../styles/constants'
+import { themedShadow5Style } from '../../../styles/shadows'
+import { createThemedStyle } from '../../themed'
+import { useThemedStyle } from '../../themed/hooks'
+import { drawingKeyExtractor } from '../helpers'
 import ArtWorkItem from './ArtWorkItem'
 import { DRAWINGS_COLUMNS_COUNT, DRAWING_ITEM_MARGIN } from './constants'
-import { drawingKeyExtractor } from './helpers'
 
 export type ArtWorksFlatListProps = {
   contentStyle?: FlatListProps<any>['contentContainerStyle']

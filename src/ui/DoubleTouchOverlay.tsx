@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useRef } from 'react'
+import React, { PropsWithChildren, useEffect, useRef } from 'react'
 import {
   GestureResponderEvent,
   PanResponder,
@@ -25,6 +25,11 @@ const DoubleTouchOverlay = ({
   const prevTouchTimeStamp = useRef(0)
   const prevTouchX = useRef(0)
   const prevTouchY = useRef(0)
+  const onDoubleTouch = useRef(onPress)
+
+  useEffect(() => {
+    onDoubleTouch.current = onPress
+  }, [onPress])
 
   const checkDoubleTouch = (
     currentTimeStamp: number,
@@ -49,7 +54,7 @@ const DoubleTouchOverlay = ({
     const touchTimeStamp = Date.now()
     const touchCoordinates = { x: gestureState.x0, y: gestureState.y0 }
     const isDoubleTouch = checkDoubleTouch(touchTimeStamp, touchCoordinates)
-    if (isDoubleTouch) onPress?.()
+    if (isDoubleTouch) onDoubleTouch.current?.()
     prevTouchTimeStamp.current = touchTimeStamp
     prevTouchX.current = touchCoordinates.x
     prevTouchY.current = touchCoordinates.y
