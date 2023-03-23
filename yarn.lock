@@ -10749,6 +10749,11 @@ react-native-scrollable-tab-view-collapsible-header@^2.0.1:
   resolved "https://registry.yarnpkg.com/react-native-scrollable-tab-view-collapsible-header/-/react-native-scrollable-tab-view-collapsible-header-2.0.1.tgz#9354a0c4dd49de9d03adee3f9602b7fe29cce961"
   integrity sha512-6oDv1iY67TFL1eyu4V4EEw4jIe2j6j9iAoej/JanjVaS0Rb1am6sSlNMOnN3drFpxOWsdbpgl4QY/1tvm1e8Jw==
 
+react-native-share@^8.2.1:
+  version "8.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-8.2.1.tgz#f9933852de3ddd0f474ab63448e06c22cfecc9d4"
+  integrity sha512-dUIgrcdg4nOHrbKN1w+hs17RZ+51NeXd62CEezPAd4tEyj2Ki1qeAxWnJe8ZPRwvB5/6ml7YUR/2PJApxGHCAQ==
+
 react-native-snap-carousel@4.0.0-beta.6:
   version "4.0.0-beta.6"
   resolved "https://registry.yarnpkg.com/react-native-snap-carousel/-/react-native-snap-carousel-4.0.0-beta.6.tgz#cc73108f83cbcf227cd1c6367f17926e8451fd01"

@@ -3,7 +3,7 @@ import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
 import fs from 'react-native-fs'
-//import Share from 'react-native-share'
+import Share from 'react-native-share'
 import { MyProfile } from '../../api/parts/users/types'
 import { noop } from '../../lib/helpers'
 import { useRequest } from '../../lib/models/apiBuilder/hooks'
@@ -75,24 +75,26 @@ const ArtWorkDetails = React.memo(({ drawingId }: ArtWorkDetailsProps) => {
       <PresetButton
         style={styles.downloadButton}
         label={text.download}
-        onPress={() => {
+        onPress={async () => {
           if (!drawing.data) return
-          // Share.open({
-          //   url: drawing.data.image_thumbnail,
-          //   saveToFiles: true,
-          // }).then((e) => {
-          //   console.log(e)
-          // })
-          // fs.downloadFile({
-          //   fromUrl: drawing.data.image_thumbnail,
-          //   toFile: `${fs.DownloadDirectoryPath}/ddd.jpg`,
-          // })
-          //   .promise.then((r) => {
-          //     console.log(fs)
-          //   })
-          //   .catch((e) => {
-          //     console.log(e)
-          //   })
+          try {
+            await fs.downloadFile({
+              fromUrl: drawing.data.image_thumbnail,
+              toFile: `${fs.DocumentDirectoryPath}/ddd.jpg`,
+            }).promise
+            const base64 = await fs.readFile(
+              `${fs.DocumentDirectoryPath}/ddd.jpg`,
+              'base64'
+            )
+            const uri = `data:image/jpeg;base64,${base64}`
+            await Share.open({
+              urls: [uri],
+              type: 'image/jpeg',
+              saveToFiles: true,
+            })
+          } catch (e) {
+            console.log(e)
+          }
         }}
       />
     </ScrollView>
