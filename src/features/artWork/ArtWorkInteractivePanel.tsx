@@ -57,6 +57,10 @@ const ArtWorkInteractivePanel = ({
           <ShareButton
             color={colors.icon}
             style={[styles.button, styles.shareButton]}
+            item={{
+              url: item.image_thumbnail,
+              title: item.title,
+            }}
           />
           <FavouriteButton
             color={colors.icon}
