@@ -25,7 +25,7 @@ const following = allArts
   .protect()
 
 const specificProtected = arts.get<ArtWork, number>()
-const specific = arts.get<ArtWorkGeneral, number>()
+const specific = arts.get<ArtWorkGeneral, number>().unprotect()
 const likePost = arts.put<ArtWork, number>((id) => `${id}/like`)
 const dislikePost = arts.put<ArtWork, number>((id) => `${id}/remove-like`)
 const savePost = arts.put<ArtWork, number>((id) => `${id}/save`)

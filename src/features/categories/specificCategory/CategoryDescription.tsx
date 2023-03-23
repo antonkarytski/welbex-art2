@@ -29,12 +29,12 @@ const CategoryDescription = ({ item }: CategoryDescriptionProps) => {
   })
 
   const onJoinCategory = () => {
-    navigate(links.createPostUploadImage, { category: item })
+    navigate(links.createPostTab) // TODO:  переход createPostUploadImage с текущей категорией в пропсах
   }
 
   return (
     <View style={styles.common.container}>
-      <H3 style={styles.common.header} label={text.description} />
+      {/* <H3 style={styles.common.header} label={text.description} />
       <TruncatedText
         text={item.description}
         showMoreLabel={text.showMore}
@@ -44,7 +44,7 @@ const CategoryDescription = ({ item }: CategoryDescriptionProps) => {
           ...styles.text,
           button: styles.textButton,
         }}
-      />
+      /> */}
       <PresetButton
         label={text.join}
         onPress={onJoinCategory}

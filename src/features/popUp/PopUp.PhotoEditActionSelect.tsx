@@ -19,6 +19,7 @@ type PopUpPhotoEditActionSelectProps = {
   hideRemoveButton?: boolean
   onPick?: (assets: ImagePickerAsset[]) => void
   backOnPick?: boolean
+  onRemoveButtonPress?: () => void
 }
 
 const model = PopUpFactory.createModel<PopUpPhotoEditActionSelectProps>()
@@ -26,7 +27,7 @@ const model = PopUpFactory.createModel<PopUpPhotoEditActionSelectProps>()
 const PopUpPhotoEditActionSelect = PopUpFactory.appendModel(
   (props: PopUpPhotoEditActionSelectProps) => {
     const popUp = usePopUpModel(model)
-    const { hideRemoveButton, ...cameraProps } = {
+    const { hideRemoveButton, onRemoveButtonPress, ...cameraProps } = {
       ...popUp.props,
       ...props,
     }
@@ -74,6 +75,7 @@ const PopUpPhotoEditActionSelect = PopUpFactory.appendModel(
               Icon={DeleteIcon}
               onPress={() => {
                 model.hideSync()
+                onRemoveButtonPress?.()
               }}
               iconColor={colors.errorText}
               style={{ ...styles.row, label: styles.common.deleteLabel }}

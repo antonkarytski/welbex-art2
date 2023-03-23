@@ -13,12 +13,14 @@ import { COUNTRIES_LIST, Country } from './'
 import CountryRow from './CountryRow'
 
 type CountriesDropdownSelectProps = {
-  model: StateModel<Country | null>
-  searchModel: SearchableListModel<Country>
+  model: {
+    countryModel: StateModel<Country | null>
+    searchableListModel: SearchableListModel<Country>
+  }
 }
 
 const CountriesDropdownSelect = React.memo(
-  ({ model, searchModel }: CountriesDropdownSelectProps) => {
+  ({ model }: CountriesDropdownSelectProps) => {
     const t = useText()
     const { styles } = useThemedStyleList({
       countryItem: countryRowThemedStyles,
@@ -43,8 +45,8 @@ const CountriesDropdownSelect = React.memo(
         label={t.country}
         data={COUNTRIES_LIST}
         idExtractor={({ alpha2Code }) => alpha2Code}
-        model={model}
-        searchModel={searchModel}
+        model={model.countryModel}
+        searchModel={model.searchableListModel}
         renderItem={renderCountryRow}
         labelExtractor={({ name }) => name}
         style={{

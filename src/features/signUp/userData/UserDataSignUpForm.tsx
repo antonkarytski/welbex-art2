@@ -55,6 +55,7 @@ const UserDataSignUpForm = React.memo(
                   name={name}
                   style={styles.field}
                   validateOnBlur
+                  maximumDate={new Date()}
                 />
               )
             }

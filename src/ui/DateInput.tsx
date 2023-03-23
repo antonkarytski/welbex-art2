@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react'
-import { StyleProp, TextInput, ViewStyle } from 'react-native'
+import { StyleProp, StyleSheet, TextInput, ViewStyle } from 'react-native'
 import DatePicker, { DatePickerProps } from 'react-native-date-picker'
+import { defaultColors } from '../features/themed/theme'
+import { FONT_MEDIUM } from '../styles/fonts'
+import Span from './Span'
 import Input from './input'
 import { InputStyles } from './input/types'
 
@@ -11,6 +14,8 @@ type DateInputProps = {
   pickerStyle?: StyleProp<ViewStyle>
   isValid?: boolean | null
   onBlur?: () => void
+  label?: string
+  defaultDate?: Date
 } & Omit<DatePickerProps, 'style' | 'onBlur'>
 
 const DateInput = ({
@@ -21,6 +26,8 @@ const DateInput = ({
   pickerStyle,
   isValid,
   onBlur,
+  label,
+  defaultDate,
   ...props
 }: DateInputProps) => {
   const [open, setOpen] = useState(false)
@@ -36,11 +43,16 @@ const DateInput = ({
 
   return (
     <>
+      {label && <Span label={label} style={[styles.label, style?.label]} />}
       <Input
         onBlur={onBlur}
         isValid={isValid}
         placeholder={placeholder}
-        value={isDateSelected ? date.toLocaleDateString() : undefined}
+        value={
+          defaultDate?.toLocaleDateString() || isDateSelected
+            ? date.toLocaleDateString()
+            : undefined
+        }
         onPressIn={() => {
           ref.current?.focus()
           setOpen(true)
@@ -52,7 +64,7 @@ const DateInput = ({
         modal
         mode={props?.mode || 'date'}
         open={open}
-        date={date}
+        date={date ?? defaultDate}
         onConfirm={handleConfirmDate}
         onCancel={() => {
           setOpen(false)
@@ -64,5 +76,14 @@ const DateInput = ({
     </>
   )
 }
+
+const styles = StyleSheet.create({
+  label: {
+    marginBottom: 8,
+    color: defaultColors.inputTitle,
+    fontSize: 14,
+    fontFamily: FONT_MEDIUM,
+  },
+})
 
 export default DateInput

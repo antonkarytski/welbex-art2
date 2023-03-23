@@ -91,3 +91,10 @@ export function getMonthPeriodString(
 export const getAgeFromBirthday = (birthdate: string) => {
   return moment().diff(birthdate, 'years')
 }
+
+export const dateObjectToString = (
+  date: Date,
+  format: string = 'YYYY-MM-DD'
+) => {
+  return moment(date.valueOf()).format(format)
+}

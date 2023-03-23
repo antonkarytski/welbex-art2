@@ -8,28 +8,29 @@ export function useDrawingsList(
   type: UserDrawingListType,
   model: UserArtsListsRequestModel['model']
 ) {
+  const userId = item?.id
   const list = useStore(model[type].$items)
   const isLoading = useStore(model[type].$isLoading)
   const isNextLoading = useStore(model[type].$isNextLoading)
   const [isRefreshing, setIsRefreshing] = useState(false)
 
   const getFirst = useCallback(() => {
-    if (!item) return
-    model[type].get({ userId: item.id })
-  }, [item, type, model])
+    if (!userId) return
+    model[type].get({ userId })
+  }, [userId, type, model])
 
   const refresh = useCallback(() => {
-    if (!item) return
+    if (!userId) return
     setIsRefreshing(true)
-    model[type].get({ userId: item.id }).finally(() => {
+    model[type].get({ userId }).finally(() => {
       setIsRefreshing(false)
     })
-  }, [item, type, model])
+  }, [userId, type, model])
 
   const getNext = useCallback(() => {
-    if (!item) return
-    model[type].getNext({ userId: item.id })
-  }, [type, item, model])
+    if (!userId) return
+    model[type].getNext({ userId })
+  }, [type, userId, model])
 
   return {
     list,

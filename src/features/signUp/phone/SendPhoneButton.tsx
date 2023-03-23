@@ -6,7 +6,7 @@ import { links } from '../../../navigation/links'
 import { useText } from '../../../translations/hook'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import { PresetButtonStates } from '../../../ui/buttons/types'
-import { phoneInputModel } from './model'
+import { signUpPhoneModel } from './model'
 
 type SendPhoneButtonProps = {
   preset: PresetButtonStates
@@ -16,7 +16,7 @@ const SendPhoneButton = ({ preset }: SendPhoneButtonProps) => {
   const navigate = useNavigate()
   const t = useText()
 
-  const isPhoneValid = useStore(phoneInputModel.$isPhoneValid)
+  const isPhoneValid = useStore(signUpPhoneModel.$isValidPhoneNumber)
 
   const onContinue = () => {
     if (!isPhoneValid) {
