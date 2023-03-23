@@ -30,12 +30,10 @@ const likePost = arts.put<ArtWork, number>((id) => `${id}/like`)
 const dislikePost = arts.put<ArtWork, number>((id) => `${id}/remove-like`)
 const savePost = arts.put<ArtWork, number>((id) => `${id}/save`)
 const unsavePost = arts.put<ArtWork, number>((id) => `${id}/unsave`)
-const downloadThumbnailDrawing = arts.get<ArtWork, number>(
-  (id) => `${id}/download-thumbnail-image`
-)
-const downloadFullSizeDrawing = arts.get<ArtWork, number>(
+export const downloadFullSizeDrawing = arts.get<ArtWork, number>(
   (id) => `${id}/download-full-size-image`
 )
+
 const countOfFiltered = arts.get<
   CountOfFilteredArtsResponse,
   ArtWorksFilterProps
@@ -73,7 +71,6 @@ export const artsApi = {
   dislikePost,
   savePost,
   unsavePost,
-  downloadThumbnailDrawing,
   downloadFullSizeDrawing,
   create,
   userAllArts,
