@@ -1,5 +1,16 @@
 import { Effect, Event, Store } from 'effector'
-import { PaginatedListProps, PaginatedListResponse } from '../types'
+
+type PaginatedListProps = {
+  page?: number
+  size?: number
+}
+
+type PaginatedListResponse<T> = {
+  items: T[]
+  total: number
+  page: number
+  size: number
+}
 
 export type SetNextPageProps = {
   total: number
@@ -28,6 +39,7 @@ export type PaginationListModelResponse<R, P> = {
   $nextPage: Store<number | null>
   setNextPage: Event<SetNextPageProps | null>
   get: Request<R, P>
+  getSync: (props: P) => void
   getNext: Effect<P, PaginatedListResponse<R> | null, Error>
   $isLoading: Store<boolean>
   $isNextLoading: Store<boolean>

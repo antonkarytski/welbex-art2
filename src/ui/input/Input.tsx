@@ -86,7 +86,7 @@ const Input = forwardRef<TextInput, InputProps>(
                 ],
                 isInvalid && [inputStyles.input__invalid, styles?.invalid],
                 isValid && [inputStyles.input__valid, styles?.valid],
-                disabled && inputStyles.input__disabled,
+                disabled && [inputStyles.input__disabled, styles?.disabled],
               ]}
               placeholderTextColor={placeholderColor}
               value={fullValue}

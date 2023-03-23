@@ -17,6 +17,7 @@ export type InputStyles = {
   pseudoAfter?: ViewStyle
   invalid?: ViewStyle
   valid?: ViewStyle
+  disabled?: ViewStyle
 }
 
 export type InputProps = {

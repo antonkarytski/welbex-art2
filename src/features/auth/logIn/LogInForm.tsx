@@ -8,11 +8,10 @@ import { buttonPrimaryThemedPreset } from '../../../styles/buttons'
 import { inputThemedStyles } from '../../../styles/inputs'
 import { useText } from '../../../translations/hook'
 import H2 from '../../../ui/H2'
+import AsyncPresetButton from '../../../ui/buttons/AsyncPresetButton'
 import TextButton from '../../../ui/buttons/Button.Text'
-import Button from '../../../ui/buttons/PresetButton'
 import Field from '../../../ui/form/Field'
 import SecureField from '../../../ui/form/SecureField'
-import Loader from '../../../ui/loaders/Loader'
 import { useThemedStyleList } from '../../themed/hooks'
 import { logIn, logInFormModel } from './model'
 
@@ -50,13 +49,13 @@ const LogInForm = () => {
         onPress={onForgotPassword}
         style={{ button: featureStyles.forgotPasswordButton }}
       />
-      {isLoading ? (
-        <Button preset={styles.button}>
-          <Loader color={colors.whiteText} size={21} />
-        </Button>
-      ) : (
-        <Button label={t.logInButton} onPress={logIn} preset={styles.button} />
-      )}
+      <AsyncPresetButton
+        label={t.logInButton}
+        onPress={logIn}
+        isLoading={isLoading}
+        preset={styles.button}
+        loaderColor={colors.whiteText}
+      />
     </KeyboardAvoidingView>
   )
 }

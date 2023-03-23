@@ -123,6 +123,7 @@ export const EN = {
   selectFromGallery: 'Select from gallery',
   takePhoto: 'Take a photo',
   deleteCurrentPhoto: 'Delete current photo',
+  deleteAvatarQ: 'Delete profile photo?',
   saveChangesQ: 'Save the changes?',
   settings: 'Settings',
   faq: 'FAQ',

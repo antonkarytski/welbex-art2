@@ -8,12 +8,15 @@ import { FieldProps } from './_types'
 
 type DateFieldProps = {
   placeholder?: string
+  maximumDate?: Date
+  displayDefaultDate?: boolean
 }
 
 const DateField = <T extends Record<string, any>, N extends keyof T>({
   name,
   formModel,
   validateOnBlur,
+  displayDefaultDate,
   ...props
 }: FieldProps<T, N, Date> & DateFieldProps) => {
   const [value, setValue] = useSpecificTypeFormField<T, Date>(formModel, name)
@@ -23,8 +26,8 @@ const DateField = <T extends Record<string, any>, N extends keyof T>({
     <DateInput
       isValid={validation?.isValid}
       date={value}
+      defaultDate={displayDefaultDate ? value : undefined}
       onChange={setValue}
-      maximumDate={new Date()}
       onBlur={() => {
         if (!validateOnBlur) return
         if (!value) return formModel.validation.resetField(name)

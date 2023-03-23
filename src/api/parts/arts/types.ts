@@ -17,6 +17,11 @@ export type ArtWorkGeneral = {
   id: number
   title: string
   competition_id: number
+  competition: {
+    category: {
+      name: string
+    }
+  }
   image_thumbnail: string
   author: UserShort
   likes: number

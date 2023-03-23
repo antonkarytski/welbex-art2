@@ -31,6 +31,15 @@ const me = meEndpoint.get<MyProfileResponse>()
 const editMe = meEndpoint.patch<ProfileEditProps, ProfileEditProps>(
   'profile/edit'
 )
+const deleteAvatar = meEndpoint.delete('profile/delete-avatar')
+const uploadAvatar = meEndpoint.put<string, ImageFile>({
+  endpoint: 'profile/upload-avatar',
+  contentType: ContentType.FORM_DATA,
+  fn: (file) => ({
+    body: formDataFromList({ avatar: file }),
+  }),
+})
+
 const uploadChildDocument = meEndpoint
   .put<string, ImageFile>({
     endpoint: 'upload-child-identity-document',
@@ -50,4 +59,6 @@ export const usersApi = {
   follow,
   unfollow,
   uploadChildDocument,
+  deleteAvatar,
+  uploadAvatar,
 }
