@@ -1,6 +1,9 @@
-import { Effect, attach, createEffect, createEvent, restore } from 'effector'
+import { Effect, createEffect, createEvent, restore } from 'effector'
 
-export const createRequestModel = <P, R>(request: Effect<P, R>) => {
+export const createRequestModel = <P, R>(
+  request: Effect<P, R>,
+  staticProps?: Partial<P>
+) => {
   const setData = createEvent<R>()
   const update = createEffect<Partial<R>, R>()
   const $data = restore(setData, null).on(update.doneData, (state, payload) =>
@@ -12,7 +15,7 @@ export const createRequestModel = <P, R>(request: Effect<P, R>) => {
       : payload
   )
 
-  const get = attach({ effect: request })
+  const get = createEffect((props: P) => request({ ...staticProps, ...props }))
 
   get.done.watch(({ result }) => {
     setData(result)

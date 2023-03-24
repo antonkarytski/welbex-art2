@@ -16,6 +16,7 @@ const GalleryList = ({ type }: GalleryListProps) => {
     <GalleryListBase
       type={type}
       getListOnMount={true}
+      refreshEnabled
       ListEmptyComponent={
         // TODO: Component when design will ready
         <Span

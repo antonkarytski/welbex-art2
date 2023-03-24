@@ -78,7 +78,7 @@ const themedStyles = createThemedStyle((colors) =>
     },
     avatar: {
       borderColor: colors.primary1,
-      marginRight: 16,
+      marginRight: 12,
     },
     row: {
       flexDirection: 'row',
@@ -89,11 +89,11 @@ const themedStyles = createThemedStyle((colors) =>
 
 const followButtonStyles = StyleSheet.create({
   label: {
-    fontSize: 14,
+    fontSize: 12,
   },
   button: {
     paddingVertical: 8,
-    paddingHorizontal: 24,
+    paddingHorizontal: 12,
   },
   container: {
     marginLeft: 'auto',

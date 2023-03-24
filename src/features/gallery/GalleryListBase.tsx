@@ -20,6 +20,7 @@ type GalleryListProps = {
   filters?: ArtWorksFilterProps | null
   getListOnMount?: boolean
   ListEmptyComponent?: React.ReactElement
+  refreshEnabled?: boolean
 }
 
 const GalleryListBase = ({
@@ -27,6 +28,7 @@ const GalleryListBase = ({
   filters,
   getListOnMount = false,
   ListEmptyComponent,
+  refreshEnabled,
 }: GalleryListProps) => {
   const text = useText()
   const navigate = useNavigate()
@@ -34,15 +36,11 @@ const GalleryListBase = ({
     list,
     isLoading,
     isNextLoading,
-    getNext,
+    getNextSync,
     updateItem,
     refresh,
     isRefreshing,
   } = useGallery(type, getListOnMount)
-
-  const getNextSync = () => {
-    getNext(filters)
-  }
 
   const { styles } = useThemedStyleList({
     item: galleryItemThemedStyles,
@@ -74,9 +72,9 @@ const GalleryListBase = ({
       contentContainerStyle={componentStyles.contentContainer}
       renderItem={renderItem}
       keyExtractor={drawingKeyExtractor}
-      onEndReached={getNextSync}
-      onRefresh={refresh}
-      refreshing={isRefreshing}
+      onEndReached={() => getNextSync?.(filters)}
+      onRefresh={refreshEnabled ? refresh : undefined}
+      refreshing={refreshEnabled ? isRefreshing : undefined}
       showsVerticalScrollIndicator={false}
       ListEmptyComponent={ListEmptyComponent}
       ListFooterComponent={isNextLoading ? <Loader /> : null}

@@ -9,6 +9,7 @@ export type ArtWorksFilterProps = {
   countries?: string[]
   min_age?: number
   max_age?: number
+  mode?: 'all' | 'best' | 'following' | 'new'
 }
 
 export type AllArtWorksProps = (ArtWorksFilterProps & PaginatedListProps) | null

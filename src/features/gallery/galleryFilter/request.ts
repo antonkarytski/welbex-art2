@@ -1,15 +1,14 @@
 import { api } from '../../../api'
 import { createRequestModel } from '../../../api/model.request'
+import { ArtWorksFilterProps } from '../../../api/parts/arts/types'
 import { GalleryType } from '../types'
 
-const filterCountBestModel = createRequestModel(api.arts.countOfFiltered)
+export const countFilteredGalleryModel = createRequestModel(
+  api.arts.countOfFiltered
+)
 
-const filterCountFollowingModel = createRequestModel(api.arts.countOfFiltered)
-
-const filterCountNewModel = createRequestModel(api.arts.countOfFiltered)
-
-export const countFilteredGalleryModel = {
-  [GalleryType.BEST]: filterCountBestModel,
-  [GalleryType.FOLLOWING]: filterCountFollowingModel,
-  [GalleryType.NEW]: filterCountNewModel,
+export const galleriesModeProp: Record<GalleryType, ArtWorksFilterProps> = {
+  [GalleryType.BEST]: { mode: 'best' },
+  [GalleryType.FOLLOWING]: { mode: 'following' },
+  [GalleryType.NEW]: { mode: 'new' },
 }

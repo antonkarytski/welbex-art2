@@ -3,10 +3,11 @@ import { createStateModel } from 'altek-toolkit'
 import { ArtWorksFilterProps } from '../../../api/parts/arts/types'
 import { CategoryResponse } from '../../../api/parts/categories/types'
 import { CATEGORIES_AGE_RANGE } from '../../../constants/categories'
+import { noop } from '../../../lib/helpers'
 import { createCountriesListModel } from '../../countries/model.countriesDropdown'
 import { $activeGallery } from '../model'
 import { GalleyDescriptor } from '../types'
-import { countFilteredGalleryModel } from './request'
+import { countFilteredGalleryModel, galleriesModeProp } from './request'
 
 export const categoriesModel = createStateModel<CategoryResponse[]>([])
 export const countriesModel = createCountriesListModel()
@@ -39,6 +40,7 @@ export const $galleryFilterProps = combine(
 )
 
 sample({
+  clock: [$galleryFilterProps, $activeGallery],
   source: { filters: $galleryFilterProps, activeGallery: $activeGallery },
   target: createEffect(
     ({
@@ -48,7 +50,12 @@ sample({
       filters: ArtWorksFilterProps
       activeGallery: GalleyDescriptor
     }) => {
-      countFilteredGalleryModel[activeGallery.type].get(filters)
+      countFilteredGalleryModel
+        .get({
+          ...galleriesModeProp[activeGallery.type],
+          ...filters,
+        })
+        .catch(noop)
     }
   ),
 })

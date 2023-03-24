@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react'
 import { KeyboardAvoidingView } from 'native-base'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
 import { CATEGORIES_AGE_RANGE } from '../../../constants/categories'
@@ -30,7 +30,7 @@ import {
   drawingNameModel,
   resetGalleryFilter,
 } from './model'
-import { countFilteredGalleryModel } from './request'
+import { countFilteredGalleryModel, galleriesModeProp } from './request'
 
 const GalleryFilter = () => {
   const t = useText()
@@ -46,13 +46,16 @@ const GalleryFilter = () => {
   const { get: getFilteredArts } = useGallery(type)
 
   const [drawingName, setDrawingName] = useStateStore(drawingNameModel)
-  const filterResult = useStore(countFilteredGalleryModel[type].$data)
+  const filterResult = useStore(countFilteredGalleryModel.$data)
+
+  useEffect(() => {
+    countFilteredGalleryModel.get({ ...galleriesModeProp[type], ...filters })
+  }, [])
 
   const onShowResults = () => {
     getFilteredArts(filters)
     navigate(links.specificGalleryFiltered)
   }
-
   return (
     <>
       <KeyboardAvoidingView
@@ -78,7 +81,6 @@ const GalleryFilter = () => {
 
       <PresetButton
         label={`${t.show} ${filterResult?.total ?? ''} ${t.filterResults}`}
-        // label={`${t.show} ${t.filterResults}`}
         onPress={onShowResults}
         preset={styles.buttonPrimary}
         style={commonStyles.resultsButton}

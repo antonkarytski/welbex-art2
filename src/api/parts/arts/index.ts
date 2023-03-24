@@ -19,7 +19,9 @@ const allArts = arts.endpoint('all').unprotect()
 
 const all = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>()
 const best = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('best')
+const bestProtected = best.protect()
 const newArts = allArts.get<AllArtWorksResponse, AllArtWorksProps | void>('new')
+const newArtsProtected = newArts.protect()
 const following = allArts
   .get<AllArtWorksResponse, AllArtWorksProps | void>('following')
   .protect()
@@ -63,8 +65,10 @@ const userSavedArts = userArts.get<ArtsListPreviewResponse, ArtsListProps>(
 export const artsApi = {
   all,
   best,
+  bestProtected,
   following,
   newArts,
+  newArtsProtected,
   specific,
   specificProtected,
   countOfFiltered,

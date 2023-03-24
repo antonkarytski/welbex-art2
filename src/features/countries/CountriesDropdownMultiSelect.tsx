@@ -58,6 +58,8 @@ const CountriesDropdownMultiSelect = React.memo(
         preset={selectPreset}
         selectedCounterLabel={t.selected}
         showSelectAllButtons
+        selectAllLabel={t.selectAll}
+        removeAllLabel={t.removeAll}
       />
     )
   }

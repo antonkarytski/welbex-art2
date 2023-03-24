@@ -45,6 +45,9 @@ const UserDescription = ({
         weight={500}
         style={[styles.name, style?.name]}
         label={userName(item, !!shortenUserName)}
+        adjustsFontSizeToFit
+        minimumFontScale={0.8}
+        numberOfLines={2}
       />
       <Span
         style={[styles.subText, style?.subText]}
