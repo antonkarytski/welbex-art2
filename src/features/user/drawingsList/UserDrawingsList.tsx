@@ -57,7 +57,7 @@ const UserDrawingsList = React.memo(
       const handleLayout = useCallback(
         (e: LayoutChangeEvent) => {
           if (isLoading) return
-
+          if (currentListType !== type) return
           const rowsCount = list.length
             ? Math.ceil(list.length / DRAWINGS_COLUMNS_COUNT)
             : 0
@@ -67,18 +67,8 @@ const UserDrawingsList = React.memo(
           })
           onLayout?.(e)
         },
-        [onLayout, type, artsListsHeightModel, list, isLoading]
+        [onLayout, type, artsListsHeightModel, list, isLoading, currentListType]
       )
-
-      // const handleScrollEndDrag = useCallback(
-      //   (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-      //     const yOffset = e.nativeEvent.contentOffset.y
-      //     artsListsHeightModel.updateListOffset({
-      //       [type]: yOffset,
-      //     })
-      //   },
-      //   [type, artsListsHeightModel]
-      // )
 
       const getItemLayout = useCallback(
         (data: any, index: number) => ({
@@ -104,7 +94,6 @@ const UserDrawingsList = React.memo(
               : DrawingsListSkeleton
           }
           {...props}
-          // onScrollEndDrag={handleScrollEndDrag}
         />
       )
     }

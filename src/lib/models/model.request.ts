@@ -15,7 +15,9 @@ export const createRequestModel = <P, R>(
       : payload
   )
 
-  const get = createEffect((props: P) => request({ ...staticProps, ...props }))
+  const get = createEffect((props: P) =>
+    request(staticProps ? { ...staticProps, ...props } : props)
+  )
 
   get.done.watch(({ result }) => {
     setData(result)

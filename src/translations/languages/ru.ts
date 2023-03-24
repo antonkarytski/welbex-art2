@@ -99,7 +99,7 @@ export const RU: LangStructure = {
   country: 'Страна',
   author: 'Автор',
   show: 'Показать',
-  filterResults: 'работы',
+  filterResults: 'работ',
   create: 'Создать',
   uploadImage: 'Загрузить изображение',
   scanWork: 'Сканируйте вашу работу',
