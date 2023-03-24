@@ -3,13 +3,13 @@ import { PasswordsFormModel } from '../../lib/models/passwordsForm/model'
 import { Country } from '../countries'
 import { signUpCountryModel } from './country/model'
 import { signUpPasswordsFormModel } from './model.passwords'
-import { phoneInputModel } from './phone'
+import { signUpPhoneModel } from './phone/model'
 import { signUpUserDataFormModel } from './userData/model'
 import { SignUpUserDataForm } from './userData/types'
 
 export const $signUpFormData = combine({
   user: signUpUserDataFormModel.$store,
-  phone: phoneInputModel.purePhoneModel.$state,
+  phone: signUpPhoneModel.$phoneNumber,
   country: signUpCountryModel.$state,
   passwords: signUpPasswordsFormModel.$store,
 })

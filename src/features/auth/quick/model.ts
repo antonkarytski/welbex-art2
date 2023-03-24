@@ -35,4 +35,3 @@ export const $quickAuthAbsentFields = createStore<ProfileDataFilter | null>(
   .reset(resetQuickAuthData)
 
 export const $isOnQuickAuth = $quickAuthToken.map(Boolean)
-export const saveSignUpPhoneToCompleteData = createEvent()

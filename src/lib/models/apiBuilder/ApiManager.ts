@@ -94,6 +94,7 @@ export class ApiManager {
     return new ApiEndpoint({
       endpoint: endpointEntity,
       requestHandler: this.doRequest.bind(this),
+      requestDataGetter: this.prepareData.bind(this),
     })
   }
 

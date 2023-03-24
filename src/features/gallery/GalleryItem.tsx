@@ -55,7 +55,12 @@ const GalleryItem = React.memo(
             activeColor={colors.likesIcon}
             onPress={handleToggleLike}
           />
-          <ShareButton style={style.shareButton} />
+          <ShareButton
+            style={style.shareButton}
+            item={{
+              url: item.image_thumbnail,
+            }}
+          />
         </View>
       </ImageCard>
     )

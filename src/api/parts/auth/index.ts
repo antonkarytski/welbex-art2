@@ -7,17 +7,13 @@ const login = auth.post<LoginResponse, LoginBody>({
   contentType: ContentType.FORM_ENCODED,
   endpoint: 'token',
 })
-
 const googleAuth = auth.get('google/oauth2')
-const googleAuthUrl = googleAuth.url()
-
 const appleAuth = auth.get('apple/oauth2')
-const appleAuthUrl = appleAuth.url()
 
 export const authApi = {
   login,
   googleAuth,
-  googleAuthUrl,
+  googleAuthUrl: googleAuth.url(),
   appleAuth,
-  appleAuthUrl,
+  appleAuthUrl: appleAuth.url(),
 }
