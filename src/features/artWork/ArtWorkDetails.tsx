@@ -2,8 +2,8 @@ import { createEvent, sample } from 'effector'
 import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
-import fs from 'react-native-fs'
 import { MyProfile } from '../../api/parts/users/types'
+import { downloadImageFromUrl } from '../../lib/files/download'
 import { noop } from '../../lib/helpers'
 import { useRequest } from '../../lib/models/apiBuilder/hooks'
 import { useNavigate } from '../../navigation'
@@ -16,7 +16,7 @@ import AutoHeightImage from '../images/AutoHeightImage'
 import { $myProfile } from '../profile/model'
 import UserCardPreview from '../user/UserCardPreview'
 import ArtWorkInteractionPanel from './ArtWorkInteractivePanel'
-import { getArtWorkRequest } from './request'
+import { downloadFullSizeDrawing, getArtWorkRequest } from './request'
 
 type ArtWorkDetailsProps = {
   drawingId: number
@@ -74,14 +74,13 @@ const ArtWorkDetails = React.memo(({ drawingId }: ArtWorkDetailsProps) => {
       <PresetButton
         style={styles.downloadButton}
         label={text.download}
-        onPress={() => {
+        onPress={async () => {
           if (!drawing.data) return
-          fs.downloadFile({
-            fromUrl: drawing.data.image_thumbnail,
-            toFile: `${fs.DocumentDirectoryPath}/ddd.jpg`,
-          })
-            .promise.then((r) => {})
-            .catch((e) => {})
+          if (!myProfile?.subscription) {
+            downloadImageFromUrl(drawing.data.image_thumbnail).catch(noop)
+            return
+          }
+          downloadFullSizeDrawing(drawing.data.id).catch(noop)
         }}
       />
     </ScrollView>

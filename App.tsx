@@ -22,7 +22,7 @@ export default function App() {
       <NativeBaseProvider>
         <SafeAreaProvider>
           <NavigationContainer linking={linkingConfig}>
-            <StatusBar style="auto" />
+            <StatusBar style="dark" />
             <Router />
             <AppPopUps />
           </NavigationContainer>

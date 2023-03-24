@@ -18,6 +18,7 @@ type ApiEndpointProps = {
     props: DoRequestProps<Params>,
     driver?: typeof fetch
   ) => Promise<Response>
+  requestDataGetter: (data: DoRequestProps<any>) => Promise<RequestInit>
 } & CreateApiEndpointSettings
 
 export type SpecificRequestProps<Params> =
@@ -41,10 +42,12 @@ function prepareRequestProps<Params = void>(
 export class ApiEndpoint {
   private readonly _endpoint
   private readonly requestHandler
+  private readonly requestDataGetter
 
   constructor(props: ApiEndpointProps) {
     this.requestHandler = props.requestHandler
     this._endpoint = props.endpoint
+    this.requestDataGetter = props.requestDataGetter
   }
 
   public protect() {
@@ -65,6 +68,7 @@ export class ApiEndpoint {
     return new ApiEndpoint({
       endpoint: newEndpoint,
       requestHandler: this.requestHandler,
+      requestDataGetter: this.requestDataGetter,
     })
   }
 
@@ -118,8 +122,14 @@ export class ApiEndpoint {
       })
     }
 
-    effect.requestProps = (params: P) => propsGetter(params)
-    effect.url = (params: P) => propsGetter(params).url
+    effect.requestData = (params) => {
+      const requestProps = propsGetter(params)
+      return this.requestDataGetter(requestProps).then((data) => {
+        return { data, props: requestProps }
+      })
+    }
+    effect.requestProps = (params) => propsGetter(params)
+    effect.url = (params) => propsGetter(params).url
     effect.protect = () => this.request({ ...props, withToken: true })
     effect.unprotect = () => this.request({ ...props, withToken: false })
 
@@ -164,6 +174,9 @@ type ExtEffectMethods<Params, R> = {
   raw: RawCreator<Params>
   url: (params: Params) => string
   requestProps: (params: Params) => RequestProps<Params>
+  requestData: (
+    params: Params
+  ) => Promise<{ data: RequestInit; props: RequestProps<Params> }>
   unprotect: () => Effect<Params, R> & ExtEffectMethods<Params, R>
   protect: () => Effect<Params, R> & ExtEffectMethods<Params, R>
 }
