@@ -1,8 +1,10 @@
+import { createEvent, restore } from 'effector'
 import { api } from '../../api'
 import { ARTS_PAGE_SIZE } from '../../api/constants'
 import { ArtWork } from '../../api/parts/arts/types'
 import { createPaginationListModel } from '../../lib/models/pagination'
-import { GalleryType } from './types'
+import { GALLERIES } from './descriptors'
+import { GalleryType, GalleyDescriptor } from './types'
 
 const artWorkIdExtractor = (item: Partial<ArtWork>) => item.id
 
@@ -28,4 +30,11 @@ export const galleryListsModel = {
   [GalleryType.BEST]: galleryBestModel,
   [GalleryType.FOLLOWING]: galleryFollowingModel,
   [GalleryType.NEW]: galleryNewModel,
+}
+
+export const setActiveGallery = createEvent<GalleyDescriptor>()
+export const $activeGallery = restore(setActiveGallery, GALLERIES[0])
+
+export const getGalleryListRequest = (type: GalleryType) => {
+  galleryListsModel[type].get()
 }

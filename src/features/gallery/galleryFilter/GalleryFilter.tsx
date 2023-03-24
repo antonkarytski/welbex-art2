@@ -5,6 +5,8 @@ import { StyleSheet } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
 import { CATEGORIES_AGE_RANGE } from '../../../constants/categories'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
+import { useNavigate } from '../../../navigation'
+import { links } from '../../../navigation/links'
 import {
   buttonLightThemedPreset,
   buttonPrimaryThemedPreset,
@@ -15,32 +17,41 @@ import DeleteButton from '../../../ui/buttons/Button.Delete'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import Input from '../../../ui/input'
 import MultiSlider from '../../../ui/slider/MultiSlider'
-import CategoriesSelect from '../../categories/CategoriesSelect'
-import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
+import CategoriesMultiSelect from '../../categories/CategoriesMultiSelect'
+import CountriesDropdownMultiSelect from '../../countries/CountriesDropdownMultiSelect'
 import { useThemedStyleList } from '../../themed/hooks'
+import { useGallery } from '../hooks'
+import { $activeGallery } from '../model'
 import {
+  $galleryFilterProps,
   ageRangeModel,
-  categoryModel,
+  categoriesModel,
+  countriesModel,
   drawingNameModel,
-  galleyFilterCountriesModel,
   resetGalleryFilter,
-} from './model.galleryFilter'
-import { countOfFilteredArtsModel } from './request'
-
-// TODO: ! change selects to multiSelects !
+} from './model'
+import { countFilteredGalleryModel } from './request'
 
 const GalleryFilter = () => {
   const t = useText()
+  const navigate = useNavigate()
   const { styles, colors } = useThemedStyleList({
     buttonPrimary: buttonPrimaryThemedPreset,
     buttonLight: buttonLightThemedPreset,
     input: inputThemedStyles,
   })
+  const { type } = useStore($activeGallery)
+  const filters = useStore($galleryFilterProps)
+
+  const { get: getFilteredArts } = useGallery(type)
 
   const [drawingName, setDrawingName] = useStateStore(drawingNameModel)
-  const filterResult = useStore(countOfFilteredArtsModel.$data)
+  const filterResult = useStore(countFilteredGalleryModel[type].$data)
 
-  const onShowResults = () => {}
+  const onShowResults = () => {
+    getFilteredArts(filters)
+    navigate(links.specificGalleryFiltered)
+  }
 
   return (
     <>
@@ -48,8 +59,8 @@ const GalleryFilter = () => {
         behavior={IS_IOS ? 'padding' : 'height'}
         style={commonStyles.fieldsWrapper}
       >
-        <CategoriesSelect model={categoryModel} />
-        <CountriesDropdownSelect model={galleyFilterCountriesModel} />
+        <CategoriesMultiSelect model={categoriesModel} />
+        <CountriesDropdownMultiSelect model={countriesModel} />
         <Input
           label={t.drawingName}
           value={drawingName}
@@ -67,6 +78,7 @@ const GalleryFilter = () => {
 
       <PresetButton
         label={`${t.show} ${filterResult?.total ?? ''} ${t.filterResults}`}
+        // label={`${t.show} ${t.filterResults}`}
         onPress={onShowResults}
         preset={styles.buttonPrimary}
         style={commonStyles.resultsButton}

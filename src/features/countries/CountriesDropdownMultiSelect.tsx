@@ -5,22 +5,22 @@ import { SearchableListModel } from '../../lib/models/model.search'
 import { FONT_MEDIUM } from '../../styles/fonts'
 import { useDropdownSelectPreset } from '../../styles/selects'
 import { useText } from '../../translations/hook'
-import DropdownSelect from '../../ui/selects/DropdownSelect'
+import DropdownMultiSelect from '../../ui/multiSelects/DropdownMultiSelect'
 import { RenderItem } from '../../ui/selects/selectItem/types'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import { COUNTRIES_LIST, Country } from './'
 import CountryRow from './CountryRow'
 
-type CountriesDropdownSelectProps = {
+type CountriesDropdownMultiSelectProps = {
   model: {
-    countryModel: StateModel<Country | null>
+    countriesModel: StateModel<Country[]>
     searchableListModel: SearchableListModel<Country>
   }
 }
 
-const CountriesDropdownSelect = React.memo(
-  ({ model }: CountriesDropdownSelectProps) => {
+const CountriesDropdownMultiSelect = React.memo(
+  ({ model }: CountriesDropdownMultiSelectProps) => {
     const t = useText()
     const { styles } = useThemedStyleList({
       countryItem: countryRowThemedStyles,
@@ -44,11 +44,11 @@ const CountriesDropdownSelect = React.memo(
     )
 
     return (
-      <DropdownSelect
+      <DropdownMultiSelect
         label={t.country}
         data={COUNTRIES_LIST}
         idExtractor={({ alpha2Code }) => alpha2Code}
-        model={model.countryModel}
+        model={model.countriesModel}
         searchModel={model.searchableListModel}
         renderItem={renderCountryRow}
         labelExtractor={({ name }) => name}
@@ -56,6 +56,8 @@ const CountriesDropdownSelect = React.memo(
           dropdownTab: dropdownTabStyles,
         }}
         preset={selectPreset}
+        selectedCounterLabel={t.selected}
+        showSelectAllButtons
       />
     )
   }
@@ -81,4 +83,4 @@ const countryRowThemedStyles = createThemedStyle((colors) =>
   })
 )
 
-export default CountriesDropdownSelect
+export default CountriesDropdownMultiSelect

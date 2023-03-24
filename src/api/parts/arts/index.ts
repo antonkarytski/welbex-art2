@@ -40,6 +40,7 @@ const countOfFiltered = arts.get<
   CountOfFilteredArtsResponse,
   ArtWorksFilterProps
 >('total')
+
 const create = arts
   .post<ArtWorkCreateResponse, ArtWorkCreateProps>({
     endpoint: 'create',

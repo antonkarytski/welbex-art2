@@ -3,15 +3,15 @@ import { PaginatedListProps, PaginatedListResponse } from '../../types'
 import { UserShort } from '../users/types'
 
 export type ArtWorksFilterProps = {
-  category_ids?: number
+  category_ids?: number[]
   active_competition?: boolean
   title?: string
-  countries?: string
+  countries?: string[]
   min_age?: number
   max_age?: number
 }
 
-export type AllArtWorksProps = ArtWorksFilterProps & PaginatedListProps
+export type AllArtWorksProps = (ArtWorksFilterProps & PaginatedListProps) | null
 
 export type ArtWorkGeneral = {
   id: number

@@ -5,13 +5,13 @@ import { createStateModel } from 'altek-toolkit'
 import { MyProfile } from '../../../api/parts/users/types'
 import { createFormModel } from '../../../lib/models/form'
 import { stringSchema } from '../../../lib/yup'
-import { createSearchableCountriesListModel } from '../../countries/model.countriesDropdown'
+import { createCountryModel } from '../../countries/model.countriesDropdown'
 // import { createPhoneEnterModel } from '../../phoneEnter/model'
 import { $myProfile } from '../model'
 import { convertProfileBodyToEditForm } from './helpers'
 import { EditProfileForm } from './types'
 
-export const editProfileCountryModel = createSearchableCountriesListModel()
+export const editProfileCountryModel = createCountryModel()
 // export const editProfilePhoneModel = createPhoneEnterModel()
 
 export const editProfileFormSchema = yup.object().shape({
@@ -55,5 +55,5 @@ export const setAvatar = (assets: ImagePickerAsset[] | null) => {
 
 export const $editFormData: Store<EditProfileForm> = combine({
   user: editProfileFormModel.$store,
-  country: editProfileCountryModel.countryModel.$state,
+  country: editProfileCountryModel.$country,
 })

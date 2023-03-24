@@ -8,7 +8,7 @@ import {
   countyNameExtractor,
 } from './'
 
-export const createSearchableCountriesListModel = () => {
+export const createCountryModel = () => {
   const countryModel = createStateModel<null | Country>(DEFAULT_COUNTRY)
 
   const searchableListModel = createSearchableListModel({
@@ -29,8 +29,29 @@ export const createSearchableCountriesListModel = () => {
 
   return {
     countryModel,
+    $country: countryModel.$state,
     searchableListModel,
     reset,
     setCountry,
+  }
+}
+
+export const createCountriesListModel = () => {
+  const countriesModel = createStateModel<Country[]>([])
+
+  const searchableListModel = createSearchableListModel({
+    filterExtractor: countyNameExtractor,
+  })
+
+  const reset = () => {
+    countriesModel.set([])
+    searchableListModel.searchStringModel.set('')
+  }
+
+  return {
+    countriesModel,
+    searchableListModel,
+    $countries: countriesModel.$state,
+    reset,
   }
 }

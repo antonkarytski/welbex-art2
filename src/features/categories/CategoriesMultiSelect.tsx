@@ -8,7 +8,7 @@ import { createPaginationListModel } from '../../lib/models/pagination'
 import { useDropdownSelectPreset } from '../../styles/selects'
 import { useText } from '../../translations/hook'
 import Loader from '../../ui/loaders/Loader'
-import DropdownSelect from '../../ui/selects/DropdownSelect'
+import DropdownMultiSelect from '../../ui/multiSelects/DropdownMultiSelect'
 import { DropdownSelectStyles } from '../../ui/selects/types'
 
 const categoriesRequestModel = createPaginationListModel({
@@ -16,36 +16,29 @@ const categoriesRequestModel = createPaginationListModel({
   pageSize: 50,
 })
 
-type CategoriesSelectProps = {
+type CategoriesMultiSelectProps = {
   label?: string
-  model: StateModel<CategoryResponse | null>
+  model: StateModel<CategoryResponse[]>
   style?: DropdownSelectStyles
 }
 
-const CategoriesSelect = React.memo(
-  ({ label, model, style }: CategoriesSelectProps) => {
+const CategoriesMultiSelect = React.memo(
+  ({ label, model, style }: CategoriesMultiSelectProps) => {
     const t = useText()
     const categories = useStore(categoriesRequestModel.$items)
     const isLoading = useStore(categoriesRequestModel.$isLoading)
-    const selectedCategory = useStore(model.$state)
     const stylesPreset = useDropdownSelectPreset()
 
     useEffect(() => {
       categoriesRequestModel.get()
     }, [])
 
-    useEffect(() => {
-      if (!selectedCategory) {
-        model.set(categories[0])
-      }
-    }, [categories, selectedCategory, model])
-
     const getNextCategories = () => {
       categoriesRequestModel.getNext()
     }
 
     return (
-      <DropdownSelect
+      <DropdownMultiSelect
         label={label ?? t.category}
         model={model}
         data={categories}
@@ -55,7 +48,8 @@ const CategoriesSelect = React.memo(
         preset={stylesPreset}
         onEndReached={getNextCategories}
         ListFooterComponent={isLoading ? Loader : undefined}
-        placeholder={t.selectValueFromList}
+        tabLabel={t.selectValueFromList}
+        selectedCounterLabel={t.selected}
       />
     )
   }
@@ -67,4 +61,4 @@ const dropdownTabStyles = StyleSheet.create({
   },
 })
 
-export default CategoriesSelect
+export default CategoriesMultiSelect

@@ -2,13 +2,13 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { GALLERIES } from '../../features/gallery/descriptors'
+import { setActiveGallery } from '../../features/gallery/model'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { ColorThemeStructure } from '../../features/themed/theme'
 import { useScreenLoading } from '../../lib/helpers/native/hook.screenLoad'
 import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
 import NavigationFilterButton from '../../navigation/elements/NavigationButton.GalleryFilter'
-import SettingsNavigationButton from '../../navigation/elements/NavigationButton.Settings'
 import { links } from '../../navigation/links'
 import { ScreensProps } from '../../navigation/types.screenProps'
 import { themedPrimaryGradient } from '../../styles/gradients'
@@ -19,12 +19,8 @@ import ScreenGallery from './Screen.Gallery'
 
 const Tab = createMaterialTopTabNavigator<ScreensProps>()
 
-const screenHeaderLeft = (colors: ColorThemeStructure) => (
-  <NavigationFilterButton iconColor={colors.appHeaderIconLight} />
-)
-
 const screenHeaderRight = (colors: ColorThemeStructure) => (
-  <SettingsNavigationButton iconColor={colors.appHeaderIconLight} />
+  <NavigationFilterButton iconColor={colors.appHeaderIconLight} />
 )
 
 const GalleriesTabsScreen = () => {
@@ -40,8 +36,6 @@ const GalleriesTabsScreen = () => {
     <View style={styles.common.container}>
       <GradientScreenHeader
         title={text.gallery}
-        headerLeft={screenHeaderLeft(colors)}
-        style={{ line: styles.common.headerLine }}
         headerRight={screenHeaderRight(colors)}
         gradient={{ colors: styles.gradient }}
       />
@@ -49,17 +43,24 @@ const GalleriesTabsScreen = () => {
         <Tab.Navigator
           style={styles.common.container}
           sceneContainerStyle={styles.common.sceneContainer}
-          tabBar={({ descriptors, state, ...props }) => (
-            <TabMenu
-              routes={Object.values(descriptors).map(({ route, options }) => ({
-                key: route.key,
-                title: options.title,
-              }))}
-              style={styles.tabMenu}
-              activeTab={state.index}
-              {...props}
-            />
-          )}
+          tabBar={({ descriptors, state, ...props }) => {
+            const activeTabIndex = state.index
+            setActiveGallery(GALLERIES[activeTabIndex])
+
+            return (
+              <TabMenu
+                routes={Object.values(descriptors).map(
+                  ({ route, options }) => ({
+                    key: route.key,
+                    title: options.title,
+                  })
+                )}
+                style={styles.tabMenu}
+                activeTab={activeTabIndex}
+                {...props}
+              />
+            )
+          }}
           initialRouteName={links.galleryBest}
         >
           {GALLERIES.map(({ title, type, link }) => {
@@ -88,9 +89,6 @@ const themedStyles = createThemedStyle((colors) =>
     },
     sceneContainer: {
       backgroundColor: colors.screenBackground,
-    },
-    headerLine: {
-      backgroundColor: 'transparent',
     },
   })
 )

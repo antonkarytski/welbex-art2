@@ -3,11 +3,12 @@ import { useEffect } from 'react'
 import { galleryListsModel } from './model'
 import { GalleryType } from './types'
 
-export function useGallery(type: GalleryType) {
+export function useGallery(type: GalleryType, autoGetFirst: boolean = false) {
   const list = useStore(galleryListsModel[type].$items)
   const isLoading = useStore(galleryListsModel[type].$isLoading)
   const isNextLoading = useStore(galleryListsModel[type].$isNextLoading)
   const get = galleryListsModel[type].get
+  const getNext = galleryListsModel[type].getNext
   const getSync = galleryListsModel[type].getSync
 
   const getNextSync = isNextLoading
@@ -19,8 +20,8 @@ export function useGallery(type: GalleryType) {
   const isRefreshing = useStore(galleryListsModel[type].$isRefreshing)
 
   useEffect(() => {
-    getSync()
-  }, [getSync])
+    if (autoGetFirst) getSync()
+  }, [getSync, autoGetFirst])
 
   return {
     get,
@@ -29,6 +30,7 @@ export function useGallery(type: GalleryType) {
     isNextLoading,
     getSync,
     getNextSync,
+    getNext,
     updateItem,
     refresh,
     isRefreshing,

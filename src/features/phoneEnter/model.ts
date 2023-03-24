@@ -1,11 +1,10 @@
 import { createPhoneInputModel } from '../../lib/models/phoneNumber/model.phoneNumber'
 import { COUNTRIES, Country, CountryCode } from '../countries'
-import { createSearchableCountriesListModel } from '../countries/model.countriesDropdown'
+import { createCountryModel } from '../countries/model.countriesDropdown'
 
 export const createPhoneEnterModel = () => {
   const phoneInputModel = createPhoneInputModel()
-  const { countryModel, searchableListModel } =
-    createSearchableCountriesListModel()
+  const { countryModel, searchableListModel } = createCountryModel()
 
   const setPhone = (phone: string) => {
     phoneInputModel.purePhoneModel.set(phone)
