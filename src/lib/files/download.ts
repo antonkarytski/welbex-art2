@@ -25,7 +25,7 @@ export async function downloadImageFromUrl(
 ) {
   const file = getFilePath(getNameFromUrl(url) || name)
   await fs.downloadFile({ fromUrl: url, toFile: file, headers }).promise
-  const mime = getMime(url)
+  const mime = getMime(file)
   const base64 = await fs.readFile(file, 'base64')
   const uri = `data:${mime};base64,${base64}`
   await Share.open({
