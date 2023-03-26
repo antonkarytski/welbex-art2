@@ -27,11 +27,11 @@ export default function HomeScreen() {
   const offset = useRef(new Animated.Value(0)).current
   const winnersList = useStore(winnersListModel.$items)
   const isWinnersLoading = useStore(winnersListModel.$isLoading)
-  const winnersListNotEmpty = winnersList.length !== 0 || isWinnersLoading
+  const winnersListNotEmpty = winnersList.length > 0 || isWinnersLoading
 
   useEffect(() => {
-    winnersListModel.get()
-    categoriesListModel.get()
+    winnersListModel.getSync()
+    categoriesListModel.getSync()
   }, [])
 
   const onScreenHeaderLayout = (e: LayoutChangeEvent) => {

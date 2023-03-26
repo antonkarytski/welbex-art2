@@ -1,9 +1,9 @@
 import { useStore } from 'effector-react'
+import { goToSettings } from '../../lib/permissions/helpers'
 import {
   $mediaLibraryPermission,
   getMediaLibraryPermission,
-} from '../../features/imagePick/model.permissions'
-import { goToSettings } from './helpers'
+} from './model.permissions'
 
 export async function permissionsForceRequest() {
   if (await getMediaLibraryPermission()) return

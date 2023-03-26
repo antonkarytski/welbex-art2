@@ -50,9 +50,7 @@ const ArtWorkDetails = React.memo(({ drawingId }: ArtWorkDetailsProps) => {
     <ScrollView bounces={false} style={styles.container}>
       <UserCardPreview
         onAvatarPress={(item) => {
-          if (item.id === myProfile?.id) {
-            return navigate(links.profileTab)
-          }
+          if (item.id === myProfile?.id) return navigate(links.profileTab)
           navigate(links.userProfile, { item })
         }}
         onFollowPress={onFollowAuthor}
@@ -96,4 +94,3 @@ const styles = StyleSheet.create({
 })
 
 export default ArtWorkDetails
-

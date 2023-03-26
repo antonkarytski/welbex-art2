@@ -4,13 +4,13 @@ import { links } from '../../navigation/links'
 import { ScreensProps } from '../../navigation/types.screenProps'
 import { cameraPhotoToPickerAsset } from './helpers'
 import { CameraTask, setCameraTask } from './model'
-import { getIsCameraPermissionGranted } from './model.permissions'
+import { cameraPermission } from './model.permissions'
 
 export function useCameraNavigate(task: CameraTask) {
   const { navigate } = useNavigation<NavigationProp<ScreensProps>>()
   return () => {
     setCameraTask(task)
-    getIsCameraPermissionGranted().then(() => {
+    cameraPermission.check().then(() => {
       navigate(links.camera)
     })
   }
