@@ -7,7 +7,7 @@ export enum AdsName {
   GALLERY = 'GALLERY',
 }
 
-export const ADS_LIST = {
+export const ADS_LIST: Record<AdsName, AdsDescription> = {
   [AdsName.WORK_UPLOAD]: {
     id: 'ca-app-pub-1405242860258153/9818404791',
     type: AdsType.REWARDED,
@@ -20,7 +20,7 @@ export const ADS_LIST = {
     id: 'ca-app-pub-1405242860258153/2705970029',
     type: AdsType.BANNER,
   },
-} as const
+}
 
 export const getAds = (name: AdsName): AdsDescription => {
   const ads = ADS_LIST[name]
