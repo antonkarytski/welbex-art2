@@ -1,4 +1,3 @@
-import { Dimensions } from 'react-native'
 import { WINDOW_HEIGHT, WINDOW_WIDTH } from './constants'
 
 type GetSizeProps = {

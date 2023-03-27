@@ -8,8 +8,6 @@ import {
   buttonTextThemedStyles,
 } from '../../../styles/buttons'
 import { useText } from '../../../translations/hook'
-import H3 from '../../../ui/H3'
-import TruncatedText from '../../../ui/TruncatedText'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
@@ -34,17 +32,6 @@ const CategoryDescription = ({ item }: CategoryDescriptionProps) => {
 
   return (
     <View style={styles.common.container}>
-      {/* <H3 style={styles.common.header} label={text.description} />
-      <TruncatedText
-        text={item.description}
-        showMoreLabel={text.showMore}
-        showLessLabel={text.showLess}
-        numberOfLines={6}
-        style={{
-          ...styles.text,
-          button: styles.textButton,
-        }}
-      /> */}
       <PresetButton
         label={text.join}
         onPress={onJoinCategory}

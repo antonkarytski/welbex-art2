@@ -1,4 +1,5 @@
-import { Dimensions, StyleSheet, ViewStyle } from 'react-native'
+import { StyleSheet, ViewStyle } from 'react-native'
+import { SCREEN_CONTENT_WIDTH } from '../../styles/constants'
 import { themedShadow5Style } from '../../styles/shadows'
 import { createThemedStyle } from '../themed'
 import { UserDescriptionStyles } from '../user/styles'
@@ -16,7 +17,7 @@ export const galleryItemThemedStyles = createThemedStyle<GalleryItemStyles>(
     StyleSheet.create({
       container: {
         ...themedShadow5Style(colors),
-        width: Dimensions.get('screen').width - 40,
+        width: SCREEN_CONTENT_WIDTH,
         marginBottom: 20,
       },
       card: {

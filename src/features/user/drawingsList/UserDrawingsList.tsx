@@ -3,11 +3,13 @@ import React, { forwardRef, useCallback } from 'react'
 import { FlatList, LayoutChangeEvent, LogBox, StyleSheet } from 'react-native'
 import { SCREEN_PADDING_HORIZONTAL } from '../../../styles/constants'
 import DrawingsListSkeleton from '../../../ui/loaders/Skeleton.DrawingsList'
-import DrawingsList, { ArtWorksFlatListProps } from '../../artWork/ArtWorksList'
+import DrawingsList, {
+  ArtWorksFlatListProps,
+} from '../../artWork/artWorksList/ArtWorksList'
 import {
   DRAWINGS_COLUMNS_COUNT,
   DRAWING_ITEM_HEIGHT,
-} from '../../artWork/constants'
+} from '../../artWork/artWorksList/constants'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyle } from '../../themed/hooks'
 import { UserDrawingListType, UserItem } from '../types'
@@ -55,7 +57,7 @@ const UserDrawingsList = React.memo(
       const handleLayout = useCallback(
         (e: LayoutChangeEvent) => {
           if (isLoading) return
-
+          if (currentListType !== type) return
           const rowsCount = list.length
             ? Math.ceil(list.length / DRAWINGS_COLUMNS_COUNT)
             : 0
@@ -65,18 +67,8 @@ const UserDrawingsList = React.memo(
           })
           onLayout?.(e)
         },
-        [onLayout, type, artsListsHeightModel, list, isLoading]
+        [onLayout, type, artsListsHeightModel, list, isLoading, currentListType]
       )
-
-      // const handleScrollEndDrag = useCallback(
-      //   (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-      //     const yOffset = e.nativeEvent.contentOffset.y
-      //     artsListsHeightModel.updateListOffset({
-      //       [type]: yOffset,
-      //     })
-      //   },
-      //   [type, artsListsHeightModel]
-      // )
 
       const getItemLayout = useCallback(
         (data: any, index: number) => ({
@@ -102,7 +94,6 @@ const UserDrawingsList = React.memo(
               : DrawingsListSkeleton
           }
           {...props}
-          // onScrollEndDrag={handleScrollEndDrag}
         />
       )
     }

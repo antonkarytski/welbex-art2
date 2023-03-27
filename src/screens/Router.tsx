@@ -10,6 +10,7 @@ import UserProfileScreen from './Screen.UserProfile'
 import MainTabsRouter from './Tabs.Main'
 import { AUTH_ROUTES } from './auth/routes'
 import GalleryFilterScreen from './gallery/Screen.GalleryFilter'
+import SpecificGalleryFiltered from './gallery/Screen.SpecificGallery'
 import EditProfileScreen from './profile/Screen.EditProfile'
 import { SETTINGS_ROUTES } from './settings/routes'
 import { SUBSCRIPTION_ROUTES } from './subscription/routes'
@@ -38,6 +39,10 @@ const Router = React.memo(() => {
       <Stack.Screen
         name={links.galleryFilter}
         component={GalleryFilterScreen}
+      />
+      <Stack.Screen
+        name={links.specificGalleryFiltered}
+        component={SpecificGalleryFiltered}
       />
       <Stack.Screen name={links.infoMessage} component={ScreenInfoMessage} />
     </StackNavigator>

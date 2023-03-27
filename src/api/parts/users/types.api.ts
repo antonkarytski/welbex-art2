@@ -20,6 +20,7 @@ export type MyProfileResponse = ProfileResponse &
   UserPrivateData & {
     subscription: UserSubscription | null
     identity_determined_status_id: IdentityDocumentStatus
+    is_child: boolean
   }
 
 export type UserProfileResponse = ProfileResponse & {
@@ -31,7 +32,10 @@ export type SignUpBody = {
 } & UserInitialData &
   UserSecuredData
 
-export type SingUpResponseUser = UserInitialData & UserPrivateData
+export type SingUpResponseUser = UserInitialData &
+  UserPrivateData & {
+    is_child: boolean
+  }
 
 export type SignUpResponse = {
   user: SingUpResponseUser

@@ -1,6 +1,7 @@
 import { attach, createEffect, sample } from 'effector'
 import { debounce } from 'patronum'
 import { AllArtWorksProps } from '../../../api/parts/arts/types'
+import { noop } from '../../../lib/helpers'
 import {
   $categoryArtsSearchString,
   $categoryId,
@@ -47,14 +48,9 @@ const categoryDataRequest = (
     ),
   })
 
-// export const getCategoryArts = categoryDataRequest(
-//   (props: RequestCategoryDataProps) =>
-//     categoryArtsModel.get(prepareParams(props))
-// )
-
 export const getNextCategoryArts = categoryDataRequest(
   (props: RequestCategoryDataProps) =>
-    categoryArtsModel.getNext(prepareParams(props))
+    categoryArtsModel.getNext(prepareParams(props)).catch(noop)
 )
 
 const debounceSearch = debounce({
@@ -64,7 +60,7 @@ const debounceSearch = debounce({
 
 const searchCategoryArtsFx = createEffect(
   (params: RequestCategoryDataProps) => {
-    categoryArtsModel.get(prepareParams(params))
+    categoryArtsModel.get(prepareParams(params)).catch(noop)
   }
 )
 

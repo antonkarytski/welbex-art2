@@ -5,7 +5,7 @@ import {
   createStore,
   restore,
 } from 'effector'
-import { DRAWING_ITEM_HEIGHT } from '../../artWork/constants'
+import { DRAWING_ITEM_HEIGHT } from '../../artWork/artWorksList/constants'
 import { UserDrawingListType } from '../types'
 import {
   Route,

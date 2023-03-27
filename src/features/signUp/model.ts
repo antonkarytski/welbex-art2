@@ -9,7 +9,7 @@ import { SignUpUserDataForm } from './userData/types'
 
 export const $signUpFormData = combine({
   user: signUpUserDataFormModel.$store,
-  phone: signUpPhoneModel.phoneInputModel.purePhoneModel.$state,
+  phone: signUpPhoneModel.$phoneNumber,
   country: signUpCountryModel.$state,
   passwords: signUpPasswordsFormModel.$store,
 })
