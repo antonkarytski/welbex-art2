@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { UserShort } from '../../api/parts/users/types'
 import { useText } from '../../translations/hook'
 import Avatar from '../../ui/Avatar'
@@ -11,35 +11,45 @@ import { UserDescriptionStyles } from './styles'
 
 type UserCardPreviewProps = {
   item: UserShort
-  onAvatarPress?: (item: UserShort) => void
+  onPress?: (item: UserShort) => void
   onFollowPress?: FollowButtonProps['onPress']
 }
 
 const UserCardPreview = ({
   item,
-  onAvatarPress,
+  onPress,
   onFollowPress,
 }: UserCardPreviewProps) => {
   const text = useText()
-  const { styles, theme } = useThemedStyleList({
+  const { styles } = useThemedStyleList({
     common: themedStyles,
     description: themedDescriptionStyles,
   })
 
+  const handlePress = () => {
+    onPress?.(item)
+  }
+
   return (
     <View style={styles.common.container}>
-      <Avatar
-        onPress={() => onAvatarPress?.(item)}
-        style={styles.common.avatar}
-        src={item.avatar}
-      />
-      <UserDescription
-        ageTextGenerator={localeAgeTextShort(text)}
-        style={styles.description}
-        item={item}
-        shortenCountryName
-        shortenUserName
-      />
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={handlePress}
+        style={styles.common.row}
+      >
+        <Avatar
+          onPress={handlePress}
+          style={styles.common.avatar}
+          src={item.avatar}
+        />
+        <UserDescription
+          ageTextGenerator={localeAgeTextShort(text)}
+          style={styles.description}
+          item={item}
+          shortenCountryName
+          shortenUserName
+        />
+      </TouchableOpacity>
       <FollowButton
         item={item}
         onPress={onFollowPress}
@@ -68,18 +78,22 @@ const themedStyles = createThemedStyle((colors) =>
     },
     avatar: {
       borderColor: colors.primary1,
-      marginRight: 16,
+      marginRight: 12,
+    },
+    row: {
+      flexDirection: 'row',
+      alignItems: 'center',
     },
   })
 )
 
 const followButtonStyles = StyleSheet.create({
   label: {
-    fontSize: 14,
+    fontSize: 12,
   },
   button: {
     paddingVertical: 8,
-    paddingHorizontal: 24,
+    paddingHorizontal: 12,
   },
   container: {
     marginLeft: 'auto',

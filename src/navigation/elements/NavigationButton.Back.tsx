@@ -23,8 +23,7 @@ const NavigationBackButton = ({
       activeOpacity={0.6}
       style={style}
       onPress={() => {
-        onPress?.()
-        navigation.goBack()
+        onPress ? onPress() : navigation.goBack()
       }}
     >
       <ArrowIcon size={iconSize} color={iconColor} />

@@ -11,6 +11,7 @@ import CategoryHeader from '../../features/categories/specificCategory/CategoryH
 import CategoryScreenHeader from '../../features/categories/specificCategory/CategoryScreenHeader'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
+import { noop } from '../../lib/helpers'
 import { links } from '../../navigation/links'
 import { ScreenComponentProps } from '../../navigation/types.screenProps'
 import ImageGradient from '../../ui/gradients/ImageGradient'
@@ -22,7 +23,6 @@ const CategoryDetailsScreen = ({
   const categoryId = route.params.item.id
   const category = useStore(categoryDetailsModel.$data)
   const isLoadingCategory = useStore(categoryDetailsModel.$isLoading)
-
   const { styles } = useThemedStyleList({
     common: themedStyles,
   })
@@ -45,7 +45,7 @@ const CategoryDetailsScreen = ({
   })
 
   useEffect(() => {
-    getCategoryData(categoryId)
+    getCategoryData(categoryId).catch(noop)
     setCategoryId(categoryId)
   }, [categoryId])
 

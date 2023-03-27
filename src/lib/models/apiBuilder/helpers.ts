@@ -1,11 +1,36 @@
 import { ApiError } from './errors'
 import { ContentType, RequestFnProps } from './types'
 
-export function bodyToParams(body: object) {
+const arrayParamsToString = (body: object) => {
+  const notEmptyArray = (arr: (string | number)[]) =>
+    Array.isArray(arr) && !!arr.length
+
   return Object.entries(body)
-    .filter(([, value]) => value !== undefined)
+    .filter(([, value]) => notEmptyArray(value))
+    .map(([key, value]) => {
+      return value.map((i: string | number) => `${key}=${i}`).join('&')
+    })
+    .join('&')
+}
+
+export function bodyToParams(body: object) {
+  const isAvailableValue = (value: any) =>
+    value !== undefined &&
+    value !== '' &&
+    value !== null &&
+    !Array.isArray(value)
+
+  const stringifiedArrayParams = arrayParamsToString(body)
+
+  let result = Object.entries(body)
+    .filter(([, value]) => isAvailableValue(value))
     .map(([key, value]) => `${key}=${value}`)
     .join('&')
+
+  if (stringifiedArrayParams.length) {
+    result += `&${stringifiedArrayParams}`
+  }
+  return result
 }
 
 export function getUrlEnd(

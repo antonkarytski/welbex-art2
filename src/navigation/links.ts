@@ -24,6 +24,7 @@ export enum links {
   galleryTab = 'galleryTab',
   galleryMain = 'galleryMain',
   galleryFilter = 'galleryFilter',
+  specificGalleryFiltered = 'specificGalleryFiltered',
   createPostTab = 'createPostTab',
   createPostUploadImage = 'createPostUploadImage',
   createPostAddDescription = 'createPostAddDescription',

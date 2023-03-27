@@ -8,12 +8,14 @@ import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { SCREEN_CONTENT_WIDTH } from '../../styles/constants'
 import { useText } from '../../translations/hook'
+import DoubleTouchOverlay from '../../ui/DoubleTouchOverlay'
 import PresetButton from '../../ui/buttons/PresetButton'
 import Loader from '../../ui/loaders/Loader'
 import AutoHeightImage from '../images/AutoHeightImage'
 import { $myProfile } from '../profile/model'
 import UserCardPreview from '../user/UserCardPreview'
 import ArtWorkInteractionPanel from './ArtWorkInteractivePanel'
+import { useArtWorkActions } from './hooks'
 import { downloadFullSizeDrawing, getArtWorkRequest } from './request'
 
 type ArtWorkDetailsProps = {
@@ -30,42 +32,40 @@ const ArtWorkDetails = React.memo(({ drawingId }: ArtWorkDetailsProps) => {
     getArtWorkRequest(drawingId).catch(noop)
   }, [drawingId])
 
+  const { onToggleLike, onSave, onLike, onFollowAuthor } = useArtWorkActions(
+    drawing.data,
+    drawing.update
+  )
+
   if (!drawing.data && drawing.isLoading) {
     return <Loader />
   }
 
   if (!drawing.data) return null
 
-  const onFollowAuthor = (isFollowed: boolean) => {
-    drawing.set((current) => {
-      if (!current) return current
-      return {
-        ...current,
-        author: { ...current.author, is_followed: isFollowed },
-      }
-    })
-  }
-
   return (
     <ScrollView bounces={false} style={styles.container}>
       <UserCardPreview
-        onAvatarPress={(item) => {
-          if (item.id === myProfile?.id) return navigate(links.profileTab)
+        onPress={(item) => {
+          if (item.id === myProfile?.id) {
+            return navigate(links.profileTab)
+          }
           navigate(links.userProfile, { item })
         }}
         onFollowPress={onFollowAuthor}
         item={drawing.data.author}
       />
-      <AutoHeightImage
-        image={{ uri: drawing.data.image_thumbnail }}
-        widthGenerator={() => SCREEN_CONTENT_WIDTH}
-      />
+      <DoubleTouchOverlay onPress={onLike}>
+        <AutoHeightImage
+          image={{ uri: drawing.data.image_thumbnail }}
+          widthGenerator={() => SCREEN_CONTENT_WIDTH}
+        />
+      </DoubleTouchOverlay>
+
       <ArtWorkInteractionPanel
-        onLikeChange={(isLiked, likes) =>
-          drawing.update({ is_liked: isLiked, likes })
-        }
-        onSaveChange={(isSaved) => drawing.update({ is_saved: isSaved })}
         item={drawing.data}
+        onLikeArt={onToggleLike}
+        onSaveArt={onSave}
       />
       <PresetButton
         style={styles.downloadButton}

@@ -1,4 +1,4 @@
-import { SCREEN_CONTENT_WIDTH } from '../../styles/constants'
+import { SCREEN_CONTENT_WIDTH } from '../../../styles/constants'
 
 export const DRAWING_ITEM_MARGIN = 20
 export const DRAWINGS_COLUMNS_COUNT = 2
