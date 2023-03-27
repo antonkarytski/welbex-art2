@@ -1,8 +1,11 @@
 import { useStore } from 'effector-react'
 import React, { useCallback } from 'react'
-import { FlatList, StyleSheet } from 'react-native'
+import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native'
 import { ArtWork } from '../../api/parts/arts/types'
-import { noop } from '../../lib/helpers'
+import { createAdsBanner } from '../../lib/ads/AdsBanner'
+import { createFreqFilter } from '../../lib/ads/helpers'
+import { useIsAdsVisible } from '../../lib/ads/hooks'
+import { AdsName } from '../../lib/ads/list'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
@@ -23,6 +26,14 @@ type GalleryListProps = {
   type: GalleryType
 }
 
+const adsBannerFreq = createFreqFilter(4, { skipFirst: true })
+const AdsBanner = createAdsBanner(AdsName.GALLERY, {
+  style: { marginBottom: 20, marginLeft: -20 },
+  requestOptions: {
+    requestNonPersonalizedAdsOnly: true,
+  },
+})
+
 const GalleryList = ({ type }: GalleryListProps) => {
   const text = useText()
   const navigate = useNavigate()
@@ -37,6 +48,7 @@ const GalleryList = ({ type }: GalleryListProps) => {
     isRefreshing,
   } = useGallery(type)
 
+  const isAdsVisible = useIsAdsVisible()
   const { styles } = useThemedStyleList({
     item: galleryItemThemedStyles,
   })
@@ -53,20 +65,23 @@ const GalleryList = ({ type }: GalleryListProps) => {
   )
 
   const renderItem = useCallback(
-    ({ item }: { item: ArtWork }) => {
+    ({ item, index }: ListRenderItemInfo<ArtWork>) => {
       return (
-        <GalleryItem
-          onPress={(drawing) =>
-            navigate(links.galleryDrawingDetails, { item: drawing })
-          }
-          ageTextGenerator={localeAgeTextShort(text)}
-          style={styles.item}
-          item={item}
-          onLikeDrawing={onLikeDrawing}
-        />
+        <>
+          {isAdsVisible && adsBannerFreq(index) && <AdsBanner />}
+          <GalleryItem
+            onPress={(drawing) =>
+              navigate(links.galleryDrawingDetails, { item: drawing })
+            }
+            ageTextGenerator={localeAgeTextShort(text)}
+            style={styles.item}
+            item={item}
+            onLikeDrawing={onLikeDrawing}
+          />
+        </>
       )
     },
-    [styles, navigate, text, onLikeDrawing]
+    [styles, navigate, text, onLikeDrawing, isAdsVisible]
   )
 
   if (isLoading) return <GallerySkeleton />

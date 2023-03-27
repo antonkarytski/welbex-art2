@@ -1,4 +1,4 @@
-import { useStore, useStoreMap } from 'effector-react'
+import { useStore } from 'effector-react'
 import React, { ReactElement, useCallback, useState } from 'react'
 import {
   Animated,
@@ -8,13 +8,14 @@ import {
 } from 'react-native'
 import { CategoryResponse } from '../../api/parts/categories/types'
 import { createAdsBanner } from '../../lib/ads/AdsBanner'
+import { createFreqFilter } from '../../lib/ads/helpers'
+import { useIsAdsVisible } from '../../lib/ads/hooks'
 import { AdsName } from '../../lib/ads/list'
 import { SCREEN_PADDING_HORIZONTAL } from '../../styles/constants'
 import { useText } from '../../translations/hook'
 import Span from '../../ui/Span'
 import Loader from '../../ui/loaders/Loader'
 import CategoriesListSkeleton from '../../ui/loaders/Skeleton.CategoriesList'
-import { $myProfile } from '../profile/model'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import { winnersListModel } from '../winners/request'
@@ -28,8 +29,9 @@ type CategoriesListProps = {
 }
 const keyExtractor = ({ name }: CategoryResponse) => name
 
-const AdsBanner = createAdsBanner(AdsName.CATEGORIES_SEPARATOR, {
-  style: { width: '100%', marginBottom: 20 },
+const adsBannerFreq = createFreqFilter(4)
+const AdsBanner = createAdsBanner(AdsName.CATEGORIES, {
+  style: { marginBottom: 20 },
   requestOptions: {
     requestNonPersonalizedAdsOnly: true,
   },
@@ -45,11 +47,7 @@ const CategoriesList = ({
     card: categoryCardThemedStyles,
   })
 
-  const shouldShowAds = useStoreMap({
-    store: $myProfile,
-    keys: [],
-    fn: (myProfile) => __DEV__ || !myProfile?.subscription,
-  })
+  const isAdsVisible = useIsAdsVisible()
   const categories = useStore(categoriesListModel.$items)
   const isLoading = useStore(categoriesListModel.$isLoading)
   const isNextLoading = useStore(categoriesListModel.$isNextLoading)
@@ -69,18 +67,14 @@ const CategoriesList = ({
 
   const renderItem = useCallback(
     ({ item, index }: ListRenderItemInfo<CategoryResponse>) => {
-      if (shouldShowAds && !(index % 4)) {
-        return (
-          <>
-            <AdsBanner />
-            <CardCategory item={item} styles={styles.card} />
-          </>
-        )
-      }
-
-      return <CardCategory item={item} styles={styles.card} />
+      return (
+        <>
+          {isAdsVisible && adsBannerFreq(index) && <AdsBanner />}
+          <CardCategory item={item} styles={styles.card} />
+        </>
+      )
     },
-    [styles, shouldShowAds]
+    [styles, isAdsVisible]
   )
 
   return (
