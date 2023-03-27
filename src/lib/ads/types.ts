@@ -10,3 +10,8 @@ export type AdsDescription = {
   id: string
   type: AdsType
 }
+
+export type AdsBannerDescription = {
+  id: string
+  type: AdsType.BANNER
+}

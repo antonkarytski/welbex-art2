@@ -2,7 +2,7 @@ import { attach, createEffect, createEvent, sample } from 'effector'
 import { createStateModel } from 'altek-toolkit'
 import { MyProfile } from '../../api/parts/users/types'
 import { $myProfile } from '../../features/profile/model'
-import { AdsController, createAds } from './AdsController'
+import { AdsController, createAdsController } from './AdsController'
 import { AdsName } from './list'
 
 type CreateAdsModelSettings = {
@@ -49,7 +49,7 @@ class AdsModel {
       source: $myProfile,
       clock: this.init,
       filter: this.filterAdsCreate,
-      fn: () => createAds(name),
+      fn: () => createAdsController(name),
       target: this.controller.set,
     })
   }

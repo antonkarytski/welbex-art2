@@ -39,6 +39,6 @@ export class AdsController {
   }
 }
 
-export const createAds = (name: AdsName) => {
+export function createAdsController(name: AdsName): AdsController {
   return new AdsController(name)
 }
