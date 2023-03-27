@@ -9,36 +9,8 @@ type GalleryListProps = {
   type: GalleryType
 }
 
-const adsBannerFreq = createFreqFilter(4, { skipFirst: true })
-const AdsBanner = createAdsBanner(AdsName.GALLERY, {
-  style: { marginBottom: 20, marginLeft: -20 },
-  requestOptions: {
-    requestNonPersonalizedAdsOnly: true,
-  },
-})
-
 const GalleryList = ({ type }: GalleryListProps) => {
   const isAuth = useStore($isAuth)
-
-  const renderItem = useCallback(
-    ({ item, index }: ListRenderItemInfo<ArtWork>) => {
-      return (
-        <>
-          {isAdsVisible && adsBannerFreq(index) && <AdsBanner />}
-          <GalleryItem
-            onPress={(drawing) =>
-              navigate(links.galleryDrawingDetails, { item: drawing })
-            }
-            ageTextGenerator={localeAgeTextShort(text)}
-            style={styles.item}
-            item={item}
-            onLikeDrawing={onLikeDrawing}
-          />
-        </>
-      )
-    },
-    [styles, navigate, text, onLikeDrawing, isAdsVisible]
-  )
 
   return (
     <GalleryListBase
