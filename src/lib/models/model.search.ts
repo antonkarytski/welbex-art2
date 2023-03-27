@@ -69,11 +69,13 @@ export const createSearchableListModel = <T extends Record<string, any>>(
   const searchStringModel = {
     $state: $searchString,
     set: setSearchString,
+    reset: () => setSearchString(''),
   }
 
   const initialListModel = {
     $state: $initialList,
     set: setInitialList,
+    reset: () => setInitialList([]),
   }
 
   return { searchStringModel, initialListModel, $filteredList }

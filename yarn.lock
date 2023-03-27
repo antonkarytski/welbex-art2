@@ -3585,10 +3585,10 @@ ajv@^8.0.1:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-altek-toolkit@^0.4.18:
-  version "0.4.18"
-  resolved "https://registry.yarnpkg.com/altek-toolkit/-/altek-toolkit-0.4.18.tgz#4598abdc33ce8f6aceef90fc1129065062f1df44"
-  integrity sha512-nCf6oFTo9VCAPEqZ3xS4/o9LFsgzWIzPgcviv8pem5OfMpYJulurMSU/+4fZVvio2OSVNs85EVNJo1AiPMrTPA==
+altek-toolkit@0.4.21:
+  version "0.4.21"
+  resolved "https://registry.yarnpkg.com/altek-toolkit/-/altek-toolkit-0.4.21.tgz#1f1e50782e992b2818f8d0992559fb87177d6c8d"
+  integrity sha512-CHiUYf72xfCXVuncvt8GFmjgQxgrJVL5sFOerAQFifMNHkSVWZ81niPC4+HuGl35MdlCJ5YdQYefsjC+0JFwsA==
 
 altek-toolkit@^0.4.4:
   version "0.4.17"

@@ -40,11 +40,13 @@ export const createPhoneInputModel = (
   const purePhoneModel = {
     $state: $purePhone,
     set: setPurePhone,
+    reset: () => setPurePhone(''),
   }
 
   const countryCodeModel = {
     $state: $countryCode,
     set: setCountryCode,
+    reset: () => setCountryCode(defaultCountryCode || null),
   }
 
   return {

@@ -7,6 +7,8 @@ import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import WinnersBlock from '../../features/winners/WinnersBlock'
 import { winnersListModel } from '../../features/winners/request'
+import { initAds } from '../../lib/ads/model.init'
+import { noop } from '../../lib/helpers'
 import AppHeader from '../../navigation/elements/AppHeader'
 import { themedPrimaryMotionGradient } from '../../styles/gradients'
 import { screenHeaderThemedStylesDark } from '../../styles/screen'
@@ -30,6 +32,7 @@ export default function HomeScreen() {
   const winnersListNotEmpty = winnersList.length > 0 || isWinnersLoading
 
   useEffect(() => {
+    initAds().catch(noop)
     winnersListModel.getSync()
     categoriesListModel.getSync()
   }, [])

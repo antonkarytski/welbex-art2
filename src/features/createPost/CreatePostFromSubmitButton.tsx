@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
-import { noop } from '../../lib/helpers'
 import { useFormField } from '../../lib/models/form'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import PresetButton from '../../ui/buttons/PresetButton'
 import { createPostFormModel } from './model'
+import { createPostAds } from './model.ads'
 
 type CreatePostFromSubmitButtonProps = {
   style?: StyleProp<ViewStyle>
@@ -22,18 +22,20 @@ const CreatePostFromSubmitButton = ({
     createPostFormModel.fields.isChildDocumentLoaded
   )
 
+  useEffect(() => {
+    createPostAds.init()
+  }, [])
+
   return (
     <PresetButton
       style={style}
       disabled={!isDocumentUploaded}
-      onPress={() => {
-        createPostFormModel
-          .submit()
-          .then(() => {
-            navigate(links.home)
-            createPostFormModel.reset()
-          })
-          .catch(noop)
+      onPress={async () => {
+        try {
+          await createPostFormModel.submit()
+          navigate(links.home)
+          createPostFormModel.reset()
+        } catch {}
       }}
       label={text.submit}
     />

@@ -5,6 +5,7 @@ import { api } from '../../api'
 import { ImageFile } from '../../lib/files/types'
 import { createFormModel } from '../../lib/models/form'
 import { stringSchema } from '../../lib/yup'
+import { createPostAds } from './model.ads'
 
 export type ImageDescriptionFormFields = {
   isChildDocumentLoaded: boolean
@@ -30,8 +31,9 @@ const schema: ObjectSchema<ImageDescriptionFormFields> = yup.object().shape({
 
 export const createPostFormModel = createFormModel(schema).setSubmitSettings({
   validate: true,
-  request: createEffect((data: ImageDescriptionFormFields) => {
+  request: createEffect(async (data: ImageDescriptionFormFields) => {
     if (data.categoryId === null) return
+    await createPostAds.run()
     return api.arts.create({
       image: data.image,
       title: data.title,
