@@ -15,6 +15,7 @@ type AppHeaderProps = {
   settingsIconColor?: string
   iconsColor?: string
   onLayout?: ScreenHeaderProps['onLayout']
+  onAfterGoBack?: () => void
 }
 
 const AppHeader = ({
@@ -25,6 +26,7 @@ const AppHeader = ({
   settingsIconColor,
   iconsColor,
   onLayout,
+  onAfterGoBack,
 }: AppHeaderProps) => {
   return (
     <ScreenHeader
@@ -37,6 +39,7 @@ const AppHeader = ({
           <SettingsButton iconColor={settingsIconColor || iconsColor} />
         )
       }
+      onAfterGoBack={onAfterGoBack}
     >
       <Sup style={style?.title} label={'ART'} supLabel={'2'} />
     </ScreenHeader>

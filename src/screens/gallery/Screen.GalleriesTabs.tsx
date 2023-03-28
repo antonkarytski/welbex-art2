@@ -2,7 +2,6 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { GALLERIES } from '../../features/gallery/descriptors'
-import { setActiveGallery } from '../../features/gallery/model'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { ColorThemeStructure } from '../../features/themed/theme'
@@ -43,24 +42,17 @@ const GalleriesTabsScreen = () => {
         <Tab.Navigator
           style={styles.common.container}
           sceneContainerStyle={styles.common.sceneContainer}
-          tabBar={({ descriptors, state, ...props }) => {
-            const activeTabIndex = state.index
-            setActiveGallery(GALLERIES[activeTabIndex])
-
-            return (
-              <TabMenu
-                routes={Object.values(descriptors).map(
-                  ({ route, options }) => ({
-                    key: route.key,
-                    title: options.title,
-                  })
-                )}
-                style={styles.tabMenu}
-                activeTab={activeTabIndex}
-                {...props}
-              />
-            )
-          }}
+          tabBar={({ descriptors, state, ...props }) => (
+            <TabMenu
+              routes={Object.values(descriptors).map(({ route, options }) => ({
+                key: route.key,
+                title: options.title,
+              }))}
+              style={styles.tabMenu}
+              activeTab={state.index}
+              {...props}
+            />
+          )}
           initialRouteName={links.galleryBest}
         >
           {GALLERIES.map(({ title, type, link }) => {

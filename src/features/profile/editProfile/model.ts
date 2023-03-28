@@ -27,7 +27,7 @@ export const setEditProfileFormData = attach({
   mapParams: (_: void, state: MyProfile | null) => state,
   effect: createEffect((state: MyProfile | null) => {
     if (!state) return
-    editProfileCountryModel.setCountry(state.country)
+    editProfileCountryModel.set(state.country)
     editProfileFormModel.set(convertProfileBodyToEditForm(state))
   }),
 })
@@ -55,5 +55,5 @@ export const setAvatar = (assets: ImagePickerAsset[] | null) => {
 
 export const $editFormData: Store<EditProfileForm> = combine({
   user: editProfileFormModel.$store,
-  country: editProfileCountryModel.$country,
+  country: editProfileCountryModel.$state,
 })

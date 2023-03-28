@@ -33,6 +33,7 @@ const MainTabsRouter = React.memo(() => {
       tabBar={({ ...props }) => (
         <CustomBottomTab {...props} colors={colors} style={styles} />
       )}
+      backBehavior={'none'}
     >
       {SCREENS.map(({ label, link, Icon, Component, customButton }) => {
         return (

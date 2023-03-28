@@ -20,8 +20,12 @@ export const createPaginationListModel = <R, P>({
   const get = createEffect((props: P) =>
     request({ page: 1, size: pageSize, ...staticProps, ...props })
   )
+  const $isLoading = get.pending
+  const getSync = (props: P) => {
+    get(props).catch(noop)
+  }
 
-  const getNext = attach({
+  const getNextPageData = attach({
     source: $nextPage,
     mapParams: (props: P, nextPage) => ({
       nextPage,
@@ -37,10 +41,32 @@ export const createPaginationListModel = <R, P>({
       })
     }),
   })
+  const $isNextLoading = getNextPageData.pending
+
+  const getNext = attach({
+    source: $isNextLoading,
+    mapParams: (props: P, isNextLoading) => ({
+      isNextLoading,
+      props,
+    }),
+    effect: createEffect(
+      ({ props, isNextLoading }: { props: P; isNextLoading: boolean }) => {
+        if (!isNextLoading) getNextPageData(props)
+      }
+    ),
+  })
+
+  const getNextSync = (props: P) => {
+    getNext(props).catch(noop)
+  }
 
   const refresh = createEffect((props: P) =>
     request({ page: 1, size: pageSize, ...staticProps, ...props })
   )
+  const $isRefreshing = refresh.pending
+  const refreshSync = (props: P) => {
+    refresh(props).catch(noop)
+  }
 
   const setItems = createEvent<R[]>()
   const addItems = createEvent<R[]>()
@@ -67,7 +93,7 @@ export const createPaginationListModel = <R, P>({
     setItems(result?.items || [])
   })
 
-  getNext.done.watch(({ result }) => {
+  getNextPageData.done.watch(({ result }) => {
     if (!result) return
     setNextPage(result)
     addItems(result.items)
@@ -77,14 +103,6 @@ export const createPaginationListModel = <R, P>({
     setNextPage(result)
     setItems(result?.items || [])
   })
-
-  const getSync = (props: P) => {
-    get(props).catch(noop)
-  }
-
-  const $isLoading = get.pending
-  const $isNextLoading = getNext.pending
-  const $isRefreshing = refresh.pending
 
   const reset = () => {
     resetPage()
@@ -97,6 +115,7 @@ export const createPaginationListModel = <R, P>({
     get,
     getSync,
     getNext,
+    getNextSync,
     $items,
     $isLoading,
     $isNextLoading,
@@ -104,6 +123,7 @@ export const createPaginationListModel = <R, P>({
     reset,
     updateItem,
     refresh,
+    refreshSync,
     $isRefreshing,
   }
 }
