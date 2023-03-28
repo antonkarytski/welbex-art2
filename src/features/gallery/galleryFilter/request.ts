@@ -1,10 +1,16 @@
 import { api } from '../../../api'
 import { ArtWorksFilterProps } from '../../../api/parts/arts/types'
 import { createRequestModel } from '../../../lib/models/model.request'
+import { createAuthSeparatedRequest } from '../../auth/helpers'
 import { GalleryType } from '../types'
 
+createAuthSeparatedRequest
+
 export const countFilteredGalleryModel = createRequestModel(
-  api.arts.countOfFiltered
+  createAuthSeparatedRequest(
+    api.arts.countOfFiltered,
+    api.arts.countOfFilteredProtected
+  )
 )
 
 export const galleriesModeProp: Record<GalleryType, ArtWorksFilterProps> = {

@@ -16,6 +16,7 @@ export type GalleyDescriptor = {
   link: GalleryLink
   type: GalleryType
   title: LangFn
+  isProtected: boolean
 }
 
 export type GalleriesList<T> = Partial<Record<GalleryType, T>>

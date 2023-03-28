@@ -1,7 +1,7 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { GALLERIES } from '../../features/gallery/descriptors'
+import { useGalleriesDescriptors } from '../../features/gallery/descriptors'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { ColorThemeStructure } from '../../features/themed/theme'
@@ -30,6 +30,7 @@ const GalleriesTabsScreen = () => {
     common: themedStyles,
   })
   const isLoaded = useScreenLoading()
+  const galleriesDescriptors = useGalleriesDescriptors()
 
   return (
     <View style={styles.common.container}>
@@ -55,7 +56,7 @@ const GalleriesTabsScreen = () => {
           )}
           initialRouteName={links.galleryBest}
         >
-          {GALLERIES.map(({ title, type, link }) => {
+          {galleriesDescriptors.map(({ title, type, link }) => {
             return (
               <Tab.Screen
                 key={link}

@@ -36,10 +36,11 @@ export const downloadFullSizeDrawing = arts.get<ArtWork, number>(
   (id) => `${id}/download-full-size-image`
 )
 
-const countOfFiltered = arts.get<
+const countOfFilteredProtected = arts.get<
   CountOfFilteredArtsResponse,
   ArtWorksFilterProps
 >('total')
+const countOfFiltered = countOfFilteredProtected.unprotect()
 
 const create = arts
   .post<ArtWorkCreateResponse, ArtWorkCreateProps>({
@@ -72,6 +73,7 @@ export const artsApi = {
   specific,
   specificProtected,
   countOfFiltered,
+  countOfFilteredProtected,
   likePost,
   dislikePost,
   savePost,
