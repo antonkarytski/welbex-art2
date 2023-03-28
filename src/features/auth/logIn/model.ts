@@ -5,6 +5,7 @@ import { api } from '../../../api'
 import { apiManager } from '../../../api/apiManager'
 import { LoginResponse } from '../../../api/parts/auth/types'
 import { noop } from '../../../lib/helpers'
+import { ApiError } from '../../../lib/models/apiBuilder/errors'
 import { createFormModel } from '../../../lib/models/form'
 import { stringSchema } from '../../../lib/yup'
 import { meRequest } from '../../profile/request'
@@ -43,7 +44,7 @@ export const logIn = attach({
 logIn.done.watch(handleLogin)
 
 api.auth.login.fail.watch(({ error }) => {
-  if (error.status === 401) {
+  if ((error as ApiError).status === 401) {
     setIsLoginAccessError(true)
   }
 })

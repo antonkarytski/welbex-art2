@@ -3585,10 +3585,15 @@ ajv@^8.0.1:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-altek-toolkit@^0.4.21, altek-toolkit@^0.4.4:
+altek-toolkit@0.4.21:
   version "0.4.21"
-  resolved "https://registry.npmjs.org/altek-toolkit/-/altek-toolkit-0.4.21.tgz"
+  resolved "https://registry.yarnpkg.com/altek-toolkit/-/altek-toolkit-0.4.21.tgz#1f1e50782e992b2818f8d0992559fb87177d6c8d"
   integrity sha512-CHiUYf72xfCXVuncvt8GFmjgQxgrJVL5sFOerAQFifMNHkSVWZ81niPC4+HuGl35MdlCJ5YdQYefsjC+0JFwsA==
+
+altek-toolkit@^0.4.4:
+  version "0.4.17"
+  resolved "https://registry.yarnpkg.com/altek-toolkit/-/altek-toolkit-0.4.17.tgz#bc427b46e54641a2ea94e90560fc026256fa233b"
+  integrity sha512-om40ugc7AS+j+/bn2fYamgDwAUw3gAEZXpdxYgaK7Te9M1sgpGcKDwWQWrKnOMkSWbzsyZuLODx92hg+eC+piQ==
 
 altek-ui@^0.7.33:
   version "0.7.33"
@@ -10277,6 +10282,13 @@ pkg-dir@^4.2.0:
   dependencies:
     find-up "^4.0.0"
 
+pkg-dir@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/pkg-dir/-/pkg-dir-5.0.0.tgz#a02d6aebe6ba133a928f74aec20bafdfe6b8e760"
+  integrity sha512-NPE8TDbzl/3YQYY7CSS228s3g2ollTFnc+Qi3tqmqJp9Vg2ovUpixcJEo2HJScN2Ez+kEaal6y70c0ehqJBJeA==
+  dependencies:
+    find-up "^5.0.0"
+
 pkg-up@^3.1.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/pkg-up/-/pkg-up-3.1.0.tgz"
@@ -10677,6 +10689,14 @@ react-native-pager-view@^6.1.4:
   version "6.1.4"
   resolved "https://registry.npmjs.org/react-native-pager-view/-/react-native-pager-view-6.1.4.tgz"
   integrity sha512-fmTwgGwPxGCBusKAq7gHzm+s1Yp0qh5rKPoQszaCuxrb+76KgK4Qe82jJNPUp2xTZOKSw+FbJU2QahF8ncTl+w==
+
+react-native-permissions@^3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-3.8.0.tgz#7c1f75ae126c7d0b863eec9d2f5cd93ff8ad8310"
+  integrity sha512-BfZ7ksgdpGchHZH8M/kxCGZbWeACANbnPmb3hNjVOMDQusc4PWlPpobX3eBqYMSKbpi7bMECeV9BVU4QuwAf9A==
+  dependencies:
+    picocolors "^1.0.0"
+    pkg-dir "^5.0.0"
 
 react-native-reanimated-carousel@^3.3.0:
   version "3.3.0"

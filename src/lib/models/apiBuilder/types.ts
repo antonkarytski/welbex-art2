@@ -42,3 +42,12 @@ export type CreateRequestProps<Params> = {
   endpoint: string
   fn?: MapperFn<Params>
 } & RequestRouteSettings
+
+export type RequestHandler = <Response, Params>(
+  props: DoRequestProps<Params>,
+  driver?: typeof fetch
+) => Promise<Response>
+
+export type RequestDataGetter = <Params>(
+  props: DoRequestProps<Params>
+) => Promise<RequestInit>

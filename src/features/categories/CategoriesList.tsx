@@ -1,7 +1,16 @@
 import { useStore } from 'effector-react'
 import React, { ReactElement, useCallback, useState } from 'react'
-import { Animated, FlatListProps, StyleSheet } from 'react-native'
+import {
+  Animated,
+  FlatListProps,
+  ListRenderItemInfo,
+  StyleSheet,
+} from 'react-native'
 import { CategoryResponse } from '../../api/parts/categories/types'
+import { createAdsBanner } from '../../lib/ads/AdsBanner'
+import { createFreqFilter } from '../../lib/ads/helpers'
+import { useIsAdsVisible } from '../../lib/ads/hooks'
+import { AdsName } from '../../lib/ads/list'
 import { SCREEN_PADDING_HORIZONTAL } from '../../styles/constants'
 import { useText } from '../../translations/hook'
 import Span from '../../ui/Span'
@@ -20,6 +29,14 @@ type CategoriesListProps = {
 }
 const keyExtractor = ({ name }: CategoryResponse) => name
 
+const adsBannerFreq = createFreqFilter(4)
+const AdsBanner = createAdsBanner(AdsName.CATEGORIES, {
+  style: { marginBottom: 20 },
+  requestOptions: {
+    requestNonPersonalizedAdsOnly: true,
+  },
+})
+
 const CategoriesList = ({
   ListHeaderComponent,
   onScroll,
@@ -30,6 +47,7 @@ const CategoriesList = ({
     card: categoryCardThemedStyles,
   })
 
+  const isAdsVisible = useIsAdsVisible()
   const categories = useStore(categoriesListModel.$items)
   const isLoading = useStore(categoriesListModel.$isLoading)
   const isNextLoading = useStore(categoriesListModel.$isNextLoading)
@@ -48,10 +66,15 @@ const CategoriesList = ({
   }
 
   const renderItem = useCallback(
-    ({ item }: { item: CategoryResponse }) => {
-      return <CardCategory item={item} styles={styles.card} />
+    ({ item, index }: ListRenderItemInfo<CategoryResponse>) => {
+      return (
+        <>
+          {isAdsVisible && adsBannerFreq(index) && <AdsBanner />}
+          <CardCategory item={item} styles={styles.card} />
+        </>
+      )
     },
-    [styles]
+    [styles, isAdsVisible]
   )
 
   return (
