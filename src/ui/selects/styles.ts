@@ -25,7 +25,7 @@ export const selectStyles = StyleSheet.create({
     position: 'absolute',
     zIndex: 3,
     elevation: 3,
-    right: -40,
+    right: -20,
     height: '100%',
     justifyContent: 'center',
     alignItems: 'flex-end',
