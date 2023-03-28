@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleProp, TouchableOpacity, ViewStyle } from 'react-native'
-// import Share from 'react-native-share'
+import Share from 'react-native-share'
 import ShareIcon from '../icons/Icon.Share'
 
 type ShareButtonProps = {
@@ -17,10 +17,10 @@ const ShareButton = ({ style, color, item }: ShareButtonProps) => {
     <TouchableOpacity
       style={style}
       onPress={() => {
-        // Share.open({
-        //   url: item.url,
-        //   title: item.title,
-        // })
+        Share.open({
+          url: item.url,
+          title: item.title,
+        })
       }}
     >
       <ShareIcon color={color} />
