@@ -77,7 +77,7 @@ const EditProfileForm = () => {
             />
           )
         })}
-        <CountriesDropdownSelect model={editProfileCountryModel} />
+        <CountriesDropdownSelect {...editProfileCountryModel} />
         <ChildDocumentUploadingBlock
           style={styles.common.uploadDocumentsBlock}
         />

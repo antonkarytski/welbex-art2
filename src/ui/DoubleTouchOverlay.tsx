@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 import {
   TouchCoordinates,
-  calcDistanceBetweenTouches,
+  calcDistanceBetweenCoords,
 } from '../lib/helpers/geometry'
 
 type DoubleTouchOverlayProps = PropsWithChildren<{
@@ -40,7 +40,7 @@ const DoubleTouchOverlay = ({
       x: prevTouchX.current,
       y: prevTouchY.current,
     }
-    const touchesDistance = calcDistanceBetweenTouches(
+    const touchesDistance = calcDistanceBetweenCoords(
       prevTouchCoordinates,
       currentCoordinates
     )

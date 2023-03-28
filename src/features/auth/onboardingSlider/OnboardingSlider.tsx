@@ -69,6 +69,10 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
     [style, t]
   )
 
+  const onSnapToItem = (index: number) => {
+    setActiveSlideIndex(index)
+  }
+
   const onGoNext = () => {
     if (isLastSlideActive) {
       navigate(links.signUp)
@@ -83,7 +87,7 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
       <Carousel
         data={onboardingSliderData}
         renderItem={renderItem}
-        onSnapToItem={setActiveSlideIndex}
+        onSnapToItem={onSnapToItem}
         height={carouselHeight}
         width={carouselWidth}
         vertical={false}
@@ -102,11 +106,12 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
             style?.paginationDot,
             style?.paginationDotInactive,
           ]}
+          dotContainerStyle={styles.dotContainer}
           inactiveDotOpacity={1}
           inactiveDotScale={1}
         />
         <PresetButton
-          label={t.next}
+          label={isLastSlideActive ? t.createNewAccount : t.next}
           onPress={onGoNext}
           preset={style?.button}
           style={styles.buttonNext}
@@ -123,6 +128,8 @@ const styles = StyleSheet.create({
   paginationDot: {
     width: 8,
     height: 8,
+  },
+  dotContainer: {
     marginHorizontal: 4,
   },
   paginationContainer: {

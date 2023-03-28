@@ -106,7 +106,7 @@ const UserProfile = ({
         />
       ) : (
         <View />
-      ),
+      ), // eslint-disable-next-line
     [tabMenuProps, handleTabMenuLayout, tabMenuStyles]
   )
 

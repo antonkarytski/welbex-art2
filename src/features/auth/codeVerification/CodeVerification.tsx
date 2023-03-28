@@ -19,6 +19,7 @@ const CodeVerification = () => {
     if (!isCodeValid) return
     if (isActive) return nextStep()
     navigate(links.createPassword)
+    codeModel.reset()
   }, [isCodeValid, isActive, navigate, nextStep])
 
   return (

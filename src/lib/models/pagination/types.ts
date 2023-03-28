@@ -40,13 +40,15 @@ export type PaginationListModelResponse<R, P> = {
   setNextPage: Event<SetNextPageProps | null>
   get: Request<R, P>
   getSync: (props: P) => void
-  getNext: Effect<P, PaginatedListResponse<R> | null, Error>
+  getNext: Effect<P, void, Error>
+  getNextSync: (props: P) => void
   $isLoading: Store<boolean>
   $isNextLoading: Store<boolean>
   setItems: Event<R[]>
   reset: () => void
   updateItem: Effect<R, R[], Error>
   refresh: Request<R, P>
+  refreshSync: (props: P) => void
   $isRefreshing: Store<boolean>
 }
 

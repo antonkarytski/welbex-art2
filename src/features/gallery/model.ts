@@ -3,7 +3,7 @@ import { api } from '../../api'
 import { ARTS_PAGE_SIZE } from '../../api/constants'
 import { ArtWork } from '../../api/parts/arts/types'
 import { createPaginationListModel } from '../../lib/models/pagination'
-import { checkRequestProtection } from '../auth/helpers'
+import { createAuthSeparatedRequest } from '../auth/helpers'
 import { GALLERIES } from './descriptors'
 import { GalleryType, GalleyDescriptor } from './types'
 
@@ -14,12 +14,12 @@ const galleryModelCommonProps = {
   idExtractor: artWorkIdExtractor,
 }
 
-const galleryBestRequest = checkRequestProtection(
+const galleryBestRequest = createAuthSeparatedRequest(
   api.arts.best,
   api.arts.bestProtected
 )
 
-const galleryNewRequest = checkRequestProtection(
+const galleryNewRequest = createAuthSeparatedRequest(
   api.arts.newArts,
   api.arts.newArtsProtected
 )

@@ -24,7 +24,7 @@ export const resetGalleryFilter = () => {
 export const $galleryFilterProps = combine(
   {
     categories: categoriesModel.$state,
-    countries: countriesModel.$countries,
+    countries: countriesModel.$state,
     drawingName: drawingNameModel.$state,
     ageRange: ageRangeModel.$state,
   },

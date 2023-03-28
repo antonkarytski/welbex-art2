@@ -45,12 +45,12 @@ const LogInForm = () => {
         placeholder={t.password}
         formModel={logInFormModel}
         name={'password'}
-        style={styles.field}
+        style={{ ...styles.field, wrapper: featureStyles.lastFormField }}
       />
       {isLoginAccessError && (
         <Span
           label={t.incorrectLoginCredentials}
-          style={errorTextThemedStyles(colors)}
+          style={[errorTextThemedStyles(colors), featureStyles.loginErrorNote]}
         />
       )}
       <TextButton
@@ -73,9 +73,15 @@ const featureStyles = StyleSheet.create({
   formTitle: {
     textAlign: 'center',
   },
+  lastFormField: {
+    marginBottom: 0,
+  },
   forgotPasswordButton: {
     marginVertical: 10,
     marginLeft: 'auto',
+  },
+  loginErrorNote: {
+    marginTop: 10,
   },
 })
 
