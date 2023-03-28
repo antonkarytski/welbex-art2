@@ -1,6 +1,10 @@
 import React, { useCallback } from 'react'
-import { FlatList, StyleSheet } from 'react-native'
+import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native'
 import { ArtWork, ArtWorksFilterProps } from '../../api/parts/arts/types'
+import { createAdsBanner } from '../../lib/ads/AdsBanner'
+import { createFreqFilter } from '../../lib/ads/helpers'
+import { useIsAdsVisible } from '../../lib/ads/hooks'
+import { AdsName } from '../../lib/ads/list'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
@@ -24,6 +28,14 @@ type GalleryListProps = {
   refreshEnabled?: boolean
 }
 
+const adsBannerFreq = createFreqFilter(4, { skipFirst: true })
+const AdsBanner = createAdsBanner(AdsName.GALLERY, {
+  style: { marginBottom: 20, marginLeft: -20 },
+  requestOptions: {
+    requestNonPersonalizedAdsOnly: true,
+  },
+})
+
 const GalleryListBase = ({
   type,
   filters,
@@ -43,6 +55,7 @@ const GalleryListBase = ({
     refreshSync,
     isRefreshing,
   } = useGallery(type, getListOnMount)
+  const isAdsVisible = useIsAdsVisible()
 
   const { styles } = useThemedStyleList({
     item: galleryItemThemedStyles,
@@ -51,21 +64,24 @@ const GalleryListBase = ({
   const { toggleLike } = useAtrWorkActions(null, updateItem)
 
   const renderItem = useCallback(
-    ({ item }: { item: ArtWork }) => {
+    ({ item, index }: ListRenderItemInfo<ArtWork>) => {
       return (
-        <GalleryItem
-          onPress={(drawing) =>
-            navigate(links.galleryDrawingDetails, { item: drawing })
-          }
-          ageTextGenerator={localeAgeTextShort(text)}
-          style={styles.item}
-          item={item}
-          onPressLikeButton={toggleLike}
-          colors={colors}
-        />
+        <>
+          {isAdsVisible && adsBannerFreq(index) && <AdsBanner />}
+          <GalleryItem
+            onPress={(drawing) =>
+              navigate(links.galleryDrawingDetails, { item: drawing })
+            }
+            ageTextGenerator={localeAgeTextShort(text)}
+            style={styles.item}
+            item={item}
+            onPressLikeButton={toggleLike}
+            colors={colors}
+          />
+        </>
       )
-    }, // eslint-disable-next-line
-    [styles, navigate, text, colors]
+    },
+    [styles, navigate, text, colors, isAdsVisible]
   )
 
   if (isLoading) return <GallerySkeleton />

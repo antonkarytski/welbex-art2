@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { permissionsForceRequest } from '../../../../lib/permissions/permission.mediaLibrary'
 import { useText } from '../../../../translations/hook'
 import Span from '../../../../ui/Span'
 import { createThemedStyle } from '../../../themed'
 import { useThemedStyle } from '../../../themed/hooks'
+import { permissionsForceRequest } from '../../permission.mediaLibrary'
 
 type PermissionNotGrantedInfoProps = {}
 

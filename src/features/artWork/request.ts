@@ -33,7 +33,7 @@ getArtWorkRequest.fail.watch((e) => {
 
 export const downloadFullSizeDrawing = async (id: number) => {
   const request = await api.arts.downloadFullSizeDrawing.requestData(id)
-  return downloadImageFromUrl(request.props.url, {
+  return downloadImageFromUrl(request.url, {
     headers: request.data.headers as Record<string, string>,
   })
 }
