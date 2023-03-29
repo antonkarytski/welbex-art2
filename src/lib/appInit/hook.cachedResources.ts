@@ -28,11 +28,18 @@ export function useCachedResources() {
 
   useEffect(() => {
     cameraPermission.init()
-    Promise.all([configMobileAds(), loadResourcesAndData()]).finally(() => {
-      setLoadingComplete(true)
-    })
+    Promise.all([configMobileAds(), loadResourcesAndData()])
+
     apiManager.token.onInit((token) => {
-      if (token) meRequest().catch(noop)
+      if (token) {
+        meRequest()
+          .catch(noop)
+          .finally(() => {
+            setLoadingComplete(true)
+          })
+      } else {
+        setLoadingComplete(true)
+      }
     })
   }, [])
 
