@@ -32,7 +32,14 @@ const Router = React.memo(() => {
         //@ts-ignore
         <Stack.Screen key={name} name={name} component={component} />
       ))}
-      <Stack.Screen name={links.mainTabs} component={MainTabsRouter} />
+      <Stack.Screen
+        name={links.mainTabs}
+        component={MainTabsRouter}
+        options={{
+          headerLeft: () => null,
+          gestureEnabled: false,
+        }}
+      />
       <Stack.Screen name={links.editProfile} component={EditProfileScreen} />
       <Stack.Screen name={links.camera} component={CameraScreen} />
       <Stack.Screen name={links.userProfile} component={UserProfileScreen} />
