@@ -3,6 +3,7 @@ import { loadAsync } from 'expo-font'
 import { useEffect, useState } from 'react'
 import { apiManager } from '../../api/apiManager'
 import { cameraPermission } from '../../features/camera/model.permissions'
+import { onBoardingWasShownModel } from '../../features/onboarding/model'
 import { meRequest } from '../../features/profile/request'
 import * as FONTS from '../../styles/fonts'
 import { configMobileAds } from '../ads/setup'
@@ -28,19 +29,19 @@ export function useCachedResources() {
 
   useEffect(() => {
     cameraPermission.init()
-    Promise.all([configMobileAds(), loadResourcesAndData()])
-
-    apiManager.token.onInit((token) => {
-      if (token) {
-        meRequest()
-          .catch(noop)
-          .finally(() => {
-            setLoadingComplete(true)
-          })
-      } else {
+    Promise.all([
+      configMobileAds(),
+      loadResourcesAndData(),
+      onBoardingWasShownModel.init(),
+    ])
+      .then(() => apiManager.token.onInit().promise)
+      .then((token) => {
+        if (token) return meRequest()
+      })
+      .catch(noop)
+      .finally(() => {
         setLoadingComplete(true)
-      }
-    })
+      })
   }, [])
 
   return isLoadingComplete

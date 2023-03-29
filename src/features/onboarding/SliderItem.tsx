@@ -8,10 +8,10 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import { WINDOW_HEIGHT, getHeight } from '../../../lib/device/dimensions'
-import { SCREEN_PADDING_HORIZONTAL } from '../../../styles/constants'
-import { LangStructure } from '../../../translations/types'
-import Span from '../../../ui/Span'
+import { WINDOW_HEIGHT, getHeight } from '../../lib/device/dimensions'
+import { SCREEN_PADDING_HORIZONTAL } from '../../styles/constants'
+import { LangStructure } from '../../translations/types'
+import Span from '../../ui/Span'
 import { OnboardingSliderItem } from './onboardingSliderData'
 
 type SliderItemProps = {

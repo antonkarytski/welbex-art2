@@ -12,6 +12,7 @@ const TOKEN_SAVE_DEFAULT_KEY = '@token_info'
 type TokenModel = Tokens & {
   startTime: number
 }
+type TokenListener = (tokens: TokenModel | null) => void
 
 export class TokenManager {
   private readonly refresher: TokenRefresher
@@ -19,7 +20,8 @@ export class TokenManager {
   private readonly accessLifeTime
   private readonly refreshLifeTime
 
-  private _onInit: ((tokens: TokenModel | null) => void) | null = null
+  private _onInit: TokenListener | null = null
+  private _onInitResolve: TokenListener | null = null
 
   public readonly reset = createEvent()
   public readonly set = createEvent<Tokens>()
@@ -45,7 +47,11 @@ export class TokenManager {
     })
     this.persist.onInit((result) => {
       if (result) this.set(result)
-      this._onInit?.(result ?? this.$store.getState() ?? null)
+      const initProps = result ?? this.$store.getState() ?? null
+      this._onInitResolve?.(initProps)
+      this._onInit?.(initProps)
+      this._onInit = null
+      this._onInitResolve = null
     })
   }
 
@@ -84,10 +90,19 @@ export class TokenManager {
     }),
   })
 
-  public onInit(fn: (tokens: TokenModel | null) => void) {
+  public onInit(fn?: TokenListener) {
     if (this.persist.isInitiated) {
-      return fn(this.$store.getState() ?? null)
+      const state = this.$store.getState() ?? null
+      if (fn) fn(state)
+      return {
+        promise: Promise.resolve(this.$store.getState() ?? null),
+      }
     }
-    this._onInit = fn
+    this._onInit = fn ?? null
+    return {
+      promise: new Promise<TokenModel | null>((resolve) => {
+        this._onInitResolve = resolve
+      }),
+    }
   }
 }

@@ -15,12 +15,12 @@ import {
   SCREEN_WIDTH,
   WINDOW_HEIGHT,
   getHeight,
-} from '../../../lib/device/dimensions'
-import { useNavigate } from '../../../navigation'
-import { links } from '../../../navigation/links'
-import { useText } from '../../../translations/hook'
-import PresetButton from '../../../ui/buttons/PresetButton'
-import { PresetButtonStates } from '../../../ui/buttons/types'
+} from '../../lib/device/dimensions'
+import { useNavigate } from '../../navigation'
+import { links } from '../../navigation/links'
+import { useText } from '../../translations/hook'
+import PresetButton from '../../ui/buttons/PresetButton'
+import { PresetButtonStates } from '../../ui/buttons/types'
 import SliderItem from './SliderItem'
 import { $isLastSlideActive, activeSlideModel } from './model.onboardingSlider'
 import {
@@ -60,7 +60,7 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
 
   useEffect(() => {
     setActiveSlideIndex(0)
-  }, [])
+  }, [setActiveSlideIndex])
 
   const renderItem = useCallback(
     ({ item }: RenderItemProps) => (
