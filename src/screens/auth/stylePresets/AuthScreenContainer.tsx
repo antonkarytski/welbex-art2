@@ -15,6 +15,7 @@ type AuthScreenContainerProps = {
   }
   backAvailable?: boolean
   enableScrollView?: boolean
+  onAfterGoBack?: () => void
 }
 
 const AuthScreenContainer = ({
@@ -22,6 +23,7 @@ const AuthScreenContainer = ({
   style,
   backAvailable = true,
   enableScrollView,
+  onAfterGoBack,
 }: AuthScreenContainerProps) => {
   const { styles, colors } = useThemedStyleList({
     screenHeader: screenHeaderThemedStylesDark,
@@ -35,6 +37,7 @@ const AuthScreenContainer = ({
         settingsAvailable={false}
         backAvailable={backAvailable}
         backArrowColor={colors.appHeaderIconDark}
+        onAfterGoBack={onAfterGoBack}
       />
       <ScreenContainer
         enableScrollView={enableScrollView}

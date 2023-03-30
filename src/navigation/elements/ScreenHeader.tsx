@@ -18,7 +18,8 @@ export type ScreenHeaderProps =
       style?:
         | ScreenHeaderStyles
         | ((colors: ColorThemeStructure) => ScreenHeaderStyles)
-      onBack?: () => void
+      onPressBack?: () => void
+      onAfterGoBack?: () => void
       backAvailable?: boolean
       backArrowColor?: string
       onLayout?: ViewProps['onLayout']
@@ -38,11 +39,12 @@ const ScreenHeader = ({
   headerRight,
   headerLeft,
   style: styleOrFn,
-  onBack,
+  onPressBack,
   backAvailable,
   children,
   backArrowColor,
   onLayout,
+  onAfterGoBack,
 }: ScreenHeaderProps) => {
   const { colors, styles } = useTheme(themedStyles)
   const style = typeof styleOrFn === 'function' ? styleOrFn(colors) : styleOrFn
@@ -56,7 +58,8 @@ const ScreenHeader = ({
               <NavigationBackButton
                 style={styles.backButton}
                 iconColor={backArrowColor ?? colors.primary2}
-                onPress={onBack}
+                onPress={onPressBack}
+                onAfterGoBack={onAfterGoBack}
               />
             ))}
         </View>

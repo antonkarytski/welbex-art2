@@ -6,4 +6,5 @@ export enum DbFields {
   TOKEN_START_TIME = 'tokenStartTime',
   SERVER_URL = 'serverUrl',
   USER_CREDITS = 'userCredits',
+  ONBOARD_WAS_SHOWN = 'onboardWasShown',
 }

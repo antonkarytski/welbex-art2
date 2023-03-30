@@ -38,7 +38,7 @@ const SpecificGalleryScreens = () => {
       <GradientScreenHeader
         title={activeGallery.title(t)}
         backAvailable
-        onBack={onGoBack}
+        onPressBack={onGoBack}
         headerRight={screenHeaderRight(colors)}
         gradient={{ colors: styles.gradient }}
       />

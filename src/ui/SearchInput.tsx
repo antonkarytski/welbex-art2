@@ -16,7 +16,7 @@ const SearchInput = ({ value, onChange, style }: SearchInputProps) => {
       value={value}
       onChangeText={onChange}
       InputPseudoBefore={<SearchIcon />}
-      InputPseudoAfter={<CrossButton onPress={() => onChange('')} />}
+      InputPseudoAfter={value && <CrossButton onPress={() => onChange('')} />}
       styles={style}
     />
   )

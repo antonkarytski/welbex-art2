@@ -5,18 +5,18 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import './src/api'
 import AppPopUps from './src/features/popUp/AppPopUps'
 import { useCachedResources } from './src/lib/appInit/hook.cachedResources'
 import { useLinkingSetUp } from './src/navigation/linking/hook'
 import { linkingConfig } from './src/navigation/linking/linkingRouter'
 import Router from './src/screens/Router'
+import AppLoadingScreen from './src/ui/loaders/AppLoadingScreen'
 
 export default function App() {
   const isLoaded = useCachedResources()
   useLinkingSetUp()
 
-  if (!isLoaded) return null
+  if (!isLoaded) return <AppLoadingScreen /> // null TODO: splash screen
   return (
     <GestureHandlerRootView style={styles.container}>
       <NativeBaseProvider>

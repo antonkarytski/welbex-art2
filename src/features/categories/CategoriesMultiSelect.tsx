@@ -50,6 +50,10 @@ const CategoriesMultiSelect = React.memo(
         ListFooterComponent={isLoading ? Loader : undefined}
         tabLabel={t.selectValueFromList}
         selectedCounterLabel={t.selected}
+        showSelectAllButtons
+        selectAllLabel={t.selectAll}
+        removeAllLabel={t.removeAll}
+        showSelectedIcon
       />
     )
   }

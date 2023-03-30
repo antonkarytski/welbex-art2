@@ -8,9 +8,10 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import { WINDOW_HEIGHT, getHeight } from '../../../lib/device/dimensions'
-import { LangStructure } from '../../../translations/types'
-import Span from '../../../ui/Span'
+import { WINDOW_HEIGHT, getHeight } from '../../lib/device/dimensions'
+import { SCREEN_PADDING_HORIZONTAL } from '../../styles/constants'
+import { LangStructure } from '../../translations/types'
+import Span from '../../ui/Span'
 import { OnboardingSliderItem } from './onboardingSliderData'
 
 type SliderItemProps = {
@@ -31,10 +32,12 @@ const imageWidth = imageHeight * 0.93
 const SliderItem = ({ item, style, text }: SliderItemProps) => {
   return (
     <View style={styles.container}>
-      <View style={[style?.imgWrp, styles?.imgWrp]}>
-        <Image style={[style?.img, styles?.img]} source={item.img} />
+      <View style={styles.innerContainer}>
+        <View style={[style?.imgWrp, styles?.imgWrp]}>
+          <Image style={[style?.img, styles?.img]} source={item.img} />
+        </View>
+        <Span label={item.description(text)} style={style?.caption} />
       </View>
-      <Span label={item.description(text)} style={style?.caption} />
     </View>
   )
 }
@@ -42,7 +45,9 @@ const SliderItem = ({ item, style, text }: SliderItemProps) => {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 12,
-    marginHorizontal: 20,
+    marginHorizontal: SCREEN_PADDING_HORIZONTAL,
+  },
+  innerContainer: {
     marginLeft: 'auto',
     marginRight: 'auto',
   },

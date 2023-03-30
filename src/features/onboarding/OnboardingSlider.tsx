@@ -15,12 +15,12 @@ import {
   SCREEN_WIDTH,
   WINDOW_HEIGHT,
   getHeight,
-} from '../../../lib/device/dimensions'
-import { useNavigate } from '../../../navigation'
-import { links } from '../../../navigation/links'
-import { useText } from '../../../translations/hook'
-import PresetButton from '../../../ui/buttons/PresetButton'
-import { PresetButtonStates } from '../../../ui/buttons/types'
+} from '../../lib/device/dimensions'
+import { useNavigate } from '../../navigation'
+import { links } from '../../navigation/links'
+import { useText } from '../../translations/hook'
+import PresetButton from '../../ui/buttons/PresetButton'
+import { PresetButtonStates } from '../../ui/buttons/types'
 import SliderItem from './SliderItem'
 import { $isLastSlideActive, activeSlideModel } from './model.onboardingSlider'
 import {
@@ -60,7 +60,7 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
 
   useEffect(() => {
     setActiveSlideIndex(0)
-  }, [])
+  }, [setActiveSlideIndex])
 
   const renderItem = useCallback(
     ({ item }: RenderItemProps) => (
@@ -68,6 +68,10 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
     ),
     [style, t]
   )
+
+  const onSnapToItem = (index: number) => {
+    setActiveSlideIndex(index)
+  }
 
   const onGoNext = () => {
     if (isLastSlideActive) {
@@ -83,7 +87,7 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
       <Carousel
         data={onboardingSliderData}
         renderItem={renderItem}
-        onSnapToItem={setActiveSlideIndex}
+        onSnapToItem={onSnapToItem}
         height={carouselHeight}
         width={carouselWidth}
         vertical={false}
@@ -102,11 +106,12 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
             style?.paginationDot,
             style?.paginationDotInactive,
           ]}
+          dotContainerStyle={styles.dotContainer}
           inactiveDotOpacity={1}
           inactiveDotScale={1}
         />
         <PresetButton
-          label={t.next}
+          label={isLastSlideActive ? t.createNewAccount : t.next}
           onPress={onGoNext}
           preset={style?.button}
           style={styles.buttonNext}
@@ -123,6 +128,8 @@ const styles = StyleSheet.create({
   paginationDot: {
     width: 8,
     height: 8,
+  },
+  dotContainer: {
     marginHorizontal: 4,
   },
   paginationContainer: {

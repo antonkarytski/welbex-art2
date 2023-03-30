@@ -14,6 +14,13 @@ export const $signUpFormData = combine({
   passwords: signUpPasswordsFormModel.$store,
 })
 
+export const resetSignUpFormData = () => {
+  signUpUserDataFormModel.reset()
+  signUpPhoneModel.reset()
+  signUpCountryModel.reset()
+  signUpPasswordsFormModel.reset()
+}
+
 export type SignUpFormData = {
   user: SignUpUserDataForm
   country: Country | null

@@ -9,8 +9,8 @@ import { useColors } from '../themed'
 
 type ArtWorkInteractivePanelProps = {
   item: ArtWorkGeneral
-  onLikeArt: () => void
-  onSaveArt: () => void
+  onPressLike: () => void
+  onPressSave: () => void
 }
 
 function isAuthorizedArtWork(item: ArtWorkGeneral | ArtWork): item is ArtWork {
@@ -19,8 +19,8 @@ function isAuthorizedArtWork(item: ArtWorkGeneral | ArtWork): item is ArtWork {
 
 const ArtWorkInteractivePanel = ({
   item,
-  onLikeArt,
-  onSaveArt,
+  onPressLike,
+  onPressSave,
 }: ArtWorkInteractivePanelProps) => {
   const colors = useColors()
 
@@ -30,7 +30,7 @@ const ArtWorkInteractivePanel = ({
         <LikeButton
           likesCount={item.likes}
           style={[styles.button, styles.likeButton]}
-          onPress={onLikeArt}
+          onPress={onPressLike}
           color={colors.icon}
           active={item.is_liked}
           activeColor={colors.likesIcon}
@@ -48,7 +48,7 @@ const ArtWorkInteractivePanel = ({
             color={colors.icon}
             style={[styles.button, styles.favouriteButton]}
             active={item.is_saved}
-            onPress={onSaveArt}
+            onPress={onPressSave}
           />
         </View>
       </View>

@@ -11,7 +11,8 @@ import { useText } from '../../translations/hook'
 import Loader from '../../ui/loaders/Loader'
 import GallerySkeleton from '../../ui/loaders/Skeleton.Gallery'
 import { drawingKeyExtractor } from '../artWork/helpers'
-import { useArtWorkActions } from '../artWork/hooks'
+import { useAtrWorkActions } from '../artWork/hooks'
+import { useColors } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import { localeAgeTextShort } from '../user/UserDescription'
 import GalleryItem from './GalleryItem'
@@ -43,6 +44,7 @@ const GalleryListBase = ({
   refreshEnabled,
 }: GalleryListProps) => {
   const text = useText()
+  const colors = useColors()
   const navigate = useNavigate()
   const {
     list,
@@ -50,7 +52,7 @@ const GalleryListBase = ({
     isNextLoading,
     getNextSync,
     updateItem,
-    refresh,
+    refreshSync,
     isRefreshing,
   } = useGallery(type, getListOnMount)
   const isAdsVisible = useIsAdsVisible()
@@ -59,7 +61,8 @@ const GalleryListBase = ({
     item: galleryItemThemedStyles,
   })
 
-  const { onToggleLike } = useArtWorkActions(null, updateItem)
+  const { toggleLike } = useAtrWorkActions(null, updateItem)
+
   const renderItem = useCallback(
     ({ item, index }: ListRenderItemInfo<ArtWork>) => {
       return (
@@ -72,12 +75,13 @@ const GalleryListBase = ({
             ageTextGenerator={localeAgeTextShort(text)}
             style={styles.item}
             item={item}
-            onToggleLike={onToggleLike}
+            onPressLikeButton={toggleLike}
+            colors={colors}
           />
         </>
       )
     },
-    [styles, navigate, text, onToggleLike, isAdsVisible]
+    [styles, navigate, text, colors, isAdsVisible]
   )
 
   if (isLoading) return <GallerySkeleton />
@@ -89,7 +93,7 @@ const GalleryListBase = ({
       renderItem={renderItem}
       keyExtractor={drawingKeyExtractor}
       onEndReached={() => getNextSync?.(filters)}
-      onRefresh={refreshEnabled ? refresh : undefined}
+      onRefresh={refreshEnabled ? refreshSync : undefined}
       refreshing={refreshEnabled ? isRefreshing : undefined}
       showsVerticalScrollIndicator={false}
       ListEmptyComponent={ListEmptyComponent}

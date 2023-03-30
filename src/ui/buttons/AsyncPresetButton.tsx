@@ -1,18 +1,13 @@
 import React from 'react'
-import { StyleProp, ViewStyle } from 'react-native'
 import Loader, { LoaderStyles } from '../loaders/Loader'
 import Button from './PresetButton'
-import { PresetButtonStates } from './types'
+import { PresetButtonProps } from './types'
 
 type AsyncPresetButtonProps = {
-  onPress: () => void
   isLoading: boolean
-  label?: string
-  preset?: PresetButtonStates
-  style?: StyleProp<ViewStyle>
   loaderColor?: string
   loaderStyle?: LoaderStyles
-}
+} & PresetButtonProps
 
 const AsyncPresetButton = ({
   isLoading,
