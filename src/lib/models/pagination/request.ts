@@ -84,7 +84,7 @@ export const createPaginationListModel = <R, P>({
 
   const updateItem = attach({
     source: $items,
-    mapParams: (item: R, items) => ({ item, items }),
+    mapParams: (item: Partial<R>, items) => ({ item, items }),
     effect: updateItemFx,
   })
 

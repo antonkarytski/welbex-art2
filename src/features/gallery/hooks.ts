@@ -1,9 +1,11 @@
 import { useStore } from 'effector-react'
 import { useEffect } from 'react'
+import { $isAuth } from '../auth/model'
 import { galleryListsModel } from './model'
 import { GalleryType } from './types'
 
 export function useGallery(type: GalleryType, autoGetFirst = false) {
+  const isAuth = useStore($isAuth)
   const list = useStore(galleryListsModel[type].$items)
   const isLoading = useStore(galleryListsModel[type].$isLoading)
   const isNextLoading = useStore(galleryListsModel[type].$isNextLoading)
@@ -15,7 +17,7 @@ export function useGallery(type: GalleryType, autoGetFirst = false) {
 
   useEffect(() => {
     if (autoGetFirst) getSync()
-  }, [getSync, autoGetFirst])
+  }, [getSync, autoGetFirst, isAuth])
 
   return {
     list,
