@@ -1,6 +1,7 @@
 import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { $isAuth } from '../features/auth/model'
+import { onBoardingWasShownModel } from '../features/onboarding/model'
 import { useNavigate } from '../navigation'
 import StackNavigator, { Stack } from '../navigation/elements/StackNavigator'
 import { links } from '../navigation/links'
@@ -22,7 +23,8 @@ const Router = React.memo(() => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (isAuth) return navigate(links.mainTabs)
+    const isOnboardWasShown = onBoardingWasShownModel.get()
+    if (isAuth || isOnboardWasShown) return navigate(links.mainTabs)
     navigate(links.onboardingPicassoQuote)
   }, [isAuth, navigate])
 
@@ -32,7 +34,14 @@ const Router = React.memo(() => {
         //@ts-ignore
         <Stack.Screen key={name} name={name} component={component} />
       ))}
-      <Stack.Screen name={links.mainTabs} component={MainTabsRouter} />
+      <Stack.Screen
+        name={links.mainTabs}
+        component={MainTabsRouter}
+        options={{
+          headerLeft: () => null,
+          gestureEnabled: false,
+        }}
+      />
       <Stack.Screen name={links.editProfile} component={EditProfileScreen} />
       <Stack.Screen name={links.camera} component={CameraScreen} />
       <Stack.Screen name={links.userProfile} component={UserProfileScreen} />

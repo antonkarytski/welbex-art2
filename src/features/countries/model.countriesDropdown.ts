@@ -28,11 +28,11 @@ export const createCountryModel = () => {
   }
 
   return {
-    countryModel,
-    $country: countryModel.$state,
-    searchableListModel,
+    $state: countryModel.$state,
+    set: setCountry,
     reset,
-    setCountry,
+    searchableListModel,
+    model: countryModel,
   }
 }
 
@@ -49,9 +49,10 @@ export const createCountriesListModel = () => {
   }
 
   return {
-    countriesModel,
-    searchableListModel,
-    $countries: countriesModel.$state,
+    model: countriesModel,
+    $state: countriesModel.$state,
+    set: countriesModel.set,
     reset,
+    searchableListModel,
   }
 }

@@ -8,6 +8,7 @@ export type DeterminedDbProps = {
   [DbFields.NOTIFICATIONS_ENABLED]: NotificationsSetting
   [DbFields.LANGUAGE]: Languages
   [DbFields.USER_CREDITS]: UserCredits
+  [DbFields.ONBOARD_WAS_SHOWN]: boolean
 }
 
 export type DbProps = Record<

@@ -1,13 +1,14 @@
 import { Effect } from 'effector'
 import { useStore } from 'effector-react'
+import { useCallback } from 'react'
 import { api } from '../../api'
 import { ArtWorkGeneral } from '../../api/parts/arts/types'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { $isAuth } from '../auth/model'
-import { toggleLike, toggleSave } from './request'
+import { toggleLikeRequest, toggleSaveRequest } from './request'
 
-export const useArtWorkActions = (
+export const useAtrWorkActions = (
   itemData: ArtWorkGeneral | null,
   updateItemState:
     | ((props: Partial<ArtWorkGeneral>) => void)
@@ -16,26 +17,32 @@ export const useArtWorkActions = (
   const navigate = useNavigate()
   const isAuth = useStore($isAuth)
 
-  const onPreHandling = (artData?: ArtWorkGeneral | null) => {
-    if (!isAuth) return navigate(links.login)
-    return itemData || artData
-  }
+  const preHandling = useCallback(
+    (artData?: ArtWorkGeneral | null) => {
+      if (!isAuth) return navigate(links.login)
+      return itemData || artData
+    },
+    [isAuth, itemData, navigate]
+  )
 
-  const onToggleLike = (artData?: ArtWorkGeneral | null) => {
-    const item = onPreHandling(artData)
-    if (!item) return
-    const likesCount = item.is_liked ? item.likes - 1 : item.likes + 1
-    toggleLike(item).then(() => {
-      updateItemState({
-        id: item.id,
-        is_liked: !item.is_liked,
-        likes: likesCount,
+  const toggleLike = useCallback(
+    (artData?: ArtWorkGeneral | null) => {
+      const item = preHandling(artData)
+      if (!item) return
+      const likesCount = item.is_liked ? item.likes - 1 : item.likes + 1
+      toggleLikeRequest(item).then(() => {
+        updateItemState({
+          id: item.id,
+          is_liked: !item.is_liked,
+          likes: likesCount,
+        })
       })
-    })
-  }
+    },
+    [preHandling, updateItemState]
+  )
 
-  const onLike = (artData?: ArtWorkGeneral | null) => {
-    const item = onPreHandling(artData)
+  const like = (artData?: ArtWorkGeneral | null) => {
+    const item = preHandling(artData)
     if (!item) return
     if (!item.is_liked) {
       api.arts.likePost(item.id).then(() => {
@@ -44,16 +51,16 @@ export const useArtWorkActions = (
     }
   }
 
-  const onSave = (artData?: ArtWorkGeneral | null) => {
-    const item = onPreHandling(artData)
+  const save = (artData?: ArtWorkGeneral | null) => {
+    const item = preHandling(artData)
     if (!item) return
-    toggleSave(item).then(() => {
+    toggleSaveRequest(item).then(() => {
       updateItemState({ id: item.id, is_saved: !item.is_saved })
     })
   }
 
-  const onFollowAuthor = (isFollowed: boolean) => {
-    const item = onPreHandling()
+  const followAuthor = (isFollowed: boolean) => {
+    const item = preHandling()
     if (!item) return
 
     updateItemState({
@@ -62,5 +69,5 @@ export const useArtWorkActions = (
     })
   }
 
-  return { onToggleLike, onSave, onLike, onFollowAuthor }
+  return { toggleLike, save, like, followAuthor }
 }

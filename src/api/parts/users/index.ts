@@ -31,6 +31,7 @@ const me = meEndpoint.get<MyProfileResponse>()
 const editMe = meEndpoint.patch<ProfileEditProps, ProfileEditProps>(
   'profile/edit'
 )
+const deleteMe = meEndpoint.delete('profile')
 const deleteAvatar = meEndpoint.delete('profile/delete-avatar')
 const uploadAvatar = meEndpoint.put<string, ImageFile>({
   endpoint: 'profile/upload-avatar',
@@ -53,6 +54,7 @@ const uploadChildDocument = meEndpoint
 export const usersApi = {
   me,
   editMe,
+  deleteMe,
   signUp,
   profile,
   profileProtected,

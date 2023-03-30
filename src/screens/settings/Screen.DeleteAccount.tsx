@@ -1,22 +1,36 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { api } from '../../api'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
+import { noop } from '../../lib/helpers'
+import { useRequest } from '../../lib/models/apiBuilder/hooks'
+import { useNavigate } from '../../navigation'
+import { links } from '../../navigation/links'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import Span from '../../ui/Span'
-import PresetButton from '../../ui/buttons/PresetButton'
+import AsyncPresetButton from '../../ui/buttons/AsyncPresetButton'
 import SettingScreenContainer from './stylePresets/SettingScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
 
 export default function DeleteAccountScreen() {
   const t = useText()
-  const { styles } = useThemedStyleList({
+  const navigate = useNavigate()
+  const { styles, colors } = useThemedStyleList({
     button: buttonPrimaryThemedPreset,
     common: themedCommonStyles,
     screen: screenStyles,
   })
-  const onDeleteAccount = () => {}
+
+  const deleteAccount = useRequest(api.users.deleteMe)
+
+  const onDeleteAccount = () => {
+    deleteAccount
+      .request()
+      .then(() => navigate(links.onboardingPicassoQuote))
+      .catch(noop)
+  }
 
   return (
     <SettingScreenContainer title={t.deleteAccount} enableScrollView>
@@ -31,11 +45,13 @@ export default function DeleteAccountScreen() {
           style={styles.screen.descriptionText}
           weight={400}
         />
-        <PresetButton
+        <AsyncPresetButton
+          isLoading={deleteAccount.isLoading}
           label={t.delete}
           onPress={onDeleteAccount}
           preset={styles.button}
           style={styles.common.bottomButton}
+          loaderColor={colors.whiteText}
         />
       </View>
     </SettingScreenContainer>

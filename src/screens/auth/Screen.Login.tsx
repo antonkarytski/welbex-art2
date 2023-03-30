@@ -31,7 +31,9 @@ export default function SignUp() {
       enableScrollView
     >
       <LogInForm />
-      <AuthServices style={styles.common.bottomButton} />
+      <AuthServices
+        style={[styles.common.bottomButton, screenStyles.authServices]}
+      />
       <Row>
         <Span
           label={t.dontHaveAccountQ}
@@ -50,5 +52,8 @@ export default function SignUp() {
 const screenStyles = StyleSheet.create({
   dontHaveAccountQ: {
     marginRight: 8,
+  },
+  authServices: {
+    marginBottom: 24,
   },
 })

@@ -1,7 +1,6 @@
 import { HStack, Skeleton } from 'native-base'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { getHeight } from '../../lib/device/dimensions'
 import {
   SCREEN_CONTENT_WIDTH,
   SCREEN_PADDING_HORIZONTAL,
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   header: {
-    height: getHeight({ percentOfScreenSize: 20 }),
+    height: 190,
   },
   avatar: {
     width: 112,

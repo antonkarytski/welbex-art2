@@ -3,6 +3,20 @@ import {
   getMediaLibraryPermissionsAsync,
   requestMediaLibraryPermissionsAsync,
 } from 'expo-image-picker'
+import { PermissionStatus } from 'expo-modules-core/src/PermissionsInterface'
+import { createPermissionModel } from '../../lib/permissions/model'
+
+const mediaLibraryPermission = createPermissionModel({
+  check: getMediaLibraryPermissionsAsync,
+  request: requestMediaLibraryPermissionsAsync,
+  grantedStatus: ({ granted }) => granted,
+  initialStatus: {
+    status: PermissionStatus.UNDETERMINED,
+    expires: 'never',
+    granted: false,
+    canAskAgain: true,
+  },
+})
 
 export const setMediaLibraryPermission = createEvent()
 export const $mediaLibraryPermission = createStore(false).on(
@@ -28,9 +42,3 @@ export const getMediaLibraryPermission = attach({
     return false
   }),
 })
-
-export const setCameraPermission = createEvent()
-export const $cameraPermission = createStore(false).on(
-  setCameraPermission,
-  () => true
-)

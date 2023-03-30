@@ -1,11 +1,9 @@
 import { Effect, attach, createEffect } from 'effector'
 import { $isAuth } from './model'
 
-type Request<P, R> = Effect<P, R, Error>
-
-export const checkRequestProtection = <P, R>(
-  request: Request<P, R>,
-  protectedRequest: Request<P, R>
+export const createAuthSeparatedRequest = <P, R>(
+  request: Effect<P, R>,
+  protectedRequest: Effect<P, R>
 ) =>
   attach({
     source: $isAuth,

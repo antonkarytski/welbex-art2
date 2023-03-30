@@ -1,10 +1,13 @@
+import { useStore } from 'effector-react'
 import { ImagePickerAsset } from 'expo-image-picker'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import PhotoSelectBlock, {
   CAMERA_SOURCE_PRESET,
 } from '../../features/imagePick/Block.PhotoSelect'
 import UploadFromCameraRollBlock from '../../features/imagePick/Block.UploadFromCameraRoll'
+import PopUpAgeError from '../../features/popUp/PopUp.AgeError'
+import { $myProfile } from '../../features/profile/model'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { useNavigate } from '../../navigation'
@@ -17,6 +20,7 @@ import { useText } from '../../translations/hook'
 
 export default function UploadPostImageScreen({
   route,
+  navigation,
 }: ScreenComponentProps<links.createPostUploadImage>) {
   const category = route.params?.category
   const text = useText()
@@ -25,6 +29,17 @@ export default function UploadPostImageScreen({
     common: themedStyle,
     gradient: themedPrimaryGradient,
   })
+
+  const myProfile = useStore($myProfile)
+
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      if (!myProfile?.is_child) {
+        PopUpAgeError.showSync()
+        navigation.goBack()
+      }
+    })
+  }, [navigation, myProfile])
 
   const onImagePick = (assets: ImagePickerAsset[]) => {
     navigate(links.createPostAddDescription, { assets, category })

@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react'
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 import { UserDrawingListType, UserItem } from '../types'
 import { UserArtsListsRequestModel } from './types'
 
@@ -12,7 +12,7 @@ export function useDrawingsList(
   const list = useStore(model[type].$items)
   const isLoading = useStore(model[type].$isLoading)
   const isNextLoading = useStore(model[type].$isNextLoading)
-  const [isRefreshing, setIsRefreshing] = useState(false)
+  const isRefreshing = useStore(model[type].$isRefreshing)
 
   const getFirst = useCallback(() => {
     if (!userId) return
@@ -21,10 +21,7 @@ export function useDrawingsList(
 
   const refresh = useCallback(() => {
     if (!userId) return
-    setIsRefreshing(true)
-    model[type].get({ userId }).finally(() => {
-      setIsRefreshing(false)
-    })
+    model[type].refreshSync({ userId })
   }, [userId, type, model])
 
   const getNext = useCallback(() => {

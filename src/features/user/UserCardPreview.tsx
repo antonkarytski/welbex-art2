@@ -12,13 +12,13 @@ import { UserDescriptionStyles } from './styles'
 type UserCardPreviewProps = {
   item: UserShort
   onPress?: (item: UserShort) => void
-  onFollowPress?: FollowButtonProps['onPress']
+  onPressFollow?: FollowButtonProps['onPress']
 }
 
 const UserCardPreview = ({
   item,
   onPress,
-  onFollowPress,
+  onPressFollow,
 }: UserCardPreviewProps) => {
   const text = useText()
   const { styles } = useThemedStyleList({
@@ -52,7 +52,7 @@ const UserCardPreview = ({
       </TouchableOpacity>
       <FollowButton
         item={item}
-        onPress={onFollowPress}
+        onPress={onPressFollow}
         style={followButtonStyles}
       />
     </View>

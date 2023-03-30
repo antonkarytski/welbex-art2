@@ -59,4 +59,8 @@ export const apiManager = new ApiManager({
   },
   tokenRefresher,
   requestRepeatFilter,
-}).debug()
+})
+
+if (__DEV__) {
+  apiManager.debug()
+}

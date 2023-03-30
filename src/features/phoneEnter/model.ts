@@ -4,7 +4,7 @@ import { createCountryModel } from '../countries/model.countriesDropdown'
 
 export const createPhoneEnterModel = () => {
   const phoneInputModel = createPhoneInputModel()
-  const { countryModel, searchableListModel } = createCountryModel()
+  const { model: countryModel, searchableListModel } = createCountryModel()
 
   const setPhone = (phone: string) => {
     phoneInputModel.purePhoneModel.set(phone)
@@ -21,9 +21,10 @@ export const createPhoneEnterModel = () => {
     phoneInputModel,
     phoneCountryModel: countryModel,
     searchCountryModel: searchableListModel,
-    $phoneNumber: phoneInputModel.purePhoneModel.$state,
+    $phoneNumber: phoneInputModel.$phone,
     $isValidPhoneNumber: phoneInputModel.$isPhoneValid,
     setPhone,
     setCountry,
+    reset: phoneInputModel.reset,
   }
 }

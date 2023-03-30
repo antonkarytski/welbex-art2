@@ -70,9 +70,6 @@ const themedStyles = createThemedStyle((colors) =>
     button: {
       marginBottom: 12,
     },
-    lastButton: {
-      marginBottom: 0,
-    },
   })
 )
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { StateModel, useStateStore } from "altek-toolkit";
+import { StateModel, useStateStore } from 'altek-toolkit'
 import DropdownTab from '../dropdownTab'
 import SearchableSelect from './SearchableSelect'
 import Select from './Select'
@@ -8,7 +8,7 @@ import { DropdownSelectProps } from './types'
 
 function DropdownSelect<Item>({
   searchModel,
-  placeholder = 'Select value from list',
+  placeholder = '',
   label,
   labelExtractor,
   onOpenDropdown,

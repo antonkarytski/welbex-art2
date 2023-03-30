@@ -9,6 +9,7 @@ import PresetButton from '../../../ui/buttons/PresetButton'
 import Counter from '../../counter/Counter'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
+import { codeModel } from './model'
 import { isTimerExpiredModel } from './model.resendCode'
 
 const ResendCodeButton = () => {
@@ -23,6 +24,7 @@ const ResendCodeButton = () => {
   const onResendCode = () => {
     // api request
     setIsTimerExpired(false)
+    codeModel.reset()
   }
 
   return (

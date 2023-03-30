@@ -5,7 +5,9 @@ export const codeModel = createStateModel('')
 
 codeModel.$state.watch(async (code) => {
   if (code.length === 4) {
-    // await... api request to check, if success ->
+    // TODO: api request to check, if success ->
     isCodeValidModel.set(true)
+  } else {
+    isCodeValidModel.set(false)
   }
 })

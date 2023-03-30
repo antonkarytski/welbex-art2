@@ -4,7 +4,7 @@ import { ArtWork } from '../../api/parts/arts/types'
 import LikeButton from '../../ui/buttons/LikeButton'
 import ShareButton from '../../ui/buttons/ShareButton'
 import ImageCard from '../../ui/cards/ImageCard'
-import { useColors } from '../themed'
+import { ColorThemeStructure } from '../themed/theme'
 import UserDescription, { AgeTextGenerator } from '../user/UserDescription'
 import { GalleryItemStyles } from './styles'
 
@@ -13,7 +13,8 @@ type GalleryItemProps = {
   style: GalleryItemStyles
   onPress?: (item: ArtWork) => void
   ageTextGenerator?: AgeTextGenerator
-  onToggleLike: (item: ArtWork) => void
+  onPressLikeButton: (item: ArtWork) => void
+  colors: ColorThemeStructure
 }
 
 const GalleryItem = React.memo(
@@ -22,10 +23,10 @@ const GalleryItem = React.memo(
     style,
     onPress,
     ageTextGenerator,
-    onToggleLike,
+    onPressLikeButton,
+    colors,
   }: GalleryItemProps) => {
-    const colors = useColors()
-    const handleToggleLike = () => onToggleLike(item)
+    const handlePressLikeButton = () => onPressLikeButton(item)
 
     return (
       <ImageCard
@@ -53,7 +54,7 @@ const GalleryItem = React.memo(
             color={colors.icon}
             active={item.is_liked}
             activeColor={colors.likesIcon}
-            onPress={handleToggleLike}
+            onPress={handlePressLikeButton}
           />
           <ShareButton
             style={style.shareButton}

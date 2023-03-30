@@ -4,12 +4,12 @@ import { ArtWorkGeneral } from '../../api/parts/arts/types'
 import { downloadImageFromUrl } from '../../lib/files/download'
 import { $isAuth } from '../auth/model'
 
-export const toggleLike = (drawing: ArtWorkGeneral) => {
+export const toggleLikeRequest = (drawing: ArtWorkGeneral) => {
   const request = drawing.is_liked ? api.arts.dislikePost : api.arts.likePost
   return request(drawing.id)
 }
 
-export const toggleSave = (drawing: ArtWorkGeneral) => {
+export const toggleSaveRequest = (drawing: ArtWorkGeneral) => {
   const request = drawing.is_saved ? api.arts.unsavePost : api.arts.savePost
   return request(drawing.id)
 }
@@ -33,7 +33,7 @@ getArtWorkRequest.fail.watch((e) => {
 
 export const downloadFullSizeDrawing = async (id: number) => {
   const request = await api.arts.downloadFullSizeDrawing.requestData(id)
-  return downloadImageFromUrl(request.props.url, {
+  return downloadImageFromUrl(request.url, {
     headers: request.data.headers as Record<string, string>,
   })
 }

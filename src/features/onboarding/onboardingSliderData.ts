@@ -1,9 +1,9 @@
 import { ImageSourcePropType } from 'react-native'
-import { LangFn } from '../../../translations/types'
+import { LangFn } from '../../translations/types'
 
-const viewDrawingsImg = require('../../../../assets/images/onboarding_view_drawings.png')
-const uploadDrawingsImg = require('../../../../assets/images/onboarding_upload_drawings.png')
-const getRewardsImg = require('../../../../assets/images/onboarding_get_rewards.png')
+const viewDrawingsImg = require('../../../assets/images/onboarding_view_drawings.png')
+const uploadDrawingsImg = require('../../../assets/images/onboarding_upload_drawings.png')
+const getRewardsImg = require('../../../assets/images/onboarding_get_rewards.png')
 
 export type OnboardingSliderItem = {
   indexNumber: number

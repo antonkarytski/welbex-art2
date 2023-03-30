@@ -77,16 +77,16 @@ const EditProfileForm = () => {
             />
           )
         })}
-        <CountriesDropdownSelect model={editProfileCountryModel} />
+        <CountriesDropdownSelect {...editProfileCountryModel} />
         <ChildDocumentUploadingBlock
           style={styles.common.uploadDocumentsBlock}
         />
-        <PresetButton
-          label={t.save}
-          onPress={onSaveChanges}
-          preset={styles.buttonPrimary}
-        />
       </KeyboardAvoidingView>
+      <PresetButton
+        label={t.save}
+        onPress={onSaveChanges}
+        preset={styles.buttonPrimary}
+      />
     </>
   )
 }

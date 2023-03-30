@@ -43,7 +43,7 @@ const GalleryFilter = () => {
   const { type } = useStore($activeGallery)
   const filters = useStore($galleryFilterProps)
 
-  const { get: getFilteredArts } = useGallery(type)
+  const { getSync: getFilteredArts } = useGallery(type)
 
   const [drawingName, setDrawingName] = useStateStore(drawingNameModel)
   const filterResult = useStore(countFilteredGalleryModel.$data)
@@ -63,7 +63,7 @@ const GalleryFilter = () => {
         style={commonStyles.fieldsWrapper}
       >
         <CategoriesMultiSelect model={categoriesModel} />
-        <CountriesDropdownMultiSelect model={countriesModel} />
+        <CountriesDropdownMultiSelect {...countriesModel} />
         <Input
           label={t.drawingName}
           value={drawingName}

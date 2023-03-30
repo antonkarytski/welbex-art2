@@ -1,8 +1,6 @@
-import { createEvent, sample } from 'effector'
 import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
-import { MyProfile } from '../../api/parts/users/types'
 import { downloadImageFromUrl } from '../../lib/files/download'
 import { noop } from '../../lib/helpers'
 import { useRequest } from '../../lib/models/apiBuilder/hooks'
@@ -17,7 +15,7 @@ import AutoHeightImage from '../images/AutoHeightImage'
 import { $myProfile } from '../profile/model'
 import UserCardPreview from '../user/UserCardPreview'
 import ArtWorkInteractionPanel from './ArtWorkInteractivePanel'
-import { useArtWorkActions } from './hooks'
+import { useAtrWorkActions } from './hooks'
 import { downloadFullSizeDrawing, getArtWorkRequest } from './request'
 
 type ArtWorkDetailsProps = {
@@ -34,7 +32,7 @@ const ArtWorkDetails = React.memo(({ drawingId }: ArtWorkDetailsProps) => {
     getArtWorkRequest(drawingId).catch(noop)
   }, [drawingId])
 
-  const { onToggleLike, onSave, onLike, onFollowAuthor } = useArtWorkActions(
+  const { toggleLike, save, like, followAuthor } = useAtrWorkActions(
     drawing.data,
     drawing.update
   )
@@ -54,10 +52,10 @@ const ArtWorkDetails = React.memo(({ drawingId }: ArtWorkDetailsProps) => {
           }
           navigate(links.userProfile, { item })
         }}
-        onFollowPress={onFollowAuthor}
+        onPressFollow={followAuthor}
         item={drawing.data.author}
       />
-      <DoubleTouchOverlay onPress={onLike}>
+      <DoubleTouchOverlay onPress={like}>
         <AutoHeightImage
           image={{ uri: drawing.data.image_thumbnail }}
           widthGenerator={() => SCREEN_CONTENT_WIDTH}
@@ -66,8 +64,8 @@ const ArtWorkDetails = React.memo(({ drawingId }: ArtWorkDetailsProps) => {
 
       <ArtWorkInteractionPanel
         item={drawing.data}
-        onLikeArt={onToggleLike}
-        onSaveArt={onSave}
+        onPressLike={toggleLike}
+        onPressSave={save}
       />
       <PresetButton
         style={styles.downloadButton}
@@ -96,10 +94,3 @@ const styles = StyleSheet.create({
 })
 
 export default ArtWorkDetails
-
-const clock = createEvent<number>()
-sample({
-  source: $myProfile,
-  clock,
-  filter: (profile): profile is MyProfile => !!profile,
-}).watch((d) => {})

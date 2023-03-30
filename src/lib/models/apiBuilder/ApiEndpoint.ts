@@ -1,7 +1,13 @@
 import { Effect, Event, createEffect } from 'effector'
 import { createXhr } from '../../request/xhr'
 import { Endpoint, MethodSettings } from './Endpoint'
-import { DoRequestProps, MapperFn, Method, RequestProps } from './types'
+import {
+  MapperFn,
+  Method,
+  RequestDataGetter,
+  RequestHandler,
+  RequestProps,
+} from './types'
 
 type CreateApiEndpointRequest<Params> = {
   fn?: MapperFn<Params>
@@ -14,11 +20,8 @@ export type CreateApiEndpointSettings = {
 
 type ApiEndpointProps = {
   endpoint: Endpoint
-  requestHandler: <Response, Params>(
-    props: DoRequestProps<Params>,
-    driver?: typeof fetch
-  ) => Promise<Response>
-  requestDataGetter: (data: DoRequestProps<any>) => Promise<RequestInit>
+  requestHandler: RequestHandler
+  requestDataGetter: RequestDataGetter
 } & CreateApiEndpointSettings
 
 export type SpecificRequestProps<Params> =
@@ -124,9 +127,10 @@ export class ApiEndpoint {
 
     effect.requestData = (params) => {
       const requestProps = propsGetter(params)
-      return this.requestDataGetter(requestProps).then((data) => {
-        return { data, props: requestProps }
-      })
+      return this.requestDataGetter(requestProps).then((data) => ({
+        data,
+        url: requestProps.url,
+      }))
     }
     effect.requestProps = (params) => propsGetter(params)
     effect.url = (params) => propsGetter(params).url
@@ -174,9 +178,7 @@ type ExtEffectMethods<Params, R> = {
   raw: RawCreator<Params>
   url: (params: Params) => string
   requestProps: (params: Params) => RequestProps<Params>
-  requestData: (
-    params: Params
-  ) => Promise<{ data: RequestInit; props: RequestProps<Params> }>
+  requestData: (params: Params) => Promise<{ data: RequestInit; url: string }>
   unprotect: () => Effect<Params, R> & ExtEffectMethods<Params, R>
   protect: () => Effect<Params, R> & ExtEffectMethods<Params, R>
 }

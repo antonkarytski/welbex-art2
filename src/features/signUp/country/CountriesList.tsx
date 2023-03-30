@@ -2,11 +2,12 @@ import React, { useCallback } from 'react'
 import { StyleSheet } from 'react-native'
 import { createSearchableListModel } from '../../../lib/models/model.search'
 import { FONT_MEDIUM } from '../../../styles/fonts'
+import { inputThemedStyles } from '../../../styles/inputs'
 import ListSelect from '../../../ui/selects/ListSelect'
 import { COUNTRIES_LIST, Country, countyNameExtractor } from '../../countries'
 import CountryRow from '../../countries/CountryRow'
 import { createThemedStyle } from '../../themed'
-import { useThemedStyle } from '../../themed/hooks'
+import { useThemedStyleList } from '../../themed/hooks'
 import { signUpCountryModel } from './model'
 
 const searchModel = createSearchableListModel<Country>({
@@ -15,11 +16,14 @@ const searchModel = createSearchableListModel<Country>({
 const countryIdExtractor = ({ alpha3Code }: Country) => alpha3Code
 
 const CountriesList = () => {
-  const countryRowStyles = useThemedStyle(countryRowThemedStyles)
+  const { styles } = useThemedStyleList({
+    countryRow: countryRowThemedStyles,
+    input: inputThemedStyles,
+  })
 
   const renderCountryRow = useCallback(
-    (item: Country) => <CountryRow item={item} style={countryRowStyles} />,
-    [countryRowStyles]
+    (item: Country) => <CountryRow item={item} style={styles.countryRow} />,
+    [styles.countryRow]
   )
 
   return (
@@ -29,6 +33,10 @@ const CountriesList = () => {
       searchModel={searchModel}
       model={signUpCountryModel}
       renderItem={renderCountryRow}
+      style={{
+        item: listItemStyles,
+        searchInput: styles.input,
+      }}
     />
   )
 }
@@ -43,5 +51,11 @@ const countryRowThemedStyles = createThemedStyle((colors) =>
     },
   })
 )
+
+const listItemStyles = StyleSheet.create({
+  icon_checkMark__wrapper: {
+    right: -40,
+  },
+})
 
 export default CountriesList
