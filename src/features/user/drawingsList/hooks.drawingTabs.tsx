@@ -1,3 +1,4 @@
+import { useStore } from 'effector-react'
 import React, { useMemo } from 'react'
 import { FlatList, FlatListProps, StyleProp, ViewStyle } from 'react-native'
 import { SceneMap } from 'react-native-tab-view'
@@ -6,6 +7,7 @@ import { LangFn } from '../../../translations/types'
 import FavouriteIcon from '../../../ui/icons/Icon.Favourite'
 import LikeIcon from '../../../ui/icons/Icon.Heart'
 import ImageIcon from '../../../ui/icons/Icon.Image'
+import { $myProfile } from '../../profile/model'
 import { useThemeColors } from '../../themed/hooks'
 import { UserDrawingListType, UserItem } from '../types'
 import UserDrawingsList from './UserDrawingsList'
@@ -65,6 +67,7 @@ type UseDrawingsTabs = {
   artsListsRequestModel: UserArtsListsRequestModel['model']
   artsListsHeightModel: UserArtsListHeightModel
   settings?: TabListSettings
+  listTopBlockHeight?: number
 }
 
 export function useDrawingsTabs({
@@ -73,6 +76,9 @@ export function useDrawingsTabs({
   ...props
 }: UseDrawingsTabs) {
   const colors = useThemeColors()
+  const myProfile = useStore($myProfile)
+  const isMyProfile = props.item?.id === myProfile?.id
+
   const scenes = useMemo(
     () =>
       SceneMap(
@@ -86,6 +92,7 @@ export function useDrawingsTabs({
               contentStyle={settings.contentStyle}
               onScrollEndDrag={settings.onScrollEnd}
               type={key}
+              isMyProfile={isMyProfile}
               {...props}
             />
           )

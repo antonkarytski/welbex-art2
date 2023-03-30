@@ -32,7 +32,7 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
   const isLoading = useStore(winnersListModel.$isLoading)
 
   const getNext = () => {
-    winnersListModel.getNext()
+    winnersListModel.getNextSync()
   }
 
   const renderWinnerItem = useCallback(

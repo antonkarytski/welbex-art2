@@ -20,6 +20,7 @@ type UserDrawingsListTabsProps = {
   artsListsHeightModel: UserArtsListHeightModel
   tabMenuHeight: number
   listSettings?: TabListSettings
+  listTopBlockHeight?: number
 }
 
 const UserDrawingsListTabs = React.memo(
@@ -31,6 +32,7 @@ const UserDrawingsListTabs = React.memo(
     tabMenuNavigationModel,
     artsListsRequestModel,
     artsListsHeightModel,
+    listTopBlockHeight,
   }: UserDrawingsListTabsProps) => {
     const tabsProps = useDrawingsTabs({
       tabs,
@@ -38,6 +40,7 @@ const UserDrawingsListTabs = React.memo(
       artsListsRequestModel: artsListsRequestModel.model,
       artsListsHeightModel,
       settings: listSettings,
+      listTopBlockHeight,
     })
 
     return (

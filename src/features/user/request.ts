@@ -7,7 +7,7 @@ export const getUserRequest = createAuthSeparatedRequest(
   api.users.profileProtected
 )
 
-export const toggleFollow = (user: UserShort) => {
+export const toggleFollowRequest = (user: UserShort) => {
   const request = user.is_followed ? api.users.unfollow : api.users.follow
   return request(user.id)
 }

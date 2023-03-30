@@ -15,6 +15,8 @@ import { screenHeaderThemedStylesDark } from '../../styles/screen'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import MotionGradient from '../../ui/gradients/MotionGradient'
+import CategoriesListSkeleton from '../../ui/loaders/Skeleton.CategoriesList'
+import WinnersListSkeleton from '../../ui/loaders/Skeleton.Winners'
 
 export default function HomeScreen() {
   const [headerHeight, setHeaderHeight] = useState(0)
@@ -29,6 +31,8 @@ export default function HomeScreen() {
   const offset = useRef(new Animated.Value(0)).current
   const winnersList = useStore(winnersListModel.$items)
   const isWinnersLoading = useStore(winnersListModel.$isLoading)
+  const isCategoriesLoading = useStore(categoriesListModel.$isLoading)
+
   const winnersListNotEmpty = winnersList.length > 0 || isWinnersLoading
 
   useEffect(() => {
@@ -50,6 +54,14 @@ export default function HomeScreen() {
     [{ nativeEvent: { contentOffset: { y: offset } } }],
     { useNativeDriver: true }
   )
+
+  if (isWinnersLoading || isCategoriesLoading)
+    return (
+      <>
+        <WinnersListSkeleton />
+        <CategoriesListSkeleton />
+      </>
+    )
 
   return (
     <View style={styles.common.container}>

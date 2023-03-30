@@ -1,6 +1,7 @@
 import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
+import { ArtWork } from '../../api/parts/arts/types'
 import { downloadImageFromUrl } from '../../lib/files/download'
 import { noop } from '../../lib/helpers'
 import { useRequest } from '../../lib/models/apiBuilder/hooks'
@@ -33,7 +34,7 @@ const ArtWorkDetails = React.memo(({ drawingId }: ArtWorkDetailsProps) => {
   }, [drawingId])
 
   const { toggleLike, save, like, followAuthor } = useAtrWorkActions(
-    drawing.data,
+    drawing.data as ArtWork,
     drawing.update
   )
 
@@ -61,7 +62,6 @@ const ArtWorkDetails = React.memo(({ drawingId }: ArtWorkDetailsProps) => {
           widthGenerator={() => SCREEN_CONTENT_WIDTH}
         />
       </DoubleTouchOverlay>
-
       <ArtWorkInteractionPanel
         item={drawing.data}
         onPressLike={toggleLike}

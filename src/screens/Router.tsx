@@ -5,6 +5,7 @@ import { onBoardingWasShownModel } from '../features/onboarding/model'
 import { useNavigate } from '../navigation'
 import StackNavigator, { Stack } from '../navigation/elements/StackNavigator'
 import { links } from '../navigation/links'
+import ArtWorkDetailsScreen from './Screen.ArtWorkDetails'
 import CameraScreen from './Screen.Camera'
 import ScreenInfoMessage from './Screen.InfoMessage'
 import UserProfileScreen from './Screen.UserProfile'
@@ -54,6 +55,10 @@ const Router = React.memo(() => {
         component={SpecificGalleryFiltered}
       />
       <Stack.Screen name={links.infoMessage} component={ScreenInfoMessage} />
+      <Stack.Screen
+        name={links.artWorkDetails}
+        component={ArtWorkDetailsScreen}
+      />
     </StackNavigator>
   )
 })

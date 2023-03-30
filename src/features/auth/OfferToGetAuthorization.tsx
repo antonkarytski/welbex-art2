@@ -16,11 +16,15 @@ import OfferToLogIn from './OfferToLogIn'
 type OfferToGetAuthorizationProps = {
   style?: StyleProp<ViewStyle>
   enableDescriptionText?: boolean
+  onSignUp?: () => void
+  onLogin?: () => void
 }
 
 const OfferToGetAuthorization = ({
   style,
   enableDescriptionText,
+  onLogin,
+  onSignUp,
 }: OfferToGetAuthorizationProps) => {
   const t = useText()
   const navigate = useNavigate()
@@ -41,10 +45,13 @@ const OfferToGetAuthorization = ({
       )}
       <PresetButton
         label={t.createNewAccount}
-        onPress={() => navigate(links.signUp)}
+        onPress={() => {
+          navigate(links.signUp)
+          onSignUp?.()
+        }}
         preset={styles.presetButton}
       />
-      <OfferToLogIn />
+      <OfferToLogIn onLogin={onLogin} />
     </View>
   )
 }

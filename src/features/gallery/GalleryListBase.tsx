@@ -51,7 +51,6 @@ const GalleryListBase = ({
     isLoading,
     isNextLoading,
     getNextSync,
-    updateItem,
     refreshSync,
     isRefreshing,
   } = useGallery(type, getListOnMount)
@@ -61,7 +60,7 @@ const GalleryListBase = ({
     item: galleryItemThemedStyles,
   })
 
-  const { toggleLike } = useAtrWorkActions(null, updateItem)
+  const { toggleLike } = useAtrWorkActions()
 
   const renderItem = useCallback(
     ({ item, index }: ListRenderItemInfo<ArtWork>) => {
@@ -70,7 +69,9 @@ const GalleryListBase = ({
           {isAdsVisible && adsBannerFreq(index) && <AdsBanner />}
           <GalleryItem
             onPress={(drawing) =>
-              navigate(links.galleryDrawingDetails, { item: drawing })
+              navigate(links.artWorkDetails, {
+                item: drawing,
+              })
             }
             ageTextGenerator={localeAgeTextShort(text)}
             style={styles.item}

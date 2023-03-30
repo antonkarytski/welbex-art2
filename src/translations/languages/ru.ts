@@ -116,7 +116,7 @@ export const RU: LangStructure = {
   showLess: 'Скрыть',
   download: 'Скачать',
   follow: 'Подписаться',
-  unfollow: 'Отменить подписку',
+  unfollow: 'Отписаться',
   myProfile: 'Мой профиль',
   myGallery: 'Моя галерея',
   posts: 'Посты',

@@ -29,24 +29,24 @@ export const settingsList: SettingItem[] = [
     navigateTo: links.subscriptionSelectPlan,
     isAbleWhenUnauthorized: true,
   },
-  {
-    label: (t) => t.faq,
-    icon: QuestionIcon,
-    navigateTo: links.faq,
-    isAbleWhenUnauthorized: true,
-  },
-  {
-    label: (t) => t.feedback,
-    icon: FeedbackIcon,
-    navigateTo: links.feedback,
-    isAbleWhenUnauthorized: false,
-  },
-  {
-    label: (t) => t.notifications,
-    icon: NotificationsIcon,
-    navigateTo: links.notifications,
-    isAbleWhenUnauthorized: false,
-  },
+  // {
+  //   label: (t) => t.faq,
+  //   icon: QuestionIcon,
+  //   navigateTo: links.faq,
+  //   isAbleWhenUnauthorized: true,
+  // },
+  // {
+  //   label: (t) => t.feedback,
+  //   icon: FeedbackIcon,
+  //   navigateTo: links.feedback,
+  //   isAbleWhenUnauthorized: false,
+  // },
+  // {
+  //   label: (t) => t.notifications,
+  //   icon: NotificationsIcon,
+  //   navigateTo: links.notifications,
+  //   isAbleWhenUnauthorized: false,
+  // },
   {
     label: (t) => t.language,
     icon: LanguageIcon,
