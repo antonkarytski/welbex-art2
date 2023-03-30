@@ -1,21 +1,23 @@
-import React from 'react'
-import { StyleProp, StyleSheet, ViewStyle } from 'react-native'
-import { useNavigate } from '../../navigation'
-import { links } from '../../navigation/links'
-import { buttonTextThemedStyles } from '../../styles/buttons'
-import { FONT_MEDIUM } from '../../styles/fonts'
-import { useText } from '../../translations/hook'
-import Row from '../../ui/Row'
-import Span from '../../ui/Span'
-import TextButton from '../../ui/buttons/Button.Text'
-import { createThemedStyle } from '../themed'
-import { useThemedStyleList } from '../themed/hooks'
+import React from 'react';
+import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import { useNavigate } from '../../navigation';
+import { links } from '../../navigation/links';
+import { buttonTextThemedStyles } from '../../styles/buttons';
+import { FONT_MEDIUM } from '../../styles/fonts';
+import { useText } from '../../translations/hook';
+import Row from '../../ui/Row';
+import Span from '../../ui/Span';
+import TextButton from '../../ui/buttons/Button.Text';
+import { createThemedStyle } from '../themed';
+import { useThemedStyleList } from '../themed/hooks';
+
 
 type OfferToLoginProps = {
   style?: StyleProp<ViewStyle>
+  onLogin?:() => void
 }
 
-const OfferToLogin = ({ style }: OfferToLoginProps) => {
+const OfferToLogin = ({ style, onLogin }: OfferToLoginProps) => {
   const t = useText()
   const navigate = useNavigate()
   const { styles } = useThemedStyleList({
@@ -28,7 +30,10 @@ const OfferToLogin = ({ style }: OfferToLoginProps) => {
       <Span label={t.haveAccountQ} style={[styles.feature.text]} />
       <TextButton
         label={t.logIn}
-        onPress={() => navigate(links.login)}
+        onPress={() => {
+          navigate(links.login)
+          onLogin?.()
+        }}
         style={styles.textButton}
       />
     </Row>

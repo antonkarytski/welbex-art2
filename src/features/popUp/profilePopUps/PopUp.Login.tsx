@@ -12,7 +12,11 @@ const PopUpLogin = PopUpFactory.appendModel(() => {
 
   return (
     <PopUpCard style={styles.card} model={model}>
-      <OfferToGetAuthorization enableDescriptionText />
+      <OfferToGetAuthorization
+        enableDescriptionText
+        onLogin={model.hideSync}
+        onSignUp={model.hideSync}
+      />
     </PopUpCard>
   )
 }, model)

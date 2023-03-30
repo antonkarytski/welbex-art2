@@ -36,7 +36,7 @@ export default function UploadPostImageScreen({
   const myProfile = useStore($myProfile)
 
   useEffect(() => {
-    navigation.addListener('focus', () => {
+    const onFocus = () => {
       if (!isAuth) {
         PopUpLogin.showSync()
         navigation.goBack()
@@ -45,8 +45,12 @@ export default function UploadPostImageScreen({
         PopUpAgeError.showSync()
         navigation.goBack()
       }
-    })
-  }, [navigation, myProfile, isAuth, navigate])
+    }
+    navigation.addListener('focus', onFocus)
+    return () => {
+      navigation.removeListener('focus', onFocus)
+    }
+  }, [navigation, myProfile, isAuth])
 
   const onImagePick = (assets: ImagePickerAsset[]) => {
     navigate(links.createPostAddDescription, { assets, category })
