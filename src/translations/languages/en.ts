@@ -78,6 +78,8 @@ export const EN = {
   setNewPasswordDescription:
     'Create a new password that you don’t use for other websites',
   checkPasswordMatchError: 'The password does not match',
+  checkPasswordLengthError:
+    'The password must be at least 8 characters long and contain at least one letter and one number',
   checkPasswordMatchSuccess: 'Passwords match',
   name: 'Name',
   lastName: 'Last name',

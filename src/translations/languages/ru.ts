@@ -198,4 +198,6 @@ export const RU: LangStructure = {
   noDrawingsInCategory: 'Рисунков пока нет',
   noWinners: 'Победители еще не определены',
   completeRegistration: 'Завершение регистрации',
+  checkPasswordLengthError:
+    'Пароль должен быть не менее 8 символов длиной и содержать по крайней мере одну цифру и одну букву',
 }

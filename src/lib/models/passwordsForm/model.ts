@@ -8,12 +8,22 @@ export type PasswordsFormModel = {
   passwordConfirmation: string
 }
 
+export enum PasswordErrors {
+  PASSWORD_MIN_LENGTH = 'Password must contain at least 8 characters',
+  PASSWORD_MUST_MATCH = 'Passwords must match',
+}
+
 export const passwordsFormSchema: ObjectSchema<PasswordsFormModel> = yup.object(
   {
-    password: stringSchema(),
-    passwordConfirmation: stringSchema().oneOf(
+    password: stringSchema()
+      .min(8)
+      .matches(
+        /"(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}"/,
+        PasswordErrors.PASSWORD_MIN_LENGTH
+      ),
+    passwordConfirmation: stringSchema('').oneOf(
       [yup.ref('password')],
-      'Passwords must match'
+      PasswordErrors.PASSWORD_MUST_MATCH
     ),
   }
 )
