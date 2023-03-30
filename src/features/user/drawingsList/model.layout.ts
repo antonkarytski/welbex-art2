@@ -34,7 +34,6 @@ export const createUserArtsListHeightModel = (): UserArtsListHeightModel => {
   }
 
   const updateListsHeight = createEvent<Partial<UserDrawingsListHeight>>()
-
   const $listsHeight = createStore<UserDrawingsListHeight>(
     initialListsHeight
   ).on(updateListsHeight, (state, payload) => ({
@@ -43,7 +42,6 @@ export const createUserArtsListHeightModel = (): UserArtsListHeightModel => {
   }))
 
   const updateListOffset = createEvent<Partial<UserDrawingsListHeight>>()
-
   const $listsOffsets = createStore<UserDrawingsListHeight>(
     initialOffsetsValues
   ).on(updateListOffset, (state, payload) => ({
@@ -52,7 +50,6 @@ export const createUserArtsListHeightModel = (): UserArtsListHeightModel => {
   }))
 
   const setActiveListTabKey = createEvent<UserDrawingListType>()
-
   const $activeListTabKey = restore(
     setActiveListTabKey,
     UserDrawingListType.OWN

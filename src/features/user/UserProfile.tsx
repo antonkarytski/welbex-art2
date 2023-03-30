@@ -54,6 +54,8 @@ const UserProfile = ({
   const tabMenuStyles = useThemedStyle(tabMenuThemedStyles)
   const [headerHeight, setHeaderHeight] = useState(HEADER_INITIAL_HEIGHT)
   const [tabMenuHeight, setTabMenuHeight] = useState(60)
+  const [userTopBlockHeight, setUserTopBlockHeight] = useState(300)
+
   const tabMenuProps = useStore(artsTabMenuNavigationModel.$store)
   const {
     routes,
@@ -80,6 +82,10 @@ const UserProfile = ({
 
   const handleTabMenuLayout = useCallback((e: LayoutChangeEvent) => {
     setTabMenuHeight(e.nativeEvent.layout.height)
+  }, [])
+
+  const onUserTopBlockLayout = useCallback((e: LayoutChangeEvent) => {
+    setUserTopBlockHeight(e.nativeEvent.layout.height)
   }, [])
 
   const handleRefresh = useCallback(() => {
@@ -130,7 +136,11 @@ const UserProfile = ({
         refreshing={isRefreshing}
         nestedScrollEnabled
         ListHeaderComponent={
-          <UserTopBlock item={user} updateItem={updateUser} />
+          <UserTopBlock
+            item={user}
+            updateItem={updateUser}
+            onLayout={onUserTopBlockLayout}
+          />
         }
         ListFooterComponent={
           <UserDrawingsListsTabs
@@ -140,6 +150,9 @@ const UserProfile = ({
             tabMenuNavigationModel={artsTabMenuNavigationModel}
             artsListsRequestModel={artsListsRequestModel}
             artsListsHeightModel={artsListsHeightModel}
+            listTopBlockHeight={
+              tabMenuHeight + headerHeight + userTopBlockHeight
+            }
           />
         }
         onEndReached={handleEndReached}
