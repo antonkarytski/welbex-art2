@@ -66,7 +66,7 @@ const ArtWorksList = forwardRef(
 
     const goToDrawingDetails = useCallback(
       (item: ArtWorkPreviewResponse) =>
-        navigate(links.drawingDetails, { item }),
+        navigate(links.artWorkDetails, { item }),
       [navigate]
     )
 

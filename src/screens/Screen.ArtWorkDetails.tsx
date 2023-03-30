@@ -9,9 +9,7 @@ import { ScreenComponentProps } from '../navigation/types.screenProps'
 
 const ArtWorkDetailsScreen = ({
   route,
-}: ScreenComponentProps<
-  links.drawingDetails | links.galleryDrawingDetails
->) => {
+}: ScreenComponentProps<links.artWorkDetails | links.artWorkDetails>) => {
   const { styles: headerStyles, colors } = useTheme(
     transparentThemedHeaderStyles
   )

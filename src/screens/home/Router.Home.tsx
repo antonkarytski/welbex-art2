@@ -17,7 +17,7 @@ function HomeTabScreen() {
         component={CategoryDetailsScreen}
       />
       <Stack.Screen
-        name={links.drawingDetails}
+        name={links.artWorkDetails}
         component={ArtWorkDetailsScreen}
       />
     </TabStackNavigator>

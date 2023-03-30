@@ -69,7 +69,7 @@ const GalleryListBase = ({
           {isAdsVisible && adsBannerFreq(index) && <AdsBanner />}
           <GalleryItem
             onPress={(drawing) =>
-              navigate(links.galleryDrawingDetails, {
+              navigate(links.artWorkDetails, {
                 item: drawing,
               })
             }
