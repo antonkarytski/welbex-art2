@@ -89,7 +89,7 @@ const themedStyles = createThemedStyle((colors) =>
 
 const followButtonStyles = StyleSheet.create({
   label: {
-    fontSize: 12,
+    fontSize: 14,
   },
   button: {
     paddingVertical: 8,

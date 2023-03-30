@@ -36,6 +36,11 @@ export default function PresetButton({
     setPresetState(preset.common)
   }
 
+  const handlePress = () => {
+    onPress?.()
+    onUnderlayAction(false)
+  }
+
   useEffect(() => {
     if (disabled && preset.disabled) return setPresetState(preset.disabled)
     setPresetState(preset.common)
@@ -47,7 +52,7 @@ export default function PresetButton({
       underlayColor={preset.active.background}
       onShowUnderlay={() => onUnderlayAction(true)}
       onHideUnderlay={() => onUnderlayAction(false)}
-      onPress={onPress}
+      onPress={handlePress}
       style={[
         buttonStyles.button,
         activeStyles.button,
