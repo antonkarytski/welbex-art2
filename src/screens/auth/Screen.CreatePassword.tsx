@@ -38,9 +38,8 @@ const CreatePasswordScreen = () => {
     if (!isUserAcceptAgreement) {
       return setIsUserAgreementInvalid(true)
     }
-    signUpPasswordsFormModel.validation.cast().then((isValid) => {
-      if (!isValid) return
-      signUp().catch(noop)
+    signUpPasswordsFormModel.validation.cast().then(({ isValid }) => {
+      if (isValid) signUp().catch(noop)
     })
   }
 
