@@ -155,7 +155,7 @@ export const RU: LangStructure = {
   disableAds: 'Отключение рекламы',
   increasedNumberOfContestUploads:
     'Увеличенное количество категорий для участия',
-  supportChildCreativity: 'Поддерживайте детское творчество',
+  supportChildCreativity: 'Поддерживаете детское творчество',
   subscriptionEndDate: 'Дата окончания подписки',
   unsubscribe: 'Отменить подписку',
   myTariff: 'Мой тариф',

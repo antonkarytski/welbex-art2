@@ -1,5 +1,6 @@
 import React from 'react'
 import { links } from '../../navigation/links'
+import { getSubscriptionMonthsAmountText } from '../subscriptionPlans/helpers'
 import SuccessInfoMessage from './SuccessInfoMessage'
 
 type PaymentSuccessInfoMessageProps = {
@@ -15,7 +16,12 @@ const PaymentSuccessInfoMessage = ({
       onButtonPress={({ navigate }) => navigate(links.home)}
       title={(t) => t.successfulPayment}
       subTitle={(t) =>
-        `${t.subscribedFor} ${subscriptionMonthsAmount} ${t.months}`
+        `${
+          t.subscribedFor
+        } ${subscriptionMonthsAmount} ${getSubscriptionMonthsAmountText(
+          +subscriptionMonthsAmount,
+          t
+        )}`
       }
     />
   )
