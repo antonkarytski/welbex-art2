@@ -77,11 +77,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#347B81',
     alignItems: 'center',
     paddingVertical: 6,
+    paddingHorizontal: 12,
     borderRadius: 20,
     top: '-50%',
   },
   promotionText: {
     color: 'white',
+    textAlign: 'center',
   },
   contentContainer: {
     paddingHorizontal: 25,

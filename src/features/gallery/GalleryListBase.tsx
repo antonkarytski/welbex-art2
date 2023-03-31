@@ -89,7 +89,7 @@ const GalleryListBase = ({
 
   return (
     <FlatList
-      data={list}
+      data={[]}
       contentContainerStyle={componentStyles.contentContainer}
       renderItem={renderItem}
       keyExtractor={drawingKeyExtractor}

@@ -147,6 +147,11 @@ export const RU: LangStructure = {
   deleteAccountDescription:
     'Ваш профиль, фотографии, комментарии, отметки "Нравится" и подписчики будут удалены без возможности восстановления. Вы уверены, что хотите удалить аккаунт?',
   subscription: 'Подписка',
+  economy: 'Экономия',
+  payMonthsButton: 'Оплатить',
+  monthsInGenitive: 'месяцев',
+  monthsInGenitiveLessThenFive: 'месяца',
+  oneMonth: 'месяц',
   disableAds: 'Отключение рекламы',
   increasedNumberOfContestUploads:
     'Увеличенное количество категорий для участия',
@@ -195,7 +200,9 @@ export const RU: LangStructure = {
   ok: 'Ок',
   cardSaved: 'Карта сохранена',
   noCategories: 'Список категорий пуст',
-  noDrawingsInCategory: 'Рисунков пока нет',
+  noDrawingsYet: 'Рисунков пока нет',
   noWinners: 'Победители еще не определены',
   completeRegistration: 'Завершение регистрации',
+  emptyListOfLikedArts: 'Список понравившихся рисунков пуст',
+  emptyListOfSavedArts: 'Список сохраненных рисунков пуст',
 }

@@ -44,10 +44,7 @@ const CategoryGallery = ({ item, header, ...props }: CategoryGalleryProps) => {
           {isLoading ? (
             <DrawingsListSkeleton />
           ) : (
-            <Span
-              label={text.noDrawingsInCategory}
-              style={styles.noDrawingsLabel}
-            />
+            <Span label={text.noDrawingsYet} style={styles.noDrawingsLabel} />
           )}
         </View>
       }

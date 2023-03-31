@@ -147,6 +147,12 @@ export const EN = {
   deleteAccountDescription:
     'Your profile, photos, comments, likes, and followers will be deleted without the possibility of recovery. Are you sure you want to delete your account?',
   subscription: 'Subscription',
+  economy: 'Save',
+  payMonthsButton: 'Get',
+  monthsInGenitive: 'months',
+  getMonthsSingularDeclension: 'months',
+  monthsInGenitiveLessThenFive: 'months',
+  oneMonth: 'month',
   disableAds: 'Disable ads',
   increasedNumberOfContestUploads: 'Increased number of contest uploads',
   supportChildCreativity: 'Support child creativity',
@@ -191,6 +197,8 @@ export const EN = {
   subscriptionEndMessage: 'Your subscription will end on',
   ok: 'Ok',
   noCategories: 'List of categories is empty',
-  noDrawingsInCategory: 'No drawings yet',
+  noDrawingsYet: 'No drawings yet',
   noWinners: 'Winners not determined',
+  emptyListOfLikedArts: 'The list of liked arts is empty',
+  emptyListOfSavedArts: 'The list of saved arts is empty',
 }

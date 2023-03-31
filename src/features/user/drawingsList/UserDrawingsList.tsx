@@ -102,9 +102,11 @@ const UserDrawingsList = React.memo(
           containerStyle={styles.container}
           getItemLayout={getItemLayout}
           ListEmptyComponent={
-            currentListType === type && !isLoading
-              ? UserDrawingsEmptyComponent
-              : DrawingsListSkeleton
+            currentListType === type && !isLoading ? (
+              <UserDrawingsEmptyComponent listType={currentListType} />
+            ) : (
+              DrawingsListSkeleton
+            )
           }
           {...props}
         />
