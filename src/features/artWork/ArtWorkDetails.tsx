@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
 import { ArtWork } from '../../api/parts/arts/types'
 import { downloadImageFromUrl } from '../../lib/files/download'
@@ -19,19 +19,11 @@ import ArtWorkInteractionPanel from './ArtWorkInteractivePanel'
 import { useAtrWorkActions } from './hooks'
 import { downloadFullSizeDrawing, getArtWorkRequest } from './request'
 
-type ArtWorkDetailsProps = {
-  drawingId: number
-}
-
-const ArtWorkDetails = React.memo(({ drawingId }: ArtWorkDetailsProps) => {
+const ArtWorkDetails = React.memo(() => {
   const navigate = useNavigate()
   const text = useText()
   const drawing = useRequest(getArtWorkRequest)
   const myProfile = useStore($myProfile)
-
-  useEffect(() => {
-    getArtWorkRequest(drawingId).catch(noop)
-  }, [drawingId])
 
   const { toggleLike, save, like, followAuthor } = useAtrWorkActions(
     drawing.data as ArtWork,

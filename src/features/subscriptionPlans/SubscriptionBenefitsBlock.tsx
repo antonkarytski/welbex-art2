@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextStyle, View, ViewStyle } from 'react-native'
+import { View } from 'react-native'
 import { useText } from '../../translations/hook'
 import { LangFn } from '../../translations/types'
 import CheckListItem from '../../ui/lists/CheckListItem'

@@ -147,7 +147,7 @@ export const RU: LangStructure = {
   deleteAccountDescription:
     'Ваш профиль, фотографии, комментарии, отметки "Нравится" и подписчики будут удалены без возможности восстановления. Вы уверены, что хотите удалить аккаунт?',
   subscription: 'Подписка',
-  economy: 'Экономия',
+  benefit: 'Выгода',
   payMonthsButton: 'Оплатить',
   monthsInGenitive: 'месяцев',
   monthsInGenitiveLessThenFive: 'месяца',
@@ -155,7 +155,7 @@ export const RU: LangStructure = {
   disableAds: 'Отключение рекламы',
   increasedNumberOfContestUploads:
     'Увеличенное количество категорий для участия',
-  supportChildCreativity: 'Поддерживаете детское творчество',
+  supportChildCreativity: 'Поддержка детского творчества',
   subscriptionEndDate: 'Дата окончания подписки',
   unsubscribe: 'Отменить подписку',
   myTariff: 'Мой тариф',

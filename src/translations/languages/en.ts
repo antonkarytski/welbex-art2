@@ -147,10 +147,9 @@ export const EN = {
   deleteAccountDescription:
     'Your profile, photos, comments, likes, and followers will be deleted without the possibility of recovery. Are you sure you want to delete your account?',
   subscription: 'Subscription',
-  economy: 'Save',
+  benefit: 'Benefit',
   payMonthsButton: 'Get',
   monthsInGenitive: 'months',
-  getMonthsSingularDeclension: 'months',
   monthsInGenitiveLessThenFive: 'months',
   oneMonth: 'month',
   disableAds: 'Disable ads',

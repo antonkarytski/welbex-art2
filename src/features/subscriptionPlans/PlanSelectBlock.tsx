@@ -66,7 +66,7 @@ const PlanSelectBlock = ({ style }: PlanSelectBlockProps) => {
               value={monthsAmount}
               measure={getSubscriptionMonthsAmountText(monthsAmount, text)}
               price={getSubscriptionPriceText(pricePerMonth, text)}
-              promotion={promotion ? `${text.economy} ${promotion} %` : ''}
+              promotion={promotion ? `${text.benefit} ${promotion}%` : ''}
             />
           )
         }
