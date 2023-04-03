@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react'
 import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
+import { defaultColors } from '../../features/themed/theme'
 import Row from '../Row'
 import TextButton from '../buttons/Button.Text'
 import ListItemSeparator from '../lists/ListItemSeparator'
@@ -74,28 +75,31 @@ const MultiSelect = <Item,>({
 
   return (
     <View style={[selectStyles.container, style?.container]}>
-      {showSelectAllButtons && (
-        <Row style={styles.row}>
-          <TextButton
-            label={selectAllLabel}
-            onPress={onSelectAll}
-            style={{
-              button: [styles.button, styles.leftButton],
-              label: styles.buttonLabel,
-            }}
-          />
-          <TextButton
-            label={removeAllLabel}
-            onPress={onRemoveAll}
-            style={{
-              button: [styles.button],
-              label: styles.buttonLabel,
-            }}
-          />
-        </Row>
-      )}
       <FlatList
         data={data}
+        ListHeaderComponent={
+          showSelectAllButtons ? (
+            <Row style={styles.row}>
+              <TextButton
+                label={selectAllLabel}
+                onPress={onSelectAll}
+                style={{
+                  button: [styles.button, styles.leftButton],
+                  label: styles.buttonLabel,
+                }}
+              />
+              <TextButton
+                label={removeAllLabel}
+                onPress={onRemoveAll}
+                style={{
+                  button: [styles.button],
+                  label: styles.buttonLabel,
+                }}
+              />
+            </Row>
+          ) : null
+        }
+        stickyHeaderIndices={[0]}
         renderItem={renderSelectItem}
         keyExtractor={idExtractor}
         ItemSeparatorComponent={
@@ -111,6 +115,7 @@ const MultiSelect = <Item,>({
 const styles = StyleSheet.create({
   row: {
     paddingHorizontal: 20,
+    backgroundColor: defaultColors.screenBackground,
   },
   button: {
     paddingVertical: 12,
@@ -119,7 +124,7 @@ const styles = StyleSheet.create({
     marginRight: 40,
   },
   buttonLabel: {
-    color: '#616868',
+    color: defaultColors.textGrey,
   },
 })
 

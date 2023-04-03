@@ -1,5 +1,5 @@
-import React from 'react'
-import { StyleSheet } from 'react-native'
+import React, { useState } from 'react'
+import { LayoutChangeEvent, StyleSheet } from 'react-native'
 import { StateModel, useStateStore } from 'altek-toolkit'
 import DropdownTab from '../dropdownTab'
 import SearchableSelect from './SearchableSelect'
@@ -19,10 +19,18 @@ function DropdownSelect<Item>({
   ...props
 }: DropdownSelectProps<Item>) {
   const [selectedItem] = useStateStore(model)
+  const [searchInputHeight, setSearchInputHeight] = useState(0)
+
+  const onSearchInputLayout = (e: LayoutChangeEvent) => {
+    setSearchInputHeight(e.nativeEvent.layout.height + 4)
+  }
 
   const selectStyles = {
     item: itemStyles,
-    container: listStyles.container,
+    container: [
+      listStyles.container,
+      searchModel && { paddingBottom: searchInputHeight },
+    ],
     ...style?.select,
   }
 
@@ -45,6 +53,7 @@ function DropdownSelect<Item>({
           searchModel={searchModel}
           style={{ searchInput: style?.searchInput, ...selectStyles }}
           model={model}
+          onSearchInputLayout={onSearchInputLayout}
           {...commonProps}
           {...props}
         />

@@ -10,10 +10,16 @@ const SearchableSelect = <DataItem,>({
   style,
   preset,
   model,
+  onSearchInputLayout,
   ...props
 }: SearchableSelectProps<DataItem>) => {
   return (
-    <SearchableList model={searchModel} data={data} style={style}>
+    <SearchableList
+      model={searchModel}
+      data={data}
+      style={style}
+      onSearchInputLayout={onSearchInputLayout}
+    >
       {(filteredData) => (
         <Select
           data={filteredData}

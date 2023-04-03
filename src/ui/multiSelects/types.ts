@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { LayoutChangeEvent } from 'react-native'
 import { Fn, StateModel } from 'altek-toolkit'
 import { SearchableListModel } from '../../lib/models/model.search'
 import { FnExt } from '../../types'
@@ -22,6 +23,7 @@ type SearchableMultiSelectSettings<T> = Omit<SelectProps<T>, 'model'> & {
 export type SearchableMultiSelectProps<T> = SearchableMultiSelectSettings<T> & {
   model: StateModel<T[]>
   searchModel: SearchableListModel<T>
+  onSearchInputLayout?: (e: LayoutChangeEvent) => void
 }
 
 export type MultiSelectProps<T> = Omit<
