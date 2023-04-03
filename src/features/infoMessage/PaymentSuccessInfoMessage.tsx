@@ -4,7 +4,7 @@ import { getSubscriptionMonthsAmountText } from '../subscriptionPlans/helpers'
 import SuccessInfoMessage from './SuccessInfoMessage'
 
 type PaymentSuccessInfoMessageProps = {
-  subscriptionMonthsAmount: string
+  subscriptionMonthsAmount: number | string
 }
 
 const PaymentSuccessInfoMessage = ({

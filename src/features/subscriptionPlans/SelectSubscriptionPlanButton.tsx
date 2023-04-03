@@ -16,13 +16,12 @@ const SelectSubscriptionPlanButton = () => {
   const { styles } = useThemedStyleList({ preset: buttonPrimaryThemedPreset })
   const { monthsAmount } = selectedPlan
   const monthsAmountText = getSubscriptionMonthsAmountText(monthsAmount, text)
+  const paymentTariffText = `${monthsAmount} ${monthsAmountText} / $${twoDigits(
+    selectedPlan.fullPrice
+  )}`
   return (
     <PresetButton
-      label={`${
-        text.payMonthsButton
-      } ${monthsAmount} ${monthsAmountText} / ${twoDigits(
-        selectedPlan.fullPrice
-      )}`}
+      label={`${text.payMonthsButton} ${paymentTariffText}`}
       onPress={() =>
         navigate(links.paymentMethod, { currentPayment: selectedPlan })
       }
