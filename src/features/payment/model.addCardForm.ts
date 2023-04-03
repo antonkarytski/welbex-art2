@@ -1,17 +1,32 @@
+import * as yup from 'yup'
 import { createFormModel } from '../../lib/models/form'
+import { stringSchema } from '../../lib/yup'
+import {
+  cleanCardNumber,
+  cleanCvv,
+  cleanExpirationDate,
+  validateCardNumber,
+  validateCvv,
+  validateExpirationDate,
+} from './validation'
 
-type AddCardForm = {
-  number: string
-  expirationDate: string
-  cvc: string
-  nameOnCard: string
-}
+const addCardFormSchema = yup.object().shape({
+  number: stringSchema().test(validateCardNumber),
+  expirationDate: stringSchema().test(validateExpirationDate),
+  cvc: stringSchema().test(validateCvv),
+  nameOnCard: stringSchema(),
+})
 
-const initialAddCardForm: AddCardForm = {
-  number: '',
-  expirationDate: '',
-  cvc: '',
-  nameOnCard: '',
-}
-
-export const addCardFormModel = createFormModel(initialAddCardForm)
+export const addCardFormModel = createFormModel(
+  addCardFormSchema
+).setFieldsSettings({
+  expirationDate: {
+    map: cleanExpirationDate,
+  },
+  cvc: {
+    map: cleanCvv,
+  },
+  number: {
+    map: cleanCardNumber,
+  },
+})
