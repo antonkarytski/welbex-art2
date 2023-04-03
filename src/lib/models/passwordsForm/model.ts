@@ -18,7 +18,7 @@ export const passwordsFormSchema: ObjectSchema<PasswordsFormModel> = yup.object(
     password: stringSchema()
       .min(8)
       .matches(
-        /"(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}"/,
+        /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/,
         PasswordErrors.PASSWORD_MIN_LENGTH
       ),
     passwordConfirmation: stringSchema('').oneOf(
