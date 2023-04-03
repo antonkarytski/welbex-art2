@@ -6,7 +6,7 @@ import { createMemoByWeakMap } from '../../lib/helpers/memoization'
 import { EN } from '../../translations/languages'
 import { LangStructure } from '../../translations/types'
 import Span from '../../ui/Span'
-import { userName } from './helpers'
+import { userName, yearsOldToText } from './helpers'
 import { countryFullName, countryFullNameClipped } from './index'
 import { UserDescriptionStyles } from './styles'
 
@@ -25,8 +25,9 @@ export const localeAgeTextShort = createMemoByWeakMap((text: LangStructure) => {
   return (age?: number) =>
     age ? `${text.atAge} ${age} ${text.yearsOldAbbreviated}` : ''
 })
+
 export const localeAgeTextFull = createMemoByWeakMap((text: LangStructure) => {
-  return (age?: number) => (age ? `${age} ${text.yearsOld}` : '')
+  return (age?: number) => (age ? `${age} ${yearsOldToText(age, text)}` : '')
 })
 
 const UserDescription = ({

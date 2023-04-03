@@ -11,6 +11,29 @@ import { UserInitialData } from '../../api/parts/users/types.parts'
 import { USER_DOB_FORMAT } from '../../constants'
 import { LangStructure } from '../../translations/types'
 
+export function yearsOldToText(
+  age: number,
+  text: LangStructure,
+  abbreviated?: boolean
+) {
+  let result = text.yearsOld
+  let abbreviatedResult = text.yearsOldAbbreviated
+  const lastNumber = Number(String(age).slice(-1))
+  if (age === 1) {
+    result = text.oneYearOld
+    abbreviatedResult = text.yearsOldLessThenFiveAbbreviated
+  }
+  if (age > 1 && lastNumber === 1) {
+    result = text.yearsOldEndsWithOne
+    abbreviatedResult = text.yearsOldLessThenFiveAbbreviated
+  }
+  if (lastNumber > 1 && lastNumber < 5 && (age > 20 || age < 10)) {
+    result = text.yearsOldLessThenFive
+    abbreviatedResult = text.yearsOldLessThenFiveAbbreviated
+  }
+  return abbreviated ? abbreviatedResult : result
+}
+
 export function userName(
   user: Pick<UserInitialData, 'first_name' | 'last_name'>,
   truncated: boolean = false,
