@@ -5,7 +5,7 @@ import { SCREEN_PADDING_HORIZONTAL } from '../../styles/constants'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
 import FollowButton from './Button.Follow'
-import UserAvatar from './UserAvatar'
+import UserAvatarBlock from './UserAvatarBlock'
 import UserCountersBlock from './UserCountersBlock'
 import { AVATAR_BACKGROUND_GRADIENT_HEIGHT } from './constants'
 import { countFollowers } from './helpers'
@@ -27,7 +27,7 @@ const UserTopBlock = React.memo(
         <View style={styles.userBlockBackgroundTransparent} />
         <View style={styles.userBlockBackground} />
         <View>
-          <UserAvatar style={styles.avatar} item={item} />
+          <UserAvatarBlock style={styles.avatar} item={item} />
           {item.followers !== undefined && (
             <UserCountersBlock item={item} style={styles.countersBlock} />
           )}

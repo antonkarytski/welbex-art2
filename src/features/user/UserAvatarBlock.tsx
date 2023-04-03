@@ -18,7 +18,7 @@ type UserAvatarProps = {
   style?: StyleProp<ViewStyle>
 }
 
-const UserAvatar = ({ item, style }: UserAvatarProps) => {
+const UserAvatarBlock = ({ item, style }: UserAvatarProps) => {
   const text = useText()
   const navigate = useNavigate()
   const { styles, colors } = useTheme(themedStyles)
@@ -77,4 +77,4 @@ const themedStyles = createThemedStyle((colors) =>
   })
 )
 
-export default UserAvatar
+export default UserAvatarBlock
