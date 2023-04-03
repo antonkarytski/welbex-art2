@@ -65,7 +65,7 @@ export const RU: LangStructure = {
   loginGreeting: 'Добро пожаловать в ART SQRD',
   forgotPasswordQ: 'Забыли пароль?',
   logInButton: 'Войти',
-  dontHaveAccountQ: 'Нету учетной записи?',
+  dontHaveAccountQ: 'Нет учетной записи?',
   haveAccountQ: 'Есть учетная запись?',
   loginToAccountOrRegister: 'Войдите в свой аккаунт или зарегистрируйтесь',
   recoverPassword: 'Восстановить пароль',

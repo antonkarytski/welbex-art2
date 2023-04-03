@@ -2,6 +2,7 @@ import React from 'react'
 import { Linking, StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import { api } from '../../api'
 import { noop } from '../../lib/helpers'
+import { IS_IOS } from '../../lib/helpers/native/constants'
 import { buttonLightThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
 import LineSeparator from '../../ui/LineSeparator'
@@ -47,11 +48,13 @@ const AuthWithServices = ({
         style={{ button: styles.feature.button }}
         preset={styles.button}
       />
-      <AppleButton
-        onPress={authWithApple}
-        label={t.continueWithApple}
-        preset={styles.button}
-      />
+      {IS_IOS && (
+        <AppleButton
+          onPress={authWithApple}
+          label={t.continueWithApple}
+          preset={styles.button}
+        />
+      )}
     </View>
   )
 }
