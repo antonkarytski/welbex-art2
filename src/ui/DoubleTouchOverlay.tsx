@@ -5,10 +5,7 @@ import {
   PanResponderGestureState,
   View,
 } from 'react-native'
-import {
-  TouchCoordinates,
-  calcDistanceBetweenCoords,
-} from '../lib/helpers/geometry'
+import { Coordinates, calcDistanceBetweenCoords } from '../lib/helpers/geometry'
 
 type DoubleTouchOverlayProps = PropsWithChildren<{
   onPress?: () => void
@@ -33,7 +30,7 @@ const DoubleTouchOverlay = ({
 
   const checkDoubleTouch = (
     currentTimeStamp: number,
-    currentCoordinates: TouchCoordinates
+    currentCoordinates: Coordinates
   ) => {
     const touchesDelay = currentTimeStamp - prevTouchTimeStamp.current
     const prevTouchCoordinates = {
