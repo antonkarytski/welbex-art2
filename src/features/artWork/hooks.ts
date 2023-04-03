@@ -47,21 +47,24 @@ export const useAtrWorkActions = (
     [preHandling, updateItemState]
   )
 
-  const like = (artData?: ArtWork | null) => {
-    const item = preHandling(artData)
-    if (!item) return
-    if (!item.is_liked) {
-      const newData = {
-        id: item.id,
-        is_liked: true,
-        likes: item.likes + 1,
+  const like = useCallback(
+    (artData?: ArtWork | null) => {
+      const item = preHandling(artData)
+      if (!item) return
+      if (!item.is_liked) {
+        const newData = {
+          id: item.id,
+          is_liked: true,
+          likes: item.likes + 1,
+        }
+        api.arts.likePost(item.id).then(() => {
+          updateItemState?.(newData)
+          updateGalleries(newData)
+        })
       }
-      api.arts.likePost(item.id).then(() => {
-        updateItemState?.(newData)
-        updateGalleries(newData)
-      })
-    }
-  }
+    },
+    [preHandling, updateItemState]
+  )
 
   const save = (artData?: ArtWork | null) => {
     const item = preHandling(artData)
