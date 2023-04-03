@@ -32,7 +32,7 @@ const CategoryHeader = ({ onLayout }: CategoryDetailsHeaderProps) => {
           label={getMonthPeriodString(
             category.competition.date_start,
             category.competition.date_end,
-            currentLanguage.toLowerCase()
+            currentLanguage
           )}
         />
       </Row>
