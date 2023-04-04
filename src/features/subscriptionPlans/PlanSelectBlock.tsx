@@ -6,7 +6,10 @@ import SubscriptionSelectItem, {
   SubscriptionSelectItemProps,
 } from '../../ui/lists/SubscriptionSelectItem'
 import { useThemedStyleList } from '../themed/hooks'
-import { getSubscriptionPriceText } from './helpers'
+import {
+  getSubscriptionMonthsAmountText,
+  getSubscriptionPriceText,
+} from './helpers'
 import {
   $selectedSubscriptionPlanIndex,
   SUBSCRIPTION_PLANS,
@@ -61,9 +64,9 @@ const PlanSelectBlock = ({ style }: PlanSelectBlockProps) => {
               activeStyle={styles.selectedItem}
               isActive={index === selectedItemIndex}
               value={monthsAmount}
-              measure={text.months}
+              measure={getSubscriptionMonthsAmountText(monthsAmount, text)}
               price={getSubscriptionPriceText(pricePerMonth, text)}
-              promotion={promotion ? `${text.save} ${promotion} %` : ''}
+              promotion={promotion ? `${text.benefit} ${promotion}%` : ''}
             />
           )
         }

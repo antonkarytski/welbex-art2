@@ -23,6 +23,7 @@ export const handleLogin = ({ result }: { result: LoginResponse }) => {
   setIsLoginAccessError(false)
   apiManager.token.set(tokenResponseToTokens(result))
   meRequest().catch(noop)
+  setIsLoginAccessError(false)
 }
 
 const logInFormSchema: ObjectSchema<LogInForm> = yup.object().shape({

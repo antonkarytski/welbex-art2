@@ -60,7 +60,14 @@ const GalleryListBase = ({
     item: galleryItemThemedStyles,
   })
 
-  const { toggleLike } = useAtrWorkActions()
+  const { toggleLike, like } = useAtrWorkActions()
+  const onPressGalleryItem = useCallback(
+    (drawing: ArtWork) =>
+      navigate(links.artWorkDetails, {
+        item: drawing,
+      }),
+    [navigate]
+  )
 
   const renderItem = useCallback(
     ({ item, index }: ListRenderItemInfo<ArtWork>) => {
@@ -68,15 +75,12 @@ const GalleryListBase = ({
         <>
           {isAdsVisible && adsBannerFreq(index) && <AdsBanner />}
           <GalleryItem
-            onPress={(drawing) =>
-              navigate(links.artWorkDetails, {
-                item: drawing,
-              })
-            }
+            onPress={onPressGalleryItem}
             ageTextGenerator={localeAgeTextShort(text)}
             style={styles.item}
             item={item}
             onPressLikeButton={toggleLike}
+            onDoublePress={like}
             colors={colors}
           />
         </>

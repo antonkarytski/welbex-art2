@@ -1,19 +1,18 @@
 import React, { PropsWithChildren } from 'react'
 import {
-  ImageBackground,
   ImageSourcePropType,
   StyleProp,
   StyleSheet,
   TextStyle,
   TouchableOpacity,
-  View,
   ViewStyle,
 } from 'react-native'
 import { defaultColors } from '../../features/themed/theme'
 import { FONT_SEMI_BOLD } from '../../styles/fonts'
-import Span from '../Span'
+import DoubleTouchOverlay from '../DoubleTouchOverlay'
+import ImageCardContent from './ImageCardContent'
 
-type ImageOptions =
+export type ImageOptions =
   | {
       imageWidth?: number
       imageHeight: number
@@ -29,6 +28,7 @@ export type ImageCardProps = {
   image: ImageSourcePropType | null
   style?: StyleProp<ViewStyle>
   onPress?: () => void
+  onDoublePress?: () => void
   label?: string
   labelStyles?: {
     text: StyleProp<TextStyle>
@@ -36,75 +36,30 @@ export type ImageCardProps = {
   }
 } & ImageOptions
 
-function getImageSize(options: ImageOptions | undefined) {
-  if (!options) {
-    return {
-      width: '100%',
-      height: '100%',
-    }
-  }
-
-  if (options.imageOffsetY) {
-    return {
-      height: options.imageHeight + options.imageOffsetY,
-      width: options.imageWidth ?? '100%',
-    }
-  }
-
-  return {
-    height: options.imageHeight ?? '100%',
-    width: options.imageWidth ?? '100%',
-  }
-}
-
 const ImageCard = ({
-  image,
   style,
-  children,
   onPress,
-  label,
-  labelStyles,
-  ...imageOptions
+  onDoublePress,
+  ...props
 }: PropsWithChildren<ImageCardProps>) => {
+  if (onDoublePress) {
+    return (
+      <DoubleTouchOverlay
+        onPress={onDoublePress}
+        onSinglePress={onPress}
+        style={[styles.container, style]}
+      >
+        <ImageCardContent {...props} />
+      </DoubleTouchOverlay>
+    )
+  }
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={onPress}
       style={[styles.container, style]}
     >
-      {image ? (
-        <>
-          {label && (
-            <View style={[styles.label, labelStyles?.container]}>
-              <Span
-                label={label}
-                style={[styles.labelText, labelStyles?.text]}
-              />
-            </View>
-          )}
-          <ImageBackground
-            style={[
-              styles.imageBackground,
-              !!imageOptions.imageHeight && {
-                height: imageOptions.imageHeight,
-              },
-            ]}
-            source={image}
-            resizeMode={'cover'}
-            imageStyle={[styles.image, getImageSize(imageOptions)]}
-          />
-        </>
-      ) : (
-        <View
-          style={[
-            styles.imageBackground,
-            getImageSize(imageOptions),
-            styles.noImageBackground,
-          ]}
-        />
-      )}
-
-      {children}
+      <ImageCardContent {...props} />
     </TouchableOpacity>
   )
 }

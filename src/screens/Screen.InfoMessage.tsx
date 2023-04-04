@@ -27,7 +27,11 @@ const InfoMessageScreen = ({
     )
   }
   if (params.type === InfoMessageType.SUCCESSFUL_PAYMENT) {
-    return <PaymentSuccessInfoMessage subscriptionMonthsAmount={'six'} />
+    return (
+      <PaymentSuccessInfoMessage
+        subscriptionMonthsAmount={params.payload.months}
+      />
+    )
   }
   if (params.type === InfoMessageType.SIGNED_OFF) {
     return <SignedOffInfoMessage subscriptionExpiresIn={'01.01.2023'} />

@@ -1,6 +1,5 @@
 import React from 'react'
 import { StyleProp, StyleSheet, TextStyle, View, ViewStyle } from 'react-native'
-import { IconProps } from 'altek-ui'
 import Span from '../Span'
 import IconCheckCircle from '../icons/Icon.CheckCircle'
 
@@ -30,6 +29,7 @@ const styles = StyleSheet.create({
   },
   text: {
     marginLeft: 11,
+    fontSize: 14,
   },
 })
 

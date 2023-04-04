@@ -1,5 +1,10 @@
 import React, { ReactNode } from 'react'
-import { FlatListProps, StyleProp, ViewStyle } from 'react-native'
+import {
+  FlatListProps,
+  LayoutChangeEvent,
+  StyleProp,
+  ViewStyle,
+} from 'react-native'
 import { StateModel } from 'altek-toolkit'
 import { SearchableListModel } from '../../lib/models/model.search'
 import { Fn, FnExt } from '../../types'
@@ -49,6 +54,7 @@ export type DropdownSelectPreset = {
 export type SearchableSelectProps<T> = SearchableSelectSettings<T> & {
   searchModel: SearchableListModel<T>
   model: StateModel<T | null>
+  onSearchInputLayout?: (e: LayoutChangeEvent) => void
 }
 
 export type ListSelectProps<T> = SearchableSelectSettings<T> & {

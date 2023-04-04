@@ -1,6 +1,12 @@
 import { useEvent, useStore } from 'effector-react'
 import React, { useEffect } from 'react'
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
+import {
+  LayoutChangeEvent,
+  StyleProp,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from 'react-native'
 import { useStateStore } from 'altek-toolkit'
 import { defaultColors } from '../features/themed/theme'
 import { SearchableListModel } from '../lib/models/model.search'
@@ -18,6 +24,7 @@ type SearchableListProps<T> = {
   data: T[]
   model: SearchableListModel<T>
   style?: SearchableListStyles
+  onSearchInputLayout?: (e: LayoutChangeEvent) => void
 }
 
 function SearchableList<DataItem>({
@@ -25,6 +32,7 @@ function SearchableList<DataItem>({
   data,
   style,
   model,
+  onSearchInputLayout,
 }: SearchableListProps<DataItem>) {
   const { searchStringModel, initialListModel, $filteredList } = model
   const [searchString, setSearchString] = useStateStore(searchStringModel)
@@ -41,6 +49,7 @@ function SearchableList<DataItem>({
         value={searchString}
         onChange={setSearchString}
         style={{ ...inputStyles, ...style?.searchInput }}
+        onLayout={onSearchInputLayout}
       />
       {children(filteredData)}
     </View>

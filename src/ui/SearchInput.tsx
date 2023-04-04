@@ -1,4 +1,5 @@
 import React from 'react'
+import { LayoutChangeEvent } from 'react-native'
 import CrossButton from './buttons/Button.Cross'
 import SearchIcon from './icons/Icon.Search'
 import Input from './input'
@@ -8,9 +9,15 @@ type SearchInputProps = {
   value: string
   onChange: (value: string) => void
   style?: InputStyles
+  onLayout?: (e: LayoutChangeEvent) => void
 }
 
-const SearchInput = ({ value, onChange, style }: SearchInputProps) => {
+const SearchInput = ({
+  value,
+  onChange,
+  style,
+  onLayout,
+}: SearchInputProps) => {
   return (
     <Input
       value={value}
@@ -18,6 +25,7 @@ const SearchInput = ({ value, onChange, style }: SearchInputProps) => {
       InputPseudoBefore={<SearchIcon />}
       InputPseudoAfter={value && <CrossButton onPress={() => onChange('')} />}
       styles={style}
+      onLayout={onLayout}
     />
   )
 }

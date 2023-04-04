@@ -29,7 +29,9 @@ const SelectItem = <Item,>({
         activeStyles.item,
       ]}
     >
-      <View style={style?.row_wrapper}>
+      <View
+        style={[style?.row_wrapper, showSelectedIcon && { paddingRight: 40 }]}
+      >
         {renderItem
           ? renderItem(item, isSelected)
           : labelExtractor && (

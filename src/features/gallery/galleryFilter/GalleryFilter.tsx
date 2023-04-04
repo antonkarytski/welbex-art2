@@ -22,6 +22,7 @@ import CountriesDropdownMultiSelect from '../../countries/CountriesDropdownMulti
 import { useThemedStyleList } from '../../themed/hooks'
 import { useGallery } from '../hooks'
 import { $activeGallery } from '../model'
+import { getArtWorksAmountTranslation } from './helpers'
 import {
   $galleryFilterProps,
   ageRangeModel,
@@ -80,7 +81,10 @@ const GalleryFilter = () => {
       </KeyboardAvoidingView>
 
       <PresetButton
-        label={`${t.show} ${filterResult?.total ?? ''} ${t.filterResults}`}
+        label={`${t.show} ${getArtWorksAmountTranslation(
+          filterResult?.total,
+          t
+        )}`}
         onPress={onShowResults}
         preset={styles.buttonPrimary}
         style={commonStyles.resultsButton}
