@@ -40,7 +40,17 @@ export const logIn = attach({
   }),
   effect: api.auth.login,
 })
-
+api.auth.login.watch((params) => {
+  api.auth.login.requestData(params).then((e) => {
+    console.log(e, 'REQUEST')
+  })
+})
+logIn.done.watch((e) => {
+  console.log(e, 'DONE')
+})
+logIn.fail.watch((e) => {
+  console.log(e, 'FAIL')
+})
 logIn.done.watch(handleLogin)
 
 api.auth.login.fail.watch(({ error }) => {

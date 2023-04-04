@@ -32,7 +32,6 @@ const AddPaymentCardScreen = ({
     header: headerThemedStyles,
   })
   const isValid = useValidation(addCardFormModel)
-  console.log(isValid)
 
   return (
     <View style={commonStyles.container}>
