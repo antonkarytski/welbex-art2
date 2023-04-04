@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import { defaultColors } from '../../features/themed/theme'
 import { FONT_SEMI_BOLD } from '../../styles/fonts'
-import DoubleTouchOverlay from '../DoubleTouchOverlay'
+import { useDoubleTap } from '../doubleTouch/hooks'
 import ImageCardContent from './ImageCardContent'
 
 export type ImageOptions =
@@ -42,21 +42,12 @@ const ImageCard = ({
   onDoublePress,
   ...props
 }: PropsWithChildren<ImageCardProps>) => {
-  if (onDoublePress) {
-    return (
-      <DoubleTouchOverlay
-        onPress={onDoublePress}
-        onSinglePress={onPress}
-        style={[styles.container, style]}
-      >
-        <ImageCardContent {...props} />
-      </DoubleTouchOverlay>
-    )
-  }
+  const pressHandler = useDoubleTap({ onPress, onDoublePress })
+
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      onPress={onPress}
+      onPress={pressHandler}
       style={[styles.container, style]}
     >
       <ImageCardContent {...props} />
