@@ -25,6 +25,9 @@ const CardSavedInfoMessage = ({
         }
         navigate(links.infoMessage, {
           type: InfoMessageType.SUCCESSFUL_PAYMENT,
+          payload: {
+            currentPayment,
+          },
         })
       }}
       title={(t) => t.cardSaved}

@@ -58,7 +58,7 @@ const PaymentMethodsScreen = ({
             onPress={() =>
               navigate(links.infoMessage, {
                 type: InfoMessageType.SUCCESSFUL_PAYMENT,
-                payload: { months: paymentPlan.monthsAmount },
+                payload: { currentPayment: paymentPlan },
               })
             }
             preset={styles.buttonPreset}
