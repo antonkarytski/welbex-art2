@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react'
 import React from 'react'
-import { ScrollView, StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import { ArtWork } from '../../api/parts/arts/types'
 import { downloadImageFromUrl } from '../../lib/files/download'
 import { noop } from '../../lib/helpers'
@@ -9,8 +9,8 @@ import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { SCREEN_CONTENT_WIDTH } from '../../styles/constants'
 import { useText } from '../../translations/hook'
-import DoubleTouchOverlay from '../../ui/DoubleTouchOverlay'
 import PresetButton from '../../ui/buttons/PresetButton'
+import { useDoubleTap } from '../../ui/doubleTouch/hooks'
 import Loader from '../../ui/loaders/Loader'
 import AutoHeightImage from '../images/AutoHeightImage'
 import { $myProfile } from '../profile/model'
@@ -29,6 +29,9 @@ const ArtWorkDetails = React.memo(() => {
     drawing.data as ArtWork,
     drawing.update
   )
+  const pressHandler = useDoubleTap({
+    onDoublePress: like,
+  })
 
   if (!drawing.data && drawing.isLoading) {
     return <Loader />
@@ -48,12 +51,12 @@ const ArtWorkDetails = React.memo(() => {
         onPressFollow={followAuthor}
         item={drawing.data.author}
       />
-      <DoubleTouchOverlay onPress={like}>
+      <TouchableOpacity activeOpacity={0.95} onPress={pressHandler}>
         <AutoHeightImage
           image={{ uri: drawing.data.image_thumbnail }}
           widthGenerator={() => SCREEN_CONTENT_WIDTH}
         />
-      </DoubleTouchOverlay>
+      </TouchableOpacity>
       <ArtWorkInteractionPanel
         item={drawing.data}
         onPressLike={toggleLike}
