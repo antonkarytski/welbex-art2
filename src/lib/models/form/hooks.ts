@@ -1,4 +1,4 @@
-import { useStoreMap } from 'effector-react'
+import { useStore, useStoreMap } from 'effector-react'
 import { useCallback } from 'react'
 import { FormModel } from './model.form'
 
@@ -29,6 +29,13 @@ export const useFieldValidation = <LT extends Record<string, any>>(
     fn: (fields) => fields[key],
   })
 }
+
+export const useValidation = <T extends Record<string, any>>(
+  model: FormModel<T>
+) => {
+  return useStore(model.validation.$state)
+}
+
 export const useSpecificTypeFormField = <LT extends Record<string, any>, T>(
   form: FormModel<LT>,
   name: keyof LT

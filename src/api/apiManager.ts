@@ -5,11 +5,11 @@ import {
 } from '../lib/models/apiBuilder/ApiManager'
 import { ApiError } from '../lib/models/apiBuilder/errors'
 import { request } from '../lib/models/apiBuilder/helpers'
-import { TokenRefresher, Tokens } from '../lib/models/apiBuilder/types.token'
+import { TokenRefresher } from '../lib/models/apiBuilder/types.token'
 import { LoginResponse } from './parts/auth/types'
 import { server } from './server'
 
-const tokenRefresher: TokenRefresher = async ({ access, refresh }: Tokens) => {
+const tokenRefresher: TokenRefresher = async ({ access, refresh }) => {
   try {
     const response = await request<LoginResponse>({
       method: 'POST',
@@ -59,4 +59,8 @@ export const apiManager = new ApiManager({
   },
   tokenRefresher,
   requestRepeatFilter,
-}).debug()
+})
+
+if (__DEV__) {
+  apiManager.debug()
+}

@@ -1,10 +1,17 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import {
+  Keyboard,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native'
 import { InfoMessageType } from '../../features/infoMessage/types'
 import AddPaymentCardForm from '../../features/payment/AddPaymentCardForm'
 import PaymentSecuredText from '../../features/payment/PaymentSecuredText'
+import { addCardFormModel } from '../../features/payment/model.addCardForm'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
+import { useValidation } from '../../lib/models/form/hooks'
 import { useNavigate } from '../../navigation'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
 import { ScreenHeaderStyles } from '../../navigation/elements/styles'
@@ -24,6 +31,7 @@ const AddPaymentCardScreen = ({
     buttonPreset: buttonPrimaryThemedPreset,
     header: headerThemedStyles,
   })
+  const isValid = useValidation(addCardFormModel)
 
   return (
     <View style={commonStyles.container}>
@@ -33,21 +41,27 @@ const AddPaymentCardScreen = ({
         title={text.addingACard}
         backArrowColor={colors.text}
       />
-      <View style={commonStyles.contentContainer}>
-        <AddPaymentCardForm />
-        <PaymentSecuredText style={commonStyles.securityText} />
-        <PresetButton
-          preset={styles.buttonPreset}
-          label={text.addCard}
-          onPress={() => {
-            navigate(links.infoMessage, {
-              type: InfoMessageType.CARD_SAVED,
-              payload: { currentPayment },
-            })
-          }}
-          style={commonStyles.button}
-        />
-      </View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={commonStyles.contentContainer}>
+          <AddPaymentCardForm />
+          <PaymentSecuredText style={commonStyles.securityText} />
+          <PresetButton
+            disabled={isValid === false}
+            preset={styles.buttonPreset}
+            label={text.addCard}
+            onPress={() => {
+              addCardFormModel.validation.cast().then((result) => {
+                if (!result.isValid) return
+                navigate(links.infoMessage, {
+                  type: InfoMessageType.CARD_SAVED,
+                  payload: { currentPayment },
+                })
+              })
+            }}
+            style={commonStyles.button}
+          />
+        </View>
+      </TouchableWithoutFeedback>
     </View>
   )
 }

@@ -2,6 +2,7 @@ import { attach } from 'effector'
 import { createStateModel } from 'altek-toolkit'
 import { api } from '../../api'
 import { apiManager } from '../../api/apiManager'
+import { ApiError } from '../../lib/models/apiBuilder/errors'
 import { tokenResponseToTokens } from '../auth/logIn/helpers.token'
 import { setMyProfile } from '../profile/model'
 import { signUpUserResponseToNewUser } from '../user/helpers'
@@ -29,10 +30,11 @@ signUp.done.watch(({ result }) => {
 })
 
 signUp.fail.watch(({ error }) => {
-  const errorDetails = error.data.detail
+  const errorDetails = (error as ApiError).data?.detail
+  if (!errorDetails) return
   if (Array.isArray(errorDetails)) {
     signUpErrorModel.set(errorDetails.map(({ msg }) => msg).join(', '))
-  } else {
-    signUpErrorModel.set(errorDetails)
+    return
   }
+  signUpErrorModel.set(errorDetails)
 })

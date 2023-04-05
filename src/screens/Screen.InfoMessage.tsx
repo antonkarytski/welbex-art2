@@ -29,7 +29,7 @@ const InfoMessageScreen = ({
   if (params.type === InfoMessageType.SUCCESSFUL_PAYMENT) {
     return (
       <PaymentSuccessInfoMessage
-        subscriptionMonthsAmount={params.payload.months}
+        subscriptionMonthsAmount={params.payload.currentPayment.monthsAmount}
       />
     )
   }

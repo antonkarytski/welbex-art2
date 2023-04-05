@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { useText } from '../../translations/hook'
 import Row from '../../ui/Row'
@@ -13,16 +13,19 @@ const AddPaymentCardForm = ({}: AddPaymentCardFormProps) => {
   return (
     <View>
       <Field
+        keyboardType={'numeric'}
+        validateOnBlur
         label={text.paymentCardNumber}
         placeholder={text.amountOfDigitsOnCardNumber}
         formModel={addCardFormModel}
         name={addCardFormModel.fields.number}
-        styles={{}}
       />
       <Row style={styles.middleRowContainer}>
         <Field
+          validateOnBlur
           label={text.expirationDate}
           placeholder={'mm/yy'}
+          keyboardType={'numeric'}
           formModel={addCardFormModel}
           name={addCardFormModel.fields.expirationDate}
           styles={{
@@ -30,6 +33,8 @@ const AddPaymentCardForm = ({}: AddPaymentCardFormProps) => {
           }}
         />
         <Field
+          keyboardType={'numeric'}
+          validateOnBlur
           label={text.cvc}
           placeholder={`3 ${text.numbers}`}
           formModel={addCardFormModel}
@@ -40,11 +45,11 @@ const AddPaymentCardForm = ({}: AddPaymentCardFormProps) => {
         />
       </Row>
       <Field
+        validateOnBlur
         label={text.nameOnCard}
         placeholder={text.fullName}
         formModel={addCardFormModel}
         name={addCardFormModel.fields.nameOnCard}
-        styles={{}}
       />
     </View>
   )

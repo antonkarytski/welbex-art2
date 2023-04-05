@@ -81,7 +81,7 @@ export function createValidator<T extends Record<string, any>>(
         })
         .catch((errorsList: any) => {
           const list = { ...fullValidation }
-          errorsList.inner.forEach(({ path, message }: ValidationError) => {
+          errorsList.inner?.forEach(({ path, message }: ValidationError) => {
             list[path as keyof T] = invalid(message)
           })
           return updateFieldsValidation({ list, isValid: false })

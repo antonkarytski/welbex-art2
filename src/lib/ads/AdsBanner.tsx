@@ -27,7 +27,7 @@ export const createAdsBanner = (
   const ads = getAds(name)
   return ({ style, requestOptions }: AdsBannerProps) => {
     return (
-      <View style={[defaultStyle, style]}>
+      <View style={[styles.container, defaultStyle, style]}>
         <BannerAd
           unitId={ads.id}
           size={size}
@@ -37,3 +37,7 @@ export const createAdsBanner = (
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: { alignItems: 'center' },
+})
