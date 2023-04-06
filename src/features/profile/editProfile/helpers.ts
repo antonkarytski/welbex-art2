@@ -5,6 +5,7 @@ import { USER_DOB_FORMAT } from '../../../constants'
 import { mapObject } from '../../../lib/helpers/array'
 import { dateObjectToString } from '../../../lib/helpers/date'
 import { checkObjectsChanges } from '../../../lib/helpers/objects'
+import { userAge } from '../../user/helpers'
 import { EditProfileForm, EditUserForm, GetProfileChangesProps } from './types'
 
 const birthDateStringToObject = (dateString: string) =>
@@ -46,7 +47,12 @@ export const convertEditFormToRequestBody = (
 export const getProfileChanges = (props: GetProfileChangesProps) => {
   const { profileData, editFormData } = props
   if (!profileData) return null
+  let result: Partial<MyProfile> = {}
   const editProfileBody = convertEditFormToRequestBody(editFormData)
   const changedFields = checkObjectsChanges(profileData, editProfileBody)
-  return changedFields
+  result = { ...changedFields }
+  if (changedFields?.DOB) {
+    result.age = userAge(changedFields as MyProfile)
+  }
+  return result
 }

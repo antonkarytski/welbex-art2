@@ -48,6 +48,7 @@ const DateInput = ({
         onBlur={onBlur}
         isValid={isValid}
         placeholder={placeholder}
+        showSoftInputOnFocus={false}
         value={
           defaultDate?.toLocaleDateString() || isDateSelected
             ? date.toLocaleDateString()
