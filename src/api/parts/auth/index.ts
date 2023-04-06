@@ -1,10 +1,11 @@
+import { IS_IOS } from '../../../lib/helpers/native/constants'
 import { ContentType } from '../../../lib/models/apiBuilder/types'
 import { apiManager } from '../../apiManager'
 import { LoginBody, LoginResponse } from './types'
 
 const auth = apiManager.endpoint('auth')
 const login = auth.post<LoginResponse, LoginBody>({
-  contentType: ContentType.FORM_ENCODED,
+  contentType: IS_IOS ? ContentType.FORM_ENCODED : ContentType.FORM_DATA,
   endpoint: 'token',
 })
 const googleAuth = auth.get('google/oauth2')

@@ -1,10 +1,11 @@
 import { useStore } from 'effector-react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import OnboardingSlider, {
   OnboardingSliderStyles,
-} from '../../../features/auth/onboardingSlider/OnboardingSlider'
-import { $isLastSlideActive } from '../../../features/auth/onboardingSlider/model.onboardingSlider'
+} from '../../../features/onboarding/OnboardingSlider'
+import { onBoardingWasShownModel } from '../../../features/onboarding/model'
+import { $isLastSlideActive } from '../../../features/onboarding/model.onboardingSlider'
 import { createThemedStyle } from '../../../features/themed'
 import { useThemedStyleList } from '../../../features/themed/hooks'
 import { WINDOW_HEIGHT } from '../../../lib/device/dimensions'
@@ -26,6 +27,10 @@ const OnboardingScreen = () => {
     button: buttonPrimaryThemedPreset,
     screen: themedStyles,
   })
+
+  useEffect(() => {
+    onBoardingWasShownModel.set()
+  }, [])
 
   return (
     <AuthScreenContainer

@@ -8,8 +8,8 @@ import { SignUpUserDataForm } from './types'
 export const signUpUserDataFormSchema: ObjectSchema<SignUpUserDataForm> = yup
   .object()
   .shape({
-    name: stringSchema(),
-    lastName: stringSchema(),
+    name: stringSchema().trim().min(1),
+    lastName: stringSchema().trim().min(1),
     birthDate: yup.date().default(INITIAL_DATE).max(new Date()).required(),
     email: stringSchema().email(),
   })

@@ -26,7 +26,7 @@ type InfoMessageScreenPropsProto<
 
 export type InfoMessageScreenProps = InfoMessageScreenPropsProto<{
   [InfoMessageType.CARD_SAVED]: { currentPayment?: PlanDescriptor } | undefined
-  [InfoMessageType.SUCCESSFUL_PAYMENT]: { months: number }
+  [InfoMessageType.SUCCESSFUL_PAYMENT]: { currentPayment: PlanDescriptor }
 }>
 
 export type InfoMessageScreenVariant = 'light' | 'primary'

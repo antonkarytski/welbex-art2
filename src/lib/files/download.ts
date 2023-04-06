@@ -1,3 +1,4 @@
+import { Platform } from 'react-native'
 import fs from 'react-native-fs'
 import Share from 'react-native-share'
 import { isExtensionImage } from './extensions'
@@ -19,18 +20,30 @@ function getFilePath(fileName?: string) {
   }`
 }
 
+const endDownloading = Platform.select({
+  ios: async (file: string) => {
+    const base64 = await fs.readFile(file, 'base64')
+    const mime = getMime(file)
+    const uri = `data:${mime};base64,${base64}`
+    await Share.open({
+      urls: [uri],
+      type: mime,
+      saveToFiles: true,
+    })
+  },
+  default: async (file: string) => {
+    await fs.copyFile(
+      file,
+      `${fs.DownloadDirectoryPath}/${getNameFromUrl(file)}`
+    )
+  },
+})
+
 export async function downloadImageFromUrl(
   url: string,
   { name, headers }: DownloadImageFromUrlSettings = {}
 ) {
   const file = getFilePath(getNameFromUrl(url) || name)
   await fs.downloadFile({ fromUrl: url, toFile: file, headers }).promise
-  const mime = getMime(file)
-  const base64 = await fs.readFile(file, 'base64')
-  const uri = `data:${mime};base64,${base64}`
-  await Share.open({
-    urls: [uri],
-    type: mime,
-    saveToFiles: true,
-  })
+  return await endDownloading(file)
 }
