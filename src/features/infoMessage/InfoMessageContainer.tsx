@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react'
 import { StyleSheet, View } from 'react-native'
+import { IS_IOS } from '../../lib/helpers/native/constants'
 import { themedPrimaryGradient } from '../../styles/gradients'
 import Gradient from '../../ui/gradients/Gradient'
 import { useColors } from '../themed'
@@ -53,8 +54,9 @@ const InfoMessageContainer = ({
     return (
       <Gradient
         colors={styles.gradient}
-        startOffset={'130%'}
-        stopOffset={'160%'}
+        startOffset={IS_IOS ? '130%' : undefined}
+        stopOffset={IS_IOS ? '160%' : undefined}
+        gradientTransform={IS_IOS ? undefined : 'rotate(180)'}
         style={[{ backgroundColor }, commonStyles.container]}
       >
         <ContainerContent
