@@ -51,7 +51,11 @@ export function userName(
 
 export function ageCategory(item: WinnerItem, text: LangStructure) {
   const { age_category } = item
-  return `${age_category.min_age}-${age_category.max_age} ${text.yearsOldAbbreviated}`
+  return `${age_category.min_age}-${age_category.max_age} ${yearsOldToText(
+    age_category.max_age,
+    text,
+    true
+  )}`
 }
 
 export function userAge(user: Pick<UserInitialData, 'DOB'>) {

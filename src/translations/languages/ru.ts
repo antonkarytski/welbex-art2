@@ -129,7 +129,7 @@ export const RU: LangStructure = {
   yearsOldLessThenFive: 'года',
   yearsOldEndsWithOne: 'год',
   oneYearOld: 'год',
-  yearsOldAbbreviated: 'лет',
+  yearsOldAbbreviated: 'л.',
   yearsOldLessThenFiveAbbreviated: 'г.',
   editProfile: 'Редактировать профиль',
   selectFromGallery: 'Выбрать из галереи',
