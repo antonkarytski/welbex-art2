@@ -1,6 +1,7 @@
 import React from 'react'
-import { KeyboardAvoidingView, StyleSheet } from 'react-native'
+import { KeyboardAvoidingView } from 'react-native'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
+import { themedCommonStyles } from '../../../screens/auth/stylePresets/styles'
 import { buttonPrimaryThemedPreset } from '../../../styles/buttons'
 import { inputThemedStyles } from '../../../styles/inputs'
 import { useText } from '../../../translations/hook'
@@ -32,16 +33,14 @@ const UserDataSignUpForm = React.memo(
     const { styles } = useThemedStyleList({
       field: inputThemedStyles,
       button: buttonPrimaryThemedPreset,
+      screen: themedCommonStyles,
     })
     const title = typeof extTitle === 'function' ? extTitle(t) : extTitle
 
     return (
       <>
         <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : undefined}>
-          <H2
-            label={title || t.createNewAccount}
-            style={featureStyles.formTitle}
-          />
+          <H2 label={title || t.createNewAccount} style={styles.screen.title} />
           {signUpUserDataFormModel.mapKeys((name) => {
             if (fieldsFilter && !fieldsFilter(name)) {
               return null
@@ -77,11 +76,5 @@ const UserDataSignUpForm = React.memo(
     )
   }
 )
-
-const featureStyles = StyleSheet.create({
-  formTitle: {
-    textAlign: 'center',
-  },
-})
 
 export default UserDataSignUpForm
