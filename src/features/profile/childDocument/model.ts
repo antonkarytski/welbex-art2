@@ -1,6 +1,8 @@
-import { createEvent, createStore } from 'effector'
+import { createEvent, createStore, restore } from 'effector'
 import { Animated } from 'react-native'
-import { api } from '../../api'
+import { api } from '../../../api'
+import { IdentityDocumentStatus } from '../../../api/parts/users/types.api'
+import { $myProfile, updateProfile } from '../model'
 
 export const uploadChildDocument = api.users.uploadChildDocument.copy()
 
@@ -16,6 +18,12 @@ uploadChildDocument.watch(() => {
   setIsChildDocumentOnLoading(true)
 })
 
+uploadChildDocument.done.watch(() => {
+  updateProfile({
+    identity_determined_status_id: IdentityDocumentStatus.PENDING,
+  })
+})
+
 uploadChildDocument.finally.watch(() => {
   childDocumentProgressAnimatedValue.setValue(0)
   setIsChildDocumentOnLoading(false)
@@ -27,4 +35,17 @@ uploadChildDocument.progress.watch((e) => {
     duration: 100,
     useNativeDriver: false,
   }).start()
+})
+
+const setIsChildDocumentUploaded = createEvent<boolean>()
+export const $isChildDocumentUploaded = restore(
+  setIsChildDocumentUploaded,
+  false
+)
+
+$myProfile.watch((myProfile) => {
+  setIsChildDocumentUploaded(
+    myProfile?.identity_determined_status_id !==
+      IdentityDocumentStatus.UNDETERMINED
+  )
 })

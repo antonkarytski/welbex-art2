@@ -7,14 +7,14 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import { useText } from '../../translations/hook'
-import Span from '../../ui/Span'
-import CrossIcon from '../../ui/icons/Icon.Cross'
-import LoaderIcon from '../../ui/icons/Icon.Loader'
-import SuccessIcon from '../../ui/icons/Icon.Success'
-import ProgressBar from '../../ui/progress/ProgressBar'
-import { createThemedStyle } from '../themed'
-import { useTheme } from '../themed/hooks'
+import { useText } from '../../../translations/hook'
+import Span from '../../../ui/Span'
+import CrossIcon from '../../../ui/icons/Icon.Cross'
+import LoaderIcon from '../../../ui/icons/Icon.Loader'
+import SuccessIcon from '../../../ui/icons/Icon.Success'
+import ProgressBar from '../../../ui/progress/ProgressBar'
+import { createThemedStyle } from '../../themed'
+import { useTheme } from '../../themed/hooks'
 
 type DocumentLoadedMessageBlockProps = {
   style?: StyleProp<ViewStyle>

@@ -12,10 +12,10 @@ import PresetButton from '../../../ui/buttons/PresetButton'
 import DateField from '../../../ui/form/DateField'
 import Field from '../../../ui/form/Field'
 import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
-import ChildDocumentUploadingBlock from '../../createPost/ChildDocumentUploadingBlock'
 import SaveChangesPopUp from '../../popUp/profilePopUps/PopUp.SaveChanges'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
+import ChildDocumentUploadingBlock from '../childDocument/ChildDocumentUploadingBlock'
 import EditAvatarBlock from './EditAvatarBlock'
 import {
   editProfileCountryModel,

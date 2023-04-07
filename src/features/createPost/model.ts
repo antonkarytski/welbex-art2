@@ -8,7 +8,6 @@ import { stringSchema } from '../../lib/yup'
 import { createPostAds } from './model.ads'
 
 export type ImageDescriptionFormFields = {
-  isChildDocumentLoaded: boolean
   image: ImageFile
   title: string
   categoryId: number | null
@@ -25,7 +24,6 @@ const schema: ObjectSchema<ImageDescriptionFormFields> = yup.object().shape({
   age: stringSchema(),
   title: stringSchema(),
   categoryId: yup.number().default(0),
-  isChildDocumentLoaded: yup.boolean().default(false),
   image: imageFileShape.default(null),
 })
 

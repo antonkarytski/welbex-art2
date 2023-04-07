@@ -109,7 +109,12 @@ export const RU: LangStructure = {
   description: 'Описание',
   completeDescription: 'Заполните описание',
   category: 'Категория',
-  uploadChildDocument: 'Загрузите документы, подтверждающие личность ребенка',
+  uploadChildDocument: 'Загрузите документ, подтверждающий личность ребенка',
+  uploadChildNewDocument:
+    'Загрузите новый документ, подтверждающий личность ребенка',
+  childIdentificationDocumentIsInModeration: 'Документ находится на модерации',
+  childIdentificationDocumentRejected: 'Документ не подтвержден!',
+  childIdentificationDocumentApproved: 'Документ подтвержден',
   createPostAgeError:
     'Ваш возраст не соответствует ни одной из доступных категорий',
   winners: 'Победители',
