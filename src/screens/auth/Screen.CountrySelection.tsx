@@ -1,6 +1,6 @@
 import { useStoreMap } from 'effector-react'
 import React from 'react'
-import { KeyboardAvoidingView } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { useQuickAuthNextStep } from '../../features/auth/quick/hooks'
 import CountriesList from '../../features/signUp/country/CountriesList'
 import { signUpCountryModel } from '../../features/signUp/country/model'
@@ -33,22 +33,30 @@ const CountrySelectionScreen = () => {
     if (quickAuth.isActive) return quickAuth.nextStep()
     navigate(links.phoneEnter)
   }
-
   return (
     <AuthScreenContainer>
       <H2 label={t.chooseCountry} style={styles.common.title} />
-      <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
+      <KeyboardAvoidingView
+        behavior={IS_IOS ? 'padding' : 'height'}
+        style={screenStyles.listContainer}
+      >
         <CountriesList />
       </KeyboardAvoidingView>
       <PresetButton
         label={t.continue}
         onPress={onContinue}
         preset={styles.button}
-        style={styles.common.bottomButton}
         disabled={!isCountrySelected}
       />
     </AuthScreenContainer>
   )
 }
+
+const screenStyles = StyleSheet.create({
+  listContainer: {
+    flex: 1,
+    paddingBottom: 16,
+  },
+})
 
 export default CountrySelectionScreen

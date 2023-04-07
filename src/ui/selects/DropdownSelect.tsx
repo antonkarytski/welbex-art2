@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react'
-import { LayoutChangeEvent, StyleSheet } from 'react-native'
+import React, { useRef } from 'react'
+import { StyleSheet } from 'react-native'
 import { StateModel, useStateStore } from 'altek-toolkit'
 import DropdownTab from '../dropdownTab'
 import { DropdownTabInstance } from '../dropdownTab/DropdownTab'
@@ -20,23 +20,15 @@ function DropdownSelect<Item>({
   ...props
 }: DropdownSelectProps<Item>) {
   const [selectedItem, setSelectedItem] = useStateStore(model)
-  const [searchInputHeight, setSearchInputHeight] = useState(0)
   const dropdownTabRef = useRef<DropdownTabInstance>(null)
 
   setSelectedItem.watch(() => {
     dropdownTabRef.current?.close()
   })
 
-  const onSearchInputLayout = (e: LayoutChangeEvent) => {
-    setSearchInputHeight(e.nativeEvent.layout.height + 4)
-  }
-
   const selectStyles = {
     item: itemStyles,
-    container: [
-      listStyles.container,
-      searchModel && { paddingBottom: searchInputHeight },
-    ],
+    container: [listStyles.container],
     ...style?.select,
   }
 
@@ -60,7 +52,6 @@ function DropdownSelect<Item>({
           searchModel={searchModel}
           style={{ searchInput: style?.searchInput, ...selectStyles }}
           model={model}
-          onSearchInputLayout={onSearchInputLayout}
           {...commonProps}
           {...props}
         />

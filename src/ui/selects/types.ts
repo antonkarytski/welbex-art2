@@ -1,10 +1,5 @@
 import React, { ReactNode } from 'react'
-import {
-  FlatListProps,
-  LayoutChangeEvent,
-  StyleProp,
-  ViewStyle,
-} from 'react-native'
+import { FlatListProps, StyleProp, ViewStyle } from 'react-native'
 import { StateModel } from 'altek-toolkit'
 import { SearchableListModel } from '../../lib/models/model.search'
 import { Fn, FnExt } from '../../types'
@@ -30,11 +25,16 @@ export type SelectProps<T> = {
   labelExtractor?: StringExtractor<T>
   ItemSeparatorComponent?: React.ComponentType<any> | null
   ListFooterComponent?: React.ComponentType<any> | null
+  ListHeaderComponent?:
+    | React.ComponentType<any>
+    | React.ReactElement<any>
+    | null
   model: StateModel<T>
   style?: SelectStyles
   showSelectedIcon?: boolean
   preset?: PresetSelectItemStates
   onEndReached?: FlatListProps<T>['onEndReached']
+  stickyHeaderIndices?: FlatListProps<T>['stickyHeaderIndices']
 }
 
 type SearchableSelectSettings<T> = Omit<SelectProps<T>, 'model'> & {
@@ -54,7 +54,6 @@ export type DropdownSelectPreset = {
 export type SearchableSelectProps<T> = SearchableSelectSettings<T> & {
   searchModel: SearchableListModel<T>
   model: StateModel<T | null>
-  onSearchInputLayout?: (e: LayoutChangeEvent) => void
 }
 
 export type ListSelectProps<T> = SearchableSelectSettings<T> & {

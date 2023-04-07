@@ -1,16 +1,9 @@
 import { useEvent, useStore } from 'effector-react'
 import React, { useEffect } from 'react'
-import {
-  LayoutChangeEvent,
-  StyleProp,
-  StyleSheet,
-  View,
-  ViewStyle,
-} from 'react-native'
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
 import { defaultColors } from '../features/themed/theme'
 import { SearchableListModel } from '../lib/models/model.search'
-import { NodeFn } from '../types'
 import SearchInput from './SearchInput'
 import { InputStyles } from './input/types'
 
@@ -20,11 +13,14 @@ export type SearchableListStyles = {
 }
 
 type SearchableListProps<T> = {
-  children: NodeFn<T[]>
+  children: (
+    list: T[],
+    SearchComponent?: React.ReactElement<any>
+  ) => React.ReactNode
   data: T[]
   model: SearchableListModel<T>
   style?: SearchableListStyles
-  onSearchInputLayout?: (e: LayoutChangeEvent) => void
+  showSearchComponent?: boolean
 }
 
 function SearchableList<DataItem>({
@@ -32,7 +28,7 @@ function SearchableList<DataItem>({
   data,
   style,
   model,
-  onSearchInputLayout,
+  showSearchComponent,
 }: SearchableListProps<DataItem>) {
   const { searchStringModel, initialListModel, $filteredList } = model
   const [searchString, setSearchString] = useStateStore(searchStringModel)
@@ -43,23 +39,23 @@ function SearchableList<DataItem>({
     setInitialDataList(data)
   }, [data, setInitialDataList])
 
+  const Input = () => (
+    <SearchInput
+      value={searchString}
+      onChange={setSearchString}
+      style={{ ...inputStyles, ...style?.searchInput }}
+    />
+  )
+
   return (
     <View style={style?.container}>
-      <SearchInput
-        value={searchString}
-        onChange={setSearchString}
-        style={{ ...inputStyles, ...style?.searchInput }}
-        onLayout={onSearchInputLayout}
-      />
-      {children(filteredData)}
+      {showSearchComponent && Input()}
+      {children(filteredData, showSearchComponent ? undefined : Input())}
     </View>
   )
 }
 
 const inputStyles: InputStyles = StyleSheet.create({
-  wrapper: {
-    marginBottom: 4,
-  },
   input: {
     borderRadius: 0,
     borderColor: 'transparent',
@@ -68,6 +64,9 @@ const inputStyles: InputStyles = StyleSheet.create({
   },
   input__focused: {
     borderColor: 'transparent',
+  },
+  container: {
+    backgroundColor: defaultColors.screenBackground,
   },
 })
 
