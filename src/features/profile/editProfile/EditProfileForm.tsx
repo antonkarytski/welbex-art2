@@ -45,7 +45,7 @@ const EditProfileForm = () => {
   return (
     <>
       <KeyboardAvoidingView
-        behavior={IS_IOS ? 'padding' : 'height'}
+        behavior={IS_IOS ? 'padding' : undefined}
         style={styles.common.fieldsWrapper}
       >
         <EditAvatarBlock />
