@@ -150,7 +150,7 @@ export const EN = {
   promotionalNotices: 'Promotional Notices',
   language: 'Language',
   english: 'English',
-  russian: 'Russian',
+  russian: 'Русский',
   deleteAccount: 'Delete account',
   deleteAccountWarn: 'The account will be permanently deleted',
   deleteAccountDescription:

@@ -147,7 +147,7 @@ export const RU: LangStructure = {
   questionSubject: 'Тема вопроса',
   yourQuestion: 'Ваш вопрос',
   language: 'Язык',
-  english: 'Английский',
+  english: 'English',
   russian: 'Русский',
   deleteAccount: 'Удалить аккаунт',
   deleteAccountWarn: 'Аккаунт будет удален навсегда',
