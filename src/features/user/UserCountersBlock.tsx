@@ -63,7 +63,7 @@ const themedStyles = createThemedStyle((colors) =>
       minWidth: 95,
       width: CARD_WIDTH,
       paddingVertical: 12,
-      paddingHorizontal: WINDOW_WIDTH >= 375 ? 6 : 12,
+      paddingHorizontal: WINDOW_WIDTH <= 375 ? 6 : 12,
       marginRight: CARDS_HORIZONTAL_MARGIN,
       borderRadius: 12,
     },
@@ -74,7 +74,7 @@ const themedStyles = createThemedStyle((colors) =>
       fontSize: 16,
     },
     cardLabel: {
-      fontSize: WINDOW_WIDTH >= 375 ? 12 : 14,
+      fontSize: WINDOW_WIDTH <= 375 ? 12 : 14,
       color: colors.textGrey,
     },
   })
