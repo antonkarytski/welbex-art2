@@ -1,4 +1,3 @@
-import { useStoreMap } from 'effector-react'
 import React from 'react'
 import { ImageStyle, ScrollView, StyleSheet } from 'react-native'
 import { IdentityDocumentStatus } from '../../api/parts/users/types.api'
@@ -9,7 +8,7 @@ import H3 from '../../ui/H3'
 import Field from '../../ui/form/Field'
 import CategoriesSelect from '../categories/CategoriesSelect'
 import ChildDocumentUploadingBlock from '../profile/childDocument/ChildDocumentUploadingBlock'
-import { $myProfile } from '../profile/model'
+import { useChildDocumentStatus } from '../profile/childDocument/hooks'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import CreatePostFromSubmitButton from './CreatePostFromSubmitButton'
@@ -29,13 +28,9 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
     field: inputThemedStyles,
   })
 
-  const hideChildDocumentIdentity = useStoreMap({
-    store: $myProfile,
-    keys: [],
-    fn: (myProfile) =>
-      myProfile?.identity_determined_status_id ===
-      IdentityDocumentStatus.DETERMINED,
-  })
+  const isChildDocumentDetermined = useChildDocumentStatus(
+    IdentityDocumentStatus.DETERMINED
+  )
   useCreatePostFormInitialValues(props)
 
   return (
@@ -65,7 +60,7 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
         postfix={` ${text.yearsOldAbbreviated}`}
         styles={styles.field}
       />
-      {!hideChildDocumentIdentity && (
+      {!isChildDocumentDetermined && (
         <ChildDocumentUploadingBlock
           style={styles.common.cameraBlock}
           containerStyle={styles.common.cameraBlockContainer}

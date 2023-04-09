@@ -1,18 +1,44 @@
+import { ReactElement } from 'react'
 import { IdentityDocumentStatus } from '../../../api/parts/users/types.api'
-import { LangStructure } from '../../../translations/types'
+import { LangFn } from '../../../translations/types'
+import ErrorIcon from '../../../ui/icons/Icon.Error'
+import RefreshIcon from '../../../ui/icons/Icon.Refresh'
+import SuccessIcon from '../../../ui/icons/Icon.Success'
+import { IconProps } from '../../../ui/icons/_types'
+import { ColorFn } from '../../themed/theme'
 
-export function getChildDocumentStatusText(
-  status: IdentityDocumentStatus | undefined,
-  text: LangStructure
-) {
-  if (!status) return ''
-  const translations: Partial<Record<IdentityDocumentStatus, string>> = {
-    [IdentityDocumentStatus.DETERMINED]:
-      text.childIdentificationDocumentApproved,
-    [IdentityDocumentStatus.PENDING]:
-      text.childIdentificationDocumentIsInModeration,
-    [IdentityDocumentStatus.REJECTED]: text.childIdentificationDocumentRejected,
-    [IdentityDocumentStatus.UNDETERMINED]: '',
-  }
-  return translations[status] as string
+type ChildDocumentStatusDescriptor = {
+  label: LangFn
+  Icon: (props: IconProps) => ReactElement | null
+  color?: ColorFn
+}
+
+const DESCRIPTORS: Record<
+  IdentityDocumentStatus,
+  ChildDocumentStatusDescriptor
+> = {
+  [IdentityDocumentStatus.DETERMINED]: {
+    label: (t) => t.childDocumentUploaded,
+    Icon: SuccessIcon,
+  },
+  [IdentityDocumentStatus.PENDING]: {
+    label: (t) => t.childIdentificationDocumentIsInModeration,
+    Icon: RefreshIcon,
+    color: (c) => c.textGrey,
+  },
+  [IdentityDocumentStatus.REJECTED]: {
+    label: (t) => t.childIdentificationDocumentRejected,
+    Icon: ErrorIcon,
+    color: (c) => c.errorBorder,
+  },
+  [IdentityDocumentStatus.UNDETERMINED]: {
+    label: () => '',
+    Icon: () => null,
+  },
+}
+
+export function getChildDocumentStatusDescriptor(
+  status: IdentityDocumentStatus
+): ChildDocumentStatusDescriptor {
+  return DESCRIPTORS[status]
 }

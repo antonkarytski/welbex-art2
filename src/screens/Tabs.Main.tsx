@@ -27,6 +27,7 @@ const MainTabsRouter = React.memo(() => {
   return (
     <BottomTab.Navigator
       screenOptions={{
+        tabBarHideOnKeyboard: true,
         headerShown: false,
       }}
       initialRouteName={links.homeTab}
