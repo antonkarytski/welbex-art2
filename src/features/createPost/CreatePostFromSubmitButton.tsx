@@ -1,10 +1,11 @@
+import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
-import { useFormField } from '../../lib/models/form'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import PresetButton from '../../ui/buttons/PresetButton'
+import { $isChildDocumentUploaded } from '../profile/childDocument/model'
 import { createPostFormModel } from './model'
 import { createPostAds } from './model.ads'
 
@@ -17,10 +18,7 @@ const CreatePostFromSubmitButton = ({
 }: CreatePostFromSubmitButtonProps) => {
   const text = useText()
   const navigate = useNavigate()
-  const [isDocumentUploaded] = useFormField(
-    createPostFormModel,
-    createPostFormModel.fields.isChildDocumentLoaded
-  )
+  const isDocumentUploaded = useStore($isChildDocumentUploaded)
 
   useEffect(() => {
     createPostAds.init()

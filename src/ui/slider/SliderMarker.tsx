@@ -1,15 +1,23 @@
 import { MarkerProps } from '@ptomasroos/react-native-multi-slider'
-import { View } from 'native-base'
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { LayoutChangeEvent, StyleSheet, View } from 'react-native'
 import { defaultColors } from '../../features/themed/theme'
 import { FONT_MEDIUM } from '../../styles/fonts'
 import Span from '../Span'
 
-const CustomMarker = ({ currentValue }: MarkerProps) => {
+type CustomMarkerProps = MarkerProps & {
+  onLayout?: (e: LayoutChangeEvent) => void
+  onMarkerPointLayout?: (e: LayoutChangeEvent) => void
+}
+
+const CustomMarker = ({
+  currentValue,
+  onLayout,
+  onMarkerPointLayout,
+}: CustomMarkerProps) => {
   return (
-    <View style={styles.marker_wrapper}>
-      <View style={styles.marker_point} />
+    <View style={styles.marker_wrapper} onLayout={onLayout}>
+      <View style={styles.marker_point} onLayout={onMarkerPointLayout} />
       <Span label={currentValue} style={styles.marker_label} />
     </View>
   )

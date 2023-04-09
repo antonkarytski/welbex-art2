@@ -51,7 +51,7 @@ const ArtWorkDetails = React.memo(() => {
         onPressFollow={followAuthor}
         item={drawing.data.author}
       />
-      <TouchableOpacity activeOpacity={0.95} onPress={pressHandler}>
+      <TouchableOpacity activeOpacity={1} onPress={pressHandler}>
         <AutoHeightImage
           image={{ uri: drawing.data.image_thumbnail }}
           widthGenerator={() => SCREEN_CONTENT_WIDTH}

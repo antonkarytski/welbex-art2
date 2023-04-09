@@ -10,22 +10,17 @@ const SearchableMultiSelect = <DataItem,>({
   style,
   preset,
   model,
-  onSearchInputLayout,
   ...props
 }: SearchableMultiSelectProps<DataItem>) => {
   return (
-    <SearchableList
-      model={searchModel}
-      data={data}
-      style={style}
-      onSearchInputLayout={onSearchInputLayout}
-    >
-      {(filteredData) => (
+    <SearchableList model={searchModel} data={data} style={style}>
+      {(filteredData, SearchInput) => (
         <MultiSelect
           data={filteredData}
           style={style}
           preset={preset}
           model={model as StateModel<DataItem[]>}
+          ListHeaderComponent={SearchInput}
           {...props}
         />
       )}

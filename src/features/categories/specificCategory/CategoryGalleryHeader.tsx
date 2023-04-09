@@ -5,6 +5,8 @@ import { SpecificCategoryResponse } from '../../../api/parts/categories/types'
 import { useText } from '../../../translations/hook'
 import H2 from '../../../ui/H2'
 import SearchInput from '../../../ui/SearchInput'
+import { createThemedStyle } from '../../themed'
+import { useThemedStyle } from '../../themed/hooks'
 import CategoryDescription from './CategoryDescription'
 import {
   $categoryArtsSearchString,
@@ -20,6 +22,7 @@ type CategoryGalleryProps = {
 const CategoryGalleryHeader = ({ header, item }: CategoryGalleryProps) => {
   const text = useText()
   const searchString = useStore($categoryArtsSearchString)
+  const styles = useThemedStyle(themedStyles)
 
   useEffect(() => {
     resetCategoryArtsSearchString()
@@ -29,7 +32,7 @@ const CategoryGalleryHeader = ({ header, item }: CategoryGalleryProps) => {
     <>
       {header}
       <CategoryDescription item={item} />
-      <H2 label={text.participantsDrawings} />
+      <H2 label={text.participantsDrawings} style={styles.title} />
       <SearchInput
         value={searchString}
         onChange={setCategoryArtsSearchString}
@@ -44,5 +47,13 @@ const searchInputStyles = StyleSheet.create({
     marginBottom: 24,
   },
 })
+
+const themedStyles = createThemedStyle((colors) =>
+  StyleSheet.create({
+    title: {
+      color: colors.text,
+    },
+  })
+)
 
 export default CategoryGalleryHeader

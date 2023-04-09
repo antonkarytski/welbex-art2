@@ -8,10 +8,10 @@ import { useText } from '../../translations/hook'
 import H3 from '../../ui/H3'
 import Field from '../../ui/form/Field'
 import CategoriesSelect from '../categories/CategoriesSelect'
+import ChildDocumentUploadingBlock from '../profile/childDocument/ChildDocumentUploadingBlock'
 import { $myProfile } from '../profile/model'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
-import ChildDocumentUploadingBlock from './ChildDocumentUploadingBlock'
 import CreatePostFromSubmitButton from './CreatePostFromSubmitButton'
 import ImagePreviewFormField from './ImagePreviewFormField'
 import {
@@ -36,7 +36,6 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
       myProfile?.identity_determined_status_id ===
       IdentityDocumentStatus.DETERMINED,
   })
-
   useCreatePostFormInitialValues(props)
 
   return (
@@ -66,8 +65,11 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
         postfix={` ${text.yearsOldAbbreviated}`}
         styles={styles.field}
       />
-      {hideChildDocumentIdentity && (
-        <ChildDocumentUploadingBlock style={styles.common.cameraBlock} />
+      {!hideChildDocumentIdentity && (
+        <ChildDocumentUploadingBlock
+          style={styles.common.cameraBlock}
+          containerStyle={styles.common.cameraBlockContainer}
+        />
       )}
       <CreatePostFromSubmitButton style={styles.common.button} />
     </ScrollView>
@@ -78,10 +80,12 @@ const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     container: { flex: 1 },
     cameraBlock: {
-      marginTop: 20,
       backgroundColor: colors.buttonLightBackgroundPressed,
       borderWidth: 1,
       borderColor: colors.darkLine,
+    },
+    cameraBlockContainer: {
+      marginTop: 20,
     },
     header: {
       marginBottom: 24,

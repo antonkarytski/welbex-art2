@@ -60,10 +60,14 @@ const UserDrawingsList = React.memo(
 
       const currentListType = useStore(artsListsHeightModel.$activeListTabKey)
 
-      const artsListMinHeight =
+      let artsListMinHeight =
         WINDOW_HEIGHT -
         listTopBlockHeight -
         (isMyProfile ? MAIN_BOTTOM_TAB_BAR_HEIGHT : 0)
+
+      if (artsListMinHeight < 70) {
+        artsListMinHeight = 70
+      }
 
       const handleLayout = useCallback(
         (e: LayoutChangeEvent) => {

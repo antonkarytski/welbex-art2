@@ -1,4 +1,3 @@
-import { useStore } from 'effector-react'
 import React, { useCallback } from 'react'
 import { FlatList, StyleSheet, View, ViewProps } from 'react-native'
 import { WinnerItem } from '../../api/parts/categories/types'
@@ -12,7 +11,7 @@ import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import { ageCategory, userName } from '../user/helpers'
 import CardWinner from './Card.Winner'
-import { winnersListModel } from './request'
+import { useWinnersModel } from './hooks'
 import { winnerCardThemedStyles } from './styles'
 
 const keyExtractor = ({ art }: WinnerItem) => art.id.toString()
@@ -27,13 +26,8 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
     card: winnerCardThemedStyles,
   })
   const text = useText()
-  const winners = useStore(winnersListModel.$items)
-  const isNextLoading = useStore(winnersListModel.$isNextLoading)
-  const isLoading = useStore(winnersListModel.$isLoading)
 
-  const getNext = () => {
-    winnersListModel.getNextSync()
-  }
+  const { winners, isLoading, isNextLoading, getNextSync } = useWinnersModel()
 
   const renderWinnerItem = useCallback(
     ({ item }: { item: WinnerItem }) => {
@@ -64,7 +58,7 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
         renderItem={renderWinnerItem}
         keyExtractor={keyExtractor}
         ListFooterComponent={isNextLoading ? <Loader /> : null}
-        onEndReached={getNext}
+        onEndReached={getNextSync}
         ListEmptyComponent={
           <Span label={text.noWinners} style={styles.common.noWinnersText} />
         }
