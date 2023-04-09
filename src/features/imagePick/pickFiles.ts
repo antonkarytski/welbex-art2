@@ -1,9 +1,9 @@
 import { createEffect } from 'effector/effector.cjs'
 import { MediaTypeOptions, launchImageLibraryAsync } from 'expo-image-picker'
-import { getMediaLibraryPermission } from './model.permissions'
+import { mediaLibraryPermission } from './model.permissions'
 
 export const pickFromCameraRoll = createEffect(async () => {
-  const isPermissionGranted = await getMediaLibraryPermission()
+  const isPermissionGranted = await mediaLibraryPermission.check()
   if (!isPermissionGranted) return
   const result = await launchImageLibraryAsync({
     allowsEditing: true,

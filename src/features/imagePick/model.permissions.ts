@@ -1,12 +1,13 @@
-import { attach, createEffect, createEvent, createStore } from 'effector'
 import {
   getMediaLibraryPermissionsAsync,
   requestMediaLibraryPermissionsAsync,
 } from 'expo-image-picker'
 import { PermissionStatus } from 'expo-modules-core/src/PermissionsInterface'
+import { PERMISSIONS } from 'react-native-permissions'
 import { createPermissionModel } from '../../lib/permissions/model'
+import { createNativePermissionModel } from '../../lib/permissions/nativePermissions'
 
-const mediaLibraryPermission = createPermissionModel({
+export const mediaLibraryPermission = createPermissionModel({
   check: getMediaLibraryPermissionsAsync,
   request: requestMediaLibraryPermissionsAsync,
   grantedStatus: ({ granted }) => granted,
@@ -18,27 +19,6 @@ const mediaLibraryPermission = createPermissionModel({
   },
 })
 
-export const setMediaLibraryPermission = createEvent()
-export const $mediaLibraryPermission = createStore(false).on(
-  setMediaLibraryPermission,
-  () => true
+export const writeExternalStoragePermission = createNativePermissionModel(
+  PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE
 )
-
-export const getMediaLibraryPermission = attach({
-  source: $mediaLibraryPermission,
-  mapParams: (_: void, isGranted) => isGranted,
-  effect: createEffect(async (isGranted: boolean) => {
-    if (isGranted) return isGranted
-    const savedPermission = await getMediaLibraryPermissionsAsync()
-    if (savedPermission.status === 'granted') {
-      setMediaLibraryPermission()
-      return true
-    }
-    const requestedPermission = await requestMediaLibraryPermissionsAsync()
-    if (requestedPermission.status !== 'denied') {
-      setMediaLibraryPermission()
-      return true
-    }
-    return false
-  }),
-})
