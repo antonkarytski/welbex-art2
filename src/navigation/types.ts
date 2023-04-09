@@ -39,4 +39,5 @@ export type ScreenDescriptor = {
   Icon: FC<IconProps>
   Component: ComponentType<any>
   customButton?: (props: BottomTabBarButtonProps) => React.ReactNode
+  unmountOnBlur?: boolean
 }

@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import { useFocusEffect } from '@react-navigation/native'
+import React, { useCallback, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import CreatePostForm from '../../features/createPost/CreatePostForm'
 import { createPostAds } from '../../features/createPost/model.ads'
@@ -17,7 +18,6 @@ export default function AddPostDescriptionScreen({
     gradient: themedPrimaryGradient,
   })
 
-  console.log('route.params.assets', route.params.assets)
   useEffect(() => {
     createPostAds.init()
   }, [])

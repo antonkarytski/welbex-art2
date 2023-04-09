@@ -27,7 +27,6 @@ const MainTabsRouter = React.memo(() => {
   return (
     <BottomTab.Navigator
       screenOptions={{
-        tabBarHideOnKeyboard: true,
         headerShown: false,
       }}
       initialRouteName={links.homeTab}
@@ -36,22 +35,25 @@ const MainTabsRouter = React.memo(() => {
       )}
       backBehavior={'order'}
     >
-      {SCREENS.map(({ label, link, Icon, Component, customButton }) => {
-        return (
-          <BottomTab.Screen
-            key={link}
-            options={{
-              headerShown: false,
-              tabBarIcon: Icon,
-              title: label(text),
-              tabBarButton: customButton,
-              lazy: true,
-            }}
-            name={link}
-            component={Component}
-          />
-        )
-      })}
+      {SCREENS.map(
+        ({ label, link, Icon, Component, customButton, unmountOnBlur }) => {
+          return (
+            <BottomTab.Screen
+              key={link}
+              options={{
+                unmountOnBlur,
+                headerShown: false,
+                tabBarIcon: Icon,
+                title: label(text),
+                tabBarButton: customButton,
+                lazy: true,
+              }}
+              name={link}
+              component={Component}
+            />
+          )
+        }
+      )}
     </BottomTab.Navigator>
   )
 })

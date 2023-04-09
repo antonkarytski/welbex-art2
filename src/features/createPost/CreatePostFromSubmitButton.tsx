@@ -1,10 +1,11 @@
+import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
 import { IdentityDocumentStatus } from '../../api/parts/users/types.api'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
-import PresetButton from '../../ui/buttons/PresetButton'
+import AsyncPresetButton from '../../ui/buttons/AsyncPresetButton'
 import { useChildDocumentStatus } from '../profile/childDocument/hooks'
 import { createPostFormModel } from './model'
 
@@ -17,6 +18,7 @@ const CreatePostFromSubmitButton = ({
 }: CreatePostFromSubmitButtonProps) => {
   const text = useText()
   const navigate = useNavigate()
+  const isLoading = useStore(createPostFormModel.submit.pending)
   const isDocumentUploaded = useChildDocumentStatus((status) => {
     return (
       status !== IdentityDocumentStatus.UNDETERMINED &&
@@ -25,7 +27,8 @@ const CreatePostFromSubmitButton = ({
   })
 
   return (
-    <PresetButton
+    <AsyncPresetButton
+      isLoading={isLoading}
       style={style}
       disabled={!isDocumentUploaded}
       onPress={async () => {
