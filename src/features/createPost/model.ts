@@ -31,7 +31,7 @@ export const createPostFormModel = createFormModel(schema).setSubmitSettings({
   validate: true,
   request: createEffect(async (data: ImageDescriptionFormFields) => {
     if (data.categoryId === null) return
-    await createPostAds.run()
+    //await createPostAds.run()
     return api.arts.create({
       image: data.image,
       title: data.title,
@@ -42,7 +42,4 @@ export const createPostFormModel = createFormModel(schema).setSubmitSettings({
 
 createPostFormModel.submit.done.watch(({ result }) => {
   if (!result) return
-})
-createPostFormModel.submit.fail.watch((e) => {
-  console.log(JSON.stringify(e.error))
 })
