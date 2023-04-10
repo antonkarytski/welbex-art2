@@ -23,10 +23,7 @@ export function useChildDocumentStatus(
         if (typeof statusOrFn === 'function') {
           return statusOrFn(documentStatus)
         }
-        return (
-          myProfile?.identity_determined_status_id ===
-          IdentityDocumentStatus.DETERMINED
-        )
+        return myProfile?.identity_determined_status_id === statusOrFn
       }
       return documentStatus
     },
