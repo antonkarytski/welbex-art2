@@ -1,6 +1,3 @@
-import { AgeTextGenerator } from '../../features/user/UserDescription'
-import { LangStructure } from '../../translations/types'
-
 export function createMemoByWeakMap<K extends object, V>(
   generator: (key: K) => V
 ) {

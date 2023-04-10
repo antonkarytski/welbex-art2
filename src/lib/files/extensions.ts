@@ -7,6 +7,7 @@ export const IMAGE_FORMATS = [
   'tif',
   'tiff',
   'webp',
+  'jpe',
 ]
 export const VIDEO_FORMATS = ['mp4', 'mpeg', 'webm', '3gp', '3g2']
 export const AUDIO_FORMATS = ['mp3', 'wav', 'weba', 'mp4', 'm4a', '3gp']

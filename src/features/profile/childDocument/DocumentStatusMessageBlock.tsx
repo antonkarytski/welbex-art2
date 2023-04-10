@@ -7,20 +7,23 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
+import { IdentityDocumentStatus } from '../../../api/parts/users/types.api'
 import { useText } from '../../../translations/hook'
 import Span from '../../../ui/Span'
 import CrossIcon from '../../../ui/icons/Icon.Cross'
 import LoaderIcon from '../../../ui/icons/Icon.Loader'
-import SuccessIcon from '../../../ui/icons/Icon.Success'
 import ProgressBar from '../../../ui/progress/ProgressBar'
 import { createThemedStyle } from '../../themed'
 import { useTheme } from '../../themed/hooks'
+import { getChildDocumentStatusDescriptor } from './helpers'
+import { useChildDocumentStatus } from './hooks'
 
 type DocumentLoadedMessageBlockProps = {
   style?: StyleProp<ViewStyle>
   onPressRemove?: () => void
   isOnLoading?: boolean
   progressValue?: Animated.Value
+  status: IdentityDocumentStatus
 }
 
 const DocumentStatusMessageBlock = ({
@@ -28,8 +31,10 @@ const DocumentStatusMessageBlock = ({
   onPressRemove,
   isOnLoading,
   progressValue,
+  status,
 }: DocumentLoadedMessageBlockProps) => {
   const { styles, colors } = useTheme(themedStyles)
+  const statusDescriptor = getChildDocumentStatusDescriptor(status)
   const t = useText()
 
   return (
@@ -40,12 +45,17 @@ const DocumentStatusMessageBlock = ({
             {isOnLoading ? (
               <LoaderIcon color={colors.icon} size={24} />
             ) : (
-              <SuccessIcon size={20} />
+              <statusDescriptor.Icon
+                color={statusDescriptor.color?.(colors)}
+                size={20}
+              />
             )}
           </View>
           <Span
             style={styles.text}
-            label={isOnLoading ? t.documentUploading : t.childDocumentUploaded}
+            label={
+              isOnLoading ? t.documentUploading : statusDescriptor.label(t)
+            }
           />
         </View>
 

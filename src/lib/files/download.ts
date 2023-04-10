@@ -1,6 +1,8 @@
 import { Platform } from 'react-native'
 import fs from 'react-native-fs'
 import Share from 'react-native-share'
+import { mediaLibraryPermission } from '../../features/imagePick/model.permissions'
+import { IS_ANDROID } from '../helpers/native/constants'
 import { isExtensionImage } from './extensions'
 import { getNameFromUrl } from './helpers'
 import { getMime } from './mimeType'
@@ -20,6 +22,7 @@ function getFilePath(fileName?: string) {
   }`
 }
 
+const SAVE_DIR = `${fs.ExternalStorageDirectoryPath}/Pictures/Art2`
 const endDownloading = Platform.select({
   ios: async (file: string) => {
     const base64 = await fs.readFile(file, 'base64')
@@ -32,10 +35,11 @@ const endDownloading = Platform.select({
     })
   },
   default: async (file: string) => {
-    await fs.copyFile(
-      file,
-      `${fs.DownloadDirectoryPath}/${getNameFromUrl(file)}`
-    )
+    await fs.mkdir(SAVE_DIR, {
+      NSURLIsExcludedFromBackupKey: true,
+    })
+    await fs.copyFile(file, `${SAVE_DIR}/${getNameFromUrl(file)}`)
+    await fs.scanFile(`${SAVE_DIR}/${getNameFromUrl(file)}`)
   },
 })
 
@@ -43,6 +47,10 @@ export async function downloadImageFromUrl(
   url: string,
   { name, headers }: DownloadImageFromUrlSettings = {}
 ) {
+  if (IS_ANDROID) {
+    const isGranted = await mediaLibraryPermission.check()
+    if (!isGranted) return
+  }
   const file = getFilePath(getNameFromUrl(url) || name)
   await fs.downloadFile({ fromUrl: url, toFile: file, headers }).promise
   return await endDownloading(file)

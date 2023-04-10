@@ -17,9 +17,9 @@ const CodeVerification = () => {
 
   useEffect(() => {
     if (!isCodeValid) return
+    codeModel.reset()
     if (isActive) return nextStep()
     navigate(links.createPassword)
-    codeModel.reset()
   }, [isCodeValid, isActive, navigate, nextStep])
 
   return (

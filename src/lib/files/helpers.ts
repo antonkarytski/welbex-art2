@@ -1,4 +1,4 @@
 export function getNameFromUrl(url: string) {
-  const name = url.split('/').pop()
-  return name || ''
+  const path = url.split('?')[0]
+  return path.substring(path.lastIndexOf('/') + 1)
 }

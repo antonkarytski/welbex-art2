@@ -5,10 +5,12 @@ import {
   PanResponder,
   PanResponderGestureState,
   StyleProp,
-  View,
   ViewStyle,
 } from 'react-native'
-import { Coordinates, calcDistanceBetweenCoords } from '../lib/helpers/geometry'
+import {
+  Coordinates,
+  calcDistanceBetweenCoords,
+} from '../../lib/helpers/geometry'
 
 type DoubleTouchOverlayProps = PropsWithChildren<{
   onPress?: () => void

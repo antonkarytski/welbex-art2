@@ -1,6 +1,8 @@
-import React from 'react'
+import { useFocusEffect } from '@react-navigation/native'
+import React, { useCallback, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import CreatePostForm from '../../features/createPost/CreatePostForm'
+import { createPostAds } from '../../features/createPost/model.ads'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
 import { links } from '../../navigation/links'
@@ -15,6 +17,10 @@ export default function AddPostDescriptionScreen({
   const { styles } = useThemedStyleList({
     gradient: themedPrimaryGradient,
   })
+
+  useEffect(() => {
+    createPostAds.init()
+  }, [])
 
   return (
     <View style={commonStyles.container}>
