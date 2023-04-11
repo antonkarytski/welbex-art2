@@ -15,9 +15,7 @@ async function cleanDb() {
 }
 
 logOut.watch(() => {
-  //TODO: uncomment after demo, and remove db.clear
-  db.clear()
-  //cleanDb().catch(noop)
+  cleanDb().catch(noop)
   apiManager.token.reset()
   logInFormModel.reset()
 })
