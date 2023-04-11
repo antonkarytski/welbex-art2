@@ -6,6 +6,7 @@ export const pickFromCameraRoll = createEffect(async () => {
   const isPermissionGranted = await mediaLibraryPermission.check()
   if (!isPermissionGranted) return
   const result = await launchImageLibraryAsync({
+    allowsMultipleSelection: false,
     allowsEditing: true,
     quality: 1,
     mediaTypes: MediaTypeOptions.Images,
