@@ -12,6 +12,7 @@ import PopUpLogin from '../../features/popUp/profilePopUps/PopUp.Login'
 import { $myProfile } from '../../features/profile/model'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
+import { userAge } from '../../features/user/helpers'
 import { useNavigate } from '../../navigation'
 import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
 import { links } from '../../navigation/links'
@@ -41,7 +42,8 @@ export default function UploadPostImageScreen({
         PopUpLogin.showSync()
         navigation.goBack()
       }
-      if (isAuth && !myProfile?.is_child) {
+
+      if (isAuth && (!myProfile?.is_child || userAge(myProfile) < 2)) {
         PopUpAgeError.showSync()
         navigation.goBack()
       }
