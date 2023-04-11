@@ -1,7 +1,5 @@
 import React, { useCallback } from 'react'
 import { StyleSheet } from 'react-native'
-import { createThemedStyle } from '../../features/themed'
-import { useThemedStyle } from '../../features/themed/hooks'
 import { useText } from '../../translations/hook'
 import {
   LANGUAGES_DESCRIPTOR,
@@ -11,6 +9,8 @@ import { Languages } from '../../translations/types'
 import Span from '../../ui/Span'
 import ListItemSeparator from '../../ui/lists/ListItemSeparator'
 import Select from '../../ui/selects/Select'
+import { createThemedStyle } from '../themed'
+import { useThemedStyle } from '../themed/hooks'
 
 const LanguagesSelect = () => {
   const t = useText()
