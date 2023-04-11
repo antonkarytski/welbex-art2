@@ -9,7 +9,7 @@ export const RU: LangStructure = {
     '“Мне понадобилось 4 года, чтобы научиться рисовать как Рафаэль, и вся жизнь, чтобы научиться рисовать как ребенок.”',
   pabloPicasso: 'Пабло Пикассо',
   viewAndLikeChildrenDrawings: 'Просматривайте и голосуйте за работы детей',
-  uploadYourChildDrawings: 'Загружайте работы вашего ребенка',
+  uploadYourChildDrawings: 'Загружайте работы для участия в конкурсах',
   winAndGetRewards: 'Побеждайте и получайте награды',
   next: 'Далее',
   skipForNow: 'Пропустить',
@@ -112,9 +112,12 @@ export const RU: LangStructure = {
   uploadChildDocument: 'Загрузите документ, подтверждающий личность ребенка',
   uploadChildNewDocument:
     'Загрузите новый документ, подтверждающий личность ребенка',
-  childIdentificationDocumentIsInModeration: 'Документ находится на модерации',
-  childIdentificationDocumentRejected: 'Документ не подтвержден!',
-  childIdentificationDocumentApproved: 'Документ подтвержден',
+  childIdentificationDocumentIsInModeration:
+    'Документ, подтверждающий личность ребенка, находится на модерации',
+  childIdentificationDocumentRejected:
+    'Документ, подтверждающий личность ребенка, не подтвержден!',
+  childIdentificationDocumentApproved:
+    'Документ, подтверждающий личность ребенка, подтвержден',
   createPostAgeError:
     'Ваш возраст не соответствует ни одной из доступных категорий',
   winners: 'Победители',
