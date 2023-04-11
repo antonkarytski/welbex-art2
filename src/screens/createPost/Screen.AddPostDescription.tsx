@@ -1,5 +1,4 @@
-import { useFocusEffect } from '@react-navigation/native'
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import CreatePostForm from '../../features/createPost/CreatePostForm'
 import { createPostAds } from '../../features/createPost/model.ads'

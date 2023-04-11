@@ -88,6 +88,7 @@ export class FormModel<T extends Record<string, any>, R = any> {
     })
 
     this.validation = createValidator(schema, this.$store)
+    this.validation.reset(this.reset)
     if (settings) this.setUpSettings(settings)
 
     this.$store.watch(() => {
