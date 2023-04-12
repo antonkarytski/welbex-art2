@@ -108,6 +108,8 @@ export const EN = {
   scanWork: 'Scan Your Work',
   selectImageFromCameraRoll: 'Select an image file from your camera roll',
   description: 'Description',
+  done: 'Done',
+  cancelEditing: 'Cancel editing',
   completeDescription: 'Complete the description',
   category: 'Category',
   uploadChildDocument: 'Upload a child identity proof document',

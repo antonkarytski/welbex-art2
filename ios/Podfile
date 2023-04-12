@@ -15,6 +15,7 @@ target 'art2' do
     end
   end
   config = use_native_modules!
+  pod 'react-native-image-crop-tools', :path => '../node_modules/react-native-image-crop-tools'
 
   # Flags change depending on the env values.
   flags = get_default_flags()
@@ -35,6 +36,7 @@ target 'art2' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
   pod 'RNFS', :path => '../node_modules/react-native-fs'
+
 
   target 'art2Tests' do
     inherit! :complete
