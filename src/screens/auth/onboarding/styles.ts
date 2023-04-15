@@ -3,7 +3,7 @@ import { createThemedStyle } from '../../../features/themed'
 import { WINDOW_HEIGHT, getHeight } from '../../../lib/device/dimensions'
 
 const imageHeight = getHeight({
-  percentOfScreenSize: 43,
+  percentOfScreenSize: 40,
 })
 
 const imageWidth = imageHeight * 0.93
