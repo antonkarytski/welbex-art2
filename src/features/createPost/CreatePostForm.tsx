@@ -83,6 +83,7 @@ const themedStyles = createThemedStyle((colors) =>
       marginTop: 20,
     },
     header: {
+      color: colors.text,
       marginBottom: 24,
     },
     image: {

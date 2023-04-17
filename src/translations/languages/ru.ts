@@ -224,5 +224,5 @@ export const RU: LangStructure = {
   checkPasswordLengthError:
     'Пароль должен быть не менее 8 символов длиной и содержать по крайней мере одну цифру и одну букву',
   done: 'Готово',
-  cancelEditing: 'Отправить без редактирование',
+  cancelEditing: 'Отправить без редактирования',
 }

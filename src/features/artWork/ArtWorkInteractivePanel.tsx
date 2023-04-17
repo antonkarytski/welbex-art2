@@ -5,7 +5,8 @@ import Span from '../../ui/Span'
 import FavouriteButton from '../../ui/buttons/FavouriteButton'
 import LikeButton from '../../ui/buttons/LikeButton'
 import ShareButton from '../../ui/buttons/ShareButton'
-import { useColors } from '../themed'
+import { createThemedStyle, useColors } from '../themed'
+import { useThemedStyleList } from '../themed/hooks'
 
 type ArtWorkInteractivePanelProps = {
   item: ArtWorkGeneral
@@ -22,23 +23,25 @@ const ArtWorkInteractivePanel = ({
   onPressLike,
   onPressSave,
 }: ArtWorkInteractivePanelProps) => {
-  const colors = useColors()
+  const { colors, styles } = useThemedStyleList({
+    common: themedStyles,
+  })
 
   return (
     <View>
-      <View style={styles.container}>
+      <View style={styles.common.container}>
         <LikeButton
           likesCount={item.likes}
-          style={[styles.button, styles.likeButton]}
+          style={[styles.common.button, styles.common.likeButton]}
           onPress={onPressLike}
           color={colors.icon}
           active={item.is_liked}
           activeColor={colors.likesIcon}
         />
-        <View style={styles.interactionBlock}>
+        <View style={styles.common.interactionBlock}>
           <ShareButton
             color={colors.icon}
-            style={[styles.button, styles.shareButton]}
+            style={[styles.common.button, styles.common.shareButton]}
             item={{
               url: item.image_thumbnail,
               title: item.title,
@@ -46,45 +49,48 @@ const ArtWorkInteractivePanel = ({
           />
           <FavouriteButton
             color={colors.icon}
-            style={[styles.button, styles.favouriteButton]}
+            style={[styles.common.button, styles.common.favouriteButton]}
             active={item.is_saved}
             onPress={onPressSave}
           />
         </View>
       </View>
-      <Span style={styles.title} weight={600} label={item.title} />
+      <Span style={styles.common.title} weight={600} label={item.title} />
     </View>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 12,
-    paddingBottom: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  interactionBlock: {
-    marginLeft: 'auto',
-    flexDirection: 'row',
-  },
-  button: {
-    paddingVertical: 12,
-  },
-  shareButton: {
-    paddingHorizontal: 20,
-  },
-  favouriteButton: {
-    paddingLeft: 20,
-    paddingRight: 4,
-  },
-  likeButton: {
-    paddingRight: 20,
-    paddingLeft: 4,
-  },
-  title: {
-    fontSize: 16,
-  },
-})
+const themedStyles = createThemedStyle((colors) =>
+  StyleSheet.create({
+    container: {
+      paddingTop: 12,
+      paddingBottom: 10,
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    interactionBlock: {
+      marginLeft: 'auto',
+      flexDirection: 'row',
+    },
+    button: {
+      paddingVertical: 12,
+    },
+    shareButton: {
+      paddingHorizontal: 20,
+    },
+    favouriteButton: {
+      paddingLeft: 20,
+      paddingRight: 4,
+    },
+    likeButton: {
+      paddingRight: 20,
+      paddingLeft: 4,
+    },
+    title: {
+      color: colors.text,
+      fontSize: 16,
+    },
+  })
+)
 
 export default ArtWorkInteractivePanel
