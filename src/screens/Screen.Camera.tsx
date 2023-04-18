@@ -39,6 +39,7 @@ const CameraScreen = () => {
         photo
         device={device}
         isActive
+        orientation={'portrait'}
       />
       <NavigationBackButton style={styles.backButton} />
       <CameraButton onPress={onPressPhoto} style={styles.photoButton} />

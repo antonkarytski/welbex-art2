@@ -5,7 +5,7 @@ import Span from '../../ui/Span'
 import FavouriteButton from '../../ui/buttons/FavouriteButton'
 import LikeButton from '../../ui/buttons/LikeButton'
 import ShareButton from '../../ui/buttons/ShareButton'
-import { createThemedStyle, useColors } from '../themed'
+import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 
 type ArtWorkInteractivePanelProps = {
