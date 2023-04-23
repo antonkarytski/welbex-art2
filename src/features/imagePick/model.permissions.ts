@@ -1,28 +1,15 @@
-import {
-  getMediaLibraryPermissionsAsync,
-  requestMediaLibraryPermissionsAsync,
-} from 'expo-image-picker'
-import { PermissionStatus } from 'expo-modules-core/src/PermissionsInterface'
 import { PERMISSIONS } from 'react-native-permissions'
-import { createPermissionModel } from '../../lib/permissions/model'
+import { IS_IOS } from '../../lib/helpers/native/constants'
 import { createNativePermissionModel } from '../../lib/permissions/nativePermissions'
 
-export const mediaLibraryPermission = createPermissionModel({
-  check: getMediaLibraryPermissionsAsync,
-  request: requestMediaLibraryPermissionsAsync,
-  grantedStatus: ({ granted }) => granted,
-  initialStatus: {
-    status: PermissionStatus.UNDETERMINED,
-    expires: 'never',
-    granted: false,
-    canAskAgain: true,
-  },
-})
+const name = IS_IOS
+  ? PERMISSIONS.IOS.MEDIA_LIBRARY
+  : PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE
 
-export const writeExternalStoragePermission = createNativePermissionModel(
-  PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE,
-  () => ({
-    title: 'Hello',
-    message: 'Hello',
+export const mediaLibraryPermission = createNativePermissionModel(
+  name,
+  (t) => ({
+    title: t.mediaLibraryPermissionTitle,
+    message: t.mediaLibraryPermissionMessage,
   })
 )

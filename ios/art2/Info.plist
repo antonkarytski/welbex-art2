@@ -64,13 +64,17 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Give $(PRODUCT_NAME) permission to access your camera</string>
+	<string>NSCameraUsageDescription</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Give $(PRODUCT_NAME) permission to use your microphone</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Give $(PRODUCT_NAME) permission to save photos</string>
+	<string>NSPhotoLibraryUsageDescription</string>
+	<key>NSUserTrackingUsageDescription</key>
+    <string>NSUserTrackingUsageDescription</string>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>NSLocalNetworkUsageDescription</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

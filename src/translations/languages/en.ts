@@ -222,4 +222,7 @@ export const EN = {
   cameraPermissionTitle: 'Camera Permission',
   cameraPermissionMessage:
     'We need your permission to use the camera to scan your drawings. Please grant permission to use the camera.',
+  mediaLibraryPermissionTitle: 'Media Library Permission',
+  mediaLibraryPermissionMessage:
+    'We need your permission to access the media library to select a photo from your gallery, or for saving photos to your device. Please grant permission to access the media library.',
 }
