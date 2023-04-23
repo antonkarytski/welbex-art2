@@ -216,4 +216,10 @@ export const EN = {
   noWinners: 'Winners not determined',
   emptyListOfLikedArts: 'The list of liked arts is empty',
   emptyListOfSavedArts: 'The list of saved arts is empty',
+  iosAppTransparencyTitle: 'Grant Permission for Tracking',
+  iosAppTransparencyMessage:
+    'We will track your in-app activity and browsing history to display personalized ads once you grant permission. We do not store or share your data for any purposes other than showing ads. Please grant permission for tracking to receive more relevant offers and support the app development.',
+  cameraPermissionTitle: 'Camera Permission',
+  cameraPermissionMessage:
+    'We need your permission to use the camera to scan your drawings. Please grant permission to use the camera.',
 }

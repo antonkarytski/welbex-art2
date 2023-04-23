@@ -20,5 +20,9 @@ export const mediaLibraryPermission = createPermissionModel({
 })
 
 export const writeExternalStoragePermission = createNativePermissionModel(
-  PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE
+  PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE,
+  () => ({
+    title: 'Hello',
+    message: 'Hello',
+  })
 )
