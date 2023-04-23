@@ -1,7 +1,5 @@
 import React from 'react'
-import { Linking, StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
-import { api } from '../../api'
-import { noop } from '../../lib/helpers'
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import { IS_IOS } from '../../lib/helpers/native/constants'
 import { buttonLightThemedPreset } from '../../styles/buttons'
 import { useText } from '../../translations/hook'
@@ -10,6 +8,7 @@ import AppleButton from '../../ui/buttons/Button.Apple'
 import GoogleButton from '../../ui/buttons/Button.Google'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
+import { authWithApple, authWithGoogle } from './quick/services'
 
 type AuthWithServicesProps = {
   showLineSeparator?: boolean
@@ -25,12 +24,6 @@ const AuthWithServices = ({
     feature: themedStyles,
     button: buttonLightThemedPreset,
   })
-  const authWithGoogle = () => {
-    Linking.openURL(api.auth.googleAuthUrl).catch(noop)
-  }
-  const authWithApple = () => {
-    Linking.openURL(api.auth.appleAuthUrl).catch(noop)
-  }
 
   return (
     <View style={[style]}>
