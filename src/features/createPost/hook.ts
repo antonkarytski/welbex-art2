@@ -27,6 +27,13 @@ export function useCreatePostFormInitialValues({
   category,
   assets,
 }: CreatePostFormInitialProps) {
+  const initialCategory = useStoreMap({
+    store: selectedCategoryModel.$state,
+    keys: [],
+    fn: (selectedCategory) => ({
+      categoryId: selectedCategory?.id || 0,
+    }),
+  })
   const initialFormData = useStoreMap({
     store: $myProfile,
     keys: [],
@@ -55,8 +62,11 @@ export function useCreatePostFormInitialValues({
 
   useEffect(() => {
     if (!initialFormData) return
-    createPostFormModel.setSomeFields(initialFormData)
-  }, [initialFormData])
+    createPostFormModel.setSomeFields({
+      ...initialFormData,
+      ...initialCategory,
+    })
+  }, [initialFormData, initialCategory])
 
   useEffect(() => {
     if (category) selectedCategoryModel.set(category)

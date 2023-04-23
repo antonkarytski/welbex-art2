@@ -6,6 +6,8 @@ import { createMemoByWeakMap } from '../../lib/helpers/memoization'
 import { EN } from '../../translations/languages'
 import { LangStructure } from '../../translations/types'
 import Span from '../../ui/Span'
+import { createThemedStyle } from '../themed'
+import { useThemedStyle } from '../themed/hooks'
 import { userName, yearsOldToText } from './helpers'
 import { countryFullName, countryFullNameClipped } from './index'
 import { UserDescriptionStyles } from './styles'
@@ -39,6 +41,7 @@ const UserDescription = ({
   shortenUserName,
 }: UserDescriptionProps) => {
   const ageText = ageTextGenerator(item.age || getAgeFromBirthday(item.DOB))
+  const styles = useThemedStyle(themedStyles)
 
   return (
     <View style={style?.container}>
@@ -62,15 +65,18 @@ const UserDescription = ({
   )
 }
 
-const styles = StyleSheet.create({
-  name: {
-    fontSize: 16,
-    lineHeight: 21,
-  },
-  subText: {
-    fontSize: 14,
-    lineHeight: 21,
-  },
-})
+const themedStyles = createThemedStyle((colors) =>
+  StyleSheet.create({
+    name: {
+      fontSize: 16,
+      lineHeight: 21,
+      color: colors.text,
+    },
+    subText: {
+      fontSize: 14,
+      lineHeight: 21,
+    },
+  })
+)
 
 export default UserDescription

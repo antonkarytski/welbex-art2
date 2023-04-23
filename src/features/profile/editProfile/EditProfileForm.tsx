@@ -12,7 +12,7 @@ import PresetButton from '../../../ui/buttons/PresetButton'
 import DateField from '../../../ui/form/DateField'
 import Field from '../../../ui/form/Field'
 import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
-import SaveChangesPopUp from '../../popUp/profilePopUps/PopUp.SaveChanges'
+import SaveProfileChangesPopUp from '../../popUp/profilePopUps/PopUp.SaveChanges'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
 import ChildDocumentUploadingBlock from '../childDocument/ChildDocumentUploadingBlock'
@@ -37,7 +37,7 @@ const EditProfileForm = () => {
   }, [])
 
   const onSaveChanges = () => {
-    SaveChangesPopUp.showSync()
+    SaveProfileChangesPopUp.showSync()
   }
 
   const fieldStyles = { container: styles.common.formItem, ...styles.field }
