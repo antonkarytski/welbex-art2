@@ -1,6 +1,5 @@
 import { useStore } from 'effector-react'
 import { ImagePickerAsset } from 'expo-image-picker'
-import * as ScreenOrientation from 'expo-screen-orientation'
 import React, { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { $isAuth } from '../../features/auth/model'
@@ -36,10 +35,6 @@ export default function UploadPostImageScreen({
 
   const isAuth = useStore($isAuth)
   const myProfile = useStore($myProfile)
-
-  useEffect(() => {
-    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP)
-  }, [])
 
   useEffect(() => {
     const onFocus = () => {

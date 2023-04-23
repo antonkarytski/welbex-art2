@@ -23,12 +23,12 @@ export type SettingItem = {
 }
 
 export const settingsList: SettingItem[] = [
-  {
-    label: (t) => t.subscription,
-    icon: StarIcon,
-    navigateTo: links.subscriptionSelectPlan,
-    isAbleWhenUnauthorized: true,
-  },
+  // {
+  //   label: (t) => t.subscription,
+  //   icon: StarIcon,
+  //   navigateTo: links.subscriptionSelectPlan,
+  //   isAbleWhenUnauthorized: true,
+  // },
   // {
   //   label: (t) => t.faq,
   //   icon: QuestionIcon,
