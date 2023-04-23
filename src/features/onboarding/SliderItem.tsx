@@ -44,7 +44,6 @@ const SliderItem = ({ item, style, text }: SliderItemProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 12,
     marginHorizontal: SCREEN_PADDING_HORIZONTAL,
   },
   innerContainer: {
