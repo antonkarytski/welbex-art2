@@ -4,7 +4,10 @@ import { ProfileEditProps } from '../../../api/parts/users/types.parts'
 import { USER_DOB_FORMAT } from '../../../constants'
 import { mapObject } from '../../../lib/helpers/array'
 import { dateObjectToString } from '../../../lib/helpers/date'
-import { checkObjectsChanges } from '../../../lib/helpers/objects'
+import {
+  checkObjectsChanges,
+  isObjectEmpty,
+} from '../../../lib/helpers/objects'
 import { userAge } from '../../user/helpers'
 import { EditProfileForm, EditUserForm, GetProfileChangesProps } from './types'
 
@@ -54,5 +57,5 @@ export const getProfileChanges = (props: GetProfileChangesProps) => {
   if (changedFields?.DOB) {
     result.age = userAge(changedFields as MyProfile)
   }
-  return result
+  return isObjectEmpty(result) ? null : result
 }

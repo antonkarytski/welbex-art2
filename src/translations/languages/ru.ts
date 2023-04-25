@@ -223,4 +223,6 @@ export const RU: LangStructure = {
   emptyListOfSavedArts: 'Список сохраненных рисунков пуст',
   checkPasswordLengthError:
     'Пароль должен быть не менее 8 символов длиной и содержать по крайней мере одну цифру и одну букву',
+  done: 'Готово',
+  cancelEditing: 'Отправить без редактирования',
 }
