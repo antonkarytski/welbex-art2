@@ -10,6 +10,7 @@ type DateFieldProps = {
   placeholder?: string
   maximumDate?: Date
   displayDefaultDate?: boolean
+  offValidation?: boolean
 }
 
 const DateField = <T extends Record<string, any>, N extends keyof T>({
@@ -17,6 +18,7 @@ const DateField = <T extends Record<string, any>, N extends keyof T>({
   formModel,
   validateOnBlur,
   displayDefaultDate,
+  offValidation,
   ...props
 }: FieldProps<T, N, Date> & DateFieldProps) => {
   const [isSelected, setIsSelected] = useState(false)
@@ -27,7 +29,9 @@ const DateField = <T extends Record<string, any>, N extends keyof T>({
     <DateInput
       wasSelected={isSelected}
       isValid={
-        validation?.isValid === null ? null : validation?.isValid && isSelected
+        validation?.isValid === null || offValidation
+          ? null
+          : validation?.isValid && isSelected
       }
       date={value}
       defaultDate={displayDefaultDate ? value : undefined}

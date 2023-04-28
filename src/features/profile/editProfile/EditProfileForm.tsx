@@ -49,6 +49,7 @@ const EditProfileForm = () => {
         if (name === 'birthDate') {
           return (
             <DateField
+              offValidation
               key={name}
               label={t.birthDate}
               displayDefaultDate
