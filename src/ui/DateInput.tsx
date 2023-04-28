@@ -16,6 +16,7 @@ type DateInputProps = {
   onBlur?: () => void
   label?: string
   defaultDate?: Date
+  wasSelected?: boolean
 } & Omit<DatePickerProps, 'style' | 'onBlur'>
 
 const DateInput = ({
@@ -28,18 +29,24 @@ const DateInput = ({
   onBlur,
   label,
   defaultDate,
+  wasSelected,
   ...props
 }: DateInputProps) => {
   const [open, setOpen] = useState(false)
-  const [isDateSelected, setIsDateSelected] = useState(false)
   const ref = useRef<TextInput>(null)
 
   const handleConfirmDate: DateInputProps['onConfirm'] = (newDate) => {
     setOpen(false)
     onChange(newDate)
-    setIsDateSelected(true)
     props.onConfirm?.(newDate)
   }
+
+  const inputValue =
+    defaultDate?.toLocaleDateString() || wasSelected
+      ? date.toLocaleDateString()
+      : undefined
+
+  console.log(inputValue)
 
   return (
     <>
@@ -49,11 +56,7 @@ const DateInput = ({
         isValid={isValid}
         placeholder={placeholder}
         showSoftInputOnFocus={false}
-        value={
-          defaultDate?.toLocaleDateString() || isDateSelected
-            ? date.toLocaleDateString()
-            : undefined
-        }
+        value={inputValue}
         onPressIn={() => {
           ref.current?.focus()
           setOpen(true)
