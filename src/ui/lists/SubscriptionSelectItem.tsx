@@ -53,7 +53,10 @@ const SubscriptionSelectItem = ({
       ) : null}
       <View style={styles.contentContainer}>
         <Span weight={600} style={[styles.count, style?.value]} label={value} />
-        <Span style={[styles.measure, style?.measure]} label={measure} />
+        <Span
+          style={[styles.measure, style?.measure]}
+          label={measure}
+        />
         <Span style={[styles.price, style?.price]} label={price} />
       </View>
     </TouchableOpacity>
@@ -89,7 +92,7 @@ const styles = StyleSheet.create({
     fontFamily: FONT_SEMI_BOLD,
   },
   contentContainer: {
-    paddingHorizontal: 25,
+    paddingHorizontal: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },
