@@ -1,4 +1,4 @@
-import { useStore } from 'effector-react'
+import { useStore, useStoreMap } from 'effector-react'
 import React, { useEffect, useRef, useState } from 'react'
 import { Animated, LayoutChangeEvent, StyleSheet, View } from 'react-native'
 import CategoriesList from '../../features/categories/CategoriesList'
@@ -29,11 +29,14 @@ export default function HomeScreen() {
   })
   const text = useText()
   const offset = useRef(new Animated.Value(0)).current
-  const winnersList = useStore(winnersListModel.$items)
   const isWinnersLoading = useStore(winnersListModel.$isLoading)
-  const isCategoriesLoading = useStore(categoriesListModel.$isLoading)
+  const winnersListNotEmpty = useStoreMap({
+    store: winnersListModel.$items,
+    keys: [isWinnersLoading],
+    fn: (list) => !!list.length || isWinnersLoading,
+  })
 
-  const winnersListNotEmpty = winnersList.length > 0 || isWinnersLoading
+  const isCategoriesLoading = useStore(categoriesListModel.$isLoading)
 
   useEffect(() => {
     initAds().catch(noop)
