@@ -55,7 +55,7 @@ export const useDropdownLayout = ({
       ...dropdownStyle,
       position: 'absolute',
       top: top,
-      height: dropdownHEIGHT,
+      maxHeight: dropdownHEIGHT,
       width: dropdownWIDTH,
       left: dropdownStyle?.left || dropdownPX,
     }

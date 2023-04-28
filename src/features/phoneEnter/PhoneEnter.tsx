@@ -7,9 +7,10 @@ import { RenderItem } from '../../ui/selects/selectItem/types'
 import { COUNTRIES_LIST, Country } from '../countries'
 import CountryRow from '../countries/CountryRow'
 import { PhoneEnterProps } from './types'
+import { IS_ANDROID } from "../../lib/helpers/native/constants";
 
 const renderCountryRow: RenderItem<Country> = (item, isSelected) => (
-  <CountryRow item={item} isSelected={isSelected} />
+  <CountryRow item={item} isSelected={isSelected} style={itemStyles} />
 )
 
 const PhoneEnter = ({ label, style, model }: PhoneEnterProps) => {
@@ -59,6 +60,12 @@ const styles = StyleSheet.create({
   tabLabel: {
     fontSize: 20,
     lineHeight: 26,
+  },
+})
+
+const itemStyles = StyleSheet.create({
+  text: {
+    color: IS_ANDROID ? '#000' : undefined,
   },
 })
 
