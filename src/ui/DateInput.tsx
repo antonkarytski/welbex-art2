@@ -46,8 +46,6 @@ const DateInput = ({
       ? date.toLocaleDateString()
       : undefined
 
-  console.log(inputValue)
-
   return (
     <>
       {label && <Span label={label} style={[styles.label, style?.label]} />}
