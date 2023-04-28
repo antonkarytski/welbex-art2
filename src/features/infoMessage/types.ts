@@ -8,6 +8,7 @@ export enum InfoMessageType {
   SIGNED_OFF = 'SIGNED_OFF',
   PAYMENT_ERROR = 'PAYMENT_ERROR',
   CONNECTION_ERROR = 'CONNECTION_ERROR',
+  POST_CREATED = 'POST_CREATED',
 }
 
 type InfoMessageScreenPropsProto<

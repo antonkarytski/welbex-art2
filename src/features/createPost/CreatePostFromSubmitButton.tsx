@@ -6,6 +6,7 @@ import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import AsyncPresetButton from '../../ui/buttons/AsyncPresetButton'
+import { InfoMessageType } from '../infoMessage/types'
 import { useChildDocumentStatus } from '../profile/childDocument/hooks'
 import { createPostFormModel } from './model'
 
@@ -34,7 +35,7 @@ const CreatePostFromSubmitButton = ({
       onPress={async () => {
         try {
           await createPostFormModel.submit()
-          navigate(links.home)
+          navigate(links.infoMessage, { type: InfoMessageType.POST_CREATED })
           createPostFormModel.reset()
         } catch {}
       }}

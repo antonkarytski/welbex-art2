@@ -6,6 +6,7 @@ import PaymentErrorInfoMessage, {
   PaymentErrorReason,
 } from '../features/infoMessage/PaymentErrorInfoMessage'
 import PaymentSuccessInfoMessage from '../features/infoMessage/PaymentSuccessInfoMessage'
+import PostCreatedInfoMessage from '../features/infoMessage/PostCreatedInfoMessage'
 import SignedOffInfoMessage from '../features/infoMessage/SignedOffInfoMessage'
 import { InfoMessageType } from '../features/infoMessage/types'
 import { links } from '../navigation/links'
@@ -38,6 +39,9 @@ const InfoMessageScreen = ({
   }
   if (params.type === InfoMessageType.CARD_DELETED) {
     return <CardDeletedInfoMessage />
+  }
+  if (params.type === InfoMessageType.POST_CREATED) {
+    return <PostCreatedInfoMessage />
   }
   return null
 }
