@@ -18,7 +18,7 @@ type UseDoubleTapProps = {
   maxDistance?: number
 }
 
-const DOUBLE_PRESS_DELAY = 200
+const DOUBLE_PRESS_DELAY = 250
 const DOUBLE_PRESS_MAX_DISTANCE = 30
 export const useDoubleTap = ({
   onPress,

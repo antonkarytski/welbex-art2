@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { LayoutChangeEvent, StyleSheet } from 'react-native'
+import React, { useRef } from 'react'
+import { StyleSheet } from 'react-native'
 import { StateModel, useStateStore } from 'altek-toolkit'
 import DropdownTab from '../dropdownTab'
+import { DropdownTabInstance } from '../dropdownTab/DropdownTab'
 import SearchableSelect from './SearchableSelect'
 import Select from './Select'
 import { DropdownSelectProps } from './types'
@@ -18,19 +19,16 @@ function DropdownSelect<Item>({
   model,
   ...props
 }: DropdownSelectProps<Item>) {
-  const [selectedItem] = useStateStore(model)
-  const [searchInputHeight, setSearchInputHeight] = useState(0)
+  const [selectedItem, setSelectedItem] = useStateStore(model)
+  const dropdownTabRef = useRef<DropdownTabInstance>(null)
 
-  const onSearchInputLayout = (e: LayoutChangeEvent) => {
-    setSearchInputHeight(e.nativeEvent.layout.height + 4)
-  }
+  setSelectedItem.watch(() => {
+    dropdownTabRef.current?.close()
+  })
 
   const selectStyles = {
     item: itemStyles,
-    container: [
-      listStyles.container,
-      searchModel && { paddingBottom: searchInputHeight },
-    ],
+    container: [listStyles.container],
     ...style?.select,
   }
 
@@ -47,13 +45,13 @@ function DropdownSelect<Item>({
       style={style?.dropdownTab}
       preset={preset?.dropdownTab}
       onOpenDropdown={onOpenDropdown}
+      ref={dropdownTabRef}
     >
       {searchModel ? (
         <SearchableSelect
           searchModel={searchModel}
           style={{ searchInput: style?.searchInput, ...selectStyles }}
           model={model}
-          onSearchInputLayout={onSearchInputLayout}
           {...commonProps}
           {...props}
         />

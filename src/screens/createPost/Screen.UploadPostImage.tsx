@@ -1,5 +1,6 @@
 import { useStore } from 'effector-react'
 import { ImagePickerAsset } from 'expo-image-picker'
+import * as ScreenOrientation from 'expo-screen-orientation'
 import React, { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { $isAuth } from '../../features/auth/model'
@@ -12,6 +13,7 @@ import PopUpLogin from '../../features/popUp/profilePopUps/PopUp.Login'
 import { $myProfile } from '../../features/profile/model'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
+import { userAge } from '../../features/user/helpers'
 import { useNavigate } from '../../navigation'
 import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
 import { links } from '../../navigation/links'
@@ -36,12 +38,17 @@ export default function UploadPostImageScreen({
   const myProfile = useStore($myProfile)
 
   useEffect(() => {
+    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP)
+  }, [])
+
+  useEffect(() => {
     const onFocus = () => {
       if (!isAuth) {
         PopUpLogin.showSync()
         navigation.goBack()
       }
-      if (isAuth && !myProfile?.is_child) {
+
+      if (isAuth && (!myProfile?.is_child || userAge(myProfile) < 2)) {
         PopUpAgeError.showSync()
         navigation.goBack()
       }

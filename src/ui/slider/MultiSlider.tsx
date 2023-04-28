@@ -1,9 +1,16 @@
 import BaseMultiSlider, {
+  MarkerProps,
   MultiSliderProps,
 } from '@ptomasroos/react-native-multi-slider'
 import { View } from 'native-base'
-import React from 'react'
-import { ScrollView, StyleProp, StyleSheet, ViewStyle } from 'react-native'
+import React, { useState } from 'react'
+import {
+  LayoutChangeEvent,
+  ScrollView,
+  StyleProp,
+  StyleSheet,
+  ViewStyle,
+} from 'react-native'
 import { StateModel, useStateStore, useToggle } from 'altek-toolkit'
 import { defaultColors } from '../../features/themed/theme'
 import { getWidth } from '../../lib/device/dimensions'
@@ -29,6 +36,23 @@ const MultiSlider = ({
 }: CustomMultiSliderProps) => {
   const [isScrollEnabled, toggleScrollEnabled] = useToggle(true)
   const [values, setValues] = useStateStore(model)
+  const [markerHeight, setMarkerHeight] = useState(30)
+  const [markerPointHeight, setMarkerPointHeight] = useState(20)
+
+  const onMarkerLayout = (e: LayoutChangeEvent) => {
+    setMarkerHeight(e.nativeEvent.layout.height)
+  }
+  const onMarkerPointLayout = (e: LayoutChangeEvent) => {
+    setMarkerPointHeight(e.nativeEvent.layout.height)
+  }
+
+  const Marker = (markerProps: MarkerProps) => (
+    <SliderMarker
+      {...markerProps}
+      onLayout={onMarkerLayout}
+      onMarkerPointLayout={onMarkerPointLayout}
+    />
+  )
 
   return (
     <View style={style?.wrapper}>
@@ -43,11 +67,15 @@ const MultiSlider = ({
           step={1}
           onValuesChangeStart={toggleScrollEnabled}
           onValuesChangeFinish={toggleScrollEnabled}
-          customMarkerLeft={SliderMarker}
+          customMarkerLeft={Marker}
           customMarkerRight={SliderMarker}
           trackStyle={styles.track}
           selectedStyle={styles.track__selected}
-          containerStyle={styles.track_container}
+          containerStyle={{
+            ...styles.track_container,
+            height: markerHeight,
+            paddingTop: markerPointHeight / 2,
+          }}
           {...props}
         />
       </ScrollView>
@@ -65,7 +93,11 @@ const styles = StyleSheet.create({
     backgroundColor: defaultColors.detailsInactive,
     height: 1,
   },
-  track_container: { alignItems: 'center' },
+  track_container: {
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    overflow: 'visible',
+  },
   track__selected: {
     backgroundColor: defaultColors.detailsActive,
   },

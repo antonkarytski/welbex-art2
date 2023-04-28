@@ -1,8 +1,9 @@
 export const CATEGORIES_MAX_AGE = 13
-export const CATEGORIES_MIN_AGE = 2
+export const CATEGORIES_MIN_AGE = 0
 export const CATEGORIES_AGE_RANGE = [CATEGORIES_MIN_AGE, CATEGORIES_MAX_AGE]
 
 export const AGE_CATEGORIES = [
+  [0, 1],
   [2, 4],
   [5, 7],
   [8, 10],

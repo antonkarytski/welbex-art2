@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { LayoutChangeEvent, StyleSheet } from 'react-native'
+import React from 'react'
+import { StyleSheet } from 'react-native'
 import { StateModel, useStateStore } from 'altek-toolkit'
 import { WINDOW_HEIGHT } from '../../lib/device/dimensions'
 import DropdownTab from '../dropdownTab'
@@ -21,18 +21,10 @@ function DropdownMultiSelect<Item>({
   ...props
 }: DropdownMultiSelectProps<Item>) {
   const [selectedItems] = useStateStore(model)
-  const [searchInputHeight, setSearchInputHeight] = useState(0)
-
-  const onSearchInputLayout = (e: LayoutChangeEvent) => {
-    setSearchInputHeight(e.nativeEvent.layout.height + 4)
-  }
 
   const selectStyles = {
     item: itemStyles,
-    container: [
-      listStyles.container,
-      searchModel && { paddingBottom: searchInputHeight },
-    ],
+    container: [listStyles.container],
     ...style?.select,
   }
 
@@ -64,7 +56,6 @@ function DropdownMultiSelect<Item>({
           searchModel={searchModel}
           style={{ searchInput: style?.searchInput, ...selectStyles }}
           model={model}
-          onSearchInputLayout={onSearchInputLayout}
           {...commonProps}
           {...props}
         />

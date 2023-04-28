@@ -1,4 +1,5 @@
 import React from 'react'
+import ImageCropper from '../imagePick/imageCropper/ImageCropper'
 import PopUpAgeError from './PopUp.AgeError'
 import PopUpDeletePaymentCard from './PopUp.DeletePaymentCard'
 import PopUpPhotoEdit from './PopUp.PhotoEditActionSelect'
@@ -9,6 +10,7 @@ import ProfilePopUps from './profilePopUps'
 export default function AppPopUps() {
   return (
     <>
+      <ImageCropper />
       <AuthPopUps />
       <ProfilePopUps />
       <PopUpAgeError />

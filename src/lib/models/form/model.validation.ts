@@ -1,4 +1,5 @@
 import {
+  Event,
   Store,
   createEffect,
   createEvent,
@@ -128,7 +129,12 @@ export function createValidator<T extends Record<string, any>>(
     setFieldValidation({ key, value: null })
   }
 
-  function reset() {
+  function reset(event?: Event<any>) {
+    if (event) {
+      $state.on(event, () => null)
+      $fields.reset(event)
+      return
+    }
     setState(null)
   }
 

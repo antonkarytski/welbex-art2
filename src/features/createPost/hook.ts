@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { CategoryResponse } from '../../api/parts/categories/types'
 import { MyProfile } from '../../api/parts/users/types'
 import { IdentityDocumentStatus } from '../../api/parts/users/types.api'
+import { getNameFromUrl } from '../../lib/files/helpers'
 import { $myProfile } from '../profile/model'
 import { getAgeCategory } from './helpers'
 import { createPostFormModel } from './model'
@@ -26,6 +27,13 @@ export function useCreatePostFormInitialValues({
   category,
   assets,
 }: CreatePostFormInitialProps) {
+  const initialCategory = useStoreMap({
+    store: selectedCategoryModel.$state,
+    keys: [],
+    fn: (selectedCategory) => ({
+      categoryId: selectedCategory?.id || 0,
+    }),
+  })
   const initialFormData = useStoreMap({
     store: $myProfile,
     keys: [],
@@ -44,7 +52,7 @@ export function useCreatePostFormInitialValues({
     if (!asset) return
     createPostFormModel.setField({
       value: {
-        name: asset.fileName || '',
+        name: asset.fileName || getNameFromUrl(asset.uri),
         size: asset.fileSize || 0,
         uri: asset.uri,
       },
@@ -54,8 +62,11 @@ export function useCreatePostFormInitialValues({
 
   useEffect(() => {
     if (!initialFormData) return
-    createPostFormModel.setSomeFields(initialFormData)
-  }, [initialFormData])
+    createPostFormModel.setSomeFields({
+      ...initialFormData,
+      ...initialCategory,
+    })
+  }, [initialFormData, initialCategory])
 
   useEffect(() => {
     if (category) selectedCategoryModel.set(category)

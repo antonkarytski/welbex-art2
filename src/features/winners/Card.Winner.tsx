@@ -1,5 +1,7 @@
 import React from 'react'
 import { ImageSourcePropType, View } from 'react-native'
+import { truncateString } from '../../lib/helpers/strings'
+import Row from '../../ui/Row'
 import Span from '../../ui/Span'
 import ImageCard from '../../ui/cards/ImageCard'
 import { WinnerCardStyles } from './styles'
@@ -30,18 +32,18 @@ const CardWinner = React.memo(
         image={image}
       >
         <View style={styles.description}>
-          <View style={styles.row}>
+          <Row style={styles.row}>
             <Span
               style={styles.categoryLabel}
               weight={600}
-              label={`"${category}"`}
+              label={`"${truncateString(category, 17)}"`}
             />
             <Span
               style={styles.yearsLabel}
               weight={500}
               label={yearsCategory}
             />
-          </View>
+          </Row>
           <View style={styles.row}>
             <Span style={styles.name} label={authorName} />
           </View>

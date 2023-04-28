@@ -13,6 +13,7 @@ import { signUpCountryModel } from './model'
 const searchModel = createSearchableListModel<Country>({
   filterExtractor: countyNameExtractor,
 })
+
 const countryIdExtractor = ({ alpha3Code }: Country) => alpha3Code
 
 const CountriesList = () => {

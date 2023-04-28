@@ -26,7 +26,7 @@ export const winnerCardThemedStyles = createThemedStyle<WinnerCardStyles>(
         borderBottomStartRadius: 20,
       },
       row: {
-        flexDirection: 'row',
+        justifyContent: 'flex-start',
       },
       categoryLabel: {
         color: colors.text,

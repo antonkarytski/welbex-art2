@@ -381,6 +381,9 @@ PODS:
     - React-Core
   - react-native-date-picker (4.2.7):
     - React-Core
+  - react-native-image-crop-tools (1.6.4):
+    - React-Core
+    - TOCropViewController (= 2.5.3)
   - react-native-netinfo (9.3.7):
     - React-Core
   - react-native-pager-view (6.1.4):
@@ -509,6 +512,7 @@ PODS:
   - RNSVG (13.7.0):
     - React-Core
   - SocketRocket (0.6.0)
+  - TOCropViewController (2.5.3)
   - VisionCamera (2.15.4):
     - React
     - React-callinvoker
@@ -578,6 +582,7 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - "react-native-cameraroll (from `../node_modules/@react-native-community/cameraroll`)"
   - react-native-date-picker (from `../node_modules/react-native-date-picker`)
+  - react-native-image-crop-tools (from `../node_modules/react-native-image-crop-tools`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-pager-view (from `../node_modules/react-native-pager-view`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
@@ -630,6 +635,7 @@ SPEC REPOS:
     - OpenSSL-Universal
     - PromisesObjC
     - SocketRocket
+    - TOCropViewController
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -703,6 +709,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/cameraroll"
   react-native-date-picker:
     :path: "../node_modules/react-native-date-picker"
+  react-native-image-crop-tools:
+    :path: "../node_modules/react-native-image-crop-tools"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-pager-view:
@@ -816,6 +824,7 @@ SPEC CHECKSUMS:
   React-logger: 1623c216abaa88974afce404dc8f479406bbc3a0
   react-native-cameraroll: 2957f2bce63ae896a848fbe0d5352c1bd4d20866
   react-native-date-picker: de81ee8598c20b6f05b2f6d470d9bee24131fe15
+  react-native-image-crop-tools: a751dae773f66ceac0bea7d894dc6bc219a69c03
   react-native-netinfo: 2517ad504b3d303e90d7a431b0fcaef76d207983
   react-native-pager-view: b58cb9e9f42f64e50cab3040815772c1d119a2e2
   react-native-safe-area-context: 39c2d8be3328df5d437ac1700f4f3a4f75716acc
@@ -843,10 +852,11 @@ SPEC CHECKSUMS:
   RNShare: eaee3dd5a06dad397c7d3b14762007035c5de405
   RNSVG: d787d64ca06b9158e763ad2638a8c4edce00782a
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
+  TOCropViewController: 20a14b6a7a098308bf369e7c8d700dc983a974e6
   VisionCamera: e9a95af10e00aaebe99d648ff4519fd336e16ffe
   Yoga: 99caf8d5ab45e9d637ee6e0174ec16fbbb01bcfc
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 5d2d83bcc8885d51b88a7a6f82d243a199586d29
+PODFILE CHECKSUM: b26379cf9c7de0db42f8bd958ec23fc511822532
 
 COCOAPODS: 1.11.3

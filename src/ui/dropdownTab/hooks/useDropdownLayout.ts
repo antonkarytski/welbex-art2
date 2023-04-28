@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Dimensions, ViewStyle } from 'react-native'
+import { STATUSBAR_HEIGHT } from '../../../lib/device/dimensions'
+import { IS_ANDROID } from '../../../lib/helpers/native/constants'
 import { calculateDropdownHeight } from '../helpers'
 import { ElementMeasureProps } from '../types'
 import { useKeyboardRemainingScreenHeight } from './useKeyboardRemainingScreenHeight'
@@ -32,12 +34,13 @@ export const useDropdownLayout = ({
   const onDropdownButtonLayout = ({ w, h, px, py }: ElementMeasureProps) => {
     setButtonLayout({ w, h, px, py })
     const opetToTop = height - indentFromTab < py + h + dropdownHEIGHT
+    const yPos = IS_ANDROID ? py - STATUSBAR_HEIGHT : py
     if (opetToTop) {
       setDropdownPX(px)
-      setDropdownPY(py - dropdownHEIGHT - indentFromTab)
+      setDropdownPY(yPos - dropdownHEIGHT - indentFromTab)
     } else {
       setDropdownPX(px)
-      setDropdownPY(py + h + indentFromTab)
+      setDropdownPY(yPos + h + indentFromTab)
     }
     setDropdownWIDTH(dropdownStyle?.width ?? w)
   }

@@ -1,23 +1,21 @@
 import { useStore } from 'effector-react'
 import React from 'react'
-import { ScrollView, StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import { ArtWork } from '../../api/parts/arts/types'
-import { downloadImageFromUrl } from '../../lib/files/download'
-import { noop } from '../../lib/helpers'
 import { useRequest } from '../../lib/models/apiBuilder/hooks'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { SCREEN_CONTENT_WIDTH } from '../../styles/constants'
 import { useText } from '../../translations/hook'
-import DoubleTouchOverlay from '../../ui/DoubleTouchOverlay'
-import PresetButton from '../../ui/buttons/PresetButton'
+import { useDoubleTap } from '../../ui/doubleTouch/hooks'
 import Loader from '../../ui/loaders/Loader'
 import AutoHeightImage from '../images/AutoHeightImage'
 import { $myProfile } from '../profile/model'
 import UserCardPreview from '../user/UserCardPreview'
 import ArtWorkInteractionPanel from './ArtWorkInteractivePanel'
+import DownloadImageButton from './DownloadImageButton'
 import { useAtrWorkActions } from './hooks'
-import { downloadFullSizeDrawing, getArtWorkRequest } from './request'
+import { getArtWorkRequest } from './request'
 
 const ArtWorkDetails = React.memo(() => {
   const navigate = useNavigate()
@@ -25,10 +23,14 @@ const ArtWorkDetails = React.memo(() => {
   const drawing = useRequest(getArtWorkRequest)
   const myProfile = useStore($myProfile)
 
+  const artWork = drawing.data as ArtWork
   const { toggleLike, save, like, followAuthor } = useAtrWorkActions(
-    drawing.data as ArtWork,
+    artWork,
     drawing.update
   )
+  const pressHandler = useDoubleTap({
+    onDoublePress: like,
+  })
 
   if (!drawing.data && drawing.isLoading) {
     return <Loader />
@@ -48,28 +50,21 @@ const ArtWorkDetails = React.memo(() => {
         onPressFollow={followAuthor}
         item={drawing.data.author}
       />
-      <DoubleTouchOverlay onPress={like}>
+      <TouchableOpacity activeOpacity={1} onPress={pressHandler}>
         <AutoHeightImage
           image={{ uri: drawing.data.image_thumbnail }}
           widthGenerator={() => SCREEN_CONTENT_WIDTH}
         />
-      </DoubleTouchOverlay>
+      </TouchableOpacity>
       <ArtWorkInteractionPanel
         item={drawing.data}
         onPressLike={toggleLike}
         onPressSave={save}
       />
-      <PresetButton
+      <DownloadImageButton
         style={styles.downloadButton}
         label={text.download}
-        onPress={async () => {
-          if (!drawing.data) return
-          if (!myProfile?.subscription) {
-            downloadImageFromUrl(drawing.data.image_thumbnail).catch(noop)
-            return
-          }
-          downloadFullSizeDrawing(drawing.data.id).catch(noop)
-        }}
+        artWork={artWork}
       />
     </ScrollView>
   )

@@ -28,7 +28,7 @@ const CategoryDescription = ({ item }: CategoryDescriptionProps) => {
   })
 
   const onJoinCategory = () => {
-    navigate(links.createPostTab) // TODO:  переход createPostUploadImage с текущей категорией в пропсах
+    navigate(links.createPostTab)
     selectedCategoryModel.set(item)
   }
 

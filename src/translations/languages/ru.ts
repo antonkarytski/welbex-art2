@@ -9,7 +9,7 @@ export const RU: LangStructure = {
     '“Мне понадобилось 4 года, чтобы научиться рисовать как Рафаэль, и вся жизнь, чтобы научиться рисовать как ребенок.”',
   pabloPicasso: 'Пабло Пикассо',
   viewAndLikeChildrenDrawings: 'Просматривайте и голосуйте за работы детей',
-  uploadYourChildDrawings: 'Загружайте работы вашего ребенка',
+  uploadYourChildDrawings: 'Загружайте работы для участия в конкурсах',
   winAndGetRewards: 'Побеждайте и получайте награды',
   next: 'Далее',
   skipForNow: 'Пропустить',
@@ -109,7 +109,15 @@ export const RU: LangStructure = {
   description: 'Описание',
   completeDescription: 'Заполните описание',
   category: 'Категория',
-  uploadChildDocument: 'Загрузите документы, подтверждающие личность ребенка',
+  uploadChildDocument: 'Загрузите документ, подтверждающий личность ребенка',
+  uploadChildNewDocument:
+    'Загрузите новый документ, подтверждающий личность ребенка',
+  childIdentificationDocumentIsInModeration:
+    'Документ, подтверждающий личность ребенка, находится на модерации',
+  childIdentificationDocumentRejected:
+    'Документ, подтверждающий личность ребенка, не подтвержден!',
+  childIdentificationDocumentApproved:
+    'Документ, подтверждающий личность ребенка, подтвержден',
   createPostAgeError:
     'Ваш возраст не соответствует ни одной из доступных категорий',
   winners: 'Победители',
@@ -129,7 +137,7 @@ export const RU: LangStructure = {
   yearsOldLessThenFive: 'года',
   yearsOldEndsWithOne: 'год',
   oneYearOld: 'год',
-  yearsOldAbbreviated: 'лет',
+  yearsOldAbbreviated: 'л.',
   yearsOldLessThenFiveAbbreviated: 'г.',
   editProfile: 'Редактировать профиль',
   selectFromGallery: 'Выбрать из галереи',
@@ -147,7 +155,7 @@ export const RU: LangStructure = {
   questionSubject: 'Тема вопроса',
   yourQuestion: 'Ваш вопрос',
   language: 'Язык',
-  english: 'Английский',
+  english: 'English',
   russian: 'Русский',
   deleteAccount: 'Удалить аккаунт',
   deleteAccountWarn: 'Аккаунт будет удален навсегда',
@@ -215,4 +223,6 @@ export const RU: LangStructure = {
   emptyListOfSavedArts: 'Список сохраненных рисунков пуст',
   checkPasswordLengthError:
     'Пароль должен быть не менее 8 символов длиной и содержать по крайней мере одну цифру и одну букву',
+  done: 'Готово',
+  cancelEditing: 'Отправить без редактирования',
 }

@@ -3,6 +3,7 @@ import React from 'react'
 import { View } from 'react-native'
 import { NamedStyles } from '../../features/themed/createThemedStyles'
 import { ColorThemeStructure } from '../../features/themed/theme'
+import { useIsKeyboardShown } from '../../lib/device/keyboard'
 import { MainTabBarStyles } from '../../screens/styles'
 import Row from '../../ui/Row'
 import IconButton from '../../ui/buttons/IconButton'
@@ -20,6 +21,9 @@ const MainBottomTabBar = ({
   style,
   colors,
 }: CustomBottomTabBarProps) => {
+  const isKeyboardShown = useIsKeyboardShown()
+  if (isKeyboardShown) return null
+
   return (
     <AdaptiveGradient
       colors={{
