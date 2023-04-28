@@ -34,6 +34,7 @@ const OnboardingScreen = () => {
 
   return (
     <AuthScreenContainer
+      backAvailable={false}
       enableScrollView
       style={{
         container: { paddingHorizontal: 0 },
