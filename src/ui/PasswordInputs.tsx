@@ -1,8 +1,8 @@
 import { useStore, useStoreMap } from 'effector-react'
 import React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
-import { FormModel } from '../lib/models/form/model.form'
-import { PasswordsFormModel } from '../lib/models/passwordsForm/model'
+import { FormModel } from '../lib/models/form'
+import { PasswordsFormModel } from '../lib/models/passwordsForm/types'
 import { SecureField } from './form'
 import ValidationNote, { ValidationNoteIconColors } from './form/ValidationNote'
 import { InputStyles } from './input/types'
@@ -53,12 +53,14 @@ const PasswordInputs = <M extends Record<string, any> = {}>({
         style={{ ...styles, ...style?.input }}
       />
       {!isPasswordsEmpty && (
-        <ValidationNote
-          isValid={isValid}
-          validLabel={validLabel}
-          invalidLabel={invalidLabel}
-          iconColors={iconColors}
-        />
+        <View style={styles.validationNoteWrapper}>
+          <ValidationNote
+            isValid={isValid}
+            validLabel={validLabel}
+            invalidLabel={invalidLabel}
+            iconColors={iconColors}
+          />
+        </View>
       )}
     </View>
   )
@@ -67,6 +69,9 @@ const PasswordInputs = <M extends Record<string, any> = {}>({
 const styles = StyleSheet.create({
   wrapper: {
     marginBottom: 12,
+  },
+  validationNoteWrapper: {
+    marginRight: 2,
   },
 })
 

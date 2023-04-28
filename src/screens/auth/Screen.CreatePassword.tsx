@@ -6,30 +6,21 @@ import UserAgreement, {
   UserAgreementProps,
   userAgreementModel,
 } from '../../features/auth/UserAgreement'
+import { usePasswordsError } from '../../features/auth/password/hooks'
 import { signUpPasswordsFormModel } from '../../features/signUp/model.passwords'
 import { signUp, signUpErrorModel } from '../../features/signUp/request'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { noop } from '../../lib/helpers'
 import { IS_IOS } from '../../lib/helpers/native/constants'
-import { PasswordErrors } from '../../lib/models/passwordsForm/model'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { errorTextThemedStyles } from '../../styles/text'
 import { useText } from '../../translations/hook'
-import { LangFn } from '../../translations/types'
 import H2 from '../../ui/H2'
 import PasswordInputs from '../../ui/PasswordInputs'
 import Span from '../../ui/Span'
 import AsyncPresetButton from '../../ui/buttons/AsyncPresetButton'
 import AuthScreenContainer from './stylePresets/AuthScreenContainer'
 import { themedCommonStyles } from './stylePresets/styles'
-
-const PASSWORD_ERROR_CODE: Record<PasswordErrors, LangFn> = {
-  [PasswordErrors.PASSWORD_MUST_MATCH]: (t) => t.checkPasswordMatchError,
-  [PasswordErrors.PASSWORD_MIN_LENGTH]: (t) => t.checkPasswordLengthError,
-}
-const getPasswordErrorText = (code: PasswordErrors) => {
-  return PASSWORD_ERROR_CODE[code] ?? (() => '')
-}
 
 const CreatePasswordScreen = () => {
   const t = useText()
@@ -42,7 +33,7 @@ const CreatePasswordScreen = () => {
   const [isUserAgreementInvalid, setIsUserAgreementInvalid] =
     useState<UserAgreementProps['isInvalid']>()
   const isLoading = useStore(signUp.pending)
-  const [passwordError, setPasswordError] = useState('')
+  const [passwordError, updatePasswordError] = usePasswordsError()
   const [signUpError] = useStateStore(signUpErrorModel)
 
   const onCreateAccount = () => {
@@ -53,16 +44,7 @@ const CreatePasswordScreen = () => {
       .cast()
       .then((validation) => {
         if (validation.isValid) return signUp()
-
-        const list = Object.values(validation.list)
-        const firstRecordWithError = list.find(
-          (record) => record?.isValid === false && record?.message
-        )
-        if (!firstRecordWithError) return
-        const message = getPasswordErrorText(
-          firstRecordWithError.message as PasswordErrors
-        )
-        setPasswordError(message(t))
+        updatePasswordError(validation.list)
       })
       .catch(noop)
   }
