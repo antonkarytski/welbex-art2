@@ -9,6 +9,7 @@ import Span from '../../ui/Span'
 import CheckBox from '../../ui/checkbox/CheckBox'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
+import { openPrivacyPolicy, openUserAgreement } from './helpers'
 
 export const userAgreementModel = createStateModel(false)
 
@@ -25,9 +26,6 @@ const UserAgreement = ({ isInvalid }: UserAgreementProps) => {
   const [isPolicyAccepted, setIsPolicyAccepted] =
     useStateStore(userAgreementModel)
 
-  const onOpenUserAgreement = () => {}
-  const onOpenPrivacyPolicy = () => {}
-
   return (
     <CheckBox
       onSelect={setIsPolicyAccepted}
@@ -43,13 +41,13 @@ const UserAgreement = ({ isInvalid }: UserAgreementProps) => {
       <View style={styles.feature.rowWrapper}>
         <Row style={styles.feature.row}>
           <Span style={styles.feature.text}>{`${t.IAccept} `}</Span>
-          <TouchableOpacity onPress={onOpenUserAgreement} activeOpacity={0.6}>
+          <TouchableOpacity onPress={openUserAgreement} activeOpacity={0.6}>
             <Span style={[styles.feature.text, styles.feature.links]}>
               {t.userAgreement}
             </Span>
           </TouchableOpacity>
           <Span style={styles.feature.text}>{` ${t.and} `}</Span>
-          <TouchableOpacity onPress={onOpenPrivacyPolicy} activeOpacity={0.6}>
+          <TouchableOpacity onPress={openPrivacyPolicy} activeOpacity={0.6}>
             <Span style={[styles.feature.text, styles.feature.links]}>
               {t.privacyPolicy}
             </Span>
