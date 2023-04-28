@@ -7,6 +7,7 @@ import PhotoSelectBlock, {
   CAMERA_SOURCE_PRESET,
 } from '../../features/imagePick/Block.PhotoSelect'
 import UploadFromCameraRollBlock from '../../features/imagePick/Block.UploadFromCameraRoll'
+import { runCropper } from '../../features/imagePick/imageCropper/model'
 import PopUpAgeError from '../../features/popUp/PopUp.AgeError'
 import PopUpLogin from '../../features/popUp/profilePopUps/PopUp.Login'
 import { $myProfile } from '../../features/profile/model'
@@ -58,6 +59,12 @@ export default function UploadPostImageScreen({
     navigate(links.createPostAddDescription, { assets, category })
   }
 
+  const onPickFromCamera = async (assets: ImagePickerAsset[]) => {
+    const cropResult = await runCropper(assets)
+    if (!cropResult) return
+    navigate(links.createPostAddDescription, { assets: cropResult, category })
+  }
+
   return (
     <View>
       <GradientScreenHeader
@@ -72,7 +79,7 @@ export default function UploadPostImageScreen({
         <PhotoSelectBlock
           style={styles.common.uploadFromCameraBlock}
           label={text.scanWork}
-          onPick={onImagePick}
+          onPick={onPickFromCamera}
           sources={CAMERA_SOURCE_PRESET}
         />
       </View>

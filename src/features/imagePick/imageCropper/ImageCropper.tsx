@@ -81,6 +81,7 @@ const themedStyles = createThemedStyle((colors) =>
     },
     container: {
       zIndex: 20,
+      backgroundColor: 'black',
     },
     cancelButton: {
       color: colors.whiteText,
