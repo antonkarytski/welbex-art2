@@ -1,10 +1,13 @@
 import { attach, createEffect } from 'effector'
 import { api } from '../../../api'
 import { apiManager } from '../../../api/apiManager'
-import { ProfileEditProps } from '../../../api/parts/users/types.parts'
 import { Tokens } from '../../../lib/models/apiBuilder/types.token'
 import { meRequest } from '../../profile/request'
-import { $signUpFormData, SignUpFormData } from '../../signUp/model'
+import {
+  $signUpFormData,
+  SignUpFormData,
+  resetSignUpFormData,
+} from '../../signUp/model'
 import { convertSignUpFormToProfileUpdate } from './helpers'
 import {
   $quickAuthAbsentFields,
@@ -35,6 +38,7 @@ export const completeQuickAuth = attach({
       }
       await meRequest()
       resetQuickAuthData()
+      resetSignUpFormData()
     }
   ),
 })
