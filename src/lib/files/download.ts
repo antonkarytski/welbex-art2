@@ -52,6 +52,7 @@ export async function downloadImageFromUrl(
     if (!isGranted) return
   }
   const file = getFilePath(getNameFromUrl(url) || name)
+  console.log(file, url)
   await fs.downloadFile({ fromUrl: url, toFile: file, headers }).promise
   return await endDownloading(file)
 }

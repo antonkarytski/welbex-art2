@@ -46,6 +46,7 @@
     "react-native-collapsible-tab-view": "^4.5.2",
     "react-native-confirmation-code-field": "^7.3.1",
     "react-native-date-picker": "^4.2.7",
+    "react-native-fast-image": "^8.6.3",
     "react-native-fs": "^2.20.0",
     "react-native-gesture-handler": "^2.8.0",
     "react-native-google-mobile-ads": "^10.0.1",
