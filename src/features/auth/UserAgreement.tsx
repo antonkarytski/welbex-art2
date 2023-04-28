@@ -62,6 +62,7 @@ const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     container: {
       marginBottom: 12,
+      alignItems: 'flex-start',
     },
     row: {
       justifyContent: 'flex-start',
@@ -80,6 +81,7 @@ const themedStyles = createThemedStyle((colors) =>
     checkbox: {
       width: 16,
       height: 16,
+      marginTop: 3,
     },
   })
 )
