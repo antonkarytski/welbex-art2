@@ -1,5 +1,5 @@
 import React from 'react'
-import SuccessInfoMessage from './SuccessInfoMessage'
+import SuccessInfoMessage from './parts/SuccessInfoMessage'
 
 type SignedOffInfoMessageProps = {
   subscriptionExpiresIn: string

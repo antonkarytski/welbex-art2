@@ -2,7 +2,7 @@ import React from 'react'
 import { links } from '../../navigation/links'
 import { LangStructure } from '../../translations/types'
 import PaymentErrorImage from '../../ui/images/PaymentErrorImage'
-import InfoMessage from './InfoMessage'
+import InfoMessage from './parts/InfoMessage'
 
 export enum PaymentErrorReason {
   BALANCE = 'balance',

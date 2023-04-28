@@ -1,13 +1,13 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native'
 import React from 'react'
-import { useNavigate } from '../../navigation'
-import { ScreensProps } from '../../navigation/types.screenProps'
-import { useText } from '../../translations/hook'
-import { LangFn } from '../../translations/types'
-import { SVGImageProps } from '../../ui/images/_types'
+import { useNavigate } from '../../../navigation'
+import { ScreensProps } from '../../../navigation/types.screenProps'
+import { useText } from '../../../translations/hook'
+import { LangFn } from '../../../translations/types'
+import { SVGImageProps } from '../../../ui/images/_types'
+import { InfoMessageScreenVariant } from '../types'
 import InfoMessageContainer from './InfoMessageContainer'
 import InfoMessageContent from './InfoMessageContent'
-import { InfoMessageScreenVariant } from './types'
 
 type OnButtonPressProps = {
   navigate: ReturnType<typeof useNavigate>

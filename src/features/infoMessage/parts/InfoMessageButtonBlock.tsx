@@ -1,9 +1,9 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { buttonPrimaryThemedPreset } from '../../styles/buttons'
-import PresetButton from '../../ui/buttons/PresetButton'
-import { createThemedStyle } from '../themed'
-import { useThemedStyleList } from '../themed/hooks'
+import { buttonPrimaryThemedPreset } from '../../../styles/buttons'
+import PresetButton from '../../../ui/buttons/PresetButton'
+import { createThemedStyle } from '../../themed'
+import { useThemedStyleList } from '../../themed/hooks'
 
 type InfoMessageButtonBlockProps = {
   label: string

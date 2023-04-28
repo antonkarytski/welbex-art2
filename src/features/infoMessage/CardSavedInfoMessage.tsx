@@ -2,7 +2,7 @@ import React from 'react'
 import { twoDigits } from '../../lib/helpers/numbers'
 import { links } from '../../navigation/links'
 import { PlanDescriptor } from '../subscriptionPlans/types'
-import SuccessInfoMessage from './SuccessInfoMessage'
+import SuccessInfoMessage from './parts/SuccessInfoMessage'
 import { InfoMessageType } from './types'
 
 type CardSavedInfoMessagesProps = {

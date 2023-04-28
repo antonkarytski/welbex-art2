@@ -1,7 +1,7 @@
 import React from 'react'
 import { links } from '../../navigation/links'
 import TrashImage from '../../ui/images/TrashImage'
-import InfoMessage from './InfoMessage'
+import InfoMessage from './parts/InfoMessage'
 
 type CardDeletedInfoMessageProps = {}
 

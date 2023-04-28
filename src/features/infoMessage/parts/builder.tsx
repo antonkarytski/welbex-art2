@@ -1,9 +1,8 @@
 import React from 'react'
-import { useNavigate } from '../../navigation'
-import { useText } from '../../translations/hook'
-import { LangFn } from '../../translations/types'
-import TrashImage from '../../ui/images/TrashImage'
-import { SVGImageProps } from '../../ui/images/_types'
+import { useNavigate } from '../../../navigation'
+import { useText } from '../../../translations/hook'
+import { LangFn } from '../../../translations/types'
+import { SVGImageProps } from '../../../ui/images/_types'
 import InfoMessageContainer from './InfoMessageContainer'
 import InfoMessageContent from './InfoMessageContent'
 
@@ -23,7 +22,6 @@ export function createInfoMessage(props: CreateInfoMessageProps) {
   return ({
     buttonLabel = props.buttonLabel,
     title = props.title,
-    subTitle,
   }: Partial<Omit<CreateInfoMessageProps, 'Icon, onButtonPress'>>) => {
     const text = useText()
     const navigate = useNavigate()

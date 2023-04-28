@@ -1,13 +1,13 @@
 import React, { PropsWithChildren } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { IS_IOS } from '../../lib/helpers/native/constants'
-import { themedPrimaryGradient } from '../../styles/gradients'
-import Gradient from '../../ui/gradients/Gradient'
-import { useColors } from '../themed'
-import { useThemedStyleList } from '../themed/hooks'
-import { ColorThemeStructure } from '../themed/theme'
+import { IS_IOS } from '../../../lib/helpers/native/constants'
+import { themedPrimaryGradient } from '../../../styles/gradients'
+import Gradient from '../../../ui/gradients/Gradient'
+import { useColors } from '../../themed'
+import { useThemedStyleList } from '../../themed/hooks'
+import { ColorThemeStructure } from '../../themed/theme'
+import { InfoMessageScreenVariant } from '../types'
 import InfoMessageButtonBlock from './InfoMessageButtonBlock'
-import { InfoMessageScreenVariant } from './types'
 
 type InfoMessageContainerProps = {
   buttonLabel: string

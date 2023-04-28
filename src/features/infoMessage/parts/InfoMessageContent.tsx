@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import Span from '../../ui/Span'
-import { SVGImageProps } from '../../ui/images/_types'
-import { createThemedStyle } from '../themed'
-import { useThemedStyle, useThemedStyleList } from '../themed/hooks'
-import { InfoMessageScreenVariant } from './types'
+import Span from '../../../ui/Span'
+import { SVGImageProps } from '../../../ui/images/_types'
+import { createThemedStyle } from '../../themed'
+import { useThemedStyleList } from '../../themed/hooks'
+import { InfoMessageScreenVariant } from '../types'
 
 type InfoMessageLabelProps = {
   title: string
