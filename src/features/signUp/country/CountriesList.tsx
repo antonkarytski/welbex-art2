@@ -24,7 +24,7 @@ const CountriesList = () => {
 
   const renderCountryRow = useCallback(
     (item: Country) => <CountryRow item={item} style={styles.countryRow} />,
-    [styles.countryRow]
+    [styles]
   )
 
   return (
@@ -49,6 +49,9 @@ const countryRowThemedStyles = createThemedStyle((colors) =>
       fontFamily: FONT_MEDIUM,
       fontSize: 16,
       lineHeight: 19,
+    },
+    text: {
+      color: '#000',
     },
   })
 )
