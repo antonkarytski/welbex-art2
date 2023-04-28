@@ -27,10 +27,6 @@ export const getArtWorkRequest = attach({
   }),
 })
 
-getArtWorkRequest.fail.watch((e) => {
-  console.log(JSON.stringify(e))
-})
-
 export const downloadFullSizeDrawing = async (id: number) => {
   const request = await api.arts.downloadFullSizeDrawing.requestData(id)
   return downloadImageFromUrl(request.url, {

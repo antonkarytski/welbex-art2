@@ -12,7 +12,7 @@ const GalleryTabScreen = () => {
     <TabStackNavigator initialRoute={links.galleryMain}>
       <Stack.Screen name={links.galleryMain} component={GalleriesTabsScreen} />
       <Stack.Screen
-        name={links.galleryDrawingDetails}
+        name={links.artWorkDetails}
         component={ArtWorkDetailsScreen}
       />
     </TabStackNavigator>

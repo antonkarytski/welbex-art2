@@ -9,7 +9,33 @@ import {
 } from '../../api/parts/users/types.api'
 import { UserInitialData } from '../../api/parts/users/types.parts'
 import { USER_DOB_FORMAT } from '../../constants'
+import { getNumberPostfixWordDeclension } from '../../lib/helpers/numbers'
 import { LangStructure } from '../../translations/types'
+
+export function yearsOldToText(
+  age: number,
+  text: LangStructure,
+  abbreviated?: boolean
+) {
+  let abbreviatedText = text.yearsOldLessThenFiveAbbreviated
+  const singularText = abbreviated ? abbreviatedText : text.oneYearOld
+  const pluralText = abbreviated ? text.yearsOldAbbreviated : text.yearsOld
+  const pluralEndsWithOneText = abbreviated
+    ? abbreviatedText
+    : text.yearsOldEndsWithOne
+
+  const pluralLessThenFiveText = abbreviated
+    ? abbreviatedText
+    : text.yearsOldLessThenFive
+
+  return getNumberPostfixWordDeclension({
+    number: age,
+    singularText,
+    pluralText,
+    pluralLessThenFiveText,
+    pluralEndsWithOneText,
+  })
+}
 
 export function userName(
   user: Pick<UserInitialData, 'first_name' | 'last_name'>,
@@ -25,7 +51,11 @@ export function userName(
 
 export function ageCategory(item: WinnerItem, text: LangStructure) {
   const { age_category } = item
-  return `${age_category.min_age}-${age_category.max_age} ${text.yearsOldAbbreviated}`
+  return `${age_category.min_age}-${age_category.max_age} ${yearsOldToText(
+    age_category.max_age,
+    text,
+    true
+  )}`
 }
 
 export function userAge(user: Pick<UserInitialData, 'DOB'>) {

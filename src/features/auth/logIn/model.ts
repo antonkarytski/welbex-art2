@@ -23,6 +23,7 @@ export const handleLogin = ({ result }: { result: LoginResponse }) => {
   setIsLoginAccessError(false)
   apiManager.token.set(tokenResponseToTokens(result))
   meRequest().catch(noop)
+  setIsLoginAccessError(false)
 }
 
 const logInFormSchema: ObjectSchema<LogInForm> = yup.object().shape({
@@ -40,7 +41,6 @@ export const logIn = attach({
   }),
   effect: api.auth.login,
 })
-
 logIn.done.watch(handleLogin)
 
 api.auth.login.fail.watch(({ error }) => {

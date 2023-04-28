@@ -14,12 +14,13 @@ const SearchableMultiSelect = <DataItem,>({
 }: SearchableMultiSelectProps<DataItem>) => {
   return (
     <SearchableList model={searchModel} data={data} style={style}>
-      {(filteredData) => (
+      {(filteredData, SearchInput) => (
         <MultiSelect
           data={filteredData}
           style={style}
           preset={preset}
           model={model as StateModel<DataItem[]>}
+          ListHeaderComponent={SearchInput}
           {...props}
         />
       )}

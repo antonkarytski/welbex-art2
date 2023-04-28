@@ -9,6 +9,7 @@ import {
 } from '../../../styles/buttons'
 import { useText } from '../../../translations/hook'
 import PresetButton from '../../../ui/buttons/PresetButton'
+import { selectedCategoryModel } from '../../createPost/model.categorySelect'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
 
@@ -27,7 +28,8 @@ const CategoryDescription = ({ item }: CategoryDescriptionProps) => {
   })
 
   const onJoinCategory = () => {
-    navigate(links.createPostTab) // TODO:  переход createPostUploadImage с текущей категорией в пропсах
+    navigate(links.createPostTab)
+    selectedCategoryModel.set(item)
   }
 
   return (

@@ -25,11 +25,16 @@ export type SelectProps<T> = {
   labelExtractor?: StringExtractor<T>
   ItemSeparatorComponent?: React.ComponentType<any> | null
   ListFooterComponent?: React.ComponentType<any> | null
+  ListHeaderComponent?:
+    | React.ComponentType<any>
+    | React.ReactElement<any>
+    | null
   model: StateModel<T>
   style?: SelectStyles
   showSelectedIcon?: boolean
   preset?: PresetSelectItemStates
   onEndReached?: FlatListProps<T>['onEndReached']
+  stickyHeaderIndices?: FlatListProps<T>['stickyHeaderIndices']
 }
 
 type SearchableSelectSettings<T> = Omit<SelectProps<T>, 'model'> & {

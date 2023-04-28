@@ -12,7 +12,7 @@ import { IconProps } from '../icons/_types'
 
 type IconButtonProps = {
   Icon?: NodeFn<IconProps>
-  onPress: () => void
+  onPress?: () => void
   iconSize?: number
   style?: StyleProp<ViewStyle>
   labelStyle?: StyleProp<TextStyle>

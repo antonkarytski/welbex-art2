@@ -4,6 +4,7 @@ import { api } from '../../../api'
 import { prependEffect } from '../../../lib/helpers/effector'
 import { createFormModel } from '../../../lib/models/form'
 import { stringSchema } from '../../../lib/yup'
+import PopUpUnexpectedError from '../../popUp/PopUp.UnexpectedError'
 import PopUpRecoverPassword from '../../popUp/authPopUps/PopUp.RecoverPassword'
 
 type SendRecoverEmailForm = {
@@ -25,4 +26,8 @@ export const recoverPasswordFormModel = createFormModel(
 
 api.resetPassword.sendResetLink.done.watch(({ params }) => {
   PopUpRecoverPassword.showSync({ props: { email: params } })
+})
+
+api.resetPassword.sendResetLink.fail.watch(() => {
+  PopUpUnexpectedError.showSync()
 })

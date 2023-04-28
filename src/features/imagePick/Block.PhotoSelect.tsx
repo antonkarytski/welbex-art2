@@ -79,6 +79,7 @@ const themedStyles = createThemedStyle((colors) =>
     button: {
       borderWidth: 1,
       borderStyle: 'dashed',
+      borderColor: colors.textGrey,
     },
     description: {
       color: colors.text,

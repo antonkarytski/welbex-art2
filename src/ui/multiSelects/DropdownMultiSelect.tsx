@@ -24,7 +24,7 @@ function DropdownMultiSelect<Item>({
 
   const selectStyles = {
     item: itemStyles,
-    container: listStyles.container,
+    container: [listStyles.container],
     ...style?.select,
   }
 

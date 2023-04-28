@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { View } from 'react-native'
 import { ArtWork } from '../../api/parts/arts/types'
 import LikeButton from '../../ui/buttons/LikeButton'
@@ -12,6 +12,7 @@ type GalleryItemProps = {
   item: ArtWork
   style: GalleryItemStyles
   onPress?: (item: ArtWork) => void
+  onDoublePress?: (item: ArtWork) => void
   ageTextGenerator?: AgeTextGenerator
   onPressLikeButton: (item: ArtWork) => void
   colors: ColorThemeStructure
@@ -22,15 +23,23 @@ const GalleryItem = React.memo(
     item,
     style,
     onPress,
+    onDoublePress,
     ageTextGenerator,
     onPressLikeButton,
     colors,
   }: GalleryItemProps) => {
-    const handlePressLikeButton = () => onPressLikeButton(item)
+    const handleDoublePressLike = useCallback(() => {
+      onDoublePress?.(item)
+    }, [item, onDoublePress])
+
+    const handlePress = useCallback(() => {
+      onPress?.(item)
+    }, [item, onPress])
 
     return (
       <ImageCard
-        onPress={() => onPress?.(item)}
+        onPress={handlePress}
+        onDoublePress={handleDoublePressLike}
         style={style.container}
         imageHeight={240}
         image={{ uri: item.image_thumbnail }}
@@ -54,7 +63,7 @@ const GalleryItem = React.memo(
             color={colors.icon}
             active={item.is_liked}
             activeColor={colors.likesIcon}
-            onPress={handlePressLikeButton}
+            onPress={() => onPressLikeButton(item)}
           />
           <ShareButton
             style={style.shareButton}

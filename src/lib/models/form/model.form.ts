@@ -31,7 +31,12 @@ type SubmitSettings<P, R> = {
   request?: Effect<P, R>
 }
 
+type FieldSettings<T = any> = {
+  map?: (value: T) => T
+}
+
 export class FormModel<T extends Record<string, any>, R = any> {
+  private readonly fieldsSettings: Partial<Record<keyof T, FieldSettings>> = {}
   private readonly schema
   public readonly reset = createEvent<Event<any> | void>()
   public readonly setFieldEvent = createEvent<FieldPair<T, keyof T>>()
@@ -56,10 +61,13 @@ export class FormModel<T extends Record<string, any>, R = any> {
       ? schema.getDefault()
       : schema
     this.$store = createStore<T>(initialState)
-      .on(this.setFieldEvent, (store, { key, value }) => ({
-        ...store,
-        [key]: value,
-      }))
+      .on(this.setFieldEvent, (store, { key, value }) => {
+        const fieldMapper = this.fieldsSettings[key]?.map
+        return {
+          ...store,
+          [key]: fieldMapper ? fieldMapper(value) : value,
+        }
+      })
       .on(this.setSomeFields, (store, fields) => ({ ...store, ...fields }))
       .on(this.set, (_, payload) => payload)
       .on(this.reset, (_, payload) => {
@@ -80,6 +88,7 @@ export class FormModel<T extends Record<string, any>, R = any> {
     })
 
     this.validation = createValidator(schema, this.$store)
+    this.validation.reset(this.reset)
     if (settings) this.setUpSettings(settings)
 
     this.$store.watch(() => {
@@ -109,6 +118,24 @@ export class FormModel<T extends Record<string, any>, R = any> {
   public setSubmitSettings<Return>(settings: SubmitSettings<T, Return>) {
     this.setUpSettings(settings as SubmitSettings<T, any>)
     return this as any as FormModel<T, Return>
+  }
+
+  private getFieldSettings(name: keyof T) {
+    if (!this.fieldsSettings[name]) this.fieldsSettings[name] = {}
+    return this.fieldsSettings[name]!
+  }
+
+  public addFieldMap<K extends keyof T>(name: K, fn: (value: T[K]) => T[K]) {
+    const settings = this.getFieldSettings(name)
+    settings.map = fn
+    return this
+  }
+
+  public setFieldsSettings(
+    settings: Partial<{ [K in keyof T]: FieldSettings<T[K]> }>
+  ) {
+    Object.assign(this.fieldsSettings, settings)
+    return this
   }
 }
 

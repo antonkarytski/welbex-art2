@@ -27,4 +27,5 @@ export const createPostTabDescription = createTabScreenDescription({
   Component: CreatePostScreen,
   link: links.createPostTab,
   label: (t) => t.create,
+  unmountOnBlur: true,
 })

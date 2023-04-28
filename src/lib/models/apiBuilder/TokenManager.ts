@@ -1,4 +1,4 @@
-import { attach, createEffect, createEvent, createStore } from 'effector'
+import { attach, createEffect, createEvent, restore } from 'effector'
 import { addStorePersist, days, minutes } from 'altek-toolkit'
 import { getTokenStatus } from './helpers.token'
 import {
@@ -24,8 +24,9 @@ export class TokenManager {
   private _onInitResolve: TokenListener | null = null
 
   public readonly reset = createEvent()
+  public readonly setSaved = createEvent<TokenModel>()
   public readonly set = createEvent<Tokens>()
-  public readonly $store = createStore<TokenModel | null>(null)
+  public readonly $store = restore(this.setSaved, null)
     .on(this.set, (_, tokens) => ({ ...tokens, startTime: Date.now() }))
     .reset(this.reset)
 
@@ -46,7 +47,7 @@ export class TokenManager {
       saveTo: dbField,
     })
     this.persist.onInit((result) => {
-      if (result) this.set(result)
+      if (result) this.setSaved(result)
       const initProps = result ?? this.$store.getState() ?? null
       this._onInitResolve?.(initProps)
       this._onInit?.(initProps)

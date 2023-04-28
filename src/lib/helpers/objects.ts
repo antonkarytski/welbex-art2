@@ -2,6 +2,10 @@ export const isObject = (value: any) => {
   return typeof value === 'object' && value !== null && !Array.isArray(value)
 }
 
+export const isObjectEmpty = (object: object) => {
+  return Object.values(object).length === 0
+}
+
 export const isObjectFullfiled = (
   object: Record<string, string | number | any[] | null | undefined>
 ) => {

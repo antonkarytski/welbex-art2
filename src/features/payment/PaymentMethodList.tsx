@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react'
 import React, { useMemo } from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import { PlanDescriptor } from '../subscriptionPlans/types'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'

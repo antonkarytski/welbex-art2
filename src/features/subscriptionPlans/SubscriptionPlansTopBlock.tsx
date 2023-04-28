@@ -13,7 +13,7 @@ const SubscriptionPlansTopBlock = ({
   children,
 }: PropsWithChildren<SubscriptionPlansTopBlockProps>) => {
   const text = useText()
-  const { styles } = useThemedStyleList({
+  const { styles, colors } = useThemedStyleList({
     benefitsList: subscriptionBenefitsBlockThemedStyles,
     gradient: themedPrimaryGradient,
   })
@@ -26,7 +26,10 @@ const SubscriptionPlansTopBlock = ({
     >
       <View style={commonStyles.contentContainer}>
         {children}
-        <SubscriptionBenefitsBlock style={styles.benefitsList} />
+        <SubscriptionBenefitsBlock
+          style={styles.benefitsList}
+          iconColor={colors.whiteText}
+        />
       </View>
     </ScreenTopBlock>
   )

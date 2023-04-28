@@ -1,11 +1,10 @@
 import React, { useCallback } from 'react'
-import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native'
+import { FlatList, ListRenderItem, View } from 'react-native'
 import { useStateStore } from 'altek-toolkit'
-import Row from '../Row'
-import TextButton from '../buttons/Button.Text'
 import ListItemSeparator from '../lists/ListItemSeparator'
 import SelectItem from '../selects/selectItem/SelectItem'
 import { selectStyles } from '../selects/styles'
+import SelectAllButtons from './SelectAllButtons'
 import { MultiSelectProps } from './types'
 
 const MultiSelect = <Item,>({
@@ -17,6 +16,7 @@ const MultiSelect = <Item,>({
   ItemSeparatorComponent,
   showSelectedIcon,
   ListFooterComponent,
+  ListHeaderComponent,
   labelExtractor,
   preset,
   onEndReached,
@@ -74,28 +74,24 @@ const MultiSelect = <Item,>({
 
   return (
     <View style={[selectStyles.container, style?.container]}>
-      {showSelectAllButtons && (
-        <Row style={styles.row}>
-          <TextButton
-            label={selectAllLabel}
-            onPress={onSelectAll}
-            style={{
-              button: [styles.button, styles.leftButton],
-              label: styles.buttonLabel,
-            }}
-          />
-          <TextButton
-            label={removeAllLabel}
-            onPress={onRemoveAll}
-            style={{
-              button: [styles.button],
-              label: styles.buttonLabel,
-            }}
-          />
-        </Row>
-      )}
       <FlatList
         data={data}
+        ListHeaderComponent={
+          <>
+            {ListHeaderComponent}
+            {showSelectAllButtons && (
+              <SelectAllButtons
+                selectAllLabel={selectAllLabel}
+                onSelectAll={onSelectAll}
+                onRemoveAll={onRemoveAll}
+                removeAllLabel={removeAllLabel}
+              />
+            )}
+          </>
+        }
+        stickyHeaderIndices={
+          ListHeaderComponent || showSelectAllButtons ? [0] : undefined
+        }
         renderItem={renderSelectItem}
         keyExtractor={idExtractor}
         ItemSeparatorComponent={
@@ -107,20 +103,5 @@ const MultiSelect = <Item,>({
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  row: {
-    paddingHorizontal: 20,
-  },
-  button: {
-    paddingVertical: 12,
-  },
-  leftButton: {
-    marginRight: 40,
-  },
-  buttonLabel: {
-    color: '#616868',
-  },
-})
 
 export default MultiSelect

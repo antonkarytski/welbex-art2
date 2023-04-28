@@ -10,15 +10,6 @@ import {
   setCategoryArtsSearchString,
 } from './model'
 
-export const getCategoryData = (categoryId: number) => {
-  return Promise.all([
-    categoryDetailsModel.get(categoryId),
-    categoryArtsModel.get({
-      category_ids: categoryId,
-    }),
-  ])
-}
-
 type RequestCategoryDataProps = {
   categoryId: number
   searchString: string
@@ -71,3 +62,19 @@ sample({
     props.categoryId !== null,
   target: searchCategoryArtsFx,
 })
+
+const getCategoryArts = attach({
+  source: $categoryArtsSearchString,
+  mapParams: (categoryId: number, searchString: string) => ({
+    categoryId,
+    searchString,
+  }),
+  effect: searchCategoryArtsFx,
+})
+
+export const getCategoryData = (categoryId: number) => {
+  return Promise.all([
+    categoryDetailsModel.get(categoryId),
+    getCategoryArts(categoryId),
+  ])
+}

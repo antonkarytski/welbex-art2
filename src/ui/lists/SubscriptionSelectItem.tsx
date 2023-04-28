@@ -6,6 +6,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
+import { FONT_SEMI_BOLD } from '../../styles/fonts'
 import Span from '../Span'
 
 export type SubscriptionSelectItemStyles = {
@@ -77,11 +78,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#347B81',
     alignItems: 'center',
     paddingVertical: 6,
+    paddingHorizontal: 8,
     borderRadius: 20,
     top: '-50%',
   },
   promotionText: {
     color: 'white',
+    textAlign: 'center',
+    fontSize: 12,
+    fontFamily: FONT_SEMI_BOLD,
   },
   contentContainer: {
     paddingHorizontal: 25,

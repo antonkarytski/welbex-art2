@@ -2,7 +2,7 @@
   "name": "art2",
   "displayName": "art2",
   "react-native-google-mobile-ads": {
-    "android_app_id": "ca-app-pub-xxxxxxxx~xxxxxxxx",
+    "android_app_id": "ca-app-pub-1405242860258153~8749306640",
     "ios_app_id": "ca-app-pub-1405242860258153~6848502818",
     "user_tracking_usage_description": "This identifier will be used to deliver personalized ads to you."
   }

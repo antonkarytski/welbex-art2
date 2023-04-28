@@ -1,4 +1,5 @@
 import {
+  AdEventType,
   RewardedAd,
   RewardedAdEventType,
   RewardedAdReward,
@@ -17,6 +18,7 @@ export class AdsController {
   public readonly show = () => {
     return new Promise<RewardedAdReward>((resolve) => {
       if (!this.ads.loaded) {
+        this.ads.load()
         const removeListener = this.ads.addAdEventListener(
           RewardedAdEventType.LOADED,
           () => {
@@ -24,10 +26,10 @@ export class AdsController {
             removeListener()
           }
         )
+
         return
       }
 
-      this.ads.show()
       const removeFinishListener = this.ads.addAdEventListener(
         RewardedAdEventType.EARNED_REWARD,
         (e) => {
@@ -35,6 +37,7 @@ export class AdsController {
           removeFinishListener()
         }
       )
+      this.ads.show()
     })
   }
 }

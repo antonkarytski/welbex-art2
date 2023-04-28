@@ -46,7 +46,7 @@ export type PaginationListModelResponse<R, P> = {
   $isNextLoading: Store<boolean>
   setItems: Event<R[]>
   reset: () => void
-  updateItem: Effect<R, R[], Error>
+  updateItem: Effect<Partial<R>, R[], Error>
   refresh: Request<R, P>
   refreshSync: (props: P) => void
   $isRefreshing: Store<boolean>

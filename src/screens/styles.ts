@@ -8,10 +8,12 @@ const PADDING_BOTTOM = Platform.select({
   default: PADDING_BOTTOM_ANDROID,
 })
 
+export const MAIN_BOTTOM_TAB_BAR_HEIGHT = 75 + PADDING_BOTTOM
+
 export const mainTabBarThemedStyles = createThemedStyle((colors) =>
   StyleSheet.create<MainTabBarStyles>({
     tabBar: {
-      height: 75 + PADDING_BOTTOM,
+      height: MAIN_BOTTOM_TAB_BAR_HEIGHT,
       paddingBottom: PADDING_BOTTOM,
       justifyContent: 'flex-end',
       alignItems: 'center',

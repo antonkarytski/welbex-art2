@@ -31,8 +31,8 @@ const NewPasswordScreen = (
 
   const onLogin = async () => {
     try {
-      await newPasswordModel.validation.cast()
-      await sendNewPassword(props.route.params.token)
+      const { isValid } = await newPasswordModel.validation.cast()
+      if (isValid) await sendNewPassword(props.route.params.token)
     } catch {}
   }
 

@@ -1,4 +1,5 @@
 import moment from 'moment'
+import 'moment/locale/ru'
 
 export function getDayOffset(date: number) {
   const today = Number(moment().format('DD'))
@@ -76,13 +77,14 @@ export function getMonthPeriodString(
   language: string = 'en',
   format: string = 'YYYY-MM-DD'
 ) {
-  const monthsNames = moment().locale(language).localeData().months()
+  const momentLanguage = moment().locale(language?.toLowerCase() || 'en')
+  const monthsNames = momentLanguage.localeData().months()
   const startDate = moment(dateStart, format)
   const endDate = moment(dateEnd, format)
   const startDay = startDate.date()
-  const startMonth = monthsNames[startDate.month()]
+  const startMonth = monthToGenitive(monthsNames[startDate.month()], language)
   const endDay = endDate.date()
-  const endMonth = monthsNames[endDate.month()]
+  const endMonth = monthToGenitive(monthsNames[endDate.month()], language)
   const startDateString =
     startMonth === endMonth ? startDay : `${startDay} ${startMonth}`
   return `${startDateString} - ${endDay} ${endMonth}`
@@ -97,4 +99,14 @@ export const dateObjectToString = (
   format: string = 'YYYY-MM-DD'
 ) => {
   return moment(date.valueOf()).format(format)
+}
+
+export function monthToGenitive(month: string, language: string) {
+  if (language.toLowerCase() === 'ru') {
+    if (month.endsWith('ь') || month.endsWith('й')) {
+      return month.slice(0, -1) + 'я'
+    }
+    return month + 'a'
+  }
+  return month
 }

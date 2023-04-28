@@ -92,6 +92,7 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
         width={carouselWidth}
         vertical={false}
         ref={carouselRef}
+        style={styles.carousel}
       />
       <View style={styles.sliderControlsWrapper}>
         <Pagination
@@ -122,6 +123,9 @@ const OnboardingSlider = ({ style }: OnboardingSliderProps) => {
 }
 
 const styles = StyleSheet.create({
+  carousel: {
+    marginBottom: 16,
+  },
   wrapper: {
     marginBottom: 8,
   },

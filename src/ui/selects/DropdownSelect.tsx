@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { StyleSheet } from 'react-native'
 import { StateModel, useStateStore } from 'altek-toolkit'
 import DropdownTab from '../dropdownTab'
+import { DropdownTabInstance } from '../dropdownTab/DropdownTab'
 import SearchableSelect from './SearchableSelect'
 import Select from './Select'
 import { DropdownSelectProps } from './types'
@@ -18,11 +19,16 @@ function DropdownSelect<Item>({
   model,
   ...props
 }: DropdownSelectProps<Item>) {
-  const [selectedItem] = useStateStore(model)
+  const [selectedItem, setSelectedItem] = useStateStore(model)
+  const dropdownTabRef = useRef<DropdownTabInstance>(null)
+
+  setSelectedItem.watch(() => {
+    dropdownTabRef.current?.close()
+  })
 
   const selectStyles = {
     item: itemStyles,
-    container: listStyles.container,
+    container: [listStyles.container],
     ...style?.select,
   }
 
@@ -39,6 +45,7 @@ function DropdownSelect<Item>({
       style={style?.dropdownTab}
       preset={preset?.dropdownTab}
       onOpenDropdown={onOpenDropdown}
+      ref={dropdownTabRef}
     >
       {searchModel ? (
         <SearchableSelect

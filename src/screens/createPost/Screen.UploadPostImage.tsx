@@ -1,15 +1,19 @@
 import { useStore } from 'effector-react'
 import { ImagePickerAsset } from 'expo-image-picker'
+import * as ScreenOrientation from 'expo-screen-orientation'
 import React, { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
+import { $isAuth } from '../../features/auth/model'
 import PhotoSelectBlock, {
   CAMERA_SOURCE_PRESET,
 } from '../../features/imagePick/Block.PhotoSelect'
 import UploadFromCameraRollBlock from '../../features/imagePick/Block.UploadFromCameraRoll'
 import PopUpAgeError from '../../features/popUp/PopUp.AgeError'
+import PopUpLogin from '../../features/popUp/profilePopUps/PopUp.Login'
 import { $myProfile } from '../../features/profile/model'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
+import { userAge } from '../../features/user/helpers'
 import { useNavigate } from '../../navigation'
 import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
 import { links } from '../../navigation/links'
@@ -30,16 +34,30 @@ export default function UploadPostImageScreen({
     gradient: themedPrimaryGradient,
   })
 
+  const isAuth = useStore($isAuth)
   const myProfile = useStore($myProfile)
 
   useEffect(() => {
-    navigation.addListener('focus', () => {
-      if (!myProfile?.is_child) {
+    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP)
+  }, [])
+
+  useEffect(() => {
+    const onFocus = () => {
+      if (!isAuth) {
+        PopUpLogin.showSync()
+        navigation.goBack()
+      }
+
+      if (isAuth && (!myProfile?.is_child || userAge(myProfile) < 2)) {
         PopUpAgeError.showSync()
         navigation.goBack()
       }
-    })
-  }, [navigation, myProfile])
+    }
+    navigation.addListener('focus', onFocus)
+    return () => {
+      navigation.removeListener('focus', onFocus)
+    }
+  }, [navigation, myProfile, isAuth])
 
   const onImagePick = (assets: ImagePickerAsset[]) => {
     navigate(links.createPostAddDescription, { assets, category })
