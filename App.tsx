@@ -10,13 +10,12 @@ import { useCachedResources } from './src/lib/appInit/hook.cachedResources'
 import { useLinkingSetUp } from './src/navigation/linking/hook'
 import { linkingConfig } from './src/navigation/linking/linkingRouter'
 import Router from './src/screens/Router'
-import AppLoadingScreen from './src/ui/loaders/AppLoadingScreen'
 
 export default function App() {
   const isLoaded = useCachedResources()
   useLinkingSetUp()
 
-  if (!isLoaded) return <AppLoadingScreen /> // null TODO: splash screen
+  if (!isLoaded) return null
   return (
     <GestureHandlerRootView style={styles.container}>
       <NativeBaseProvider>

@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons'
 import { loadAsync } from 'expo-font'
+import * as SplashScreen from 'expo-splash-screen'
 import { useEffect, useState } from 'react'
 import { apiManager } from '../../api/apiManager'
 import { cameraPermission } from '../../features/camera/model.permissions'
@@ -24,6 +25,8 @@ async function loadResourcesAndData() {
   })
 }
 
+SplashScreen.preventAutoHideAsync().catch(noop)
+
 export function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = useState(false)
 
@@ -43,6 +46,12 @@ export function useCachedResources() {
         setLoadingComplete(true)
       })
   }, [])
+
+  useEffect(() => {
+    if (isLoadingComplete) {
+      SplashScreen.hideAsync()
+    }
+  }, [isLoadingComplete])
 
   return isLoadingComplete
 }
