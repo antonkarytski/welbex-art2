@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import React from 'react'
 import { useTheme } from '../features/themed/hooks'
-import CustomBottomTab from '../navigation/elements/MainBottomTabBar'
+import MainBottomTabBar from '../navigation/elements/MainBottomTabBar'
 import { links } from '../navigation/links'
 import { ScreenDescriptor } from '../navigation/types'
 import { useText } from '../translations/hook'
@@ -31,7 +31,7 @@ const MainTabsRouter = React.memo(() => {
       }}
       initialRouteName={links.homeTab}
       tabBar={({ ...props }) => (
-        <CustomBottomTab {...props} colors={colors} style={styles} />
+        <MainBottomTabBar {...props} colors={colors} style={styles} />
       )}
       backBehavior={'order'}
     >

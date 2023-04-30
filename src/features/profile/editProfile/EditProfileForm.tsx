@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { KeyboardAvoidingView, StyleSheet } from 'react-native'
-import { IS_IOS } from '../../../lib/helpers/native/constants'
+import { StyleSheet, View } from 'react-native'
+import { noop } from '../../../lib/helpers'
 import {
   buttonLightThemedPreset,
   buttonPrimaryThemedPreset,
@@ -33,7 +33,7 @@ const EditProfileForm = () => {
   })
 
   useEffect(() => {
-    setEditProfileFormData()
+    setEditProfileFormData().catch(noop)
   }, [])
 
   const onSaveChanges = () => {
@@ -43,51 +43,45 @@ const EditProfileForm = () => {
   const fieldStyles = { container: styles.common.formItem, ...styles.field }
 
   return (
-    <>
-      <KeyboardAvoidingView
-        behavior={IS_IOS ? 'padding' : undefined}
-        style={styles.common.fieldsWrapper}
-      >
-        <EditAvatarBlock />
-        {editProfileFormModel.mapKeys((name) => {
-          if (name === 'birthDate') {
-            return (
-              <DateField
-                key={name}
-                label={t.birthDate}
-                displayDefaultDate
-                formModel={editProfileFormModel}
-                name={name}
-                style={fieldStyles}
-                validateOnBlur
-                maximumDate={new Date()}
-              />
-            )
-          }
+    <View style={styles.common.fieldsWrapper}>
+      <EditAvatarBlock />
+      {editProfileFormModel.mapKeys((name) => {
+        if (name === 'birthDate') {
           return (
-            <Field
+            <DateField
+              offValidation
               key={name}
-              label={t[name]}
-              validateOnBlur
-              placeholder={t[name]}
+              label={t.birthDate}
+              displayDefaultDate
               formModel={editProfileFormModel}
               name={name}
               style={fieldStyles}
-              type={'default'}
+              validateOnBlur
+              maximumDate={new Date()}
             />
           )
-        })}
-        <CountriesDropdownSelect {...editProfileCountryModel} />
-        <ChildDocumentUploadingBlock
-          style={styles.common.uploadDocumentsBlock}
-        />
-      </KeyboardAvoidingView>
+        }
+        return (
+          <Field
+            key={name}
+            label={t[name]}
+            validateOnBlur
+            placeholder={t[name]}
+            formModel={editProfileFormModel}
+            name={name}
+            style={fieldStyles}
+            type={'default'}
+          />
+        )
+      })}
+      <CountriesDropdownSelect {...editProfileCountryModel} />
+      <ChildDocumentUploadingBlock style={styles.common.uploadDocumentsBlock} />
       <PresetButton
         label={t.save}
         onPress={onSaveChanges}
         preset={styles.buttonPrimary}
       />
-    </>
+    </View>
   )
 }
 

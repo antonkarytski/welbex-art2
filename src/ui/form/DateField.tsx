@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   useFieldValidation,
   useSpecificTypeFormField,
-} from '../../lib/models/form/hooks'
+} from '../../lib/models/form'
 import DateInput from '../DateInput'
 import { FieldProps } from './_types'
 
@@ -10,6 +10,7 @@ type DateFieldProps = {
   placeholder?: string
   maximumDate?: Date
   displayDefaultDate?: boolean
+  offValidation?: boolean
 }
 
 const DateField = <T extends Record<string, any>, N extends keyof T>({
@@ -17,17 +18,27 @@ const DateField = <T extends Record<string, any>, N extends keyof T>({
   formModel,
   validateOnBlur,
   displayDefaultDate,
+  offValidation,
   ...props
 }: FieldProps<T, N, Date> & DateFieldProps) => {
+  const [isSelected, setIsSelected] = useState(false)
   const [value, setValue] = useSpecificTypeFormField<T, Date>(formModel, name)
   const validation = useFieldValidation(formModel, name)
 
   return (
     <DateInput
-      isValid={validation?.isValid}
+      wasSelected={isSelected}
+      isValid={
+        validation?.isValid === null || offValidation
+          ? null
+          : validation?.isValid && isSelected
+      }
       date={value}
       defaultDate={displayDefaultDate ? value : undefined}
-      onChange={setValue}
+      onChange={(date) => {
+        setIsSelected(!!date)
+        setValue(date)
+      }}
       onBlur={() => {
         if (!validateOnBlur) return
         if (!value) return formModel.validation.resetField(name)

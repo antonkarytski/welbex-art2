@@ -1,28 +1,4 @@
-import { nanoid } from 'nanoid'
-import { FnExt, OrArray, WithUniq } from '../../types'
-
-export function generateNumbersArray(min: number, max: number, step: number) {
-  const length = Math.floor((max - min) / step) + 1
-  return Array.from({ length }, (_, index) => {
-    return Math.round((index * step + min) * 100) / 100
-  })
-}
-
-export function generateMultistepArray(
-  steps: { min: number; max: number; step: number }[]
-) {
-  return steps.reduce((acc, { min, max, step }) => {
-    const stepArray = generateNumbersArray(min, max, step)
-    return [...acc, ...stepArray]
-  }, [] as number[])
-}
-
-export function addUniqFields<I extends object>(messages: I[]): WithUniq<I>[] {
-  return messages.map((message) => ({
-    ...message,
-    uniqId: nanoid(),
-  }))
-}
+import { FnExt, OrArray } from '../../types'
 
 export function toArray<T>(val: OrArray<T> | undefined): T[] {
   if (!val) return []

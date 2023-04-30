@@ -1,4 +1,7 @@
 import { Effect, attach, createEffect } from 'effector'
+import { openBrowserAsync } from 'expo-web-browser'
+import { PRIVACY_POLICY_LINK, USER_AGREEMENT_LINK } from '../../constants/app'
+import { noop } from '../../lib/helpers'
 import { $isAuth } from './model'
 
 export const createAuthSeparatedRequest = <P, R>(
@@ -15,3 +18,10 @@ export const createAuthSeparatedRequest = <P, R>(
       }
     ),
   })
+
+export const openUserAgreement = () => {
+  openBrowserAsync(USER_AGREEMENT_LINK).catch(noop)
+}
+export const openPrivacyPolicy = () => {
+  openBrowserAsync(PRIVACY_POLICY_LINK).catch(noop)
+}

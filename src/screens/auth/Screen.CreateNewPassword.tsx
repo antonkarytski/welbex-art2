@@ -1,6 +1,7 @@
 import { useStore } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
+import { usePasswordsError } from '../../features/auth/password/hooks'
 import {
   newPasswordModel,
   sendNewPassword,
@@ -28,11 +29,15 @@ const NewPasswordScreen = (
   })
 
   const passwords = useStore(newPasswordModel.$store)
+  const [passwordsError, updatePasswordsError] = usePasswordsError()
 
   const onLogin = async () => {
     try {
-      const { isValid } = await newPasswordModel.validation.cast()
-      if (isValid) await sendNewPassword(props.route.params.token)
+      const validation = await newPasswordModel.validation.cast()
+      if (validation.isValid) {
+        return await sendNewPassword(props.route.params.token)
+      }
+      updatePasswordsError(validation.list)
     } catch {}
   }
 
@@ -53,7 +58,7 @@ const NewPasswordScreen = (
           repeatPasswordPlaceholder={t.repeatPassword}
           model={newPasswordModel}
           validLabel={t.checkPasswordMatchSuccess}
-          invalidLabel={t.checkPasswordMatchError}
+          invalidLabel={passwordsError}
         />
       </KeyboardAvoidingView>
       <PresetButton

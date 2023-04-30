@@ -97,6 +97,7 @@ const followButtonStyles = StyleSheet.create({
   },
   container: {
     marginLeft: 'auto',
+    marginBottom: 0,
   },
 })
 

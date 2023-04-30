@@ -1,9 +1,14 @@
+import { useFocusEffect } from '@react-navigation/native'
 import { useStore } from 'effector-react'
-import React, { useState } from 'react'
+import React from 'react'
 import { $isAuth } from '../../features/auth/model'
 import UnauthorizedProfile from '../../features/profile/UnauthorizedProfile'
 import { $myProfile } from '../../features/profile/model'
-import { meRequest } from '../../features/profile/request'
+import {
+  meRequest,
+  refreshProfile,
+  refreshProfileLimited,
+} from '../../features/profile/request'
 import UserProfile from '../../features/user/UserProfile'
 import {
   commonDrawingsListTabs,
@@ -14,6 +19,7 @@ import {
   createUserArtsTabMenuNavigationModel,
 } from '../../features/user/drawingsList/model.layout'
 import { createUserArtsListsRequestModel } from '../../features/user/drawingsList/request'
+import { noop } from '../../lib/helpers'
 import UserScreenSkeleton from '../../ui/loaders/Skeleton.UserScreen'
 
 const profileTabMenuNavigationModel = createUserArtsTabMenuNavigationModel()
@@ -24,14 +30,9 @@ const ProfileScreen = () => {
   const isAuth = useStore($isAuth)
   const myProfile = useStore($myProfile)
   const isLoading = useStore(meRequest.pending)
-  const [isRefreshing, setIsRefreshing] = useState(false)
+  const isRefreshing = useStore(refreshProfile.pending)
 
-  const onRefreshProfile = () => {
-    setIsRefreshing(true)
-    meRequest().finally(() => {
-      setIsRefreshing(false)
-    })
-  }
+  useFocusEffect(refreshProfileLimited)
 
   if (!isAuth) return <UnauthorizedProfile />
   if (isLoading && !isRefreshing) return <UserScreenSkeleton />
@@ -43,7 +44,7 @@ const ProfileScreen = () => {
       tabs={
         myProfile.is_child ? profileDrawingsListTabs : commonDrawingsListTabs
       }
-      onRefreshUser={onRefreshProfile}
+      onRefreshUser={() => refreshProfile().catch(noop)}
       artsTabMenuNavigationModel={profileTabMenuNavigationModel}
       artsListsRequestModel={profileArtsListRequestModel}
       artsListsHeightModel={profileArtsListsHeightModel}

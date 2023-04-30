@@ -1,5 +1,5 @@
 import { combine } from 'effector'
-import { PasswordsFormModel } from '../../lib/models/passwordsForm/model'
+import { PasswordsFormModel } from '../../lib/models/passwordsForm/types'
 import { Country } from '../countries'
 import { signUpCountryModel } from './country/model'
 import { signUpPasswordsFormModel } from './model.passwords'

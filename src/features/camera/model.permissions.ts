@@ -1,9 +1,9 @@
-import { Camera } from 'react-native-vision-camera'
-import { createPermissionModel } from '../../lib/permissions/model'
+import { PERMISSIONS } from 'react-native-permissions'
+import { IS_IOS } from '../../lib/helpers/native/constants'
+import { createNativePermissionModel } from '../../lib/permissions/nativePermissions'
 
-export const cameraPermission = createPermissionModel({
-  check: Camera.getCameraPermissionStatus,
-  request: Camera.requestCameraPermission,
-  initialStatus: 'not-determined',
-  grantedStatus: 'authorized',
-})
+const name = IS_IOS ? PERMISSIONS.IOS.CAMERA : PERMISSIONS.ANDROID.CAMERA
+export const cameraPermission = createNativePermissionModel(name, (t) => ({
+  title: t.cameraPermissionTitle,
+  message: t.cameraPermissionMessage,
+}))
