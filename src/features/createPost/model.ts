@@ -41,6 +41,5 @@ export const createPostFormModel = createFormModel(schema).setSubmitSettings({
 })
 
 createPostFormModel.submit.done.watch(({ result }) => {
-  console.log(result)
   if (!result) return
 })
