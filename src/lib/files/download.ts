@@ -38,8 +38,9 @@ const endDownloading = Platform.select({
     await fs.mkdir(SAVE_DIR, {
       NSURLIsExcludedFromBackupKey: true,
     })
-    await fs.copyFile(file, `${SAVE_DIR}/${getNameFromUrl(file)}`)
-    await fs.scanFile(`${SAVE_DIR}/${getNameFromUrl(file)}`)
+    const fileName = getNameFromUrl(file)
+    await fs.copyFile(file, `${SAVE_DIR}/${fileName}`)
+    await fs.scanFile(`${SAVE_DIR}/${fileName}`)
   },
 })
 
@@ -52,7 +53,6 @@ export async function downloadImageFromUrl(
     if (!isGranted) return
   }
   const file = getFilePath(getNameFromUrl(url) || name)
-  console.log(file, url)
   await fs.downloadFile({ fromUrl: url, toFile: file, headers }).promise
   return await endDownloading(file)
 }

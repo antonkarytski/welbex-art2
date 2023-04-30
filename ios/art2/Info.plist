@@ -72,13 +72,13 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>NSPhotoLibraryUsageDescription</string>
 	<key>NSUserTrackingUsageDescription</key>
-    <string>NSUserTrackingUsageDescription</string>
-    <key>NSLocalNetworkUsageDescription</key>
-    <string>NSLocalNetworkUsageDescription</string>
+	<string>NSUserTrackingUsageDescription</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>NSLocalNetworkUsageDescription</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen.storyboard</string>
+	<string>SplashScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

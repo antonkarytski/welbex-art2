@@ -9,6 +9,7 @@ import { meRequest } from '../../features/profile/request'
 import * as FONTS from '../../styles/fonts'
 import { configMobileAds } from '../ads/setup'
 import { noop } from '../helpers'
+import { IS_IOS } from '../helpers/native/constants'
 
 async function loadResourcesAndData() {
   const Inter400 = require('../../../assets/fonts/Inter/Inter-Regular.ttf')
@@ -26,6 +27,11 @@ async function loadResourcesAndData() {
 }
 
 SplashScreen.preventAutoHideAsync().catch(noop)
+const showSplashScreen = (delay = IS_IOS ? 500 : 0) => {
+  setTimeout(() => {
+    SplashScreen.hideAsync().catch(noop)
+  }, delay)
+}
 
 export function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = useState(false)
@@ -37,20 +43,18 @@ export function useCachedResources() {
       loadResourcesAndData(),
       onBoardingWasShownModel.init(),
     ])
+      .finally(() => {
+        setLoadingComplete(true)
+      })
       .then(() => apiManager.token.onInit().promise)
       .then((token) => {
         if (token) return meRequest()
       })
       .catch(noop)
-      .finally(() => {
-        setLoadingComplete(true)
-      })
   }, [])
 
   useEffect(() => {
-    if (isLoadingComplete) {
-      SplashScreen.hideAsync()
-    }
+    if (isLoadingComplete) showSplashScreen()
   }, [isLoadingComplete])
 
   return isLoadingComplete
