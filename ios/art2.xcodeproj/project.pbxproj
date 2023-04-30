@@ -229,6 +229,7 @@
 				05F9B500EA19B81E52EA8DA1 /* [CP] Embed Pods Frameworks */,
 				7EE7A525A812D4CB2B4034D9 /* [CP] Copy Pods Resources */,
 				378C8F292CAF34BDCDBA891A /* [CP-User] [RNGoogleMobileAds] Configuration */,
+				16C4CF62967744CAA92E8D10 /* Upload Debug Symbols to Sentry */,
 			);
 			buildRules = (
 			);
@@ -311,7 +312,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport EXTRA_PACKAGER_ARGS=\"--sourcemap-output $DERIVED_FILE_DIR/main.jsbundle.map\"\nset -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT \\\"../node_modules/@sentry/cli/bin/sentry-cli react-native xcode $REACT_NATIVE_XCODE\\\"\"\n\n/bin/sh ../node_modules/@sentry/react-native/scripts/collect-modules.sh\n";
 		};
 		05F9B500EA19B81E52EA8DA1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -329,6 +330,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-art2/Pods-art2-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		16C4CF62967744CAA92E8D10 /* Upload Debug Symbols to Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload Debug Symbols to Sentry";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\nexport SENTRY_PROPERTIES=sentry.properties\n[[ $SENTRY_INCLUDE_NATIVE_SOURCES == \"true\" ]] && INCLUDE_SOURCES_FLAG=\"--include-sources\" || INCLUDE_SOURCES_FLAG=\"\"\n../node_modules/@sentry/cli/bin/sentry-cli debug-files upload \"$INCLUDE_SOURCES_FLAG\" \"$DWARF_DSYM_FOLDER_PATH\"\n";
 		};
 		1D2D47E262A1A0D6A1652F99 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
