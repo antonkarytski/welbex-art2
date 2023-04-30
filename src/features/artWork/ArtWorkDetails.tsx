@@ -61,11 +61,13 @@ const ArtWorkDetails = React.memo(() => {
         onPressLike={toggleLike}
         onPressSave={save}
       />
-      <DownloadImageButton
-        style={styles.downloadButton}
-        label={text.download}
-        artWork={artWork}
-      />
+      {!!myProfile?.subscription && (
+        <DownloadImageButton
+          style={styles.downloadButton}
+          label={text.download}
+          artWork={artWork}
+        />
+      )}
     </ScrollView>
   )
 })
