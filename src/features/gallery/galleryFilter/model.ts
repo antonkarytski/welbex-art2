@@ -8,36 +8,41 @@ import { AgeCategory } from '../../filters/ages'
 import { $activeGallery } from '../model'
 import { countFilteredGalleryModel, galleriesModeProp } from './request'
 
-export const categoriesModel = createStateModel<CategoryResponse[]>([])
-export const agesCategoriesModel = createStateModel<AgeCategory[]>([])
-export const countriesModel = createCountriesListModel()
-export const drawingNameModel = createStateModel('')
+export const categoriesFilterModel = createStateModel<CategoryResponse[]>([])
+export const agesCategoriesFilterModel = createStateModel<AgeCategory[]>([])
+export const countriesFilterModel = createCountriesListModel()
+export const drawingNameFilterModel = createStateModel('')
+export const onlyWinnersFilterModel = createStateModel(false)
 
 export const resetGalleryFilter = () => {
-  categoriesModel.reset()
-  countriesModel.reset()
-  drawingNameModel.reset()
-  agesCategoriesModel.reset()
+  categoriesFilterModel.reset()
+  countriesFilterModel.reset()
+  drawingNameFilterModel.reset()
+  agesCategoriesFilterModel.reset()
+  onlyWinnersFilterModel.reset()
 }
 
 export const $galleryFilterProps = combine(
   {
-    categories: categoriesModel.$state,
-    countries: countriesModel.$state,
-    drawingName: drawingNameModel.$state,
-    ageCategories: agesCategoriesModel.$state,
+    categories: categoriesFilterModel.$state,
+    countries: countriesFilterModel.$state,
+    drawingName: drawingNameFilterModel.$state,
+    ageCategories: agesCategoriesFilterModel.$state,
+    onlyWinners: onlyWinnersFilterModel.$state,
   },
   ({
     categories,
     countries,
     drawingName,
     ageCategories,
+    onlyWinners,
   }): ArtWorksFilterProps => {
     return {
       category_ids: categories.map(({ id }) => id),
       countries: countries.map(({ alpha2Code }) => alpha2Code),
       title: drawingName,
       age_categories_ids: ageCategories.map(({ id }) => id),
+      only_winners: onlyWinners,
     }
   }
 )

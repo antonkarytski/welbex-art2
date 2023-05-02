@@ -3,7 +3,7 @@ import { useStateStore } from 'altek-toolkit'
 import { useText } from '../../translations/hook'
 import Input from '../../ui/input'
 import { InputStyles } from '../../ui/input/types'
-import { drawingNameModel } from '../gallery/galleryFilter/model'
+import { drawingNameFilterModel } from '../gallery/galleryFilter/model'
 
 type DrawingNameFilterProps = {
   styles?: InputStyles
@@ -11,7 +11,7 @@ type DrawingNameFilterProps = {
 
 const DrawingNameFilter = ({ styles }: DrawingNameFilterProps) => {
   const t = useText()
-  const [drawingName, setDrawingName] = useStateStore(drawingNameModel)
+  const [drawingName, setDrawingName] = useStateStore(drawingNameFilterModel)
 
   return (
     <Input
