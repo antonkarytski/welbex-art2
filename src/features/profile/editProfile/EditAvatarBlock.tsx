@@ -5,6 +5,7 @@ import { StyleSheet } from 'react-native'
 import Avatar from '../../../ui/Avatar'
 import IconButton from '../../../ui/buttons/IconButton'
 import PlusIcon from '../../../ui/icons/Icon.Plus'
+import { runCropper } from '../../imagePick/imageCropper/model'
 import PhotoEditPopUp from '../../popUp/PopUp.PhotoEditActionSelect'
 import DeleteAvatarPopUp from '../../popUp/profilePopUps/PopUp.DeleteAvatar'
 import { createThemedStyle } from '../../themed'
@@ -17,7 +18,9 @@ const EditAvatarBlock = () => {
   const myProfile = useStore($myProfile)
   const newAvatar = useStore(avatarModel.$state)
 
-  const onPickPhoto = (assets: ImagePickerAsset[]) => {
+  const onPickPhoto = async (assets: ImagePickerAsset[]) => {
+    const cropResult = await runCropper(assets)
+    if (!cropResult) return
     setAvatar(assets)
   }
 

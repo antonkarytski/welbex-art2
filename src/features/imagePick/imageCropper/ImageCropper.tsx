@@ -5,6 +5,7 @@ import { CropView } from 'react-native-image-crop-tools'
 import { useText } from '../../../translations/hook'
 import ButtonArrow from '../../../ui/buttons/Button.Arrow'
 import TextButton from '../../../ui/buttons/Button.Text'
+import { prepareCameraPhotoPath } from '../../camera/helpers'
 import { createThemedStyle } from '../../themed'
 import { useTheme } from '../../themed/hooks'
 import {
@@ -35,7 +36,7 @@ const ImageCropper = () => {
       <CropView
         ref={ref}
         style={styles.cropper}
-        sourceUrl={task.asset.uri}
+        sourceUrl={prepareCameraPhotoPath(task.asset.uri)}
         onImageCrop={finishImageCropping}
       />
       <View style={styles.panel}>
@@ -70,6 +71,7 @@ const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     cropper: {
       flex: 1,
+      backgroundColor: 'red',
     },
     backButton: {
       position: 'absolute',
@@ -81,7 +83,7 @@ const themedStyles = createThemedStyle((colors) =>
     },
     container: {
       zIndex: 20,
-      backgroundColor: 'black',
+      backgroundColor: 'red',
     },
     cancelButton: {
       color: colors.whiteText,
