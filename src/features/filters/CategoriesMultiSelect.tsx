@@ -34,12 +34,16 @@ const CategoriesMultiSelect = React.memo(
     }, [])
 
     const getNextCategories = () => {
-      categoriesRequestModel.getNext()
+      categoriesRequestModel.getNextSync()
     }
 
     return (
       <DropdownMultiSelect
-        label={label ?? t.category}
+        label={label ?? t.categories}
+        tabLabel={({ items }) => {
+          if (!items.length) return ''
+          return `${t.selected}: ${items?.length}`
+        }}
         model={model}
         data={categories}
         labelExtractor={({ name }) => name}
@@ -48,8 +52,6 @@ const CategoriesMultiSelect = React.memo(
         preset={stylesPreset}
         onEndReached={getNextCategories}
         ListFooterComponent={isLoading ? Loader : undefined}
-        tabLabel={t.selectValueFromList}
-        selectedCounterLabel={t.selected}
         showSelectAllButtons
         selectAllLabel={t.selectAll}
         removeAllLabel={t.removeAll}

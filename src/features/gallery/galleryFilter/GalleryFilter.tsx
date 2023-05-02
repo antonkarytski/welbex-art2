@@ -2,8 +2,6 @@ import { useStore } from 'effector-react'
 import { KeyboardAvoidingView } from 'native-base'
 import React, { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
-import { useStateStore } from 'altek-toolkit'
-import { CATEGORIES_AGE_RANGE } from '../../../constants/categories'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
@@ -15,20 +13,19 @@ import { inputThemedStyles } from '../../../styles/inputs'
 import { useText } from '../../../translations/hook'
 import DeleteButton from '../../../ui/buttons/Button.Delete'
 import PresetButton from '../../../ui/buttons/PresetButton'
-import Input from '../../../ui/input'
-import MultiSlider from '../../../ui/slider/MultiSlider'
-import CategoriesMultiSelect from '../../categories/CategoriesMultiSelect'
 import CountriesDropdownMultiSelect from '../../countries/CountriesDropdownMultiSelect'
+import AgeMultiSelect from '../../filters/AgeMultiSelect'
+import CategoriesMultiSelect from '../../filters/CategoriesMultiSelect'
+import DrawingNameFilter from '../../filters/DrawingNameFilter'
 import { useThemedStyleList } from '../../themed/hooks'
 import { useGallery } from '../hooks'
 import { $activeGallery } from '../model'
 import { getArtWorksAmountTranslation } from './helpers'
 import {
   $galleryFilterProps,
-  ageRangeModel,
+  agesCategoriesModel,
   categoriesModel,
   countriesModel,
-  drawingNameModel,
   resetGalleryFilter,
 } from './model'
 import { countFilteredGalleryModel, galleriesModeProp } from './request'
@@ -46,7 +43,6 @@ const GalleryFilter = () => {
 
   const { getSync: getFilteredArts } = useGallery(type)
 
-  const [drawingName, setDrawingName] = useStateStore(drawingNameModel)
   const filterResult = useStore(countFilteredGalleryModel.$data)
 
   useEffect(() => {
@@ -65,19 +61,8 @@ const GalleryFilter = () => {
       >
         <CategoriesMultiSelect model={categoriesModel} />
         <CountriesDropdownMultiSelect {...countriesModel} />
-        <Input
-          label={t.drawingName}
-          value={drawingName}
-          onChangeText={setDrawingName}
-          styles={styles.input}
-        />
-        <MultiSlider
-          label={t.age}
-          model={ageRangeModel}
-          min={CATEGORIES_AGE_RANGE[0]}
-          max={CATEGORIES_AGE_RANGE[1]}
-          step={1}
-        />
+        <DrawingNameFilter styles={styles.input} />
+        <AgeMultiSelect model={agesCategoriesModel} />
       </KeyboardAvoidingView>
 
       <PresetButton

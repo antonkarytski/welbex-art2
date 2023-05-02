@@ -68,6 +68,7 @@
     "react-native-tab-view": "^3.3.4",
     "react-native-tab-view-collapsible-header": "^2.0.1",
     "react-native-vision-camera": "^2.15.4",
+    "react-native-wheel-pick": "^1.2.0",
     "yup": "^1.0.0"
   },
   "devDependencies": {

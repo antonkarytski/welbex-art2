@@ -6,7 +6,7 @@ import Row from '../Row'
 import Span from '../Span'
 import ArrowIcon from '../icons/Icon.ArrowToggle'
 import { useDropdownLayout } from './hooks'
-import { styles } from './styles'
+import { dropdownStyles } from './styles'
 import { defaultDropdownTabPreset, useDropdownTabPreset } from './styles.preset'
 import { DropdownTabProps } from './types'
 
@@ -57,10 +57,10 @@ const DropdownTab = forwardRef<DropdownTabInstance, DropdownTabProps>(
     }))
 
     return (
-      <View style={[styles.wrapper, style?.wrapper]}>
+      <View style={[dropdownStyles.wrapper, style?.wrapper]}>
         {label && (
           <Span
-            style={[styles.label, style?.label, activeStyles.label]}
+            style={[dropdownStyles.label, style?.label, activeStyles.label]}
             weight={500}
           >
             {label}
@@ -70,17 +70,24 @@ const DropdownTab = forwardRef<DropdownTabInstance, DropdownTabProps>(
           ref={dropdownButtonRef}
           activeOpacity={0.6}
           onPress={handleOpenDropdown}
-          style={[styles.tab, activeStyles.tab, style?.tab]}
+          style={[dropdownStyles.tab, activeStyles.tab, style?.tab]}
         >
-          <Row style={[styles.tabInnerWrapper, style?.tabInnerWrapper]}>
+          <Row style={[dropdownStyles.tabInnerWrapper, style?.tabInnerWrapper]}>
             <Span
-              style={[styles.tabLabel, activeStyles.tabLabel, style?.tabLabel]}
+              style={[
+                dropdownStyles.tabLabel,
+                activeStyles.tabLabel,
+                style?.tabLabel,
+              ]}
             >
               {tabLabel}
             </Span>
             <ArrowIcon
               size={10}
-              style={[style?.tabIcon, isOpened && styles.toggleIcon__opened]}
+              style={[
+                style?.tabIcon,
+                isOpened && dropdownStyles.toggleIcon__opened,
+              ]}
               color={activeStyles.iconColor}
             />
           </Row>

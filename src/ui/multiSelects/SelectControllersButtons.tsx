@@ -18,7 +18,7 @@ type SelectAllButtonsProps = {
   style?: SelectAllButtonsStyles
 }
 
-const SelectAllButtons = ({
+const SelectControllersButtons = ({
   selectAllLabel = 'Select all',
   removeAllLabel = 'Remove all',
   onSelectAll,
@@ -48,11 +48,12 @@ const SelectAllButtons = ({
 }
 const styles = StyleSheet.create({
   row: {
-    paddingHorizontal: 20,
     backgroundColor: defaultColors.screenBackground,
+    justifyContent: 'space-between',
   },
   button: {
-    paddingVertical: 16,
+    paddingVertical: 14.5,
+    paddingHorizontal: 20,
   },
   leftButton: {
     marginRight: 40,
@@ -61,4 +62,4 @@ const styles = StyleSheet.create({
     color: defaultColors.textGrey,
   },
 })
-export default SelectAllButtons
+export default SelectControllersButtons

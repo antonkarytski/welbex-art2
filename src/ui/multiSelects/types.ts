@@ -34,10 +34,13 @@ export type MultiSelectProps<T> = Omit<
   showSelectAllButtons?: boolean
 }
 
+type TabLabelFnProps<T> = {
+  items: T[]
+}
+
 export type DropdownMultiSelectProps<T> = MultiSelectProps<T> &
   Omit<DropdownSelectProps<T>, 'placeholder'> & {
-    tabLabel?: string
-    selectedCounterLabel?: string
+    tabLabel?: (props: TabLabelFnProps<T>) => string
   }
 
 export type DropdownSelectProps<T> = Omit<

@@ -10,6 +10,10 @@ export type ArtWorksFilterProps = {
   min_age?: number
   max_age?: number
   mode?: 'all' | 'best' | 'following' | 'new'
+  created_date_from?: string
+  created_date_to?: string
+  only_winners?: boolean
+  age_categories_ids?: number[]
 }
 
 export type AllArtWorksProps = (ArtWorksFilterProps & PaginatedListProps) | null
