@@ -51,18 +51,19 @@ const PaymentMethodsScreen = ({
           currentPayment={paymentPlan}
         />
         {!!paymentPlan && (
-          <PresetButton
-            disabled={!selectedMethod}
-            style={commonStyles.button}
-            label={`${text.pay} $${twoDigits(paymentPlan.fullPrice)}`}
-            onPress={() =>
-              navigate(links.infoMessage, {
-                type: InfoMessageType.SUCCESSFUL_PAYMENT,
-                payload: { currentPayment: paymentPlan },
-              })
-            }
-            preset={styles.buttonPreset}
-          />
+          <View style={commonStyles.buttonContainer}>
+            <PresetButton
+              disabled={!selectedMethod}
+              label={`${text.pay} $${twoDigits(paymentPlan.fullPrice)}`}
+              onPress={() =>
+                navigate(links.infoMessage, {
+                  type: InfoMessageType.SUCCESSFUL_PAYMENT,
+                  payload: { currentPayment: paymentPlan },
+                })
+              }
+              preset={styles.buttonPreset}
+            />
+          </View>
         )}
       </View>
     </View>
@@ -74,13 +75,13 @@ const commonStyles = StyleSheet.create({
     flex: 1,
   },
   contentContainer: {
-    paddingHorizontal: 20,
     paddingTop: 24,
     flex: 1,
   },
-  button: {
+  buttonContainer: {
     marginTop: 'auto',
     marginBottom: 58,
+    paddingHorizontal: 20,
   },
 })
 

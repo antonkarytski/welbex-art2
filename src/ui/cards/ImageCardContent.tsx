@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react'
 import { ImageBackground, StyleSheet, View } from 'react-native'
+import FastImage from 'react-native-fast-image'
 import { defaultColors } from '../../features/themed/theme'
 import { FONT_SEMI_BOLD } from '../../styles/fonts'
 import Span from '../Span'
@@ -31,6 +32,34 @@ function getImageSize(options: ImageOptions | undefined) {
   }
 }
 
+type ImageValueProps = {
+  cached?: boolean
+  options: ImageOptions
+  image: { uri: string }
+}
+
+const ImageValue = ({ cached, options, image }: ImageValueProps) => {
+  const style = [
+    styles.imageBackground,
+    !!options.imageHeight && {
+      height: options.imageHeight,
+    },
+  ]
+
+  if (!cached) {
+    return (
+      <ImageBackground
+        style={style}
+        source={image}
+        resizeMode={'cover'}
+        imageStyle={[styles.image, getImageSize(options)]}
+      />
+    )
+  }
+
+  return <FastImage style={style} source={image} resizeMode={'cover'} />
+}
+
 const ImageCardContent = React.memo(
   ({
     image,
@@ -40,6 +69,7 @@ const ImageCardContent = React.memo(
     imageWidth,
     imageHeight,
     imageOffsetY,
+    cached,
   }: PropsWithChildren<ImageCardContentProps>) => {
     const imageOptions = {
       imageWidth,
@@ -59,17 +89,7 @@ const ImageCardContent = React.memo(
                 />
               </View>
             )}
-            <ImageBackground
-              style={[
-                styles.imageBackground,
-                !!imageOptions.imageHeight && {
-                  height: imageOptions.imageHeight,
-                },
-              ]}
-              source={image}
-              resizeMode={'cover'}
-              imageStyle={[styles.image, getImageSize(imageOptions)]}
-            />
+            <ImageValue cached={cached} image={image} options={imageOptions} />
           </>
         ) : (
           <View

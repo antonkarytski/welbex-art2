@@ -1,6 +1,5 @@
 import React, { PropsWithChildren } from 'react'
 import {
-  ImageSourcePropType,
   StyleProp,
   StyleSheet,
   TextStyle,
@@ -25,7 +24,8 @@ export type ImageOptions =
     }
 
 export type ImageCardProps = {
-  image: ImageSourcePropType | null
+  cached?: boolean
+  image: { uri: string } | null
   style?: StyleProp<ViewStyle>
   onPress?: () => void
   onDoublePress?: () => void
@@ -58,6 +58,7 @@ const ImageCard = ({
 const styles = StyleSheet.create({
   container: {
     borderRadius: 20,
+    backgroundColor: '#FFF',
   },
   imageBackground: {
     width: '100%',

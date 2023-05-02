@@ -27,9 +27,13 @@ export const getArtWorkRequest = attach({
   }),
 })
 
-export const downloadFullSizeDrawing = async (id: number) => {
+export const downloadFullSizeDrawing = async (
+  id: number,
+  originalName: string
+) => {
   const request = await api.arts.downloadFullSizeDrawing.requestData(id)
   return downloadImageFromUrl(request.url, {
     headers: request.data.headers as Record<string, string>,
+    name: originalName,
   })
 }

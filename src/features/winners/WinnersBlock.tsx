@@ -57,7 +57,11 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
         data={winners}
         renderItem={renderWinnerItem}
         keyExtractor={keyExtractor}
-        ListFooterComponent={isNextLoading ? <Loader /> : null}
+        ListFooterComponent={
+          isNextLoading ? (
+            <Loader style={{ container: styles.common.loader }} />
+          ) : null
+        }
         onEndReached={getNextSync}
         ListEmptyComponent={
           <Span label={text.noWinners} style={styles.common.noWinnersText} />
@@ -85,6 +89,9 @@ const themedStyles = createThemedStyle((colors) =>
       color: colors.text,
       fontSize: 18,
       paddingHorizontal: SCREEN_PADDING_HORIZONTAL,
+    },
+    loader: {
+      marginLeft: 10,
     },
   })
 )

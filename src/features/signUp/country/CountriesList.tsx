@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import { StyleSheet } from 'react-native'
+import { IS_ANDROID } from '../../../lib/helpers/native/constants'
 import { createSearchableListModel } from '../../../lib/models/model.search'
 import { FONT_MEDIUM } from '../../../styles/fonts'
 import { inputThemedStyles } from '../../../styles/inputs'
@@ -24,7 +25,7 @@ const CountriesList = () => {
 
   const renderCountryRow = useCallback(
     (item: Country) => <CountryRow item={item} style={styles.countryRow} />,
-    [styles.countryRow]
+    [styles]
   )
 
   return (
@@ -49,6 +50,9 @@ const countryRowThemedStyles = createThemedStyle((colors) =>
       fontFamily: FONT_MEDIUM,
       fontSize: 16,
       lineHeight: 19,
+    },
+    text: {
+      color: IS_ANDROID ? '#000' : undefined,
     },
   })
 )

@@ -7,6 +7,7 @@ import { defaultColors } from '../themed/theme'
 import { Country } from './types'
 
 export type CountryRowStyles = {
+  text?: StyleProp<TextStyle>
   rowWrapper?: StyleProp<ViewStyle>
   nameRow?: StyleProp<ViewStyle>
   flag?: StyleProp<TextStyle>
@@ -25,11 +26,14 @@ const CountryRow = React.memo(
     const { name, nativeName, emoji } = item
     return (
       <Row style={[styles.rowWrapper, style?.rowWrapper]}>
-        <Span style={[styles.flagEmoji, style?.flag]}>{emoji}</Span>
+        <Span style={[styles.flagEmoji, style?.text, style?.flag]}>
+          {emoji}
+        </Span>
         <Row style={[styles.nameRow, style?.nameRow]}>
           <Span
             style={[
               styles.name,
+              style?.text,
               style?.name,
               isSelected && styles.name__selected,
             ]}
@@ -41,6 +45,7 @@ const CountryRow = React.memo(
               style={[
                 styles.name,
                 styles.nativeName,
+                style?.text,
                 style?.name,
                 style?.nativeName,
                 isSelected && styles.name__selected,

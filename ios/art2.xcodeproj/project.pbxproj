@@ -15,7 +15,7 @@
 		3F79D994E558992C0655181C /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A6E75801156573FAD074D /* ExpoModulesProvider.swift */; };
 		490A5CE4C0540BD18D297E78 /* libPods-art2-art2Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1611605917FC32C895B2163D /* libPods-art2-art2Tests.a */; };
 		697329C045B8BB395AFAD60A /* libPods-art2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C279A968E4A593B022EADFA7 /* libPods-art2.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		81AB9BB82411601600AC10FF /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* SplashScreen.storyboard */; };
 		C4972C9254A75783D2C0C09A /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925CBE7AA092F42FC04E2EE3 /* ExpoModulesProvider.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +44,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = art2/main.m; sourceTree = "<group>"; };
 		155C518D7C7F612114687EBD /* Pods-art2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-art2.release.xcconfig"; path = "Target Support Files/Pods-art2/Pods-art2.release.xcconfig"; sourceTree = "<group>"; };
 		1611605917FC32C895B2163D /* libPods-art2-art2Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-art2-art2Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = art2/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = art2/SplashScreen.storyboard; sourceTree = "<group>"; };
 		895ACE6A6B302A3AF37E4415 /* Pods-art2-art2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-art2-art2Tests.debug.xcconfig"; path = "Target Support Files/Pods-art2-art2Tests/Pods-art2-art2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		925CBE7AA092F42FC04E2EE3 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-art2-art2Tests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		97B1D567630361F76EC1EB8C /* Pods-art2-art2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-art2-art2Tests.release.xcconfig"; path = "Target Support Files/Pods-art2-art2Tests/Pods-art2-art2Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -101,13 +101,13 @@
 		13B07FAE1A68108700A75B9A /* art2 */ = {
 			isa = PBXGroup;
 			children = (
+				81AB9BB72411601600AC10FF /* SplashScreen.storyboard */,
 				11BD4D7B29F5412E00930E5D /* InfoPlist.strings */,
 				114895F929C05AAB003EF93F /* art2.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = art2;
@@ -229,6 +229,7 @@
 				05F9B500EA19B81E52EA8DA1 /* [CP] Embed Pods Frameworks */,
 				7EE7A525A812D4CB2B4034D9 /* [CP] Copy Pods Resources */,
 				378C8F292CAF34BDCDBA891A /* [CP-User] [RNGoogleMobileAds] Configuration */,
+				16C4CF62967744CAA92E8D10 /* Upload Debug Symbols to Sentry */,
 			);
 			buildRules = (
 			);
@@ -288,7 +289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				81AB9BB82411601600AC10FF /* SplashScreen.storyboard in Resources */,
 				11BD4D7929F5412E00930E5D /* InfoPlist.strings in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
@@ -311,7 +312,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport EXTRA_PACKAGER_ARGS=\"--sourcemap-output $DERIVED_FILE_DIR/main.jsbundle.map\"\nset -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT \\\"../node_modules/@sentry/cli/bin/sentry-cli react-native xcode $REACT_NATIVE_XCODE\\\"\"\n\n/bin/sh ../node_modules/@sentry/react-native/scripts/collect-modules.sh\n";
 		};
 		05F9B500EA19B81E52EA8DA1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -329,6 +330,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-art2/Pods-art2-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		16C4CF62967744CAA92E8D10 /* Upload Debug Symbols to Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload Debug Symbols to Sentry";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\nexport SENTRY_PROPERTIES=sentry.properties\n[[ $SENTRY_INCLUDE_NATIVE_SOURCES == \"true\" ]] && INCLUDE_SOURCES_FLAG=\"--include-sources\" || INCLUDE_SOURCES_FLAG=\"\"\n../node_modules/@sentry/cli/bin/sentry-cli debug-files upload \"$INCLUDE_SOURCES_FLAG\" \"$DWARF_DSYM_FOLDER_PATH\"\n";
 		};
 		1D2D47E262A1A0D6A1652F99 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -660,7 +675,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.8;
+				MARKETING_VERSION = 1.1.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -781,7 +796,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.8;
+				MARKETING_VERSION = 1.1.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

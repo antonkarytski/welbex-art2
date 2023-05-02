@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 8,
     width: 200,
+    backgroundColor: '#ffffff',
   },
   shadow: {
     overflow: 'visible',

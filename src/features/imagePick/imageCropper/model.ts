@@ -2,6 +2,7 @@ import { createEvent, restore, sample } from 'effector'
 import { createEffect } from 'effector/effector.umd'
 import { ImagePickerAsset } from 'expo-image-picker'
 import { getNameFromUrl } from '../../../lib/files/helpers'
+import { convertToFile } from './helpers'
 
 export enum ImageCropResultErrorCode {
   CANCELED_EDIT = 'CANCELED_EDIT',
@@ -43,6 +44,19 @@ export const runImageCropperWithTask = createEffect(
     })
   }
 )
+
+export const runCropper = (assets: ImagePickerAsset[]) => {
+  return runImageCropperWithTask({ asset: assets[0] })
+    .then((result) => [convertToFile(result)])
+    .catch((error) => {
+      if (error.message === ImageCropResultErrorCode.CANCELED_EDIT) {
+        return assets
+      }
+      if (error.message === ImageCropResultErrorCode.CANCELED_PICK) {
+        return
+      }
+    })
+}
 
 export const finishImageCropping = createEvent<ImageCropResult>()
 sample({

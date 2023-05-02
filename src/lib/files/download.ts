@@ -14,32 +14,35 @@ type DownloadImageFromUrlSettings = {
 
 const TEMP_FILE_NAME = 'temp.jpg'
 
-function getFilePath(fileName?: string) {
+function getFilePath(fileName: string, defaultName = TEMP_FILE_NAME) {
   const extension = fileName?.split('.').pop()
   const isCorrectExtension = extension && isExtensionImage(extension)
   return `${fs.DocumentDirectoryPath}/${
-    isCorrectExtension ? fileName : TEMP_FILE_NAME
+    isCorrectExtension ? fileName : defaultName
   }`
 }
 
 const SAVE_DIR = `${fs.ExternalStorageDirectoryPath}/Pictures/Art2`
 const endDownloading = Platform.select({
   ios: async (file: string) => {
+    const name = getNameFromUrl(file)
     const base64 = await fs.readFile(file, 'base64')
     const mime = getMime(file)
     const uri = `data:${mime};base64,${base64}`
     await Share.open({
-      urls: [uri],
+      url: uri,
       type: mime,
       saveToFiles: true,
+      title: name,
     })
   },
   default: async (file: string) => {
     await fs.mkdir(SAVE_DIR, {
       NSURLIsExcludedFromBackupKey: true,
     })
-    await fs.copyFile(file, `${SAVE_DIR}/${getNameFromUrl(file)}`)
-    await fs.scanFile(`${SAVE_DIR}/${getNameFromUrl(file)}`)
+    const fileName = getNameFromUrl(file)
+    await fs.copyFile(file, `${SAVE_DIR}/${fileName}`)
+    await fs.scanFile(`${SAVE_DIR}/${fileName}`)
   },
 })
 
@@ -51,7 +54,7 @@ export async function downloadImageFromUrl(
     const isGranted = await mediaLibraryPermission.check()
     if (!isGranted) return
   }
-  const file = getFilePath(getNameFromUrl(url) || name)
+  const file = getFilePath(getNameFromUrl(url), name)
   await fs.downloadFile({ fromUrl: url, toFile: file, headers }).promise
   return await endDownloading(file)
 }

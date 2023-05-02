@@ -54,7 +54,7 @@ const PaymentMethodList = ({
 
       <AddPaymentCardButton
         currentPayment={currentPayment}
-        style={styles.item}
+        style={[styles.item, styles.addButton]}
         textColor={colors.primary1}
       />
     </>
@@ -67,6 +67,9 @@ const themedStyles = createThemedStyle((colors) =>
       marginBottom: 20,
       borderColor: colors.darkLine,
     },
+    addButton: {
+      marginHorizontal: 20,
+    },
     selectedItem: {
       borderColor: colors.primary1,
     },
@@ -75,6 +78,7 @@ const themedStyles = createThemedStyle((colors) =>
     },
     listContainer: {
       marginBottom: 20,
+      paddingHorizontal: 20,
     },
   })
 )

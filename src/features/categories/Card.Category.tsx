@@ -16,6 +16,7 @@ const CardCategory = React.memo(({ styles, item }: CardCategoryProps) => {
   const navigate = useNavigate()
   return (
     <ImageCard
+      cached
       onPress={() => {
         navigate(links.categoryDetails, { item })
       }}

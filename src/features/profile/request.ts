@@ -8,7 +8,6 @@ const REFRESH_PROFILE_INTERVAL = seconds(20)
 const lastLimitedRefreshRef = {
   current: 0,
 }
-
 export const meRequest = attach({
   effect: api.users.me,
 })
@@ -31,8 +30,9 @@ sample({
   if (
     isPending ||
     now - lastLimitedRefreshRef.current < REFRESH_PROFILE_INTERVAL
-  )
+  ) {
     return
-  lastLimitedRefreshRef.current = now
+  }
+
   return refreshProfile()
 })
