@@ -1,7 +1,7 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { ImagePickerResult } from 'expo-image-picker'
+import { ArtPreview } from '../api/parts/arts/types'
 import {
-  ArtWorkPreviewResponse,
   CategoryResponse,
   SpecificCategoryResponse,
 } from '../api/parts/categories/types'
@@ -22,7 +22,7 @@ export type BackSettingsProps<L extends links> = {
 
 export type ScreensProps = ScreensPropsProto<{
   [links.categoryDetails]: { item: CategoryResponse }
-  [links.artWorkDetails]: { item: ArtWorkPreviewResponse }
+  [links.artWorkDetails]: { item: ArtPreview }
   [links.galleryBest]: { type: GalleryType.BEST }
   [links.galleryNew]: { type: GalleryType.NEW }
   [links.galleryFollowing]: { type: GalleryType.FOLLOWING }

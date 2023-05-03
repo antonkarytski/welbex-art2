@@ -4,6 +4,7 @@ import { ArtWork } from '../../api/parts/arts/types'
 import LikeButton from '../../ui/buttons/LikeButton'
 import ShareButton from '../../ui/buttons/ShareButton'
 import ImageCard from '../../ui/cards/ImageCard'
+import WinnerIcon, { winnersIconStyles } from '../../ui/icons/Icon.Winner'
 import { ColorThemeStructure } from '../themed/theme'
 import UserDescription, { AgeTextGenerator } from '../user/UserDescription'
 import { GalleryItemStyles } from './styles'
@@ -45,6 +46,7 @@ const GalleryItem = React.memo(
         image={{ uri: item.image_thumbnail }}
         label={item.competition.category.name}
       >
+        {!!item.is_winner && <WinnerIcon style={winnersIconStyles.container} />}
         <View style={style.card}>
           <UserDescription
             style={{

@@ -33,6 +33,7 @@ export type ArtWorkGeneral = {
   //for typing compatibility
   is_liked?: boolean
   is_saved?: boolean
+  is_winner?: boolean
 }
 
 export type ArtWork = ArtWorkGeneral & {
@@ -68,8 +69,8 @@ export type ArtWorkCreateProps = {
 export type ArtPreview = {
   id: number
   image_thumbnail: string
+  is_winner?: boolean
 }
 
 export type ArtsListPreviewResponse = PaginatedListResponse<ArtPreview>
-
 export type ArtsListProps = PaginatedListProps & { userId: number }
