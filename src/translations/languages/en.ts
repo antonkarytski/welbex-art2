@@ -111,6 +111,7 @@ export const EN = {
   description: 'Description',
   done: 'Done',
   cancelEditing: 'Cancel editing',
+  cancel: 'Cancel',
   completeDescription: 'Complete the description',
   category: 'Category',
   uploadChildDocument: 'Upload a child identity proof document',

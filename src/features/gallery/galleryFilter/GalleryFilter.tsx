@@ -36,6 +36,8 @@ import {
   agesCategoriesFilterModel,
   categoriesFilterModel,
   countriesFilterModel,
+  maxDateFilterModel,
+  minDateFilterModel,
   onlyWinnersFilterModel,
   resetGalleryFilter,
 } from './model'
@@ -89,6 +91,8 @@ const GalleryFilter = () => {
           model={onlyWinnersFilterModel}
         />
         <MonthPickerFilter
+          minValueModel={minDateFilterModel}
+          maxValueModel={maxDateFilterModel}
           style={styles.monthPicker}
           inputStyle={styles.input}
         />
