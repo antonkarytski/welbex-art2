@@ -1,12 +1,15 @@
+import { useStore } from 'effector-react'
 import React, { useCallback } from 'react'
 import { FlatList } from 'react-native'
-import { FaqItem, MOCK_FAQ } from '../../_mock/faq'
+import { FaqItem } from '../../api/parts/faq/types'
 import ListItemSeparator from '../../ui/lists/ListItemSeparator'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
 import FaqListItem from './FaqListItem'
+import { $faqList } from './model'
 
 const FaqList = () => {
+  const data = useStore($faqList)
   const { styles: tabStyles, colors } = useTheme(themedTabStyles)
 
   const renderItem = useCallback(
@@ -16,9 +19,11 @@ const FaqList = () => {
     [colors, tabStyles]
   )
 
+  if (!data) return null
+
   return (
     <FlatList
-      data={MOCK_FAQ}
+      data={data.list}
       renderItem={renderItem}
       ItemSeparatorComponent={ListItemSeparator}
       ListFooterComponent={ListItemSeparator}

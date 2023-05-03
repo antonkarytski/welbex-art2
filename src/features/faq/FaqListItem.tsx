@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaqItem } from '../../_mock/faq'
+import { FaqItem } from '../../api/parts/faq/types'
 import Tab, { TabStyles } from '../../ui/Tab'
 import { ColorThemeStructure } from '../themed/theme'
 

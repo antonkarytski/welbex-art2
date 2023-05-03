@@ -22,19 +22,19 @@ export type SettingItem = {
   isAbleWhenUnauthorized: boolean
 }
 
-export const settingsList: SettingItem[] = [
-  {
-    label: (t) => t.subscription,
-    icon: StarIcon,
-    navigateTo: links.subscriptionSelectPlan,
-    isAbleWhenUnauthorized: true,
-  },
+export const SETTINGS_LIST: SettingItem[] = [
   // {
-  //   label: (t) => t.faq,
-  //   icon: QuestionIcon,
-  //   navigateTo: links.faq,
+  //   label: (t) => t.subscription,
+  //   icon: StarIcon,
+  //   navigateTo: links.subscriptionSelectPlan,
   //   isAbleWhenUnauthorized: true,
   // },
+  {
+    label: (t) => t.faq,
+    icon: QuestionIcon,
+    navigateTo: links.faq,
+    isAbleWhenUnauthorized: true,
+  },
   // {
   //   label: (t) => t.feedback,
   //   icon: FeedbackIcon,
