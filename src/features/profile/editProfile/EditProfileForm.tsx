@@ -1,3 +1,4 @@
+import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { noop } from '../../../lib/helpers'
@@ -16,6 +17,7 @@ import SaveProfileChangesPopUp from '../../popUp/profilePopUps/PopUp.SaveChanges
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
 import ChildDocumentUploadingBlock from '../childDocument/ChildDocumentUploadingBlock'
+import { $myProfile } from '../model'
 import EditAvatarBlock from './EditAvatarBlock'
 import {
   editProfileCountryModel,
@@ -25,6 +27,7 @@ import {
 
 const EditProfileForm = () => {
   const t = useText()
+  const myProfile = useStore($myProfile)
   const { styles } = useThemedStyleList({
     buttonPrimary: buttonPrimaryThemedPreset,
     buttonLight: buttonLightThemedPreset,
@@ -75,7 +78,11 @@ const EditProfileForm = () => {
         )
       })}
       <CountriesDropdownSelect {...editProfileCountryModel} />
-      <ChildDocumentUploadingBlock style={styles.common.uploadDocumentsBlock} />
+      {!!myProfile?.is_child && (
+        <ChildDocumentUploadingBlock
+          style={styles.common.uploadDocumentsBlock}
+        />
+      )}
       <PresetButton
         label={t.save}
         onPress={onSaveChanges}
