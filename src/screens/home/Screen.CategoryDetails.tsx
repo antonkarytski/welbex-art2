@@ -84,6 +84,7 @@ const CategoryDetailsScreen = ({
       </Animated.View>
       <Animated.View style={[styles.common.overlay, overlayAnimatedStyles]} />
       <CategoryScreenHeader
+        item={category}
         offset={offset}
         contentHeight={contentHeight}
         onLayout={({ nativeEvent }) => {

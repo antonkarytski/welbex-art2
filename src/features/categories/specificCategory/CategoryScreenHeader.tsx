@@ -1,6 +1,7 @@
 import { useStore } from 'effector-react'
 import React, { useEffect, useState } from 'react'
 import { Animated, ViewProps } from 'react-native'
+import { SpecificCategoryResponse } from '../../../api/parts/categories/types'
 import ScreenHeader from '../../../navigation/elements/ScreenHeader'
 import {
   screenHeaderThemedStylesDark,
@@ -16,9 +17,11 @@ type CategoryScreenHeaderProps = {
   offset?: Animated.Value
   contentHeight?: number
   transparent?: boolean
+  item?: SpecificCategoryResponse
 }
 
 const CategoryScreenHeader = ({
+  item,
   onLayout,
   offset,
   contentHeight,
@@ -46,7 +49,11 @@ const CategoryScreenHeader = ({
 
   return (
     <ScreenHeader
-      headerRight={galleryFilterButtonGenerator(colors)}
+      headerRight={galleryFilterButtonGenerator(colors, {
+        initialCategory: item,
+        ignoreMode: true,
+        resultPageTitle: text.gallery,
+      })}
       onLayout={onLayout}
       backArrowColor={transparent ? colors.whiteText : colors.text}
       backAvailable

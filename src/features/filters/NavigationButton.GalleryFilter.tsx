@@ -4,27 +4,32 @@ import NavigationButton, {
   SpecificNavigateButtonProps,
 } from '../../navigation/elements/NavigationButton'
 import { links } from '../../navigation/links'
+import { ScreensProps } from '../../navigation/types.screenProps'
 import FiltersIcon from '../../ui/icons/Icon.Filters'
 import { ColorThemeStructure } from '../themed/theme'
 
 const GalleryFilterNavigationButton = ({
-  iconColor,
-  iconSize = 24,
   style,
+  ...props
 }: SpecificNavigateButtonProps<links.galleryFilter>) => {
   return (
     <NavigationButton
       Icon={FiltersIcon}
       style={[styles.button, style]}
       navigateTo={links.galleryFilter}
-      iconColor={iconColor}
-      iconSize={iconSize}
+      {...props}
     />
   )
 }
 
-export const galleryFilterButtonGenerator = (colors: ColorThemeStructure) => (
-  <GalleryFilterNavigationButton iconColor={colors.appHeaderIconLight} />
+export const galleryFilterButtonGenerator = (
+  colors: ColorThemeStructure,
+  params?: ScreensProps[links.galleryFilter]
+) => (
+  <GalleryFilterNavigationButton
+    iconColor={colors.appHeaderIconLight}
+    navigateParams={params}
+  />
 )
 
 const styles = StyleSheet.create({

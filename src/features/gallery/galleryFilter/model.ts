@@ -9,6 +9,7 @@ import { AgeCategory } from '../../filters/ages'
 import { $activeGallery } from '../model'
 import { countFilteredGalleryModel, galleriesModeProp } from './request'
 
+export const ignoreModeFilterModel = createStateModel(false)
 export const categoriesFilterModel = createStateModel<CategoryResponse[]>([])
 export const agesCategoriesFilterModel = createStateModel<AgeCategory[]>([])
 export const countriesFilterModel = createCountriesListModel()
@@ -43,6 +44,7 @@ export const resetGalleryFilter = () => {
   onlyWinnersFilterModel.reset()
   minDateFilterModel.reset()
   maxDateFilterModel.reset()
+  ignoreModeFilterModel.reset()
 }
 
 export const $galleryFilterProps = combine(
@@ -78,12 +80,12 @@ export const $galleryFilterProps = combine(
 
 sample({
   clock: [$galleryFilterProps, $activeGallery],
-  source: { filters: $galleryFilterProps, activeGallery: $activeGallery },
-}).watch(({ filters, activeGallery }) => {
-  countFilteredGalleryModel
-    .get({
-      ...galleriesModeProp[activeGallery.type],
-      ...filters,
-    })
-    .catch(noop)
+  source: {
+    filters: $galleryFilterProps,
+    activeGallery: $activeGallery,
+    ignoreMode: ignoreModeFilterModel.$state,
+  },
+}).watch(({ filters, activeGallery, ignoreMode }) => {
+  const modeProps = ignoreMode ? {} : galleriesModeProp[activeGallery.type]
+  countFilteredGalleryModel.get({ ...modeProps, ...filters }).catch(noop)
 })

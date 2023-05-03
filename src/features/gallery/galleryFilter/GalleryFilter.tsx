@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react'
 import { KeyboardAvoidingView } from 'native-base'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
 import { useNavigate } from '../../../navigation'
@@ -43,7 +43,11 @@ import {
 } from './model'
 import { countFilteredGalleryModel, galleriesModeProp } from './request'
 
-const GalleryFilter = () => {
+type GalleryFilterProps = {
+  resultPageTitle?: string
+}
+
+const GalleryFilter = ({ resultPageTitle }: GalleryFilterProps) => {
   const t = useText()
   const navigate = useNavigate()
   const { styles, colors } = useThemedStyleList({
@@ -67,7 +71,7 @@ const GalleryFilter = () => {
 
   const onShowResults = () => {
     getFilteredArts(filters)
-    navigate(links.specificGalleryFiltered)
+    navigate(links.specificGalleryFiltered, { resultPageTitle })
   }
 
   return (

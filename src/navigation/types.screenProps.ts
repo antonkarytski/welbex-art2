@@ -40,6 +40,14 @@ export type ScreensProps = ScreensPropsProto<{
   [links.createNewPassword]: {
     token: string
   }
+  [links.galleryFilter]?: {
+    initialCategory?: CategoryResponse
+    ignoreMode?: boolean
+    resultPageTitle?: string
+  }
+  [links.specificGalleryFiltered]?: {
+    resultPageTitle?: string
+  }
 }>
 
 export type ScreenComponentProps<L extends links> = NativeStackScreenProps<

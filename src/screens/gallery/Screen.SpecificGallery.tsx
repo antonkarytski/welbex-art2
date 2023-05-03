@@ -13,11 +13,15 @@ import { useThemedStyleList } from '../../features/themed/hooks'
 import { useNavigate } from '../../navigation'
 import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
 import { links } from '../../navigation/links'
+import { ScreenComponentProps } from '../../navigation/types.screenProps'
 import { themedPrimaryGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
 
-const SpecificGalleryScreens = () => {
+const SpecificGalleryScreens = ({
+  route,
+}: ScreenComponentProps<links.specificGalleryFiltered>) => {
   const t = useText()
+  const params = route.params
   const navigate = useNavigate()
   const activeGallery = useStore($activeGallery)
   const { styles, colors } = useThemedStyleList({
@@ -33,7 +37,7 @@ const SpecificGalleryScreens = () => {
   return (
     <>
       <GradientScreenHeader
-        title={activeGallery.title(t)}
+        title={params?.resultPageTitle || activeGallery.title(t)}
         backAvailable
         onPressBack={onGoBack}
         headerRight={galleryFilterButtonGenerator(colors)}

@@ -42,6 +42,7 @@ const CategoriesMultiSelect = React.memo(
         label={label ?? t.categories}
         tabLabel={({ items }) => {
           if (!items.length) return ''
+          if (items.length === 1) return items[0].name
           return `${t.selected}: ${items?.length}`
         }}
         model={model}
