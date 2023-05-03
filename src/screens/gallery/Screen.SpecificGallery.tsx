@@ -1,8 +1,6 @@
 import { useStore } from 'effector-react'
 import React from 'react'
-import NavigationFilterButton, {
-  galleryFilterButtonGenerator,
-} from '../../features/filters/NavigationButton.GalleryFilter'
+import { galleryFilterButtonGenerator } from '../../features/filters/NavigationButton.GalleryFilter'
 import FilteredGalleryList from '../../features/gallery/galleryFilter/FilteredGalleryList'
 import { resetGalleryFilter } from '../../features/gallery/galleryFilter/model'
 import {
@@ -30,6 +28,11 @@ const SpecificGalleryScreens = ({
 
   const onGoBack = () => {
     resetGalleryFilter()
+    if (params?.backSettings) {
+      //@ts-ignore
+      navigate(params.backSettings.link, params.backSettings.params)
+      return
+    }
     getGalleryListRequest(activeGallery.type)
     navigate(links.galleryTab)
   }

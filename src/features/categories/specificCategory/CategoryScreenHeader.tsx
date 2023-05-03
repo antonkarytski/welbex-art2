@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { Animated, ViewProps } from 'react-native'
 import { SpecificCategoryResponse } from '../../../api/parts/categories/types'
 import ScreenHeader from '../../../navigation/elements/ScreenHeader'
+import { links } from '../../../navigation/links'
+import { BackSettingsProps } from '../../../navigation/types.screenProps'
 import {
   screenHeaderThemedStylesDark,
   screenHeaderThemedStylesTransparent,
@@ -53,6 +55,10 @@ const CategoryScreenHeader = ({
         initialCategory: item,
         ignoreMode: true,
         resultPageTitle: text.gallery,
+        backSettings: {
+          link: links.categoryDetails,
+          params: { item: category },
+        } as BackSettingsProps<links.categoryDetails>,
       })}
       onLayout={onLayout}
       backArrowColor={transparent ? colors.whiteText : colors.text}

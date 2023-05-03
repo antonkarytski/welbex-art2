@@ -48,7 +48,10 @@ export default function GalleryFilterScreen({
           offBounces
           enableScrollView
         >
-          <GalleryFilter resultPageTitle={route.params?.resultPageTitle} />
+          <GalleryFilter
+            resultPageTitle={route.params?.resultPageTitle}
+            backSettings={route.params?.backSettings}
+          />
         </ScreenContainer>
       </ScreenWrapper>
       <GlobalMonthPicker />

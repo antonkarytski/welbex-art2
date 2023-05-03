@@ -15,6 +15,11 @@ import { links } from './links'
 type ScreensPropsProto<T extends Partial<Record<links, any>>> = T &
   Record<Exclude<links, keyof T>, undefined>
 
+export type BackSettingsProps<L extends links> = {
+  link: L
+  params?: ScreensProps[L]
+}
+
 export type ScreensProps = ScreensPropsProto<{
   [links.categoryDetails]: { item: CategoryResponse }
   [links.artWorkDetails]: { item: ArtWorkPreviewResponse }
@@ -44,9 +49,11 @@ export type ScreensProps = ScreensPropsProto<{
     initialCategory?: CategoryResponse
     ignoreMode?: boolean
     resultPageTitle?: string
+    backSettings?: BackSettingsProps<links>
   }
   [links.specificGalleryFiltered]?: {
     resultPageTitle?: string
+    backSettings?: BackSettingsProps<links>
   }
 }>
 

@@ -5,6 +5,7 @@ import { StyleSheet } from 'react-native'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
+import { BackSettingsProps } from '../../../navigation/types.screenProps'
 import {
   buttonLightThemedPreset,
   buttonPrimaryThemedPreset,
@@ -45,9 +46,10 @@ import { countFilteredGalleryModel, galleriesModeProp } from './request'
 
 type GalleryFilterProps = {
   resultPageTitle?: string
+  backSettings?: BackSettingsProps<links>
 }
 
-const GalleryFilter = ({ resultPageTitle }: GalleryFilterProps) => {
+const GalleryFilter = (props: GalleryFilterProps) => {
   const t = useText()
   const navigate = useNavigate()
   const { styles, colors } = useThemedStyleList({
@@ -71,7 +73,7 @@ const GalleryFilter = ({ resultPageTitle }: GalleryFilterProps) => {
 
   const onShowResults = () => {
     getFilteredArts(filters)
-    navigate(links.specificGalleryFiltered, { resultPageTitle })
+    navigate(links.specificGalleryFiltered, props)
   }
 
   return (
