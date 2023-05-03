@@ -1,16 +1,19 @@
 import React from 'react'
-import { StyleSheet, TextStyle, View } from 'react-native'
+import { StyleSheet, TextStyle, View, ViewStyle } from 'react-native'
 import { StateModel, useStateStore } from 'altek-toolkit'
 import { useText } from '../../translations/hook'
 import Span from '../../ui/Span'
 import CheckBox from '../../ui/checkbox/CheckBox'
 
+export type CheckBoxFieldStyles = {
+  title?: TextStyle
+  label?: TextStyle
+  container?: ViewStyle
+}
+
 type OnlyWinnersFilterProps = {
   model: StateModel<boolean>
-  style?: {
-    title?: TextStyle
-    label?: TextStyle
-  }
+  style?: CheckBoxFieldStyles
 }
 
 const OnlyWinnersFilter = ({ model, style }: OnlyWinnersFilterProps) => {
@@ -18,7 +21,7 @@ const OnlyWinnersFilter = ({ model, style }: OnlyWinnersFilterProps) => {
   const [isSelected, setIsSelected] = useStateStore(model)
 
   return (
-    <View>
+    <View style={style?.container}>
       <Span
         weight={500}
         style={[styles.title, style?.title]}
@@ -45,7 +48,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   title: {
-    marginBottom: 12,
+    marginBottom: 14.5,
   },
 })
 

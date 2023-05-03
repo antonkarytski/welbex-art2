@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react'
 import { KeyboardAvoidingView } from 'native-base'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
 import { useNavigate } from '../../../navigation'
@@ -9,20 +9,25 @@ import {
   buttonLightThemedPreset,
   buttonPrimaryThemedPreset,
 } from '../../../styles/buttons'
-import { FONT_MEDIUM } from '../../../styles/fonts'
 import { inputThemedStyles } from '../../../styles/inputs'
 import { useText } from '../../../translations/hook'
 import DeleteButton from '../../../ui/buttons/Button.Delete'
 import PresetButton from '../../../ui/buttons/PresetButton'
-import CheckBox from '../../../ui/checkbox/CheckBox'
-import CheckBoxCard from '../../../ui/checkbox/CheckBoxCard'
+import { InputStyles } from '../../../ui/input/types'
+import { DropdownSelectStyles } from '../../../ui/selects/types'
 import CountriesDropdownMultiSelect from '../../countries/CountriesDropdownMultiSelect'
 import AgeMultiSelect from '../../filters/AgeMultiSelect'
 import CategoriesMultiSelect from '../../filters/CategoriesMultiSelect'
 import DrawingNameFilter from '../../filters/DrawingNameFilter'
-import OnlyWinnersFilter from '../../filters/OnlyWinnersFilter'
+import OnlyWinnersFilter, {
+  CheckBoxFieldStyles,
+} from '../../filters/OnlyWinnersFilter'
+import MonthPickerFilter, {
+  MonthPickerStyles,
+} from '../../filters/monthPicker/MonthPickerFilter'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
+import { useMergedStyles } from '../../themed/hooks.merge'
 import { useGallery } from '../hooks'
 import { $activeGallery } from '../model'
 import { getArtWorksAmountTranslation } from './helpers'
@@ -44,7 +49,9 @@ const GalleryFilter = () => {
     buttonLight: buttonLightThemedPreset,
     input: inputThemedStyles,
     checkBox: checkBoxThemedStyles,
+    monthPicker: monthPickerStyles,
   })
+  const inputStyles = useMergedStyles([styles.input, inputCommonStyles])
   const { type } = useStore($activeGallery)
   const filters = useStore($galleryFilterProps)
 
@@ -60,19 +67,30 @@ const GalleryFilter = () => {
     getFilteredArts(filters)
     navigate(links.specificGalleryFiltered)
   }
+
   return (
     <>
       <KeyboardAvoidingView
-        behavior={IS_IOS ? 'padding' : 'height'}
+        behavior={IS_IOS ? 'position' : 'height'}
         style={commonStyles.fieldsWrapper}
       >
-        <CategoriesMultiSelect model={categoriesFilterModel} />
+        <CategoriesMultiSelect
+          style={dropdownsCommonStyles}
+          model={categoriesFilterModel}
+        />
         <CountriesDropdownMultiSelect {...countriesFilterModel} />
-        <DrawingNameFilter styles={styles.input} />
-        <AgeMultiSelect model={agesCategoriesFilterModel} />
+        <DrawingNameFilter styles={inputStyles} />
+        <AgeMultiSelect
+          style={dropdownsCommonStyles}
+          model={agesCategoriesFilterModel}
+        />
         <OnlyWinnersFilter
           style={styles.checkBox}
           model={onlyWinnersFilterModel}
+        />
+        <MonthPickerFilter
+          style={styles.monthPicker}
+          inputStyle={styles.input}
         />
       </KeyboardAvoidingView>
 
@@ -95,25 +113,54 @@ const GalleryFilter = () => {
   )
 }
 
-const checkBoxThemedStyles = createThemedStyle((colors) =>
+const checkBoxThemedStyles = createThemedStyle<CheckBoxFieldStyles>((colors) =>
   StyleSheet.create({
     title: {
+      fontSize: 14,
       color: colors.inputTitle,
     },
     label: {
       color: colors.text,
+    },
+    container: {
+      marginBottom: 20,
+    },
+  })
+)
+
+const monthPickerStyles = createThemedStyle<MonthPickerStyles>((colors) =>
+  StyleSheet.create({
+    title: {
+      color: colors.inputTitle,
+      fontSize: 14,
     },
   })
 )
 
 const commonStyles = StyleSheet.create({
   resultsButton: {
-    marginTop: 'auto',
     marginBottom: 12,
+    marginTop: 53,
   },
   fieldsWrapper: {
     paddingTop: 24,
-    marginBottom: 24,
+  },
+})
+
+const dropdownsCommonStyles: DropdownSelectStyles = {
+  dropdownTab: StyleSheet.create({
+    wrapper: {
+      marginBottom: 20,
+    },
+  }),
+}
+
+const inputCommonStyles = StyleSheet.create<InputStyles>({
+  container: {
+    marginBottom: 20,
+  },
+  wrapper: {
+    marginBottom: 0,
   },
 })
 
