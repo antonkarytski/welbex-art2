@@ -1,10 +1,11 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import FiltersIcon from '../../ui/icons/Icon.Filters'
-import { links } from '../links'
 import NavigationButton, {
   SpecificNavigateButtonProps,
-} from './NavigationButton'
+} from '../../navigation/elements/NavigationButton'
+import { links } from '../../navigation/links'
+import FiltersIcon from '../../ui/icons/Icon.Filters'
+import { ColorThemeStructure } from '../themed/theme'
 
 const GalleryFilterNavigationButton = ({
   iconColor,
@@ -21,6 +22,10 @@ const GalleryFilterNavigationButton = ({
     />
   )
 }
+
+export const galleryFilterButtonGenerator = (colors: ColorThemeStructure) => (
+  <GalleryFilterNavigationButton iconColor={colors.appHeaderIconLight} />
+)
 
 const styles = StyleSheet.create({
   button: {

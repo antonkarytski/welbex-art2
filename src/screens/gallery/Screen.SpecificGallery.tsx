@@ -1,5 +1,8 @@
 import { useStore } from 'effector-react'
 import React from 'react'
+import NavigationFilterButton, {
+  galleryFilterButtonGenerator,
+} from '../../features/filters/NavigationButton.GalleryFilter'
 import FilteredGalleryList from '../../features/gallery/galleryFilter/FilteredGalleryList'
 import { resetGalleryFilter } from '../../features/gallery/galleryFilter/model'
 import {
@@ -7,17 +10,11 @@ import {
   getGalleryListRequest,
 } from '../../features/gallery/model'
 import { useThemedStyleList } from '../../features/themed/hooks'
-import { ColorThemeStructure } from '../../features/themed/theme'
 import { useNavigate } from '../../navigation'
 import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
-import NavigationFilterButton from '../../navigation/elements/NavigationButton.GalleryFilter'
 import { links } from '../../navigation/links'
 import { themedPrimaryGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
-
-const screenHeaderRight = (colors: ColorThemeStructure) => (
-  <NavigationFilterButton iconColor={colors.appHeaderIconLight} />
-)
 
 const SpecificGalleryScreens = () => {
   const t = useText()
@@ -39,7 +36,7 @@ const SpecificGalleryScreens = () => {
         title={activeGallery.title(t)}
         backAvailable
         onPressBack={onGoBack}
-        headerRight={screenHeaderRight(colors)}
+        headerRight={galleryFilterButtonGenerator(colors)}
         gradient={{ colors: styles.gradient }}
       />
       <FilteredGalleryList />

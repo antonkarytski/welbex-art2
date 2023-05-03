@@ -7,6 +7,7 @@ import {
   screenHeaderThemedStylesTransparent,
 } from '../../../styles/screen'
 import { useText } from '../../../translations/hook'
+import { galleryFilterButtonGenerator } from '../../filters/NavigationButton.GalleryFilter'
 import { useTheme } from '../../themed/hooks'
 import { categoryDetailsModel } from './model'
 
@@ -45,6 +46,7 @@ const CategoryScreenHeader = ({
 
   return (
     <ScreenHeader
+      headerRight={galleryFilterButtonGenerator(colors)}
       onLayout={onLayout}
       backArrowColor={transparent ? colors.whiteText : colors.text}
       backAvailable

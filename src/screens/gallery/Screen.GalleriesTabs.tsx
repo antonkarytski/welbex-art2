@@ -1,13 +1,12 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { galleryFilterButtonGenerator } from '../../features/filters/NavigationButton.GalleryFilter'
 import { useGalleriesDescriptors } from '../../features/gallery/descriptors'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
-import { ColorThemeStructure } from '../../features/themed/theme'
 import { useScreenLoading } from '../../lib/helpers/native/hook.screenLoad'
 import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
-import NavigationFilterButton from '../../navigation/elements/NavigationButton.GalleryFilter'
 import { links } from '../../navigation/links'
 import { ScreensProps } from '../../navigation/types.screenProps'
 import { themedPrimaryGradient } from '../../styles/gradients'
@@ -17,10 +16,6 @@ import TabMenu from '../../ui/tabMenu/TabMenu'
 import ScreenGallery from './Screen.Gallery'
 
 const Tab = createMaterialTopTabNavigator<ScreensProps>()
-
-const screenHeaderRight = (colors: ColorThemeStructure) => (
-  <NavigationFilterButton iconColor={colors.appHeaderIconLight} />
-)
 
 const GalleriesTabsScreen = () => {
   const text = useText()
@@ -36,7 +31,7 @@ const GalleriesTabsScreen = () => {
     <View style={styles.common.container}>
       <GradientScreenHeader
         title={text.gallery}
-        headerRight={screenHeaderRight(colors)}
+        headerRight={galleryFilterButtonGenerator(colors)}
         gradient={{ colors: styles.gradient }}
       />
       {isLoaded ? (
