@@ -71,7 +71,6 @@ const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     cropper: {
       flex: 1,
-      backgroundColor: 'red',
     },
     backButton: {
       position: 'absolute',
@@ -83,7 +82,7 @@ const themedStyles = createThemedStyle((colors) =>
     },
     container: {
       zIndex: 20,
-      backgroundColor: 'red',
+      backgroundColor: '#000',
     },
     cancelButton: {
       color: colors.whiteText,
