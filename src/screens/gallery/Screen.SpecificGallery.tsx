@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react'
 import React from 'react'
-import { galleryFilterButtonGenerator } from '../../features/filters/NavigationButton.GalleryFilter'
+import { setUpGalleryFilterButton } from '../../features/filters/NavigationButton.GalleryFilter'
 import FilteredGalleryList from '../../features/gallery/galleryFilter/FilteredGalleryList'
 import { resetGalleryFilter } from '../../features/gallery/galleryFilter/model'
 import {
@@ -43,7 +43,7 @@ const SpecificGalleryScreens = ({
         title={params?.resultPageTitle || activeGallery.title(t)}
         backAvailable
         onPressBack={onGoBack}
-        headerRight={galleryFilterButtonGenerator(colors)}
+        headerRight={setUpGalleryFilterButton(colors)}
         gradient={{ colors: styles.gradient }}
       />
       <FilteredGalleryList />

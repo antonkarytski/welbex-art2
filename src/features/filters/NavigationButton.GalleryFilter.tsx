@@ -22,7 +22,7 @@ const GalleryFilterNavigationButton = ({
   )
 }
 
-export const galleryFilterButtonGenerator = (
+export const setUpGalleryFilterButton = (
   colors: ColorThemeStructure,
   params?: ScreensProps[links.galleryFilter]
 ) => (

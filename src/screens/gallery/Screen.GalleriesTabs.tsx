@@ -1,7 +1,7 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { galleryFilterButtonGenerator } from '../../features/filters/NavigationButton.GalleryFilter'
+import { setUpGalleryFilterButton } from '../../features/filters/NavigationButton.GalleryFilter'
 import { useGalleriesDescriptors } from '../../features/gallery/descriptors'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
@@ -31,7 +31,7 @@ const GalleriesTabsScreen = () => {
     <View style={styles.common.container}>
       <GradientScreenHeader
         title={text.gallery}
-        headerRight={galleryFilterButtonGenerator(colors)}
+        headerRight={setUpGalleryFilterButton(colors)}
         gradient={{ colors: styles.gradient }}
       />
       {isLoaded ? (

@@ -10,7 +10,7 @@ import {
   screenHeaderThemedStylesTransparent,
 } from '../../../styles/screen'
 import { useText } from '../../../translations/hook'
-import { galleryFilterButtonGenerator } from '../../filters/NavigationButton.GalleryFilter'
+import { setUpGalleryFilterButton } from '../../filters/NavigationButton.GalleryFilter'
 import { useTheme } from '../../themed/hooks'
 import { categoryDetailsModel } from './model'
 
@@ -51,13 +51,13 @@ const CategoryScreenHeader = ({
 
   return (
     <ScreenHeader
-      headerRight={galleryFilterButtonGenerator(colors, {
+      headerRight={setUpGalleryFilterButton(colors, {
         initialCategory: item,
         ignoreMode: true,
         resultPageTitle: text.gallery,
         backSettings: {
           link: links.categoryDetails,
-          params: { item: category },
+          params: { item },
         } as BackSettingsProps<links.categoryDetails>,
       })}
       onLayout={onLayout}
