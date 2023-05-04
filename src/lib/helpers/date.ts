@@ -1,6 +1,7 @@
 import moment from 'moment'
 import 'moment/locale/ru'
 
+export const STANDARD_DATE_FORMAT = 'YYYY-MM-DD'
 export function getDayOffset(date: number) {
   const today = Number(moment().format('DD'))
   return today > date
@@ -75,7 +76,7 @@ export function getMonthPeriodString(
   dateStart: string,
   dateEnd: string,
   language: string = 'en',
-  format: string = 'YYYY-MM-DD'
+  format: string = STANDARD_DATE_FORMAT
 ) {
   const momentLanguage = moment().locale(language?.toLowerCase() || 'en')
   const monthsNames = momentLanguage.localeData().months()
@@ -96,16 +97,22 @@ export const getAgeFromBirthday = (birthdate: string) => {
 
 export const dateObjectToString = (
   date: Date,
-  format: string = 'YYYY-MM-DD'
+  format: string = STANDARD_DATE_FORMAT
 ) => {
   return moment(date.valueOf()).format(format)
 }
 
-export const toNextMonth = (date: Date, format: string = 'YYYY-MM-DD') => {
+export const toNextMonth = (
+  date: Date,
+  format: string = STANDARD_DATE_FORMAT
+) => {
   return moment(date.valueOf()).add(1, 'month').format(format)
 }
 
-export const toEndOfMonth = (date: Date, format: string = 'YYYY-MM-DD') => {
+export const toEndOfMonth = (
+  date: Date,
+  format: string = STANDARD_DATE_FORMAT
+) => {
   return moment(date.valueOf()).endOf('month').format(format)
 }
 
