@@ -21,7 +21,7 @@ const EditAvatarBlock = () => {
   const onPickPhoto = async (assets: ImagePickerAsset[]) => {
     const cropResult = await runCropper(assets)
     if (!cropResult) return
-    setAvatar(assets)
+    setAvatar(cropResult)
   }
 
   const onDeletePhoto = () => {
