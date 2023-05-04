@@ -1,13 +1,10 @@
 import { combine, sample } from 'effector'
+import { debounce } from 'patronum'
 import { createStateModel } from 'altek-toolkit'
 import { ArtWorksFilterProps } from '../../../api/parts/arts/types'
 import { CategoryResponse } from '../../../api/parts/categories/types'
 import { noop } from '../../../lib/helpers'
-import {
-  dateObjectToString,
-  toEndOfMonth,
-  toNextMonth,
-} from '../../../lib/helpers/date'
+import { dateObjectToString, toEndOfMonth } from '../../../lib/helpers/date'
 import { createCountriesListModel } from '../../countries/model.countriesDropdown'
 import { AgeCategory } from '../../filters/ages'
 import { $activeGallery } from '../model'
@@ -89,13 +86,17 @@ export const $galleryFilterProps = combine(
   }
 )
 
-sample({
+const filterChanged = sample({
   clock: [$galleryFilterProps, $activeGallery],
   source: {
     filters: $galleryFilterProps,
     activeGallery: $activeGallery,
     ignoreMode: ignoreModeFilterModel.$state,
   },
+})
+debounce({
+  source: filterChanged,
+  timeout: 500,
 }).watch(({ filters, activeGallery, ignoreMode }) => {
   const modeProps = ignoreMode ? {} : galleriesModeProp[activeGallery.type]
   countFilteredGalleryModel.get({ ...modeProps, ...filters }).catch(noop)

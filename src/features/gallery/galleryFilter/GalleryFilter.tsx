@@ -1,7 +1,7 @@
 import { useStore } from 'effector-react'
 import { KeyboardAvoidingView } from 'native-base'
 import React, { useEffect } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
@@ -79,10 +79,7 @@ const GalleryFilter = (props: GalleryFilterProps) => {
 
   return (
     <>
-      <KeyboardAvoidingView
-        behavior={IS_IOS ? 'position' : 'height'}
-        style={commonStyles.fieldsWrapper}
-      >
+      <View style={commonStyles.fieldsWrapper}>
         <CategoriesMultiSelect
           style={dropdownsCommonStyles}
           model={categoriesFilterModel}
@@ -103,8 +100,7 @@ const GalleryFilter = (props: GalleryFilterProps) => {
           style={styles.monthPicker}
           inputStyle={inputStyles}
         />
-      </KeyboardAvoidingView>
-
+      </View>
       <PresetButton
         label={`${t.show} ${getArtWorksAmountTranslation(
           filterResult?.total,
