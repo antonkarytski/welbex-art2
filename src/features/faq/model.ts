@@ -23,7 +23,9 @@ export const loadFaq = attach({
       if (!current || language !== current.language) {
         const result = await api.faq.getAll({ language })
         return {
-          list: result.items,
+          list: result.items.filter(
+            ({ answer, question }) => answer && question
+          ),
           language,
         }
       }
