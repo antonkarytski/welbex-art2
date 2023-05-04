@@ -101,6 +101,14 @@ export const dateObjectToString = (
   return moment(date.valueOf()).format(format)
 }
 
+export const toNextMonth = (date: Date, format: string = 'YYYY-MM-DD') => {
+  return moment(date.valueOf()).add(1, 'month').format(format)
+}
+
+export const toEndOfMonth = (date: Date, format: string = 'YYYY-MM-DD') => {
+  return moment(date.valueOf()).endOf('month').format(format)
+}
+
 export function monthToGenitive(month: string, language: string) {
   if (language.toLowerCase() === 'ru') {
     if (month.endsWith('ь') || month.endsWith('й')) {
