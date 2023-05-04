@@ -11,6 +11,7 @@ type SettingScreenContainerProps = {
   children: ReactNode
   title: string
   style?: StyleProp<ViewStyle>
+  contentStyle?: StyleProp<ViewStyle>
   backAvailable?: boolean
   enableScrollView?: boolean
 }
@@ -20,6 +21,7 @@ const SettingScreenContainer = ({
   title,
   backAvailable = true,
   style,
+  contentStyle,
   enableScrollView,
 }: SettingScreenContainerProps) => {
   const { styles, colors } = useThemedStyleList({
@@ -37,7 +39,7 @@ const SettingScreenContainer = ({
       />
       <ScreenContainer
         enableScrollView={enableScrollView}
-        style={styles.common.wrapper}
+        style={[styles.common.wrapper, contentStyle]}
       >
         {children}
       </ScreenContainer>
