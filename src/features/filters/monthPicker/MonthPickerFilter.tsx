@@ -3,6 +3,7 @@ import React from 'react'
 import { StyleSheet, View, ViewStyle } from 'react-native'
 import { StateModel, useStateStore } from 'altek-toolkit'
 import { START_DATE } from '../../../constants/app'
+import { useText } from '../../../translations/hook'
 import DateDelimiter from '../../../ui/DateDelimiter'
 import Span from '../../../ui/Span'
 import ButtonInputLike from '../../../ui/buttons/Button.InputLike'
@@ -15,7 +16,6 @@ export type MonthPickerStyles = {
 }
 
 type MonthPickerFieldProps = {
-  title?: string
   style?: MonthPickerStyles
   inputStyle?: InputStyles
   minValueModel: StateModel<Date | null>
@@ -25,16 +25,16 @@ type MonthPickerFieldProps = {
 const MonthPickerFilter = ({
   inputStyle,
   style,
-  title = 'Date',
   maxValueModel,
   minValueModel,
 }: MonthPickerFieldProps) => {
+  const t = useText()
   const [minValue, setMinValue] = useStateStore(minValueModel)
   const [maxValue, setMaxValue] = useStateStore(maxValueModel)
 
   return (
     <View style={[styles.container, style?.container]}>
-      <Span weight={500} style={[styles.title, style?.title]} label={title} />
+      <Span weight={500} style={[styles.title, style?.title]} label={t.date} />
       <View style={styles.inputsContainer}>
         <ButtonInputLike
           label={minValue ? moment(minValue).format('MMMM YYYY') : ''}

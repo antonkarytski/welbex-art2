@@ -25,7 +25,7 @@ const OnlyWinnersFilter = ({ model, style }: OnlyWinnersFilterProps) => {
       <Span
         weight={500}
         style={[styles.title, style?.title]}
-        label={t.artist}
+        label={t.artists}
       />
       <View style={styles.container}>
         <CheckBox isSelected={isSelected} onSelect={setIsSelected} />

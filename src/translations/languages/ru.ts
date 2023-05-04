@@ -251,4 +251,6 @@ export const RU: LangStructure = {
   october: 'Октябрь',
   november: 'Ноябрь',
   december: 'Декабрь',
+  artists: 'Художники',
+  date: 'Дата',
 }
