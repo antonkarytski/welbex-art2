@@ -6,6 +6,7 @@ const defaultColors = COLOR_THEMES.LIGHT
 
 export const placeholderColor = defaultColors.placeholder
 
+export const INPUT_HEIGHT = 52
 export const inputStyles = StyleSheet.create({
   wrapper: {
     flexGrow: 1,

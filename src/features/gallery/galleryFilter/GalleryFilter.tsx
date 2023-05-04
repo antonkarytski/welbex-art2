@@ -14,6 +14,7 @@ import { inputThemedStyles } from '../../../styles/inputs'
 import { useText } from '../../../translations/hook'
 import DeleteButton from '../../../ui/buttons/Button.Delete'
 import PresetButton from '../../../ui/buttons/PresetButton'
+import { INPUT_HEIGHT } from '../../../ui/input/styles'
 import { InputStyles } from '../../../ui/input/types'
 import { DropdownSelectStyles } from '../../../ui/selects/types'
 import CountriesDropdownMultiSelect from '../../countries/CountriesDropdownMultiSelect'
@@ -171,6 +172,10 @@ const inputCommonStyles = StyleSheet.create<InputStyles>({
   },
   wrapper: {
     marginBottom: 0,
+  },
+  input: {
+    height: INPUT_HEIGHT,
+    paddingVertical: 0,
   },
 })
 

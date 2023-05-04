@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native'
 import { defaultColors } from '../../features/themed/theme'
 import { FONT_MEDIUM } from '../../styles/fonts'
+import { INPUT_HEIGHT } from '../input/styles'
 import { DropdownStyles } from './types'
 
 export const DEFAULT_DROPDOWN_HEIGHT = 200
@@ -22,7 +23,7 @@ export const dropdownStyles = StyleSheet.create<DropdownStyles>({
     paddingRight: 24,
     borderWidth: 1,
     borderRadius: 8,
-    height: 52,
+    height: INPUT_HEIGHT,
     borderColor: defaultColors.detailsInactive,
     backgroundColor: defaultColors.formFieldBackground,
   },
