@@ -19,13 +19,14 @@ const GlobalMonthPicker = () => {
 
   if (!task) return null
   return (
-    <TouchableOpacity
-      activeOpacity={1}
-      onPress={() => {
-        setMonthPickerTask(null)
-      }}
-      style={[StyleSheet.absoluteFill, styles.overlay]}
-    >
+    <>
+      <TouchableOpacity
+        activeOpacity={1}
+        onPress={() => {
+          setMonthPickerTask(null)
+        }}
+        style={[StyleSheet.absoluteFill, styles.overlay]}
+      />
       <MonthPicker
         okButton={t.done}
         cancelButton={t.cancel}
@@ -40,7 +41,7 @@ const GlobalMonthPicker = () => {
           setMonthPickerTask(null)
         }}
       />
-    </TouchableOpacity>
+    </>
   )
 }
 
