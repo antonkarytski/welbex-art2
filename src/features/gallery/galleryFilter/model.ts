@@ -22,10 +22,16 @@ export const onlyWinnersFilterModel = createStateModel(false)
 export const minDateFilterModel = createStateModel<Date | null>(null)
 export const maxDateFilterModel = createStateModel<Date | null>(null)
 
+const convertMinMaxDate = (min: Date | null, max: Date | null) => {
+  return {
+    min: min ? dateObjectToString(min) : undefined,
+    max: max ? toEndOfMonth(max) : undefined,
+  }
+}
 sample({
   source: maxDateFilterModel.$state,
   clock: minDateFilterModel.$state,
-  fn: (max, min) => ({ max, min }),
+  fn: (max, min) => convertMinMaxDate(min, max),
 }).watch(({ max, min }) => {
   if (!max || !min) return
   if (max < min) maxDateFilterModel.reset()
@@ -34,7 +40,7 @@ sample({
 sample({
   source: minDateFilterModel.$state,
   clock: maxDateFilterModel.$state,
-  fn: (min, max) => ({ max, min }),
+  fn: (min, max) => convertMinMaxDate(min, max),
 }).watch(({ max, min }) => {
   if (!max || !min) return
   if (max < min) minDateFilterModel.reset()
@@ -70,18 +76,15 @@ export const $galleryFilterProps = combine(
     minDate,
     maxDate,
   }): ArtWorksFilterProps => {
-    console.log(
-      minDate ? dateObjectToString(minDate) : undefined,
-      maxDate ? toEndOfMonth(maxDate) : undefined
-    )
+    const { min, max } = convertMinMaxDate(minDate, maxDate)
     return {
       category_ids: categories.map(({ id }) => id),
       countries: countries.map(({ alpha2Code }) => alpha2Code),
       title: drawingName,
       age_categories_ids: ageCategories.map(({ id }) => id),
       only_winners: onlyWinners,
-      created_date_from: minDate ? dateObjectToString(minDate) : undefined,
-      created_date_to: maxDate ? toEndOfMonth(maxDate) : undefined,
+      created_date_from: min,
+      created_date_to: max,
     }
   }
 )

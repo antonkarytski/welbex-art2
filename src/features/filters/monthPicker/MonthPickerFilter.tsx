@@ -7,7 +7,7 @@ import { useText } from '../../../translations/hook'
 import DateDelimiter from '../../../ui/DateDelimiter'
 import Span from '../../../ui/Span'
 import ButtonInputLike from '../../../ui/buttons/Button.InputLike'
-import { InputStyles } from '../../../ui/input/types'
+import { InputStyles, MergedInputStyles } from '../../../ui/input/types'
 import { setMonthPickerTask } from './model.monthPicker'
 
 export type MonthPickerStyles = {
@@ -17,7 +17,7 @@ export type MonthPickerStyles = {
 
 type MonthPickerFieldProps = {
   style?: MonthPickerStyles
-  inputStyle?: InputStyles
+  inputStyle?: InputStyles | MergedInputStyles
   minValueModel: StateModel<Date | null>
   maxValueModel: StateModel<Date | null>
 }

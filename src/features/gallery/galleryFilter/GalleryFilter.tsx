@@ -101,7 +101,7 @@ const GalleryFilter = (props: GalleryFilterProps) => {
           minValueModel={minDateFilterModel}
           maxValueModel={maxDateFilterModel}
           style={styles.monthPicker}
-          inputStyle={styles.input}
+          inputStyle={inputStyles}
         />
       </KeyboardAvoidingView>
 
@@ -176,6 +176,7 @@ const inputCommonStyles = StyleSheet.create<InputStyles>({
   input: {
     height: INPUT_HEIGHT,
     paddingVertical: 0,
+    justifyContent: 'center',
   },
 })
 

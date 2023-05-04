@@ -2,10 +2,10 @@ import React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import Span from '../Span'
 import { inputStyles } from '../input/styles'
-import { InputStyles } from '../input/types'
+import { InputStyles, MergedInputStyles } from '../input/types'
 
 type ButtonInputLikeProps = {
-  style?: InputStyles
+  style?: InputStyles | MergedInputStyles
   label?: string
   onPress: () => void
 }
