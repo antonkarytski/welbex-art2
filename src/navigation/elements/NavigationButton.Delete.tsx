@@ -5,20 +5,14 @@ import { links } from '../links'
 import NavigationButton, { NavigateButtonProps } from './NavigationButton'
 
 const DeleteNavigationButton = <L extends links>({
-  navigateTo,
-  iconColor,
-  iconSize = 24,
   style,
-  navigateParams,
+  ...props
 }: NavigateButtonProps<L>) => {
   return (
     <NavigationButton
       Icon={DeleteIcon}
       style={[styles.button, style]}
-      navigateTo={navigateTo}
-      iconColor={iconColor}
-      iconSize={iconSize}
-      navigateParams={navigateParams}
+      {...(props as any)}
     />
   )
 }

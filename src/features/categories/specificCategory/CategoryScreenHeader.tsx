@@ -1,12 +1,16 @@
 import { useStore } from 'effector-react'
 import React, { useEffect, useState } from 'react'
 import { Animated, ViewProps } from 'react-native'
+import { SpecificCategoryResponse } from '../../../api/parts/categories/types'
 import ScreenHeader from '../../../navigation/elements/ScreenHeader'
+import { links } from '../../../navigation/links'
+import { BackSettingsProps } from '../../../navigation/types.screenProps'
 import {
   screenHeaderThemedStylesDark,
   screenHeaderThemedStylesTransparent,
 } from '../../../styles/screen'
 import { useText } from '../../../translations/hook'
+import { setUpGalleryFilterButton } from '../../filters/NavigationButton.GalleryFilter'
 import { useTheme } from '../../themed/hooks'
 import { categoryDetailsModel } from './model'
 
@@ -15,9 +19,11 @@ type CategoryScreenHeaderProps = {
   offset?: Animated.Value
   contentHeight?: number
   transparent?: boolean
+  item?: SpecificCategoryResponse
 }
 
 const CategoryScreenHeader = ({
+  item,
   onLayout,
   offset,
   contentHeight,
@@ -45,6 +51,15 @@ const CategoryScreenHeader = ({
 
   return (
     <ScreenHeader
+      headerRight={setUpGalleryFilterButton(colors, {
+        initialCategory: item,
+        ignoreMode: true,
+        resultPageTitle: text.gallery,
+        backSettings: {
+          link: links.categoryDetails,
+          params: { item },
+        } as BackSettingsProps<links.categoryDetails>,
+      })}
       onLayout={onLayout}
       backArrowColor={transparent ? colors.whiteText : colors.text}
       backAvailable

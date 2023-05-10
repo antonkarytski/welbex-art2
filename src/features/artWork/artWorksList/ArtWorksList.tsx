@@ -14,7 +14,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import { ArtWorkPreviewResponse } from '../../../api/parts/categories/types'
+import { ArtPreview } from '../../../api/parts/arts/types'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
 import { ScreensProps } from '../../../navigation/types.screenProps'
@@ -38,10 +38,8 @@ export type ArtWorksFlatListProps = {
 } & Omit<FlatListProps<any>, 'renderItem'>
 
 export type ArtWorksListProps<L extends links> = {
-  data: ArtWorkPreviewResponse[]
-  detailsLink?: ScreensProps[L] extends { item: ArtWorkPreviewResponse }
-    ? L
-    : never
+  data: ArtPreview[]
+  detailsLink?: ScreensProps[L] extends { item: ArtPreview } ? L : never
 } & ArtWorksFlatListProps
 
 function getImageSize() {
@@ -58,20 +56,19 @@ const ArtWorksList = forwardRef(
       containerStyle,
       ...props
     }: ArtWorksListProps<L>,
-    ref: ForwardedRef<FlatList<ArtWorkPreviewResponse>>
+    ref: ForwardedRef<FlatList<ArtPreview>>
   ) => {
     const imageSize = getImageSize()
     const styles = useThemedStyle(themedStyles)
     const navigate = useNavigate()
 
     const goToDrawingDetails = useCallback(
-      (item: ArtWorkPreviewResponse) =>
-        navigate(links.artWorkDetails, { item }),
+      (item: ArtPreview) => navigate(links.artWorkDetails, { item }),
       [navigate]
     )
 
     const renderItem = useCallback(
-      ({ item }: { item: ArtWorkPreviewResponse }) => {
+      ({ item }: { item: ArtPreview }) => {
         return (
           <ArtWorkItem
             containerStyle={styles.itemContainer}

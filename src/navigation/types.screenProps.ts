@@ -1,7 +1,7 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { ImagePickerResult } from 'expo-image-picker'
+import { ArtPreview } from '../api/parts/arts/types'
 import {
-  ArtWorkPreviewResponse,
   CategoryResponse,
   SpecificCategoryResponse,
 } from '../api/parts/categories/types'
@@ -15,9 +15,14 @@ import { links } from './links'
 type ScreensPropsProto<T extends Partial<Record<links, any>>> = T &
   Record<Exclude<links, keyof T>, undefined>
 
+export type BackSettingsProps<L extends links> = {
+  link: L
+  params?: ScreensProps[L]
+}
+
 export type ScreensProps = ScreensPropsProto<{
   [links.categoryDetails]: { item: CategoryResponse }
-  [links.artWorkDetails]: { item: ArtWorkPreviewResponse }
+  [links.artWorkDetails]: { item: ArtPreview }
   [links.galleryBest]: { type: GalleryType.BEST }
   [links.galleryNew]: { type: GalleryType.NEW }
   [links.galleryFollowing]: { type: GalleryType.FOLLOWING }
@@ -39,6 +44,16 @@ export type ScreensProps = ScreensPropsProto<{
   }
   [links.createNewPassword]: {
     token: string
+  }
+  [links.galleryFilter]?: {
+    initialCategory?: CategoryResponse
+    ignoreMode?: boolean
+    resultPageTitle?: string
+    backSettings?: BackSettingsProps<links>
+  }
+  [links.specificGalleryFiltered]?: {
+    resultPageTitle?: string
+    backSettings?: BackSettingsProps<links>
   }
 }>
 

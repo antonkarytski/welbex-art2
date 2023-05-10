@@ -6,20 +6,22 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native'
-import { ArtWorkPreviewResponse } from '../../../api/parts/categories/types'
+import { ArtPreview } from '../../../api/parts/arts/types'
+import WinnerIcon, { winnersIconStyles } from '../../../ui/icons/Icon.Winner'
 
 type ArtWorkItemProps = {
   size: number
-  item: ArtWorkPreviewResponse
+  item: ArtPreview
   style?: StyleProp<ImageStyle>
   containerStyle?: StyleProp<ViewStyle>
-  onPress?: (item: ArtWorkPreviewResponse) => void
+  onPress?: (item: ArtPreview) => void
 }
 
 const ArtWorkItem = React.memo(
   ({ size, style, containerStyle, onPress, item }: ArtWorkItemProps) => {
     return (
       <TouchableOpacity onPress={() => onPress?.(item)} style={containerStyle}>
+        {!!item.is_winner && <WinnerIcon style={winnersIconStyles.container} />}
         <Image
           source={{ uri: item.image_thumbnail }}
           style={[style, { width: size, height: size }]}

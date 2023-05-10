@@ -5,6 +5,7 @@ import {
   TextStyle,
   ViewStyle,
 } from 'react-native'
+import { MergedUnit } from '../../types'
 
 export type InputStyles = {
   container?: ViewStyle
@@ -20,13 +21,15 @@ export type InputStyles = {
   disabled?: ViewStyle
 }
 
+export type MergedInputStyles = MergedUnit<InputStyles>
+
 export type InputProps = {
   onChangeText?: (text: string) => void
   type?: KeyboardTypeOptions
   label?: string
   isValid?: boolean | null
   disabled?: boolean
-  styles?: InputStyles
+  styles?: InputStyles | MergedInputStyles
   InputPseudoBefore?: ReactNode
   InputPseudoAfter?: ReactNode
   postfix?: string

@@ -15,6 +15,7 @@ interface ScreenContainerProps {
   style?: StyleProp<ViewStyle>
   backgroundColor?: string
   enableScrollView?: boolean
+  offBounces?: boolean
 }
 
 const ScreenContainer = ({
@@ -22,6 +23,7 @@ const ScreenContainer = ({
   style,
   backgroundColor,
   enableScrollView,
+  offBounces,
 }: ScreenContainerProps) => {
   const containerStyles = [
     styles.scrollViewContainer,
@@ -31,7 +33,7 @@ const ScreenContainer = ({
   ]
 
   return enableScrollView ? (
-    <ScrollView contentContainerStyle={containerStyles}>
+    <ScrollView bounces={!offBounces} contentContainerStyle={containerStyles}>
       <View style={styles.innerContainer}>{children}</View>
     </ScrollView>
   ) : (

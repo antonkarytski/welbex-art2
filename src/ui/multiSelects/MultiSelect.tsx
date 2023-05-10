@@ -4,7 +4,7 @@ import { useStateStore } from 'altek-toolkit'
 import ListItemSeparator from '../lists/ListItemSeparator'
 import SelectItem from '../selects/selectItem/SelectItem'
 import { selectStyles } from '../selects/styles'
-import SelectAllButtons from './SelectAllButtons'
+import SelectControllersButtons from './SelectControllersButtons'
 import { MultiSelectProps } from './types'
 
 const MultiSelect = <Item,>({
@@ -75,12 +75,13 @@ const MultiSelect = <Item,>({
   return (
     <View style={[selectStyles.container, style?.container]}>
       <FlatList
+        bounces={false}
         data={data}
         ListHeaderComponent={
           <>
             {ListHeaderComponent}
             {showSelectAllButtons && (
-              <SelectAllButtons
+              <SelectControllersButtons
                 selectAllLabel={selectAllLabel}
                 onSelectAll={onSelectAll}
                 onRemoveAll={onRemoveAll}

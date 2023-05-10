@@ -1,5 +1,6 @@
 import { useStore } from 'effector-react'
 import React from 'react'
+import { setUpGalleryFilterButton } from '../../features/filters/NavigationButton.GalleryFilter'
 import FilteredGalleryList from '../../features/gallery/galleryFilter/FilteredGalleryList'
 import { resetGalleryFilter } from '../../features/gallery/galleryFilter/model'
 import {
@@ -7,20 +8,18 @@ import {
   getGalleryListRequest,
 } from '../../features/gallery/model'
 import { useThemedStyleList } from '../../features/themed/hooks'
-import { ColorThemeStructure } from '../../features/themed/theme'
 import { useNavigate } from '../../navigation'
 import GradientScreenHeader from '../../navigation/elements/GradientScreenHeader'
-import NavigationFilterButton from '../../navigation/elements/NavigationButton.GalleryFilter'
 import { links } from '../../navigation/links'
+import { ScreenComponentProps } from '../../navigation/types.screenProps'
 import { themedPrimaryGradient } from '../../styles/gradients'
 import { useText } from '../../translations/hook'
 
-const screenHeaderRight = (colors: ColorThemeStructure) => (
-  <NavigationFilterButton iconColor={colors.appHeaderIconLight} />
-)
-
-const SpecificGalleryScreens = () => {
+const SpecificGalleryScreens = ({
+  route,
+}: ScreenComponentProps<links.specificGalleryFiltered>) => {
   const t = useText()
+  const params = route.params
   const navigate = useNavigate()
   const activeGallery = useStore($activeGallery)
   const { styles, colors } = useThemedStyleList({
@@ -29,6 +28,11 @@ const SpecificGalleryScreens = () => {
 
   const onGoBack = () => {
     resetGalleryFilter()
+    if (params?.backSettings) {
+      //@ts-ignore
+      navigate(params.backSettings.link, params.backSettings.params)
+      return
+    }
     getGalleryListRequest(activeGallery.type)
     navigate(links.galleryTab)
   }
@@ -36,10 +40,10 @@ const SpecificGalleryScreens = () => {
   return (
     <>
       <GradientScreenHeader
-        title={activeGallery.title(t)}
+        title={params?.resultPageTitle || activeGallery.title(t)}
         backAvailable
         onPressBack={onGoBack}
-        headerRight={screenHeaderRight(colors)}
+        headerRight={setUpGalleryFilterButton(colors)}
         gradient={{ colors: styles.gradient }}
       />
       <FilteredGalleryList />

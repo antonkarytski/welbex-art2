@@ -5,7 +5,7 @@ import { DropdownStyles } from './types'
 
 export const DEFAULT_DROPDOWN_HEIGHT = 200
 
-export const styles = StyleSheet.create<DropdownStyles>({
+export const dropdownStyles = StyleSheet.create<DropdownStyles>({
   label: {
     marginBottom: 8,
     fontSize: 14,
@@ -17,11 +17,12 @@ export const styles = StyleSheet.create<DropdownStyles>({
   },
   tab: {
     width: '100%',
-    paddingVertical: 16,
+    justifyContent: 'center',
     paddingHorizontal: 20,
     paddingRight: 24,
     borderWidth: 1,
     borderRadius: 8,
+    height: 52,
     borderColor: defaultColors.detailsInactive,
     backgroundColor: defaultColors.formFieldBackground,
   },

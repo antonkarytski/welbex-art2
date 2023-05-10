@@ -17,7 +17,6 @@ function DropdownMultiSelect<Item>({
   preset,
   ItemSeparatorComponent,
   model,
-  selectedCounterLabel,
   ...props
 }: DropdownMultiSelectProps<Item>) {
   const [selectedItems] = useStateStore(model)
@@ -42,11 +41,7 @@ function DropdownMultiSelect<Item>({
   return (
     <DropdownTab
       label={label}
-      tabLabel={
-        selectedCounterLabel
-          ? `${selectedCounterLabel}: ${selectedItems?.length}`
-          : tabLabel
-      }
+      tabLabel={tabLabel?.({ items: selectedItems })}
       style={dropdownTabStyle}
       preset={preset?.dropdownTab}
       onOpenDropdown={onOpenDropdown}

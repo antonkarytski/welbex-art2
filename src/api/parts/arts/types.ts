@@ -10,6 +10,10 @@ export type ArtWorksFilterProps = {
   min_age?: number
   max_age?: number
   mode?: 'all' | 'best' | 'following' | 'new'
+  created_date_from?: string
+  created_date_to?: string
+  only_winners?: boolean
+  age_categories_ids?: number[]
 }
 
 export type AllArtWorksProps = (ArtWorksFilterProps & PaginatedListProps) | null
@@ -29,6 +33,7 @@ export type ArtWorkGeneral = {
   //for typing compatibility
   is_liked?: boolean
   is_saved?: boolean
+  is_winner?: boolean
 }
 
 export type ArtWork = ArtWorkGeneral & {
@@ -64,8 +69,8 @@ export type ArtWorkCreateProps = {
 export type ArtPreview = {
   id: number
   image_thumbnail: string
+  is_winner?: boolean
 }
 
 export type ArtsListPreviewResponse = PaginatedListResponse<ArtPreview>
-
 export type ArtsListProps = PaginatedListProps & { userId: number }

@@ -14,8 +14,9 @@ export type NavigateButtonProps<L extends keyof ScreensProps> = {
   iconSize?: number
   style?: StyleProp<ViewStyle>
   navigateTo: L
-  navigateParams?: ScreensProps[L]
-}
+} & (undefined extends ScreensProps[L]
+  ? { navigateParams?: ScreensProps[L] }
+  : { navigateParams: ScreensProps[L] })
 
 export type SpecificNavigateButtonProps<L extends links> = Omit<
   NavigateButtonProps<L>,

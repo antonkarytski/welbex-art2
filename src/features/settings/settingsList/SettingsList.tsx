@@ -1,19 +1,28 @@
+import { useFocusEffect } from '@react-navigation/native'
 import { useStore } from 'effector-react'
 import React, { useCallback } from 'react'
 import { FlatList } from 'react-native'
+import { noop } from '../../../lib/helpers'
 import { useText } from '../../../translations/hook'
 import ListItemSeparator from '../../../ui/lists/ListItemSeparator'
 import { $isAuth } from '../../auth/model'
+import { loadFaq } from '../../faq/model'
 import { createThemedStyle } from '../../themed'
 import { useTheme } from '../../themed/hooks'
 import SettingsListItem from './SettingsListItem'
-import { SettingItem, settingsList } from './settingsListData'
+import { SETTINGS_LIST, SettingItem } from './settingsListData'
 
-const SettingsList = () => {
+const loadFaqSync = () => {
+  loadFaq().catch(noop)
+}
+
+const SettingsList = React.memo(() => {
   const t = useText()
   const { styles, colors } = useTheme(themedStyles)
 
   const isAuth = useStore($isAuth)
+
+  useFocusEffect(loadFaqSync)
 
   const renderItem = useCallback(
     ({ item }: { item: SettingItem }) => (
@@ -31,8 +40,8 @@ const SettingsList = () => {
     <FlatList
       data={
         isAuth
-          ? settingsList
-          : settingsList.filter(
+          ? SETTINGS_LIST
+          : SETTINGS_LIST.filter(
               ({ isAbleWhenUnauthorized }) => isAbleWhenUnauthorized
             )
       }
@@ -40,7 +49,7 @@ const SettingsList = () => {
       ItemSeparatorComponent={ListItemSeparator}
     />
   )
-}
+})
 
 const themedStyles = createThemedStyle((colors) => ({
   item: {

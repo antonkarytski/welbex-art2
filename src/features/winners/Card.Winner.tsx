@@ -1,5 +1,5 @@
 import React from 'react'
-import { ImageSourcePropType, View } from 'react-native'
+import { View } from 'react-native'
 import { truncateString } from '../../lib/helpers/strings'
 import Row from '../../ui/Row'
 import Span from '../../ui/Span'
@@ -7,7 +7,7 @@ import ImageCard from '../../ui/cards/ImageCard'
 import { WinnerCardStyles } from './styles'
 
 type WinnerCardProps = {
-  image: ImageSourcePropType
+  image: { uri: string }
   styles: WinnerCardStyles
   category: string
   yearsCategory: string

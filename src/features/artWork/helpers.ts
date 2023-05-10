@@ -1,4 +1,3 @@
-import { ArtWorkPreviewResponse } from '../../api/parts/categories/types'
+import { ArtPreview } from '../../api/parts/arts/types'
 
-export const drawingKeyExtractor = ({ id }: ArtWorkPreviewResponse) =>
-  id.toString()
+export const drawingKeyExtractor = ({ id }: ArtPreview) => id.toString()

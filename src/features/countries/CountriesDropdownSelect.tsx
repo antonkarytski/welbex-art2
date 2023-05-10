@@ -35,6 +35,9 @@ const CountriesDropdownSelect = React.memo(
               styles.countryItem.name,
               isSelected && styles.countryItem.name__selected,
             ],
+            flag: {
+              color: '#000000',
+            },
           }}
         />
       ),

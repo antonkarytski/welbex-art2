@@ -14,11 +14,6 @@ export type SpecificCategoryResponse = CategoryResponse & {
   }
 }
 
-export type ArtWorkPreviewResponse = {
-  id: number
-  image_thumbnail: string
-}
-
 export type WinnerItem = {
   winner: {
     first_name: string
@@ -39,5 +34,4 @@ export type WinnerItem = {
 }
 
 export type CategoriesResponse = PaginatedListResponse<CategoryResponse>
-export type ArtWorksResponse = PaginatedListResponse<ArtWorkPreviewResponse>
 export type WinnerResponse = PaginatedListResponse<WinnerItem>

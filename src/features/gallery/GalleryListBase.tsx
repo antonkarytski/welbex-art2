@@ -86,7 +86,7 @@ const GalleryListBase = ({
         </>
       )
     },
-    [styles, navigate, text, colors, isAdsVisible]
+    [styles, text, colors, isAdsVisible, like, toggleLike, onPressGalleryItem]
   )
 
   if (isLoading) return <GallerySkeleton />

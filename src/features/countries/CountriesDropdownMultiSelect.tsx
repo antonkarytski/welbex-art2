@@ -54,7 +54,10 @@ const CountriesDropdownMultiSelect = React.memo(
           dropdownTab: dropdownTabStyles,
         }}
         preset={selectPreset}
-        selectedCounterLabel={t.selected}
+        tabLabel={({ items }) => {
+          if (!items.length) return ''
+          return `${t.selected}: ${items?.length}`
+        }}
         showSelectAllButtons
         selectAllLabel={t.selectAll}
         removeAllLabel={t.removeAll}

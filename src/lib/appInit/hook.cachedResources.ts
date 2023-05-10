@@ -27,7 +27,7 @@ async function loadResourcesAndData() {
 }
 
 SplashScreen.preventAutoHideAsync().catch(noop)
-const showSplashScreen = (delay = IS_IOS ? 500 : 0) => {
+const hideSplashScreen = (delay = 500) => {
   setTimeout(() => {
     SplashScreen.hideAsync().catch(noop)
   }, delay)
@@ -54,7 +54,7 @@ export function useCachedResources() {
   }, [])
 
   useEffect(() => {
-    if (isLoadingComplete) showSplashScreen()
+    if (isLoadingComplete) hideSplashScreen()
   }, [isLoadingComplete])
 
   return isLoadingComplete

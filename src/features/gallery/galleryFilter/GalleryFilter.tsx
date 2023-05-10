@@ -2,11 +2,10 @@ import { useStore } from 'effector-react'
 import { KeyboardAvoidingView } from 'native-base'
 import React, { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
-import { useStateStore } from 'altek-toolkit'
-import { CATEGORIES_AGE_RANGE } from '../../../constants/categories'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
+import { BackSettingsProps } from '../../../navigation/types.screenProps'
 import {
   buttonLightThemedPreset,
   buttonPrimaryThemedPreset,
@@ -15,38 +14,57 @@ import { inputThemedStyles } from '../../../styles/inputs'
 import { useText } from '../../../translations/hook'
 import DeleteButton from '../../../ui/buttons/Button.Delete'
 import PresetButton from '../../../ui/buttons/PresetButton'
-import Input from '../../../ui/input'
-import MultiSlider from '../../../ui/slider/MultiSlider'
-import CategoriesMultiSelect from '../../categories/CategoriesMultiSelect'
+import { InputStyles } from '../../../ui/input/types'
+import { DropdownSelectStyles } from '../../../ui/selects/types'
 import CountriesDropdownMultiSelect from '../../countries/CountriesDropdownMultiSelect'
+import AgeMultiSelect from '../../filters/AgeMultiSelect'
+import CategoriesMultiSelect from '../../filters/CategoriesMultiSelect'
+import DrawingNameFilter from '../../filters/DrawingNameFilter'
+import OnlyWinnersFilter, {
+  CheckBoxFieldStyles,
+} from '../../filters/OnlyWinnersFilter'
+import MonthPickerFilter, {
+  MonthPickerStyles,
+} from '../../filters/monthPicker/MonthPickerFilter'
+import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
+import { useMergedStyles } from '../../themed/hooks.merge'
 import { useGallery } from '../hooks'
 import { $activeGallery } from '../model'
 import { getArtWorksAmountTranslation } from './helpers'
 import {
   $galleryFilterProps,
-  ageRangeModel,
-  categoriesModel,
-  countriesModel,
-  drawingNameModel,
+  agesCategoriesFilterModel,
+  categoriesFilterModel,
+  countriesFilterModel,
+  maxDateFilterModel,
+  minDateFilterModel,
+  onlyWinnersFilterModel,
   resetGalleryFilter,
 } from './model'
 import { countFilteredGalleryModel, galleriesModeProp } from './request'
 
-const GalleryFilter = () => {
+type GalleryFilterProps = {
+  resultPageTitle?: string
+  backSettings?: BackSettingsProps<links>
+}
+
+const GalleryFilter = (props: GalleryFilterProps) => {
   const t = useText()
   const navigate = useNavigate()
   const { styles, colors } = useThemedStyleList({
     buttonPrimary: buttonPrimaryThemedPreset,
     buttonLight: buttonLightThemedPreset,
     input: inputThemedStyles,
+    checkBox: checkBoxThemedStyles,
+    monthPicker: monthPickerStyles,
   })
+  const inputStyles = useMergedStyles([styles.input, inputCommonStyles])
   const { type } = useStore($activeGallery)
   const filters = useStore($galleryFilterProps)
 
   const { getSync: getFilteredArts } = useGallery(type)
 
-  const [drawingName, setDrawingName] = useStateStore(drawingNameModel)
   const filterResult = useStore(countFilteredGalleryModel.$data)
 
   useEffect(() => {
@@ -55,28 +73,34 @@ const GalleryFilter = () => {
 
   const onShowResults = () => {
     getFilteredArts(filters)
-    navigate(links.specificGalleryFiltered)
+    navigate(links.specificGalleryFiltered, props)
   }
+
   return (
     <>
       <KeyboardAvoidingView
-        behavior={IS_IOS ? 'padding' : 'height'}
+        behavior={IS_IOS ? 'position' : 'height'}
         style={commonStyles.fieldsWrapper}
       >
-        <CategoriesMultiSelect model={categoriesModel} />
-        <CountriesDropdownMultiSelect {...countriesModel} />
-        <Input
-          label={t.drawingName}
-          value={drawingName}
-          onChangeText={setDrawingName}
-          styles={styles.input}
+        <CategoriesMultiSelect
+          style={dropdownsCommonStyles}
+          model={categoriesFilterModel}
         />
-        <MultiSlider
-          label={t.age}
-          model={ageRangeModel}
-          min={CATEGORIES_AGE_RANGE[0]}
-          max={CATEGORIES_AGE_RANGE[1]}
-          step={1}
+        <CountriesDropdownMultiSelect {...countriesFilterModel} />
+        <DrawingNameFilter styles={inputStyles} />
+        <AgeMultiSelect
+          style={dropdownsCommonStyles}
+          model={agesCategoriesFilterModel}
+        />
+        <OnlyWinnersFilter
+          style={styles.checkBox}
+          model={onlyWinnersFilterModel}
+        />
+        <MonthPickerFilter
+          minValueModel={minDateFilterModel}
+          maxValueModel={maxDateFilterModel}
+          style={styles.monthPicker}
+          inputStyle={styles.input}
         />
       </KeyboardAvoidingView>
 
@@ -99,14 +123,54 @@ const GalleryFilter = () => {
   )
 }
 
+const checkBoxThemedStyles = createThemedStyle<CheckBoxFieldStyles>((colors) =>
+  StyleSheet.create({
+    title: {
+      fontSize: 14,
+      color: colors.inputTitle,
+    },
+    label: {
+      color: colors.text,
+    },
+    container: {
+      marginBottom: 20,
+    },
+  })
+)
+
+const monthPickerStyles = createThemedStyle<MonthPickerStyles>((colors) =>
+  StyleSheet.create({
+    title: {
+      color: colors.inputTitle,
+      fontSize: 14,
+    },
+  })
+)
+
 const commonStyles = StyleSheet.create({
   resultsButton: {
-    marginTop: 'auto',
     marginBottom: 12,
+    marginTop: 53,
   },
   fieldsWrapper: {
     paddingTop: 24,
-    marginBottom: 24,
+  },
+})
+
+const dropdownsCommonStyles: DropdownSelectStyles = {
+  dropdownTab: StyleSheet.create({
+    wrapper: {
+      marginBottom: 20,
+    },
+  }),
+}
+
+const inputCommonStyles = StyleSheet.create<InputStyles>({
+  container: {
+    marginBottom: 20,
+  },
+  wrapper: {
+    marginBottom: 0,
   },
 })
 
