@@ -1,8 +1,6 @@
 import { useStore } from 'effector-react'
-import { KeyboardAvoidingView } from 'native-base'
 import React, { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { IS_IOS } from '../../../lib/helpers/native/constants'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
 import { BackSettingsProps } from '../../../navigation/types.screenProps'

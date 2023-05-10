@@ -33,6 +33,7 @@ const AgeMultiSelect = ({ model, style }: AgeMultiSelectProps) => {
       selectAllLabel={t.selectAll}
       removeAllLabel={t.removeAll}
       showSelectedIcon
+      listHeight={'auto'}
     />
   )
 }

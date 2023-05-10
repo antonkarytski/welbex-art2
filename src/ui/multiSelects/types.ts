@@ -41,6 +41,7 @@ type TabLabelFnProps<T> = {
 export type DropdownMultiSelectProps<T> = MultiSelectProps<T> &
   Omit<DropdownSelectProps<T>, 'placeholder'> & {
     tabLabel?: (props: TabLabelFnProps<T>) => string
+    listHeight?: number | string
   }
 
 export type DropdownSelectProps<T> = Omit<

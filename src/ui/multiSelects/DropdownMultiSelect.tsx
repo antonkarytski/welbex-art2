@@ -17,6 +17,7 @@ function DropdownMultiSelect<Item>({
   preset,
   ItemSeparatorComponent,
   model,
+  listHeight = WINDOW_HEIGHT * 0.35,
   ...props
 }: DropdownMultiSelectProps<Item>) {
   const [selectedItems] = useStateStore(model)
@@ -34,7 +35,7 @@ function DropdownMultiSelect<Item>({
   }
 
   const dropdownTabStyle = {
-    dropdownContainer: { height: WINDOW_HEIGHT * 0.35 },
+    dropdownContainer: { height: listHeight },
     ...style?.dropdownTab,
   }
 

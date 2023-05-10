@@ -49,8 +49,8 @@ export default function GalleryFilterScreen({
           enableScrollView
         >
           <GalleryFilter
-            resultPageTitle={route.params?.resultPageTitle}
-            backSettings={route.params?.backSettings}
+            resultPageTitle={params?.resultPageTitle}
+            backSettings={params?.backSettings}
           />
         </ScreenContainer>
       </ScreenWrapper>
