@@ -72,6 +72,7 @@ const LIGHT = {
   screenNavTextInactive: GREY.TEXT_LIGHT,
   /** Validation error */
   errorText: RED.TEXT,
+  errorIcon: '#F66161',
   errorBorder: RED.BORDER,
   errorBackground: RED.BACKGROUND,
   /** Validation success */
@@ -222,6 +223,7 @@ const DARK: Record<keyof ColorThemeStructure, string> = {
   /** Select */
   selectItemBackground: COMMON.WHITE,
   selectCkeckedItemBackground: GREY.BACKGROUND_EXTRA_LIGHT,
+  errorIcon: '#F66161',
 }
 
 export const COLOR_THEMES: Record<ColorThemes, ColorThemeStructure> = {

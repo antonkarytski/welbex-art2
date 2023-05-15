@@ -29,7 +29,7 @@ const DESCRIPTORS: Record<
   [IdentityDocumentStatus.REJECTED]: {
     label: (t) => t.childIdentificationDocumentRejected,
     Icon: ErrorIcon,
-    color: (c) => c.errorBorder,
+    color: (c) => c.errorIcon,
   },
   [IdentityDocumentStatus.UNDETERMINED]: {
     label: () => '',
