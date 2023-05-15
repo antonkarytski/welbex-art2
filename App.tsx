@@ -7,7 +7,10 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { STRIPE_TEST_PUBLISHING_KEY } from './src/constants/payments'
+import {
+  APPLE_PAY_MERCHANT_ID,
+  STRIPE_TEST_PUBLISHING_KEY,
+} from './src/constants/payments'
 import AppPopUps from './src/features/popUp/AppPopUps'
 import { useCachedResources } from './src/lib/appInit/hook.cachedResources'
 import { sentryInit } from './src/lib/debug/sentry'
@@ -27,7 +30,10 @@ const App = () => {
     <GestureHandlerRootView style={styles.container}>
       <NativeBaseProvider>
         <SafeAreaProvider>
-          <StripeProvider publishableKey={STRIPE_TEST_PUBLISHING_KEY}>
+          <StripeProvider
+            publishableKey={STRIPE_TEST_PUBLISHING_KEY}
+            merchantIdentifier={APPLE_PAY_MERCHANT_ID}
+          >
             <NavigationContainer linking={linkingConfig}>
               <StatusBar style="dark" />
               <Router />
