@@ -96,6 +96,8 @@ const UserDrawingsList = React.memo(
         []
       )
 
+      console.log(list)
+
       return (
         <DrawingsList
           ref={ref}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { ImageStyle, ScrollView, StyleSheet } from 'react-native'
 import { IdentityDocumentStatus } from '../../api/parts/users/types.api'
+import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { themedPrimaryGradient } from '../../styles/gradients'
 import { inputThemedStyles } from '../../styles/inputs'
 import { useText } from '../../translations/hook'
@@ -26,6 +27,7 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
     common: themedStyles,
     gradient: themedPrimaryGradient,
     field: inputThemedStyles,
+    buttonPreset: buttonPrimaryThemedPreset,
   })
 
   const isChildDocumentDetermined = useChildDocumentStatus(
@@ -66,7 +68,11 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
           containerStyle={styles.common.cameraBlockContainer}
         />
       )}
-      <CreatePostFromSubmitButton style={styles.common.button} />
+      <CreatePostFromSubmitButton
+
+        style={styles.common.button}
+        preset={styles.buttonPreset}
+      />
     </ScrollView>
   )
 }

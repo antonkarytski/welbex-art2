@@ -37,12 +37,6 @@ const DownloadImageButton = ({
         if (!artWork) return
         setIsLoading(true)
         const originalName = getNameFromUrl(artWork.image_thumbnail)
-        // downloadFullSizeDrawing(
-        //   artWork.id,
-        //   originalName
-        // ).finally(() => {
-        //   if (isFocused.current) setIsLoading(false)
-        // })
         const request = isHaveSubscription
           ? downloadFullSizeDrawing(artWork.id, originalName)
           : downloadImageFromUrl(artWork.image_thumbnail)

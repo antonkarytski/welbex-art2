@@ -6,16 +6,19 @@ import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import AsyncPresetButton from '../../ui/buttons/AsyncPresetButton'
+import { PresetButtonStates } from '../../ui/buttons/types'
 import { InfoMessageType } from '../infoMessage/types'
 import { useChildDocumentStatus } from '../profile/childDocument/hooks'
 import { createPostFormModel } from './model'
 
 type CreatePostFromSubmitButtonProps = {
   style?: StyleProp<ViewStyle>
+  preset?: PresetButtonStates
 }
 
 const CreatePostFromSubmitButton = ({
   style,
+  preset,
 }: CreatePostFromSubmitButtonProps) => {
   const text = useText()
   const navigate = useNavigate()
@@ -39,6 +42,7 @@ const CreatePostFromSubmitButton = ({
           createPostFormModel.reset()
         } catch {}
       }}
+      preset={preset}
       label={text.submit}
     />
   )
