@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { SpecificCategoryResponse } from '../../../api/parts/categories/types'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
@@ -17,11 +17,10 @@ type CategoryDescriptionProps = {
   item: SpecificCategoryResponse
 }
 
-const CategoryDescription = ({ item }: CategoryDescriptionProps) => {
+const JoinCategoryButton = ({ item }: CategoryDescriptionProps) => {
   const text = useText()
   const navigate = useNavigate()
   const { styles } = useThemedStyleList({
-    common: themedStyles,
     button: buttonPrimaryThemedPreset,
     text: textThemedStyles,
     textButton: buttonTextThemedStyles,
@@ -33,28 +32,20 @@ const CategoryDescription = ({ item }: CategoryDescriptionProps) => {
   }
 
   return (
-    <View style={styles.common.container}>
-      <PresetButton
-        label={text.join}
-        onPress={onJoinCategory}
-        preset={styles.button}
-      />
-    </View>
+    <PresetButton
+      label={text.join}
+      onPress={onJoinCategory}
+      preset={styles.button}
+      style={commonStyles.button}
+    />
   )
 }
 
-const themedStyles = createThemedStyle((colors) =>
-  StyleSheet.create({
-    container: {
-      marginBottom: 8,
-      marginTop: 24,
-    },
-    header: {
-      marginTop: 0,
-      color: colors.text,
-    },
-  })
-)
+const commonStyles = StyleSheet.create({
+  button: {
+    marginTop: 24,
+  },
+})
 
 const textThemedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
@@ -68,4 +59,4 @@ const textThemedStyles = createThemedStyle((colors) =>
   })
 )
 
-export default CategoryDescription
+export default JoinCategoryButton

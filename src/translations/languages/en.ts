@@ -120,8 +120,10 @@ export const EN = {
   childDocumentUploaded: "Child's identity document uploaded",
   uploadChildNewDocument: 'Upload a new child identity proof document',
   documentUploading: 'Uploading a document',
-  childIdentificationDocumentIsInModeration: 'The document is in moderation',
-  childIdentificationDocumentRejected: 'The document is rejected!',
+  childIdentificationDocumentIsInModeration:
+    "The child's identification document is in moderation",
+  childIdentificationDocumentRejected:
+    "The child's identification document is not confirmed",
   childIdentificationDocumentApproved: 'The document is approved',
   createPostAgeError: 'Your age doesn’t match any available category',
   winners: 'Winners',
