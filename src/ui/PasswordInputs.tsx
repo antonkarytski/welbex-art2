@@ -1,6 +1,8 @@
 import { useStore, useStoreMap } from 'effector-react'
 import React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
+import { createThemedStyle } from '../features/themed'
+import { useThemedStyle } from '../features/themed/hooks'
 import { FormModel } from '../lib/models/form'
 import { PasswordsFormModel } from '../lib/models/passwordsForm/types'
 import { SecureField } from './form'
@@ -30,6 +32,7 @@ const PasswordInputs = <M extends Record<string, any> = {}>({
   style,
 }: PasswordInputsProps<PasswordsFormModel & M>) => {
   const isValid = useStore(model.validation.$state)
+  const styles = useThemedStyle(themedStyles)
   const isPasswordsEmpty = useStoreMap({
     store: model.$store,
     keys: [],
@@ -55,6 +58,9 @@ const PasswordInputs = <M extends Record<string, any> = {}>({
       {!isPasswordsEmpty && (
         <View style={styles.validationNoteWrapper}>
           <ValidationNote
+            style={{
+              label: styles.noteText,
+            }}
             isValid={isValid}
             validLabel={validLabel}
             invalidLabel={invalidLabel}
@@ -66,13 +72,18 @@ const PasswordInputs = <M extends Record<string, any> = {}>({
   )
 }
 
-const styles = StyleSheet.create({
-  wrapper: {
-    marginBottom: 12,
-  },
-  validationNoteWrapper: {
-    marginRight: 2,
-  },
-})
+const themedStyles = createThemedStyle((colors) =>
+  StyleSheet.create({
+    wrapper: {
+      marginBottom: 12,
+    },
+    validationNoteWrapper: {
+      marginRight: 2,
+    },
+    noteText: {
+      color: colors.text,
+    },
+  })
+)
 
 export default PasswordInputs

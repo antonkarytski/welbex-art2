@@ -5,16 +5,17 @@ import { FnExt } from '../../types'
 import { SpanProps } from '../Span'
 import { InputProps, InputStyles } from '../input/types'
 
+export type NoteStyles = {
+  row?: StyleProp<ViewStyle>
+  icon?: StyleProp<ViewStyle>
+  label?: StyleProp<TextStyle>
+}
 export type NoteProps = PropsWithChildren<{
   label: string
   iconColor?: string
   iconSize?: number
   labelFontWeight?: SpanProps['weight']
-  style?: {
-    row?: StyleProp<ViewStyle>
-    icon?: StyleProp<ViewStyle>
-    label?: StyleProp<TextStyle>
-  }
+  style?: NoteStyles
 }>
 
 export type SecureFieldProps<

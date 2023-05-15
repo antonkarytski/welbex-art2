@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native'
 import { createThemedStyle } from '../features/themed'
+import { CellStyle } from '../ui/celledInput/Cell'
 import { InputStyles } from '../ui/input/types'
 import { FONT_MEDIUM } from './fonts'
 
@@ -44,6 +45,9 @@ export const cellThemedStyles = createThemedStyle((colors) =>
     cell__focused: {
       borderColor: colors.inputFocusedBorder,
       backgroundColor: colors.inputFocusedBackground,
+    },
+    text: {
+      color: colors.text,
     },
   })
 )

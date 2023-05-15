@@ -1,6 +1,7 @@
 import React from 'react'
 import ErrorNote from './ErrorNote'
 import SuccessNote from './SuccessNote'
+import { NoteStyles } from './_types'
 
 export type ValidationNoteIconColors = {
   success?: string
@@ -12,6 +13,7 @@ type ValidationNoteProps = {
   validLabel?: string
   invalidLabel?: string
   iconColors?: ValidationNoteIconColors
+  style?: NoteStyles
 }
 
 const ValidationNote = ({
@@ -19,12 +21,25 @@ const ValidationNote = ({
   validLabel = '',
   invalidLabel = '',
   iconColors,
+  style,
 }: ValidationNoteProps) => {
   if (isValid === true)
-    return <SuccessNote label={validLabel} iconColor={iconColors?.success} />
+    return (
+      <SuccessNote
+        style={style}
+        label={validLabel}
+        iconColor={iconColors?.success}
+      />
+    )
 
   if (isValid === false)
-    return <ErrorNote label={invalidLabel} iconColor={iconColors?.error} />
+    return (
+      <ErrorNote
+        style={style}
+        label={invalidLabel}
+        iconColor={iconColors?.error}
+      />
+    )
 
   return null
 }

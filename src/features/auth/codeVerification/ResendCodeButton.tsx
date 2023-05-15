@@ -68,6 +68,7 @@ const themedStyles = createThemedStyle((colors) =>
     },
     preCounterText: {
       marginRight: 8,
+      color: colors.text,
     },
   })
 )
