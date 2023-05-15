@@ -4,7 +4,6 @@ import TabStackNavigator from '../../navigation/elements/TabStackNavigator'
 import { createTabScreenDescription } from '../../navigation/helpers'
 import { links } from '../../navigation/links'
 import PlusIcon from '../../ui/icons/Icon.PlusCircled'
-import AddPostDescriptionScreen from './Screen.AddPostDescription'
 import UploadPostImageScreen from './Screen.UploadPostImage'
 
 const CreatePostScreen = () => {
@@ -13,10 +12,6 @@ const CreatePostScreen = () => {
       <Stack.Screen
         name={links.createPostUploadImage}
         component={UploadPostImageScreen}
-      />
-      <Stack.Screen
-        name={links.createPostAddDescription}
-        component={AddPostDescriptionScreen}
       />
     </TabStackNavigator>
   )

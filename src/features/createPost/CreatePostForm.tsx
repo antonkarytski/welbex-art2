@@ -12,6 +12,7 @@ import ChildDocumentUploadingBlock from '../profile/childDocument/ChildDocumentU
 import { useChildDocumentStatus } from '../profile/childDocument/hooks'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
+import { useMergedStyles } from '../themed/hooks.merge'
 import CreatePostFromSubmitButton from './CreatePostFromSubmitButton'
 import ImagePreviewFormField from './ImagePreviewFormField'
 import {
@@ -33,6 +34,7 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
   const isChildDocumentDetermined = useChildDocumentStatus(
     IdentityDocumentStatus.DETERMINED
   )
+  const inputStyles = useMergedStyles([styles.field, fieldStyles])
   useCreatePostFormInitialValues(props)
 
   return (
@@ -60,16 +62,12 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
         name={createPostFormModel.fields.age}
         formModel={createPostFormModel}
         postfix={` ${text.yearsOldAbbreviated}`}
-        styles={styles.field}
+        styles={inputStyles}
       />
       {!isChildDocumentDetermined && (
-        <ChildDocumentUploadingBlock
-          style={styles.common.cameraBlock}
-          containerStyle={styles.common.cameraBlockContainer}
-        />
+        <ChildDocumentUploadingBlock style={styles.common.cameraBlock} />
       )}
       <CreatePostFromSubmitButton
-
         style={styles.common.button}
         preset={styles.buttonPreset}
       />
@@ -85,9 +83,6 @@ const themedStyles = createThemedStyle((colors) =>
       borderWidth: 1,
       borderColor: colors.darkLine,
     },
-    cameraBlockContainer: {
-      marginTop: 20,
-    },
     header: {
       color: colors.text,
       marginBottom: 24,
@@ -102,7 +97,7 @@ const themedStyles = createThemedStyle((colors) =>
       paddingTop: 32,
       paddingHorizontal: 20,
     },
-    button: { marginVertical: 24 },
+    button: { marginTop: 24, marginBottom: 54 },
   })
 )
 

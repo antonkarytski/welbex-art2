@@ -96,12 +96,9 @@ const UserDrawingsList = React.memo(
         []
       )
 
-      console.log(list)
-
       return (
         <DrawingsList
           ref={ref}
-          // onEndReached={onEndReached} //* NOT AVAILABLE ON ANDROID *
           data={list}
           onLayout={handleLayout}
           listKey={type}

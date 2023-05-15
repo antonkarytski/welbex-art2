@@ -5,6 +5,7 @@ import { onBoardingWasShownModel } from '../features/onboarding/model'
 import { useNavigate } from '../navigation'
 import StackNavigator, { Stack } from '../navigation/elements/StackNavigator'
 import { links } from '../navigation/links'
+import AddPostDescriptionScreen from './Screen.AddPostDescription'
 import ArtWorkDetailsScreen from './Screen.ArtWorkDetails'
 import CameraScreen from './Screen.Camera'
 import ScreenInfoMessage from './Screen.InfoMessage'
@@ -58,6 +59,10 @@ const Router = React.memo(() => {
       <Stack.Screen
         name={links.artWorkDetails}
         component={ArtWorkDetailsScreen}
+      />
+      <Stack.Screen
+        name={links.createPostAddDescription}
+        component={AddPostDescriptionScreen}
       />
     </StackNavigator>
   )
