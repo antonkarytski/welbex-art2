@@ -1,11 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native'
 import * as Sentry from '@sentry/react-native'
+import { StripeProvider } from '@stripe/stripe-react-native'
 import { StatusBar } from 'expo-status-bar'
 import { NativeBaseProvider } from 'native-base'
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { STRIPE_TEST_PUBLISHING_KEY } from './src/constants/payments'
 import AppPopUps from './src/features/popUp/AppPopUps'
 import { useCachedResources } from './src/lib/appInit/hook.cachedResources'
 import { sentryInit } from './src/lib/debug/sentry'
@@ -25,11 +27,13 @@ const App = () => {
     <GestureHandlerRootView style={styles.container}>
       <NativeBaseProvider>
         <SafeAreaProvider>
-          <NavigationContainer linking={linkingConfig}>
-            <StatusBar style="dark" />
-            <Router />
-            <AppPopUps />
-          </NavigationContainer>
+          <StripeProvider publishableKey={STRIPE_TEST_PUBLISHING_KEY}>
+            <NavigationContainer linking={linkingConfig}>
+              <StatusBar style="dark" />
+              <Router />
+              <AppPopUps />
+            </NavigationContainer>
+          </StripeProvider>
         </SafeAreaProvider>
       </NativeBaseProvider>
     </GestureHandlerRootView>

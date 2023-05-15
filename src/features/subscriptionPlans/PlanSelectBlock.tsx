@@ -6,13 +6,13 @@ import SubscriptionSelectItem, {
   SubscriptionSelectItemProps,
 } from '../../ui/lists/SubscriptionSelectItem'
 import { useThemedStyleList } from '../themed/hooks'
+import { SUBSCRIPTION_PLANS } from './constants'
 import {
   getSubscriptionMonthsAmountText,
   getSubscriptionPriceText,
 } from './helpers'
 import {
   $selectedSubscriptionPlanIndex,
-  SUBSCRIPTION_PLANS,
   setSubscriptionPlanIndex,
 } from './model'
 import {

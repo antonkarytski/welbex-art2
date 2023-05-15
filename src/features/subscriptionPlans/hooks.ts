@@ -1,5 +1,6 @@
 import { useStore } from 'effector-react'
-import { $selectedSubscriptionPlanIndex, SUBSCRIPTION_PLANS } from './model'
+import { SUBSCRIPTION_PLANS } from './constants'
+import { $selectedSubscriptionPlanIndex } from './model'
 
 export const useSelectedSubscriptionPlan = () => {
   const selectedItemIndex = useStore($selectedSubscriptionPlanIndex)
