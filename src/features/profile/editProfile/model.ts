@@ -22,7 +22,7 @@ export const editProfileFormSchema = yup.object().shape({
 
 export const editProfileFormModel = createFormModel(editProfileFormSchema)
 
-export const setEditProfileFormData = attach({
+export const setEditProfileInitialData = attach({
   source: $myProfile,
   mapParams: (_: void, state: MyProfile | null) => state,
   effect: createEffect((state: MyProfile | null) => {

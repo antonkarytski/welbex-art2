@@ -24,12 +24,9 @@ const ArtWorkDetails = React.memo(() => {
   const myProfile = useStore($myProfile)
 
   const artWork = drawing.data as ArtWork
-  const { toggleLike, save, like, followAuthor } = useAtrWorkActions(
-    artWork,
-    drawing.update
-  )
+  const actions = useAtrWorkActions(artWork, drawing.update)
   const pressHandler = useDoubleTap({
-    onDoublePress: like,
+    onDoublePress: actions.like,
   })
 
   if (!drawing.data && drawing.isLoading) {
@@ -47,7 +44,7 @@ const ArtWorkDetails = React.memo(() => {
           }
           navigate(links.userProfile, { item })
         }}
-        onPressFollow={followAuthor}
+        onPressFollow={actions.followAuthor}
         item={drawing.data.author}
       />
       <TouchableOpacity activeOpacity={1} onPress={pressHandler}>
@@ -58,8 +55,8 @@ const ArtWorkDetails = React.memo(() => {
       </TouchableOpacity>
       <ArtWorkInteractionPanel
         item={drawing.data}
-        onPressLike={toggleLike}
-        onPressSave={save}
+        onPressLike={actions.toggleLike}
+        onPressSave={actions.save}
       />
       <DownloadImageButton
         style={styles.downloadButton}

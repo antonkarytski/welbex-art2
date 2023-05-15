@@ -3,7 +3,6 @@ import { WinnerItem } from '../../api/parts/categories/types'
 import { IUserProfile, MyProfile } from '../../api/parts/users/types'
 import {
   IdentityDocumentStatus,
-  MyProfileResponse,
   SingUpResponseUser,
   UserProfileResponse,
 } from '../../api/parts/users/types.api'
@@ -76,13 +75,6 @@ export function signUpUserResponseToNewUser(
     followings: 0,
     age: userAge(user),
     identity_determined_status_id: IdentityDocumentStatus.UNDETERMINED,
-  }
-}
-
-export function prepareMyProfile(item: MyProfileResponse): MyProfile {
-  return {
-    ...item,
-    age: userAge(item),
   }
 }
 

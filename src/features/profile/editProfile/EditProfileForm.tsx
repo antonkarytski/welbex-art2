@@ -22,7 +22,7 @@ import EditAvatarBlock from './EditAvatarBlock'
 import {
   editProfileCountryModel,
   editProfileFormModel,
-  setEditProfileFormData,
+  setEditProfileInitialData,
 } from './model'
 
 const EditProfileForm = () => {
@@ -36,7 +36,7 @@ const EditProfileForm = () => {
   })
 
   useEffect(() => {
-    setEditProfileFormData().catch(noop)
+    setEditProfileInitialData().catch(noop)
   }, [])
 
   const onSaveChanges = () => {

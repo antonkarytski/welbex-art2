@@ -1,7 +1,7 @@
 import { attach, createEffect, createEvent, sample } from 'effector'
 import { seconds } from 'altek-toolkit'
 import { api } from '../../api'
-import { prepareMyProfile } from '../user/helpers'
+import { prepareMyProfile } from './helpers'
 import { setMyProfile } from './model'
 
 const REFRESH_PROFILE_INTERVAL = seconds(20)

@@ -25,13 +25,18 @@ export const convertAbsentFieldsListFilter = (
   return Object.fromEntries(fields.map((field) => [field, true]))
 }
 
+export const iosFilter = (key: keyof ProfileEditProps) => {
+  return key !== 'first_name' && key !== 'last_name'
+}
+
 export const validateAbsentUserData = (
   absentFieldsFilter: ProfileDataFilter,
   validation: Record<keyof SignUpUserDataForm, ValidationState | null>
 ): null | boolean => {
   return signUpUserDataFormModel.keysList.reduce<null | boolean>((acc, key) => {
-    const isAbsent = absentFieldsFilter[getApiKeyByFormName(key)]
-    if (isAbsent) {
+    const formKey = getApiKeyByFormName(key)
+    const isAbsent = absentFieldsFilter[formKey]
+    if (isAbsent && !iosFilter(formKey)) {
       const record = validation[key]
       return record === null ? acc : record.isValid && acc
     }
