@@ -3,12 +3,20 @@ import { ImagePickerAsset } from 'expo-image-picker'
 import React, { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { $isAuth } from '../../features/auth/model'
+import {
+  FREE_UPLOADS_LIMIT,
+  PAID_UPLOADS_LIMIT,
+} from '../../features/createPost/constants'
 import PhotoSelectBlock, {
   CAMERA_SOURCE_PRESET,
 } from '../../features/imagePick/Block.PhotoSelect'
 import UploadFromCameraRollBlock from '../../features/imagePick/Block.UploadFromCameraRoll'
 import { runCropper } from '../../features/imagePick/imageCropper/model'
 import PopUpAgeError from '../../features/popUp/PopUp.AgeError'
+import {
+  PopUpArtWorksLimitExceedFree,
+  PopUpArtWorksLimitExceedPaid,
+} from '../../features/popUp/PopUp.ArtWorksLimitExceed'
 import PopUpLogin from '../../features/popUp/profilePopUps/PopUp.Login'
 import { $myProfile } from '../../features/profile/model'
 import { createThemedStyle } from '../../features/themed'
@@ -38,14 +46,23 @@ export default function UploadPostImageScreen({
   const myProfile = useStore($myProfile)
 
   useEffect(() => {
-    const onFocus = () => {
-      if (!isAuth) {
-        PopUpLogin.showSync()
-        navigation.goBack()
+    const getPopUp = () => {
+      if (!isAuth) return PopUpLogin
+      if (!myProfile?.is_child || userAge(myProfile) < 2) return PopUpAgeError
+      if (
+        !myProfile.subscription &&
+        (myProfile.works_uploaded_in_this_month || 0) > FREE_UPLOADS_LIMIT
+      ) {
+        return PopUpArtWorksLimitExceedFree
       }
-
-      if (isAuth && (!myProfile?.is_child || userAge(myProfile) < 2)) {
-        PopUpAgeError.showSync()
+      if ((myProfile.works_uploaded_in_this_month || 0) > PAID_UPLOADS_LIMIT) {
+        return PopUpArtWorksLimitExceedPaid
+      }
+    }
+    const onFocus = () => {
+      const popUp = getPopUp()
+      if (popUp) {
+        popUp.showSync()
         navigation.goBack()
       }
     }

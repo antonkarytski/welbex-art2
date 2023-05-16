@@ -247,4 +247,8 @@ export const EN = {
   november: 'November',
   december: 'December',
   moderationWork: 'Moderation work',
+  youExceedLimitOfWorksFree:
+    'You have already uploaded the maximum number of works for public categories in this month. To be placed in premium categories, purchase a subscription.',
+  youExceedLimitOfWorksPaid:
+    'You have already uploaded the maximum number of works in this month.',
 }

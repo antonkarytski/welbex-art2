@@ -1,6 +1,10 @@
 import React from 'react'
 import ImageCropper from '../imagePick/imageCropper/ImageCropper'
 import PopUpAgeError from './PopUp.AgeError'
+import {
+  PopUpArtWorksLimitExceedFree,
+  PopUpArtWorksLimitExceedPaid,
+} from './PopUp.ArtWorksLimitExceed'
 import PopUpDeletePaymentCard from './PopUp.DeletePaymentCard'
 import PopUpPhotoEdit from './PopUp.PhotoEditActionSelect'
 import PopUpUnexpectedError from './PopUp.UnexpectedError'
@@ -17,6 +21,8 @@ export default function AppPopUps() {
       <PopUpDeletePaymentCard />
       <PopUpPhotoEdit />
       <PopUpUnexpectedError />
+      <PopUpArtWorksLimitExceedFree />
+      <PopUpArtWorksLimitExceedPaid />
     </>
   )
 }
