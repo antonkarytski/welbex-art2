@@ -66,10 +66,17 @@ export type ArtWorkCreateProps = {
   categoryId: number
 }
 
+export enum ArtWorkStatus {
+  MODERATION = 1,
+  PUBLISHED = 2,
+  REJECTED = 3,
+}
+
 export type ArtPreview = {
   id: number
   image_thumbnail: string
   is_winner?: boolean
+  status_id: ArtWorkStatus
 }
 
 export type ArtsListPreviewResponse = PaginatedListResponse<ArtPreview>

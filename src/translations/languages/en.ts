@@ -246,4 +246,5 @@ export const EN = {
   october: 'October',
   november: 'November',
   december: 'December',
+  moderationWork: 'Moderation work',
 }

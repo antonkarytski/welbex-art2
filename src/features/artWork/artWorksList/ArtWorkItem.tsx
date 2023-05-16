@@ -6,8 +6,9 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native'
-import { ArtPreview } from '../../../api/parts/arts/types'
+import { ArtPreview, ArtWorkStatus } from '../../../api/parts/arts/types'
 import WinnerIcon, { winnersIconStyles } from '../../../ui/icons/Icon.Winner'
+import ModerationWorkLabel from './ModerationWorkLabel'
 
 type ArtWorkItemProps = {
   size: number
@@ -26,6 +27,7 @@ const ArtWorkItem = React.memo(
           source={{ uri: item.image_thumbnail }}
           style={[style, { width: size, height: size }]}
         />
+        {item.status_id === ArtWorkStatus.MODERATION && <ModerationWorkLabel />}
       </TouchableOpacity>
     )
   }

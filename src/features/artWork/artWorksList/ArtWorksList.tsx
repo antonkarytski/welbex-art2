@@ -72,7 +72,6 @@ const ArtWorksList = forwardRef(
         return (
           <ArtWorkItem
             containerStyle={styles.itemContainer}
-            style={styles.item as ImageStyle}
             size={imageSize}
             item={item}
             onPress={goToDrawingDetails}
@@ -111,11 +110,12 @@ const themedStyles = createThemedStyle((colors) =>
     listColumnWrapper: {
       justifyContent: 'space-between',
     },
-    item: {
+    itemContainer: {
+      ...themedShadow5Style(colors),
       marginBottom: 20,
       borderRadius: 20,
+      overflow: 'hidden',
     },
-    itemContainer: themedShadow5Style(colors),
     listContentContainer: {
       paddingVertical: 24,
       paddingHorizontal: SCREEN_PADDING_HORIZONTAL,

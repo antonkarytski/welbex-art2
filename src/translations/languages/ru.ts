@@ -253,4 +253,5 @@ export const RU: LangStructure = {
   december: 'Декабрь',
   artists: 'Художники',
   date: 'Дата',
+  moderationWork: 'На модерации',
 }
