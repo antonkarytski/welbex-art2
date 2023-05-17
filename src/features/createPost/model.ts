@@ -13,6 +13,7 @@ export type ImageDescriptionFormFields = {
   title: string
   categoryId: number | null
   age: string
+  nextMonth: boolean
 }
 
 const imageFileShape = yup.object().shape({
@@ -26,6 +27,7 @@ const schema: ObjectSchema<ImageDescriptionFormFields> = yup.object().shape({
   title: stringSchema(),
   categoryId: yup.number().default(0),
   image: imageFileShape.default(null),
+  nextMonth: yup.boolean().default(false),
 })
 
 export const createPostFormModel = createFormModel(schema).setSubmitSettings({
@@ -36,7 +38,8 @@ export const createPostFormModel = createFormModel(schema).setSubmitSettings({
     return api.arts.create({
       image: data.image,
       title: data.title,
-      categoryId: data.categoryId,
+      category_id: data.categoryId,
+      next_month_competition: data.nextMonth,
     })
   }),
 })

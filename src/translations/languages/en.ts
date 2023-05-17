@@ -116,6 +116,7 @@ export const EN = {
   cancel: 'Cancel',
   completeDescription: 'Complete the description',
   category: 'Category',
+  monthOfParticipation: 'Month of participation',
   uploadChildDocument: 'Upload a child identity proof document',
   childDocumentUploaded: "Child's identity document uploaded",
   uploadChildNewDocument: 'Upload a new child identity proof document',

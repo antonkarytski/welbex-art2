@@ -63,7 +63,8 @@ export type ArtWorkCreateResponse = {
 export type ArtWorkCreateProps = {
   image: ImageFile
   title: string
-  categoryId: number
+  category_id: number
+  next_month_competition: boolean
 }
 
 export enum ArtWorkStatus {

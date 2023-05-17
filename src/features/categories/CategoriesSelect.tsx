@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react'
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { StyleSheet } from 'react-native'
 import { StateModel } from 'altek-toolkit'
 import { api } from '../../api'
@@ -20,25 +20,31 @@ type CategoriesSelectProps = {
   label?: string
   model: StateModel<CategoryResponse | null>
   style?: DropdownSelectStyles
+  filter?: (category: CategoryResponse) => boolean
 }
 
 const CategoriesSelect = React.memo(
-  ({ label, model, style }: CategoriesSelectProps) => {
+  ({ label, model, style, filter }: CategoriesSelectProps) => {
     const t = useText()
     const categories = useStore(categoriesRequestModel.$items)
     const isLoading = useStore(categoriesRequestModel.$isLoading)
     const selectedCategory = useStore(model.$state)
     const stylesPreset = useDropdownSelectPreset()
 
+    console.log('HERE!!')
+
+    const items = useMemo(() => {
+      if (!filter) return categories
+      return categories.filter(filter)
+    }, [filter, categories])
+
     useEffect(() => {
       categoriesRequestModel.get()
     }, [])
 
     useEffect(() => {
-      if (!selectedCategory) {
-        model.set(categories[0])
-      }
-    }, [categories, selectedCategory, model])
+      if (!selectedCategory) model.set(items[0])
+    }, [items, selectedCategory, model])
 
     const getNextCategories = () => {
       categoriesRequestModel.getNext()
@@ -48,7 +54,7 @@ const CategoriesSelect = React.memo(
       <DropdownSelect
         label={label ?? t.category}
         model={model}
-        data={categories}
+        data={items}
         labelExtractor={({ name }) => name}
         idExtractor={({ id }) => id?.toString()}
         style={{ dropdownTab: dropdownTabStyles, ...style }}

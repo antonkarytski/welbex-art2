@@ -1,5 +1,7 @@
+import { useStoreMap } from 'effector-react'
 import React from 'react'
 import { ImageStyle, ScrollView, StyleSheet } from 'react-native'
+import { CategoryResponse } from '../../api/parts/categories/types'
 import { IdentityDocumentStatus } from '../../api/parts/users/types.api'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { themedPrimaryGradient } from '../../styles/gradients'
@@ -10,6 +12,7 @@ import Field from '../../ui/form/Field'
 import CategoriesSelect from '../categories/CategoriesSelect'
 import ChildDocumentUploadingBlock from '../profile/childDocument/ChildDocumentUploadingBlock'
 import { useChildDocumentStatus } from '../profile/childDocument/hooks'
+import { $availableCategories } from '../profile/model.availableCategories'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import { useMergedStyles } from '../themed/hooks.merge'
@@ -21,9 +24,22 @@ import {
 } from './hook'
 import { createPostFormModel } from './model'
 import { selectedCategoryModel } from './model.categorySelect'
+import PostMonthSelect from './postMonth/PostMonthSelect'
 
 const CreatePostForm = (props: CreatePostFormInitialProps) => {
   const text = useText()
+  const categoriesFilter = useStoreMap({
+    store: $availableCategories,
+    keys: [],
+    fn: (categories) => {
+      if (!categories) return
+      const mask = [
+        ...new Set([...categories.current_month, ...categories.next_month]),
+      ]
+      console.log(mask)
+      return (category: CategoryResponse) => mask.includes(category.id)
+    },
+  })
   const { styles } = useThemedStyleList({
     common: themedStyles,
     gradient: themedPrimaryGradient,
@@ -55,7 +71,10 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
         formModel={createPostFormModel}
         styles={fieldStyles}
       />
-      <CategoriesSelect model={selectedCategoryModel} />
+      <CategoriesSelect
+        model={selectedCategoryModel}
+        filter={categoriesFilter}
+      />
       <Field
         disabled
         label={text.age}
@@ -64,6 +83,7 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
         postfix={` ${text.yearsOldAbbreviated}`}
         styles={inputStyles}
       />
+      <PostMonthSelect />
       {!isChildDocumentDetermined && (
         <ChildDocumentUploadingBlock style={styles.common.cameraBlock} />
       )}
@@ -104,6 +124,9 @@ const themedStyles = createThemedStyle((colors) =>
 const fieldStyles = StyleSheet.create({
   container: {
     marginBottom: 20,
+  },
+  wrapper: {
+    marginBottom: 0,
   },
 })
 

@@ -1,7 +1,7 @@
 import { imageToFile } from './image'
 import { ImageFile } from './types'
 
-type CreateFormDataProps = Record<string, string | number | ImageFile>
+type CreateFormDataProps = Record<string, string | number | boolean | ImageFile>
 
 export function formDataFromList(list: CreateFormDataProps) {
   const formData = new FormData()

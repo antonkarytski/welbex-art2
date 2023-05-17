@@ -51,6 +51,7 @@ const Select = <Item,>({
 
   return (
     <FlatList
+      bounces={false}
       data={data}
       renderItem={renderSelect}
       keyExtractor={idExtractor}

@@ -46,8 +46,8 @@ const create = arts
   .post<ArtWorkCreateResponse, ArtWorkCreateProps>({
     endpoint: 'create',
     contentType: ContentType.FORM_DATA,
-    fn: ({ categoryId, ...rest }) => ({
-      body: formDataFromList({ ...rest, category_id: categoryId }),
+    fn: (data) => ({
+      body: formDataFromList(data),
     }),
   })
   .withProgress()
