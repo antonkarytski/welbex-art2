@@ -76,7 +76,7 @@ export type ArtPreview = {
   id: number
   image_thumbnail: string
   is_winner?: boolean
-  status_id: ArtWorkStatus
+  status_id?: ArtWorkStatus
 }
 
 export type ArtsListPreviewResponse = PaginatedListResponse<ArtPreview>
