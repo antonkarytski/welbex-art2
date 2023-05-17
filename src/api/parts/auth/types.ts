@@ -1,4 +1,4 @@
-import { TokenType } from '../../../lib/models/apiBuilder/types.token'
+import { TokenType } from '@heyheyjude/toolkit'
 
 export type LoginBody = {
   grant_type?: string

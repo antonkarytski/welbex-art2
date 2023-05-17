@@ -1,5 +1,5 @@
+import { ContentType } from '@heyheyjude/toolkit'
 import { formDataFromList } from '../../../lib/files/formData'
-import { ContentType } from '../../../lib/models/apiBuilder/types'
 import { apiManager } from '../../apiManager'
 import {
   AllArtWorksProps,

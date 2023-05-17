@@ -5,11 +5,10 @@ import { useEffect, useState } from 'react'
 import { apiManager } from '../../api/apiManager'
 import { cameraPermission } from '../../features/camera/model.permissions'
 import { onBoardingWasShownModel } from '../../features/onboarding/model'
-import { meRequest } from '../../features/profile/request'
+import { initProfile } from '../../features/profile/request'
 import * as FONTS from '../../styles/fonts'
 import { configMobileAds } from '../ads/setup'
 import { noop } from '../helpers'
-import { IS_IOS } from '../helpers/native/constants'
 
 async function loadResourcesAndData() {
   const Inter400 = require('../../../assets/fonts/Inter/Inter-Regular.ttf')
@@ -48,7 +47,8 @@ export function useCachedResources() {
       })
       .then(() => apiManager.token.onInit().promise)
       .then((token) => {
-        if (token) return meRequest()
+        if (!token) return
+        return initProfile()
       })
       .catch(noop)
   }, [])

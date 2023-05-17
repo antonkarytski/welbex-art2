@@ -1,4 +1,4 @@
-import { TokenType } from '../../../lib/models/apiBuilder/types.token'
+import { TokenType } from '@heyheyjude/toolkit'
 import { User } from './types'
 import {
   UserCounters,

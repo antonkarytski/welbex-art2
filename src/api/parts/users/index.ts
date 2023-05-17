@@ -1,6 +1,6 @@
+import { ContentType } from '@heyheyjude/toolkit'
 import { formDataFromList } from '../../../lib/files/formData'
 import { ImageFile } from '../../../lib/files/types'
-import { ContentType } from '../../../lib/models/apiBuilder/types'
 import { apiManager } from '../../apiManager'
 import {
   MyProfileResponse,

@@ -1,4 +1,4 @@
-import { ServerManager } from 'altek-toolkit'
+import { ServerManager } from '@heyheyjude/toolkit'
 
 export const ROOT_DOMAIN = 'art-sqrd.com' //'45.8.97.189'
 export const DEV_ROOT_DOMAIN = `test.${ROOT_DOMAIN}`

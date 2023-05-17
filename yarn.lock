@@ -1666,6 +1666,13 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
+"@heyheyjude/toolkit@^0.1.11":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@heyheyjude/toolkit/-/toolkit-0.1.11.tgz#779000caedcbb612f6cb4bfaa53f2c8bff40c677"
+  integrity sha512-Yz7E5ICrt8z53cqv2/pGsQ7vxPFAVN3FIlKAIp8RqdrXDOEGe7awMR/vWRByVae2ByjOl2DUOngD7p+pBazE6g==
+  dependencies:
+    yup "^1.1.1"
+
 "@humanwhocodes/config-array@^0.5.0":
   version "0.5.0"
   resolved "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.5.0.tgz"
@@ -13459,6 +13466,16 @@ yup@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/yup/-/yup-1.0.0.tgz"
   integrity sha512-bRZIyMkoe212ahGJTE32cr2dLkJw53Va+Uw5mzsBKpcef9zCGQ23k/xtpQUfGwdWPKvCIlR8CzFwchs2rm2XpQ==
+  dependencies:
+    property-expr "^2.0.5"
+    tiny-case "^1.0.3"
+    toposort "^2.0.2"
+    type-fest "^2.19.0"
+
+yup@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/yup/-/yup-1.1.1.tgz#49dbcf5ae7693ed0a36ed08a9e9de0a09ac18e6b"
+  integrity sha512-KfCGHdAErqFZWA5tZf7upSUnGKuTOnsI3hUsLr7fgVtx+DK04NPV01A68/FslI4t3s/ZWpvXJmgXhd7q6ICnag==
   dependencies:
     property-expr "^2.0.5"
     tiny-case "^1.0.3"

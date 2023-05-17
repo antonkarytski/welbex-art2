@@ -1,7 +1,7 @@
+import { Tokens } from '@heyheyjude/toolkit'
 import { createEvent, createStore } from 'effector'
 import * as yup from 'yup'
 import { ProfileEditProps } from '../../../api/parts/users/types.parts'
-import { Tokens } from '../../../lib/models/apiBuilder/types.token'
 import { createFormModel } from '../../../lib/models/form'
 import { INITIAL_DATE } from '../../signUp/constants'
 import { convertAbsentFieldsListFilter } from './helpers'

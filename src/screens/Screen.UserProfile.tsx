@@ -1,3 +1,4 @@
+import { useRequest } from '@heyheyjude/toolkit'
 import React, { useEffect, useState } from 'react'
 import UserProfile from '../features/user/UserProfile'
 import {
@@ -11,7 +12,6 @@ import {
 import { createUserArtsListsRequestModel } from '../features/user/drawingsList/request'
 import { profileResponseToUserProfile } from '../features/user/helpers'
 import { getUserRequest } from '../features/user/request'
-import { useRequest } from '../lib/models/apiBuilder/hooks'
 import { links } from '../navigation/links'
 import { ScreenComponentProps } from '../navigation/types.screenProps'
 import UserScreenSkeleton from '../ui/loaders/Skeleton.UserScreen'

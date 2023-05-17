@@ -1,8 +1,8 @@
+import { Tokens } from '@heyheyjude/toolkit'
 import { attach, createEffect } from 'effector'
 import { api } from '../../../api'
 import { apiManager } from '../../../api/apiManager'
-import { Tokens } from '../../../lib/models/apiBuilder/types.token'
-import { meRequest } from '../../profile/request'
+import { initProfile } from '../../profile/request'
 import {
   $signUpFormData,
   SignUpFormData,
@@ -36,7 +36,7 @@ export const completeQuickAuth = attach({
         const update = convertSignUpFormToProfileUpdate(data, absentFields)
         await api.users.editMe(update)
       }
-      await meRequest()
+      await initProfile()
       resetQuickAuthData()
       resetSignUpFormData()
     }

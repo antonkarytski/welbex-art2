@@ -1,5 +1,5 @@
+import { ContentType } from '@heyheyjude/toolkit'
 import { IS_IOS } from '../../../lib/helpers/native/constants'
-import { ContentType } from '../../../lib/models/apiBuilder/types'
 import { apiManager } from '../../apiManager'
 import { LoginBody, LoginResponse } from './types'
 
@@ -14,7 +14,7 @@ const appleAuth = auth.get('apple/oauth2')
 export const authApi = {
   login,
   googleAuth,
-  googleAuthUrl: googleAuth.url(),
+  googleAuthUrl: googleAuth.url,
   appleAuth,
-  appleAuthUrl: appleAuth.url(),
+  appleAuthUrl: googleAuth.url,
 }

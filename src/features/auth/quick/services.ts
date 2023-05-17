@@ -17,9 +17,9 @@ const authWithService = (url: string) => {
 }
 
 export const authWithGoogle = () => {
-  authWithService(api.auth.googleAuthUrl)
+  authWithService(api.auth.googleAuthUrl())
 }
 
 export const authWithApple = () => {
-  authWithService(api.auth.appleAuthUrl)
+  authWithService(api.auth.appleAuthUrl())
 }

@@ -40,3 +40,8 @@ export type WinnerProps = {
   date_start?: string
   date_end?: string
 } & PaginatedListProps
+
+export type AvailableCategoriesResponse = {
+  current_month: number[]
+  next_month: number[]
+}

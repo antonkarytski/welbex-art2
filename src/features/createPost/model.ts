@@ -5,6 +5,7 @@ import { api } from '../../api'
 import { ImageFile } from '../../lib/files/types'
 import { createFormModel } from '../../lib/models/form'
 import { stringSchema } from '../../lib/yup'
+import { updateProfile } from '../profile/model'
 import { createPostAds } from './model.ads'
 
 export type ImageDescriptionFormFields = {
@@ -42,4 +43,8 @@ export const createPostFormModel = createFormModel(schema).setSubmitSettings({
 
 createPostFormModel.submit.done.watch(({ result }) => {
   if (!result) return
+  updateProfile((profile) => ({
+    works_uploaded_in_this_month:
+      (profile.works_uploaded_in_this_month || 0) + 1,
+  }))
 })

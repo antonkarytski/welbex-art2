@@ -3,6 +3,7 @@ import { STANDARD_DATE_FORMAT } from '../../../lib/helpers/date'
 import { apiManager } from '../../apiManager'
 import { PaginatedListProps } from '../../types'
 import {
+  AvailableCategoriesResponse,
   CategoriesResponse,
   SpecificCategoryResponse,
   WinnerProps,
@@ -23,10 +24,14 @@ const currentMonthWinners = categories.get<
   },
 })
 const specific = categories.get<SpecificCategoryResponse, number>()
+const getAvailable = categories
+  .get<AvailableCategoriesResponse, void>('get-available-categories-ids')
+  .protect()
 
 export const categoriesApi = {
   all,
   specific,
   winners,
   currentMonthWinners,
+  getAvailable,
 }
