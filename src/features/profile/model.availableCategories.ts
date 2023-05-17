@@ -1,7 +1,8 @@
 import { attach, createEvent, restore } from 'effector'
 import { api } from '../../api'
+import { AvailableCategoriesResponse } from '../../api/parts/categories/types'
 
-export const setAvailableCategories = createEvent<any>()
+export const setAvailableCategories = createEvent<AvailableCategoriesResponse>()
 export const $availableCategories = restore(setAvailableCategories, null)
 
 $availableCategories.watch((e) => {
