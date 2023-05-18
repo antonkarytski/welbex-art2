@@ -7,7 +7,7 @@ import { UserArtsListsRequestModel } from './types'
 export const createUserArtsListsRequestModel =
   (): UserArtsListsRequestModel => {
     const userAllArtsModel = createPaginationListModel({
-      request: api.arts.userAllArts,
+      request: api.arts.userAllArtsProtected,
       pageSize: ARTS_PAGE_SIZE,
     })
 

@@ -53,15 +53,15 @@ const create = arts
   .withProgress()
 
 const userArts = arts.endpoint('user').unprotect()
-const userAllArts = userArts.get<ArtsListPreviewResponse, ArtsListProps>(
-  ({ userId, ...rest }) => ({ url: `${userId}/all`, body: rest })
-)
-const userLikedArts = userArts.get<ArtsListPreviewResponse, ArtsListProps>(
-  ({ userId, ...rest }) => ({ url: `${userId}/liked`, body: rest })
-)
-const userSavedArts = userArts.get<ArtsListPreviewResponse, ArtsListProps>(
-  ({ userId, ...rest }) => ({ url: `${userId}/saved`, body: rest })
-)
+function createUserArtsRequest(endpoint: string) {
+  return userArts.get<ArtsListPreviewResponse, ArtsListProps>(
+    ({ userId, ...rest }) => ({ url: `${userId}/${endpoint}`, body: rest })
+  )
+}
+const userAllArts = createUserArtsRequest('all')
+const userAllArtsProtected = userAllArts.protect()
+const userLikedArts = createUserArtsRequest('liked')
+const userSavedArts = createUserArtsRequest('saved')
 
 export const artsApi = {
   all,
@@ -81,6 +81,7 @@ export const artsApi = {
   downloadFullSizeDrawing,
   create,
   userAllArts,
+  userAllArtsProtected,
   userLikedArts,
   userSavedArts,
 }
