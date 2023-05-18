@@ -14,7 +14,7 @@ import PopUpLogin from '../popUp/profilePopUps/PopUp.Login'
 import { $myProfile } from '../profile/model'
 import {
   $availableCategories,
-  getAvailableCategories,
+  loadAvailableCategories,
 } from '../profile/model.availableCategories'
 import { userAge } from '../user/helpers'
 
@@ -32,7 +32,7 @@ const getPopUp = ({
   if (!isAuth || !myProfile) return PopUpLogin
   if (!myProfile.is_child || userAge(myProfile) < 2) return PopUpAgeError
   if (!availableCategories) {
-    getAvailableCategories().catch(noop)
+    loadAvailableCategories().catch(noop)
     return
   }
   const isNoAvailableCategories =

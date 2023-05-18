@@ -5,10 +5,7 @@ import { useDropdownSelectPreset } from '../../../styles/selects'
 import { useText } from '../../../translations/hook'
 import DropdownSelect from '../../../ui/selects/DropdownSelect'
 import { DropdownSelectStyles } from '../../../ui/selects/types'
-import {
-  monthOfParticipationItems,
-  selectedMonthOfParticipationModel,
-} from './model'
+import { monthOfParticipationItems, monthOfParticipationModel } from './model'
 
 type PostMonthSelectProps = {
   style?: DropdownSelectStyles
@@ -21,7 +18,7 @@ const PostMonthSelect = ({ style }: PostMonthSelectProps) => {
   return (
     <DropdownSelect
       label={t.monthOfParticipation}
-      model={selectedMonthOfParticipationModel}
+      model={monthOfParticipationModel}
       data={items}
       labelExtractor={(value) => moment(value).format('MMMM YYYY')}
       idExtractor={(value) => value.toString()}

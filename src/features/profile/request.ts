@@ -3,7 +3,7 @@ import { seconds } from 'altek-toolkit'
 import { api } from '../../api'
 import { prepareMyProfile } from './helpers'
 import { setMyProfile } from './model'
-import { getAvailableCategories } from './model.availableCategories'
+import { loadAvailableCategories } from './model.availableCategories'
 
 const REFRESH_PROFILE_INTERVAL = seconds(20)
 const lastLimitedRefreshRef = {
@@ -39,5 +39,5 @@ sample({
 })
 
 export const initProfile = () => {
-  return Promise.all([meRequest(), getAvailableCategories()])
+  return Promise.all([meRequest(), loadAvailableCategories()])
 }

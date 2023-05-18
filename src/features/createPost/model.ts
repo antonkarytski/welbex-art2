@@ -3,9 +3,13 @@ import * as yup from 'yup'
 import { ObjectSchema } from 'yup'
 import { api } from '../../api'
 import { ImageFile } from '../../lib/files/types'
+import { noop } from '../../lib/helpers'
 import { createFormModel } from '../../lib/models/form'
 import { stringSchema } from '../../lib/yup'
-import { removeCategoryFromAvailable } from '../profile/model.availableCategories'
+import {
+  loadAvailableCategories,
+  removeCategoryFromAvailable,
+} from '../profile/model.availableCategories'
 
 export type ImageDescriptionFormFields = {
   image: ImageFile
@@ -46,8 +50,9 @@ export const createPostFormModel = createFormModel(schema).setSubmitSettings({
 
 submitRequest.done.watch(({ params }) => {
   if (params.categoryId === null) return
-  removeCategoryFromAvailable({
-    id: params.categoryId,
-    nextMonth: params.nextMonth,
-  })
+  loadAvailableCategories().catch(noop)
+  // removeCategoryFromAvailable({
+  //   id: params.categoryId,
+  //   nextMonth: params.nextMonth,
+  // })
 })

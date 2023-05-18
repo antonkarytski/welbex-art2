@@ -21,9 +21,9 @@ export const $availableCategories = restore(setAvailableCategories, null)
     return { ...state, [key]: [...categories] }
   })
   .reset(logOut)
-export const getAvailableCategories = attach({
+export const loadAvailableCategories = attach({
   effect: api.categories.getAvailable,
 })
-getAvailableCategories.done.watch(({ result }) => {
+loadAvailableCategories.done.watch(({ result }) => {
   setAvailableCategories(result)
 })
