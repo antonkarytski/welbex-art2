@@ -51,6 +51,7 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
     <View onLayout={onLayout} style={styles.common.container}>
       <H2 style={styles.common.title} label={text.winners} />
       <FlatList
+        bounces={false}
         contentContainerStyle={styles.common.listContent}
         showsHorizontalScrollIndicator={false}
         horizontal
