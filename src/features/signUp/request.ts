@@ -3,8 +3,10 @@ import { attach } from 'effector'
 import { createStateModel } from 'altek-toolkit'
 import { api } from '../../api'
 import { apiManager } from '../../api/apiManager'
+import { noop } from '../../lib/helpers'
 import { tokenResponseToTokens } from '../auth/logIn/helpers.token'
 import { setMyProfile } from '../profile/model'
+import { getAvailableCategories } from '../profile/model.availableCategories'
 import { signUpUserResponseToNewUser } from '../user/helpers'
 import { convertSignUpFormToSignUpBody } from './helpers'
 import { $signUpFormData, resetSignUpFormData } from './model'
@@ -23,6 +25,7 @@ export const signUpErrorModel = createStateModel<null | string>(null)
 
 signUp.done.watch(({ result }) => {
   resetSignUpFormData()
+  getAvailableCategories().catch(noop)
   apiManager.token.set(tokenResponseToTokens(result.tokens))
   const myNewProfile = signUpUserResponseToNewUser(result.user)
   setMyProfile(myNewProfile)

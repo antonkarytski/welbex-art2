@@ -3,6 +3,7 @@ import { useStore } from 'effector-react'
 import { useCallback } from 'react'
 import { AvailableCategoriesResponse } from '../../api/parts/categories/types'
 import { MyProfile } from '../../api/parts/users/types'
+import { noop } from '../../lib/helpers'
 import { $isAuth } from '../auth/model'
 import PopUpAgeError from '../popUp/PopUp.AgeError'
 import {
@@ -11,7 +12,10 @@ import {
 } from '../popUp/PopUp.ArtWorksLimitExceed'
 import PopUpLogin from '../popUp/profilePopUps/PopUp.Login'
 import { $myProfile } from '../profile/model'
-import { $availableCategories } from '../profile/model.availableCategories'
+import {
+  $availableCategories,
+  getAvailableCategories,
+} from '../profile/model.availableCategories'
 import { userAge } from '../user/helpers'
 
 type GetPopUpProps = {
@@ -25,8 +29,12 @@ const getPopUp = ({
   myProfile,
   availableCategories,
 }: GetPopUpProps) => {
-  if (!isAuth || !myProfile || !availableCategories) return PopUpLogin
+  if (!isAuth || !myProfile) return PopUpLogin
   if (!myProfile.is_child || userAge(myProfile) < 2) return PopUpAgeError
+  if (!availableCategories) {
+    getAvailableCategories().catch(noop)
+    return
+  }
   const isNoAvailableCategories =
     !availableCategories.current_month || !availableCategories.next_month
   if (!myProfile.subscription && isNoAvailableCategories) {

@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
-    "@heyheyjude/toolkit": "^0.1.11",
+    "@heyheyjude/toolkit": "^0.1.12",
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "@react-native-async-storage/async-storage": "^1.17.11",
     "@react-native-camera-roll/camera-roll": "^5.4.0",

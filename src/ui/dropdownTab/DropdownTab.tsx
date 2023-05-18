@@ -40,8 +40,6 @@ const DropdownTab = forwardRef<DropdownTabInstance, DropdownTabProps>(
       indentFromTab,
       considerKeyboard,
     })
-
-    console.log(calculatedContainerStyle)
     const activeStyles = useDropdownTabPreset({ isOpened, preset })
 
     const handleOpenDropdown = () => {

@@ -36,7 +36,6 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
       const mask = [
         ...new Set([...categories.current_month, ...categories.next_month]),
       ]
-      console.log(mask)
       return (category: CategoryResponse) => mask.includes(category.id)
     },
   })

@@ -1666,10 +1666,10 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
-"@heyheyjude/toolkit@^0.1.11":
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/@heyheyjude/toolkit/-/toolkit-0.1.11.tgz#779000caedcbb612f6cb4bfaa53f2c8bff40c677"
-  integrity sha512-Yz7E5ICrt8z53cqv2/pGsQ7vxPFAVN3FIlKAIp8RqdrXDOEGe7awMR/vWRByVae2ByjOl2DUOngD7p+pBazE6g==
+"@heyheyjude/toolkit@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@heyheyjude/toolkit/-/toolkit-0.1.12.tgz#7e4d7b418908bbb46d8f01ed0b64ad6b23dcd740"
+  integrity sha512-38QfoWWyw5KulYityMr+Vt82033W5U15ZafYvLDMUYeYuEObZIPhcQ1KKjjOevimMP5fQYRtv7BhT/SZq6sVZg==
   dependencies:
     yup "^1.1.1"
 
