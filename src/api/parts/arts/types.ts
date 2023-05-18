@@ -40,6 +40,7 @@ export type ArtWorkGeneral = {
   is_liked?: boolean
   is_saved?: boolean
   is_winner?: boolean
+  status_id?: ArtWorkStatus
 }
 
 export type ArtWork = ArtWorkGeneral & {

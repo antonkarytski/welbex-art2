@@ -1,12 +1,10 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { ArtWork, ArtWorkGeneral } from '../../api/parts/arts/types'
-import Span from '../../ui/Span'
+import { ArtWorkGeneral } from '../../api/parts/arts/types'
 import FavouriteButton from '../../ui/buttons/FavouriteButton'
 import LikeButton from '../../ui/buttons/LikeButton'
 import ShareButton from '../../ui/buttons/ShareButton'
-import { createThemedStyle } from '../themed'
-import { useThemedStyleList } from '../themed/hooks'
+import { useColors } from '../themed'
 
 type ArtWorkInteractivePanelProps = {
   item: ArtWorkGeneral
@@ -14,83 +12,67 @@ type ArtWorkInteractivePanelProps = {
   onPressSave: () => void
 }
 
-function isAuthorizedArtWork(item: ArtWorkGeneral | ArtWork): item is ArtWork {
-  return (item as ArtWork).is_liked !== undefined
-}
-
 const ArtWorkInteractivePanel = ({
   item,
   onPressLike,
   onPressSave,
 }: ArtWorkInteractivePanelProps) => {
-  const { colors, styles } = useThemedStyleList({
-    common: themedStyles,
-  })
+  const colors = useColors()
 
   return (
-    <View>
-      <View style={styles.common.container}>
-        <LikeButton
-          likesCount={item.likes}
-          style={[styles.common.button, styles.common.likeButton]}
-          onPress={onPressLike}
+    <View style={styles.container}>
+      <LikeButton
+        likesCount={item.likes}
+        style={[styles.button, styles.likeButton]}
+        onPress={onPressLike}
+        color={colors.icon}
+        active={item.is_liked}
+        activeColor={colors.likesIcon}
+      />
+      <View style={styles.interactionBlock}>
+        <ShareButton
           color={colors.icon}
-          active={item.is_liked}
-          activeColor={colors.likesIcon}
+          style={[styles.button, styles.shareButton]}
+          item={{
+            url: item.image_thumbnail,
+            title: item.title,
+          }}
         />
-        <View style={styles.common.interactionBlock}>
-          <ShareButton
-            color={colors.icon}
-            style={[styles.common.button, styles.common.shareButton]}
-            item={{
-              url: item.image_thumbnail,
-              title: item.title,
-            }}
-          />
-          <FavouriteButton
-            color={colors.icon}
-            style={[styles.common.button, styles.common.favouriteButton]}
-            active={item.is_saved}
-            onPress={onPressSave}
-          />
-        </View>
+        <FavouriteButton
+          color={colors.icon}
+          style={[styles.button, styles.favouriteButton]}
+          active={item.is_saved}
+          onPress={onPressSave}
+        />
       </View>
-      <Span style={styles.common.title} weight={600} label={item.title} />
     </View>
   )
 }
 
-const themedStyles = createThemedStyle((colors) =>
-  StyleSheet.create({
-    container: {
-      paddingTop: 12,
-      paddingBottom: 10,
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    interactionBlock: {
-      marginLeft: 'auto',
-      flexDirection: 'row',
-    },
-    button: {
-      paddingVertical: 12,
-    },
-    shareButton: {
-      paddingHorizontal: 20,
-    },
-    favouriteButton: {
-      paddingLeft: 20,
-      paddingRight: 4,
-    },
-    likeButton: {
-      paddingRight: 20,
-      paddingLeft: 4,
-    },
-    title: {
-      color: colors.text,
-      fontSize: 16,
-    },
-  })
-)
+const styles = StyleSheet.create({
+  container: {
+    paddingBottom: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  interactionBlock: {
+    marginLeft: 'auto',
+    flexDirection: 'row',
+  },
+  button: {
+    paddingVertical: 12,
+  },
+  shareButton: {
+    paddingHorizontal: 20,
+  },
+  favouriteButton: {
+    paddingLeft: 20,
+    paddingRight: 4,
+  },
+  likeButton: {
+    paddingRight: 20,
+    paddingLeft: 4,
+  },
+})
 
 export default ArtWorkInteractivePanel
