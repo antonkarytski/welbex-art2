@@ -252,4 +252,5 @@ export const EN = {
     'You have already uploaded the maximum number of works for public categories. To be placed in premium categories, purchase a subscription.',
   youExceedLimitOfWorksPaid:
     'You have already uploaded the maximum number of works.',
+  subscriptionRequired: 'Subscription is required to post in this category',
 }

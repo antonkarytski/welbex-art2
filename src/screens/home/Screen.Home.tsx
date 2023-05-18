@@ -35,7 +35,6 @@ export default function HomeScreen() {
     keys: [isWinnersLoading],
     fn: (list) => !!list.length || isWinnersLoading,
   })
-
   const isCategoriesLoading = useStore(categoriesListModel.$isLoading)
 
   useEffect(() => {
@@ -58,13 +57,14 @@ export default function HomeScreen() {
     { useNativeDriver: true }
   )
 
-  if (isWinnersLoading || isCategoriesLoading)
+  if (isWinnersLoading || isCategoriesLoading) {
     return (
       <>
         <WinnersListSkeleton />
         <CategoriesListSkeleton />
       </>
     )
+  }
 
   return (
     <View style={styles.common.container}>

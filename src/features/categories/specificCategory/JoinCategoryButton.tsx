@@ -1,15 +1,19 @@
+import { useStoreMap } from 'effector-react'
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { SpecificCategoryResponse } from '../../../api/parts/categories/types'
+import {
+  CategoryType,
+  SpecificCategoryResponse,
+} from '../../../api/parts/categories/types'
 import { useNavigate } from '../../../navigation'
 import { links } from '../../../navigation/links'
-import {
-  buttonPrimaryThemedPreset,
-  buttonTextThemedStyles,
-} from '../../../styles/buttons'
+import { buttonPrimaryThemedPreset } from '../../../styles/buttons'
 import { useText } from '../../../translations/hook'
+import Span from '../../../ui/Span'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import { selectedCategoryModel } from '../../createPost/model.categorySelect'
+import { $myProfile } from '../../profile/model'
+import { $availableCategories } from '../../profile/model.availableCategories'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
 
@@ -19,11 +23,26 @@ type CategoryDescriptionProps = {
 
 const JoinCategoryButton = ({ item }: CategoryDescriptionProps) => {
   const text = useText()
+  const isHiddenAsPaid = useStoreMap({
+    store: $myProfile,
+    keys: [item.type_id],
+    fn: (profile) =>
+      !!profile &&
+      !profile.subscription &&
+      item.type_id === CategoryType.PREMIUM,
+  })
+  const isAvailable = useStoreMap({
+    store: $availableCategories,
+    keys: [item.id],
+    fn: (availableCategories) =>
+      !!availableCategories &&
+      (availableCategories.current_month.includes(item.id) ||
+        availableCategories.next_month.includes(item.id)),
+  })
   const navigate = useNavigate()
   const { styles } = useThemedStyleList({
     button: buttonPrimaryThemedPreset,
     text: textThemedStyles,
-    textButton: buttonTextThemedStyles,
   })
 
   const onJoinCategory = () => {
@@ -31,21 +50,24 @@ const JoinCategoryButton = ({ item }: CategoryDescriptionProps) => {
     selectedCategoryModel.set(item)
   }
 
+  if (isHiddenAsPaid) {
+    return (
+      <Span
+        weight={500}
+        style={styles.text.unavailable}
+        label={text.subscriptionRequired}
+      />
+    )
+  }
   return (
     <PresetButton
+      disabled={!isAvailable}
       label={text.join}
       onPress={onJoinCategory}
       preset={styles.button}
-      style={commonStyles.button}
     />
   )
 }
-
-const commonStyles = StyleSheet.create({
-  button: {
-    marginTop: 24,
-  },
-})
 
 const textThemedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
@@ -53,8 +75,9 @@ const textThemedStyles = createThemedStyle((colors) =>
       color: colors.text,
       lineHeight: 21.28,
     },
-    container: {
-      marginBottom: 20,
+    unavailable: {
+      color: colors.primary1,
+      fontSize: 16,
     },
   })
 )

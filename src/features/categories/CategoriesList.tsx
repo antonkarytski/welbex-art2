@@ -52,15 +52,6 @@ const CategoriesList = ({
   const isLoading = useStore(categoriesListModel.$isLoading)
   const isNextLoading = useStore(categoriesListModel.$isNextLoading)
 
-  const [isRefreshing, setIsRefreshing] = useState(false)
-
-  const onRefresh = () => {
-    setIsRefreshing(true)
-    Promise.all([winnersListModel.get, categoriesListModel.get]).finally(() =>
-      setIsRefreshing(false)
-    )
-  }
-
   const getNextPageSync = () => {
     categoriesListModel.getNext()
   }
@@ -79,9 +70,8 @@ const CategoriesList = ({
 
   return (
     <Animated.FlatList
+      bounces={false}
       style={styles.common.container}
-      onRefresh={onRefresh}
-      refreshing={isRefreshing}
       onScroll={onScroll}
       ListHeaderComponent={ListHeaderComponent}
       showsVerticalScrollIndicator={false}

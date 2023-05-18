@@ -1,5 +1,14 @@
 import { PaginatedListProps, PaginatedListResponse } from '../../types'
 
+export enum CategoryStatus {
+  ACTIVE = 1,
+  INACTIVE = 2,
+}
+export enum CategoryType {
+  PREMIUM = 1,
+  PUBLIC = 2,
+}
+
 export type CategoryResponse = {
   id: number
   name: string
@@ -12,6 +21,8 @@ export type SpecificCategoryResponse = CategoryResponse & {
     date_start: string
     date_end: string
   }
+  status_id: CategoryStatus
+  type_id: CategoryType
 }
 
 export type WinnerItem = {

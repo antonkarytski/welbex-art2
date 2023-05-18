@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { SpecificCategoryResponse } from '../../../api/parts/categories/types'
 import { useText } from '../../../translations/hook'
 import H2 from '../../../ui/H2'
@@ -19,8 +19,10 @@ const CategoryGalleryHeader = ({ header, item }: CategoryGalleryProps) => {
   return (
     <>
       {header}
-      <JoinCategoryButton item={item} />
-      <H2 label={text.participantsDrawings} style={styles.title} />
+      <View style={styles.container}>
+        <JoinCategoryButton item={item} />
+        <H2 label={text.participantsDrawings} style={styles.title} />
+      </View>
     </>
   )
 }
@@ -30,6 +32,9 @@ const themedStyles = createThemedStyle((colors) =>
     title: {
       color: colors.text,
       marginTop: 32,
+    },
+    container: {
+      marginTop: 24,
     },
   })
 )
