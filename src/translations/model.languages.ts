@@ -1,4 +1,4 @@
-import { Effect } from 'effector'
+import { Effect, EffectParams, NoInfer, attach } from 'effector'
 import moment from 'moment'
 import 'moment/locale/ru'
 import { addStorePersist, createStateModel } from 'altek-toolkit'
@@ -24,8 +24,21 @@ languageModel.$state.watch((language) => {
   moment.locale(language.toLowerCase())
 })
 
-export const withLanguageModel = <P extends object>(
-  effect: Effect<any, any>
+export const commonLanguageMerge = <P>(language: Languages, params: P) => {
+  return { language, ...params }
+}
+
+export const withLanguageModel = <E extends Effect<any, any>>(
+  effect: E,
+  map: (
+    language: Languages,
+    props: NoInfer<EffectParams<E>>
+  ) => NoInfer<EffectParams<E>> = commonLanguageMerge
 ) => {
-  return
+  return attach({
+    source: languageModel.$state,
+    mapParams: (params: NoInfer<EffectParams<E>>, language) =>
+      map(language, params),
+    effect,
+  })
 }

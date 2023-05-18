@@ -1,5 +1,9 @@
 import { ImageFile } from '../../../lib/files/types'
-import { PaginatedListProps, PaginatedListResponse } from '../../types'
+import {
+  LocalizedPaginatedListProps,
+  PaginatedListProps,
+  PaginatedListResponse,
+} from '../../types'
 import { UserShort } from '../users/types'
 
 export type ArtWorksFilterProps = {
@@ -16,7 +20,9 @@ export type ArtWorksFilterProps = {
   age_categories_ids?: number[]
 }
 
-export type AllArtWorksProps = (ArtWorksFilterProps & PaginatedListProps) | null
+export type AllArtWorksProps =
+  | (ArtWorksFilterProps & LocalizedPaginatedListProps)
+  | null
 
 export type ArtWorkGeneral = {
   id: number
