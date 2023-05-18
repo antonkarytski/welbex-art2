@@ -16,7 +16,6 @@ import ProgressBar from '../../../ui/progress/ProgressBar'
 import { createThemedStyle } from '../../themed'
 import { useTheme } from '../../themed/hooks'
 import { getChildDocumentStatusDescriptor } from './helpers'
-import { useChildDocumentStatus } from './hooks'
 
 type DocumentLoadedMessageBlockProps = {
   style?: StyleProp<ViewStyle>
@@ -94,7 +93,8 @@ const themedStyles = createThemedStyle((colors) =>
     },
     iconContainer: {
       alignItems: 'center',
-      justifyContent: 'flex-start',
+      justifyContent: 'center',
+      paddingBottom: 7,
       width: 56,
     },
     removeButton: {
