@@ -46,6 +46,7 @@ function DropdownSelect<Item>({
       preset={preset?.dropdownTab}
       onOpenDropdown={onOpenDropdown}
       ref={dropdownTabRef}
+      considerKeyboard={!!searchModel}
     >
       {searchModel ? (
         <SearchableSelect

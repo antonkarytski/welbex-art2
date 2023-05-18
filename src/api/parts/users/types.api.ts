@@ -21,7 +21,6 @@ export type MyProfileResponse = ProfileResponse &
     subscription: UserSubscription | null
     identity_determined_status_id: IdentityDocumentStatus
     is_child: boolean
-    works_uploaded_in_this_month?: number
   }
 
 export type UserProfileResponse = ProfileResponse & {

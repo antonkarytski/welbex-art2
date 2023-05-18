@@ -23,6 +23,7 @@ export type DropdownTabProps = {
   overlayBackgroundColor?: string
   onOpenDropdown?: Fn
   preset?: PresetDropdownTabStates
+  considerKeyboard?: boolean
 }
 
 export type DropdownStyles = {

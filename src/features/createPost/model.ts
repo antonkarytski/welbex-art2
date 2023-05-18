@@ -5,8 +5,7 @@ import { api } from '../../api'
 import { ImageFile } from '../../lib/files/types'
 import { createFormModel } from '../../lib/models/form'
 import { stringSchema } from '../../lib/yup'
-import { updateProfile } from '../profile/model'
-import { createPostAds } from './model.ads'
+import { removeCategoryFromAvailable } from '../profile/model.availableCategories'
 
 export type ImageDescriptionFormFields = {
   image: ImageFile
@@ -30,24 +29,25 @@ const schema: ObjectSchema<ImageDescriptionFormFields> = yup.object().shape({
   nextMonth: yup.boolean().default(false),
 })
 
+const submitRequest = createEffect(async (data: ImageDescriptionFormFields) => {
+  if (data.categoryId === null) return
+  //await createPostAds.run()
+  return api.arts.create({
+    image: data.image,
+    title: data.title,
+    category_id: data.categoryId,
+    next_month_competition: data.nextMonth,
+  })
+})
 export const createPostFormModel = createFormModel(schema).setSubmitSettings({
   validate: true,
-  request: createEffect(async (data: ImageDescriptionFormFields) => {
-    if (data.categoryId === null) return
-    //await createPostAds.run()
-    return api.arts.create({
-      image: data.image,
-      title: data.title,
-      category_id: data.categoryId,
-      next_month_competition: data.nextMonth,
-    })
-  }),
+  request: submitRequest,
 })
 
-createPostFormModel.submit.done.watch(({ result }) => {
-  if (!result) return
-  updateProfile((profile) => ({
-    works_uploaded_in_this_month:
-      (profile.works_uploaded_in_this_month || 0) + 1,
-  }))
+submitRequest.done.watch(({ params }) => {
+  if (params.categoryId === null) return
+  removeCategoryFromAvailable({
+    id: params.categoryId,
+    nextMonth: params.nextMonth,
+  })
 })

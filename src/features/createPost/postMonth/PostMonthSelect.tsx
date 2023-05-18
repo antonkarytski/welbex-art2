@@ -30,9 +30,6 @@ const PostMonthSelect = ({}: PostMonthSelectProps) => {
   )
 }
 
-//при выборе категории фильтровать итемы даты участия и выбирать другую дату если текущий месяц
-//не подходит
-
 const dropdownTabStyles = StyleSheet.create({
   wrapper: {
     marginBottom: 20,

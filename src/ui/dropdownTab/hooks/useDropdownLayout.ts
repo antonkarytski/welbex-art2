@@ -6,66 +6,75 @@ import { calculateDropdownHeight } from '../helpers'
 import { ElementMeasureProps } from '../types'
 import { useKeyboardRemainingScreenHeight } from './useKeyboardRemainingScreenHeight'
 
-const { height } = Dimensions.get('window')
+const screen = Dimensions.get('window')
 
 type UseDropdownLayoutParams = {
   dropdownStyle?: ViewStyle
   indentFromTab: number
+  considerKeyboard?: boolean
 }
 
 export const useDropdownLayout = ({
   dropdownStyle,
   indentFromTab,
+  considerKeyboard = true,
 }: UseDropdownLayoutParams) => {
   const [isOpened, setIsOpened] = useState(false)
   const [buttonLayout, setButtonLayout] = useState<ElementMeasureProps>()
-  const [dropdownPX, setDropdownPX] = useState(0)
-  const [dropdownPY, setDropdownPY] = useState(0)
-  const [dropdownHEIGHT, setDropdownHEIGHT] = useState(() => {
+  const [px, setPx] = useState(0)
+  const [py, setPy] = useState(0)
+  const [height, setHeight] = useState(() => {
     return calculateDropdownHeight(dropdownStyle)
   })
-  const [dropdownWIDTH, setDropdownWIDTH] = useState<string | number>(0)
-  const remainigHeightAvoidKeyboard = useKeyboardRemainingScreenHeight()
+  const [width, setWidth] = useState<string | number>(0)
+  const [isOpenOnTop, setIsOpenOnTop] = useState(false)
+  const remainingHeightAvoidKeyboard = useKeyboardRemainingScreenHeight()
 
   useEffect(() => {
-    setDropdownHEIGHT(calculateDropdownHeight(dropdownStyle))
+    setHeight(calculateDropdownHeight(dropdownStyle))
   }, [dropdownStyle])
 
-  const onDropdownButtonLayout = ({ w, h, px, py }: ElementMeasureProps) => {
-    setButtonLayout({ w, h, px, py })
-    const opetToTop = height - indentFromTab < py + h + dropdownHEIGHT
-    const yPos = IS_ANDROID ? py - STATUSBAR_HEIGHT : py
-    if (opetToTop) {
-      setDropdownPX(px)
-      setDropdownPY(yPos - dropdownHEIGHT - indentFromTab)
-    } else {
-      setDropdownPX(px)
-      setDropdownPY(yPos + h + indentFromTab)
-    }
-    setDropdownWIDTH(dropdownStyle?.width ?? w)
+  const onDropdownButtonLayout = (button: ElementMeasureProps) => {
+    setButtonLayout(button)
+    const openOnTop =
+      screen.height - indentFromTab < button.py + button.h + height
+    const yPos = IS_ANDROID ? button.py - STATUSBAR_HEIGHT : button.py
+    const y = openOnTop ? yPos - indentFromTab : yPos + button.h + indentFromTab
+    setPy(y)
+    setIsOpenOnTop(openOnTop)
+    setPx(button.px)
+
+    setWidth(dropdownStyle?.width ?? button.w)
   }
 
-  const calculatedContainerStyle: ViewStyle = useMemo(() => {
+  const calculatedContainerStyle = useMemo(() => {
     const top =
-      remainigHeightAvoidKeyboard < dropdownPY
-        ? remainigHeightAvoidKeyboard
-        : dropdownPY
-    return {
+      considerKeyboard && remainingHeightAvoidKeyboard < py
+        ? remainingHeightAvoidKeyboard
+        : py
+    const styles: ViewStyle = {
       borderTopWidth: 0,
       ...dropdownStyle,
       position: 'absolute',
-      top: top,
-      maxHeight: dropdownHEIGHT,
-      width: dropdownWIDTH,
-      left: dropdownStyle?.left || dropdownPX,
+      maxHeight: height,
+      width: width,
+      left: dropdownStyle?.left || px,
     }
+    if (isOpenOnTop) {
+      styles.bottom = screen.height - top
+    } else {
+      styles.top = top
+    }
+    return styles
   }, [
+    isOpenOnTop,
     dropdownStyle,
-    remainigHeightAvoidKeyboard,
-    dropdownPX,
-    dropdownPY,
-    dropdownHEIGHT,
-    dropdownWIDTH,
+    considerKeyboard,
+    remainingHeightAvoidKeyboard,
+    px,
+    py,
+    height,
+    width,
   ])
 
   return {

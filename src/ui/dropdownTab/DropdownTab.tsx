@@ -25,6 +25,7 @@ const DropdownTab = forwardRef<DropdownTabInstance, DropdownTabProps>(
       overlayBackgroundColor,
       onOpenDropdown,
       preset = defaultDropdownTabPreset,
+      considerKeyboard,
     }: DropdownTabProps,
     ref
   ) => {
@@ -37,7 +38,10 @@ const DropdownTab = forwardRef<DropdownTabInstance, DropdownTabProps>(
     } = useDropdownLayout({
       dropdownStyle: style?.dropdownContainer,
       indentFromTab,
+      considerKeyboard,
     })
+
+    console.log(calculatedContainerStyle)
     const activeStyles = useDropdownTabPreset({ isOpened, preset })
 
     const handleOpenDropdown = () => {
