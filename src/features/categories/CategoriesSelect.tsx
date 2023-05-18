@@ -3,18 +3,12 @@ import React, { useEffect, useMemo } from 'react'
 import { StyleSheet } from 'react-native'
 import { StateModel } from 'altek-toolkit'
 import { CategoryResponse } from '../../api/parts/categories/types'
-import { createPaginationListModel } from '../../lib/models/pagination'
 import { useDropdownSelectPreset } from '../../styles/selects'
 import { useText } from '../../translations/hook'
 import Loader from '../../ui/loaders/Loader'
 import DropdownSelect from '../../ui/selects/DropdownSelect'
 import { DropdownSelectStyles } from '../../ui/selects/types'
-import { getLocalizedCategories } from './request'
-
-const categoriesRequestModel = createPaginationListModel({
-  request: getLocalizedCategories,
-  pageSize: 50,
-})
+import { useCategoriesList } from './hook'
 
 type CategoriesSelectProps = {
   label?: string
@@ -26,27 +20,18 @@ type CategoriesSelectProps = {
 const CategoriesSelect = React.memo(
   ({ label, model, style, filter }: CategoriesSelectProps) => {
     const t = useText()
-    const categories = useStore(categoriesRequestModel.$items)
-    const isLoading = useStore(categoriesRequestModel.$isLoading)
+    const categories = useCategoriesList()
     const selectedCategory = useStore(model.$state)
     const stylesPreset = useDropdownSelectPreset()
 
     const items = useMemo(() => {
-      if (!filter) return categories
-      return categories.filter(filter)
-    }, [filter, categories])
-
-    useEffect(() => {
-      categoriesRequestModel.get()
-    }, [])
+      if (!filter) return categories.items
+      return categories.items.filter(filter)
+    }, [filter, categories.items])
 
     useEffect(() => {
       if (!selectedCategory) model.set(items[0])
     }, [items, selectedCategory, model])
-
-    const getNextCategories = () => {
-      categoriesRequestModel.getNext()
-    }
 
     return (
       <DropdownSelect
@@ -57,8 +42,8 @@ const CategoriesSelect = React.memo(
         idExtractor={({ id }) => id?.toString()}
         style={{ dropdownTab: dropdownTabStyles, ...style }}
         preset={stylesPreset}
-        onEndReached={getNextCategories}
-        ListFooterComponent={isLoading ? Loader : undefined}
+        onEndReached={categories.getNext}
+        ListFooterComponent={categories.isLoading ? Loader : undefined}
         placeholder={t.selectValueFromList}
       />
     )

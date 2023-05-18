@@ -21,6 +21,7 @@ const CategoryDetailsScreen = ({
   route,
 }: ScreenComponentProps<links.categoryDetails>) => {
   const categoryId = route.params.item.id
+  const label = route.params.item.name
   const category = useStore(categoryDetailsModel.$data)
   const isLoadingCategory = useStore(categoryDetailsModel.$isLoading)
   const { styles } = useThemedStyleList({
@@ -84,7 +85,7 @@ const CategoryDetailsScreen = ({
       </Animated.View>
       <Animated.View style={[styles.common.overlay, overlayAnimatedStyles]} />
       <CategoryScreenHeader
-        item={category}
+        item={{ ...category, name: label }}
         offset={offset}
         contentHeight={contentHeight}
         onLayout={({ nativeEvent }) => {
@@ -99,6 +100,7 @@ const CategoryDetailsScreen = ({
         )}
         header={
           <CategoryHeader
+            item={{ ...category, name: label }}
             onLayout={({ nativeEvent }) => {
               if (!contentHeight) setContentHeight(nativeEvent.layout.height)
             }}

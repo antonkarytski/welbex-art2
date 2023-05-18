@@ -1,6 +1,7 @@
 import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleSheet, View, ViewProps } from 'react-native'
+import { SpecificCategoryResponse } from '../../../api/parts/categories/types'
 import { getMonthPeriodString } from '../../../lib/helpers/date'
 import { languageModel } from '../../../translations/model.languages'
 import H1 from '../../../ui/H1'
@@ -9,29 +10,28 @@ import Span from '../../../ui/Span'
 import CalendarIcon from '../../../ui/icons/Icon.Calendar'
 import { createThemedStyle } from '../../themed'
 import { useTheme } from '../../themed/hooks'
-import { categoryDetailsModel } from './model'
 
 type CategoryDetailsHeaderProps = {
   onLayout?: ViewProps['onLayout']
+  item: SpecificCategoryResponse
 }
 
-const CategoryHeader = ({ onLayout }: CategoryDetailsHeaderProps) => {
-  const category = useStore(categoryDetailsModel.$data)
+const CategoryHeader = ({ onLayout, item }: CategoryDetailsHeaderProps) => {
   const currentLanguage = useStore(languageModel.$state)
   const { styles, colors } = useTheme(themedStyles)
 
-  if (!category) return null
+  if (!item) return null
 
   return (
     <View onLayout={onLayout} style={styles.content}>
-      <H1 style={styles.title} label={category.name} />
+      <H1 style={styles.title} label={item.name} />
       <Row style={styles.dateRow}>
         <CalendarIcon color={colors.whiteText} style={styles.calendarIcon} />
         <Span
           style={styles.term}
           label={getMonthPeriodString(
-            category.competition.date_start,
-            category.competition.date_end,
+            item.competition.date_start,
+            item.competition.date_end,
             currentLanguage
           )}
         />

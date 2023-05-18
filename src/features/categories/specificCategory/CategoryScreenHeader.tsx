@@ -31,7 +31,7 @@ const CategoryScreenHeader = ({
 }: CategoryScreenHeaderProps) => {
   const text = useText()
   const category = useStore(categoryDetailsModel.$data)
-  const [headerTitle, setHeaderTitle] = useState(text.category)
+  const [headerTitle, setHeaderTitle] = useState(item?.name || text.category)
 
   const { styles, colors } = useTheme(
     transparent
@@ -42,12 +42,13 @@ const CategoryScreenHeader = ({
   useEffect(() => {
     if (!offset || !contentHeight) return
     const id = offset.addListener(({ value }) => {
-      if (value > contentHeight && category)
-        return setHeaderTitle(category.name)
+      if (value > contentHeight && category) {
+        return setHeaderTitle(item?.name || category.name)
+      }
       setHeaderTitle(text.category)
     })
     return () => offset.removeListener(id)
-  }, [contentHeight, offset, category, text])
+  }, [contentHeight, offset, category, text, item?.name])
 
   return (
     <ScreenHeader

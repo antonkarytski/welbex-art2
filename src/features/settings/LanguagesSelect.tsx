@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import { useText } from '../../translations/hook'
 import {
@@ -11,6 +11,7 @@ import ListItemSeparator from '../../ui/lists/ListItemSeparator'
 import Select from '../../ui/selects/Select'
 import { createThemedStyle } from '../themed'
 import { useThemedStyle } from '../themed/hooks'
+import { isLanguageSelectionFocused } from './model.languageUpdate'
 
 const LanguagesSelect = () => {
   const t = useText()
@@ -26,6 +27,13 @@ const LanguagesSelect = () => {
     ),
     [styles, t]
   )
+
+  useEffect(() => {
+    isLanguageSelectionFocused.set(true)
+    return () => {
+      isLanguageSelectionFocused.set(false)
+    }
+  }, [])
 
   return (
     <Select

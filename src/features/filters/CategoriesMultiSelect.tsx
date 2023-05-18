@@ -1,20 +1,13 @@
-import { useStore } from 'effector-react'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { StyleSheet } from 'react-native'
 import { StateModel } from 'altek-toolkit'
-import { api } from '../../api'
 import { CategoryResponse } from '../../api/parts/categories/types'
-import { createPaginationListModel } from '../../lib/models/pagination'
 import { useDropdownSelectPreset } from '../../styles/selects'
 import { useText } from '../../translations/hook'
 import Loader from '../../ui/loaders/Loader'
 import DropdownMultiSelect from '../../ui/multiSelects/DropdownMultiSelect'
 import { DropdownSelectStyles } from '../../ui/selects/types'
-
-const categoriesRequestModel = createPaginationListModel({
-  request: api.categories.all,
-  pageSize: 50,
-})
+import { useCategoriesList } from '../categories/hook'
 
 type CategoriesMultiSelectProps = {
   label?: string
@@ -25,17 +18,8 @@ type CategoriesMultiSelectProps = {
 const CategoriesMultiSelect = React.memo(
   ({ label, model, style }: CategoriesMultiSelectProps) => {
     const t = useText()
-    const categories = useStore(categoriesRequestModel.$items)
-    const isLoading = useStore(categoriesRequestModel.$isLoading)
+    const categories = useCategoriesList()
     const stylesPreset = useDropdownSelectPreset()
-
-    useEffect(() => {
-      categoriesRequestModel.get()
-    }, [])
-
-    const getNextCategories = () => {
-      categoriesRequestModel.getNextSync()
-    }
 
     return (
       <DropdownMultiSelect
@@ -46,13 +30,13 @@ const CategoriesMultiSelect = React.memo(
           return `${t.selected}: ${items?.length}`
         }}
         model={model}
-        data={categories}
+        data={categories.items}
         labelExtractor={({ name }) => name}
         idExtractor={({ id }) => id?.toString()}
         style={{ dropdownTab: dropdownTabStyles, ...style }}
         preset={stylesPreset}
-        onEndReached={getNextCategories}
-        ListFooterComponent={isLoading ? Loader : undefined}
+        onEndReached={categories.getNext}
+        ListFooterComponent={categories.isLoading ? Loader : undefined}
         showSelectAllButtons
         selectAllLabel={t.selectAll}
         removeAllLabel={t.removeAll}
