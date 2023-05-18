@@ -389,7 +389,7 @@ PODS:
   - React-jsinspector (0.70.6)
   - React-logger (0.70.6):
     - glog
-  - react-native-cameraroll (4.1.2):
+  - react-native-cameraroll (5.4.0):
     - React-Core
   - react-native-date-picker (4.2.7):
     - React-Core
@@ -647,7 +647,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
-  - "react-native-cameraroll (from `../node_modules/@react-native-community/cameraroll`)"
+  - "react-native-cameraroll (from `../node_modules/@react-native-camera-roll/camera-roll`)"
   - react-native-date-picker (from `../node_modules/react-native-date-picker`)
   - react-native-image-crop-tools (from `../node_modules/react-native-image-crop-tools`)
   - react-native-month-year-picker (from `../node_modules/react-native-month-year-picker`)
@@ -792,7 +792,7 @@ EXTERNAL SOURCES:
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
   react-native-cameraroll:
-    :path: "../node_modules/@react-native-community/cameraroll"
+    :path: "../node_modules/@react-native-camera-roll/camera-roll"
   react-native-date-picker:
     :path: "../node_modules/react-native-date-picker"
   react-native-image-crop-tools:
@@ -918,7 +918,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: b4a65947391c658450151275aa406f2b8263178f
   React-jsinspector: 60769e5a0a6d4b32294a2456077f59d0266f9a8b
   React-logger: 1623c216abaa88974afce404dc8f479406bbc3a0
-  react-native-cameraroll: 2957f2bce63ae896a848fbe0d5352c1bd4d20866
+  react-native-cameraroll: 8ffb0af7a5e5de225fd667610e2979fc1f0c2151
   react-native-date-picker: de81ee8598c20b6f05b2f6d470d9bee24131fe15
   react-native-image-crop-tools: a751dae773f66ceac0bea7d894dc6bc219a69c03
   react-native-month-year-picker: 948797e981ca502427024a34b17f545eb321bbff

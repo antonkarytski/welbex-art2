@@ -1,4 +1,7 @@
-import CameraRoll, { PhotoIdentifier } from '@react-native-community/cameraroll'
+import {
+  CameraRoll,
+  PhotoIdentifier,
+} from '@react-native-camera-roll/camera-roll'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { FlatList, StyleProp, StyleSheet, ViewStyle } from 'react-native'
 import { ImageEditorType } from 'altek-ui'

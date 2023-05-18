@@ -3,6 +3,10 @@ export type PaginatedListProps = {
   size?: number
 }
 
+export type LocalizedPaginatedListProps = {
+  language?: string
+} & PaginatedListProps
+
 export type PaginatedListResponse<T> = {
   items: T[]
   total: number

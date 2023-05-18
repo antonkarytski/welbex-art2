@@ -1,7 +1,7 @@
 import moment from 'moment'
 import { STANDARD_DATE_FORMAT } from '../../../lib/helpers/date'
 import { apiManager } from '../../apiManager'
-import { PaginatedListProps } from '../../types'
+import { LocalizedPaginatedListProps, PaginatedListProps } from '../../types'
 import {
   AvailableCategoriesResponse,
   CategoriesResponse,
@@ -11,11 +11,14 @@ import {
 } from './types'
 
 const categories = apiManager.endpoint('categories')
-const all = categories.get<CategoriesResponse, PaginatedListProps | void>('all')
+const all = categories.get<
+  CategoriesResponse,
+  LocalizedPaginatedListProps | void
+>('all')
 const winners = categories.get<WinnerResponse, WinnerProps | void>('winners')
 const currentMonthWinners = categories.get<
   WinnerResponse,
-  PaginatedListProps | void
+  LocalizedPaginatedListProps | void
 >({
   fn: (params) => {
     const date_start = moment().startOf('month').format(STANDARD_DATE_FORMAT)
