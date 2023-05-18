@@ -9,6 +9,7 @@ import { noop } from '../../../lib/helpers'
 import { createFormModel } from '../../../lib/models/form'
 import { stringSchema } from '../../../lib/yup'
 import { initProfile } from '../../profile/request'
+import { logOut } from '../logOut/model'
 import { tokenResponseToTokens } from './helpers.token'
 
 export type LogInForm = {
@@ -32,6 +33,7 @@ const logInFormSchema: ObjectSchema<LogInForm> = yup.object().shape({
 })
 
 export const logInFormModel = createFormModel(logInFormSchema)
+logInFormModel.reset(logOut)
 
 export const logIn = attach({
   source: logInFormModel.$store,

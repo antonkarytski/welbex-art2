@@ -94,6 +94,9 @@ export class FormModel<T extends Record<string, any>, R = any> {
     this.$store.watch(() => {
       this.validation.reset()
     })
+    this.reset.watch((event) => {
+      if (event) event.watch(() => this.reset())
+    })
 
     this.keysList = Object.keys(initialState) as (keyof T)[]
     if (isYupSchema) this.keysList.reverse()

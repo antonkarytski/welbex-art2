@@ -2,7 +2,6 @@ import { createEvent } from 'effector'
 import { apiManager } from '../../../api/apiManager'
 import { db } from '../../../lib/db'
 import { noop } from '../../../lib/helpers'
-import { logInFormModel } from '../logIn/model'
 
 export const logOut = createEvent()
 
@@ -17,5 +16,4 @@ async function cleanDb() {
 logOut.watch(() => {
   cleanDb().catch(noop)
   apiManager.token.reset()
-  logInFormModel.reset()
 })
