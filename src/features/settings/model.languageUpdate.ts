@@ -3,6 +3,7 @@ import { createStateModel } from 'altek-toolkit'
 import { languageModel } from '../../translations/model.languages'
 import { Languages } from '../../translations/types'
 import { categoriesListModel } from '../categories/model'
+import { reloadGalleries } from '../gallery/model'
 import { winnersListModel } from '../winners/request'
 
 export const isLanguageSelectionFocused = createStateModel(false)
@@ -22,4 +23,5 @@ sample({
   if (prevLanguageRef.current === language) return
   winnersListModel.getSync()
   categoriesListModel.getSync()
+  reloadGalleries()
 })

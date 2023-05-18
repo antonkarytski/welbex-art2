@@ -40,6 +40,12 @@ const galleryNewModel = createPaginationListModel({
   ...galleryModelCommonProps,
 })
 
+export const reloadGalleries = () => {
+  galleryBestModel.getSync()
+  galleryFollowingModel.getSync()
+  galleryNewModel.getSync()
+}
+
 export const galleryListsModel = {
   [GalleryType.BEST]: galleryBestModel,
   [GalleryType.FOLLOWING]: galleryFollowingModel,
