@@ -71,6 +71,7 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
         styles={fieldStyles}
       />
       <CategoriesSelect
+        style={selectStyles}
         model={selectedCategoryModel}
         filter={categoriesFilter}
       />
@@ -82,7 +83,7 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
         postfix={` ${text.yearsOldAbbreviated}`}
         styles={inputStyles}
       />
-      <PostMonthSelect />
+      <PostMonthSelect style={selectStyles} />
       {!isChildDocumentDetermined && (
         <ChildDocumentUploadingBlock style={styles.common.cameraBlock} />
       )}
@@ -127,6 +128,22 @@ const fieldStyles = StyleSheet.create({
   wrapper: {
     marginBottom: 0,
   },
+  input: {
+    height: 52,
+  },
 })
+
+const dropdownTabStyles = StyleSheet.create({
+  tab: {
+    height: 52,
+  },
+  wrapper: {
+    marginBottom: 20,
+  },
+})
+
+const selectStyles = {
+  dropdownTab: dropdownTabStyles,
+}
 
 export default CreatePostForm

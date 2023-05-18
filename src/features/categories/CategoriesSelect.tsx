@@ -1,6 +1,5 @@
 import { useStore } from 'effector-react'
 import React, { useEffect, useMemo } from 'react'
-import { StyleSheet } from 'react-native'
 import { StateModel } from 'altek-toolkit'
 import { CategoryResponse } from '../../api/parts/categories/types'
 import { useDropdownSelectPreset } from '../../styles/selects'
@@ -40,7 +39,7 @@ const CategoriesSelect = React.memo(
         data={items}
         labelExtractor={({ name }) => name}
         idExtractor={({ id }) => id?.toString()}
-        style={{ dropdownTab: dropdownTabStyles, ...style }}
+        style={style}
         preset={stylesPreset}
         onEndReached={categories.getNext}
         ListFooterComponent={categories.isLoading ? Loader : undefined}
@@ -49,11 +48,5 @@ const CategoriesSelect = React.memo(
     )
   }
 )
-
-const dropdownTabStyles = StyleSheet.create({
-  wrapper: {
-    marginBottom: 20,
-  },
-})
 
 export default CategoriesSelect
