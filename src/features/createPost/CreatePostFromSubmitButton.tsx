@@ -38,7 +38,11 @@ const CreatePostFromSubmitButton = ({
       onPress={async () => {
         try {
           await createPostFormModel.submit()
-          navigate(links.infoMessage, { type: InfoMessageType.POST_CREATED })
+          const nextMonth = createPostFormModel.getField('nextMonth')
+          navigate(links.infoMessage, {
+            type: InfoMessageType.POST_CREATED,
+            payload: { nextMonth },
+          })
           createPostFormModel.reset()
         } catch {}
       }}

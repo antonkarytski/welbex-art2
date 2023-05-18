@@ -235,6 +235,8 @@ export const EN = {
     'We need your permission to access the media library to select a photo from your gallery, or for saving photos to your device. Please grant permission to access the media library.',
   postSentToModeration:
     'Your work has been submitted for moderation and will soon appear in the gallery',
+  postSentToModerationNextMonth:
+    'Your work has been submitted for moderation and will participate in the contest in the next month',
   january: 'January',
   february: 'February',
   march: 'March',

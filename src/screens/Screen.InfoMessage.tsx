@@ -41,7 +41,7 @@ const InfoMessageScreen = ({
     return <CardDeletedInfoMessage />
   }
   if (params.type === InfoMessageType.POST_CREATED) {
-    return <PostCreatedInfoMessage />
+    return <PostCreatedInfoMessage nextMonth={params.payload.nextMonth} />
   }
   return null
 }

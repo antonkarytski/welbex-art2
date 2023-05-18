@@ -123,6 +123,10 @@ export class FormModel<T extends Record<string, any>, R = any> {
     return this as any as FormModel<T, Return>
   }
 
+  public getField<K extends keyof T>(field: K) {
+    return this.$store.getState()[field]
+  }
+
   private getFieldSettings(name: keyof T) {
     if (!this.fieldsSettings[name]) this.fieldsSettings[name] = {}
     return this.fieldsSettings[name]!
