@@ -2,6 +2,7 @@ import { useRequest } from '@heyheyjude/toolkit'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { api } from '../../api'
+import { logOut } from '../../features/auth/logOut/model'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import { noop } from '../../lib/helpers'
@@ -28,7 +29,10 @@ export default function DeleteAccountScreen() {
   const onDeleteAccount = () => {
     deleteAccount
       .request()
-      .then(() => navigate(links.onboardingPicassoQuote))
+      .then(() => {
+        logOut()
+        navigate(links.onboardingPicassoQuote)
+      })
       .catch(noop)
   }
 
