@@ -19,11 +19,11 @@ selectedCategoryModel.$state.watch((value) => {
 sample({
   source: $availableCategories,
   clock: selectedCategoryModel.$state,
-  fn: (categories, selectedCategory) => {
-    if (!categories || !selectedCategory) return null
+  fn: (available, selected) => {
+    if (!available || !selected) return null
     if (
-      categories.current_month.find((id) => id === selectedCategory.id) ||
-      categories.next_month.find((id) => id === selectedCategory.id)
+      available.current_month.find((id) => id === selected.id) ||
+      available.next_month.find((id) => id === selected.id)
     ) {
       return
     }
