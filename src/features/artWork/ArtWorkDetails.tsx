@@ -1,7 +1,7 @@
 import { useRequest } from '@heyheyjude/toolkit'
 import { useStore } from 'effector-react'
 import React from 'react'
-import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { ArtWork } from '../../api/parts/arts/types'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
@@ -58,12 +58,14 @@ const ArtWorkDetails = React.memo(() => {
         onPressLike={actions.toggleLike}
         onPressSave={actions.save}
       />
-      {!!myProfile?.subscription && (
+      {myProfile?.subscription ? (
         <DownloadImageButton
           style={styles.downloadButton}
           label={text.download}
           artWork={artWork}
         />
+      ) : (
+        <View style={styles.plug} />
       )}
     </ScrollView>
   )
@@ -76,6 +78,9 @@ const styles = StyleSheet.create({
   downloadButton: {
     marginTop: 37,
     marginBottom: 24,
+  },
+  plug: {
+    height: 37,
   },
 })
 
