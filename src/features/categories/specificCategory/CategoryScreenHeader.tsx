@@ -31,7 +31,7 @@ const CategoryScreenHeader = ({
 }: CategoryScreenHeaderProps) => {
   const text = useText()
   const category = useStore(categoryDetailsModel.$data)
-  const [headerTitle, setHeaderTitle] = useState(item?.name || text.category)
+  const [headerTitle, setHeaderTitle] = useState(text.category)
 
   const { styles, colors } = useTheme(
     transparent
