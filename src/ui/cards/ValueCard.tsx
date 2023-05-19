@@ -23,6 +23,7 @@ const ValueCard = ({ style, textStyle, value, title }: ValueCardProps) => {
       <Span
         label={title}
         style={textStyle?.label}
+        weight={400}
         adjustsFontSizeToFit
         numberOfLines={1}
       />

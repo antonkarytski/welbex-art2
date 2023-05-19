@@ -104,7 +104,7 @@ export const RU: LangStructure = {
   artWorksInAccusativeEndsWithOne: 'работу',
   create: 'Создать',
   uploadImage: 'Загрузить изображение',
-  scanWork: 'Сканируйте вашу работу',
+  scanWork: 'Загрузить с использованием камеры',
   selectImageFromCameraRoll: 'Выберите изображение из галареи',
   description: 'Описание',
   completeDescription: 'Заполните описание',
