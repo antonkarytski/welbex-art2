@@ -36,7 +36,8 @@ const getPopUp = ({
     return
   }
   const isNoAvailableCategories =
-    !availableCategories.current_month || !availableCategories.next_month
+    !availableCategories.current_month.length ||
+    !availableCategories.next_month.length
   if (!myProfile.subscription && isNoAvailableCategories) {
     return PopUpArtWorksLimitExceedFree
   }

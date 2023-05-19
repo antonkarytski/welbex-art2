@@ -668,7 +668,7 @@
 					"\"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS\"/**",
 				);
 				INFOPLIST_FILE = art2/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ART2;
+				INFOPLIST_KEY_CFBundleDisplayName = ArtSqrd;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -789,7 +789,7 @@
 					"\"$(PODS_TARGET_SRCROOT)/include/\"",
 				);
 				INFOPLIST_FILE = art2/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ART2;
+				INFOPLIST_KEY_CFBundleDisplayName = ArtSqrd;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

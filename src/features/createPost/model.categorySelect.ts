@@ -1,4 +1,4 @@
-import { sample } from 'effector'
+import { combine } from 'effector'
 import { createStateModel } from 'altek-toolkit'
 import { CategoryResponse } from '../../api/parts/categories/types'
 import { $availableCategories } from '../profile/model.availableCategories'
@@ -16,19 +16,18 @@ selectedCategoryModel.$state.watch((value) => {
   })
 })
 
-sample({
-  source: $availableCategories,
-  clock: selectedCategoryModel.$state,
-  fn: (available, selected) => {
-    if (!available || !selected) return null
-    if (
-      available.current_month.find((id) => id === selected.id) ||
-      available.next_month.find((id) => id === selected.id)
-    ) {
-      return
-    }
-    return null
-  },
-}).watch((result) => {
-  if (result === null) selectedCategoryModel.reset()
+combine({
+  available: $availableCategories,
+  selected: selectedCategoryModel.$state,
+}).watch(({ available, selected }) => {
+  if (!available && selected) return selectedCategoryModel.reset()
+  if (
+    !available ||
+    !selected ||
+    available.current_month.find((id) => id === selected.id) ||
+    available.next_month.find((id) => id === selected.id)
+  ) {
+    return
+  }
+  selectedCategoryModel.reset()
 })
