@@ -145,7 +145,7 @@ const monthPickerStyles = createThemedStyle<MonthPickerStyles>((colors) =>
 const commonStyles = StyleSheet.create({
   resultsButton: {
     marginBottom: 12,
-    marginTop: 53,
+    marginTop: 24,
   },
   fieldsWrapper: {
     paddingTop: 24,

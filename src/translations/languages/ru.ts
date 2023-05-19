@@ -261,5 +261,5 @@ export const RU: LangStructure = {
   youExceedLimitOfWorksPaid: 'Вы уже загрузили максимальное количество работ.',
   monthOfParticipation: 'Месяц участия',
   subscriptionRequired:
-    'Подписка обязательна чтобы участвовать в этой категории',
+    'Для размещения работ в данной категории требуется приобрести подписку',
 }
