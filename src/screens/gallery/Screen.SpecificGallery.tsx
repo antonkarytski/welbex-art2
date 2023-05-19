@@ -43,7 +43,7 @@ const SpecificGalleryScreens = ({
         title={params?.resultPageTitle || activeGallery.title(t)}
         backAvailable
         onPressBack={onGoBack}
-        headerRight={setUpGalleryFilterButton(colors)}
+        headerRight={setUpGalleryFilterButton(colors.appHeaderIconLight)}
         gradient={{ colors: styles.gradient }}
       />
       <FilteredGalleryList />

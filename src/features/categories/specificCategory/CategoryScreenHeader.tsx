@@ -52,7 +52,7 @@ const CategoryScreenHeader = ({
 
   return (
     <ScreenHeader
-      headerRight={setUpGalleryFilterButton(colors, {
+      headerRight={setUpGalleryFilterButton(colors.whiteText, {
         initialCategory: item,
         ignoreMode: true,
         resultPageTitle: text.gallery,

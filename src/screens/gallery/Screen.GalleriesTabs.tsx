@@ -31,7 +31,7 @@ const GalleriesTabsScreen = () => {
     <View style={styles.common.container}>
       <GradientScreenHeader
         title={text.gallery}
-        headerRight={setUpGalleryFilterButton(colors)}
+        headerRight={setUpGalleryFilterButton(colors.appHeaderIconLight)}
         gradient={{ colors: styles.gradient }}
       />
       {isLoaded ? (

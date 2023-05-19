@@ -23,14 +23,9 @@ const GalleryFilterNavigationButton = ({
 }
 
 export const setUpGalleryFilterButton = (
-  colors: ColorThemeStructure,
+  color: string,
   params?: ScreensProps[links.galleryFilter]
-) => (
-  <GalleryFilterNavigationButton
-    iconColor={colors.appHeaderIconLight}
-    navigateParams={params}
-  />
-)
+) => <GalleryFilterNavigationButton iconColor={color} navigateParams={params} />
 
 const styles = StyleSheet.create({
   button: {
