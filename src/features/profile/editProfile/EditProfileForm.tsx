@@ -16,7 +16,7 @@ import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
 import SaveProfileChangesPopUp from '../../popUp/profilePopUps/PopUp.SaveChanges'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
-import ChildDocumentUploadingBlock from '../childDocument/ChildDocumentUploadingBlock'
+import ChildDocumentUploadingBlock from '../../user/childDocument/ChildDocumentUploadingBlock'
 import { $myProfile } from '../model'
 import EditAvatarBlock from './EditAvatarBlock'
 import {

@@ -1,12 +1,15 @@
+import { useStoreMap } from 'effector-react'
 import React from 'react'
 import { LayoutChangeEvent, StyleSheet, View } from 'react-native'
 import { IUserProfile, MyProfile } from '../../api/parts/users/types'
 import { SCREEN_PADDING_HORIZONTAL } from '../../styles/constants'
+import { $myProfile } from '../profile/model'
 import { createThemedStyle } from '../themed'
-import { useTheme } from '../themed/hooks'
+import { useThemedStyleList } from '../themed/hooks'
 import FollowButton from './Button.Follow'
 import UserAvatarBlock from './UserAvatarBlock'
 import UserCountersBlock from './UserCountersBlock'
+import ChildIdentityStatusMessage from './childDocument/ChildIdentityStatusMessage'
 import { AVATAR_BACKGROUND_GRADIENT_HEIGHT } from './constants'
 import { countFollowers } from './helpers'
 import { UserItem } from './types'
@@ -19,17 +22,34 @@ export type UserTopBlockProps = {
 
 const UserTopBlock = React.memo(
   ({ item, updateItem, onLayout }: UserTopBlockProps) => {
-    const { styles } = useTheme(themedStyles)
+    const isMe = useStoreMap({
+      store: $myProfile,
+      keys: [item.id],
+      fn: (myProfile) => myProfile && myProfile.id === item.id,
+    })
+
+    const { styles } = useThemedStyleList({
+      common: themedStyles,
+    })
     if (!item) return null
 
     return (
       <View onLayout={onLayout}>
-        <View style={styles.userBlockBackgroundTransparent} />
-        <View style={styles.userBlockBackground} />
+        <View style={styles.common.userBlockBackgroundTransparent} />
+        <View style={styles.common.userBlockBackground} />
         <View>
-          <UserAvatarBlock style={styles.avatar} item={item} />
+          <UserAvatarBlock style={styles.common.avatar} item={item} />
+          {isMe && (
+            <ChildIdentityStatusMessage
+              style={styles.common.childIdentityStatus}
+              status={(item as MyProfile).identity_determined_status_id}
+            />
+          )}
           {item.followers !== undefined && (
-            <UserCountersBlock item={item} style={styles.countersBlock} />
+            <UserCountersBlock
+              item={item}
+              style={styles.common.countersBlock}
+            />
           )}
           {item.is_followed !== undefined && (
             <FollowButton
@@ -56,11 +76,15 @@ const UserTopBlock = React.memo(
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     countersBlock: {
-      marginTop: 32,
+      marginTop: 24,
       marginBottom: 20,
+    },
+    childIdentityStatus: {
+      marginBottom: 8,
     },
     avatar: {
       marginTop: 24,
+      marginBottom: 8,
       alignSelf: 'center',
     },
     userBlockBackgroundTransparent: {

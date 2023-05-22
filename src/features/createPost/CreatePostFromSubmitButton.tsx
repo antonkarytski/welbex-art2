@@ -8,7 +8,7 @@ import { useText } from '../../translations/hook'
 import AsyncPresetButton from '../../ui/buttons/AsyncPresetButton'
 import { PresetButtonStates } from '../../ui/buttons/types'
 import { InfoMessageType } from '../infoMessage/types'
-import { useChildDocumentStatus } from '../profile/childDocument/hooks'
+import { useChildDocumentStatus } from '../user/childDocument/hooks'
 import { createPostFormModel } from './model'
 
 type CreatePostFromSubmitButtonProps = {

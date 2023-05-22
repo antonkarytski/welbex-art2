@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>ART2</string>
+	<string>ArtSqrd</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -65,6 +65,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>NSCameraUsageDescription</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>NSLocalNetworkUsageDescription</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSMicrophoneUsageDescription</key>
@@ -73,8 +75,6 @@
 	<string>NSPhotoLibraryUsageDescription</string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>NSUserTrackingUsageDescription</string>
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>NSLocalNetworkUsageDescription</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

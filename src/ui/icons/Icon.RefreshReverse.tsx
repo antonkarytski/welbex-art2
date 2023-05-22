@@ -9,7 +9,7 @@ const RefreshReverseIcon = ({
 }: IconProps) => {
   return (
     <Svg
-      style={style}
+      style={[style, { transform: [{ rotateX: '180deg' }] }]}
       width={size * 1.15}
       height={size}
       viewBox="0 0 15 13"
