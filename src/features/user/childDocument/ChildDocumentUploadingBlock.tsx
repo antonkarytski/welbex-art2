@@ -35,23 +35,23 @@ const ChildDocumentUploadingBlock = ({
     childDocumentStatus === IdentityDocumentStatus.DETERMINED ||
     childDocumentStatus === IdentityDocumentStatus.PENDING
 
-  // if (showProgressStatus || isOnLoading) {
-  //   return (
-  //     <View style={containerStyle}>
-  //       <DocumentStatusMessageBlock
-  //         status={
-  //           isJustUploaded
-  //             ? IdentityDocumentStatus.DETERMINED
-  //             : childDocumentStatus
-  //         }
-  //         progressValue={childDocumentProgressAnimatedValue}
-  //         isOnLoading={isOnLoading}
-  //         onPressRemove={() => setShowProgressStatus(false)}
-  //         style={[styles.block, style]}
-  //       />
-  //     </View>
-  //   )
-  // }
+  if (showProgressStatus || isOnLoading) {
+    return (
+      <View style={containerStyle}>
+        <DocumentStatusMessageBlock
+          status={
+            isJustUploaded
+              ? IdentityDocumentStatus.DETERMINED
+              : childDocumentStatus
+          }
+          progressValue={childDocumentProgressAnimatedValue}
+          isOnLoading={isOnLoading}
+          onPressRemove={() => setShowProgressStatus(false)}
+          style={[styles.block, style]}
+        />
+      </View>
+    )
+  }
 
   return (
     <View style={containerStyle}>

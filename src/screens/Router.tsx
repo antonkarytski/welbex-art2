@@ -7,6 +7,7 @@ import StackNavigator, { Stack } from '../navigation/elements/StackNavigator'
 import { links } from '../navigation/links'
 import ArtWorkDetailsScreen from './Screen.ArtWorkDetails'
 import CameraScreen from './Screen.Camera'
+import CategoryDetailsScreen from './Screen.CategoryDetails'
 import ScreenInfoMessage from './Screen.InfoMessage'
 import UserProfileScreen from './Screen.UserProfile'
 import MainTabsRouter from './Tabs.Main'
@@ -43,6 +44,10 @@ const Router = React.memo(() => {
           headerLeft: () => null,
           gestureEnabled: false,
         }}
+      />
+      <Stack.Screen
+        name={links.categoryDetails}
+        component={CategoryDetailsScreen}
       />
       <Stack.Screen name={links.editProfile} component={EditProfileScreen} />
       <Stack.Screen name={links.camera} component={CameraScreen} />

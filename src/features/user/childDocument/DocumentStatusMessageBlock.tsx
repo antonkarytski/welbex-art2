@@ -51,6 +51,7 @@ const DocumentStatusMessageBlock = ({
             )}
           </View>
           <Span
+            weight={500}
             style={styles.text}
             label={
               isOnLoading ? t.documentUploading : statusDescriptor.label(t)
@@ -62,15 +63,15 @@ const DocumentStatusMessageBlock = ({
           <CrossIcon />
         </TouchableOpacity>
       </View>
-      <View style={styles.progressBlock}>
-        {isOnLoading && !!progressValue && (
+      {isOnLoading && !!progressValue && (
+        <View style={styles.progressBlock}>
           <ProgressBar
             value={progressValue}
             color={colors.darkLine}
             barColor={colors.text}
           />
-        )}
-      </View>
+        </View>
+      )}
     </View>
   )
 }
@@ -80,29 +81,29 @@ const themedStyles = createThemedStyle((colors) =>
     container: {
       backgroundColor: colors.screenBackground,
       borderRadius: 20,
+      minHeight: 104,
     },
     contentBlock: {
       flexDirection: 'row',
       flex: 1,
+      alignItems: 'center',
     },
     contentInnerContainer: {
       flexDirection: 'row',
-      paddingTop: 24,
+      alignItems: 'center',
       flex: 1,
       minHeight: 64,
     },
     iconContainer: {
       alignItems: 'center',
       justifyContent: 'center',
-      paddingBottom: 7,
-      width: 56,
+      width: 52,
     },
     removeButton: {
-      alignItems: 'flex-end',
-      justifyContent: 'flex-start',
-      width: 80,
-      paddingTop: 29,
-      paddingRight: 25,
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 56,
+      height: 56,
     },
     text: {
       flex: 1,

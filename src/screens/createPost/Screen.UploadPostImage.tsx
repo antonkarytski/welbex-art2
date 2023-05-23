@@ -17,7 +17,7 @@ export default function UploadPostImageScreen({
   const { styles: headerStyles } = useThemedStyleList({
     gradient: themedPrimaryGradient,
   })
-  //useCreatePostRedirection()
+  useCreatePostRedirection()
 
   return (
     <View style={styles.container}>
