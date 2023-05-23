@@ -8,8 +8,8 @@ import {
   ViewStyle,
 } from 'react-native'
 import { noop } from '../../lib/helpers'
+import DashedCameraBlock from '../../ui/DashedCameraBlock'
 import Span from '../../ui/Span'
-import CameraIcon from '../../ui/icons/Icon.Camera'
 import { singlePhotoTask, useCameraNavigate } from '../camera/hooks'
 import PopUpPhotoEditActionSelect from '../popUp/PopUp.PhotoEditActionSelect'
 import { createThemedStyle } from '../themed'
@@ -29,6 +29,7 @@ type UploadFromCameraBlockProps = {
   style?: StyleProp<ViewStyle>
   onPick?: (assets: ImagePickerAsset[]) => void
   sources?: PhotoSelectSources[]
+  backgroundColor?: string
 }
 
 const PhotoSelectBlock = ({
@@ -36,6 +37,7 @@ const PhotoSelectBlock = ({
   style,
   onPick,
   sources = [PhotoSelectSources.CAMERA, PhotoSelectSources.GALLERY],
+  backgroundColor,
 }: UploadFromCameraBlockProps) => {
   const goToCamera = useCameraNavigate(singlePhotoTask({ onPick }))
   const { styles, colors } = useTheme(themedStyles)
@@ -61,11 +63,17 @@ const PhotoSelectBlock = ({
             .catch(noop)
         }
       }}
-      style={[styles.container, style]}
+      style={[
+        styles.container,
+        !!backgroundColor && { backgroundColor },
+        style,
+      ]}
     >
-      <View style={[uploadBlockCommonStyles.button, styles.button]}>
-        <CameraIcon color={colors.text} />
-      </View>
+      <DashedCameraBlock
+        backgroundColor={backgroundColor || styles.container.backgroundColor}
+        borderColor={colors.textLightGrey}
+        iconColor={colors.text}
+      />
       <View style={uploadBlockCommonStyles.textBlock}>
         <Span style={styles.description} weight={500} label={label} />
       </View>
@@ -76,11 +84,6 @@ const PhotoSelectBlock = ({
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     container: uploadImageCardThemedStyle(colors),
-    button: {
-      borderWidth: 1,
-      borderStyle: 'dashed',
-      borderColor: colors.textGrey,
-    },
     description: {
       color: colors.text,
     },

@@ -28,7 +28,7 @@ import {
 const EditProfileForm = () => {
   const t = useText()
   const myProfile = useStore($myProfile)
-  const { styles } = useThemedStyleList({
+  const { styles, colors } = useThemedStyleList({
     buttonPrimary: buttonPrimaryThemedPreset,
     buttonLight: buttonLightThemedPreset,
     field: inputThemedStyles,
@@ -80,6 +80,7 @@ const EditProfileForm = () => {
       <CountriesDropdownSelect {...editProfileCountryModel} />
       {!!myProfile?.is_child && (
         <ChildDocumentUploadingBlock
+          backgroundColor={colors.formFieldBackground}
           style={styles.common.uploadDocumentsBlock}
         />
       )}
@@ -105,7 +106,6 @@ const themedStyles = createThemedStyle((colors) =>
       backgroundColor: colors.formFieldBackground,
       borderColor: colors.inputBorder,
       borderWidth: 1,
-      borderRadius: 20,
     },
     fieldLabel: {
       fontSize: 14,
