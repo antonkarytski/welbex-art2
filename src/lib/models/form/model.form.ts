@@ -26,9 +26,10 @@ export type TypedFormFieldComponentProps<
   formModel: FormModel<T>
 }
 
-type SubmitSettings<P, R> = {
+type FormSettings<P, R> = {
   validate?: boolean
   request?: Effect<P, R>
+  keysFilter?: (key: keyof P) => boolean
 }
 
 type FieldSettings<T = any> = {
@@ -36,6 +37,7 @@ type FieldSettings<T = any> = {
 }
 
 export class FormModel<T extends Record<string, any>, R = any> {
+  private keysFilter?: (key: keyof T) => boolean
   private readonly fieldsSettings: Partial<Record<keyof T, FieldSettings>> = {}
   private readonly schema
   public readonly reset = createEvent<Event<any> | void>()
@@ -47,14 +49,14 @@ export class FormModel<T extends Record<string, any>, R = any> {
   public readonly set = createEvent<T>()
   public readonly $store
   public readonly fields: { [K in keyof T]: K }
-  public readonly keysList
+  public keysList: (keyof T)[]
   public readonly validation
   public readonly submit
 
   private submitRequest: Effect<T, any> | null = null
   private isValidateOnSubmit = false
 
-  constructor(schema: T | ObjectSchema<T>, settings?: SubmitSettings<T, R>) {
+  constructor(schema: T | ObjectSchema<T>, settings?: FormSettings<T, R>) {
     this.schema = schema
     const isYupSchema = schema.__isYupSchema__
     const initialState: T = schema.__isYupSchema__
@@ -99,18 +101,23 @@ export class FormModel<T extends Record<string, any>, R = any> {
     })
 
     this.keysList = Object.keys(initialState) as (keyof T)[]
+    if (this.keysFilter) this.keysList = this.keysList.filter(this.keysFilter)
     if (isYupSchema) this.keysList.reverse()
     this.fields = mapObject(initialState, (_, key) => key) as {
       [K in keyof T]: K
     }
   }
 
-  private setUpSettings(settings: SubmitSettings<T, R>) {
+  private setUpSettings(settings: FormSettings<T, R>) {
     if (settings.validate) {
       this.isValidateOnSubmit = true
     }
     if (settings.request) {
       this.submitRequest = settings.request
+    }
+    if (settings.keysFilter) {
+      this.keysFilter = settings.keysFilter
+      this.keysList = this.keysList.filter(this.keysFilter)
     }
   }
 
@@ -118,8 +125,8 @@ export class FormModel<T extends Record<string, any>, R = any> {
     return this.keysList.map(fn)
   }
 
-  public setSubmitSettings<Return>(settings: SubmitSettings<T, Return>) {
-    this.setUpSettings(settings as SubmitSettings<T, any>)
+  public setSettings<Return>(settings: FormSettings<T, Return>) {
+    this.setUpSettings(settings as FormSettings<T, any>)
     return this as any as FormModel<T, Return>
   }
 

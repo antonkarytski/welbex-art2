@@ -1,6 +1,7 @@
 import { Store, attach, combine, createEffect } from 'effector'
 import { ImagePickerAsset } from 'expo-image-picker'
 import * as yup from 'yup'
+import { ObjectSchema } from 'yup'
 import { createStateModel } from 'altek-toolkit'
 import { MyProfile } from '../../../api/parts/users/types'
 import { createFormModel } from '../../../lib/models/form'
@@ -9,16 +10,18 @@ import { createCountryModel } from '../../countries/model.countriesDropdown'
 // import { createPhoneEnterModel } from '../../phoneEnter/model'
 import { $myProfile } from '../model'
 import { convertProfileBodyToEditForm } from './helpers'
-import { EditProfileForm } from './types'
+import { EditProfileForm, EditUserForm } from './types'
 
 export const editProfileCountryModel = createCountryModel()
 // export const editProfilePhoneModel = createPhoneEnterModel()
 
-export const editProfileFormSchema = yup.object().shape({
-  name: stringSchema().required(),
-  lastName: stringSchema().required(),
-  birthDate: yup.date().max(new Date()).required().default(new Date()),
-})
+export const editProfileFormSchema: ObjectSchema<EditUserForm> = yup
+  .object()
+  .shape({
+    name: stringSchema().required(),
+    lastName: stringSchema().required(),
+    birthDate: yup.date().nullable().max(new Date()).default(null),
+  })
 
 export const editProfileFormModel = createFormModel(editProfileFormSchema)
 

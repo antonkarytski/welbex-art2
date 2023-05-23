@@ -4,7 +4,7 @@ import { Country } from '../../countries'
 export type EditUserForm = {
   name: string
   lastName: string
-  birthDate: Date
+  birthDate: Date | null
 }
 
 export type EditProfileForm = {

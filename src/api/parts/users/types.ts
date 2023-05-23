@@ -12,7 +12,7 @@ export type User = UserInitialData & {
 
 export type AppUserProps = {
   id: number
-  age: number
+  age?: number | null
 }
 
 export type UserShort = {

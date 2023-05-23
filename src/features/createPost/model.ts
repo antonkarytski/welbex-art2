@@ -6,10 +6,7 @@ import { ImageFile } from '../../lib/files/types'
 import { noop } from '../../lib/helpers'
 import { createFormModel } from '../../lib/models/form'
 import { stringSchema } from '../../lib/yup'
-import {
-  loadAvailableCategories,
-  removeCategoryFromAvailable,
-} from '../profile/model.availableCategories'
+import { loadAvailableCategories } from '../profile/model.availableCategories'
 
 export type ImageDescriptionFormFields = {
   image: ImageFile
@@ -43,7 +40,7 @@ const submitRequest = createEffect(async (data: ImageDescriptionFormFields) => {
     next_month_competition: data.nextMonth,
   })
 })
-export const createPostFormModel = createFormModel(schema).setSubmitSettings({
+export const createPostFormModel = createFormModel(schema).setSettings({
   validate: true,
   request: submitRequest,
 })

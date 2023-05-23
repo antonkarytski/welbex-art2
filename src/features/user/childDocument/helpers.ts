@@ -8,7 +8,7 @@ import { IconProps } from '../../../ui/icons/_types'
 import { ColorFn } from '../../themed/theme'
 
 export type ChildDocumentStatusDescriptor = {
-  label: LangFn
+  label?: LangFn
   Icon: (props: IconProps) => ReactElement | null
   color?: ColorFn
   revokeDisabled?: boolean
@@ -20,7 +20,6 @@ export const CHILD_DOCUMENT_STATUS_DESCRIPTORS: Record<
   ChildDocumentStatusDescriptor
 > = {
   [IdentityDocumentStatus.UNDETERMINED]: {
-    label: () => '',
     Icon: () => null,
     withUploadButtonVariant: true,
   },

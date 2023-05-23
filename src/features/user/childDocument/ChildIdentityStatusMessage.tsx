@@ -17,7 +17,7 @@ type UserIdentityStatusMessageProps = {
 type StatusDescription = {
   color?: ColorFn
   iconColor?: ColorFn
-  label: LangFn
+  label?: LangFn
   Icon: (props: IconProps) => ReactElement | null
   style?: TextStyle
 }
@@ -68,7 +68,7 @@ const ChildIdentityStatusMessage = ({
       <Span
         weight={500}
         style={[styles.text, descriptor.style, { color }]}
-        label={descriptor.label(t)}
+        label={descriptor.label?.(t)}
       />
     </View>
   )

@@ -1,4 +1,3 @@
-import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { noop } from '../../../lib/helpers'
@@ -16,9 +15,10 @@ import CountriesDropdownSelect from '../../countries/CountriesDropdownSelect'
 import SaveProfileChangesPopUp from '../../popUp/profilePopUps/PopUp.SaveChanges'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
+import { useMergedStyles } from '../../themed/hooks.merge'
 import ChildDocumentUploadingBlock from '../../user/childDocument/ChildDocumentUploadingBlock'
-import { $myProfile } from '../model'
 import EditAvatarBlock from './EditAvatarBlock'
+import PhonePreview from './PhonePreview'
 import {
   editProfileCountryModel,
   editProfileFormModel,
@@ -27,7 +27,6 @@ import {
 
 const EditProfileForm = () => {
   const t = useText()
-  const myProfile = useStore($myProfile)
   const { styles, colors } = useThemedStyleList({
     buttonPrimary: buttonPrimaryThemedPreset,
     buttonLight: buttonLightThemedPreset,
@@ -43,7 +42,7 @@ const EditProfileForm = () => {
     SaveProfileChangesPopUp.showSync()
   }
 
-  const fieldStyles = { container: styles.common.formItem, ...styles.field }
+  const inputStyles = useMergedStyles([styles.field, fieldStyles])
 
   return (
     <View style={styles.common.fieldsWrapper}>
@@ -52,15 +51,13 @@ const EditProfileForm = () => {
         if (name === 'birthDate') {
           return (
             <DateField
+              disabled
               offValidation
               key={name}
               label={t.birthDate}
-              displayDefaultDate
               formModel={editProfileFormModel}
               name={name}
-              style={fieldStyles}
-              validateOnBlur
-              maximumDate={new Date()}
+              style={inputStyles}
             />
           )
         }
@@ -72,18 +69,17 @@ const EditProfileForm = () => {
             placeholder={t[name]}
             formModel={editProfileFormModel}
             name={name}
-            style={fieldStyles}
+            style={inputStyles}
             type={'default'}
           />
         )
       })}
+      <PhonePreview style={styles.common.formItem} colors={colors} />
       <CountriesDropdownSelect {...editProfileCountryModel} />
-      {!!myProfile?.is_child && (
-        <ChildDocumentUploadingBlock
-          backgroundColor={colors.formFieldBackground}
-          style={styles.common.uploadDocumentsBlock}
-        />
-      )}
+      <ChildDocumentUploadingBlock
+        backgroundColor={colors.formFieldBackground}
+        style={styles.common.uploadDocumentsBlock}
+      />
       <PresetButton
         label={t.save}
         onPress={onSaveChanges}
@@ -117,5 +113,17 @@ const themedStyles = createThemedStyle((colors) =>
     },
   })
 )
+
+const fieldStyles = StyleSheet.create({
+  container: {
+    marginBottom: 20,
+  },
+  wrapper: {
+    marginBottom: 0,
+  },
+  input: {
+    height: 52,
+  },
+})
 
 export default EditProfileForm

@@ -5,12 +5,13 @@ import { defaultColors } from '../features/themed/theme'
 import { FONT_MEDIUM } from '../styles/fonts'
 import Span from './Span'
 import Input from './input'
-import { InputStyles } from './input/types'
+import { MergedInputStyles } from './input/types'
 
 type DateInputProps = {
+  disabled?: boolean
   placeholder?: string
   onChange: (date: Date) => void
-  style?: InputStyles
+  style?: MergedInputStyles
   pickerStyle?: StyleProp<ViewStyle>
   isValid?: boolean | null
   onBlur?: () => void
@@ -30,6 +31,7 @@ const DateInput = ({
   label,
   defaultDate,
   wasSelected,
+  disabled,
   ...props
 }: DateInputProps) => {
   const [open, setOpen] = useState(false)
@@ -50,6 +52,7 @@ const DateInput = ({
     <>
       {label && <Span label={label} style={[styles.label, style?.label]} />}
       <Input
+        disabled={disabled}
         onBlur={onBlur}
         isValid={isValid}
         placeholder={placeholder}

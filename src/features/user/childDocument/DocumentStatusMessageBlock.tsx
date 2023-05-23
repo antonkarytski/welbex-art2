@@ -51,7 +51,7 @@ const DocumentStatusMessageBlock = ({
             label={
               isOnLoading
                 ? t.childIdentityStatusMessage.uploading
-                : descriptor.label(t)
+                : descriptor.label?.(t)
             }
           />
         </View>

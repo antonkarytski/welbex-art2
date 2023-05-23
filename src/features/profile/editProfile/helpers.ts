@@ -1,9 +1,7 @@
 import moment from 'moment'
 import { MyProfile } from '../../../api/parts/users/types'
 import { ProfileEditProps } from '../../../api/parts/users/types.parts'
-import { USER_DOB_FORMAT } from '../../../constants'
 import { mapObject } from '../../../lib/helpers/array'
-import { dateObjectToString } from '../../../lib/helpers/date'
 import {
   checkObjectsChanges,
   isObjectEmpty,
@@ -19,7 +17,7 @@ const PROFILE_BODY_TO_FORM_FIELDS: {
 } = {
   name: ({ first_name }) => first_name,
   lastName: ({ last_name }) => last_name,
-  birthDate: ({ DOB }) => birthDateStringToObject(DOB),
+  birthDate: ({ DOB }) => (DOB ? birthDateStringToObject(DOB) : null),
 }
 
 export const convertProfileBodyToEditForm = (data: MyProfile) => {
@@ -35,7 +33,6 @@ const EDIT_FORM_TO_REQUEST_BODY: {
 } = {
   first_name: ({ user }) => user.name,
   last_name: ({ user }) => user.lastName,
-  DOB: ({ user }) => dateObjectToString(user.birthDate, USER_DOB_FORMAT),
   country: ({ country }) => country?.alpha2Code,
 }
 
@@ -50,7 +47,7 @@ export const convertEditFormToRequestBody = (
 export const getProfileChanges = (props: GetProfileChangesProps) => {
   const { profileData, editFormData } = props
   if (!profileData) return null
-  let result: Partial<MyProfile> = {}
+  let result: Partial<MyProfile>
   const editProfileBody = convertEditFormToRequestBody(editFormData)
   const changedFields = checkObjectsChanges(profileData, editProfileBody)
   result = { ...changedFields }

@@ -40,8 +40,16 @@ const UserDescription = ({
   shortenCountryName,
   shortenUserName,
 }: UserDescriptionProps) => {
-  const ageText = ageTextGenerator(item.age || getAgeFromBirthday(item.DOB))
+  const age = item.age || (item.DOB ? getAgeFromBirthday(item.DOB) : null)
   const styles = useThemedStyle(themedStyles)
+
+  const parts: string[] = []
+  if (age) parts.push(ageTextGenerator(age))
+  parts.push(
+    shortenCountryName
+      ? countryFullNameClipped(item.country)
+      : countryFullName(item.country)
+  )
 
   return (
     <View style={style?.container}>
@@ -55,11 +63,7 @@ const UserDescription = ({
       />
       <Span
         style={[styles.subText, style?.subText]}
-        label={`${ageText} ${hideSeparator ? ' ' : '|'} ${
-          shortenCountryName
-            ? countryFullNameClipped(item.country)
-            : countryFullName(item.country)
-        }`}
+        label={parts.join(hideSeparator ? ' ' : ' | ')}
       />
     </View>
   )

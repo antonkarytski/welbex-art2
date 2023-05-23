@@ -19,7 +19,7 @@ export const sendRecoverEmailSchema: ObjectSchema<SendRecoverEmailForm> = yup
 
 export const recoverPasswordFormModel = createFormModel(
   sendRecoverEmailSchema
-).setSubmitSettings({
+).setSettings({
   validate: true,
   request: prependEffect(api.resetPassword.sendResetLink, ({ email }) => email),
 })

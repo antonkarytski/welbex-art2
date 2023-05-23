@@ -23,7 +23,7 @@ export type UserInitialData = {
   first_name: string
   last_name: string
   country: CountryCode
-  DOB: string
+  DOB?: string | null
 }
 
 export type ProfileEditProps = Partial<UserInitialData & UserSecuredData>

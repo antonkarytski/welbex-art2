@@ -38,7 +38,7 @@ export function useCreatePostFormInitialValues({
     store: $myProfile,
     keys: [],
     fn: (profile) =>
-      !profile
+      !profile?.age
         ? null
         : {
             isChildDocumentLoaded: isDocumentUploaded(profile),

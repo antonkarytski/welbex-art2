@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native'
 import { createThemedStyle } from '../features/themed'
-import { CellStyle } from '../ui/celledInput/Cell'
 import { InputStyles } from '../ui/input/types'
 import { FONT_MEDIUM } from './fonts'
 

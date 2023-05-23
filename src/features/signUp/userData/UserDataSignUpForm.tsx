@@ -7,7 +7,6 @@ import { inputThemedStyles } from '../../../styles/inputs'
 import { useText } from '../../../translations/hook'
 import { LangFn } from '../../../translations/types'
 import H2 from '../../../ui/H2'
-import DateField from '../../../ui/form/DateField'
 import Field from '../../../ui/form/Field'
 import { useThemedStyleList } from '../../themed/hooks'
 import UserDataValidationButton, {
@@ -44,19 +43,6 @@ const UserDataSignUpForm = React.memo(
           {signUpUserDataFormModel.mapKeys((name) => {
             if (fieldsFilter && !fieldsFilter(name)) {
               return null
-            }
-            if (name === 'birthDate') {
-              return (
-                <DateField
-                  key={name}
-                  placeholder={t.birthDate}
-                  formModel={signUpUserDataFormModel}
-                  name={name}
-                  style={styles.field}
-                  validateOnBlur
-                  maximumDate={new Date()}
-                />
-              )
             }
             return (
               <Field
