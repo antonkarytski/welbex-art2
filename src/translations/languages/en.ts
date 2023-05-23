@@ -57,9 +57,11 @@ export const EN = {
   resendCode: 'Resend code',
   resendCodeTimer: 'Resend code in',
   enterPassword: 'Enter password',
-  IAccept: 'I accept',
-  userAgreement: 'the user agreement',
-  privacyPolicy: 'privacy policy',
+  userAgreementBlock: {
+    iAccept: 'I accept',
+    userAgreement: 'the user agreement',
+    privacyPolicy: 'privacy policy',
+  },
   createAccountButton: 'Create account',
   loginGreeting: 'Welcome back to ART SQRD',
   forgotPasswordQ: 'Forgot your password?',
@@ -255,4 +257,8 @@ export const EN = {
   youExceedLimitOfWorksPaid:
     'You have already uploaded the maximum number of works.',
   subscriptionRequired: 'Subscription is required to post in this category',
+  childIdentityUploadRequest: {
+    text: 'You cannot upload your work without proof of age.',
+    link: 'Provide a birth certificate or wait for moderation.',
+  },
 }

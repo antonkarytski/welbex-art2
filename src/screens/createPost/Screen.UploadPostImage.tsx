@@ -17,11 +17,10 @@ export default function UploadPostImageScreen({
   const { styles: headerStyles } = useThemedStyleList({
     gradient: themedPrimaryGradient,
   })
-
   useCreatePostRedirection()
 
   return (
-    <View>
+    <View style={styles.container}>
       <GradientScreenHeader
         title={text.uploadImage}
         gradient={{ colors: headerStyles.gradient }}
@@ -34,6 +33,9 @@ export default function UploadPostImageScreen({
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   contentContainer: {
     paddingHorizontal: 20,
     marginTop: 32,

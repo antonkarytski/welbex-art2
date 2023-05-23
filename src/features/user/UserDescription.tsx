@@ -43,7 +43,6 @@ const UserDescription = ({
   const ageText = ageTextGenerator(item.age || getAgeFromBirthday(item.DOB))
   const styles = useThemedStyle(themedStyles)
 
-  console.log(item)
   return (
     <View style={style?.container}>
       <Span

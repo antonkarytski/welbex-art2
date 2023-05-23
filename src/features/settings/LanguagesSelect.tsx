@@ -20,7 +20,7 @@ const LanguagesSelect = () => {
   const renderItem = useCallback(
     (languageKey: Languages) => (
       <Span
-        label={t[LANGUAGES_DESCRIPTOR[languageKey]]}
+        label={t[LANGUAGES_DESCRIPTOR[languageKey]].toString()}
         style={styles.languageLabel}
         weight={500}
       />

@@ -5,6 +5,7 @@ import {
   PopUpArtWorksLimitExceedFree,
   PopUpArtWorksLimitExceedPaid,
 } from './PopUp.ArtWorksLimitExceed'
+import PopUpChildIdentityUploadRequest from './PopUp.ChildIdentityUploadRequest'
 import PopUpDeletePaymentCard from './PopUp.DeletePaymentCard'
 import PopUpPhotoEdit from './PopUp.PhotoEditActionSelect'
 import PopUpUnexpectedError from './PopUp.UnexpectedError'
@@ -23,6 +24,7 @@ export default function AppPopUps() {
       <PopUpUnexpectedError />
       <PopUpArtWorksLimitExceedFree />
       <PopUpArtWorksLimitExceedPaid />
+      <PopUpChildIdentityUploadRequest />
     </>
   )
 }

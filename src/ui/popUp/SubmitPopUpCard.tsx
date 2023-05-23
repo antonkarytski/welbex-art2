@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { StyleSheet, TextStyle } from 'react-native'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
@@ -17,7 +17,7 @@ type OnSubmitProps = { navigate: ReturnType<typeof useNavigate> }
 
 export type SubmitPopUpCardProps = {
   model: PopUpModel
-  title: LangFn | string
+  title: LangFn | string | LangFn<ReactNode>
   onClose?: () => void
   closeButtonLabel?: string | LangFn
   closeButtonLabelStyle?: TextStyle | ColorFn<TextStyle>
@@ -52,11 +52,9 @@ const SubmitPopUpCard = ({
 
   return (
     <PopUpCard style={styles.common.card} model={model}>
-      <Span
-        weight={600}
-        style={[styles.common.header, headerStyle]}
-        label={typeof title === 'function' ? title(text) : title}
-      />
+      <Span weight={600} style={[styles.common.header, headerStyle]}>
+        {typeof title === 'function' ? title(text) : title}
+      </Span>
       {!hideSubmit && (
         <PresetButton
           style={styles.common.submitButton}

@@ -40,16 +40,18 @@ const UserAgreement = ({ isInvalid }: UserAgreementProps) => {
     >
       <View style={styles.feature.rowWrapper}>
         <Row style={styles.feature.row}>
-          <Span style={styles.feature.text}>{`${t.IAccept} `}</Span>
+          <Span
+            style={styles.feature.text}
+          >{`${t.userAgreementBlock.iAccept} `}</Span>
           <TouchableOpacity onPress={openUserAgreement} activeOpacity={0.6}>
             <Span style={[styles.feature.text, styles.feature.links]}>
-              {t.userAgreement}
+              {t.userAgreementBlock.userAgreement}
             </Span>
           </TouchableOpacity>
           <Span style={styles.feature.text}>{` ${t.and} `}</Span>
           <TouchableOpacity onPress={openPrivacyPolicy} activeOpacity={0.6}>
             <Span style={[styles.feature.text, styles.feature.links]}>
-              {t.privacyPolicy}
+              {t.userAgreementBlock.privacyPolicy}
             </Span>
           </TouchableOpacity>
         </Row>

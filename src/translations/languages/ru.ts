@@ -58,9 +58,11 @@ export const RU: LangStructure = {
   resendCode: 'Отправить код повторно',
   resendCodeTimer: 'Отправить код повторно через',
   enterPassword: 'Введите пароль',
-  IAccept: 'Я принимаю',
-  userAgreement: 'пользовательское соглашение',
-  privacyPolicy: 'политику обработки персональных данных',
+  userAgreementBlock: {
+    iAccept: 'Я принимаю',
+    userAgreement: 'пользовательское соглашение',
+    privacyPolicy: 'политику обработки персональных данных',
+  },
   createAccountButton: 'Создать аккаунт',
   loginGreeting: 'Добро пожаловать в ART SQRD',
   forgotPasswordQ: 'Забыли пароль?',
@@ -262,4 +264,8 @@ export const RU: LangStructure = {
   monthOfParticipation: 'Месяц участия',
   subscriptionRequired:
     'Для размещения работ в данной категории требуется приобрести подписку',
+  childIdentityUploadRequest: {
+    text: 'Вы не можете загружать свои работы без подтверждения возраста.',
+    link: 'Предоставьте свидетельство о рождении или дождитесь завершения модерации.',
+  },
 }

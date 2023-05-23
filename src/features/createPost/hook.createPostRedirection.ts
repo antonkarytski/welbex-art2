@@ -3,6 +3,7 @@ import { useStore } from 'effector-react'
 import { useCallback } from 'react'
 import { AvailableCategoriesResponse } from '../../api/parts/categories/types'
 import { MyProfile } from '../../api/parts/users/types'
+import { IdentityDocumentStatus } from '../../api/parts/users/types.api'
 import { noop } from '../../lib/helpers'
 import { $isAuth } from '../auth/model'
 import PopUpAgeError from '../popUp/PopUp.AgeError'
@@ -10,6 +11,7 @@ import {
   PopUpArtWorksLimitExceedFree,
   PopUpArtWorksLimitExceedPaid,
 } from '../popUp/PopUp.ArtWorksLimitExceed'
+import PopUpChildIdentityUploadRequest from '../popUp/PopUp.ChildIdentityUploadRequest'
 import PopUpLogin from '../popUp/profilePopUps/PopUp.Login'
 import { $myProfile } from '../profile/model'
 import {
@@ -31,6 +33,12 @@ const getPopUp = ({
 }: GetPopUpProps) => {
   if (!isAuth || !myProfile) return PopUpLogin
   if (!myProfile.is_child || userAge(myProfile) < 2) return PopUpAgeError
+  if (
+    myProfile.identity_determined_status_id !==
+    IdentityDocumentStatus.DETERMINED
+  ) {
+    return PopUpChildIdentityUploadRequest
+  }
   if (!availableCategories) {
     loadAvailableCategories().catch(noop)
     return
