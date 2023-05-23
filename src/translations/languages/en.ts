@@ -119,15 +119,16 @@ export const EN = {
   completeDescription: 'Complete the description',
   category: 'Category',
   monthOfParticipation: 'Month of participation',
-  uploadChildDocument: 'Upload a child identity proof document',
-  childDocumentUploaded: "Child's identity document uploaded",
-  uploadChildNewDocument: 'Upload a new child identity proof document',
-  documentUploading: 'Uploading a document',
-  childIdentificationDocumentIsInModeration:
-    "The child's identification document is in moderation",
-  childIdentificationDocumentRejected:
-    "The child's identification document is not confirmed",
-  childIdentificationDocumentApproved: 'The document is approved',
+  childIdentityStatusMessage: {
+    request: 'Upload a child identity proof document',
+    requestNew: 'Upload a new child identity proof document',
+    uploading: 'Uploading a document',
+    justUploaded:
+      "The child's identification document uploaded and submitted for moderation",
+    moderation: "The child's identification document is in moderation",
+    rejected: "The child's identification document is not confirmed",
+    accepted: "The child's identification document is verified",
+  },
   createPostAgeError: 'Your age doesn’t match any available category',
   winners: 'Winners',
   participantsDrawings: 'Participants’ drawings',

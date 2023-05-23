@@ -1,11 +1,15 @@
 import { useStore } from 'effector-react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import { IdentityDocumentStatus } from '../../../api/parts/users/types.api'
 import { noop } from '../../../lib/helpers'
 import { useText } from '../../../translations/hook'
+import Span from '../../../ui/Span'
 import PhotoSelectBlock from '../../imagePick/Block.PhotoSelect'
+import { createThemedStyle } from '../../themed'
+import { useTheme } from '../../themed/hooks'
 import DocumentStatusMessageBlock from './DocumentStatusMessageBlock'
+import { getChildDocumentStatusDescriptor } from './helpers'
 import { useChildDocumentStatus } from './hooks'
 import {
   $isChildDocumentOnLoading,
@@ -26,24 +30,25 @@ const ChildDocumentUploadingBlock = ({
 }: ChildDocumentUploadingBlockProps) => {
   const text = useText()
   const isOnLoading = useStore($isChildDocumentOnLoading)
-  const [isJustUploaded, setIsJustUploaded] = useState(false)
   const childDocumentStatus = useChildDocumentStatus()
-  const [showProgressStatus, setShowProgressStatus] = useState(
-    childDocumentStatus !== IdentityDocumentStatus.UNDETERMINED
+  const [isJustUploaded, setIsJustUploaded] = useState(false)
+  const statusDescriptor = getChildDocumentStatusDescriptor(
+    isJustUploaded ? IdentityDocumentStatus.JUST_UPLOADED : childDocumentStatus
   )
-  const isChildDocumentExists =
-    childDocumentStatus === IdentityDocumentStatus.DETERMINED ||
-    childDocumentStatus === IdentityDocumentStatus.PENDING
+  const [showProgressStatus, setShowProgressStatus] = useState(
+    !statusDescriptor.withUploadButtonVariant
+  )
+  const { styles, colors } = useTheme(themedStyles)
+
+  useEffect(() => {
+    setShowProgressStatus(!statusDescriptor.withUploadButtonVariant)
+  }, [statusDescriptor])
 
   if (showProgressStatus || isOnLoading) {
     return (
       <View style={containerStyle}>
         <DocumentStatusMessageBlock
-          status={
-            isJustUploaded
-              ? IdentityDocumentStatus.DETERMINED
-              : childDocumentStatus
-          }
+          descriptor={statusDescriptor}
           progressValue={childDocumentProgressAnimatedValue}
           isOnLoading={isOnLoading}
           onPressRemove={() => setShowProgressStatus(false)}
@@ -64,27 +69,39 @@ const ChildDocumentUploadingBlock = ({
             size: asset.fileSize || 0,
             uri: asset.uri,
           })
-            .then(() => {
-              setShowProgressStatus(true)
-              setIsJustUploaded(true)
-            })
+            .then(() => setIsJustUploaded(true))
             .catch(noop)
         }}
         style={[styles.block, style]}
-        label={
-          isChildDocumentExists
-            ? text.uploadChildNewDocument
-            : text.uploadChildDocument
-        }
+        label={text.childIdentityStatusMessage.request}
       />
+      {statusDescriptor.withUploadButtonVariant && !!statusDescriptor.label && (
+        <View style={styles.statusTextBlock}>
+          <statusDescriptor.Icon color={statusDescriptor.color?.(colors)} />
+          <Span
+            style={styles.statusTextBlockText}
+            label={statusDescriptor.label(text)}
+          />
+        </View>
+      )}
     </View>
   )
 }
 
-const styles = StyleSheet.create({
-  block: {
-    borderRadius: 8,
-  },
-})
+const themedStyles = createThemedStyle((colors) =>
+  StyleSheet.create({
+    block: {
+      borderRadius: 8,
+    },
+    statusTextBlock: {
+      marginTop: 16,
+      flexDirection: 'row',
+    },
+    statusTextBlockText: {
+      marginLeft: 13,
+      color: colors.text,
+    },
+  })
+)
 
 export default ChildDocumentUploadingBlock

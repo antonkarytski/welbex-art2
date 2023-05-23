@@ -13,6 +13,7 @@ export enum IdentityDocumentStatus {
   PENDING,
   DETERMINED,
   REJECTED,
+  JUST_UPLOADED = 10,
 }
 
 export type ProfileResponse = User & UserCounters

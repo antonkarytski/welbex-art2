@@ -1,8 +1,6 @@
 import { LangStructure } from '../types'
 
 export const RU: LangStructure = {
-  childDocumentUploaded: 'Документ ребенка загружен',
-  documentUploading: 'Загрузка документа',
   appName: 'Art²',
   appFullName: 'ART SQRD',
   quoteByPabloPicasso:
@@ -111,15 +109,17 @@ export const RU: LangStructure = {
   description: 'Описание',
   completeDescription: 'Заполните описание',
   category: 'Категория',
-  uploadChildDocument: 'Загрузите документ, подтверждающий личность ребенка',
-  uploadChildNewDocument:
-    'Загрузите новый документ, подтверждающий личность ребенка',
-  childIdentificationDocumentIsInModeration:
-    'Документ, подтверждающий личность ребенка, находится на модерации',
-  childIdentificationDocumentRejected:
-    'Документ, подтверждающий личность ребенка, не подтвержден!',
-  childIdentificationDocumentApproved:
-    'Документ, подтверждающий личность ребенка, подтвержден',
+  childIdentityStatusMessage: {
+    request: 'Загрузите документ, подтверждающий личность ребенка',
+    requestNew: 'Загрузите новый документ, подтверждающий личность ребенка',
+    uploading: 'Загрузка документа',
+    justUploaded:
+      "'The child's identification document uploaded and submitted for moderation'",
+    moderation:
+      'Документ, подтверждающий личность ребенка, находится на модерации',
+    rejected: 'Документ, подтверждающий личность ребенка, не подтвержден!',
+    accepted: 'Документ, подтверждающий личность ребенка, подтвержден',
+  },
   createPostAgeError:
     'Ваш возраст не соответствует ни одной из доступных категорий',
   winners: 'Победители',

@@ -7,7 +7,6 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import { IdentityDocumentStatus } from '../../../api/parts/users/types.api'
 import { useText } from '../../../translations/hook'
 import Span from '../../../ui/Span'
 import CrossIcon from '../../../ui/icons/Icon.Cross'
@@ -15,14 +14,14 @@ import LoaderIcon from '../../../ui/icons/Icon.Loader'
 import ProgressBar from '../../../ui/progress/ProgressBar'
 import { createThemedStyle } from '../../themed'
 import { useTheme } from '../../themed/hooks'
-import { getChildDocumentStatusDescriptor } from './helpers'
+import { ChildDocumentStatusDescriptor } from './helpers'
 
 type DocumentLoadedMessageBlockProps = {
   style?: StyleProp<ViewStyle>
   onPressRemove?: () => void
   isOnLoading?: boolean
   progressValue?: Animated.Value
-  status: IdentityDocumentStatus
+  descriptor: ChildDocumentStatusDescriptor
 }
 
 const DocumentStatusMessageBlock = ({
@@ -30,10 +29,9 @@ const DocumentStatusMessageBlock = ({
   onPressRemove,
   isOnLoading,
   progressValue,
-  status,
+  descriptor,
 }: DocumentLoadedMessageBlockProps) => {
   const { styles, colors } = useTheme(themedStyles)
-  const statusDescriptor = getChildDocumentStatusDescriptor(status)
   const t = useText()
 
   return (
@@ -44,24 +42,24 @@ const DocumentStatusMessageBlock = ({
             {isOnLoading ? (
               <LoaderIcon color={colors.icon} size={24} />
             ) : (
-              <statusDescriptor.Icon
-                color={statusDescriptor.color?.(colors)}
-                size={20}
-              />
+              <descriptor.Icon color={descriptor.color?.(colors)} size={20} />
             )}
           </View>
           <Span
             weight={500}
             style={styles.text}
             label={
-              isOnLoading ? t.documentUploading : statusDescriptor.label(t)
+              isOnLoading
+                ? t.childIdentityStatusMessage.uploading
+                : descriptor.label(t)
             }
           />
         </View>
-
-        <TouchableOpacity onPress={onPressRemove} style={styles.removeButton}>
-          <CrossIcon />
-        </TouchableOpacity>
+        {!descriptor.revokeDisabled && (
+          <TouchableOpacity onPress={onPressRemove} style={styles.removeButton}>
+            <CrossIcon />
+          </TouchableOpacity>
+        )}
       </View>
       {isOnLoading && !!progressValue && (
         <View style={styles.progressBlock}>

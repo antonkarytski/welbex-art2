@@ -88,6 +88,7 @@ const EditProfileForm = () => {
         label={t.save}
         onPress={onSaveChanges}
         preset={styles.buttonPrimary}
+        style={styles.common.submitButton}
       />
     </View>
   )
@@ -102,7 +103,6 @@ const themedStyles = createThemedStyle((colors) =>
       marginBottom: 20,
     },
     uploadDocumentsBlock: {
-      marginBottom: 24,
       backgroundColor: colors.formFieldBackground,
       borderColor: colors.inputBorder,
       borderWidth: 1,
@@ -111,6 +111,9 @@ const themedStyles = createThemedStyle((colors) =>
       fontSize: 14,
       lineHeight: 20,
       fontFamily: FONT_MEDIUM,
+    },
+    submitButton: {
+      marginTop: 24,
     },
   })
 )
