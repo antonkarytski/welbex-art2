@@ -38,12 +38,14 @@ const UserCountersBlock = ({ item, style }: UserCountersBlockProps) => {
         title={text.following}
         textStyle={textStyle}
       />
-      <ValueCard
-        style={[styles.card, styles.lastCard]}
-        value={item.followers}
-        title={text.followers}
-        textStyle={textStyle}
-      />
+      {item.is_child && (
+        <ValueCard
+          style={[styles.card, styles.lastCard]}
+          value={item.followers}
+          title={text.followers}
+          textStyle={textStyle}
+        />
+      )}
     </View>
   )
 }
