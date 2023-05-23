@@ -1,14 +1,14 @@
 import { useStore } from 'effector-react'
 import React, { useEffect, useRef, useState } from 'react'
 import { Animated, StyleSheet, View } from 'react-native'
-import {
-  categoryDetailsModel,
-  getCategoryData,
-  setCategoryId,
-} from '../features/categories/specificCategory'
 import CategoryGallery from '../features/categories/specificCategory/CategoryGallery'
 import CategoryHeader from '../features/categories/specificCategory/CategoryHeader'
 import CategoryScreenHeader from '../features/categories/specificCategory/CategoryScreenHeader'
+import {
+  categoryDetailsModel,
+  setCategoryId,
+} from '../features/categories/specificCategory/model'
+import { getCategoryData } from '../features/categories/specificCategory/request'
 import { createThemedStyle } from '../features/themed'
 import { useThemedStyleList } from '../features/themed/hooks'
 import { noop } from '../lib/helpers'
