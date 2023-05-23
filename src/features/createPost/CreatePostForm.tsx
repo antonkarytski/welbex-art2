@@ -46,9 +46,6 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
     buttonPreset: buttonPrimaryThemedPreset,
   })
 
-  const isChildDocumentDetermined = useChildDocumentStatus(
-    IdentityDocumentStatus.DETERMINED
-  )
   const inputStyles = useMergedStyles([styles.field, fieldStyles])
   useCreatePostFormInitialValues(props)
 
@@ -84,9 +81,6 @@ const CreatePostForm = (props: CreatePostFormInitialProps) => {
         styles={inputStyles}
       />
       <PostMonthSelect style={selectStyles} />
-      {!isChildDocumentDetermined && (
-        <ChildDocumentUploadingBlock style={styles.common.cameraBlock} />
-      )}
       <CreatePostFromSubmitButton
         style={styles.common.button}
         preset={styles.buttonPreset}
@@ -117,7 +111,7 @@ const themedStyles = createThemedStyle((colors) =>
       paddingTop: 32,
       paddingHorizontal: 20,
     },
-    button: { marginTop: 24, marginBottom: 54 },
+    button: { marginTop: 4, marginBottom: 54 },
   })
 )
 
