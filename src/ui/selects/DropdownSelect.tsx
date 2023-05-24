@@ -1,6 +1,7 @@
-import React, { useRef } from 'react'
+import { useStore } from 'effector-react'
+import React, { useEffect, useRef } from 'react'
 import { StyleSheet } from 'react-native'
-import { StateModel, useStateStore } from 'altek-toolkit'
+import { StateModel } from 'altek-toolkit'
 import DropdownTab from '../dropdownTab'
 import { DropdownTabInstance } from '../dropdownTab/DropdownTab'
 import SearchableSelect from './SearchableSelect'
@@ -19,12 +20,12 @@ function DropdownSelect<Item>({
   model,
   ...props
 }: DropdownSelectProps<Item>) {
-  const [selectedItem, setSelectedItem] = useStateStore(model)
+  const selectedItem = useStore(model.$state)
   const dropdownTabRef = useRef<DropdownTabInstance>(null)
 
-  setSelectedItem.watch(() => {
+  useEffect(() => {
     dropdownTabRef.current?.close()
-  })
+  }, [selectedItem])
 
   const selectStyles = {
     item: itemStyles,

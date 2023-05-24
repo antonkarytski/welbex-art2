@@ -154,8 +154,6 @@ export const RU: LangStructure = {
   like: 'Отметки “Нравится”',
   contestInfo: 'Конкурсная информация',
   promotionalNotices: 'Рекламные уведомления',
-  questionSubject: 'Тема вопроса',
-  yourQuestion: 'Ваш вопрос',
   language: 'Язык',
   english: 'English',
   russian: 'Русский',
@@ -274,5 +272,10 @@ export const RU: LangStructure = {
     payment: 'Платежи',
     technicalProblem: 'Техническая проблема',
     other: 'Другое',
+  },
+  feedbackForm: {
+    selectIssue: 'Выберите тему',
+    describeSubject: 'Опишите проблему',
+    yourMessage: 'Ваше сообщение',
   },
 }

@@ -158,8 +158,6 @@ export const EN = {
   settings: 'Settings',
   faq: 'FAQ',
   feedback: 'Feedback',
-  questionSubject: 'Question subject',
-  yourQuestion: 'Your question',
   notifications: 'Notifications',
   like: 'Like',
   contestInfo: 'Contest info',
@@ -268,5 +266,10 @@ export const EN = {
     payment: 'Payment',
     technicalProblem: 'Technical problem',
     other: 'Other',
+  },
+  feedbackForm: {
+    selectIssue: 'Select issue',
+    describeSubject: 'Describe subject',
+    yourMessage: 'Your message',
   },
 }

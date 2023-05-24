@@ -6,8 +6,10 @@ import { inputThemedStyles } from '../../styles/inputs'
 import { useText } from '../../translations/hook'
 import PresetButton from '../../ui/buttons/PresetButton'
 import Field from '../../ui/form/Field'
+import DropdownSelect from '../../ui/selects/DropdownSelect'
 import { useThemedStyleList } from '../themed/hooks'
-import { feedbackFormModel } from './feedback.model'
+import { FEEDBACK_CATEGORY } from './categories'
+import { feedbackCategoryModel, feedbackFormModel } from './feedback.model'
 
 const FeedbackForm = () => {
   const t = useText()
@@ -29,16 +31,21 @@ const FeedbackForm = () => {
         behavior={IS_IOS ? 'padding' : 'height'}
         style={featureStyles.formWrapper}
       >
-
-        <Field
-          label={t.name}
-          formModel={feedbackFormModel}
-          name={feedbackFormModel.fields.name}
-          style={fieldStyles}
+        <DropdownSelect
+          data={FEEDBACK_CATEGORY}
+          idExtractor={({ id }) => id.toString()}
+          labelExtractor={({ label }) => label(t)}
+          label={t.feedbackForm.selectIssue}
+          model={feedbackCategoryModel}
+          style={{
+            dropdownTab: {
+              tab: featureStyles.field_wrapper,
+            },
+          }}
         />
         <Field
-          label={t.questionSubject}
-          placeholder={t.yourQuestion}
+          label={t.feedbackForm.describeSubject}
+          placeholder={t.feedbackForm.yourMessage}
           formModel={feedbackFormModel}
           name={feedbackFormModel.fields.question}
           multiline={true}

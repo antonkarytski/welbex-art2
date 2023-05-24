@@ -32,13 +32,13 @@ const getPopUp = ({
   availableCategories,
 }: GetPopUpProps) => {
   if (!isAuth || !myProfile) return PopUpLogin
-  if (!myProfile.is_child || userAge(myProfile) < 2) return PopUpAgeError
   if (
     myProfile.identity_determined_status_id !==
     IdentityDocumentStatus.DETERMINED
   ) {
     return PopUpChildIdentityUploadRequest
   }
+  if (!myProfile.is_child || userAge(myProfile) < 2) return PopUpAgeError
   if (!availableCategories) {
     loadAvailableCategories().catch(noop)
     return
