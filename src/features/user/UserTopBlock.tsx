@@ -1,9 +1,8 @@
-import { useStoreMap } from 'effector-react'
 import React from 'react'
 import { LayoutChangeEvent, StyleSheet, View } from 'react-native'
 import { IUserProfile, MyProfile } from '../../api/parts/users/types'
 import { SCREEN_PADDING_HORIZONTAL } from '../../styles/constants'
-import { $myProfile } from '../profile/model'
+import { useIsMe } from '../profile/hook.isMe'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import FollowButton from './Button.Follow'
@@ -22,11 +21,7 @@ export type UserTopBlockProps = {
 
 const UserTopBlock = React.memo(
   ({ item, onItemUpdate, onLayout }: UserTopBlockProps) => {
-    const isMe = useStoreMap({
-      store: $myProfile,
-      keys: [item.id],
-      fn: (myProfile) => myProfile && myProfile.id === item.id,
-    })
+    const isMe = useIsMe(item.id)
 
     const { styles } = useThemedStyleList({
       common: themedStyles,

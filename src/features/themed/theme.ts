@@ -15,6 +15,7 @@ export enum ColorThemes {
 export type ColorFn<R = string> = (structure: ColorThemeStructure) => R
 
 const LIGHT = {
+  errorBadge: '#FF3636',
   whiteText: '#FFFFFF',
   text: '#303535',
   subText: '#B2BEBD',
@@ -122,6 +123,7 @@ const LIGHT = {
 }
 
 const DARK: Record<keyof ColorThemeStructure, string> = {
+  errorBadge: '#FF3636',
   whiteText: '#FFFFFF',
   text: '#303535',
   subText: '#B2BEBD',

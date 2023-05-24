@@ -1,25 +1,31 @@
-import React, { ReactElement } from 'react'
-import { StyleProp, StyleSheet, TextStyle, View } from 'react-native'
+import React from 'react'
+import {
+  StyleProp,
+  StyleSheet,
+  TextStyle,
+  TouchableOpacity,
+} from 'react-native'
 import { IdentityDocumentStatus } from '../../../api/parts/users/types.api'
+import { useNavigate } from '../../../navigation'
+import { links } from '../../../navigation/links'
 import { useText } from '../../../translations/hook'
-import { LangFn } from '../../../translations/types'
 import Span from '../../../ui/Span'
-import { IconProps } from '../../../ui/icons/_types'
 import { useColors } from '../../themed'
 import { ColorFn } from '../../themed/theme'
-import { CHILD_DOCUMENT_STATUS_DESCRIPTORS } from './helpers'
+import {
+  CHILD_DOCUMENT_STATUS_DESCRIPTORS,
+  ChildDocumentStatusDescriptor,
+} from './helpers'
 
 type UserIdentityStatusMessageProps = {
   status: IdentityDocumentStatus
   style?: StyleProp<TextStyle>
 }
 
-type StatusDescription = {
-  color?: ColorFn
+type StatusDescription = ChildDocumentStatusDescriptor & {
   iconColor?: ColorFn
-  label?: LangFn
-  Icon: (props: IconProps) => ReactElement | null
   style?: TextStyle
+  onPress?: (navigate: ReturnType<typeof useNavigate>) => void
 }
 
 const PENDING =
@@ -27,7 +33,7 @@ const PENDING =
 const REJECTED =
   CHILD_DOCUMENT_STATUS_DESCRIPTORS[IdentityDocumentStatus.REJECTED]
 
-const STATUS_COLORS: Partial<
+const STATUS_DESCRIPTORS: Partial<
   Record<IdentityDocumentStatus, StatusDescription>
 > = {
   [IdentityDocumentStatus.PENDING]: {
@@ -41,10 +47,13 @@ const STATUS_COLORS: Partial<
     style: {
       textDecorationLine: 'underline',
     },
+    onPress: (navigate) => {
+      navigate(links.editProfile)
+    },
   },
 }
 const getStatusMessageDescriptor = (status: IdentityDocumentStatus) => {
-  return STATUS_COLORS[status]
+  return STATUS_DESCRIPTORS[status]
 }
 
 const ChildIdentityStatusMessage = ({
@@ -54,12 +63,19 @@ const ChildIdentityStatusMessage = ({
   const t = useText()
   const colors = useColors()
   const descriptor = getStatusMessageDescriptor(status)
+  const navigate = useNavigate()
   if (!descriptor) return null
 
   const color = descriptor.color?.(colors)
   const iconColor = descriptor.iconColor?.(colors)
   return (
-    <View style={[styles.container, style]}>
+    <TouchableOpacity
+      onPress={() => {
+        descriptor.onPress?.(navigate)
+      }}
+      activeOpacity={1}
+      style={[styles.container, style]}
+    >
       <descriptor.Icon
         style={styles.icon}
         color={color ?? iconColor}
@@ -70,7 +86,7 @@ const ChildIdentityStatusMessage = ({
         style={[styles.text, descriptor.style, { color }]}
         label={descriptor.label?.(t)}
       />
-    </View>
+    </TouchableOpacity>
   )
 }
 
