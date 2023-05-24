@@ -23,21 +23,26 @@ export enum PhotoSelectSources {
 }
 
 export const CAMERA_SOURCE_PRESET = [PhotoSelectSources.CAMERA]
+export const GALLERY_SOURCE_PRESET = [PhotoSelectSources.GALLERY]
 
 type UploadFromCameraBlockProps = {
   label: string
+  subLabel?: string
   style?: StyleProp<ViewStyle>
   onPick?: (assets: ImagePickerAsset[]) => void
   sources?: PhotoSelectSources[]
   backgroundColor?: string
+  selectionLimit?: number
 }
 
 const PhotoSelectBlock = ({
   label,
+  subLabel,
   style,
   onPick,
   sources = [PhotoSelectSources.CAMERA, PhotoSelectSources.GALLERY],
   backgroundColor,
+  selectionLimit,
 }: UploadFromCameraBlockProps) => {
   const goToCamera = useCameraNavigate(singlePhotoTask({ onPick }))
   const { styles, colors } = useTheme(themedStyles)
@@ -56,7 +61,7 @@ const PhotoSelectBlock = ({
           return goToCamera()
         }
         if (source === PhotoSelectSources.GALLERY) {
-          pickFromCameraRoll()
+          pickFromCameraRoll({ selectionLimit })
             .then((assets) => {
               if (assets) onPick?.(assets)
             })
@@ -76,6 +81,9 @@ const PhotoSelectBlock = ({
       />
       <View style={uploadBlockCommonStyles.textBlock}>
         <Span style={styles.description} weight={500} label={label} />
+        {!!subLabel && (
+          <Span style={styles.subText} weight={500} label={subLabel} />
+        )}
       </View>
     </TouchableOpacity>
   )
@@ -86,6 +94,9 @@ const themedStyles = createThemedStyle((colors) =>
     container: uploadImageCardThemedStyle(colors),
     description: {
       color: colors.text,
+    },
+    subText: {
+      color: colors.subText,
     },
     tip: {
       fontSize: 12,

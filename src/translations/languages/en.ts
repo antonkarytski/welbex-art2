@@ -271,5 +271,7 @@ export const EN = {
     selectIssue: 'Select issue',
     describeSubject: 'Describe subject',
     yourMessage: 'Your message',
+    uploadFile: 'Upload file',
+    maxFileSize: (value: number) => `Max. file size: ${value} MB`,
   },
 }

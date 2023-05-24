@@ -277,5 +277,7 @@ export const RU: LangStructure = {
     selectIssue: 'Выберите тему',
     describeSubject: 'Опишите проблему',
     yourMessage: 'Ваше сообщение',
+    uploadFile: 'Загрузить файл',
+    maxFileSize: (value: number) => `Макс. размер файла: ${value} МБ`,
   },
 }

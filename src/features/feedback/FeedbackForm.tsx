@@ -3,11 +3,14 @@ import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { IS_IOS } from '../../lib/helpers/native/constants'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { inputThemedStyles } from '../../styles/inputs'
+import { useDropdownSelectPreset } from '../../styles/selects'
 import { useText } from '../../translations/hook'
 import PresetButton from '../../ui/buttons/PresetButton'
 import Field from '../../ui/form/Field'
 import DropdownSelect from '../../ui/selects/DropdownSelect'
 import { useThemedStyleList } from '../themed/hooks'
+import { useMergedStyles } from '../themed/hooks.merge'
+import UploadImagesBlock from './UploadImagesBlock'
 import { FEEDBACK_CATEGORY } from './categories'
 import { feedbackCategoryModel, feedbackFormModel } from './feedback.model'
 
@@ -17,19 +20,17 @@ const FeedbackForm = () => {
     field: inputThemedStyles,
     button: buttonPrimaryThemedPreset,
   })
-
-  const fieldStyles = {
-    ...styles.field,
-    wrapper: { ...styles.field.wrapper, ...featureStyles.field_wrapper },
-  }
+  const stylesPreset = useDropdownSelectPreset()
 
   const onSendFeedback = () => {}
+
+  const fieldStyles = useMergedStyles([styles.field, inputStyle])
 
   return (
     <>
       <KeyboardAvoidingView
         behavior={IS_IOS ? 'padding' : 'height'}
-        style={featureStyles.formWrapper}
+        style={commonStyles.formWrapper}
       >
         <DropdownSelect
           data={FEEDBACK_CATEGORY}
@@ -37,9 +38,10 @@ const FeedbackForm = () => {
           labelExtractor={({ label }) => label(t)}
           label={t.feedbackForm.selectIssue}
           model={feedbackCategoryModel}
+          preset={stylesPreset}
           style={{
             dropdownTab: {
-              tab: featureStyles.field_wrapper,
+              tab: commonStyles.field_wrapper,
             },
           }}
         />
@@ -49,33 +51,34 @@ const FeedbackForm = () => {
           formModel={feedbackFormModel}
           name={feedbackFormModel.fields.question}
           multiline={true}
-          style={{
-            ...styles.field,
-            input: { ...styles.field.input, ...featureStyles.textarea },
-          }}
+          style={fieldStyles}
         />
+        <UploadImagesBlock />
       </KeyboardAvoidingView>
       <PresetButton
         label={t.send}
         onPress={onSendFeedback}
         preset={styles.button}
-        style={featureStyles.bottomButton}
+        style={commonStyles.bottomButton}
       />
     </>
   )
 }
 
-const featureStyles = StyleSheet.create({
+const inputStyle = StyleSheet.create({
+  input: {
+    height: 120,
+    paddingTop: 16,
+    textAlignVertical: 'top',
+  },
+})
+
+const commonStyles = StyleSheet.create({
   formWrapper: {
     marginTop: 24,
   },
   bottomButton: {
     marginTop: 'auto',
-  },
-  textarea: {
-    height: 120,
-    paddingVertical: 16,
-    textAlignVertical: 'top',
   },
   field_wrapper: {
     marginBottom: 20,
