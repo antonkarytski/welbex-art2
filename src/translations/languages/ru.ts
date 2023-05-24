@@ -114,7 +114,7 @@ export const RU: LangStructure = {
     requestNew: 'Загрузите новый документ, подтверждающий личность ребенка',
     uploading: 'Загрузка документа',
     justUploaded:
-      "'The child's identification document uploaded and submitted for moderation'",
+      'Документ, удостоверяющий личность ребенка, загружен и отправлен на модерацию',
     moderation:
       'Документ, подтверждающий личность ребенка, находится на модерации',
     rejected: 'Документ, подтверждающий личность ребенка, не подтвержден!',
