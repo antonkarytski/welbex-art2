@@ -35,12 +35,12 @@ export const SETTINGS_LIST: SettingItem[] = [
     navigateTo: links.faq,
     isAbleWhenUnauthorized: true,
   },
-  // {
-  //   label: (t) => t.feedback,
-  //   icon: FeedbackIcon,
-  //   navigateTo: links.feedback,
-  //   isAbleWhenUnauthorized: false,
-  // },
+  {
+    label: (t) => t.feedback,
+    icon: FeedbackIcon,
+    navigateTo: links.feedback,
+    isAbleWhenUnauthorized: false,
+  },
   // {
   //   label: (t) => t.notifications,
   //   icon: NotificationsIcon,

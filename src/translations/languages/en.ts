@@ -262,4 +262,11 @@ export const EN = {
     text: 'You cannot upload your work without proof of age.',
     link: 'Provide a birth certificate or wait for moderation.',
   },
+  issueCategory: {
+    contest: 'Contest',
+    verification: 'Verification',
+    payment: 'Payment',
+    technicalProblem: 'Technical problem',
+    other: 'Other',
+  },
 }

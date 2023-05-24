@@ -268,4 +268,11 @@ export const RU: LangStructure = {
     text: 'Вы не можете загружать свои работы без подтверждения возраста.',
     link: 'Предоставьте свидетельство о рождении или дождитесь завершения модерации.',
   },
+  issueCategory: {
+    contest: 'Конкурсы',
+    verification: 'Верификация',
+    payment: 'Платежи',
+    technicalProblem: 'Technical problem',
+    other: 'Other',
+  },
 }
