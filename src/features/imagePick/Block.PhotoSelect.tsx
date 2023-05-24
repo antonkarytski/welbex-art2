@@ -91,9 +91,10 @@ const PhotoSelectBlock = ({
 
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
-    container: uploadImageCardThemedStyle(colors),
+    container: { ...uploadImageCardThemedStyle(colors), paddingRight: 24 },
     description: {
       color: colors.text,
+      lineHeight: 19.6,
     },
     subText: {
       color: colors.subText,
