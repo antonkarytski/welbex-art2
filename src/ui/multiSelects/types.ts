@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
 import { Fn, StateModel } from 'altek-toolkit'
 import { SearchableListModel } from '../../lib/models/model.search'
-import { FnExt } from '../../types'
 import { SearchableListStyles } from '../SearchableList'
 import { InputStyles } from '../input/types'
 import {
@@ -11,9 +10,7 @@ import {
   SelectStyles,
 } from '../selects/types'
 
-export type StringExtractor<T> = FnExt<T, string>
-
-type SearchableMultiSelectSettings<T> = Omit<SelectProps<T>, 'model'> & {
+type SearchableMultiSelectSettings<T> = SelectProps<T> & {
   model: StateModel<T[]>
   style?: SearchableListStyles & SelectStyles
   searchModel?: SearchableListModel<T>

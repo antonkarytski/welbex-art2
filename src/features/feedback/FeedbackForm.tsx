@@ -30,12 +30,6 @@ const FeedbackForm = () => {
         style={featureStyles.formWrapper}
       >
         <Field
-          label={t.email}
-          formModel={feedbackFormModel}
-          name={feedbackFormModel.fields.email}
-          style={fieldStyles}
-        />
-        <Field
           label={t.name}
           formModel={feedbackFormModel}
           name={feedbackFormModel.fields.name}

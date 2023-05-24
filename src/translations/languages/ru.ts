@@ -272,7 +272,7 @@ export const RU: LangStructure = {
     contest: 'Конкурсы',
     verification: 'Верификация',
     payment: 'Платежи',
-    technicalProblem: 'Technical problem',
-    other: 'Other',
+    technicalProblem: 'Техническая проблема',
+    other: 'Другое',
   },
 }

@@ -29,7 +29,6 @@ export type SelectProps<T> = {
     | React.ComponentType<any>
     | React.ReactElement<any>
     | null
-  model: StateModel<T>
   style?: SelectStyles
   showSelectedIcon?: boolean
   preset?: PresetSelectItemStates
@@ -37,7 +36,7 @@ export type SelectProps<T> = {
   stickyHeaderIndices?: FlatListProps<T>['stickyHeaderIndices']
 }
 
-type SearchableSelectSettings<T> = Omit<SelectProps<T>, 'model'> & {
+type SearchableSelectSettings<T> = SelectProps<T> & {
   style?: SearchableListStyles & SelectStyles
 }
 

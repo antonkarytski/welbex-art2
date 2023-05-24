@@ -1,15 +1,17 @@
 import React, { useCallback } from 'react'
 import { FlatList, ListRenderItem } from 'react-native'
-import { useStateStore } from 'altek-toolkit'
 import ListItemSeparator from '../lists/ListItemSeparator'
 import SelectItem from './selectItem/SelectItem'
 import { SelectProps } from './types'
 
+type CommonSelectProps<Item> = SelectProps<Item> & {
+  value: Item
+  onSelect: (value: Item) => void
+}
 const Select = <Item,>({
   data,
   idExtractor,
   renderItem,
-  model,
   style,
   ItemSeparatorComponent,
   showSelectedIcon,
@@ -19,10 +21,10 @@ const Select = <Item,>({
   preset,
   onEndReached,
   stickyHeaderIndices,
-}: SelectProps<Item>) => {
-  const [selectedItem, setSelectedItem] = useStateStore(model)
-
-  const selectedId = selectedItem ? idExtractor(selectedItem) : null
+  value,
+  onSelect,
+}: CommonSelectProps<Item>) => {
+  const selectedId = value ? idExtractor(value) : null
 
   const renderSelect: ListRenderItem<Item> = useCallback(
     ({ item }) => (
@@ -30,7 +32,7 @@ const Select = <Item,>({
         renderItem={renderItem}
         item={item}
         style={style?.item}
-        onSelect={setSelectedItem}
+        onSelect={onSelect}
         isSelected={selectedId === idExtractor(item)}
         showSelectedIcon={showSelectedIcon}
         labelExtractor={labelExtractor}
@@ -41,7 +43,7 @@ const Select = <Item,>({
       renderItem,
       showSelectedIcon,
       style,
-      setSelectedItem,
+      onSelect,
       idExtractor,
       selectedId,
       labelExtractor,
