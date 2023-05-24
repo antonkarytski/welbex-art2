@@ -1,7 +1,7 @@
 import React from 'react'
 import { StateModel } from 'altek-toolkit'
 import SearchableList from '../SearchableList'
-import StoredSelect from './StoredSelect'
+import Select from './Select'
 import { SearchableSelectProps } from './types'
 
 const SearchableSelect = <DataItem,>({
@@ -15,7 +15,7 @@ const SearchableSelect = <DataItem,>({
   return (
     <SearchableList model={searchModel} data={data} style={style}>
       {(filteredData, SearchInput) => (
-        <StoredSelect
+        <Select
           data={filteredData}
           style={style}
           preset={preset}

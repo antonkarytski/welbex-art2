@@ -1,7 +1,7 @@
 import React from 'react'
 import { StateModel } from 'altek-toolkit'
 import SearchableSelect from './SearchableSelect'
-import StoredSelect from './StoredSelect'
+import Select from './Select'
 import { ListSelectProps } from './types'
 
 function ListSelect<DataItem>({
@@ -18,7 +18,7 @@ function ListSelect<DataItem>({
       {...props}
     />
   ) : (
-    <StoredSelect
+    <Select
       model={model as StateModel<DataItem>}
       style={style}
       {...props}

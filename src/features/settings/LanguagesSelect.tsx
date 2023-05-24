@@ -8,7 +8,7 @@ import {
 import { Languages } from '../../translations/types'
 import Span from '../../ui/Span'
 import ListItemSeparator from '../../ui/lists/ListItemSeparator'
-import StoredSelect from '../../ui/selects/StoredSelect'
+import Select from '../../ui/selects/Select'
 import { createThemedStyle } from '../themed'
 import { useThemedStyle } from '../themed/hooks'
 import { isLanguageSelectionFocused } from './model.languageUpdate'
@@ -36,7 +36,7 @@ const LanguagesSelect = () => {
   }, [])
 
   return (
-    <StoredSelect
+    <Select
       data={Object.values(Languages)}
       renderItem={renderItem}
       ItemSeparatorComponent={ListItemSeparator}

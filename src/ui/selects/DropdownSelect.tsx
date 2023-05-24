@@ -4,7 +4,7 @@ import { StateModel, useStateStore } from 'altek-toolkit'
 import DropdownTab from '../dropdownTab'
 import { DropdownTabInstance } from '../dropdownTab/DropdownTab'
 import SearchableSelect from './SearchableSelect'
-import StoredSelect from './StoredSelect'
+import Select from './Select'
 import { DropdownSelectProps } from './types'
 
 function DropdownSelect<Item>({
@@ -57,7 +57,7 @@ function DropdownSelect<Item>({
           {...props}
         />
       ) : (
-        <StoredSelect
+        <Select
           labelExtractor={labelExtractor}
           style={selectStyles}
           model={model as StateModel<Item>}
