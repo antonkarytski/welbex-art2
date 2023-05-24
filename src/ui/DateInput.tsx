@@ -59,6 +59,7 @@ const DateInput = ({
         showSoftInputOnFocus={false}
         value={inputValue}
         onPressIn={() => {
+          if (disabled) return
           ref.current?.focus()
           setOpen(true)
         }}

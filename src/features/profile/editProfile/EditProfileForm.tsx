@@ -53,6 +53,7 @@ const EditProfileForm = () => {
             <DateField
               disabled
               offValidation
+              displayDefaultDate
               key={name}
               label={t.birthDate}
               formModel={editProfileFormModel}
