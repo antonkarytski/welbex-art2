@@ -138,7 +138,7 @@ const UserProfile = ({
         ListHeaderComponent={
           <UserTopBlock
             item={user}
-            updateItem={updateUser}
+            onItemUpdate={updateUser}
             onLayout={onUserTopBlockLayout}
           />
         }

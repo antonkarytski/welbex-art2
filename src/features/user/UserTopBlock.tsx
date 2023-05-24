@@ -16,12 +16,12 @@ import { UserItem } from './types'
 
 export type UserTopBlockProps = {
   item: IUserProfile | (MyProfile & { is_followed?: never })
-  updateItem?: (data: Partial<UserItem>) => void
+  onItemUpdate?: (data: Partial<UserItem>) => void
   onLayout?: (e: LayoutChangeEvent) => void
 }
 
 const UserTopBlock = React.memo(
-  ({ item, updateItem, onLayout }: UserTopBlockProps) => {
+  ({ item, onItemUpdate, onLayout }: UserTopBlockProps) => {
     const isMe = useStoreMap({
       store: $myProfile,
       keys: [item.id],
@@ -59,7 +59,7 @@ const UserTopBlock = React.memo(
                   isFollowed,
                   item.followers
                 )
-                updateItem?.({
+                onItemUpdate?.({
                   is_followed: isFollowed,
                   followers: followersCount,
                 })
