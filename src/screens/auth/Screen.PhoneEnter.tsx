@@ -24,13 +24,17 @@ const PhoneEnterScreen = () => {
     <AuthScreenContainer enableScrollView>
       <H2
         label={t.enterPhoneNumber}
-        style={[styles.common.title, styles.common.describedTitle]}
+        style={[
+          styles.common.title,
+          styles.common.describedTitle,
+          { marginBottom: 40 },
+        ]}
       />
-      <Span
-        label={t.enterPhoneDescription}
-        style={styles.common.titleDescription}
-        weight={400}
-      />
+      {/*<Span*/}
+      {/*  label={t.enterPhoneDescription}*/}
+      {/*  style={styles.common.titleDescription}*/}
+      {/*  weight={400}*/}
+      {/*/>*/}
       <KeyboardAvoidingView behavior={IS_IOS ? 'padding' : 'height'}>
         <SignUpPhoneEnter />
       </KeyboardAvoidingView>
