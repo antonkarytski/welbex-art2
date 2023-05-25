@@ -11,6 +11,7 @@ import {
 import { defaultColors } from '../../features/themed/theme'
 import Span from '../Span'
 import CrossIcon from '../icons/Icon.Cross'
+import DocumentIcon from '../icons/Icon.Document'
 
 export type UploadedFileBlockStyle = {
   container?: StyleProp<ViewStyle>
@@ -29,6 +30,7 @@ export type UploadedFileBlockProps = {
   iconColor?: string
   borderColor?: string
   imageUri?: string
+  fileIconColor?: string
 }
 
 const UploadedFileBlock = ({
@@ -39,6 +41,7 @@ const UploadedFileBlock = ({
   backgroundColor,
   iconColor,
   imageUri,
+  fileIconColor,
 }: UploadedFileBlockProps) => {
   return (
     <View
@@ -48,14 +51,21 @@ const UploadedFileBlock = ({
         style?.container,
       ]}
     >
-      <View style={styles.filePreviewContainer}>
+      <View
+        style={[
+          styles.filePreviewContainer,
+          !imageUri && styles.withBorderContainer,
+        ]}
+      >
         {imageUri ? (
           <Image
             source={{ uri: imageUri }}
             style={styles.image}
             resizeMode={'cover'}
           />
-        ) : null}
+        ) : (
+          <DocumentIcon color={fileIconColor} />
+        )}
       </View>
 
       <View style={styles.textBlock}>
@@ -95,9 +105,14 @@ const styles = StyleSheet.create({
   filePreviewContainer: {
     width: 76,
     height: 76,
-    backgroundColor: defaultColors.screenBackground,
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 8,
     overflow: 'hidden',
+  },
+  withBorderContainer: {
+    borderColor: defaultColors.inputBorder,
+    borderWidth: 1,
   },
   image: {
     width: '100%',

@@ -273,5 +273,7 @@ export const EN = {
     yourMessage: 'Your message',
     uploadFile: 'Upload file',
     maxFileSize: (value: number) => `Max. file size: ${value} MB`,
+    successMessageSent:
+      'Your message has been sent to the Administrator, please wait for a response to the e-mail specified in the profile.',
   },
 }

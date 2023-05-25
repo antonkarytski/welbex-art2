@@ -1,7 +1,7 @@
-import * as DocumentPicker from 'expo-document-picker'
+import { FeedbackFile } from '../../../features/feedback/uploads.model'
 
 export type CreateFeedbackProps = {
   title: string
   text: string
-  files: DocumentPicker.DocumentResult[]
+  files: FeedbackFile[]
 }

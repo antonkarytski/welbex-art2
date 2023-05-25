@@ -4,7 +4,7 @@ import { CreateFeedbackProps } from '../../api/parts/feedback/types'
 import { TXT } from '../../translations/Texts'
 import { languageModel } from '../../translations/model.languages'
 import { feedbackCategoryModel, feedbackFormModel } from './feedback.model'
-import { $selectedFeedbackFiles } from './uploads.model'
+import { $selectedFeedbackFiles, resetFeedbackFiles } from './uploads.model'
 
 const $feedBackFormData = combine(
   {
@@ -26,6 +26,11 @@ export const sendFeedback = attach({
   effect: api.feedback.sendEmail,
 })
 
+sendFeedback.done.watch(() => {
+  feedbackFormModel.reset()
+  resetFeedbackFiles()
+})
+
 sendFeedback.fail.watch(({ error }) => {
-  console.log('====== sendFeedback ERR =======', JSON.stringify(error))
+  console.log('====== sendFeedback ERR =======', error, JSON.stringify(error))
 })

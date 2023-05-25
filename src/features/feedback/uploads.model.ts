@@ -1,17 +1,24 @@
-import { createStore } from 'effector'
-import * as DocumentPicker from 'expo-document-picker'
+import { createEvent, createStore } from 'effector'
 import { createListMethodsModel } from '../../lib/models/list/model.listMethods'
 
-export const $selectedFeedbackFiles = createStore<
-  DocumentPicker.DocumentResult[]
->([])
+export type FeedbackFile = {
+  name: string
+  uri: string
+  size: number
+  mimeType?: string
+  lastModified?: number
+  file?: File
+  output?: FileList | null
+}
 
-const fileIdExtractor = (
-  file: Partial<DocumentPicker.DocumentResult>
-): string => file.uri as string
+export const resetFeedbackFiles = createEvent()
+export const $selectedFeedbackFiles = createStore<FeedbackFile[]>([]).reset(
+  resetFeedbackFiles
+)
 
-export const feedbackFileListModel =
-  createListMethodsModel<DocumentPicker.DocumentResult>(
-    $selectedFeedbackFiles,
-    fileIdExtractor
-  )
+const fileIdExtractor = (file: Partial<FeedbackFile>): string => file.uri || ''
+
+export const feedbackFileListModel = createListMethodsModel<FeedbackFile>(
+  $selectedFeedbackFiles,
+  fileIdExtractor
+)
