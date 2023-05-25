@@ -1,30 +1,57 @@
+import { combine } from 'effector'
+import { useStore, useStoreMap } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { IS_IOS } from '../../lib/helpers/native/constants'
+import { useNavigate } from '../../navigation'
+import { links } from '../../navigation/links'
 import { buttonPrimaryThemedPreset } from '../../styles/buttons'
 import { inputThemedStyles } from '../../styles/inputs'
 import { useDropdownSelectPreset } from '../../styles/selects'
 import { useText } from '../../translations/hook'
-import PresetButton from '../../ui/buttons/PresetButton'
+import AsyncPresetButton from '../../ui/buttons/AsyncPresetButton'
 import Field from '../../ui/form/Field'
 import DropdownSelect from '../../ui/selects/DropdownSelect'
+import { InfoMessageType } from '../infoMessage/types'
 import { useThemedStyleList } from '../themed/hooks'
 import { useMergedStyles } from '../themed/hooks.merge'
-import UploadImagesBlock from './UploadImagesBlock'
+import UploadFilesBlock from './UploadFilesBlock'
 import { FEEDBACK_CATEGORY } from './categories'
 import { feedbackCategoryModel, feedbackFormModel } from './feedback.model'
+import { sendFeedback } from './request'
 
 const FeedbackForm = () => {
   const t = useText()
-  const { styles } = useThemedStyleList({
+  const navigate = useNavigate()
+  const { styles, colors } = useThemedStyleList({
     field: inputThemedStyles,
     button: buttonPrimaryThemedPreset,
   })
   const stylesPreset = useDropdownSelectPreset()
 
-  const onSendFeedback = () => {}
+  const isLoading = useStore(sendFeedback.pending)
 
-  const fieldStyles = useMergedStyles([styles.field, inputStyle])
+  const isSendButtonDisabled = useStoreMap({
+    store: combine({
+      form: feedbackFormModel.$store,
+      validation: feedbackFormModel.validation.$fields,
+    }),
+    keys: [],
+    fn: ({ form, validation }) =>
+      !form.message || validation.message?.isValid === false,
+  })
+
+  const onSendFeedback = () => {
+    sendFeedback().then(() => {
+      navigate(links.infoMessage, { type: InfoMessageType.FEEDBACK_SUCCESS })
+    })
+  }
+
+  const fieldStyles = useMergedStyles([
+    styles.field,
+    inputStyle,
+    { container: commonStyles.field_wrapper },
+  ])
 
   return (
     <>
@@ -49,17 +76,21 @@ const FeedbackForm = () => {
           label={t.feedbackForm.describeSubject}
           placeholder={t.feedbackForm.yourMessage}
           formModel={feedbackFormModel}
-          name={feedbackFormModel.fields.question}
+          name={feedbackFormModel.fields.message}
           multiline={true}
           style={fieldStyles}
+          validateOnBlur
         />
-        <UploadImagesBlock />
+        <UploadFilesBlock />
       </KeyboardAvoidingView>
-      <PresetButton
+      <AsyncPresetButton
+        isLoading={isLoading}
         label={t.send}
         onPress={onSendFeedback}
         preset={styles.button}
         style={commonStyles.bottomButton}
+        disabled={isSendButtonDisabled}
+        loaderColor={colors.whiteText}
       />
     </>
   )
@@ -67,7 +98,8 @@ const FeedbackForm = () => {
 
 const inputStyle = StyleSheet.create({
   input: {
-    height: 120,
+    minHeight: 120,
+    maxHeight: 420,
     paddingTop: 16,
     textAlignVertical: 'top',
   },
@@ -75,7 +107,7 @@ const inputStyle = StyleSheet.create({
 
 const commonStyles = StyleSheet.create({
   formWrapper: {
-    marginTop: 24,
+    marginVertical: 24,
   },
   bottomButton: {
     marginTop: 'auto',

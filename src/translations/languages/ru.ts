@@ -279,5 +279,7 @@ export const RU: LangStructure = {
     yourMessage: 'Ваше сообщение',
     uploadFile: 'Загрузить файл',
     maxFileSize: (value: number) => `Макс. размер файла: ${value} МБ`,
+    successMessageSent:
+      'Ваше сообщение направлено Администратору, ожидайте ответа на электронную почту, указанную в профиле.',
   },
 }

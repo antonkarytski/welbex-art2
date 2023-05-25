@@ -1,13 +1,14 @@
+import * as yup from 'yup'
 import { createStateModel } from 'altek-toolkit'
 import { createFormModel } from '../../lib/models/form'
+import { stringSchema } from '../../lib/yup'
 import { FEEDBACK_CATEGORY, FeedbackCategoryDescriptor } from './categories'
 
-export const feedbackFormInitialState = {
-  email: '',
-  name: '',
-  question: '',
-}
+const feedbackForm = yup.object().shape({
+  message: stringSchema().min(3),
+})
+
+export const feedbackFormModel = createFormModel(feedbackForm)
+
 export const feedbackCategoryModel =
   createStateModel<FeedbackCategoryDescriptor | null>(FEEDBACK_CATEGORY[0])
-
-export const feedbackFormModel = createFormModel(feedbackFormInitialState)

@@ -2,6 +2,7 @@ import React from 'react'
 import CardDeletedInfoMessage from '../features/infoMessage/CardDeletedInfoMessage'
 import CardSavedInfoMessage from '../features/infoMessage/CardSavedInfoMessage'
 import ConnectionErrorInfoMessage from '../features/infoMessage/ConnectionErrorInfoMessage'
+import FeedbackSuccessMessage from '../features/infoMessage/Feedback.SuccessMessage'
 import PaymentErrorInfoMessage, {
   PaymentErrorReason,
 } from '../features/infoMessage/PaymentErrorInfoMessage'
@@ -42,6 +43,9 @@ const InfoMessageScreen = ({
   }
   if (params.type === InfoMessageType.POST_CREATED) {
     return <PostCreatedInfoMessage nextMonth={params.payload.nextMonth} />
+  }
+  if (params.type === InfoMessageType.FEEDBACK_SUCCESS) {
+    return <FeedbackSuccessMessage />
   }
   return null
 }

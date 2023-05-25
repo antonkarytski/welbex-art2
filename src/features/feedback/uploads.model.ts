@@ -1,10 +1,24 @@
 import { createEvent, createStore } from 'effector'
-import { ImagePickerAsset } from 'expo-image-picker'
+import { createListMethodsModel } from '../../lib/models/list/model.listMethods'
 
-export const addSelectedImages = createEvent<ImagePickerAsset[]>()
-export const $selectedFeedbackImages = createStore<ImagePickerAsset[]>([]).on(
-  addSelectedImages,
-  (state, images) => {
-    return [...state, ...images]
-  }
+export type FeedbackFile = {
+  name: string
+  uri: string
+  size: number
+  mimeType?: string
+  lastModified?: number
+  file?: File
+  output?: FileList | null
+}
+
+export const resetFeedbackFiles = createEvent()
+export const $selectedFeedbackFiles = createStore<FeedbackFile[]>([]).reset(
+  resetFeedbackFiles
+)
+
+const fileIdExtractor = (file: Partial<FeedbackFile>): string => file.uri || ''
+
+export const feedbackFileListModel = createListMethodsModel<FeedbackFile>(
+  $selectedFeedbackFiles,
+  fileIdExtractor
 )
