@@ -1,7 +1,7 @@
 import { useStore } from 'effector-react'
 import React, { useMemo } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
-import { PlanDescriptor } from '../subscriptionPlans/types'
+import { PlanDescriptor } from '../subscription/plans/types'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
 import AddPaymentCardButton from './AddPaymentCardButton'

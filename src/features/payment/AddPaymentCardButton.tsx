@@ -10,7 +10,7 @@ import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import Span from '../../ui/Span'
 import PlusIcon from '../../ui/icons/Icon.Plus'
-import { PlanDescriptor } from '../subscriptionPlans/types'
+import { PlanDescriptor } from '../subscription/plans/types'
 
 type AddPaymentCardButtonProps = {
   style?: StyleProp<ViewStyle>
@@ -31,7 +31,7 @@ const AddPaymentCardButton = ({
       activeOpacity={0.8}
       style={[styles.container, style]}
     >
-      <PlusIcon color={textColor}/>
+      <PlusIcon color={textColor} />
       <Span
         weight={500}
         style={[styles.label, { color: textColor }]}

@@ -16,5 +16,5 @@ export const authApi = {
   googleAuth,
   googleAuthUrl: googleAuth.url,
   appleAuth,
-  appleAuthUrl: googleAuth.url,
+  appleAuthUrl: appleAuth.url,
 }

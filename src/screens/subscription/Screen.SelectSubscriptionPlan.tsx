@@ -1,13 +1,13 @@
 import React from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
-import PlanSelectBlock from '../../features/subscriptionPlans/PlanSelectBlock'
-import SelectSubscriptionPlanButton from '../../features/subscriptionPlans/SelectSubscriptionPlanButton'
-import SubscriptionPlansTopBlock from '../../features/subscriptionPlans/SubscriptionPlansTopBlock'
+import PlanSelectBlock from '../../features/subscription/plans/PlanSelectBlock'
+import SelectSubscriptionPlanButton from '../../features/subscription/plans/SelectSubscriptionPlanButton'
+import SubscriptionPlansTopBlock from '../../features/subscription/plans/SubscriptionPlansTopBlock'
 import StarsImage from '../../ui/images/StarsImage'
 
 const SelectSubscriptionPlanScreen = () => {
   return (
-    <ScrollView>
+    <ScrollView bounces={false}>
       <SubscriptionPlansTopBlock>
         <StarsImage style={styles.image} />
       </SubscriptionPlansTopBlock>
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     marginTop: 32,
     paddingHorizontal: 20,
     paddingBottom: 24,
+    marginBottom: 30,
   },
   image: {
     paddingTop: 24,

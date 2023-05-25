@@ -6,6 +6,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
+import { Subscription } from '../../api/parts/subscriptions/types'
 import { FONT_SEMI_BOLD } from '../../styles/fonts'
 import Span from '../Span'
 
@@ -20,19 +21,19 @@ export type SubscriptionSelectItemStyles = {
 
 export type SubscriptionSelectItemProps = {
   style?: SubscriptionSelectItemStyles
-  promotion?: string
-  value: string | number
+  onPress?: () => void
+  value: number
   measure: string
   price: string
-  onPress?: () => void
+  promotion?: string
 }
 
 const SubscriptionSelectItem = ({
   style,
+  value,
+  price,
   promotion,
   measure,
-  price,
-  value,
   onPress,
 }: SubscriptionSelectItemProps) => {
   return (
@@ -53,10 +54,7 @@ const SubscriptionSelectItem = ({
       ) : null}
       <View style={styles.contentContainer}>
         <Span weight={600} style={[styles.count, style?.value]} label={value} />
-        <Span
-          style={[styles.measure, style?.measure]}
-          label={measure}
-        />
+        <Span style={[styles.measure, style?.measure]} label={measure} />
         <Span style={[styles.price, style?.price]} label={price} />
       </View>
     </TouchableOpacity>

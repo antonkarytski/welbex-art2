@@ -1,5 +1,5 @@
 import { IfIncludeUndefined, UnionFrom } from '../../types'
-import { PlanDescriptor } from '../subscriptionPlans/types'
+import { PlanDescriptor } from '../subscription/plans/types'
 
 export enum InfoMessageType {
   CARD_DELETED = 'CARD_DELETED',

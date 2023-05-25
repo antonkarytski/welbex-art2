@@ -1,7 +1,7 @@
 import React from 'react'
-import { twoDigits } from '../../lib/helpers/numbers'
 import { links } from '../../navigation/links'
-import { PlanDescriptor } from '../subscriptionPlans/types'
+import { getFullPrice } from '../subscription/plans/helpers'
+import { PlanDescriptor } from '../subscription/plans/types'
 import SuccessInfoMessage from './parts/SuccessInfoMessage'
 import { InfoMessageType } from './types'
 
@@ -16,7 +16,7 @@ const CardSavedInfoMessage = ({
     <SuccessInfoMessage
       buttonLabel={(t) =>
         currentPayment
-          ? `${t.pay} $${twoDigits(currentPayment.fullPrice)}`
+          ? `${t.pay} $${getFullPrice(currentPayment)}`
           : t.backToPaymentMethods
       }
       onButtonPress={({ navigate }) => {

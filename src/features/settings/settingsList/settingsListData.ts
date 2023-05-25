@@ -1,4 +1,6 @@
 import React from 'react'
+import { Platform } from 'react-native'
+import { ANDROID, IOS } from '../../../lib/helpers/native/constants'
 import { links } from '../../../navigation/links'
 import { LangFn } from '../../../translations/types'
 import FeedbackIcon from '../../../ui/icons/Icon.Comment'
@@ -20,26 +22,22 @@ export type SettingItem = {
     | links.faq
     | links.feedback
   isAbleWhenUnauthorized: boolean
+  platform?: typeof IOS | typeof ANDROID
 }
 
-export const SETTINGS_LIST: SettingItem[] = [
-  // {
-  //   label: (t) => t.subscription,
-  //   icon: StarIcon,
-  //   navigateTo: links.subscriptionSelectPlan,
-  //   isAbleWhenUnauthorized: true,
-  // },
+const FULL_LIST: SettingItem[] = [
+  {
+    label: (t) => t.subscription,
+    icon: StarIcon,
+    navigateTo: links.subscriptionSelectPlan,
+    isAbleWhenUnauthorized: true,
+    //platform: ANDROID,
+  },
   {
     label: (t) => t.faq,
     icon: QuestionIcon,
     navigateTo: links.faq,
     isAbleWhenUnauthorized: true,
-  },
-  {
-    label: (t) => t.feedback,
-    icon: FeedbackIcon,
-    navigateTo: links.feedback,
-    isAbleWhenUnauthorized: false,
   },
   // {
   //   label: (t) => t.notifications,
@@ -59,4 +57,14 @@ export const SETTINGS_LIST: SettingItem[] = [
     navigateTo: links.deleteAccount,
     isAbleWhenUnauthorized: false,
   },
+  {
+    label: (t) => t.feedback,
+    icon: FeedbackIcon,
+    navigateTo: links.feedback,
+    isAbleWhenUnauthorized: false,
+  },
 ]
+
+export const SETTINGS_LIST = FULL_LIST.filter(
+  ({ platform }) => !platform || platform === Platform.OS
+)

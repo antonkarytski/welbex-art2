@@ -1,8 +1,8 @@
 import React from 'react'
 import { View } from 'react-native'
-import { useText } from '../../translations/hook'
-import { LangFn } from '../../translations/types'
-import CheckListItem from '../../ui/lists/CheckListItem'
+import { useText } from '../../../translations/hook'
+import { LangFn } from '../../../translations/types'
+import CheckListItem from '../../../ui/lists/CheckListItem'
 import { SubscriptionBenefitsBlockStyles } from './styles'
 
 type SubscriptionBenefitsBlockProps = {

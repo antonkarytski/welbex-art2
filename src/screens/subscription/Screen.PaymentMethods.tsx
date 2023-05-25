@@ -3,8 +3,8 @@ import { StyleSheet, View } from 'react-native'
 import { InfoMessageType } from '../../features/infoMessage/types'
 import PaymentMethodList from '../../features/payment/PaymentMethodList'
 import { PaymentMethod } from '../../features/payment/types'
+import { getFullPrice } from '../../features/subscription/plans/helpers'
 import { useThemedStyleList } from '../../features/themed/hooks'
-import { twoDigits } from '../../lib/helpers/numbers'
 import { useNavigate } from '../../navigation'
 import DeleteNavigationButton from '../../navigation/elements/NavigationButton.Delete'
 import ScreenHeader from '../../navigation/elements/ScreenHeader'
@@ -54,7 +54,7 @@ const PaymentMethodsScreen = ({
           <View style={commonStyles.buttonContainer}>
             <PresetButton
               disabled={!selectedMethod}
-              label={`${text.pay} $${twoDigits(paymentPlan.fullPrice)}`}
+              label={`${text.pay} $${getFullPrice(paymentPlan)}`}
               onPress={() =>
                 navigate(links.infoMessage, {
                   type: InfoMessageType.SUCCESSFUL_PAYMENT,

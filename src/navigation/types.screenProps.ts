@@ -9,7 +9,7 @@ import { UserShort } from '../api/parts/users/types'
 import { ProfileEditProps } from '../api/parts/users/types.parts'
 import { GalleryType } from '../features/gallery/types'
 import { InfoMessageScreenProps } from '../features/infoMessage/types'
-import { PlanDescriptor } from '../features/subscriptionPlans/types'
+import { PlanDescriptor } from '../features/subscription/plans/types'
 import { links } from './links'
 
 type ScreensPropsProto<T extends Partial<Record<links, any>>> = T &

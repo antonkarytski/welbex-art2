@@ -6,11 +6,11 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native'
-import { useNavigate } from '../../navigation'
-import { links } from '../../navigation/links'
-import { useText } from '../../translations/hook'
-import Span from '../../ui/Span'
-import RefreshIcon from '../../ui/icons/Icon.Refresh'
+import { useNavigate } from '../../../navigation'
+import { links } from '../../../navigation/links'
+import { useText } from '../../../translations/hook'
+import Span from '../../../ui/Span'
+import RefreshIcon from '../../../ui/icons/Icon.Refresh'
 import { currentSubscriptionControllersStyles } from './styles'
 
 type ChangeSubscriptionButtonProps = {

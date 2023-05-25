@@ -1,20 +1,16 @@
 import { useStore } from 'effector-react'
 import React from 'react'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { useNavigate } from '../../navigation'
-import { links } from '../../navigation/links'
-import { buttonCommonThemedPreset } from '../../styles/buttons'
-import { useText } from '../../translations/hook'
-import H2 from '../../ui/H2'
-import Span from '../../ui/Span'
-import RefreshIcon from '../../ui/icons/Icon.Refresh'
-import SubscriptionSelectItem from '../../ui/lists/SubscriptionSelectItem'
-import { $currentSubscription } from '../profile/model'
-import SubscriptionPlansTopBlock from '../subscriptionPlans/SubscriptionPlansTopBlock'
-import { getSubscriptionPriceText } from '../subscriptionPlans/helpers'
-import { subscriptionCurrentItemThemedStyles } from '../subscriptionPlans/styles'
-import { createThemedStyle } from '../themed'
-import { useThemedStyleList } from '../themed/hooks'
+import { StyleSheet, View } from 'react-native'
+import { SubscriptionCurrency } from '../../../api/parts/subscriptions/types'
+import { useText } from '../../../translations/hook'
+import H2 from '../../../ui/H2'
+import SubscriptionSelectItem from '../../../ui/lists/SubscriptionSelectItem'
+import { $currentSubscription } from '../../profile/model'
+import { createThemedStyle } from '../../themed'
+import { useThemedStyleList } from '../../themed/hooks'
+import SubscriptionPlansTopBlock from '../plans/SubscriptionPlansTopBlock'
+import { getSubscriptionPriceText } from '../plans/helpers'
+import { subscriptionCurrentItemThemedStyles } from '../plans/styles'
 import ChangeTariffButton from './ChangeTariffButton'
 import { currentSubscriptionControllersStyles } from './styles'
 
@@ -41,6 +37,7 @@ const CurrentSubscriptionTopBlock = ({}: CurrentSubscriptionTopBlockProps) => {
             measure={text.months}
             price={getSubscriptionPriceText(
               currentSubscription.pricePerMonth,
+              SubscriptionCurrency.RUB,
               text
             )}
           />

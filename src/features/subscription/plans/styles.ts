@@ -1,6 +1,6 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
-import { SubscriptionSelectItemStyles } from '../../ui/lists/SubscriptionSelectItem'
-import { createThemedStyle } from '../themed'
+import { SubscriptionSelectItemStyles } from '../../../ui/lists/SubscriptionSelectItem'
+import { createThemedStyle } from '../../themed'
 
 export type SubscriptionBenefitsBlockStyles = {
   container?: ViewStyle

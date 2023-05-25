@@ -1,6 +1,6 @@
 import React from 'react'
 import { links } from '../../navigation/links'
-import { getSubscriptionMonthsAmountText } from '../subscriptionPlans/helpers'
+import { getSubscriptionMonthsAmountText } from '../subscription/plans/helpers'
 import SuccessInfoMessage from './parts/SuccessInfoMessage'
 
 type PaymentSuccessInfoMessageProps = {
