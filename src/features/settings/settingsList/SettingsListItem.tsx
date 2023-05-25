@@ -30,7 +30,6 @@ const SettingsListItem = React.memo(
     return (
       <TouchableOpacity
         onPress={() => {
-          console.log(profile)
           const link =
             typeof item.navigateTo === 'function'
               ? item.navigateTo({ profile: profile })

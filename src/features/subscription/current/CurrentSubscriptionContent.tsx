@@ -3,12 +3,9 @@ import moment from 'moment'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { useNavigate } from '../../../navigation'
-import { links } from '../../../navigation/links'
 import { buttonCommonThemedPreset } from '../../../styles/buttons'
 import { useText } from '../../../translations/hook'
 import DataRow from '../../../ui/DataRow'
-import PresetButton from '../../../ui/buttons/PresetButton'
-import { InfoMessageType } from '../../infoMessage/types'
 import { $currentSubscription } from '../../profile/model'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
@@ -31,16 +28,16 @@ const CurrentSubscriptionContent = ({}: CurrentSubscriptionContentProps) => {
       <DataRow
         textStyle={styles.common.text}
         title={`${text.subscriptionEndDate}:`}
-        value={moment(currentSubscription.expiresIn).format('DD.MM.YYYY')}
+        value={moment(currentSubscription.date_end).format('DD.MM.YYYY')}
       />
-      <PresetButton
-        preset={styles.buttonPreset}
-        style={styles.common.button}
-        label={text.unsubscribe}
-        onPress={() =>
-          navigate(links.infoMessage, { type: InfoMessageType.SIGNED_OFF })
-        }
-      />
+      {/*<PresetButton*/}
+      {/*  preset={styles.buttonPreset}*/}
+      {/*  style={styles.common.button}*/}
+      {/*  label={text.unsubscribe}*/}
+      {/*  onPress={() =>*/}
+      {/*    navigate(links.infoMessage, { type: InfoMessageType.SIGNED_OFF })*/}
+      {/*  }*/}
+      {/*/>*/}
     </View>
   )
 }

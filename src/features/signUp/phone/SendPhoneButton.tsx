@@ -6,6 +6,7 @@ import { links } from '../../../navigation/links'
 import { useText } from '../../../translations/hook'
 import PresetButton from '../../../ui/buttons/PresetButton'
 import { PresetButtonStates } from '../../../ui/buttons/types'
+import { useQuickAuthNextStep } from '../../auth/quick/hooks'
 import { signUpPhoneModel } from './model'
 
 type SendPhoneButtonProps = {
@@ -17,12 +18,17 @@ const SendPhoneButton = ({ preset }: SendPhoneButtonProps) => {
   const t = useText()
 
   const isPhoneValid = useStore(signUpPhoneModel.$isValidPhoneNumber)
+  const { isActive, nextStep } = useQuickAuthNextStep(links.verification)
 
   const onContinue = () => {
     if (!isPhoneValid) {
       return
     }
-    navigate(links.verification)
+    //TEMP
+    if (isActive) return nextStep()
+    navigate(links.createPassword)
+    //TEMP END
+    //navigate(links.verification)
   }
 
   return (

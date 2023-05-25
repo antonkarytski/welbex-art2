@@ -1,11 +1,11 @@
 import { TokenType } from '@heyheyjude/toolkit'
+import { SubscriptionResponse } from '../subscriptions/types'
 import { User } from './types'
 import {
   UserCounters,
   UserInitialData,
   UserPrivateData,
   UserSecuredData,
-  UserSubscription,
 } from './types.parts'
 
 export enum IdentityDocumentStatus {
@@ -19,7 +19,7 @@ export enum IdentityDocumentStatus {
 export type ProfileResponse = User & UserCounters
 export type MyProfileResponse = ProfileResponse &
   UserPrivateData & {
-    subscription: UserSubscription | null
+    subscription: SubscriptionResponse | null
     identity_determined_status_id: IdentityDocumentStatus
     is_child: boolean
   }

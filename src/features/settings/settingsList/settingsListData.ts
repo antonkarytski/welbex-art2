@@ -39,7 +39,7 @@ const FULL_LIST: SettingItem[] = [
     icon: StarIcon,
     navigateTo: ({ profile }) =>
       profile?.subscription
-        ? links.subscriptionCurrent
+        ? links.subscriptionSelectPlan
         : links.subscriptionSelectPlan,
     isAbleWhenUnauthorized: false,
     //platform: ANDROID,

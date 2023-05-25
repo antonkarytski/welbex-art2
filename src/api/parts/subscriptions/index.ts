@@ -15,7 +15,7 @@ const getAvailable = endpoint
 const subscribe = endpoint.post<ToPaymentResponse, number>((id) => {
   return { body: { subscription_type_id: id } }
 })
-const my = endpoint.get<SubscriptionResponse>('my-subscription')
+const my = endpoint.get<SubscriptionResponse | null>('my-subscription')
 const unsubscribe = endpoint.put<SubscriptionResponse>('unsubscribe')
 
 export const subscriptionsApi = {

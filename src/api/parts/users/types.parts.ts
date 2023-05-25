@@ -29,8 +29,3 @@ export type UserInitialData = {
 export type ProfileEditProps = Partial<UserInitialData & UserSecuredData>
 
 export type UserPrivateData = UserTechCredits & UserSecuredData
-export type UserSubscription = {
-  expiresIn: number
-  monthsAmount: number
-  pricePerMonth: number
-}

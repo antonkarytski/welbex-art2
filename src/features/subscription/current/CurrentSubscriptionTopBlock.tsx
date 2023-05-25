@@ -33,10 +33,10 @@ const CurrentSubscriptionTopBlock = ({}: CurrentSubscriptionTopBlockProps) => {
         <View style={currentSubscriptionControllersStyles.item}>
           <SubscriptionSelectItem
             style={styles.item}
-            value={currentSubscription.monthsAmount}
+            value={currentSubscription.type.duration}
             measure={text.months}
             price={getSubscriptionPriceText(
-              currentSubscription.pricePerMonth,
+              currentSubscription.type.price,
               SubscriptionCurrency.RUB,
               text
             )}
