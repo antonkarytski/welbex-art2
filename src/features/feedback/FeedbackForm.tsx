@@ -1,3 +1,4 @@
+import { useStoreMap } from 'effector-react'
 import React from 'react'
 import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { IS_IOS } from '../../lib/helpers/native/constants'
@@ -10,9 +11,10 @@ import Field from '../../ui/form/Field'
 import DropdownSelect from '../../ui/selects/DropdownSelect'
 import { useThemedStyleList } from '../themed/hooks'
 import { useMergedStyles } from '../themed/hooks.merge'
-import UploadImagesBlock from './UploadImagesBlock'
+import UploadFilesBlock from './UploadFilesBlock'
 import { FEEDBACK_CATEGORY } from './categories'
 import { feedbackCategoryModel, feedbackFormModel } from './feedback.model'
+import { sendFeedback } from './request'
 
 const FeedbackForm = () => {
   const t = useText()
@@ -22,9 +24,21 @@ const FeedbackForm = () => {
   })
   const stylesPreset = useDropdownSelectPreset()
 
-  const onSendFeedback = () => {}
+  const isSendButtonDisabled = useStoreMap({
+    store: feedbackFormModel.$store,
+    keys: [],
+    fn: (fields) => !fields.message,
+  })
 
-  const fieldStyles = useMergedStyles([styles.field, inputStyle])
+  const onSendFeedback = () => {
+    sendFeedback()
+  }
+
+  const fieldStyles = useMergedStyles([
+    styles.field,
+    inputStyle,
+    { container: commonStyles.field_wrapper },
+  ])
 
   return (
     <>
@@ -49,17 +63,18 @@ const FeedbackForm = () => {
           label={t.feedbackForm.describeSubject}
           placeholder={t.feedbackForm.yourMessage}
           formModel={feedbackFormModel}
-          name={feedbackFormModel.fields.question}
+          name={feedbackFormModel.fields.message}
           multiline={true}
           style={fieldStyles}
         />
-        <UploadImagesBlock />
+        <UploadFilesBlock />
       </KeyboardAvoidingView>
       <PresetButton
         label={t.send}
         onPress={onSendFeedback}
         preset={styles.button}
         style={commonStyles.bottomButton}
+        disabled={isSendButtonDisabled}
       />
     </>
   )
@@ -75,7 +90,7 @@ const inputStyle = StyleSheet.create({
 
 const commonStyles = StyleSheet.create({
   formWrapper: {
-    marginTop: 24,
+    marginVertical: 24,
   },
   bottomButton: {
     marginTop: 'auto',

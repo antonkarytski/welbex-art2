@@ -1,21 +1,16 @@
 import { ImagePickerAsset } from 'expo-image-picker'
 import React from 'react'
-import {
-  StyleProp,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from 'react-native'
+import { StyleProp, StyleSheet, ViewStyle } from 'react-native'
 import { noop } from '../../lib/helpers'
-import DashedCameraBlock from '../../ui/DashedCameraBlock'
-import Span from '../../ui/Span'
+import FileSelectBlock, {
+  FileSelectBlockProps,
+} from '../../ui/selectFileBlock/Block.FileSelect'
 import { singlePhotoTask, useCameraNavigate } from '../camera/hooks'
 import PopUpPhotoEditActionSelect from '../popUp/PopUp.PhotoEditActionSelect'
 import { createThemedStyle } from '../themed'
 import { useTheme } from '../themed/hooks'
 import { pickFromCameraRoll } from './pickFiles'
-import { uploadBlockCommonStyles, uploadImageCardThemedStyle } from './styles'
+import { uploadImageCardThemedStyle } from './styles'
 
 export enum PhotoSelectSources {
   CAMERA = 1,
@@ -26,29 +21,25 @@ export const CAMERA_SOURCE_PRESET = [PhotoSelectSources.CAMERA]
 export const GALLERY_SOURCE_PRESET = [PhotoSelectSources.GALLERY]
 
 type UploadFromCameraBlockProps = {
-  label: string
-  subLabel?: string
   style?: StyleProp<ViewStyle>
   onPick?: (assets: ImagePickerAsset[]) => void
   sources?: PhotoSelectSources[]
-  backgroundColor?: string
   selectionLimit?: number
-}
+} & Omit<FileSelectBlockProps, 'onPress' | 'style'>
 
 const PhotoSelectBlock = ({
-  label,
-  subLabel,
   style,
   onPick,
   sources = [PhotoSelectSources.CAMERA, PhotoSelectSources.GALLERY],
-  backgroundColor,
   selectionLimit,
+  ...props
 }: UploadFromCameraBlockProps) => {
   const goToCamera = useCameraNavigate(singlePhotoTask({ onPick }))
   const { styles, colors } = useTheme(themedStyles)
 
   return (
-    <TouchableOpacity
+    <FileSelectBlock
+      isImage
       onPress={() => {
         if (sources.length === 0) return
         if (sources.length > 1) {
@@ -68,43 +59,22 @@ const PhotoSelectBlock = ({
             .catch(noop)
         }
       }}
-      style={[
-        styles.container,
-        !!backgroundColor && { backgroundColor },
-        style,
-      ]}
-    >
-      <DashedCameraBlock
-        backgroundColor={backgroundColor || styles.container.backgroundColor}
-        borderColor={colors.textLightGrey}
-        iconColor={colors.text}
-      />
-      <View style={uploadBlockCommonStyles.textBlock}>
-        <Span style={styles.description} weight={500} label={label} />
-        {!!subLabel && (
-          <Span style={styles.subText} weight={500} label={subLabel} />
-        )}
-      </View>
-    </TouchableOpacity>
+      borderColor={colors.textLightGrey}
+      iconColor={colors.text}
+      style={{ ...styles, container: [styles.container, style] }}
+      {...props}
+    />
   )
 }
 
 const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     container: uploadImageCardThemedStyle(colors),
-    description: {
+    text: {
       color: colors.text,
     },
     subText: {
       color: colors.subText,
-    },
-    tip: {
-      fontSize: 12,
-      lineHeight: 14.5,
-      color: colors.tipText,
-    },
-    maxSizeText: {
-      marginTop: 4,
     },
   })
 )

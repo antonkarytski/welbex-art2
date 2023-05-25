@@ -2,7 +2,7 @@ import { Store, createEvent } from 'effector'
 import { deleteItemFromList, updateListItem } from './helpers'
 import { Id, IdExtractor } from './types'
 
-export const listMethodsModel = <T extends Record<string, any>>(
+export const createListMethodsModel = <T extends Record<string, any>>(
   $store: Store<T[]>,
   idExtractor?: IdExtractor<T>
 ) => {

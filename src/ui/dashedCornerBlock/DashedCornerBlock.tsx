@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import {
   ColorValue,
   StyleProp,
@@ -6,27 +6,26 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import CameraIcon from './icons/Icon.Camera'
 
-type DashedCameraBlockProps = {
+export type DashedCornerBlockProps = {
   style?: StyleProp<ViewStyle>
   backgroundColor?: ColorValue
-  iconColor?: string
   borderColor?: string
   borderWidth?: number
   size?: number
   crossSize?: number
+  borderRadius?: number
 }
 
-const DashedCameraBlock = ({
+const DashedCornerBlock = ({
+  children,
   style,
   borderColor,
-  iconColor,
   borderWidth = 1,
   backgroundColor,
   size = 100,
   crossSize = 40,
-}: DashedCameraBlockProps) => {
+}: PropsWithChildren<DashedCornerBlockProps>) => {
   const horizontalStyles: ViewStyle = {
     backgroundColor,
     width: size + borderWidth,
@@ -47,13 +46,13 @@ const DashedCameraBlock = ({
     <View
       style={[
         styles.container,
-        style,
         { borderWidth, borderColor, width: size, height: size },
+        style,
       ]}
     >
       <View style={horizontalStyles} />
       <View style={verticalStyle} />
-      <CameraIcon color={iconColor} />
+      {children}
     </View>
   )
 }
@@ -62,7 +61,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 8,
+    borderRadius: 20,
     borderStyle: 'solid',
   },
   cross: {
@@ -70,4 +69,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default DashedCameraBlock
+export default DashedCornerBlock

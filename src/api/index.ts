@@ -2,6 +2,7 @@ import { artsApi } from './parts/arts'
 import { authApi } from './parts/auth'
 import { categoriesApi } from './parts/categories'
 import { faqApi } from './parts/faq'
+import { feedbackApi } from './parts/feedback'
 import { resetPasswordApi } from './parts/resetPassword'
 import { subscriptionsApi } from './parts/subscriptions'
 import { usersApi } from './parts/users'
@@ -14,4 +15,5 @@ export const api = {
   resetPassword: resetPasswordApi,
   subscriptions: subscriptionsApi,
   faq: faqApi,
+  feedback: feedbackApi,
 }

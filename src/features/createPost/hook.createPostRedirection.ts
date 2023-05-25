@@ -18,6 +18,7 @@ import {
   $availableCategories,
   loadAvailableCategories,
 } from '../profile/model.availableCategories'
+import { meRequest } from '../profile/request'
 import { userAge } from '../user/helpers'
 
 type GetPopUpProps = {
@@ -26,7 +27,7 @@ type GetPopUpProps = {
   availableCategories: AvailableCategoriesResponse | null
 }
 
-const getPopUp = ({
+const getPopUp = async ({
   isAuth,
   myProfile,
   availableCategories,
@@ -36,7 +37,13 @@ const getPopUp = ({
     myProfile.identity_determined_status_id !==
     IdentityDocumentStatus.DETERMINED
   ) {
-    return PopUpChildIdentityUploadRequest
+    const myProfileUpdated = await meRequest()
+    if (
+      myProfileUpdated.identity_determined_status_id !==
+      IdentityDocumentStatus.DETERMINED
+    ) {
+      return PopUpChildIdentityUploadRequest
+    }
   }
   if (!myProfile.is_child || userAge(myProfile) < 2) return PopUpAgeError
   if (!availableCategories) {
@@ -61,11 +68,12 @@ export const useCreatePostRedirection = () => {
   const navigation = useNavigation()
 
   const checkForRedirection = useCallback(() => {
-    const popUp = getPopUp({ isAuth, myProfile, availableCategories })
-    if (popUp) {
-      popUp.showSync()
-      navigation.goBack()
-    }
+    getPopUp({ isAuth, myProfile, availableCategories }).then((popUp) => {
+      if (popUp) {
+        popUp.showSync()
+        navigation.goBack()
+      }
+    })
   }, [navigation, myProfile, isAuth, availableCategories])
 
   useFocusEffect(checkForRedirection)
