@@ -42,7 +42,7 @@ const FULL_LIST: SettingItem[] = [
         ? links.subscriptionSelectPlan
         : links.subscriptionSelectPlan,
     isAbleWhenUnauthorized: false,
-    //platform: ANDROID,
+    platform: ANDROID,
   },
   {
     label: (t) => t.faq,
