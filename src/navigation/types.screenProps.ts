@@ -32,6 +32,9 @@ export type ScreensProps = ScreensPropsProto<{
   }
   [links.userProfile]: { item: UserShort }
   [links.infoMessage]: InfoMessageScreenProps
+  [links.successfulPaymentInfoMessage]: {
+    duration?: number
+  }
   [links.paymentMethod]?: { currentPayment?: PlanDescriptor }
   [links.addPaymentCard]?: { currentPayment?: PlanDescriptor }
   [links.createPostUploadImage]?: {

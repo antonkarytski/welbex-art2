@@ -30,11 +30,9 @@ const SelectSubscriptionPlanButton = ({
 
   const onPressButton = () => {
     if (!isAuth) return navigate(links.login)
-    api.subscriptions.subscribe(4).then((e) => {
+    api.subscriptions.subscribe(selectedPlan.id).then((e) => {
       Linking.openURL(e.redirect_url).catch(noop)
     })
-    //
-    //navigate(links.paymentMethod, { currentPayment: selectedPlan })
   }
 
   return (

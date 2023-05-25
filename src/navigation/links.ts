@@ -43,4 +43,5 @@ export enum links {
   deletePaymentCard = 'deletePaymentCard',
   paymentMethod = 'paymentMethod',
   infoMessage = 'infoMessage',
+  successfulPaymentInfoMessage = 'successfulPaymentInfoMessage',
 }

@@ -1,7 +1,6 @@
 import { useStore } from 'effector-react'
 import React, { useEffect } from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
-import { Subscription } from '../../../api/parts/subscriptions/types'
 import { noop } from '../../../lib/helpers'
 import { useText } from '../../../translations/hook'
 import { LangStructure } from '../../../translations/types'
@@ -62,8 +61,6 @@ const PlanSelectBlock = ({ style }: PlanSelectBlockProps) => {
   useEffect(() => {
     loadPlans().catch(noop)
   }, [])
-
-  console.log(plans)
 
   if (!plans) return null
   return (

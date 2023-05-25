@@ -1,5 +1,6 @@
 import React from 'react'
 import { Platform } from 'react-native'
+import { MyProfile } from '../../../api/parts/users/types'
 import { ANDROID, IOS } from '../../../lib/helpers/native/constants'
 import { links } from '../../../navigation/links'
 import { LangFn } from '../../../translations/types'
@@ -11,16 +12,23 @@ import QuestionIcon from '../../../ui/icons/Icon.Question'
 import StarIcon from '../../../ui/icons/Icon.Star'
 import { IconProps } from '../../../ui/icons/_types'
 
+type SettingsLink =
+  | links.subscriptionSelectPlan
+  | links.notifications
+  | links.language
+  | links.deleteAccount
+  | links.faq
+  | links.feedback
+  | links.subscriptionCurrent
+
+type SettingsLinksFnProps = {
+  profile: MyProfile | null
+}
+
 export type SettingItem = {
   label: LangFn
   icon: (props: IconProps) => React.ReactElement
-  navigateTo:
-    | links.subscriptionSelectPlan
-    | links.notifications
-    | links.language
-    | links.deleteAccount
-    | links.faq
-    | links.feedback
+  navigateTo: SettingsLink | ((props: SettingsLinksFnProps) => SettingsLink)
   isAbleWhenUnauthorized: boolean
   platform?: typeof IOS | typeof ANDROID
 }
@@ -29,8 +37,11 @@ const FULL_LIST: SettingItem[] = [
   {
     label: (t) => t.subscription,
     icon: StarIcon,
-    navigateTo: links.subscriptionSelectPlan,
-    isAbleWhenUnauthorized: true,
+    navigateTo: ({ profile }) =>
+      profile?.subscription
+        ? links.subscriptionCurrent
+        : links.subscriptionSelectPlan,
+    isAbleWhenUnauthorized: false,
     //platform: ANDROID,
   },
   {

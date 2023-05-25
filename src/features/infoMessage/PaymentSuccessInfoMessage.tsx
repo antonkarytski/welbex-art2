@@ -4,25 +4,25 @@ import { getSubscriptionMonthsAmountText } from '../subscription/plans/helpers'
 import SuccessInfoMessage from './parts/SuccessInfoMessage'
 
 type PaymentSuccessInfoMessageProps = {
-  subscriptionMonthsAmount: number | string
+  duration?: number | string
 }
 
 const PaymentSuccessInfoMessage = ({
-  subscriptionMonthsAmount,
+  duration,
 }: PaymentSuccessInfoMessageProps) => {
   return (
     <SuccessInfoMessage
       buttonLabel={(t) => t.home}
       onButtonPress={({ navigate }) => navigate(links.home)}
       title={(t) => t.successfulPayment}
-      subTitle={(t) =>
-        `${
-          t.subscribedFor
-        } ${subscriptionMonthsAmount} ${getSubscriptionMonthsAmountText(
-          +subscriptionMonthsAmount,
-          t
-        )}`
-      }
+      subTitle={(t) => {
+        if (duration) {
+          return `${
+            t.subscribedFor
+          } ${duration} ${getSubscriptionMonthsAmountText(+duration, t)}`
+        }
+        return ''
+      }}
     />
   )
 }

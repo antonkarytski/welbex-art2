@@ -1,9 +1,11 @@
+import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleProp, TextStyle, TouchableOpacity, ViewStyle } from 'react-native'
 import { useNavigate } from '../../../navigation'
 import Row from '../../../ui/Row'
 import Span from '../../../ui/Span'
 import ArrowToggleIcon from '../../../ui/icons/Icon.ArrowToggle'
+import { $myProfile } from '../../profile/model'
 import { SettingItem } from './settingsListData'
 
 type SettingsListItemProps = {
@@ -22,11 +24,19 @@ type SettingsListItemProps = {
 const SettingsListItem = React.memo(
   ({ item, label, textColor, style }: SettingsListItemProps) => {
     const navigate = useNavigate()
+    const profile = useStore($myProfile)
 
     const Icon = item.icon
     return (
       <TouchableOpacity
-        onPress={() => navigate(item.navigateTo)}
+        onPress={() => {
+          console.log(profile)
+          const link =
+            typeof item.navigateTo === 'function'
+              ? item.navigateTo({ profile: profile })
+              : item.navigateTo
+          navigate(link)
+        }}
         activeOpacity={0.6}
         style={style.item}
       >

@@ -9,6 +9,7 @@ import ArtWorkDetailsScreen from './Screen.ArtWorkDetails'
 import CameraScreen from './Screen.Camera'
 import CategoryDetailsScreen from './Screen.CategoryDetails'
 import ScreenInfoMessage from './Screen.InfoMessage'
+import ScreenInfoMessageSuccessfulPayment from './Screen.InfoMessageSuccessfulPayment'
 import UserProfileScreen from './Screen.UserProfile'
 import MainTabsRouter from './Tabs.Main'
 import { AUTH_ROUTES } from './auth/routes'
@@ -61,6 +62,10 @@ const Router = React.memo(() => {
         component={SpecificGalleryFiltered}
       />
       <Stack.Screen name={links.infoMessage} component={ScreenInfoMessage} />
+      <Stack.Screen
+        name={links.successfulPaymentInfoMessage}
+        component={ScreenInfoMessageSuccessfulPayment}
+      />
       <Stack.Screen
         name={links.artWorkDetails}
         component={ArtWorkDetailsScreen}

@@ -30,7 +30,7 @@ const InfoMessageScreen = ({
   if (params.type === InfoMessageType.SUCCESSFUL_PAYMENT) {
     return (
       <PaymentSuccessInfoMessage
-        subscriptionMonthsAmount={params.payload.currentPayment.duration}
+        duration={params.payload.currentPayment.duration}
       />
     )
   }
