@@ -41,6 +41,7 @@ export type ArtWorkGeneral = {
   is_saved?: boolean
   is_winner?: boolean
   status_id?: ArtWorkStatus
+  age_category_id: number
 }
 
 export type ArtWork = ArtWorkGeneral & {

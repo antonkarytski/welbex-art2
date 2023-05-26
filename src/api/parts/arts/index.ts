@@ -27,6 +27,7 @@ const following = allArts
   .protect()
 
 const specificProtected = arts.get<ArtWork, number>()
+const artOfTheDay = arts.get<ArtWork>('art-of-the-day')
 const specific = arts.get<ArtWorkGeneral, number>().unprotect()
 const likePost = arts.put<ArtWork, number>((id) => `${id}/like`)
 const dislikePost = arts.put<ArtWork, number>((id) => `${id}/remove-like`)
@@ -84,4 +85,5 @@ export const artsApi = {
   userAllArtsProtected,
   userLikedArts,
   userSavedArts,
+  artOfTheDay,
 }

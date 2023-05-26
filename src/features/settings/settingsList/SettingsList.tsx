@@ -1,6 +1,6 @@
 import { useFocusEffect } from '@react-navigation/native'
 import { useStore } from 'effector-react'
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { FlatList } from 'react-native'
 import { noop } from '../../../lib/helpers'
 import { useText } from '../../../translations/hook'
@@ -36,15 +36,13 @@ const SettingsList = React.memo(() => {
     [colors.text, styles, t]
   )
 
+  const list = useMemo(() => {
+    return SETTINGS_LIST.filter(({ filter }) => !filter || filter({ isAuth }))
+  }, [isAuth])
+
   return (
     <FlatList
-      data={
-        isAuth
-          ? SETTINGS_LIST
-          : SETTINGS_LIST.filter(
-              ({ isAbleWhenUnauthorized }) => isAbleWhenUnauthorized
-            )
-      }
+      data={list}
       renderItem={renderItem}
       ItemSeparatorComponent={ListItemSeparator}
     />

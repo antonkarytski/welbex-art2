@@ -12,7 +12,7 @@ import { userName, yearsOldToText } from './helpers'
 import { countryFullName, countryFullNameClipped } from './index'
 import { UserDescriptionStyles } from './styles'
 
-export type AgeTextGenerator = (age: number) => string
+export type AgeTextGenerator = (age: number, fullAge?: string) => string
 
 type UserDescriptionProps = {
   item: UserShort
@@ -24,9 +24,18 @@ type UserDescriptionProps = {
 }
 
 export const localeAgeTextShort = createMemoByWeakMap((text: LangStructure) => {
-  return (age?: number) =>
-    age ? `${text.atAge} ${age} ${yearsOldToText(age, text, true)}` : ''
+  return (age?: number, fullAge?: string) =>
+    age
+      ? `${text.atAge} ${fullAge || age} ${yearsOldToText(age, text, true)}`
+      : ''
 })
+
+export const localeAgeTextWoPrefix = createMemoByWeakMap(
+  (text: LangStructure) => {
+    return (age?: number, fullAge?: string) =>
+      age ? `${fullAge || age} ${yearsOldToText(age, text, true)}` : ''
+  }
+)
 
 export const localeAgeTextFull = createMemoByWeakMap((text: LangStructure) => {
   return (age?: number) => (age ? `${age} ${yearsOldToText(age, text)}` : '')

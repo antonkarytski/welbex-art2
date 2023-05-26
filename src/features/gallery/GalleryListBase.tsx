@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native'
 import { ArtWork, ArtWorksFilterProps } from '../../api/parts/arts/types'
 import { createAdsBanner } from '../../lib/ads/AdsBanner'
@@ -14,7 +14,10 @@ import { drawingKeyExtractor } from '../artWork/helpers'
 import { useAtrWorkActions } from '../artWork/hooks'
 import { useColors } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
-import { localeAgeTextShort } from '../user/UserDescription'
+import {
+  localeAgeTextShort,
+  localeAgeTextWoPrefix,
+} from '../user/UserDescription'
 import GalleryItem from './GalleryItem'
 import { useGallery } from './hooks'
 import { galleryItemThemedStyles } from './styles'
@@ -69,6 +72,10 @@ const GalleryListBase = ({
     [navigate]
   )
 
+  const textGenerator = useMemo(() => {
+    return localeAgeTextWoPrefix(text)
+  }, [text])
+
   const renderItem = useCallback(
     ({ item, index }: ListRenderItemInfo<ArtWork>) => {
       return (
@@ -76,7 +83,7 @@ const GalleryListBase = ({
           {isAdsVisible && adsBannerFreq(index) && <AdsBanner />}
           <GalleryItem
             onPress={onPressGalleryItem}
-            ageTextGenerator={localeAgeTextShort(text)}
+            ageTextGenerator={textGenerator}
             style={styles.item}
             item={item}
             onPressLikeButton={toggleLike}
@@ -86,7 +93,15 @@ const GalleryListBase = ({
         </>
       )
     },
-    [styles, text, colors, isAdsVisible, like, toggleLike, onPressGalleryItem]
+    [
+      styles,
+      colors,
+      isAdsVisible,
+      like,
+      toggleLike,
+      onPressGalleryItem,
+      textGenerator,
+    ]
   )
 
   if (isLoading) return <GallerySkeleton />

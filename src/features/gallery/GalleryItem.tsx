@@ -1,10 +1,12 @@
 import React, { useCallback } from 'react'
 import { View } from 'react-native'
 import { ArtWork } from '../../api/parts/arts/types'
+import { AGE_CATEGORIES } from '../../constants/categories'
 import LikeButton from '../../ui/buttons/LikeButton'
 import ShareButton from '../../ui/buttons/ShareButton'
 import ImageCard from '../../ui/cards/ImageCard'
 import WinnerIcon, { winnersIconStyles } from '../../ui/icons/Icon.Winner'
+import { rangeToString } from '../filters/ages'
 import { ColorThemeStructure } from '../themed/theme'
 import UserDescription, { AgeTextGenerator } from '../user/UserDescription'
 import { GalleryItemStyles } from './styles'
@@ -17,6 +19,20 @@ type GalleryItemProps = {
   ageTextGenerator?: AgeTextGenerator
   onPressLikeButton: (item: ArtWork) => void
   colors: ColorThemeStructure
+}
+
+const getAgeCategoryLabel = (
+  item: ArtWork,
+  textGenerator?: AgeTextGenerator
+) => {
+  const category = AGE_CATEGORIES[item.age_category_id]
+  if (category) {
+    const rangeString = rangeToString(category)
+    return textGenerator?.(category[1], rangeToString(category)) ?? rangeString
+  }
+  return item.author.age
+    ? textGenerator?.(item.author.age) ?? item.author.age.toString()
+    : ''
 }
 
 const GalleryItem = React.memo(
@@ -55,7 +71,7 @@ const GalleryItem = React.memo(
               name: style.name,
             }}
             item={item.author}
-            ageTextGenerator={ageTextGenerator}
+            ageTextGenerator={() => getAgeCategoryLabel(item, ageTextGenerator)}
             shortenCountryName
             shortenUserName
           />
