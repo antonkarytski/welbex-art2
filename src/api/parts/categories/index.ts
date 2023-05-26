@@ -5,6 +5,7 @@ import { LocalizedPaginatedListProps, PaginatedListProps } from '../../types'
 import {
   AvailableCategoriesResponse,
   CategoriesResponse,
+  SpecificCategoryProps,
   SpecificCategoryResponse,
   WinnerProps,
   WinnerResponse,
@@ -26,7 +27,17 @@ const currentMonthWinners = categories.get<
     return { url: 'winners', body: { ...params, date_start, date_end } }
   },
 })
-const specific = categories.get<SpecificCategoryResponse, number>()
+
+const specific = categories.get<
+  SpecificCategoryResponse,
+  SpecificCategoryProps
+>({
+  fn: ({ id, ...params }) => ({
+    url: `${id}`,
+    body: params,
+  }),
+})
+
 const getAvailable = categories
   .get<AvailableCategoriesResponse, void>('get-available-categories-ids')
   .protect()
