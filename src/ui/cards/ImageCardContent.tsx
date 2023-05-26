@@ -36,14 +36,16 @@ type ImageValueProps = {
   cached?: boolean
   options: ImageOptions
   image: { uri: string }
+  fullRound?: boolean
 }
 
-const ImageValue = ({ cached, options, image }: ImageValueProps) => {
+const ImageValue = ({ cached, options, image, fullRound }: ImageValueProps) => {
   const style = [
     styles.imageBackground,
     !!options.imageHeight && {
       height: options.imageHeight,
     },
+    fullRound && styles.fullRound,
   ]
 
   if (!cached) {
@@ -89,7 +91,12 @@ const ImageCardContent = React.memo(
                 />
               </View>
             )}
-            <ImageValue cached={cached} image={image} options={imageOptions} />
+            <ImageValue
+              fullRound={!children}
+              cached={cached}
+              image={image}
+              options={imageOptions}
+            />
           </>
         ) : (
           <View
@@ -109,6 +116,9 @@ const ImageCardContent = React.memo(
 
 const styles = StyleSheet.create({
   container: {
+    borderRadius: 20,
+  },
+  fullRound: {
     borderRadius: 20,
   },
   imageBackground: {

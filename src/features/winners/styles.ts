@@ -1,4 +1,5 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
+import { themedShadow5Style } from '../../styles/shadows'
 import { createThemedStyle } from '../themed'
 
 export type WinnerCardStyles = {
@@ -14,8 +15,11 @@ export const winnerCardThemedStyles = createThemedStyle<WinnerCardStyles>(
   (colors) =>
     StyleSheet.create({
       container: {
+        ...themedShadow5Style(colors),
+        backgroundColor: 'white',
         marginLeft: 20,
         width: 235,
+        borderRadius: 20,
       },
       description: {
         backgroundColor: colors.card,

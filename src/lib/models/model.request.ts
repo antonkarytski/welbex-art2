@@ -7,12 +7,7 @@ export const createRequestModel = <P, R>(
   const setData = createEvent<R>()
   const update = createEffect<Partial<R>, R>()
   const $data = restore(setData, null).on(update.doneData, (state, payload) =>
-    state
-      ? {
-          ...state,
-          ...payload,
-        }
-      : payload
+    state ? { ...state, ...payload } : payload
   )
 
   const get = createEffect((props: P) =>

@@ -82,7 +82,7 @@ const themedStyles = createThemedStyle((colors) =>
       paddingRight: 20,
     },
     title: {
-      color: colors.navigationLabelSelected,
+      color: colors.text,
       paddingLeft: 20,
     },
     noWinnersText: {

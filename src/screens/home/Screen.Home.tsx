@@ -1,8 +1,11 @@
+import { useRequest } from '@heyheyjude/toolkit'
 import { useStore, useStoreMap } from 'effector-react'
 import React, { useEffect, useRef, useState } from 'react'
 import { Animated, LayoutChangeEvent, StyleSheet, View } from 'react-native'
+import { api } from '../../api'
 import CategoriesList from '../../features/categories/CategoriesList'
 import { categoriesListModel } from '../../features/categories/model'
+import PictureOfTheDay from '../../features/pictureOfTheDay/PictureOfTheDay'
 import { createThemedStyle } from '../../features/themed'
 import { useThemedStyleList } from '../../features/themed/hooks'
 import WinnersBlock from '../../features/winners/WinnersBlock'
@@ -88,9 +91,11 @@ export default function HomeScreen() {
         onScroll={onCategoriesListScroll}
         ListHeaderComponent={() => (
           <View>
-            {winnersListNotEmpty && (
-              <WinnersBlock onLayout={onWinnersBlockLayout} />
-            )}
+            <PictureOfTheDay
+              titleStyle={styles.common.whiteTitle}
+              onLayout={onWinnersBlockLayout}
+            />
+            {winnersListNotEmpty && <WinnersBlock />}
             <H2 style={styles.common.title} label={text.categories} />
           </View>
         )}
@@ -117,6 +122,10 @@ const themedStyles = createThemedStyle((colors) =>
     },
     title: {
       color: colors.text,
+      paddingLeft: 20,
+    },
+    whiteTitle: {
+      color: colors.whiteText,
       paddingLeft: 20,
     },
   })

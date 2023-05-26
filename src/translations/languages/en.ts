@@ -267,6 +267,7 @@ export const EN = {
     technicalProblem: 'Technical problem',
     other: 'Other',
   },
+  pictureOfDay: 'Picture of the day',
   feedbackForm: {
     selectIssue: 'Select issue',
     describeSubject: 'Describe subject',
