@@ -33,7 +33,8 @@ const SendPhoneButton = ({ preset }: SendPhoneButtonProps) => {
 
   return (
     <PresetButton
-      label={t.send}
+      //label={t.send} //TEMP
+      label={t.continue}
       onPress={onContinue}
       preset={preset}
       style={styles.button}
