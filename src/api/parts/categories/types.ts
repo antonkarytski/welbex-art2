@@ -1,5 +1,6 @@
 import { Languages } from '../../../translations/types'
 import { PaginatedListProps, PaginatedListResponse } from '../../types'
+import { ArtPreview } from '../arts/types'
 
 export enum CategoryStatus {
   ACTIVE = 1,
@@ -44,10 +45,7 @@ export type WinnerItem = {
   category: {
     name: string
   }
-  art: {
-    id: number
-    image_thumbnail: string
-  }
+  art: ArtPreview
 }
 
 export type CategoriesResponse = PaginatedListResponse<CategoryResponse>

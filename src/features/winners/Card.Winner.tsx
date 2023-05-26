@@ -7,12 +7,13 @@ import ImageCard from '../../ui/cards/ImageCard'
 import { WinnerCardStyles } from './styles'
 
 type WinnerCardProps = {
-  image: { uri: string }
+  image: string
   styles: WinnerCardStyles
   category: string
   yearsCategory: string
   authorName: string
   offsetY?: number
+  onPress?: () => void
 }
 
 const CardWinner = React.memo(
@@ -23,13 +24,15 @@ const CardWinner = React.memo(
     authorName,
     offsetY,
     image,
+    onPress,
   }: WinnerCardProps) => {
     return (
       <ImageCard
+        onPress={onPress}
         style={styles.container}
         imageHeight={150}
         imageOffsetY={offsetY}
-        image={image}
+        image={{ uri: image }}
       >
         <View style={styles.description}>
           <Row style={styles.row}>

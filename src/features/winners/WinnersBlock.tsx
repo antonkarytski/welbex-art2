@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react'
 import { FlatList, StyleSheet, View, ViewProps } from 'react-native'
 import { WinnerItem } from '../../api/parts/categories/types'
+import { useNavigate } from '../../navigation'
+import { links } from '../../navigation/links'
 import { SCREEN_PADDING_HORIZONTAL } from '../../styles/constants'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
@@ -28,21 +30,23 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
   const text = useText()
 
   const { winners, isLoading, isNextLoading, getNextSync } = useWinnersModel()
+  const navigate = useNavigate()
 
   const renderWinnerItem = useCallback(
     ({ item }: { item: WinnerItem }) => {
       return (
         <CardWinner
+          onPress={() => navigate(links.artWorkDetails, { item: item.art })}
           category={item.category.name}
           authorName={userName(item.winner)}
           yearsCategory={ageCategory(item, text)}
-          image={{ uri: item.art.image_thumbnail }}
+          image={item.art.image_thumbnail}
           styles={styles.card}
           offsetY={100}
         />
       )
     },
-    [styles, text]
+    [styles, text, navigate]
   )
 
   if (isLoading) return <WinnersListSkeleton />
