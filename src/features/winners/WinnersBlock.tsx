@@ -76,10 +76,10 @@ const themedStyles = createThemedStyle((colors) =>
   StyleSheet.create({
     container: {
       width: '100%',
-      paddingBottom: 24,
     },
     listContent: {
       paddingRight: 20,
+      paddingBottom: 8,
     },
     title: {
       color: colors.text,

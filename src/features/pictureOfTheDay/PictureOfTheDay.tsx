@@ -3,6 +3,8 @@ import React, { useEffect } from 'react'
 import { LayoutChangeEvent, StyleProp, TextStyle, View } from 'react-native'
 import { api } from '../../api'
 import { noop } from '../../lib/helpers'
+import { useNavigate } from '../../navigation'
+import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import ImageCard from '../../ui/cards/ImageCard'
@@ -14,6 +16,7 @@ type PictureOfTheDayProps = {
 
 const PictureOfTheDay = ({ onLayout, titleStyle }: PictureOfTheDayProps) => {
   const artOfDay = useRequest(api.arts.artOfTheDay)
+  const navigate = useNavigate()
   const text = useText()
 
   useEffect(() => {
@@ -30,6 +33,10 @@ const PictureOfTheDay = ({ onLayout, titleStyle }: PictureOfTheDayProps) => {
       <H2 style={titleStyle} label={text.pictureOfDay} />
       {artOfDay.data && (
         <ImageCard
+          onPress={() => {
+            if (!artOfDay.data) return
+            navigate(links.artWorkDetails, { item: artOfDay.data })
+          }}
           style={{
             borderRadius: 20,
           }}
