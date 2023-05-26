@@ -15,6 +15,8 @@ export type CategoryResponse = {
   id: number
   name: string
   image: string | null
+  type_id: CategoryType
+  status_id: CategoryStatus
 }
 
 export type SpecificCategoryProps = {

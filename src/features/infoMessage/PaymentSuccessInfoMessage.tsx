@@ -14,14 +14,15 @@ const PaymentSuccessInfoMessage = ({
     <SuccessInfoMessage
       buttonLabel={(t) => t.home}
       onButtonPress={({ navigate }) => navigate(links.home)}
-      title={(t) => t.successfulPayment}
+      title={(t) => t.thankYouForPayment}
       subTitle={(t) => {
-        if (duration) {
-          return `${
-            t.subscribedFor
-          } ${duration} ${getSubscriptionMonthsAmountText(+duration, t)}`
-        }
-        return ''
+        return t.itIsWaitingForApprovement
+        // if (duration) {
+        //   return `${
+        //     t.subscribedFor
+        //   } ${duration} ${getSubscriptionMonthsAmountText(+duration, t)}`
+        // }
+        // return ''
       }}
     />
   )

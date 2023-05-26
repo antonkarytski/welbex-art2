@@ -196,6 +196,8 @@ export const EN = {
   googlePay: 'Google Pay',
   applePay: 'Apple Pay',
   successfulPayment: 'Payment was successful',
+  thankYouForPayment: 'Thank you for your payment',
+  itIsWaitingForApprovement: "It's waiting for approvement",
   paymentError: 'Payment error',
   checkBalance: 'Check the balance',
   connectionError: 'Сonnection error',

@@ -1,8 +1,6 @@
-import { useRequest } from '@heyheyjude/toolkit'
 import { useStore, useStoreMap } from 'effector-react'
 import React, { useEffect, useRef, useState } from 'react'
 import { Animated, LayoutChangeEvent, StyleSheet, View } from 'react-native'
-import { api } from '../../api'
 import CategoriesList from '../../features/categories/CategoriesList'
 import { categoriesListModel } from '../../features/categories/model'
 import PictureOfTheDay from '../../features/pictureOfTheDay/PictureOfTheDay'
@@ -93,6 +91,7 @@ export default function HomeScreen() {
           <View>
             <PictureOfTheDay
               titleStyle={styles.common.whiteTitle}
+              imageStyle={styles.common.pictureOfDay}
               onLayout={onWinnersBlockLayout}
             />
             {winnersListNotEmpty && <WinnersBlock />}
@@ -126,7 +125,9 @@ const themedStyles = createThemedStyle((colors) =>
     },
     whiteTitle: {
       color: colors.whiteText,
-      paddingLeft: 20,
+    },
+    pictureOfDay: {
+      borderColor: colors.primary3,
     },
   })
 )

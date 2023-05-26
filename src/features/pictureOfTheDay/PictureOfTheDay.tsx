@@ -1,6 +1,12 @@
 import { useRequest } from '@heyheyjude/toolkit'
 import React, { useEffect } from 'react'
-import { LayoutChangeEvent, StyleProp, TextStyle, View } from 'react-native'
+import {
+  LayoutChangeEvent,
+  StyleProp,
+  TextStyle,
+  View,
+  ViewStyle,
+} from 'react-native'
 import { api } from '../../api'
 import { noop } from '../../lib/helpers'
 import { useNavigate } from '../../navigation'
@@ -12,9 +18,14 @@ import ImageCard from '../../ui/cards/ImageCard'
 type PictureOfTheDayProps = {
   onLayout?: (e: LayoutChangeEvent) => void
   titleStyle?: StyleProp<TextStyle>
+  imageStyle?: StyleProp<ViewStyle>
 }
 
-const PictureOfTheDay = ({ onLayout, titleStyle }: PictureOfTheDayProps) => {
+const PictureOfTheDay = ({
+  onLayout,
+  titleStyle,
+  imageStyle,
+}: PictureOfTheDayProps) => {
   const artOfDay = useRequest(api.arts.artOfTheDay)
   const navigate = useNavigate()
   const text = useText()
@@ -37,9 +48,13 @@ const PictureOfTheDay = ({ onLayout, titleStyle }: PictureOfTheDayProps) => {
             if (!artOfDay.data) return
             navigate(links.artWorkDetails, { item: artOfDay.data })
           }}
-          style={{
-            borderRadius: 20,
-          }}
+          style={[
+            {
+              borderRadius: 20,
+              borderWidth: 1,
+            },
+            imageStyle,
+          ]}
           imageHeight={260}
           image={{ uri: artOfDay.data.image_thumbnail }}
         />

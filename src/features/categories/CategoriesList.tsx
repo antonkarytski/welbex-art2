@@ -1,4 +1,4 @@
-import { useStore } from 'effector-react'
+import { useStore, useStoreMap } from 'effector-react'
 import React, { ReactElement, useCallback, useState } from 'react'
 import {
   Animated,
@@ -16,6 +16,7 @@ import { useText } from '../../translations/hook'
 import Span from '../../ui/Span'
 import Loader from '../../ui/loaders/Loader'
 import CategoriesListSkeleton from '../../ui/loaders/Skeleton.CategoriesList'
+import { $myProfile } from '../profile/model'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import CardCategory from './Card.Category'
@@ -46,6 +47,11 @@ const CategoriesList = ({
     card: categoryCardThemedStyles,
   })
 
+  const isPremium = useStoreMap({
+    store: $myProfile,
+    keys: [],
+    fn: (profile) => !!profile?.subscription,
+  })
   const isAdsVisible = useIsAdsVisible()
   const categories = useStore(categoriesListModel.$items)
   const isLoading = useStore(categoriesListModel.$isLoading)
@@ -60,11 +66,15 @@ const CategoriesList = ({
       return (
         <>
           {isAdsVisible && adsBannerFreq(index) && <AdsBanner />}
-          <CardCategory item={item} styles={styles.card} />
+          <CardCategory
+            showPremium={!isPremium}
+            item={item}
+            styles={styles.card}
+          />
         </>
       )
     },
-    [styles, isAdsVisible]
+    [styles, isAdsVisible, isPremium]
   )
 
   return (

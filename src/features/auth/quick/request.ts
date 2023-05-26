@@ -36,9 +36,14 @@ export const completeQuickAuth = attach({
         const update = convertSignUpFormToProfileUpdate(data, absentFields)
         await api.users.editMe(update)
       }
+      console.log('STEP@')
       await initProfile()
       resetQuickAuthData()
       resetSignUpFormData()
     }
   ),
+})
+
+completeQuickAuth.fail.watch((e) => {
+  console.log(e)
 })

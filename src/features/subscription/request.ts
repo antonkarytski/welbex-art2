@@ -14,6 +14,7 @@ export const updateSubscriptionStatus = attach({
 const MAX_ATTEMPTS_COUNT = 3
 
 updateSubscriptionStatus.done.watch(({ result, params }) => {
+  console.log(result)
   if (!result || result.status_id === SubscriptionStatus.ACTIVE) {
     updateProfile((profile) => ({ ...profile, subscription: result }))
     return
@@ -21,7 +22,8 @@ updateSubscriptionStatus.done.watch(({ result, params }) => {
   if (params?.attempt && params.attempt > MAX_ATTEMPTS_COUNT) {
     return
   }
+  const currentAttempt = params?.attempt || 1
   setTimeout(() => {
-    updateSubscriptionStatus({ attempt: params?.attempt || 2 })
-  })
+    updateSubscriptionStatus({ attempt: currentAttempt + 1 }).catch(() => {})
+  }, 2000 * currentAttempt)
 })
