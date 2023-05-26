@@ -1,13 +1,19 @@
 import { api } from '../../../api'
 import { ARTS_PAGE_SIZE } from '../../../api/constants'
 import { createPaginationListModel } from '../../../lib/models/pagination'
+import { createAuthSeparatedRequest } from '../../auth/helpers'
 import { UserDrawingListType } from '../types'
 import { UserArtsListsRequestModel } from './types'
+
+export const getUserRequest = createAuthSeparatedRequest(
+  api.arts.userAllArts,
+  api.arts.userAllArtsProtected
+)
 
 export const createUserArtsListsRequestModel =
   (): UserArtsListsRequestModel => {
     const userAllArtsModel = createPaginationListModel({
-      request: api.arts.userAllArtsProtected,
+      request: getUserRequest,
       pageSize: ARTS_PAGE_SIZE,
     })
 
