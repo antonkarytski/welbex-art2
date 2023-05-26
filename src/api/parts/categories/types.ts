@@ -1,3 +1,4 @@
+import { Languages } from '../../../translations/types'
 import { PaginatedListProps, PaginatedListResponse } from '../../types'
 
 export enum CategoryStatus {
@@ -13,6 +14,11 @@ export type CategoryResponse = {
   id: number
   name: string
   image: string | null
+}
+
+export type SpecificCategoryProps = {
+  id: number
+  language?: Languages
 }
 
 export type SpecificCategoryResponse = CategoryResponse & {

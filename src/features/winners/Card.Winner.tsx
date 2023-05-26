@@ -36,7 +36,7 @@ const CardWinner = React.memo(
             <Span
               style={styles.categoryLabel}
               weight={600}
-              label={`"${truncateString(category, 17)}"`}
+              label={`${truncateString(category, 16)}`}
             />
             <Span
               style={styles.yearsLabel}
