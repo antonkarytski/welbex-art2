@@ -2,6 +2,7 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { useStore } from 'effector-react'
 import { useCallback } from 'react'
 import { AvailableCategoriesResponse } from '../../api/parts/categories/types'
+import { SubscriptionStatus } from '../../api/parts/subscriptions/types'
 import { MyProfile } from '../../api/parts/users/types'
 import { IdentityDocumentStatus } from '../../api/parts/users/types.api'
 import { noop } from '../../lib/helpers'
@@ -18,6 +19,7 @@ import {
   $availableCategories,
   loadAvailableCategories,
 } from '../profile/model.availableCategories'
+import { isActiveSubscription } from '../subscription/helpers'
 import { userAge } from '../user/helpers'
 
 type GetPopUpProps = {
@@ -46,7 +48,7 @@ const getPopUp = ({
   const isNoAvailableCategories =
     !availableCategories.current_month.length &&
     !availableCategories.next_month.length
-  if (!myProfile.subscription && isNoAvailableCategories) {
+  if (!isActiveSubscription(myProfile) && isNoAvailableCategories) {
     return PopUpArtWorksLimitExceedFree
   }
   if (isNoAvailableCategories) {

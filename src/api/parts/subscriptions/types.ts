@@ -4,8 +4,8 @@ export enum SubscriptionCurrency {
 }
 
 export enum SubscriptionStatus {
-  ACTIVE = 1,
-  PENDING = 2,
+  PENDING = 1,
+  ACTIVE = 2,
 }
 
 export type Subscription = {

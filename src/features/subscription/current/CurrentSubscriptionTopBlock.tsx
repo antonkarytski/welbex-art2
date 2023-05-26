@@ -9,7 +9,10 @@ import { $currentSubscription } from '../../profile/model'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
 import SubscriptionPlansTopBlock from '../plans/SubscriptionPlansTopBlock'
-import { getSubscriptionPriceText } from '../plans/helpers'
+import {
+  getSubscriptionMonthsAmountText,
+  getSubscriptionPriceText,
+} from '../plans/helpers'
 import { subscriptionCurrentItemThemedStyles } from '../plans/styles'
 import ChangeTariffButton from './ChangeTariffButton'
 import { currentSubscriptionControllersStyles } from './styles'
@@ -34,7 +37,10 @@ const CurrentSubscriptionTopBlock = ({}: CurrentSubscriptionTopBlockProps) => {
           <SubscriptionSelectItem
             style={styles.item}
             value={currentSubscription.type.duration}
-            measure={text.months}
+            measure={getSubscriptionMonthsAmountText(
+              currentSubscription.type.duration,
+              text
+            )}
             price={getSubscriptionPriceText(
               currentSubscription.type.price,
               SubscriptionCurrency.RUB,

@@ -2,6 +2,7 @@ import { attach, createEffect, createEvent, sample } from 'effector'
 import { createStateModel } from 'altek-toolkit'
 import { MyProfile } from '../../api/parts/users/types'
 import { $myProfile } from '../../features/profile/model'
+import { isActiveSubscription } from '../../features/subscription/helpers'
 import { AdsController, createAdsController } from './AdsController'
 import { AdsName } from './list'
 
@@ -37,7 +38,7 @@ class AdsModel {
   private readonly filterAdsCreate = (profile: MyProfile | null) => {
     const extFilter = this.settings?.filter
     return (
-      (!profile?.subscription || this.isDebugActive) &&
+      (!isActiveSubscription(profile) || this.isDebugActive) &&
       (!extFilter || this.isDebugIgnoreFilter || !profile || extFilter(profile))
     )
   }

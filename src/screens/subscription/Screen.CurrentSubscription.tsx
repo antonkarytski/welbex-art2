@@ -14,7 +14,6 @@ const CurrentSubscriptionScreen = ({
 
   useLayoutEffect(() => {
     if (!currentSubscription) {
-      navigation.goBack()
       navigation.navigate(links.subscriptionSelectPlan)
     }
   }, [currentSubscription, navigation])

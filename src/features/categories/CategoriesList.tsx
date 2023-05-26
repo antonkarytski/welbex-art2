@@ -1,5 +1,5 @@
-import { useStore, useStoreMap } from 'effector-react'
-import React, { ReactElement, useCallback, useState } from 'react'
+import { useStore } from 'effector-react'
+import React, { ReactElement, useCallback } from 'react'
 import {
   Animated,
   FlatListProps,
@@ -16,9 +16,9 @@ import { useText } from '../../translations/hook'
 import Span from '../../ui/Span'
 import Loader from '../../ui/loaders/Loader'
 import CategoriesListSkeleton from '../../ui/loaders/Skeleton.CategoriesList'
-import { $myProfile } from '../profile/model'
 import { createThemedStyle } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
+import { useSubscriptionCheck } from '../user/hook.subscritption'
 import CardCategory from './Card.Category'
 import { categoriesListModel } from './model'
 import { categoryCardThemedStyles } from './styles'
@@ -47,11 +47,7 @@ const CategoriesList = ({
     card: categoryCardThemedStyles,
   })
 
-  const isPremium = useStoreMap({
-    store: $myProfile,
-    keys: [],
-    fn: (profile) => !!profile?.subscription,
-  })
+  const isPremium = useSubscriptionCheck()
   const isAdsVisible = useIsAdsVisible()
   const categories = useStore(categoriesListModel.$items)
   const isLoading = useStore(categoriesListModel.$isLoading)

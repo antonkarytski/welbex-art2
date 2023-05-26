@@ -14,6 +14,7 @@ import PresetButton from '../../../ui/buttons/PresetButton'
 import { selectedCategoryModel } from '../../createPost/model.categorySelect'
 import { $myProfile } from '../../profile/model'
 import { $availableCategories } from '../../profile/model.availableCategories'
+import { isActiveSubscription } from '../../subscription/helpers'
 import { createThemedStyle } from '../../themed'
 import { useThemedStyleList } from '../../themed/hooks'
 
@@ -28,7 +29,7 @@ const JoinCategoryButton = ({ item }: CategoryDescriptionProps) => {
     keys: [item.type_id],
     fn: (profile) =>
       !!profile &&
-      !profile.subscription &&
+      !isActiveSubscription(profile) &&
       item.type_id === CategoryType.PREMIUM,
   })
   const isAvailable = useStoreMap({
