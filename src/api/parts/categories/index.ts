@@ -16,6 +16,7 @@ const all = categories.get<
   CategoriesResponse,
   LocalizedPaginatedListProps | void
 >('all')
+
 const winners = categories.get<WinnerResponse, WinnerProps | void>('winners')
 const currentMonthWinners = categories.get<
   WinnerResponse,
