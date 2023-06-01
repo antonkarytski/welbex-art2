@@ -23,7 +23,10 @@ const currentMonthWinners = categories.get<
   LocalizedPaginatedListProps | void
 >({
   fn: (params) => {
-    const date_start = moment().startOf('month').format(STANDARD_DATE_FORMAT)
+    const date_start = moment()
+      .subtract(1, 'month')
+      .endOf('month')
+      .format(STANDARD_DATE_FORMAT)
     const date_end = moment().endOf('month').format(STANDARD_DATE_FORMAT)
     return { url: 'winners', body: { ...params, date_start, date_end } }
   },

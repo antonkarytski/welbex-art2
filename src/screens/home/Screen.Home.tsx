@@ -69,14 +69,12 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.common.container}>
-      {winnersListNotEmpty && (
-        <MotionGradient
-          minHeight={headerHeight}
-          maxHeight={winnersBlockHeight + headerHeight}
-          colors={styles.gradient}
-          offsetValue={offset}
-        />
-      )}
+      <MotionGradient
+        minHeight={headerHeight}
+        maxHeight={winnersBlockHeight + headerHeight}
+        colors={styles.gradient}
+        offsetValue={offset}
+      />
       <AppHeader
         onLayout={onScreenHeaderLayout}
         style={winnersListNotEmpty ? styles.headerTransparent : styles.header}

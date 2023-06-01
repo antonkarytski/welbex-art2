@@ -282,7 +282,7 @@ export const RU: LangStructure = {
     successMessageSent:
       'Ваше сообщение направлено Администратору, ожидайте ответа на электронную почту, указанную в профиле.',
   },
-  pictureOfDay: 'Картинка дня',
+  pictureOfDay: 'Рисунок дня',
   thankYouForPayment: 'Спасибо за покупку!',
   itIsWaitingForApprovement:
     'Статус подписки изменится как только мы получим подтверждение оплаты',
