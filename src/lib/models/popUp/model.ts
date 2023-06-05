@@ -1,7 +1,8 @@
 import { Event, Store, createEffect, createEvent, restore } from 'effector'
 import { Animated } from 'react-native'
-import { fastSpringAnimation } from 'altek-toolkit'
-import { ConcurrentTimeout, noop } from '../../helpers'
+import { fastSpringAnimation } from './animation'
+import { noop } from './helpers'
+import { ConcurrentTimeout } from './helpers.timeout'
 
 type PopUpShowProps<Props> = {
   autoClose?: number

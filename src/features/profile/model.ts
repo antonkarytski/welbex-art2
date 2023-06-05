@@ -7,6 +7,7 @@ type UpdateProfileProps =
   | ((props: MyProfile) => Partial<MyProfile>)
 export const setMyProfile = createEvent<MyProfile>()
 export const updateProfile = createEvent<UpdateProfileProps>()
+
 export const $myProfile = restore(setMyProfile, null)
   .on(updateProfile, (state, payload) => {
     if (!state) return null

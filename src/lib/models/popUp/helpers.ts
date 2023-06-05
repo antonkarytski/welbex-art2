@@ -1,5 +1,5 @@
 import { Animated } from 'react-native'
-import { animationInterpolate } from 'altek-toolkit'
+import { animationInterpolate } from './animation'
 
 export function getMoveStyle(value: Animated.Value, output = -500) {
   const translateY = animationInterpolate(value, [0, 1], [output, 0])
@@ -7,3 +7,5 @@ export function getMoveStyle(value: Animated.Value, output = -500) {
     transform: [{ translateY }],
   }
 }
+
+export function noop() {}
