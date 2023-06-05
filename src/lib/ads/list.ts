@@ -1,7 +1,13 @@
 import { Platform } from 'react-native'
 import { TestIds } from 'react-native-google-mobile-ads'
+import mobileAds from 'react-native-google-mobile-ads'
 import { AdsDescription, AdsType } from './types'
 
+export const ADS_TEST_DEVICE_IDS = Platform.select({
+  android: ['5684B082AFBD5D69BAA81148D3BE11CD'],
+  ios: ['15b85262087954e2b5af1066908fc589'],
+  default: [],
+})
 export enum AdsName {
   WORK_UPLOAD = 'WORK_UPLOAD',
   CATEGORIES = 'CATEGORIES',
@@ -26,15 +32,15 @@ export const ADS_LIST: Record<AdsName, AdsDescription> = {
   },
   [AdsName.CATEGORIES]: {
     id: createAdsId({
-      ios: 'ca-app-pub-1405242860258153/9843305582',
-      android: 'ca-app-pub-1405242860258153/4691777601',
+      ios: 'ca-app-pub-1405242860258153/1462476394',
+      android: 'ca-app-pub-1405242860258153/8438948289',
     }),
     type: AdsType.BANNER,
   },
   [AdsName.GALLERY]: {
     id: createAdsId({
-      ios: 'ca-app-pub-1405242860258153/2705970029',
-      android: 'ca-app-pub-1405242860258153/5719000387',
+      ios: 'ca-app-pub-1405242860258153/3079628634',
+      android: 'ca-app-pub-1405242860258153/2532833729',
     }),
     type: AdsType.BANNER,
   },

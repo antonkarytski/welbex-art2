@@ -1,3 +1,4 @@
+import { useStore } from 'effector-react'
 import React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import {
@@ -6,6 +7,7 @@ import {
   RequestOptions,
 } from 'react-native-google-mobile-ads'
 import { AdsName, getAds } from './list'
+import { $isAdsInitialized } from './model.init'
 
 type AdsBannerProps = {
   style?: StyleProp<ViewStyle>
@@ -26,6 +28,9 @@ export const createAdsBanner = (
 ) => {
   const ads = getAds(name)
   return ({ style, requestOptions }: AdsBannerProps) => {
+    const isInitiated = useStore($isAdsInitialized)
+    if (!isInitiated) return null
+
     return (
       <View style={[styles.container, defaultStyle, style]}>
         <BannerAd

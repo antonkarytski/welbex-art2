@@ -15,7 +15,6 @@ import { useAtrWorkActions } from '../artWork/hooks'
 import { useColors } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
 import {
-  localeAgeTextShort,
   localeAgeTextWoPrefix,
 } from '../user/UserDescription'
 import GalleryItem from './GalleryItem'
@@ -34,9 +33,7 @@ type GalleryListProps = {
 const adsBannerFreq = createFreqFilter(4, { skipFirst: true })
 const AdsBanner = createAdsBanner(AdsName.GALLERY, {
   style: { marginBottom: 20, marginLeft: -20 },
-  requestOptions: {
-    requestNonPersonalizedAdsOnly: true,
-  },
+  requestOptions: {},
 })
 
 const GalleryListBase = ({

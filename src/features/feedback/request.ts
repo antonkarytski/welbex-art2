@@ -30,7 +30,3 @@ sendFeedback.done.watch(() => {
   feedbackFormModel.reset()
   resetFeedbackFiles()
 })
-
-sendFeedback.fail.watch(({ error }) => {
-  console.log('====== sendFeedback ERR =======', error, JSON.stringify(error))
-})

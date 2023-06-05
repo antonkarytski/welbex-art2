@@ -1,5 +1,4 @@
-import { useRequest } from '@heyheyjude/toolkit'
-import React, { useEffect } from 'react'
+import React from 'react'
 import {
   LayoutChangeEvent,
   StyleProp,
@@ -7,13 +6,13 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import { api } from '../../api'
-import { noop } from '../../lib/helpers'
+import { useRequestModel } from '../../lib/models/hook.request'
 import { useNavigate } from '../../navigation'
 import { links } from '../../navigation/links'
 import { useText } from '../../translations/hook'
 import H2 from '../../ui/H2'
 import ImageCard from '../../ui/cards/ImageCard'
+import { artOfTheDayModel } from './model'
 
 type PictureOfTheDayProps = {
   onLayout?: (e: LayoutChangeEvent) => void
@@ -26,13 +25,11 @@ const PictureOfTheDay = ({
   titleStyle,
   imageStyle,
 }: PictureOfTheDayProps) => {
-  const artOfDay = useRequest(api.arts.artOfTheDay)
+  const artOfDay = useRequestModel(artOfTheDayModel, {
+    initWithProps: undefined,
+  })
   const navigate = useNavigate()
   const text = useText()
-
-  useEffect(() => {
-    api.arts.artOfTheDay().catch(noop)
-  }, [])
 
   if (!artOfDay.data) return null
 

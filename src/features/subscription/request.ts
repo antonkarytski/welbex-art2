@@ -14,7 +14,6 @@ export const updateSubscriptionStatus = attach({
 const MAX_ATTEMPTS_COUNT = 3
 
 updateSubscriptionStatus.done.watch(({ result, params }) => {
-  console.log(result)
   if (!result || result.status_id === SubscriptionStatus.ACTIVE) {
     updateProfile((profile) => ({ ...profile, subscription: result }))
     return

@@ -32,9 +32,7 @@ const keyExtractor = ({ name }: CategoryResponse) => name
 const adsBannerFreq = createFreqFilter(4)
 const AdsBanner = createAdsBanner(AdsName.CATEGORIES, {
   style: { marginBottom: 20 },
-  requestOptions: {
-    requestNonPersonalizedAdsOnly: true,
-  },
+  requestOptions: {},
 })
 
 const CategoriesList = ({
@@ -54,7 +52,7 @@ const CategoriesList = ({
   const isNextLoading = useStore(categoriesListModel.$isNextLoading)
 
   const getNextPageSync = () => {
-    categoriesListModel.getNext()
+    categoriesListModel.getNextSync()
   }
 
   const renderItem = useCallback(
