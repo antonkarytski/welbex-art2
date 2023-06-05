@@ -14,9 +14,7 @@ import { drawingKeyExtractor } from '../artWork/helpers'
 import { useAtrWorkActions } from '../artWork/hooks'
 import { useColors } from '../themed'
 import { useThemedStyleList } from '../themed/hooks'
-import {
-  localeAgeTextWoPrefix,
-} from '../user/UserDescription'
+import { localeAgeTextWoPrefix } from '../user/UserDescription'
 import GalleryItem from './GalleryItem'
 import { useGallery } from './hooks'
 import { galleryItemThemedStyles } from './styles'
