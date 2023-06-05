@@ -105,7 +105,7 @@ export const RU: LangStructure = {
   create: 'Создать',
   uploadImage: 'Загрузить изображение',
   scanWork: 'Загрузить с использованием камеры',
-  selectImageFromCameraRoll: 'Выберите изображение из галареи',
+  selectImageFromCameraRoll: 'Выберите изображение из галереи',
   description: 'Описание',
   completeDescription: 'Заполните описание',
   category: 'Категория',
