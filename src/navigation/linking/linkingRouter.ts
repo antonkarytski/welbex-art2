@@ -1,8 +1,8 @@
 import { LinkingOptions } from '@react-navigation/native'
-import { IS_IOS } from '../../lib/helpers/native/constants'
 import { links } from '../links'
 import { ScreensProps } from '../types.screenProps'
 
+const EXCLUDED_FIELDS = ['is_superuser', 'DOB']
 export const linkingConfig: LinkingOptions<ScreensProps> = {
   prefixes: ['artsqrd://'],
   config: {
@@ -18,8 +18,7 @@ export const linkingConfig: LinkingOptions<ScreensProps> = {
             }
             value = value.replace(/'/g, '"')
             return JSON.parse(value).filter(
-              (field: string) =>
-                field !== 'is_superuser' && (!IS_IOS || field !== 'DOB')
+              (field: string) => !EXCLUDED_FIELDS.includes(field)
             )
           },
         },
