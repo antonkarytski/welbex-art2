@@ -1,39 +1,36 @@
 import React from 'react'
 import { View } from 'react-native'
+import { WinnerItem } from '../../api/parts/categories/types'
 import { truncateString } from '../../lib/helpers/strings'
+import { LangStructure } from '../../translations/types'
 import Row from '../../ui/Row'
 import Span from '../../ui/Span'
 import ImageCard from '../../ui/cards/ImageCard'
 import WinnerIcon, { winnersIconStyles } from '../../ui/icons/Icon.Winner'
+import { CountryCode } from '../countries'
+import { getCountry } from '../user'
+import { ageCategory, userName } from '../user/helpers'
 import { WinnerCardStyles } from './styles'
 
 type WinnerCardProps = {
-  image: string
   styles: WinnerCardStyles
-  category: string
-  yearsCategory: string
-  authorName: string
   offsetY?: number
-  onPress?: () => void
+  onPress?: (item: WinnerItem) => void
+  item: WinnerItem
+  text: LangStructure
 }
 
 const CardWinner = React.memo(
-  ({
-    styles,
-    yearsCategory,
-    category,
-    authorName,
-    offsetY,
-    image,
-    onPress,
-  }: WinnerCardProps) => {
+  ({ styles, offsetY, onPress, item, text }: WinnerCardProps) => {
+    const country = getCountry(item.winner.country as CountryCode)
+
     return (
       <ImageCard
-        onPress={onPress}
+        onPress={() => onPress?.(item)}
         style={styles.container}
         imageHeight={150}
         imageOffsetY={offsetY}
-        image={{ uri: image }}
+        image={{ uri: item.art.image_thumbnail }}
       >
         <WinnerIcon style={winnersIconStyles.container} />
         <View style={styles.description}>
@@ -41,16 +38,19 @@ const CardWinner = React.memo(
             <Span
               style={styles.categoryLabel}
               weight={600}
-              label={`${truncateString(category, 16)}`}
+              label={`${truncateString(item.category.name, 16)}`}
             />
             <Span
               style={styles.yearsLabel}
               weight={500}
-              label={yearsCategory}
+              label={ageCategory(item, text)}
             />
           </Row>
           <View style={styles.row}>
-            <Span style={styles.name} label={authorName} />
+            <Span
+              style={styles.name}
+              label={`${userName(item.winner)} ${country ? country.emoji : ''}`}
+            />
           </View>
         </View>
       </ImageCard>

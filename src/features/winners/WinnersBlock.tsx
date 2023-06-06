@@ -32,21 +32,26 @@ const WinnersBlock = ({ onLayout }: WinnersBlockProps) => {
   const { winners, isLoading, isNextLoading, getNextSync } = useWinnersModel()
   const navigate = useNavigate()
 
+  const onPressItem = useCallback(
+    (item: WinnerItem) => {
+      navigate(links.artWorkDetails, { item: item.art })
+    },
+    [navigate]
+  )
+
   const renderWinnerItem = useCallback(
     ({ item }: { item: WinnerItem }) => {
       return (
         <CardWinner
-          onPress={() => navigate(links.artWorkDetails, { item: item.art })}
-          category={item.category.name}
-          authorName={userName(item.winner)}
-          yearsCategory={ageCategory(item, text)}
-          image={item.art.image_thumbnail}
+          text={text}
+          item={item}
+          onPress={onPressItem}
           styles={styles.card}
           offsetY={100}
         />
       )
     },
-    [styles, text, navigate]
+    [styles, text, onPressItem]
   )
 
   if (isLoading) return <WinnersListSkeleton />
