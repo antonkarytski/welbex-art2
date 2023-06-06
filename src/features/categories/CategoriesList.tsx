@@ -7,6 +7,7 @@ import {
   StyleSheet,
 } from 'react-native'
 import { CategoryResponse } from '../../api/parts/categories/types'
+import { ADS_FREQUENCY } from '../../constants/settings'
 import { createAdsBanner } from '../../lib/ads/AdsBanner'
 import { createFreqFilter } from '../../lib/ads/helpers'
 import { useIsAdsVisible } from '../../lib/ads/hooks'
@@ -29,7 +30,7 @@ type CategoriesListProps = {
 }
 const keyExtractor = ({ name }: CategoryResponse) => name
 
-const adsBannerFreq = createFreqFilter(4)
+const adsBannerFreq = createFreqFilter(ADS_FREQUENCY)
 const AdsBanner = createAdsBanner(AdsName.CATEGORIES, {
   style: { marginBottom: 20 },
   requestOptions: {},

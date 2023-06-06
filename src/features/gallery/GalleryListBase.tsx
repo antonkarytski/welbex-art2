@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo } from 'react'
 import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native'
 import { ArtWork, ArtWorksFilterProps } from '../../api/parts/arts/types'
+import { ADS_FREQUENCY } from '../../constants/settings'
 import { createAdsBanner } from '../../lib/ads/AdsBanner'
 import { createFreqFilter } from '../../lib/ads/helpers'
 import { useIsAdsVisible } from '../../lib/ads/hooks'
@@ -28,7 +29,7 @@ type GalleryListProps = {
   refreshEnabled?: boolean
 }
 
-const adsBannerFreq = createFreqFilter(4, { skipFirst: true })
+const adsBannerFreq = createFreqFilter(ADS_FREQUENCY, { skipFirst: true })
 const AdsBanner = createAdsBanner(AdsName.GALLERY, {
   style: { marginBottom: 20, marginLeft: -20 },
   requestOptions: {},
