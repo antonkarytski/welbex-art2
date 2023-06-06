@@ -4,6 +4,7 @@ import { truncateString } from '../../lib/helpers/strings'
 import Row from '../../ui/Row'
 import Span from '../../ui/Span'
 import ImageCard from '../../ui/cards/ImageCard'
+import WinnerIcon, { winnersIconStyles } from '../../ui/icons/Icon.Winner'
 import { WinnerCardStyles } from './styles'
 
 type WinnerCardProps = {
@@ -34,6 +35,7 @@ const CardWinner = React.memo(
         imageOffsetY={offsetY}
         image={{ uri: image }}
       >
+        <WinnerIcon style={winnersIconStyles.container} />
         <View style={styles.description}>
           <Row style={styles.row}>
             <Span
