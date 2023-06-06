@@ -40,7 +40,6 @@ const FollowButton = ({
   const myProfile = useStore($myProfile)
   const isMyProfile = item.id === myProfile?.id
   const [isLoading, setIsLoading] = useState(false)
-  const [buttonWidth, setButtonWidth] = useState<string | number>(0)
 
   const { styles: stylesPreset, colors } = useThemedStyleList({
     follow: buttonPrimaryThemedPreset,
@@ -62,21 +61,17 @@ const FollowButton = ({
   if (isMyProfile) return null
 
   return (
-    <View
-      style={[styles.container, style?.container]}
-      onLayout={(e) => {
-        setButtonWidth(e.nativeEvent.layout.width)
-      }}
-    >
+    <View style={[styles.container, style?.container]}>
       <AsyncPresetButton
         isLoading={isLoading}
         label={item.is_followed ? t.unfollow : t.follow}
         onPress={onFollow}
-        style={[{ minWidth: buttonWidth }, style?.button]}
+        style={style?.button}
         labelStyle={style?.label}
         preset={item.is_followed ? stylesPreset.unFollow : stylesPreset.follow}
         loaderColor={item.is_followed ? colors.text : colors.whiteText}
         loaderSize={loaderSize}
+        adjustLabel
       />
     </View>
   )

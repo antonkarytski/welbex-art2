@@ -61,14 +61,14 @@ const UserDescription = ({
   )
 
   return (
-    <View style={style?.container}>
+    <View style={[styles.container, style?.container]}>
       <Span
         weight={500}
         style={[styles.name, style?.name]}
         label={userName(item, !!shortenUserName)}
         adjustsFontSizeToFit
-        minimumFontScale={0.8}
-        numberOfLines={2}
+        minimumFontScale={0.7}
+        numberOfLines={1}
       />
       <Span
         style={[styles.subText, style?.subText]}
@@ -89,6 +89,7 @@ const themedStyles = createThemedStyle((colors) =>
       fontSize: 14,
       lineHeight: 21,
     },
+    container: {},
   })
 )
 

@@ -20,6 +20,7 @@ export type ButtonProps = {
   disabled?: boolean
   preset?: PresetButtonStates
   disabledStyle?: StyleProp<ViewStyle>
+  adjustLabel?: boolean
 }
 
 export type PresetButtonProps = ButtonProps & {

@@ -13,6 +13,7 @@ export default function PresetButton({
   label,
   labelStyle,
   disabledStyle,
+  adjustLabel,
 }: PresetButtonProps) {
   const [presetState, setPresetState] = useState(preset.common)
 
@@ -76,6 +77,9 @@ export default function PresetButton({
             weight={500}
             style={[buttonStyles.label, activeStyles.label, labelStyle]}
             label={label}
+            adjustsFontSizeToFit={adjustLabel}
+            minimumFontScale={adjustLabel ? 0.75 : undefined}
+            numberOfLines={adjustLabel ? 1 : undefined}
           />
         )}
       </>

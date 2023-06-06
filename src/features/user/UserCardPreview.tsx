@@ -62,6 +62,10 @@ const UserCardPreview = ({
 const themedDescriptionStyles = createThemedStyle<UserDescriptionStyles>(
   (colors) =>
     StyleSheet.create({
+      container: {
+        flex: 1,
+      },
+      name: {},
       subText: {
         color: colors.lightText,
       },
@@ -83,6 +87,8 @@ const themedStyles = createThemedStyle((colors) =>
     row: {
       flexDirection: 'row',
       alignItems: 'center',
+      flexGrow: 1,
+      flex: 1,
     },
   })
 )
@@ -98,6 +104,7 @@ const followButtonStyles = StyleSheet.create({
   container: {
     marginLeft: 'auto',
     marginBottom: 0,
+    maxWidth: 95,
   },
 })
 
