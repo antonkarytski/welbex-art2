@@ -96,10 +96,12 @@ const themedStyles = createThemedStyle((colors) =>
 const followButtonStyles = StyleSheet.create({
   label: {
     fontSize: 14,
+    lineHeight: undefined,
   },
   button: {
     paddingVertical: 8,
     paddingHorizontal: 12,
+    height: 36,
   },
   container: {
     marginLeft: 'auto',

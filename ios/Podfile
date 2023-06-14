@@ -18,26 +18,15 @@ target 'art2' do
   pod 'react-native-image-crop-tools', :path => '../node_modules/react-native-image-crop-tools'
   pod 'RNFS', :path => '../node_modules/react-native-fs'
 
-  # Flags change depending on the env values.
   flags = get_default_flags()
 
   use_react_native!(
     :path => config[:reactNativePath],
-    # Hermes is now enabled by default. Disable by setting this flag to false.
-    # Upcoming versions of React Native may rely on get_default_flags(), but
-    # we make it explicit here to aid in the React Native upgrade process.
     :hermes_enabled => true,
     :fabric_enabled => flags[:fabric_enabled],
-    # Enables Flipper.
-    #
-    # Note that if you have use_frameworks! enabled, Flipper will not work and
-    # you should disable the next line.
     :flipper_configuration => FlipperConfiguration.enabled,
-    # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
-
-
 
   target 'art2Tests' do
     inherit! :complete
